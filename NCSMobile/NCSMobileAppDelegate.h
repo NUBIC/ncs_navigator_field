@@ -30,7 +30,6 @@
 
 
 /* imported for surveyor_ios */
-BOOL RSRunningOnOS4OrBetter(void);
 @property (nonatomic, retain) IBOutlet NUSurveyTVC *surveyController;
 @property (nonatomic, retain) NUSectionTVC *sectionController;
 /* */

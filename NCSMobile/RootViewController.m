@@ -23,7 +23,7 @@
 #import "SBJson/SBJsonWriter.h"
 #import "NUResponseSet.h"
 #import "NUCas.h"
-#import "Configuration.h"
+#import "ApplicationConfiguration.h"
 #import "SyncActivityIndicator.h"
 #import "NUSurvey.h"
 #import "UUID.h"
@@ -336,7 +336,7 @@
     if (serviceTicket.ok) {
         CasConfiguration* conf = [CasConfiguration new];
         CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
-        NSString* coreURL = [Configuration instance].coreURL;
+        NSString* coreURL = [ApplicationConfiguration instance].coreURL;
         
         CasProxyTicket* t = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:serviceTicket.pgt];
         [t reify];

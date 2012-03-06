@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Configuration : NSObject {
+@interface ApplicationConfiguration : NSObject {
     @private
     NSString* _coreURL;
 }
@@ -20,7 +20,7 @@
 
 #pragma Methods
 
-+ (Configuration*) instance;
++ (ApplicationConfiguration*) instance;
 
 
 @end

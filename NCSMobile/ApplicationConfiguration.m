@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import "Configuration.h"
+#import "ApplicationConfiguration.h"
 
-@implementation Configuration
+@implementation ApplicationConfiguration
 
 @synthesize coreURL;
 
-static Configuration* instance;
+static ApplicationConfiguration* instance;
 
 
 - (id)init {
@@ -32,9 +32,9 @@ static Configuration* instance;
     return self;
 }
 
-+ (Configuration*) instance {
++ (ApplicationConfiguration*) instance {
     if (!instance) {
-        instance = [[Configuration alloc] init];
+        instance = [[ApplicationConfiguration alloc] init];
     }
     return instance;
 }
