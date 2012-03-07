@@ -10,7 +10,7 @@
 
 @interface InstrumentTemplate : NSManagedObject
 
-@property(nonatomic,retain) NSString* identifier;
+@property(nonatomic,retain) NSString* instrumentTemplateId;
 @property(nonatomic,retain) NSString* representation;
 
 @end

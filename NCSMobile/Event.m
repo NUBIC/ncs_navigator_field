@@ -10,5 +10,5 @@
 
 @implementation Event
 
-@dynamic name, eventTypeId, eventTypeOther, repeatKey, startDate, endDate, incentiveTypeId, incentiveCash, incentiveNonCash, dispositionId, dispositionCategoryId, breakOffId, comments, contact, instruments;
+@dynamic eventId, name, eventTypeId, eventTypeOther, repeatKey, startDate, endDate, incentiveTypeId, incentiveCash, incentiveNonCash, dispositionId, dispositionCategoryId, breakOffId, comments, contact, instruments;
 @end

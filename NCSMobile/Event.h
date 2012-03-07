@@ -14,6 +14,8 @@
 
 /* properties */
 
+@property(nonatomic,retain) NSString* eventId;
+
 @property(nonatomic,retain) NSString* name;
 
 @property(nonatomic,retain) NSNumber* eventTypeId;

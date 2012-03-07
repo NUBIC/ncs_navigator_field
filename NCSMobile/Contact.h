@@ -10,21 +10,26 @@
 
 @class Event;
 @class Person;
-@class Location;
 
 @interface Contact : NSManagedObject
 
 #pragma mark properties
 
-@property(nonatomic,retain) NSNumber* typeId;
+@property(nonatomic,retain) NSString* contactId;
 
-@property(nonatomic,retain) Person* person;
+@property(nonatomic,retain) NSNumber* typeId;
 
 @property(nonatomic,retain) NSDate* startDate;
 
 @property(nonatomic,retain) NSDate* endDate;
 
+@property(nonatomic,retain) NSString* personId;
+
 @property(nonatomic) BOOL initiated;
+
+@property(nonatomic,retain) NSNumber* locationId;
+
+@property(nonatomic,retain) NSString* locationOther;
 
 @property(nonatomic,retain) NSNumber* whoContactedId;
 
@@ -53,7 +58,7 @@
 
 @property(nonatomic,retain) NSSet* events;
 
-@property(nonatomic,retain) Location* location;
+@property(nonatomic,retain) Person* person;
 
 
 #pragma mark methods

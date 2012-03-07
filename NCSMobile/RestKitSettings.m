@@ -11,8 +11,7 @@
 #import "Event.h"
 #import "Person.h"
 #import "Instrument.h"
-#import "Address.h"
-#import "Location.h"
+#import "Participant.h"
 #import "NUResponseSet.h"
 #import "Contact.h"
 #import "InstrumentTemplate.h"
@@ -68,58 +67,59 @@
     // Instrument Template
     RKManagedObjectMapping* instrumentTemplate = [RKManagedObjectMapping mappingForClass:[InstrumentTemplate class]];
     [instrumentTemplate mapKeyPathsToAttributes:
-     @"id", @"identifier",
+     @"instrument_template_id", @"instrumentTemplateId",
      @"representation", @"representation", nil];
-    [instrumentTemplate setPrimaryKeyAttribute:@"identifier"];
+    [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
     [objectManager.mappingProvider setMapping:instrumentTemplate forKeyPath:@"instrument_templates"];
     
     // Instrument Mapping
     RKManagedObjectMapping* instrument = [RKManagedObjectMapping mappingForClass:[Instrument class]];
     [instrument mapKeyPathsToAttributes: 
-     @"instrument_template_id", @"instrumentTemplateId", 
+     @"instrument_id", @"instrumentId",
+     @"instrument_template_id", @"instrumentTemplateId",
      @"name", @"name", nil];
     [instrument mapRelationship:@"instrumentTemplate" withMapping:instrumentTemplate];
     [instrument connectRelationship:@"instrumentTemplate" withObjectForPrimaryKeyAttribute:@"instrumentTemplateId"];
     
     // Event Mapping
     RKManagedObjectMapping* event = [RKManagedObjectMapping mappingForClass:[Event class]];
-    [event mapKeyPathsToAttributes: 
+    [event mapKeyPathsToAttributes:
+     @"event_id", @"eventId",
      @"name", @"name", nil];
     [event mapRelationship:@"instruments" withMapping:instrument];
-    
-    // Address Mapping
-    RKManagedObjectMapping *address = [RKManagedObjectMapping mappingForClass:[Address class]];
-    [address mapKeyPathsToAttributes:
-     @"street", @"street",
-     @"city", @"city",
-     @"state", @"state",
-     @"zip_code", @"zipCode", nil];
-    
-    // Location Mapping
-    RKManagedObjectMapping* location = [RKManagedObjectMapping mappingForClass:[Location class]];
-    [location mapKeyPathsToAttributes:
-     @"code", @"code",
-     @"other", @"other",
-     @"details", @"details", nil];
-    [location mapRelationship:@"address" withMapping:address];
     
     // Person Mapping
     RKManagedObjectMapping* person = [RKManagedObjectMapping mappingForClass:[Person class]];
     [person mapKeyPathsToAttributes: 
-     @"id", @"id",
+     @"person_id", @"personId",
      @"name", @"name",
      @"home_phone", @"homePhone",
      @"cell_phone", @"cellPhone",
-     @"email", @"email", nil];
+     @"email", @"email", 
+     @"street", @"street",
+     @"city", @"city",
+     @"state", @"state",
+     @"zip_code", @"zipCode", nil];
+    [person setPrimaryKeyAttribute:@"personId"];
+    [objectManager.mappingProvider setMapping:person forKeyPath:@"persons"];
     
+    // Partipant Mapping
+    RKManagedObjectMapping* participant = [RKManagedObjectMapping mappingForClass:[Participant class]];
+    [participant mapKeyPathsToAttributes:
+     @"p_id", @"pId", nil];
+    [participant mapRelationship:@"persons" withMapping:person];
+    [objectManager.mappingProvider setMapping:participant forKeyPath:@"participants"];
+
     // Contact Mapping
     RKManagedObjectMapping* contact = [RKManagedObjectMapping mappingForClass:[Contact class]];
     [contact mapKeyPathsToAttributes:
-     @"type", @"typeId", 
+     @"contact_id", @"contactId",
+     @"type", @"typeId",
      @"start_date", @"startDate",
-     @"end_date", @"endDate", nil];
+     @"end_date", @"endDate",
+     @"person_id", @"personId", nil];
     [contact mapRelationship:@"person" withMapping:person];
-    [contact mapRelationship:@"location" withMapping:location];
+    [contact connectRelationship:@"person" withObjectForPrimaryKeyAttribute:@"personId"];
     [contact mapRelationship:@"events" withMapping:event];
     [objectManager.mappingProvider setMapping:contact forKeyPath:@"contacts"];
     

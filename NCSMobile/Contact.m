@@ -12,7 +12,7 @@
 
 @implementation Contact
 
-@dynamic typeId, startDate, endDate, person, initiated, location, events, whoContactedId, whoContactedOther, comments, languageId, languageOther, interpreterId, interpreterOther, privateId, privateDetail, distanceId, dispositionId;
+@dynamic contactId, typeId, startDate, endDate, personId, person, initiated, events, locationId, locationOther, whoContactedId, whoContactedOther, comments, languageId, languageOther, interpreterId, interpreterOther, privateId, privateDetail, distanceId, dispositionId;
 
 
 - (BOOL) closed {

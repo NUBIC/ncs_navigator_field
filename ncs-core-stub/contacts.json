@@ -1,129 +1,137 @@
 {
+   "participants": [
+     {
+         "p_id": "fc402743-7732-4d15-ad9c-729cbabdd135",
+         "persons": [
+           {
+             "person_id":"4bba5fa5-67c6-48e4-8607-db78a2983a32",
+              "name":"Beyonce Z",
+              "relationship_code":"1",
+              "cell_phone":"312-222-9999",
+              "home_phone":"312-222-9999",
+              "email":"beyonce@z.com",
+              "street":"321 Purple Rn",
+              "city":"Chicago",
+              "state":"IL",
+              "zip_code":"60611"
+           }
+         ]
+     },
+     {
+       "p_id": "86b93f28-d177-45a7-be9d-27eb94f32e0e",
+       "persons": [
+         {
+            "person_id":"a00edbd4-1cad-48af-ba9b-be663e0b8b9d",
+            "name":"Appollonia",
+            "relationship_code":"1",
+            "cell_phone":"312-222-3333",
+            "home_phone":"312-222-3334",
+            "email":"apple@formerly.com",
+            "street":"750 North Lake Shore Drive 10th Floor",
+            "city":"Chicago",
+            "state":"IL",
+            "zip_code":"60611"
+         }
+       ]
+     },
+     {
+       "p_id": "2b0a12e9-eacc-4a89-8429-a978bfb1c870",
+       "persons": [
+         {
+            "person_id":"c2e65f3c-47e0-4816-84ed-c42f4ac428fd",
+            "name":"Prince Rogers Nelson",
+            "relationship_code":"1",
+            "email":"prog@formerly.com",
+            "cell_phone":"312-111-2222",
+            "home_phone":"312-111-2223",
+            "street":"123 Alphabet St",
+            "city":"Chicago",
+            "state":"IL",
+            "zip_code":"60611"
+         }
+       ]
+     }
+   ],
    "contacts":[
       {
+         "contact_id":"227cb4a4-90d0-49b9-9acf-4472d77ae4c4",
          "type":"1",
          "start_date":"2005-07-18T15:20",
          "end_date":"",
-         "person":{
-            "name":"Beyonce Z",
-            "email":"beyonce@z.com",
-            "cell_phone":"312-222-9999",
-            "home_phone":"312-222-9999"
-         },
-         "location":{
-            "code":"1",
-            "other":"",
-            "details":"",
-            "address":{
-               "street":"321 Purple Rn",
-               "city":"Chicago",
-               "state":"IL",
-               "zip_code":"60611"
-            }
-         },
+         "person_id":"4bba5fa5-67c6-48e4-8607-db78a2983a32",
          "events":[
             {
+               "event_id":"127f6f57-de6b-4c38-a4b7-fdd9f5e29331",
+               "name":"Pregnancy Visit 1",
                "instruments":[
                   {
+                     "instrument_id":"1dc7e73b-d377-4686-84c4-a0b5694f4ba3",
                      "name":"Pregnancy Visit 1",
                      "instrument_template_id":"ded83f10-e5f8-012e-9f18-00254bc472f4",
-                     "response_set":{
-
-                     }
+                     "response_set":{}
                   }
-               ],
-               "name":"Pregnancy Visit 1"
+               ]
             }
          ]
       },
       {
+         "contact_id":"007c4927-8e2c-49f5-acb7-8958e6482b6b",
          "type":"3",
          "start_date":"2005-07-17T15:20",
          "end_date":"",
-         "person":{
-            "name":"Appollonia",
-            "email":"apple@formerly.com",
-            "cell_phone":"312-222-3333",
-            "home_phone":"312-222-3334"
-         },
-         "location":{
-            "code":"2",
-            "other":"",
-            "details":"",
-            "address":{
-               "street":"750 North Lake Shore Drive 10th Floor",
-               "city":"Chicago",
-               "state":"IL",
-               "zip_code":"60611"
-            }
-         },
+         "person_id":"a00edbd4-1cad-48af-ba9b-be663e0b8b9d",
          "events":[
             {
+               "event_id":"883d5830-91ed-4dd4-9303-903eee737082",
+               "name":"Pregnancy Visit 2",
                "instruments":[
                   {
+                     "instrument_id":"4a56fb51-269f-4bfe-b5ad-fdec3381bc99",
                      "name":"Pregnancy Visit 2",
                      "instrument_template_id":"2dcac920-3a42-012f-785c-482a143dc94d",
-                     "response_set":{
-
-                     }
+                     "response_set":{}
                   }
-               ],
-               "name":"Pregnancy Visit 2"
+               ]
             }
          ]
       },
       {
+         "contact_id":"4ec73c0a-f65a-4a41-b09e-9f7cc0e5ace4",
          "type":"1",
          "start_date":"2005-07-17T15:20",
          "end_date":"",
-         "person":{
-            "name":"Prince Rogers Nelson",
-            "email":"prog@formerly.com",
-            "cell_phone":"312-111-2222",
-            "home_phone":"312-111-2223"
-         },
-         "location":{
-            "code":"1",
-            "other":"",
-            "details":"",
-            "address":{
-               "street":"123 Alphabet St",
-               "city":"Chicago",
-               "state":"IL",
-               "zip_code":"60611"
-            }
-         },
+         "person_id":"c2e65f3c-47e0-4816-84ed-c42f4ac428fd",
          "events":[
             {
+               "event_id":"6b8550d6-f715-4f13-b34a-78710e22a862",
+               "name":"Birth Visit",
                "instruments":[
                   {
+                     "instrument_id":"190feb29-f60c-4b39-8d2c-586c1a8cd857",
                      "name":"Birth Visit",
                      "instrument_template_id":"638335b0-3a3d-012f-785a-482a143dc94d",
-                     "response_set":{
-
-                     }
+                     "response_set":{}
                   }
-               ],
-               "name":"Birth Visit"
+               ]
             },
             {
+              "event_id":"fed256ac-825e-4d64-bed6-650ad4ef7a18",
+              "name":"6 Month Visit",
                "instruments":[
                   {
+                     "instrument_id":"63055f80-dba2-434f-8414-72acf64d4277",
                      "name":"6 Month Visit",
                      "instrument_template_id":"6f2df0e0-3a3d-012f-785b-482a143dc94d",
-                     "response_set":{
-
-                     }
+                     "response_set":{}
                   }
-               ],
-               "name":"6 Month Visit"
+               ]
             }
          ]
       }
    ],
    "instrument_templates":[
       {
-         "id":"ded83f10-e5f8-012e-9f18-00254bc472f4",
+         "instrument_template_id":"ded83f10-e5f8-012e-9f18-00254bc472f4",
          "representation":{
             "survey":{
                "title":"INS_QUE_PregVisit1_INT_EHPBHI_P2_V2.0",
@@ -6158,7 +6166,7 @@
          }
       },
       {
-        "id":"2dcac920-3a42-012f-785c-482a143dc94d",
+        "instrument_template_id":"2dcac920-3a42-012f-785c-482a143dc94d",
         "representation":{
             "survey": {
                 "title": "INS_QUE_PregVisit2_INT_EHPBHI_P2_V2.0 2",
@@ -11213,7 +11221,7 @@
         }
       },
       {
-        "id":"638335b0-3a3d-012f-785a-482a143dc94d",
+        "instrument_template_id":"638335b0-3a3d-012f-785a-482a143dc94d",
         "representation":{
               "survey": {
                   "title": "INS_QUE_Birth_INT_EHPBHI_P2_V2.0",
@@ -14874,7 +14882,7 @@
         }
       },
       {
-        "id":"6f2df0e0-3a3d-012f-785b-482a143dc94d",
+        "instrument_template_id":"6f2df0e0-3a3d-012f-785b-482a143dc94d",
         "representation":{
             "survey": {
                 "title": "INS_QUE_6MMother_INT_EHPBHI_P2_V1.1",

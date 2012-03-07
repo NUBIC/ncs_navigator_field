@@ -10,7 +10,7 @@
 
 @implementation Person
 
-@dynamic name, email, homePhone, cellPhone;
+@dynamic personId, name, email, homePhone, cellPhone, street, city, zipCode, state, participant;
 
 
 @end

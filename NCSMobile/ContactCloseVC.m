@@ -175,12 +175,11 @@
     
     [b sectionHeader:@""];
     
-    FormBuilder* bb = [b fieldsForObject:contact.location];
-    [bb labelWithText:@"Location"];
-    [bb singleOptionPickerForProperty:@selector(code) WithPickerOptions:[PickerOption location]];
+    [b labelWithText:@"Location"];
+    [b singleOptionPickerForProperty:@selector(locationid) WithPickerOptions:[PickerOption location]];
     
-    [bb labelWithText:@"Location (Other)"];
-    [bb textFieldForProperty:@selector(other)];
+    [b labelWithText:@"Location (Other)"];
+    [b textFieldForProperty:@selector(locationOther)];
     
     [b labelWithText:@"Was contact private"];
     [b singleOptionPickerForProperty:@selector(privateId) WithPickerOptions:[PickerOption private]];

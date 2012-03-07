@@ -12,8 +12,6 @@
 #import "Row.h"
 #import "Person.h"
 #import "Event.h"
-#import "Address.h"
-#import "Location.h"
 #import "Instrument.h"
 
 @implementation ContactTable
@@ -42,8 +40,8 @@
 - (Section*) addresses {
     Row *home = [[Row alloc] initWithText:@"Home"];
     
-    Address *a = _contact.location.address;
-    home.detailText = [NSString stringWithFormat:@"%@\n%@, %@ %@", a.street, a.city, a.state, a.zipCode];
+    Person *p = _contact.person;
+    home.detailText = [NSString stringWithFormat:@"%@\n%@, %@ %@", p.street, p.city, p.state, p.zipCode];
     
     return [[[Section alloc] initWithName:@"Address" andRows:home, nil] autorelease];
 }

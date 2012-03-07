@@ -10,9 +10,5 @@
 
 @implementation Instrument
 
-@dynamic name;
-@dynamic instrumentTemplateId;
-@dynamic instrumentTemplate;
-@dynamic externalResponseSetId;
-@dynamic event;
+@dynamic instrumentId, name, instrumentTemplateId, instrumentTemplate, externalResponseSetId, event;
 @end

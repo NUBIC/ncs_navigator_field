@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="10K549" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Address" representedClassName="Address" syncable="YES">
-        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="zipCode" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="location" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Location" inverseName="address" inverseEntity="Location" syncable="YES"/>
-    </entity>
     <entity name="Contact" representedClassName="Contact" syncable="YES">
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contactId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dispositionId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="distanceTraveled" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -17,6 +11,9 @@
         <attribute name="interpreterOther" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="languageId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="languageOther" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locationId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="locationOther" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="personId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="privateDetail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="privateId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -24,7 +21,6 @@
         <attribute name="whoContactedId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="whoContactedOther" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Event" inverseName="contact" inverseEntity="Event" syncable="YES"/>
-        <relationship name="location" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Location" inverseName="contact" inverseEntity="Location" syncable="YES"/>
         <relationship name="person" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Person" inverseName="contact" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
@@ -33,6 +29,7 @@
         <attribute name="dispositionCategoryId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="dispositionId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventTypeId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="eventTypeOther" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="incentiveCash" optional="YES" attributeType="String" syncable="YES"/>
@@ -46,37 +43,40 @@
     </entity>
     <entity name="Instrument" representedClassName="Instrument" syncable="YES">
         <attribute name="externalResponseSetId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="instrumentId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="instrumentTemplateId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="instruments" inverseEntity="Event" syncable="YES"/>
         <relationship name="instrumentTemplate" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="InstrumentTemplate" inverseName="instrument" inverseEntity="InstrumentTemplate" syncable="YES"/>
     </entity>
     <entity name="InstrumentTemplate" representedClassName="InstrumentTemplate" syncable="YES">
-        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="instrumentTemplateId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="representation" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="instrument" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Instrument" inverseName="instrumentTemplate" inverseEntity="Instrument" syncable="YES"/>
     </entity>
-    <entity name="Location" representedClassName="Location" syncable="YES">
-        <attribute name="code" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="other" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="address" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Address" inverseName="location" inverseEntity="Address" syncable="YES"/>
-        <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="location" inverseEntity="Contact" syncable="YES"/>
+    <entity name="Participant" syncable="YES">
+        <attribute name="pId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="persons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="participant" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName="Person" syncable="YES">
         <attribute name="cellPhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="homePhone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="personId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="person" inverseEntity="Contact" syncable="YES"/>
+        <relationship name="participant" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Participant" inverseName="persons" inverseEntity="Participant" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Address" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Contact" positionX="160" positionY="192" width="128" height="315"/>
         <element name="Event" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Instrument" positionX="160" positionY="192" width="128" height="90"/>
         <element name="InstrumentTemplate" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="Location" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Person" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Participant" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>
