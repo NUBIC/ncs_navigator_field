@@ -22,12 +22,6 @@
 
 @synthesize detailViewController=_detailViewController;
 
-@synthesize surveyController=_surveyController;
-@synthesize sectionController=_sectionController;
-
-
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     RestKitSettings* settings = [[RestKitSettings alloc] init];
@@ -89,8 +83,6 @@
 {
     [_window release];
     [_splitViewController release];
-    [_surveyController release];
-    [_sectionController release];
     [super dealloc];
 }
 

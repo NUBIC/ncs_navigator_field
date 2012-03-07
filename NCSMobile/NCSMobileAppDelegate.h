@@ -27,11 +27,4 @@
 @property (nonatomic, retain) IBOutlet ContactDisplayController *detailViewController;
 
 
-
-
-/* imported for surveyor_ios */
-@property (nonatomic, retain) IBOutlet NUSurveyTVC *surveyController;
-@property (nonatomic, retain) NUSectionTVC *sectionController;
-/* */
-
 @end
