@@ -42,7 +42,6 @@
 		0045BDAF141921CD007BB8AA /* ContactTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045BDAE141921CD007BB8AA /* ContactTest.m */; };
 		004FC7131486BF8300A378DC /* PickerOptionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 004FC7111486BE8200A378DC /* PickerOptionTest.m */; };
 		004FC7161486BFBC00A378DC /* PickerOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 004FC7151486BFBC00A378DC /* PickerOption.m */; };
-		004FC7191486CC1200A378DC /* ModelLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 004FC7181486CC1200A378DC /* ModelLoader.m */; };
 		005108EE148440C000732623 /* NUScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005108ED148440C000732623 /* NUScrollView.m */; };
 		00590AC81428F7D0008335EA /* ContactTableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590AC71428F7D0008335EA /* ContactTableTest.m */; };
 		00590ACB14291818008335EA /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590ACA14291818008335EA /* Address.m */; };
@@ -155,8 +154,6 @@
 		004FC7111486BE8200A378DC /* PickerOptionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerOptionTest.m; sourceTree = "<group>"; };
 		004FC7141486BFBC00A378DC /* PickerOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerOption.h; sourceTree = "<group>"; };
 		004FC7151486BFBC00A378DC /* PickerOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerOption.m; sourceTree = "<group>"; };
-		004FC7171486CC1200A378DC /* ModelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLoader.h; sourceTree = "<group>"; };
-		004FC7181486CC1200A378DC /* ModelLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelLoader.m; sourceTree = "<group>"; };
 		005108EC148440C000732623 /* NUScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUScrollView.h; sourceTree = "<group>"; };
 		005108ED148440C000732623 /* NUScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUScrollView.m; sourceTree = "<group>"; };
 		0057793914E4355600964B87 /* NUCas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUCas.h; path = NUCas/Code/NUCas.h; sourceTree = "<group>"; };
@@ -476,8 +473,6 @@
 				00FF37E31417CFA30009B1D4 /* ContactNavigationTableTest.h */,
 				00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */,
 				0045BDAD141921CD007BB8AA /* ContactTest.h */,
-				004FC7171486CC1200A378DC /* ModelLoader.h */,
-				004FC7181486CC1200A378DC /* ModelLoader.m */,
 				0045BDAE141921CD007BB8AA /* ContactTest.m */,
 				00E32346142153CD00D3AEED /* Fixtures.h */,
 				00E32347142153CD00D3AEED /* Fixtures.m */,
@@ -995,7 +990,6 @@
 				00E32348142153CD00D3AEED /* Fixtures.m in Sources */,
 				00E32351142280AD00D3AEED /* ContactManagerTest.m in Sources */,
 				00590AC81428F7D0008335EA /* ContactTableTest.m in Sources */,
-				004FC7191486CC1200A378DC /* ModelLoader.m in Sources */,
 				00C4003A14EC381D005736EA /* DispositionCodeTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

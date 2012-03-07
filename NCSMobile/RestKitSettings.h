@@ -8,6 +8,8 @@
 
 #import <CoreData/CoreData.h>
 
+@class RKObjectManager;
+
 @interface RestKitSettings : NSManagedObject {
     NSString* _baseServiceURL;
     NSString* _objectStoreFileName;
