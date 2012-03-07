@@ -138,6 +138,18 @@
 
             [rs setValue:[NSDate date] forKey:@"createdAt"];
             [rs setValue:[UUID generateUuidString] forKey:@"uuid"];
+            
+            NSLog(@"Response set uuid: %@", rs.uuid);
+
+            NSManagedObjectContext* moc = [instrument managedObjectContext];
+            instrument.externalResponseSetId = rs.uuid;
+            NSError *error = nil;
+            
+            if (![moc save:&error]) {
+                NSLog(@"Error saving instrument uuid");
+            }
+            NSLog(@"Administered instrument with external response uuid: %@", instrument);
+
         }
         
         NUSurveyTVC *masterViewController = [[NUSurveyTVC alloc] initWithSurvey:survey responseSet:rs];
@@ -170,19 +182,6 @@
 }
 
 - (void) unloadSurveyor:(Instrument*)instrument responseSet:(NUResponseSet*)rs {
-//    NSLog(@"Response set: %@", rs);
-    NSLog(@"Response set uuid: %@", rs.uuid);
-//    NSLog(@"Administered instrument: %@", instrument);
-    
-    NSManagedObjectContext* moc = [instrument managedObjectContext];
-    instrument.externalResponseSetId = rs.uuid;
-    NSError *error = nil;
-    
-    if (![moc save:&error]) {
-        NSLog(@"Error saving instrument uuid");
-    }
-    NSLog(@"Administered instrument with external response uuid: %@", instrument);
-
     Contact* contact = instrument.event.contact;
     NSDictionary* dict = [[[NSDictionary alloc] initWithObjectsAndKeys:contact, @"contact", instrument, @"instrument", nil] autorelease];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"StoppedAdministeringInstrument" object:self userInfo:dict];
