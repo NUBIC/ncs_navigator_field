@@ -222,6 +222,7 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
+    // TODO: More user friendly error message (and show details button) and log error remotely
 	UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 	[alert show];
 	NSLog(@"Hit error: %@", error);
@@ -306,8 +307,23 @@
     // Load the object model via RestKit	
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
-    NSString* path = @"/staff/xyz123/contacts.json";
-    [objectManager loadObjectsAtResourcePath:path delegate:self];
+    
+    NSDate* today = [NSDate date];
+    NSTimeInterval secondsPerWeek = 60 * 60 * 24 * 7;
+    NSDate* inOneWeek = [today dateByAddingTimeInterval:secondsPerWeek];
+    NSString* clientId = @"me";
+    
+    NSDateFormatter* rfc3339 = [[[NSDateFormatter alloc] init] autorelease];
+    [rfc3339 setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease]];
+    [rfc3339 setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+    [rfc3339 setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@&client_id=%@", [rfc3339 stringFromDate:today], [rfc3339 stringFromDate:inOneWeek], clientId];
+    
+    RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
+    loader.method = RKRequestMethodPOST;
+
+    
+    [loader send]; // TODO: Send synchronously since we're blocking the UI anyways
 }
 
 #pragma mark - Cas Login Delegate

@@ -4,12 +4,18 @@ Bundler.setup
 
 require 'sinatra'
 class NCSCoreStub < Sinatra::Base
-  get '/staff/:staff_id/contacts.json' do
+  post '/api/v1/fieldwork' do
     env['aker.check'].authentication_required!
     username = env['aker.check'].user.username
     if username
-      content_type :json
-      IO.read("contacts.json")
+      missing = [:start_date, :end_date, :client_id].select{|v| params[v].blank?}
+      if missing.empty?
+        content_type :json
+        IO.read("contacts.json")
+      else
+        status 400
+        "Missing parameters #{missing.join(', ')}"
+      end
     else    
       403
     end
@@ -19,6 +25,7 @@ end
 require 'aker'
 Aker.configure do
   authorities :cas
+  ui_mode :cas
   api_mode :cas_proxy
   central '/etc/nubic/bcsec-local.yml'
 end
