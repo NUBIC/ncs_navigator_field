@@ -311,7 +311,7 @@
     NSDate* today = [NSDate date];
     NSTimeInterval secondsPerWeek = 60 * 60 * 24 * 7;
     NSDate* inOneWeek = [today dateByAddingTimeInterval:secondsPerWeek];
-    NSString* clientId = @"me";
+    NSString* clientId = [ApplicationConfiguration instance].clientId;
     
     NSDateFormatter* rfc3339 = [[[NSDateFormatter alloc] init] autorelease];
     [rfc3339 setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease]];

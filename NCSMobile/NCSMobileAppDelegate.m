@@ -10,6 +10,8 @@
 
 #import "RootViewController.h"
 #import "RestKitSettings.h"
+#import "ApplicationConfiguration.h"
+
 
 @implementation NCSMobileAppDelegate
 
@@ -24,6 +26,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Invoked at startup to set client ID
+    [ApplicationConfiguration instance];
+    
     RestKitSettings* settings = [[RestKitSettings alloc] init];
     [settings introduce];
     

@@ -8,9 +8,12 @@
 
 #import "ApplicationConfiguration.h"
 
+NSString* CLIENT_ID = @"clientId";
+
 @implementation ApplicationConfiguration
 
-@synthesize coreURL;
+@synthesize coreURL=_coreURL;
+@synthesize clientId=_clientId;
 
 static ApplicationConfiguration* instance;
 
@@ -18,6 +21,7 @@ static ApplicationConfiguration* instance;
 - (id)init {
     self = [super init];
     if (self) {
+        // Core URL from NCSNavigatorField.plist
         NSString* path = [[NSBundle mainBundle] pathForResource:@"NCSNavigatorField" ofType:@"plist"];
         
         if (!path) {
@@ -26,7 +30,19 @@ static ApplicationConfiguration* instance;
         
         NSDictionary* settings = [[NSDictionary alloc] initWithContentsOfFile:path];
         
-        self.coreURL = [settings objectForKey:@"ncs.core.url"];
+        _coreURL = [[settings objectForKey:@"ncs.core.url"] retain];
+        
+        // Client ID from Preferences
+        NSString *cid = [[NSUserDefaults standardUserDefaults] stringForKey:CLIENT_ID];
+        if (cid == nil)
+        {
+            CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+            NSString *uuid = (NSString *)CFUUIDCreateString(NULL,uuidRef);
+            CFRelease(uuidRef);
+            
+            [[NSUserDefaults standardUserDefaults] setValue:uuid forKey:CLIENT_ID];
+        }
+        _clientId = [cid retain];
     }
     
     return self;
@@ -39,4 +55,9 @@ static ApplicationConfiguration* instance;
     return instance;
 }
 
+- (void)dealloc {
+    [_coreURL release];
+    [_clientId release];
+    [super dealloc];
+}
 @end

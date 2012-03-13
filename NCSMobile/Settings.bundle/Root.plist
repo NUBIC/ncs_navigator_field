@@ -6,11 +6,17 @@
 	<array>
 		<dict>
 			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>General</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
 			<string>Client ID</string>
 			<key>Key</key>
-			<string>client_id</string>
+			<string>clientId</string>
 			<key>DefaultValue</key>
 			<string>Please open NCS NavField to automatically set the client ID.</string>
 		</dict>
