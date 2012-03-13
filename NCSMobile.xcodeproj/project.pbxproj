@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000E64B3150EB2BF0006B31E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 000E64B2150EB2BF0006B31E /* Settings.bundle */; };
 		0013ED9B14B65D84009F85CF /* NUCas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0013ED9A14B65D84009F85CF /* NUCas.plist */; };
 		00145BA8149A7BEF00D3C1B5 /* ContactCloseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00145BA7149A7BEF00D3C1B5 /* ContactCloseVC.m */; };
 		0018F03314C4BD160058D8F2 /* ApplicationConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 0018F03214C4BD160058D8F2 /* ApplicationConfiguration.m */; };
@@ -96,6 +97,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000E64B2150EB2BF0006B31E /* Settings.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.application; name = Settings.bundle; path = NCSMobile/Settings.bundle; sourceTree = "<group>"; };
 		0013ED9A14B65D84009F85CF /* NUCas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = NUCas.plist; path = NCSMobile/NUCas.plist; sourceTree = "<group>"; };
 		00145BA6149A7BEF00D3C1B5 /* ContactCloseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCloseVC.h; sourceTree = "<group>"; };
 		00145BA7149A7BEF00D3C1B5 /* ContactCloseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCloseVC.m; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 		0026E659140347E700355BCB = {
 			isa = PBXGroup;
 			children = (
+				000E64B2150EB2BF0006B31E /* Settings.bundle */,
 				009BE3A914FC2145008195F9 /* Security.framework */,
 				007C1F4014FBFACA0020DF30 /* Podfile */,
 				0057793814E434A400964B87 /* Dependent Headers */,
@@ -888,6 +891,7 @@
 				0031315E14E083C500C0D0B1 /* cacert.pem in Resources */,
 				0092BA5714E32C3500134165 /* icon.png in Resources */,
 				007C1F4114FBFACA0020DF30 /* Podfile in Resources */,
+				000E64B3150EB2BF0006B31E /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
