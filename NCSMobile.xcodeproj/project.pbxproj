@@ -11,7 +11,6 @@
 		0013ED9B14B65D84009F85CF /* NUCas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0013ED9A14B65D84009F85CF /* NUCas.plist */; };
 		00145BA8149A7BEF00D3C1B5 /* ContactCloseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00145BA7149A7BEF00D3C1B5 /* ContactCloseVC.m */; };
 		0018F03314C4BD160058D8F2 /* ApplicationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0018F03214C4BD160058D8F2 /* ApplicationSettings.m */; };
-		0018F0A114C4BE880058D8F2 /* NCSNavigatorField.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0018F0A014C4BE880058D8F2 /* NCSNavigatorField.plist */; };
 		0026465D1434CDF9008D612B /* ContactNavigationTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026465C1434CDF9008D612B /* ContactNavigationTable.m */; };
 		002646601434CE02008D612B /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026465F1434CE02008D612B /* Person.m */; };
 		0026E669140347E700355BCB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0026E668140347E700355BCB /* UIKit.framework */; };
@@ -51,7 +50,6 @@
 		007C1F4114FBFACA0020DF30 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 007C1F4014FBFACA0020DF30 /* Podfile */; };
 		00810AB81486D1AE0098C0D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF914112E5E0097A878 /* CoreData.framework */; };
 		00810B5F14896B070098C0D0 /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00810B5E14896B070098C0D0 /* DatePicker.m */; };
-		008911C814C7367B002CEACA /* NCSNavigatorField.plist-sample in Resources */ = {isa = PBXBuildFile; fileRef = 008911C714C7367B002CEACA /* NCSNavigatorField.plist-sample */; };
 		008C5711149696DD005EC22E /* TextArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 008C5710149696DD005EC22E /* TextArea.m */; };
 		008F7DA1148BB3DD009BCF1D /* ContactInitiateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F7DA0148BB3DD009BCF1D /* ContactInitiateVC.m */; };
 		008F7DA4148C1B16009BCF1D /* FormBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F7DA3148C1B16009BCF1D /* FormBuilder.m */; };
@@ -101,9 +99,8 @@
 		0013ED9A14B65D84009F85CF /* NUCas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = NUCas.plist; path = NCSMobile/NUCas.plist; sourceTree = "<group>"; };
 		00145BA6149A7BEF00D3C1B5 /* ContactCloseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCloseVC.h; sourceTree = "<group>"; };
 		00145BA7149A7BEF00D3C1B5 /* ContactCloseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCloseVC.m; sourceTree = "<group>"; };
-		0018F03114C4BD160058D8F2 /* ApplicationSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ApplicationSettings.h; sourceTree = "<group>"; };
+		0018F03114C4BD160058D8F2 /* ApplicationSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationSettings.h; sourceTree = "<group>"; };
 		0018F03214C4BD160058D8F2 /* ApplicationSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationSettings.m; sourceTree = "<group>"; };
-		0018F0A014C4BE880058D8F2 /* NCSNavigatorField.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NCSNavigatorField.plist; sourceTree = "<group>"; };
 		0021785014E0E56600056745 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0026465B1434CDF9008D612B /* ContactNavigationTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNavigationTable.h; sourceTree = "<group>"; };
 		0026465C1434CDF9008D612B /* ContactNavigationTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactNavigationTable.m; sourceTree = "<group>"; };
@@ -306,7 +303,6 @@
 		007C1F4014FBFACA0020DF30 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		00810B5D14896B070098C0D0 /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
 		00810B5E14896B070098C0D0 /* DatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePicker.m; sourceTree = "<group>"; };
-		008911C714C7367B002CEACA /* NCSNavigatorField.plist-sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "NCSNavigatorField.plist-sample"; sourceTree = "<group>"; };
 		008C570F149696DD005EC22E /* TextArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextArea.h; sourceTree = "<group>"; };
 		008C5710149696DD005EC22E /* TextArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextArea.m; sourceTree = "<group>"; };
 		008F7D9F148BB3DD009BCF1D /* ContactInitiateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInitiateVC.h; sourceTree = "<group>"; };
@@ -407,8 +403,6 @@
 				0092BA5614E32C3500134165 /* icon.png */,
 				0031315D14E083C500C0D0B1 /* cacert.pem */,
 				00C67AF414C765CE005D2543 /* NUCas.plist-sample */,
-				008911C714C7367B002CEACA /* NCSNavigatorField.plist-sample */,
-				0018F0A014C4BE880058D8F2 /* NCSNavigatorField.plist */,
 				0013ED9A14B65D84009F85CF /* NUCas.plist */,
 				006C600A1434DF0D00F52CD8 /* README.md */,
 				0043A016141133410097A878 /* Other Sources */,
@@ -885,8 +879,6 @@
 				009EE2791436220C00E6D658 /* LoginController.xib in Resources */,
 				00A03C791499536700223FD2 /* InstrumentListVC.xib in Resources */,
 				0013ED9B14B65D84009F85CF /* NUCas.plist in Resources */,
-				0018F0A114C4BE880058D8F2 /* NCSNavigatorField.plist in Resources */,
-				008911C814C7367B002CEACA /* NCSNavigatorField.plist-sample in Resources */,
 				00C67AF514C765CE005D2543 /* NUCas.plist-sample in Resources */,
 				0031315E14E083C500C0D0B1 /* cacert.pem in Resources */,
 				0092BA5714E32C3500134165 /* icon.png in Resources */,
