@@ -10,7 +10,7 @@
 		000E64B3150EB2BF0006B31E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 000E64B2150EB2BF0006B31E /* Settings.bundle */; };
 		0013ED9B14B65D84009F85CF /* NUCas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0013ED9A14B65D84009F85CF /* NUCas.plist */; };
 		00145BA8149A7BEF00D3C1B5 /* ContactCloseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00145BA7149A7BEF00D3C1B5 /* ContactCloseVC.m */; };
-		0018F03314C4BD160058D8F2 /* ApplicationConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 0018F03214C4BD160058D8F2 /* ApplicationConfiguration.m */; };
+		0018F03314C4BD160058D8F2 /* ApplicationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0018F03214C4BD160058D8F2 /* ApplicationSettings.m */; };
 		0018F0A114C4BE880058D8F2 /* NCSNavigatorField.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0018F0A014C4BE880058D8F2 /* NCSNavigatorField.plist */; };
 		0026465D1434CDF9008D612B /* ContactNavigationTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026465C1434CDF9008D612B /* ContactNavigationTable.m */; };
 		002646601434CE02008D612B /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026465F1434CE02008D612B /* Person.m */; };
@@ -101,8 +101,8 @@
 		0013ED9A14B65D84009F85CF /* NUCas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = NUCas.plist; path = NCSMobile/NUCas.plist; sourceTree = "<group>"; };
 		00145BA6149A7BEF00D3C1B5 /* ContactCloseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCloseVC.h; sourceTree = "<group>"; };
 		00145BA7149A7BEF00D3C1B5 /* ContactCloseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCloseVC.m; sourceTree = "<group>"; };
-		0018F03114C4BD160058D8F2 /* ApplicationConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationConfiguration.h; sourceTree = "<group>"; };
-		0018F03214C4BD160058D8F2 /* ApplicationConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationConfiguration.m; sourceTree = "<group>"; };
+		0018F03114C4BD160058D8F2 /* ApplicationSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ApplicationSettings.h; sourceTree = "<group>"; };
+		0018F03214C4BD160058D8F2 /* ApplicationSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationSettings.m; sourceTree = "<group>"; };
 		0018F0A014C4BE880058D8F2 /* NCSNavigatorField.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NCSNavigatorField.plist; sourceTree = "<group>"; };
 		0021785014E0E56600056745 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0026465B1434CDF9008D612B /* ContactNavigationTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNavigationTable.h; sourceTree = "<group>"; };
@@ -726,8 +726,8 @@
 				00C4095C1471DD5E00F0F3FA /* InstrumentTemplate.m */,
 				00B7CCA614BDFB6E00D5901C /* DispositionCode.h */,
 				00B7CCA714BDFB6E00D5901C /* DispositionCode.m */,
-				0018F03114C4BD160058D8F2 /* ApplicationConfiguration.h */,
-				0018F03214C4BD160058D8F2 /* ApplicationConfiguration.m */,
+				0018F03114C4BD160058D8F2 /* ApplicationSettings.h */,
+				0018F03214C4BD160058D8F2 /* ApplicationSettings.m */,
 				00D93A381506B2CF009CFDE9 /* RestKitSettings.h */,
 				00D93A391506B2CF009CFDE9 /* RestKitSettings.m */,
 				00D93A421507CC19009CFDE9 /* Participant.h */,
@@ -971,7 +971,7 @@
 				00A03C781499536700223FD2 /* InstrumentListVC.m in Sources */,
 				00145BA8149A7BEF00D3C1B5 /* ContactCloseVC.m in Sources */,
 				00B7CCA814BDFB6E00D5901C /* DispositionCode.m in Sources */,
-				0018F03314C4BD160058D8F2 /* ApplicationConfiguration.m in Sources */,
+				0018F03314C4BD160058D8F2 /* ApplicationSettings.m in Sources */,
 				002D3B1114E1BCFE00A30C8F /* surveyor.xcdatamodeld in Sources */,
 				00D93A3A1506B2CF009CFDE9 /* RestKitSettings.m in Sources */,
 				00D93A441507CC19009CFDE9 /* Participant.m in Sources */,

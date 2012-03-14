@@ -7,7 +7,7 @@
 //
 
 #import "RestKitSettings.h"
-#import "ApplicationConfiguration.h"
+#import "ApplicationSettings.h"
 #import "Event.h"
 #import "Person.h"
 #import "Instrument.h"
@@ -15,7 +15,7 @@
 #import "NUResponseSet.h"
 #import "Contact.h"
 #import "InstrumentTemplate.h"
-#import "ApplicationConfiguration.h"
+#import "ApplicationSettings.h"
 
 NSString* STORE_NAME = @"main.sqlite";
 
@@ -34,7 +34,7 @@ static RestKitSettings* instance;
 - (id)init {
     self = [super init];
     if (self) {
-        _baseServiceURL = [ApplicationConfiguration instance].coreURL;
+        _baseServiceURL = [ApplicationSettings instance].coreURL;
         _objectStoreFileName = STORE_NAME;
     }
     return self;
@@ -51,7 +51,7 @@ static RestKitSettings* instance;
 
 + (void)reload {
     RestKitSettings* s = [RestKitSettings instance];
-    s.baseServiceURL = [ApplicationConfiguration instance].coreURL;
+    s.baseServiceURL = [ApplicationSettings instance].coreURL;
 //    s.objectStoreFileName = STORE_NAME;
     [RKObjectManager sharedManager].client.baseURL = s.baseServiceURL;
 }

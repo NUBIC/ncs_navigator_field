@@ -23,7 +23,7 @@
 #import "SBJson/SBJsonWriter.h"
 #import "NUResponseSet.h"
 #import "NUCas.h"
-#import "ApplicationConfiguration.h"
+#import "ApplicationSettings.h"
 #import "SyncActivityIndicator.h"
 #import "NUSurvey.h"
 #import "UUID.h"
@@ -236,7 +236,7 @@
 #pragma Actions
 - (void)syncButtonWasPressed {
     NSLog(@"Sync Pressed!!!");
-    if ([ApplicationConfiguration instance].coreURL) {
+    if ([ApplicationSettings instance].coreURL) {
         [self confirmSync];
     } else {
         UIAlertView *message = 
@@ -318,7 +318,7 @@
     NSDate* today = [NSDate date];
     NSTimeInterval secondsPerWeek = 60 * 60 * 24 * 7;
     NSDate* inOneWeek = [today dateByAddingTimeInterval:secondsPerWeek];
-    NSString* clientId = [ApplicationConfiguration instance].clientId;
+    NSString* clientId = [ApplicationSettings instance].clientId;
     
     NSDateFormatter* rfc3339 = [[[NSDateFormatter alloc] init] autorelease];
     [rfc3339 setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease]];
@@ -358,7 +358,7 @@
     if (serviceTicket.ok) {
         CasConfiguration* conf = [CasConfiguration new];
         CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
-        NSString* coreURL = [ApplicationConfiguration instance].coreURL;
+        NSString* coreURL = [ApplicationSettings instance].coreURL;
         
         CasProxyTicket* t = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:serviceTicket.pgt];
         [t reify];

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ApplicationConfiguration : NSObject {
+@interface ApplicationSettings : NSObject {
     @private
     NSString* _coreURL;
     NSString* _clientId;
@@ -23,7 +23,7 @@
 
 #pragma Methods
 
-+ (ApplicationConfiguration*) instance;
++ (ApplicationSettings*) instance;
 
 + (void) reload;
 

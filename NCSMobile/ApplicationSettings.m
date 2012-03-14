@@ -6,17 +6,17 @@
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import "ApplicationConfiguration.h"
+#import "ApplicationSettings.h"
 
 NSString* CLIENT_ID = @"client.id";
 NSString* CORE_URL = @"navigator.core.url";
 
-@implementation ApplicationConfiguration
+@implementation ApplicationSettings
 
 @synthesize coreURL=_coreURL;
 @synthesize clientId=_clientId;
 
-static ApplicationConfiguration* instance;
+static ApplicationSettings* instance;
 
 
 - (id)init {
@@ -29,15 +29,15 @@ static ApplicationConfiguration* instance;
     return self;
 }
 
-+ (ApplicationConfiguration*) instance {
++ (ApplicationSettings*) instance {
     if (!instance) {
-        instance = [[ApplicationConfiguration alloc] init];
+        instance = [[ApplicationSettings alloc] init];
     }
     return instance;
 }
 
 + (void) reload {
-    [[ApplicationConfiguration instance] reload];
+    [[ApplicationSettings instance] reload];
 }
 
 - (void) reload {
