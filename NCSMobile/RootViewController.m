@@ -236,7 +236,14 @@
 #pragma Actions
 - (void)syncButtonWasPressed {
     NSLog(@"Sync Pressed!!!");
-    [self confirmSync];
+    if ([ApplicationConfiguration instance].coreURL) {
+        [self confirmSync];
+    } else {
+        UIAlertView *message = 
+            [[UIAlertView alloc] initWithTitle:@"Configuration Error" message:@"The NCS Navigator Core URL has not been configured. Please do this in the Settings app." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [message show];
+    }
 }
 
 - (void) confirmSync {

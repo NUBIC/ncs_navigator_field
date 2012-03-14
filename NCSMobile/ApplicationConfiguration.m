@@ -8,7 +8,8 @@
 
 #import "ApplicationConfiguration.h"
 
-NSString* CLIENT_ID = @"clientId";
+NSString* CLIENT_ID = @"client.id";
+NSString* CORE_URL = @"navigator.core.url";
 
 @implementation ApplicationConfiguration
 
@@ -21,28 +22,8 @@ static ApplicationConfiguration* instance;
 - (id)init {
     self = [super init];
     if (self) {
-        // Core URL from NCSNavigatorField.plist
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"NCSNavigatorField" ofType:@"plist"];
-        
-        if (!path) {
-            NSLog(@"NUCas.plist not found at %@/NCSNavigatorField.plist", [NSBundle mainBundle]);
-        }
-        
-        NSDictionary* settings = [[NSDictionary alloc] initWithContentsOfFile:path];
-        
-        _coreURL = [[settings objectForKey:@"ncs.core.url"] retain];
-        
-        // Client ID from Preferences
-        NSString *cid = [[NSUserDefaults standardUserDefaults] stringForKey:CLIENT_ID];
-        if (cid == nil)
-        {
-            CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-            NSString *uuid = (NSString *)CFUUIDCreateString(NULL,uuidRef);
-            CFRelease(uuidRef);
-            
-            [[NSUserDefaults standardUserDefaults] setValue:uuid forKey:CLIENT_ID];
-        }
-        _clientId = [cid retain];
+        _clientId = [[self retreiveClientId] retain];
+        _coreURL = [[self retreiveCoreURL] retain];
     }
     
     return self;
@@ -53,6 +34,31 @@ static ApplicationConfiguration* instance;
         instance = [[ApplicationConfiguration alloc] init];
     }
     return instance;
+}
+
++ (void) reload {
+    [[ApplicationConfiguration instance] reload];
+}
+
+- (void) reload {
+    self.clientId = [self retreiveClientId];
+    self.coreURL = [self retreiveCoreURL];
+}
+
+- (NSString*) retreiveClientId {
+    NSString *cid = [[NSUserDefaults standardUserDefaults] stringForKey:CLIENT_ID];
+    if (cid == nil)
+    {
+        CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+        NSString *uuid = (NSString *)CFUUIDCreateString(NULL,uuidRef);
+        CFRelease(uuidRef);
+        [[NSUserDefaults standardUserDefaults] setValue:uuid forKey:CLIENT_ID];
+    }
+    return cid;
+}
+
+- (NSString*) retreiveCoreURL {
+    return [[NSUserDefaults standardUserDefaults] stringForKey:CORE_URL];
 }
 
 - (void)dealloc {

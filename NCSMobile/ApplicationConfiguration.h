@@ -25,5 +25,12 @@
 
 + (ApplicationConfiguration*) instance;
 
++ (void) reload;
+
+- (void) reload;
+
+- (NSString*) retreiveClientId;
+
+- (NSString*) retreiveCoreURL;
 
 @end

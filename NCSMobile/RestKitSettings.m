@@ -17,16 +17,25 @@
 #import "InstrumentTemplate.h"
 #import "ApplicationConfiguration.h"
 
+NSString* STORE_NAME = @"main.sqlite";
+
 @implementation RestKitSettings
+
+static RestKitSettings* instance;
 
 @synthesize baseServiceURL = _baseServiceURL;
 @synthesize objectStoreFileName = _objectStoreFileName;
+
++ (RestKitSettings*) instance {
+    instance = [[RestKitSettings alloc] init];
+    return instance;
+}
 
 - (id)init {
     self = [super init];
     if (self) {
         _baseServiceURL = [ApplicationConfiguration instance].coreURL;
-        _objectStoreFileName = @"main.sqlite";
+        _objectStoreFileName = STORE_NAME;
     }
     return self;
 }
@@ -40,9 +49,16 @@
     return self;
 }
 
-- (void)introduce {
-	RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:self.baseServiceURL];
-    
++ (void)reload {
+    RestKitSettings* s = [RestKitSettings instance];
+    s.baseServiceURL = [ApplicationConfiguration instance].coreURL;
+//    s.objectStoreFileName = STORE_NAME;
+    [RKObjectManager sharedManager].client.baseURL = s.baseServiceURL;
+}
+
+- (void)introduce {    
+    RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:self.baseServiceURL];
+
     // Initialize store
     RKManagedObjectStore* objectStore = [RKManagedObjectStore objectStoreWithStoreFilename:self.objectStoreFileName usingSeedDatabaseName:nil managedObjectModel:nil delegate:self];
     objectManager.objectStore = objectStore;
@@ -57,10 +73,10 @@
         }
     }
     
+    [self addMappingsToObjectManager: objectManager];   
+
     // Enable automatic network activity indicator management
     [RKClient sharedClient].requestQueue.showsNetworkActivityIndicatorWhenBusy = YES;
-    
-    [self addMappingsToObjectManager: objectManager];    
 }
 
 - (void)addMappingsToObjectManager:(RKObjectManager *)objectManager  {

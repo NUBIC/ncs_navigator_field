@@ -10,7 +10,7 @@
 
 @class RKObjectManager;
 
-@interface RestKitSettings : NSManagedObject {
+@interface RestKitSettings : NSObject {
     NSString* _baseServiceURL;
     NSString* _objectStoreFileName;
 }
@@ -18,6 +18,10 @@
 @property(nonatomic,retain) NSString* baseServiceURL;
 
 @property(nonatomic,retain) NSString* objectStoreFileName;
+
++ (RestKitSettings*) instance;
+
++ (void) reload;
 
 - (id) init;
 

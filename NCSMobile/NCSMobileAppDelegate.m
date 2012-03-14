@@ -29,7 +29,7 @@
     // Invoked at startup to set client ID
     [ApplicationConfiguration instance];
     
-    RestKitSettings* settings = [[RestKitSettings alloc] init];
+    RestKitSettings* settings = [RestKitSettings instance];
     [settings introduce];
     
     // Set Undo Manager
@@ -41,9 +41,18 @@
     // Add the split view controller's view to the window and display.
     self.window.rootViewController = self.splitViewController;
     [self.window makeKeyAndVisible];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
 
     return YES;
 }
+
+- (void)settingsChanged:(NSNotification *)notif
+{
+    [ApplicationConfiguration reload];
+    [RestKitSettings reload];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
