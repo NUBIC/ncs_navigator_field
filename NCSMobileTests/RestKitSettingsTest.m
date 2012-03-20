@@ -26,12 +26,17 @@ Contact* c;
 FieldWork* f;
 
 - (void)setUp {
+    i = [Instrument object];
+    i.name = @"INS A";
+    i.responseSet = @"{survey:bla}";
+    
     e = [Event object];
-    e.name = @"Birthday Party";
+    e.name = @"Birthday";
+    e.instruments = [NSSet setWithObject:i];
     
     c = [Contact object];
     c.typeId = [NSNumber numberWithInt:22];
-    c.events = [NSSet setWithObject:e]; 
+    c.events = [NSSet setWithObject:e];
     
     f = [FieldWork object];
     f.retreivedDate = [Fixtures createDateFromString:@"2012-04-1 00:00"];
@@ -68,6 +73,14 @@ FieldWork* f;
     
     NSDictionary* ac = [[[actual objectForKey:@"contacts"] objectEnumerator] nextObject];
     STAssertEquals(22, [[ac objectForKey:@"type"] integerValue], @"Wrong value");
+    
+    NSDictionary* ae = [[[ac objectForKey:@"events"] objectEnumerator] nextObject];
+    STAssertEquals(@"Birthday", [ae objectForKey:@"name"], @"Wrong value");
+    
+    NSDictionary* ai = [[[ae objectForKey:@"instruments"] objectEnumerator] nextObject];
+    STAssertEquals(@"INS A", [ai objectForKey:@"name"], @"Wrong value");
+    STAssertEquals(@"{survey:bla}", [ai objectForKey:@"response_set"], @"Wrong value");
+
 }
 
 @end

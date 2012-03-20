@@ -51,10 +51,10 @@
     </entity>
     <entity name="Instrument" representedClassName="Instrument" syncable="YES">
         <attribute name="externalResponseSetId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="initialResponseSet" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="instrumentId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="instrumentTemplateId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="responseSet" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="instruments" inverseEntity="Event" syncable="YES"/>
         <relationship name="instrumentTemplate" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="InstrumentTemplate" inverseName="instrument" inverseEntity="InstrumentTemplate" syncable="YES"/>
     </entity>

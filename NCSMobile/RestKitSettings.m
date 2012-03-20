@@ -167,9 +167,10 @@ static RestKitSettings* instance;
     RKManagedObjectMapping* instrument = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
     [instrument mapKeyPathsToAttributes: 
      @"instrumentId", @"instrument_id",
-     @"initialResponseSet", @"response_set",
+     @"responseSet", @"response_set",
      @"instrumentTemplateId", @"instrument_template_id",
      @"name", @"name", nil];
+    [objectManager.mappingProvider setSerializationMapping:instrument forClass:[Instrument class]];
     
     // Event Mapping
     RKManagedObjectMapping* event = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
@@ -177,8 +178,9 @@ static RestKitSettings* instance;
      @"eventId", @"event_id",
      @"name", @"name", nil];
     [event mapRelationship:@"instruments" withMapping:instrument];
-    
-    RKManagedObjectMapping* contact = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
+    [objectManager.mappingProvider setSerializationMapping:event forClass:[Event class]];
+
+        RKManagedObjectMapping* contact = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
     [contact mapKeyPathsToAttributes:
      @"contactId", @"contact_id", 
      @"typeId", @"type",
