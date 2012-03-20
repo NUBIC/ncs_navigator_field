@@ -10,7 +10,6 @@
 #import "Person.h"
 #import "Event.h"
 #import "Contact.h"
-#import "Address.h"
 
 @implementation Fixtures
 
@@ -54,12 +53,5 @@
 
 
 
-+ (Address*) createAddressWithStreet:(NSString*)street city:(NSString*)city state:(NSString*)state zipCode:(NSInteger)zip {
-    Address *a = [Address new];
-    a.street = street;
-    a.city = city;
-    a.state = state;
-    a.zipCode = [NSNumber numberWithInteger:zip];
-    return [a autorelease];
-}
+
 @end

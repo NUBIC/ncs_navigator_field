@@ -14,6 +14,7 @@
 #import "Participant.h"
 #import "NUResponseSet.h"
 #import "Contact.h"
+#import "FieldWork.h"
 #import "InstrumentTemplate.h"
 #import "ApplicationSettings.h"
 
@@ -52,7 +53,6 @@ static RestKitSettings* instance;
 + (void)reload {
     RestKitSettings* s = [RestKitSettings instance];
     s.baseServiceURL = [ApplicationSettings instance].coreURL;
-//    s.objectStoreFileName = STORE_NAME;
     [RKObjectManager sharedManager].client.baseURL = s.baseServiceURL;
 }
 
@@ -73,7 +73,14 @@ static RestKitSettings* instance;
         }
     }
     
-    [self addMappingsToObjectManager: objectManager];   
+    [self addMappingsToObjectManager: objectManager];
+    
+    RKObjectRouter* router = [RKObjectRouter new];
+    [router routeClass:[FieldWork class] toResourcePath:@"/api/v1/fieldwork/:identifier"];
+    [RKObjectManager sharedManager].router = router;
+    
+    [RKObjectManager sharedManager].serializationMIMEType = RKMIMETypeJSON;
+    [self addSerializationMappingsToObjectManager:objectManager];
 
     // Enable automatic network activity indicator management
     [RKClient sharedClient].requestQueue.showsNetworkActivityIndicatorWhenBusy = YES;
@@ -139,6 +146,13 @@ static RestKitSettings* instance;
     [contact mapRelationship:@"events" withMapping:event];
     [objectManager.mappingProvider setMapping:contact forKeyPath:@"contacts"];
     
+    RKManagedObjectMapping* fieldWork = [RKManagedObjectMapping mappingForClass:[FieldWork class]];
+    [fieldWork mapRelationship:@"participants" withMapping:participant];
+    [fieldWork mapRelationship:@"contacts" withMapping:contact];
+    [fieldWork mapRelationship:@"instrumentTemplate" withMapping:instrumentTemplate];
+    [objectManager.mappingProvider setMapping:fieldWork forKeyPath:@"field_work"];
+    
+    // TODO: Does this work?
     // "2005-07-16T19:20+01:00",
     //http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/DataFormatting/Articles/dfDateFormatting10_4.html#//apple_ref/doc/uid/TP40002369
     [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd'T'HH':'mm'Z'" inTimeZone:nil];
@@ -146,6 +160,40 @@ static RestKitSettings* instance;
     [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mmZZ" inTimeZone:nil]; 
     [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mmZ" inTimeZone:nil]; 
     //	[eventMapping.dateFormatStrings addObject:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+}
+
+- (void)addSerializationMappingsToObjectManager:(RKObjectManager*)objectManager {
+    // Instrument Mapping
+    RKManagedObjectMapping* instrument = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
+    [instrument mapKeyPathsToAttributes: 
+     @"instrumentId", @"instrument_id",
+     @"initialResponseSet", @"response_set",
+     @"instrumentTemplateId", @"instrument_template_id",
+     @"name", @"name", nil];
+    
+    // Event Mapping
+    RKManagedObjectMapping* event = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
+    [event mapKeyPathsToAttributes:
+     @"eventId", @"event_id",
+     @"name", @"name", nil];
+    [event mapRelationship:@"instruments" withMapping:instrument];
+    
+    RKManagedObjectMapping* contact = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
+    [contact mapKeyPathsToAttributes:
+     @"contactId", @"contact_id", 
+     @"typeId", @"type",
+     @"startDate", @"start_date",
+     @"endDate", @"end_date",
+     @"personId", @"person_id", nil];
+    [contact mapRelationship:@"events" withMapping:event];
+    [objectManager.mappingProvider setSerializationMapping:contact forClass:[Contact class]];
+    
+    RKObjectMapping* fieldWorkMapping = [RKObjectMapping mappingForClass:[NSMutableDictionary class] ];
+    [fieldWorkMapping mapAttributes:@"identifier", nil];
+    [fieldWorkMapping mapRelationship:@"contacts" withMapping:contact];
+    
+    [objectManager.mappingProvider setSerializationMapping:fieldWorkMapping forClass:[FieldWork class]];
+
 }
 
 #pragma mark - Core Data stack

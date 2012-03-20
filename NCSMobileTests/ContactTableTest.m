@@ -10,7 +10,6 @@
 #import "ContactTable.h"
 #import "Fixtures.h"
 #import "Contact.h"
-#import "Address.h"
 #import "Event.h"
 
 @implementation ContactTableTest

@@ -31,6 +31,8 @@
 
 - (void)addMappingsToObjectManager:(RKObjectManager *)objectManager;
 
+- (void)addSerializationMappingsToObjectManager:(RKObjectManager*)objectManager;
+
 - (BOOL) RSRunningOnOS4OrBetter;
 
 

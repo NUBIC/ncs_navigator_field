@@ -8,7 +8,7 @@
 
 #import <CoreData/CoreData.h>
 
-@interface Participant : NSObject
+@interface Participant : NSManagedObject
 
 @property(nonatomic,retain) NSString* pId;
 

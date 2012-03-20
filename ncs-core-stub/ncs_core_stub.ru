@@ -20,6 +20,16 @@ class NCSCoreStub < Sinatra::Base
       403
     end
   end
+
+  put '/api/v1/fieldwork/:identifier' do
+    env['aker.check'].authentication_required!
+    username = env['aker.check'].user.username
+    if username
+      puts "request.body: #{request.body.gets.inspect}"
+      202
+    end
+  end
+
 end
 
 require 'aker'

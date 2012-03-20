@@ -20,3 +20,5 @@
 
 #import "NCSMobileAppDelegate.h"
 #define UIAppDelegate ((NCSMobileAppDelegate *)[UIApplication sharedApplication].delegate)
+
+//lcl_configure_by_name("RestKit*", RKLogLevelTrace);

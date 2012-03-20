@@ -11,7 +11,6 @@
 #import "Event.h"
 #import "Person.h"
 #import "Contact.h"
-#import "ModelLoader.h"
 @implementation ContactNavigationTableTest
 
 ContactNavigationTable* dvp;

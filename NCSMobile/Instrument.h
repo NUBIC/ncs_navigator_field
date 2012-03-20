@@ -17,6 +17,8 @@
 
 @property(nonatomic,retain) NSString* name;
 
+@property(nonatomic,retain) NSString* initialResponseSet;
+
 @property(nonatomic,retain) NSString* instrumentTemplateId;
 
 @property(nonatomic,retain) InstrumentTemplate* instrumentTemplate;

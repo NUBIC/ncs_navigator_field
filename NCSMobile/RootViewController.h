@@ -30,15 +30,17 @@
 @property(nonatomic,retain) Instrument* administeredInstrument;
 
 - (void)purgeDataStore;
-- (void) loadSurveyor:(Instrument*)instrument;
-- (void) didSelectRow:(Row*)row;
+- (void)loadSurveyor:(Instrument*)instrument;
+- (void)didSelectRow:(Row*)row;
+- (void)pushContacts:(CasServiceTicket*)serviceTicket;
+- (void)putDataWithProxyTicket:(CasProxyTicket*)ticket;
 - (void)loadDataWithProxyTicket:(CasProxyTicket*)ticket;
 - (void)loadObjectsFromDataStore;
 - (void)syncButtonWasPressed;
-- (void) confirmSync;
-- (void) startCasLogin;
-- (void) deleteButtonWasPressed;
-- (void) unloadSurveyor:(Instrument*)instrument responseSet:(NUResponseSet*)rs;
+- (void)confirmSync;
+- (void)startCasLogin;
+- (void)deleteButtonWasPressed;
+- (void)unloadSurveyor:(Instrument*)instrument responseSet:(NUResponseSet*)rs;
 
 - (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket;
 - (void)retrieveContacts:(CasServiceTicket*)serviceTicket;
