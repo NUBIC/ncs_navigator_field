@@ -44,24 +44,6 @@ FieldWork* f;
     f.contacts = [NSSet setWithObject:c]; 
 }
 
-- (void)testBasicFieldWorkMapping {
-    RKObjectMapping* contactMapping = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
-    [contactMapping mapAttributes:@"typeId", nil];
-
-    RKObjectMapping* fieldWorkMapping = [RKObjectMapping mappingForClass:[NSMutableDictionary class] ];
-    [fieldWorkMapping mapAttributes:@"identifier", nil];
-    [fieldWorkMapping mapRelationship:@"contacts" withMapping:contactMapping];
-    
-    RKObjectSerializer* serializer = [RKObjectSerializer serializerWithObject:f mapping:fieldWorkMapping];
-    NSError* error = nil;
-    
-    // Turn an object into a dictionary
-    NSMutableDictionary* serialized = [serializer serializedObject:&error];
-    
-    NSSet* actual = [serialized objectForKey:@"contacts"];
-    STAssertFalse([actual empty], @"Should not be empty");
-}
-
 - (void)testFullMapping {
     [RestKitSettings instance];
 
@@ -80,7 +62,6 @@ FieldWork* f;
     NSDictionary* ai = [[[ae objectForKey:@"instruments"] objectEnumerator] nextObject];
     STAssertEquals(@"INS A", [ai objectForKey:@"name"], @"Wrong value");
     STAssertEquals(@"{survey:bla}", [ai objectForKey:@"response_set"], @"Wrong value");
-
 }
 
 @end

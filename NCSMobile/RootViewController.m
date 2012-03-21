@@ -289,7 +289,7 @@
 - (void)syncContacts:(CasServiceTicket*)serviceTicket {
     [self pushContacts:serviceTicket];
 //    [self deleteButtonWasPressed]; //TODO: Fix this, it causes an exception
-//    [self retrieveContacts:serviceTicket];
+    [self retrieveContacts:serviceTicket];
 }
 
 - (void)showErrorMessage:(NSString *)message {
@@ -329,8 +329,6 @@
     if ([all count] > 0) {
         FieldWork* f = [all objectAtIndex:0];
         f.identifier = @"hello";
-        NSSet *part = f.participants;
-        NSArray* v = [f committedValuesForKeys:nil];
         [objectManager putObject:f delegate:self];
     }
 //    NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@&client_id=%@", [rfc3339 stringFromDate:today], [rfc3339 stringFromDate:inOneWeek], clientId];
@@ -344,8 +342,7 @@
 }
 
 - (void)retrieveContacts:(CasServiceTicket*)serviceTicket {
-    [serviceTicket present];
-    if (serviceTicket.ok) {
+    if (serviceTicket.pgt) {
         CasConfiguration* conf = [CasConfiguration new];
         CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
         NSString* coreURL = [ApplicationSettings instance].coreURL;
@@ -360,10 +357,26 @@
             [self showErrorMessage:msg];
         }
     } else {
-        NSString* msg = [NSString stringWithFormat:@"Presenting service ticket failed: %@", [serviceTicket message]];
-        [self showErrorMessage:msg];
+        [serviceTicket present];
+        if (serviceTicket.ok) {
+            CasConfiguration* conf = [CasConfiguration new];
+            CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
+            NSString* coreURL = [ApplicationSettings instance].coreURL;
+            
+            CasProxyTicket* t = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:serviceTicket.pgt];
+            [t reify];
+            if (!t.error) {
+                NSLog(@"Proxy ticket successfully obtained: %@", t.proxyTicket);
+                [self loadDataWithProxyTicket:t];
+            } else {
+                NSString* msg = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", t.message];
+                [self showErrorMessage:msg];
+            }
+        } else {
+            NSString* msg = [NSString stringWithFormat:@"Presenting service ticket failed: %@", [serviceTicket message]];
+            [self showErrorMessage:msg];
+        }
     }
-
 }
 
 - (void)loadDataWithProxyTicket:(CasProxyTicket*)ticket {
