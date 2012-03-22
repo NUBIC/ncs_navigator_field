@@ -43,8 +43,8 @@
         <relationship name="instruments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Instrument" inverseName="event" inverseEntity="Instrument" syncable="YES"/>
     </entity>
     <entity name="FieldWork" representedClassName="FieldWork" syncable="YES">
-        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="retreivedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="retrievedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="uri" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contact" inverseName="fieldWork" inverseEntity="Contact" syncable="YES"/>
         <relationship name="instrumentTemplates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InstrumentTemplate" inverseName="fieldWork" inverseEntity="InstrumentTemplate" syncable="YES"/>
         <relationship name="participants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Participant" inverseName="fieldWork" inverseEntity="Participant" syncable="YES"/>
@@ -86,7 +86,7 @@
         <element name="Contact" positionX="160" positionY="192" width="128" height="315"/>
         <element name="Event" positionX="160" positionY="192" width="128" height="90"/>
         <element name="FieldWork" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Instrument" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="Instrument" positionX="160" positionY="192" width="128" height="90"/>
         <element name="InstrumentTemplate" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Participant" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Person" positionX="160" positionY="192" width="128" height="210"/>

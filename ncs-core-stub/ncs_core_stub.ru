@@ -10,6 +10,7 @@ class NCSCoreStub < Sinatra::Base
     if username
       missing = [:start_date, :end_date, :client_id].select{|v| params[v].blank?}
       if missing.empty?
+        headers 'location' => 'http://localhost:4567/api/v1/fieldwork/92c37ba9-7297-4763-9c7f-80ac6ad16727'
         content_type :json
         IO.read("contacts.json")
       else
@@ -26,7 +27,9 @@ class NCSCoreStub < Sinatra::Base
     username = env['aker.check'].user.username
     if username
       puts "request.body: #{request.body.gets.inspect}"
-      202
+      status 202
+      content_type :json
+      request.body.rewind
     end
   end
 

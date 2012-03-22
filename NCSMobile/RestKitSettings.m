@@ -76,7 +76,7 @@ static RestKitSettings* instance;
     [self addMappingsToObjectManager: objectManager];
     
     RKObjectRouter* router = [RKObjectRouter new];
-    [router routeClass:[FieldWork class] toResourcePath:@"/api/v1/fieldwork/:identifier"];
+    [router routeClass:[FieldWork class] toResourcePath:@"/api/v1/fieldwork/:fieldWorkId"];
     [RKObjectManager sharedManager].router = router;
     
     [RKObjectManager sharedManager].serializationMIMEType = RKMIMETypeJSON;
@@ -191,7 +191,7 @@ static RestKitSettings* instance;
     [objectManager.mappingProvider setSerializationMapping:contact forClass:[Contact class]];
     
     RKObjectMapping* fieldWorkMapping = [RKObjectMapping mappingForClass:[NSMutableDictionary class] ];
-    [fieldWorkMapping mapAttributes:@"identifier", nil];
+    [fieldWorkMapping mapKeyPathsToAttributes:@"fieldWordId", @"identifier", nil];
     [fieldWorkMapping mapRelationship:@"contacts" withMapping:contact];
     
     [objectManager.mappingProvider setSerializationMapping:fieldWorkMapping forClass:[FieldWork class]];

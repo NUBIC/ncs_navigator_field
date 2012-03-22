@@ -44,6 +44,7 @@
 @synthesize reachability=_reachability;
 @synthesize syncIndicator=_syncIndicator;
 @synthesize administeredInstrument=_administeredInstrument;
+@synthesize serviceTicket=_serviceTicket;
 
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
@@ -282,13 +283,15 @@
 - (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket {
     NSLog(@"My Successful login: %@", serviceTicket);
     [self dismissViewControllerAnimated:YES completion:^{
-        [self.syncIndicator showWhileExecuting:@selector(syncContacts:) onTarget:self withObject:serviceTicket animated:YES];
+        [self syncContacts:serviceTicket];
+//        [self.syncIndicator showWhileExecuting:@selector(syncContacts:) onTarget:self withObject:serviceTicket animated:YES];
     }];
 }
 
 - (void)syncContacts:(CasServiceTicket*)serviceTicket {
+    self.serviceTicket = serviceTicket;
     [self pushContacts:serviceTicket];
-//    [self deleteButtonWasPressed]; //TODO: Fix this, it causes an exception
+    [self deleteButtonWasPressed]; //TODO: Fix this, it causes an exception
     [self retrieveContacts:serviceTicket];
 }
 
@@ -325,20 +328,15 @@
     // Load the object model via RestKit	
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
-    NSArray* all = [FieldWork findAllSortedBy:@"retreivedDate" ascending:NO];
+    
+    NSArray* all = [FieldWork findAllSortedBy:@"retrievedDate" ascending:NO];
     if ([all count] > 0) {
         FieldWork* f = [all objectAtIndex:0];
-        f.identifier = @"hello";
-        [objectManager putObject:f delegate:self];
+        RKObjectLoader* loader = [objectManager objectLoaderForObject:f method:RKRequestMethodPUT delegate:self];
+        [loader sendSynchronously];
+    } else {
+        [self retrieveContacts:self.serviceTicket];
     }
-//    NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@&client_id=%@", [rfc3339 stringFromDate:today], [rfc3339 stringFromDate:inOneWeek], clientId];
-    
-//    RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
-//    loader.method = RKRequestMethodPOST;
-    
-    
-//    [loader send]; // TODO: Send synchronously since we're blocking the UI anyways
-    
 }
 
 - (void)retrieveContacts:(CasServiceTicket*)serviceTicket {
@@ -399,7 +397,7 @@
     loader.method = RKRequestMethodPOST;
     
     
-    [loader send]; // TODO: Send synchronously since we're blocking the UI anyways
+    [loader sendSynchronously]; // TODO: Send synchronously since we're blocking the UI anyways
 }
 
 
@@ -420,12 +418,19 @@
     NSLog(@"Mapping Instrument Template: %@", *mappableData);
 }
 
+//- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response {
+//    if (request.method == RKRequestMethodPUT) {
+//        [self deleteButtonWasPressed];
+//        [self retrieveContacts:self.serviceTicket];
+//    }
+//}
+
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
 	NSLog(@"RootViewController:didLoadObjects -- %@", objects);
     
     FieldWork* w = [FieldWork object];
-    w.location = [[objectLoader response] location];
-    w.retreivedDate = [NSDate date];
+    w.uri = [[objectLoader response] location];
+    w.retrievedDate = [NSDate date];
     w.participants = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[Participant entity] name ]]]];
     w.contacts = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[Contact entity] name ]]]];    
     w.instrumentTemplates = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[InstrumentTemplate entity] name ]]]];

@@ -21,6 +21,7 @@
     Instrument* _administeredInstrument;
     RKReachabilityObserver* _reachability;
     SyncActivityIndicator* _syncIndicator;
+    CasServiceTicket* _serviceTicket;
 }
 
 		
@@ -28,7 +29,7 @@
 @property(nonatomic,retain) RKReachabilityObserver* reachability;
 @property(nonatomic,retain) MBProgressHUD* syncIndicator;
 @property(nonatomic,retain) Instrument* administeredInstrument;
-
+@property(nonatomic,retain) CasServiceTicket* serviceTicket;
 - (void)purgeDataStore;
 - (void)loadSurveyor:(Instrument*)instrument;
 - (void)didSelectRow:(Row*)row;

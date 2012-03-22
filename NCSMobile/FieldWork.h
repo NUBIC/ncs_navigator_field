@@ -10,11 +10,11 @@
 
 @interface FieldWork : NSManagedObject
 
-@property(nonatomic,retain) NSString *identifier;
+@property(readonly, getter = fieldWordId) NSString *fieldWorkId;
 
-@property(nonatomic,retain) NSString* location;
+@property(nonatomic,retain) NSString* uri;
 
-@property(nonatomic,retain) NSDate* retreivedDate;
+@property(nonatomic,retain) NSDate* retrievedDate;
 
 @property(nonatomic,retain) NSSet* participants;
 

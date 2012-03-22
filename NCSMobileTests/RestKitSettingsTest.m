@@ -39,8 +39,7 @@ FieldWork* f;
     c.events = [NSSet setWithObject:e];
     
     f = [FieldWork object];
-    f.retreivedDate = [Fixtures createDateFromString:@"2012-04-1 00:00"];
-    f.identifier = @"Foo";
+    f.retrievedDate = [Fixtures createDateFromString:@"2012-04-1 00:00"];
     f.contacts = [NSSet setWithObject:c]; 
 }
 

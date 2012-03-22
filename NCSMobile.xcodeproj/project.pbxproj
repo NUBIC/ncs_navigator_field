@@ -64,6 +64,7 @@
 		00A392DF14361C53003B19F3 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A392DD14361C53003B19F3 /* LoginController.m */; };
 		00B7CCA814BDFB6E00D5901C /* DispositionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B7CCA714BDFB6E00D5901C /* DispositionCode.m */; };
 		00C2520D151794EB00F4FE3B /* RestKitSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */; };
+		00C25211151A63B500F4FE3B /* FieldWorkTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C25210151A63B500F4FE3B /* FieldWorkTest.m */; };
 		00C4003A14EC381D005736EA /* DispositionCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C4003914EC381D005736EA /* DispositionCodeTest.m */; };
 		00C4095D1471DD5E00F0F3FA /* InstrumentTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C4095C1471DD5E00F0F3FA /* InstrumentTemplate.m */; };
 		00C67AF514C765CE005D2543 /* NUCas.plist-sample in Resources */ = {isa = PBXBuildFile; fileRef = 00C67AF414C765CE005D2543 /* NUCas.plist-sample */; };
@@ -332,6 +333,8 @@
 		00B7CCA714BDFB6E00D5901C /* DispositionCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispositionCode.m; sourceTree = "<group>"; };
 		00C2520B151794EB00F4FE3B /* RestKitSettingsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitSettingsTest.h; sourceTree = "<group>"; };
 		00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitSettingsTest.m; sourceTree = "<group>"; };
+		00C2520F151A63B500F4FE3B /* FieldWorkTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldWorkTest.h; sourceTree = "<group>"; };
+		00C25210151A63B500F4FE3B /* FieldWorkTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldWorkTest.m; sourceTree = "<group>"; };
 		00C4003814EC381D005736EA /* DispositionCodeTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispositionCodeTest.h; sourceTree = "<group>"; };
 		00C4003914EC381D005736EA /* DispositionCodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispositionCodeTest.m; sourceTree = "<group>"; };
 		00C4095B1471DD5E00F0F3FA /* InstrumentTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentTemplate.h; sourceTree = "<group>"; };
@@ -486,6 +489,8 @@
 				00C4003914EC381D005736EA /* DispositionCodeTest.m */,
 				00C2520B151794EB00F4FE3B /* RestKitSettingsTest.h */,
 				00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */,
+				00C2520F151A63B500F4FE3B /* FieldWorkTest.h */,
+				00C25210151A63B500F4FE3B /* FieldWorkTest.m */,
 			);
 			name = Tests;
 			path = NCSMobileTests;
@@ -993,6 +998,7 @@
 				00590AC81428F7D0008335EA /* ContactTableTest.m in Sources */,
 				00C4003A14EC381D005736EA /* DispositionCodeTest.m in Sources */,
 				00C2520D151794EB00F4FE3B /* RestKitSettingsTest.m in Sources */,
+				00C25211151A63B500F4FE3B /* FieldWorkTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
