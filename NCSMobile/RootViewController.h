@@ -42,7 +42,7 @@
 - (void)startCasLogin;
 - (void)deleteButtonWasPressed;
 - (void)unloadSurveyor:(Instrument*)instrument responseSet:(NUResponseSet*)rs;
-
+- (void)syncContacts:(CasServiceTicket*)serviceTicket;
 - (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket;
 - (void)retrieveContacts:(CasServiceTicket*)serviceTicket;
 

@@ -284,6 +284,7 @@
     NSLog(@"My Successful login: %@", serviceTicket);
     [self dismissViewControllerAnimated:YES completion:^{
         [self syncContacts:serviceTicket];
+
 //        [self.syncIndicator showWhileExecuting:@selector(syncContacts:) onTarget:self withObject:serviceTicket animated:YES];
     }];
 }
@@ -397,7 +398,7 @@
     loader.method = RKRequestMethodPOST;
     
     
-    [loader sendSynchronously]; // TODO: Send synchronously since we're blocking the UI anyways
+    [loader sendSynchronously];
 }
 
 
