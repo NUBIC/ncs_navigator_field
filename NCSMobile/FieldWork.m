@@ -23,9 +23,4 @@
     return ident;
 }
 
-//// TODO: This is a workaround for a problem caused when calling 
-//- (BOOL)isNew {
-//    return false;
-//}
-
 @end
