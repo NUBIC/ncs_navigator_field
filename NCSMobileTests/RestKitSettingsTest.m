@@ -43,7 +43,7 @@ FieldWork* f;
     f.contacts = [NSSet setWithObject:c]; 
 }
 
-- (void)testFullMapping {
+- (void)testSerializationMapping {
     [RestKitSettings instance];
 
     RKObjectMapping* fieldWorkMapping = [[RKObjectManager sharedManager].mappingProvider serializationMappingForClass:[FieldWork class]];
