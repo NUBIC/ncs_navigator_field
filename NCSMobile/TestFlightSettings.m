@@ -35,7 +35,7 @@ static TestFlightSettings* instance;
     NSString* token = NULL;
     NSData *data = [NSData dataWithContentsOfFile:[self teamTokenFilePath]];  
     if (data) {  
-        token = [NSString stringWithFormat:@"%@", data];
+        token = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     }
     return token;
     
