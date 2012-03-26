@@ -285,7 +285,7 @@
     [self dismissViewControllerAnimated:YES completion:^{
         [self.syncIndicator show:YES];
         [self syncContacts:serviceTicket];
-//        [self.syncIndicator hide:YES];
+        [self.syncIndicator hide:YES];
     }];
 }
 
