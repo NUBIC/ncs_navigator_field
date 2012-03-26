@@ -51,6 +51,9 @@
 		007C1F4114FBFACA0020DF30 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 007C1F4014FBFACA0020DF30 /* Podfile */; };
 		00810AB81486D1AE0098C0D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF914112E5E0097A878 /* CoreData.framework */; };
 		00810B5F14896B070098C0D0 /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00810B5E14896B070098C0D0 /* DatePicker.m */; };
+		00860D1F1520D6C900FCCFCB /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00860D1E1520D6C900FCCFCB /* libTestFlight.a */; };
+		00860D241520EE1300FCCFCB /* TestFlight-TeamToken.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00860D231520EE1300FCCFCB /* TestFlight-TeamToken.txt */; };
+		00860D271520EF3000FCCFCB /* TestFlightSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 00860D261520EF3000FCCFCB /* TestFlightSettings.m */; };
 		008C5711149696DD005EC22E /* TextArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 008C5710149696DD005EC22E /* TextArea.m */; };
 		008F7DA1148BB3DD009BCF1D /* ContactInitiateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F7DA0148BB3DD009BCF1D /* ContactInitiateVC.m */; };
 		008F7DA4148C1B16009BCF1D /* FormBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F7DA3148C1B16009BCF1D /* FormBuilder.m */; };
@@ -308,6 +311,11 @@
 		007C1F4014FBFACA0020DF30 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		00810B5D14896B070098C0D0 /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
 		00810B5E14896B070098C0D0 /* DatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePicker.m; sourceTree = "<group>"; };
+		00860D1E1520D6C900FCCFCB /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		00860D221520D6F000FCCFCB /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		00860D231520EE1300FCCFCB /* TestFlight-TeamToken.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "TestFlight-TeamToken.txt"; sourceTree = "<group>"; };
+		00860D251520EF3000FCCFCB /* TestFlightSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlightSettings.h; sourceTree = "<group>"; };
+		00860D261520EF3000FCCFCB /* TestFlightSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFlightSettings.m; sourceTree = "<group>"; };
 		008C570F149696DD005EC22E /* TextArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextArea.h; sourceTree = "<group>"; };
 		008C5710149696DD005EC22E /* TextArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextArea.m; sourceTree = "<group>"; };
 		008F7D9F148BB3DD009BCF1D /* ContactInitiateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInitiateVC.h; sourceTree = "<group>"; };
@@ -384,6 +392,7 @@
 				0026E669140347E700355BCB /* UIKit.framework in Frameworks */,
 				0026E66B140347E700355BCB /* Foundation.framework in Frameworks */,
 				D1CACF1A1F944E92AB51AE74 /* libPods.a in Frameworks */,
+				00860D1F1520D6C900FCCFCB /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +414,7 @@
 		0026E659140347E700355BCB = {
 			isa = PBXGroup;
 			children = (
+				00860D231520EE1300FCCFCB /* TestFlight-TeamToken.txt */,
 				000E64B2150EB2BF0006B31E /* Settings.bundle */,
 				009BE3A914FC2145008195F9 /* Security.framework */,
 				007C1F4014FBFACA0020DF30 /* Podfile */,
@@ -436,6 +446,7 @@
 		0026E667140347E700355BCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00860D1E1520D6C900FCCFCB /* libTestFlight.a */,
 				00A2CDDA14EAFCBD00C164F7 /* libMRCEnumerable.a */,
 				0021785014E0E56600056745 /* QuartzCore.framework */,
 				003131E914E089C400C0D0B1 /* libNUSurveyor.a */,
@@ -530,6 +541,7 @@
 		0057793814E434A400964B87 /* Dependent Headers */ = {
 			isa = PBXGroup;
 			children = (
+				00860D211520D6CE00FCCFCB /* TestFlight */,
 				0057794314E435A400964B87 /* NUCas */,
 			);
 			name = "Dependent Headers";
@@ -741,6 +753,8 @@
 				00D93A431507CC19009CFDE9 /* Participant.m */,
 				0073B3661511277000543DA4 /* FieldWork.h */,
 				0073B3671511277000543DA4 /* FieldWork.m */,
+				00860D251520EF3000FCCFCB /* TestFlightSettings.h */,
+				00860D261520EF3000FCCFCB /* TestFlightSettings.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -763,6 +777,14 @@
 				0026E671140347E700355BCB /* InfoPlist.strings */,
 			);
 			name = Other;
+			sourceTree = "<group>";
+		};
+		00860D211520D6CE00FCCFCB /* TestFlight */ = {
+			isa = PBXGroup;
+			children = (
+				00860D221520D6F000FCCFCB /* TestFlight.h */,
+			);
+			name = TestFlight;
 			sourceTree = "<group>";
 		};
 		0088C7D714717D580051AAE6 /* Images */ = {
@@ -899,6 +921,7 @@
 				0092BA5714E32C3500134165 /* icon.png in Resources */,
 				007C1F4114FBFACA0020DF30 /* Podfile in Resources */,
 				000E64B3150EB2BF0006B31E /* Settings.bundle in Resources */,
+				00860D241520EE1300FCCFCB /* TestFlight-TeamToken.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -983,6 +1006,7 @@
 				00D93A3A1506B2CF009CFDE9 /* RestKitSettings.m in Sources */,
 				00D93A441507CC19009CFDE9 /* Participant.m in Sources */,
 				0073B3681511277000543DA4 /* FieldWork.m in Sources */,
+				00860D271520EF3000FCCFCB /* TestFlightSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,8 +16,8 @@ build/
 xcuserdata
 
 # ncs_navigator_field
-NCSNavigatorField.plist
 NUCas.plist
+TestFlight-TeamToken.txt
 
 # Cocoapods generated artifacts
 Pods

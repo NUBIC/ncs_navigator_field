@@ -11,6 +11,7 @@
 #import "RootViewController.h"
 #import "RestKitSettings.h"
 #import "ApplicationSettings.h"
+#import "TestFlightSettings.h"
 
 
 @implementation NCSMobileAppDelegate
@@ -26,6 +27,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    TestFlightSettings *tf = [TestFlightSettings instance];
+    [TestFlight takeOff:tf.teamToken];
+    
     // Invoked at startup to set client ID
     [ApplicationSettings instance];
     

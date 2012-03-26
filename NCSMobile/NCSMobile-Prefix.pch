@@ -16,6 +16,8 @@
 
     #import <RestKit/RestKit.h>
     #import <RestKit/RKCoreData/CoreData.h>
+
+    #import "TestFlight.h"
 #endif
 
 #import "NCSMobileAppDelegate.h"
