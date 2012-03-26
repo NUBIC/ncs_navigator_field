@@ -283,16 +283,20 @@
 - (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket {
     NSLog(@"My Successful login: %@", serviceTicket);
     [self dismissViewControllerAnimated:YES completion:^{
+        [self.syncIndicator show:YES];
         [self syncContacts:serviceTicket];
-
-//        [self.syncIndicator showWhileExecuting:@selector(syncContacts:) onTarget:self withObject:serviceTicket animated:YES];
+//        [self.syncIndicator hide:YES];
     }];
 }
 
 - (void)syncContacts:(CasServiceTicket*)serviceTicket {
+    // Bumping the runloop so the UI can update and show the spinner
+    // http://stackoverflow.com/questions/5685331/run-mbprogresshud-in-another-thread
+    [[NSRunLoop currentRunLoop] runUntilDate: [NSDate distantPast]];
+    
     self.serviceTicket = serviceTicket;
     [self pushContacts:serviceTicket];
-    [self deleteButtonWasPressed]; //TODO: Fix this, it causes an exception
+    [self deleteButtonWasPressed];
     [self retrieveContacts:serviceTicket];
 }
 
