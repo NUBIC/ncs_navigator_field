@@ -16,10 +16,10 @@ dependency 'MBProgressHUD', '0.41'
 # dependency 'RestKit/CoreData', :podspec => rk
 # dependency 'RestKit/ObjectMapping/JSONKit', :podspec => rk
 
-dependency 'RestKit/Network', '0.9.4'
-dependency 'RestKit/ObjectMapping', '0.9.4'
-dependency 'RestKit/CoreData', '0.9.4'
-dependency 'RestKit/ObjectMapping/JSONKit', '0.9.4'
+dependency 'RestKit/Network', '0.9.3'
+dependency 'RestKit/ObjectMapping', '0.9.3'
+dependency 'RestKit/CoreData', '0.9.3'
+dependency 'RestKit/ObjectMapping/JSONKit', '0.9.3'
 
 
 # TODO: Replace with BlocksKit?

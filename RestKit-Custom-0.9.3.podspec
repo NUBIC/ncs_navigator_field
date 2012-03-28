@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name     = 'RestKit'
-  s.version  = '0.9.4'
+  s.version  = '0.9.3'
   s.summary  = 'RestKit is a framework for consuming and modeling RESTful web resources on iOS and OS X.'
   s.homepage = 'http://www.restkit.org'
   s.author   = { 'Blake Watters' => 'blakewatters@gmail.com' }
-  s.source   = { :git => 'https://github.com/RestKit/RestKit.git', :commit => '8d0d9fcd59412b160ea22297e988b16b7e8bc0a3' }
+  s.source   = { :git => 'https://github.com/RestKit/RestKit.git', :tag => '0.9.3' }
 
   # It has no source_files itself, so the resolver should not allow dependencies on this spec unless it’s a `part_of' type dependency
 

@@ -6,29 +6,29 @@ PODS:
   - MBProgressHUD (0.41)
   - MRCEnumerable (0.1)
   - NUSurveyor (0.0.1)
-  - RestKit/CoreData (0.9.4):
-    - RestKit (= 0.9.4)
-  - RestKit/Network (0.9.4):
+  - RestKit/CoreData (0.9.3):
+    - RestKit (= 0.9.3)
+  - RestKit/Network (0.9.3):
     - LibComponentLogging-NSLog
-    - RestKit (= 0.9.4)
-  - RestKit/ObjectMapping (0.9.4):
-    - RestKit (= 0.9.4)
+    - RestKit (= 0.9.3)
+  - RestKit/ObjectMapping (0.9.3):
+    - RestKit (= 0.9.3)
     - RestKit/Network
-  - RestKit/ObjectMapping/JSONKit (0.9.4):
+  - RestKit/ObjectMapping/JSONKit (0.9.3):
     - JSONKit
-    - RestKit (= 0.9.4)
-    - RestKit/ObjectMapping (= 0.9.4)
+    - RestKit (= 0.9.3)
+    - RestKit/ObjectMapping (= 0.9.3)
   - SBJson (2.2.3)
 
 DOWNLOAD_ONLY:
-  - RestKit (0.9.4)
+  - RestKit (0.9.3)
 
 DEPENDENCIES:
   - MBProgressHUD (= 0.41)
   - MRCEnumerable (defined in Podfile)
   - NUSurveyor (defined in Podfile)
-  - RestKit/CoreData (= 0.9.4)
-  - RestKit/Network (= 0.9.4)
-  - RestKit/ObjectMapping (= 0.9.4)
-  - RestKit/ObjectMapping/JSONKit (= 0.9.4)
+  - RestKit/CoreData (= 0.9.3)
+  - RestKit/Network (= 0.9.3)
+  - RestKit/ObjectMapping (= 0.9.3)
+  - RestKit/ObjectMapping/JSONKit (= 0.9.3)
   - SBJson (= 2.2.3)
