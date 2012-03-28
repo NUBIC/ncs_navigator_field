@@ -10,7 +10,7 @@
 
 @interface FieldWork : NSManagedObject
 
-@property(readonly, getter = fieldWordId) NSString *fieldWorkId;
+@property(readonly, getter = fieldWorkId) NSString *fieldWorkId;
 
 @property(nonatomic,retain) NSString* uri;
 

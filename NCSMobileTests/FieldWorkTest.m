@@ -17,14 +17,14 @@
 {
     FieldWork* f = [FieldWork object];
     f.uri = @"http://foo.com:123/api/v1/fieldwork/xyz123?foo=bar";
-    STAssertEqualObjects(@"xyz123", f.fieldWordId, @"Should be equal");
+    STAssertEqualObjects(@"xyz123", f.fieldWorkId, @"Should be equal");
 }
 
 - (void)testBadIdentifier
 {
     FieldWork* f = [FieldWork object];
     f.uri = @"";
-    STAssertEqualObjects(NULL, f.fieldWordId, @"Should be equal");
+    STAssertEqualObjects(NULL, f.fieldWorkId, @"Should be equal");
 }
 
 

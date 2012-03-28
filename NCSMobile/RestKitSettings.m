@@ -197,7 +197,7 @@ static RestKitSettings* instance;
     [objectManager.mappingProvider setSerializationMapping:contact forClass:[Contact class]];
     
     RKObjectMapping* fieldWorkMapping = [RKObjectMapping mappingForClass:[NSMutableDictionary class] ];
-    [fieldWorkMapping mapKeyPathsToAttributes:@"fieldWordId", @"identifier", nil];
+    [fieldWorkMapping mapKeyPathsToAttributes:@"fieldWorkId", @"identifier", nil];
     [fieldWorkMapping mapRelationship:@"contacts" withMapping:contact];
     
     [objectManager.mappingProvider setSerializationMapping:fieldWorkMapping forClass:[FieldWork class]];
