@@ -16,7 +16,7 @@ Configuration
 1. `pod setup`
 1. `pod install`
 1. `./patch-RestKit.sh`
-1. Open NCSMobile.xcworkspace and change the Pods deploy target to 5.0 (Pods Project -> Build Settings -> Deploy Target)
+1. Open NCSNavField.xcworkspace and change the Pods deploy target to 5.0 (Pods Project -> Build Settings -> Deploy Target)
 
 Testing
 -------
