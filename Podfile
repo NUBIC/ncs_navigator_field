@@ -4,6 +4,8 @@ platform :ios, :deployment_target => "5.0"
 
 dependency 'SBJson', '2.2.3'
 dependency 'MBProgressHUD', '0.41'
+dependency 'LibComponentLogging-Core', '1.1.6'
+dependency 'LibComponentLogging-NSLog', '1.0.4'
 
 # BUG: RestKit's podspec doesn't include CoreData/CoreData.h because it conflicts with Apple CoreData/CoreData.h
 #      http://groups.google.com/group/cocoapods/browse_thread/thread/705f040f2e7aa03d
@@ -18,7 +20,8 @@ dependency 'MBProgressHUD', '0.41'
 
 dependency 'RestKit/Network', '0.9.3'
 dependency 'RestKit/ObjectMapping', '0.9.3'
-dependency 'RestKit/CoreData', '0.9.3'
+#dependency 'RestKit/CoreData', '0.9.3'
+dependency 'RestKit/ObjectMapping/CoreData', '0.9.3'
 dependency 'RestKit/ObjectMapping/JSONKit', '0.9.3'
 
 
