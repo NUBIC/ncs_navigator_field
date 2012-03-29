@@ -51,12 +51,12 @@
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instrumentSelected:) name:@"InstrumentSelected" object:NULL];
         
-        self.reachability = [[RKReachabilityObserver alloc] initWithHostname:@"www.google.com"];
+        self.reachability = [[RKReachabilityObserver alloc] initWithHost:@"www.google.com"];
         
         // Register for notifications
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(reachabilityChanged:)
-                                                     name:RKReachabilityStateChangedNotification
+                                                     name:RKReachabilityDidChangeNotification
                                                    object:self.reachability];
     }
     return self;

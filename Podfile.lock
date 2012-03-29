@@ -25,8 +25,6 @@ DOWNLOAD_ONLY:
   - RestKit (0.9.3)
 
 DEPENDENCIES:
-  - LibComponentLogging-Core (= 1.1.6)
-  - LibComponentLogging-NSLog (= 1.0.4)
   - MBProgressHUD (= 0.41)
   - MRCEnumerable (defined in Podfile)
   - NUSurveyor (defined in Podfile)

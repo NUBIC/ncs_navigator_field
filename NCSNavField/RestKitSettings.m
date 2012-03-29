@@ -145,11 +145,11 @@ static RestKitSettings* instance;
     [contact connectRelationship:@"person" withObjectForPrimaryKeyAttribute:@"personId"];
     [contact mapRelationship:@"events" withMapping:event];
     [objectManager.mappingProvider setMapping:contact forKeyPath:@"contacts"];
-    [contact.dateFormatStrings addObject:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z"];
-    [contact.dateFormatStrings addObject:@"yyyy'-'MM'-'dd'T'HH':'mm'Z'"];
-    [contact.dateFormatStrings addObject:@"yyyy-MM-dd'T'hh:mm:ssZZ"]; 
-    [contact.dateFormatStrings addObject:@"yyyy-MM-dd'T'hh:mmZZ"]; 
-    [contact.dateFormatStrings addObject:@"yyyy-MM-dd'T'hh:mmZ"];
+//    [contact.dateFormatStrings addObject:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z"];
+//    [contact.dateFormatStrings addObject:@"yyyy'-'MM'-'dd'T'HH':'mm'Z'"];
+//    [contact.dateFormatStrings addObject:@"yyyy-MM-dd'T'hh:mm:ssZZ"]; 
+//    [contact.dateFormatStrings addObject:@"yyyy-MM-dd'T'hh:mmZZ"]; 
+//    [contact.dateFormatStrings addObject:@"yyyy-MM-dd'T'hh:mmZ"];
     
     RKManagedObjectMapping* fieldWork = [RKManagedObjectMapping mappingForClass:[FieldWork class]];
     [fieldWork mapRelationship:@"participants" withMapping:participant];
@@ -161,11 +161,10 @@ static RestKitSettings* instance;
     // "2005-07-16T19:20+01:00",
     // http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/DataFormatting/Articles/dfDateFormatting10_4.html#//apple_ref/doc/uid/TP40002369
     // RestKit 0.9.4 date mappings
-//    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd'T'HH':'mm'Z'" inTimeZone:nil];
-//    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mm:ssZZ" inTimeZone:nil]; 
-//    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mmZZ" inTimeZone:nil]; 
-//    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mmZ" inTimeZone:nil]; 
-    //	[eventMapping.dateFormatStrings addObject:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd'T'HH':'mm'Z'" inTimeZone:nil];
+    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mm:ssZZ" inTimeZone:nil]; 
+    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mmZZ" inTimeZone:nil]; 
+    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mmZ" inTimeZone:nil]; 
 }
 
 - (void)addSerializationMappingsToObjectManager:(RKObjectManager*)objectManager {

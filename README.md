@@ -14,8 +14,8 @@ Configuration
 1. `wget http://curl.haxx.se/ca/cacert.pem`
 1. `gem install cocoapods`
 1. `pod setup`
+1. `cp RestKit-0.9.3-custom.podspec ~/.cocoapods/master/RestKit/0.9.3/RestKit.podspec`
 1. `pod install`
-1. `./patch-RestKit.sh`
 1. Open NCSNavField.xcworkspace and change the Pods deploy target to 5.0 (Pods Project -> Build Settings -> Deploy Target)
 
 Testing
