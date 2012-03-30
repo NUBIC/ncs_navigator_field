@@ -117,7 +117,7 @@
 		0026E668140347E700355BCB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0026E66A140347E700355BCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0026E66C140347E700355BCB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		0026E670140347E700355BCB /* NCSNavField-Info.plist */ = {isa = PBXFileReference; name = "NCSNavField-Info.plist"; path = "NCSNavField/NCSNavField-Info.plist"; sourceTree = "<group>"; };
+		0026E670140347E700355BCB /* NCSNavField-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NCSNavField-Info.plist"; path = "NCSNavField/NCSNavField-Info.plist"; sourceTree = "<group>"; };
 		0026E672140347E700355BCB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0026E674140347E700355BCB /* NCSNavField-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NCSNavField-Prefix.pch"; path = "NCSNavField/NCSNavField-Prefix.pch"; sourceTree = "<group>"; };
 		0026E675140347E700355BCB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = NCSNavField/main.m; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 		0026E68B140347E700355BCB /* NCSNavFieldTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NCSNavFieldTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0026E693140347E700355BCB /* NCSNavFieldTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NCSNavFieldTests-Info.plist"; sourceTree = "<group>"; };
 		0026E695140347E700355BCB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		0026E697140347E700355BCB /* NCSNavFieldTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NCSNavFieldTests-Prefix.pch"; sourceTree = "<group>"; };
+		0026E697140347E700355BCB /* NCS NavFieldTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NCS NavFieldTests-Prefix.pch"; sourceTree = "<group>"; };
 		002B2E4214362E4900410D09 /* nubic-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nubic-logo.png"; path = "NCSNavField/nubic-logo.png"; sourceTree = "<group>"; };
 		002B2E4314362E4900410D09 /* nu-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nu-logo.png"; path = "NCSNavField/nu-logo.png"; sourceTree = "<group>"; };
 		002D3B1014E1BCFE00A30C8F /* surveyor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = surveyor.xcdatamodel; sourceTree = "<group>"; };
@@ -512,7 +512,7 @@
 			children = (
 				0026E693140347E700355BCB /* NCSNavFieldTests-Info.plist */,
 				0026E694140347E700355BCB /* InfoPlist.strings */,
-				0026E697140347E700355BCB /* NCSNavFieldTests-Prefix.pch */,
+				0026E697140347E700355BCB /* NCS NavFieldTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1182,7 +1182,7 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NCSNavFieldTests/NCSNavFieldTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "NCSNavFieldTests/NCS NavFieldTests-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "NCSNavFieldTests/NCSNavFieldTests-Info.plist";
 				OTHER_LDFLAGS = (
@@ -1209,7 +1209,7 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NCSNavFieldTests/NCSNavFieldTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "NCSNavFieldTests/NCS NavFieldTests-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "NCSNavFieldTests/NCSNavFieldTests-Info.plist";
 				OTHER_LDFLAGS = (
