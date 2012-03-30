@@ -2,16 +2,16 @@
 #      http://groups.google.com/group/cocoapods/browse_thread/thread/d3761ac18d9c0ec6
 platform :ios, :deployment_target => "5.0"
 
--# BUG: RestKit's podspec doesn't include CoreData/CoreData.h because it conflicts with Apple CoreData/CoreData.h
--#      http://groups.google.com/group/cocoapods/browse_thread/thread/705f040f2e7aa03d
--# BUG: Specifying a podspec which contains subspecs throws exception.
--#      https://github.com/CocoaPods/CocoaPods/issues/141
--#
--# rk = "RestKit-Custom-0.9.3.podspec"
--# dependency 'RestKit/Network', :podspec => rk
--# dependency 'RestKit/ObjectMapping', :podspec => rk
--# dependency 'RestKit/CoreData', :podspec => rk
--# dependency 'RestKit/ObjectMapping/JSONKit', :podspec => rk
+# BUG: RestKit's podspec doesn't include CoreData/CoreData.h because it conflicts with Apple CoreData/CoreData.h
+#      http://groups.google.com/group/cocoapods/browse_thread/thread/705f040f2e7aa03d
+# BUG: Specifying a podspec which contains subspecs throws exception.
+#      https://github.com/CocoaPods/CocoaPods/issues/141
+#
+# rk = "RestKit-Custom-0.9.3.podspec"
+# dependency 'RestKit/Network', :podspec => rk
+# dependency 'RestKit/ObjectMapping', :podspec => rk
+# dependency 'RestKit/CoreData', :podspec => rk
+# dependency 'RestKit/ObjectMapping/JSONKit', :podspec => rk
 
 dependency 'SBJson', '2.2.3'
 dependency 'MBProgressHUD', '0.41'
@@ -34,10 +34,10 @@ end
 # TODO: Add to cocoapods specs repo or NUSurveyor project
 dependency do |s|
   s.name = 'NUSurveyor'
-  s.version = '0.0.1'
+  s.version = '0.0.0'
   s.platform = :ios
   s.requires_arc = true
-  s.source = { :git => 'https://github.com/NUBIC/nu_surveyor.git', :tag => 'v0.0.1' }
+  s.source = { :git => 'https://github.com/NUBIC/nu_surveyor.git', :commit => '4ae9a35eee8c75d8eb7e857506176edf2f88bced' }
   s.source_files = 'NUSurveyor/NUConstants.h', 'NUSurveyor/**/*.{h,m}'
   s.frameworks = 'QuartzCore', 'CoreGraphics'
   def s.post_install(target)

@@ -5,7 +5,7 @@ PODS:
     - LibComponentLogging-Core (>= 1.1.6)
   - MBProgressHUD (0.41)
   - MRCEnumerable (0.1)
-  - NUSurveyor (0.0.1)
+  - NUSurveyor (0.0.0)
   - RestKit/Network (0.9.3):
     - LibComponentLogging-NSLog
     - RestKit (= 0.9.3)
