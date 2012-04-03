@@ -49,7 +49,7 @@
 
 @property(nonatomic,retain) NSString* privateDetail;
 
-@property(nonatomic,retain) NSNumber* distanceId;
+@property(nonatomic,retain) NSString* distanceTraveled;
 
 @property(nonatomic,retain) NSNumber* dispositionId;
 

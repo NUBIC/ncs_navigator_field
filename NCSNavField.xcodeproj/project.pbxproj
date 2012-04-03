@@ -1125,11 +1125,13 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "NCSNavField/NCSNavField-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)\"",
 					"$(inherited)",
 				);
 				OTHER_LDFLAGS = (
+					"-lGRMustache1-ios4",
 					"-ObjC",
 					"-all_load",
 				);
@@ -1153,11 +1155,13 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "NCSNavField/NCSNavField-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)\"",
 					"$(inherited)",
 				);
 				OTHER_LDFLAGS = (
+					"-lGRMustache1-ios4",
 					"-ObjC",
 					"-all_load",
 				);

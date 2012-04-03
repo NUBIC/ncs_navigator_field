@@ -89,6 +89,7 @@ static RestKitSettings* instance;
 - (void)addMappingsToObjectManager:(RKObjectManager *)objectManager  {
     // Instrument Template
     RKManagedObjectMapping* instrumentTemplate = [RKManagedObjectMapping mappingForClass:[InstrumentTemplate class]];
+    [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
     [instrumentTemplate mapKeyPathsToAttributes:
      @"instrument_template_id", @"instrumentTemplateId",
      @"representation", @"representation", nil];
@@ -97,6 +98,7 @@ static RestKitSettings* instance;
     
     // Instrument Mapping
     RKManagedObjectMapping* instrument = [RKManagedObjectMapping mappingForClass:[Instrument class]];
+    [instrument setPrimaryKeyAttribute:@"instrumentId"];
     [instrument mapKeyPathsToAttributes: 
      @"instrument_id", @"instrumentId",
      @"instrument_template_id", @"instrumentTemplateId",
@@ -106,6 +108,7 @@ static RestKitSettings* instance;
     
     // Event Mapping
     RKManagedObjectMapping* event = [RKManagedObjectMapping mappingForClass:[Event class]];
+    [event setPrimaryKeyAttribute:@"eventId"];
     [event mapKeyPathsToAttributes:
      @"event_id", @"eventId",
      @"name", @"name", nil];
@@ -113,6 +116,7 @@ static RestKitSettings* instance;
     
     // Person Mapping
     RKManagedObjectMapping* person = [RKManagedObjectMapping mappingForClass:[Person class]];
+    [person setPrimaryKeyAttribute:@"personId"];
     [person mapKeyPathsToAttributes: 
      @"person_id", @"personId",
      @"name", @"name",
@@ -128,6 +132,7 @@ static RestKitSettings* instance;
     
     // Partipant Mapping
     RKManagedObjectMapping* participant = [RKManagedObjectMapping mappingForClass:[Participant class]];
+    [participant setPrimaryKeyAttribute:@"pId"];
     [participant mapKeyPathsToAttributes:
      @"p_id", @"pId", nil];
     [participant mapRelationship:@"persons" withMapping:person];
@@ -135,6 +140,7 @@ static RestKitSettings* instance;
 
     // Contact Mapping
     RKManagedObjectMapping* contact = [RKManagedObjectMapping mappingForClass:[Contact class]];
+    [contact setPrimaryKeyAttribute:@"contactId"];
     [contact mapKeyPathsToAttributes:
      @"contact_id", @"contactId",
      @"type", @"typeId",
@@ -172,7 +178,7 @@ static RestKitSettings* instance;
     RKManagedObjectMapping* instrument = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
     [instrument mapKeyPathsToAttributes: 
      @"instrumentId", @"instrument_id",
-     @"responseSet", @"response_set",
+     @"responseSetJson", @"response_set",
      @"instrumentTemplateId", @"instrument_template_id",
      @"name", @"name", nil];
     [objectManager.mappingProvider setSerializationMapping:instrument forClass:[Instrument class]];
@@ -185,13 +191,27 @@ static RestKitSettings* instance;
     [event mapRelationship:@"instruments" withMapping:instrument];
     [objectManager.mappingProvider setSerializationMapping:event forClass:[Event class]];
 
-        RKManagedObjectMapping* contact = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
+    RKManagedObjectMapping* contact = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
     [contact mapKeyPathsToAttributes:
      @"contactId", @"contact_id", 
      @"typeId", @"type",
      @"startDate", @"start_date",
      @"endDate", @"end_date",
-     @"personId", @"person_id", nil];
+     @"personId", @"person_id",
+     @"initiated", @"initiated", 
+     @"locationId", @"location_id",
+     @"locationOther", @"location_other", 
+     @"whoContactedId", @"who_contacted_id", 
+     @"whoContactedOther", @"who_contacted_other", 
+     @"comments", @"comments", 
+     @"languageId", @"language_id", 
+     @"languageOther", @"language_other", 
+     @"interpreterId", @"interpreter_id", 
+     @"interpreterOther", @"interpreter_other", 
+     @"privateId", @"private_id", 
+     @"privateDetail", @"private_detail", 
+     @"distanceTraveled", @"distance_traveled", 
+     @"dispositionId", @"disposition_id", nil];
     [contact mapRelationship:@"events" withMapping:event];
     [objectManager.mappingProvider setSerializationMapping:contact forClass:[Contact class]];
     

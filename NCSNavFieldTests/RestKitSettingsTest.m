@@ -28,7 +28,6 @@ FieldWork* f;
 - (void)setUp {
     i = [Instrument object];
     i.name = @"INS A";
-    i.responseSet = @"{survey:bla}";
     
     e = [Event object];
     e.name = @"Birthday";

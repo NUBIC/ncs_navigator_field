@@ -37,14 +37,28 @@ dependency do |s|
   s.version = '0.0.0'
   s.platform = :ios
   s.requires_arc = true
-  s.source = { :git => 'https://github.com/NUBIC/nu_surveyor.git', :commit => '4ae9a35eee8c75d8eb7e857506176edf2f88bced' }
-  s.source_files = 'NUSurveyor/NUConstants.h', 'NUSurveyor/**/*.{h,m}'
+  s.source = { :git => 'https://github.com/NUBIC/nu_surveyor.git', :commit => 'e71cc887f1' }
+  s.source_files = 'NUSurveyor/NUConstants.h', 'NUSurveyor/**/*.{h,m}', 'GRMustache/*.{h,m}' #, 'JSONKit/*.{h,m}'
   s.frameworks = 'QuartzCore', 'CoreGraphics'
-  def s.post_install(target)
-    prefix_header = config.project_pods_root + target.prefix_header_filename
+  s.library = 'GRMustache1-ios4'
+  s.xcconfig = { 'LIBRARY_SEARCH_PATHS' => '"$(BUILT_PRODUCTS_DIR)/Pods/Libraries"' }
+
+  def s.post_install(target_installer)
+    prefix_header = config.project_pods_root + target_installer.prefix_header_filename
     prefix_header.open('a') do |file|
       file.puts(%{#ifdef __OBJC__\n#import "NUConstants.h"\n#endif})
     end
+
+    # Add a copy build phase and make it copy the GRMustache1-ios4.a to the shared BUILT_PRODUCTS_DIR,
+    # so that both the Pods project and the user's project will pick it up.    
+    phase = target_installer.target.buildPhases.add(Xcodeproj::Project::PBXCopyFilesBuildPhase, 'dstPath' => 'Pods/Libraries')
+    file = target_installer.project.main_group.files.new('path' => 'NUSurveyor/GRMustache/libGRMustache1-ios4.a')
+    phase.files << file.buildFiles.new
+    phases = target_installer.target.attributes['buildPhases']
+    phases.delete(phase.uuid)
+    phases.insert(1, phase.uuid)
+    
+    # TODO: Still need to add linker flag (-lGRMustache1-ios4) to main target
   end
 end
 

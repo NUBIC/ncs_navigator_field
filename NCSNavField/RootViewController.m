@@ -30,6 +30,7 @@
 #import "UUID.h"
 #import "NUResponseSet.h"
 #import "FieldWork.h"
+#import "SBJSON.h"
 
 @interface RootViewController () 
     @property(nonatomic,retain) NSArray* contacts;
@@ -128,30 +129,19 @@
         survey.jsonString = surveyRep;
 
         if (!rs) {
-            
-            // TODO: This is a workaround for RestKit failing when entities are named differently than their table name
-            //       https://github.com/RestKit/RestKit/issues/506
-            //
-            //            rs = [NUResponseSet object];
-            //
-            NSManagedObjectContext* ctx = [NUResponseSet managedObjectContext];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"ResponseSet" inManagedObjectContext:ctx];
-            rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:ctx];
-
-
-            [rs setValue:[NSDate date] forKey:@"createdAt"];
-            [rs setValue:[UUID generateUuidString] forKey:@"uuid"];
+            NSDictionary* surveyDict = [[SBJSON new] objectWithString:surveyRep];
+            rs = [NUResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[NUResponseSet managedObjectContext]];
             
             NSLog(@"Response set uuid: %@", rs.uuid);
 
-            NSManagedObjectContext* moc = [instrument managedObjectContext];
+            NSManagedObjectContext* moc = [NUResponseSet managedObjectContext];
             instrument.externalResponseSetId = rs.uuid;
             NSError *error = nil;
             
             if (![moc save:&error]) {
                 NSLog(@"Error saving instrument uuid");
             }
-            NSLog(@"Administered instrument with external response uuid: %@", instrument);
+            NSLog(@"Administered instrument with external response uuid: %@", [instrument externalResponseSetId]);
 
         }
         
