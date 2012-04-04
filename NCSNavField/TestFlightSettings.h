@@ -8,7 +8,7 @@
 
 #import <CoreData/CoreData.h>
 
-@interface TestFlightSettings : NSManagedObject {
+@interface TestFlightSettings : NSObject {
     NSString* _teamToken;
 }
 
