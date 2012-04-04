@@ -169,7 +169,7 @@ static RestKitSettings* instance;
     // http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/DataFormatting/Articles/dfDateFormatting10_4.html#//apple_ref/doc/uid/TP40002369
     // RestKit 0.9.4 date mappings
     [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd" inTimeZone:nil];
-    [RKManagedObjectMapping addDefaultDateFormatterForString:@"hh':'mm" inTimeZone:nil];
+    [RKManagedObjectMapping addDefaultDateFormatterForString:@"hh':'mm':'ss" inTimeZone:nil];
 
 
 //    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd'T'HH':'mm'Z'" inTimeZone:nil];
