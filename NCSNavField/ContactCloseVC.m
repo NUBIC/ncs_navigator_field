@@ -43,8 +43,8 @@
 - (void)viewDidAppear:(BOOL)animated {
     NSLog(@"viewDidAppear Size: %@", NSStringFromCGSize(self.view.frame.size));
 
-    CGFloat contactFrameHeight = 800;
-    CGFloat eventFrameHeight = 700;
+    CGFloat contactFrameHeight = 850;
+    CGFloat eventFrameHeight = 850;
     CGPoint o = self.view.frame.origin;
 //    CGSize s = self.view.frame.size;
     CGFloat width = UIDeviceOrientationIsPortrait(self.interfaceOrientation) ? self.view.frame.size.width : self.view.frame.size.height;
@@ -222,8 +222,14 @@
     [b labelWithText:@"Start Date"];
     [b datePickerForProperty:@selector(startDate)];
     
+    [b labelWithText:@"Start Time"];
+    [b timePickerForProperty:@selector(startTime)];
+    
     [b labelWithText:@"End Date"];
     [b datePickerForProperty:@selector(endDate)];
+
+    [b labelWithText:@"End Time"];
+    [b timePickerForProperty:@selector(endTime)];
     
     [b labelWithText:@"Incentive Type"];
     [b singleOptionPickerForProperty:@selector(incentiveTypeId) WithPickerOptions:[PickerOption incentives]];

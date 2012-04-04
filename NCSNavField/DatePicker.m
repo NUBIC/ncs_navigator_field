@@ -61,7 +61,7 @@
     [p viewDidLoad];
     [p setupDelegate:self withTitle:@"Pick a date" date:YES];
     p.contentSizeForViewInPopover = CGSizeMake(384.0, 260.0);
-    p.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+    p.datePicker.datePickerMode = UIDatePickerModeDate;
     if (self.date) {
         p.datePicker.date = self.date;
     }

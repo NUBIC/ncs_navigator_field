@@ -28,6 +28,10 @@
 
 @property(nonatomic,retain) NSDate* endDate;
 
+@property(nonatomic,retain) NSDate* startTime;
+
+@property(nonatomic,retain) NSDate* endTime;
+
 @property(nonatomic,retain) NSNumber* incentiveTypeId;
 
 @property(nonatomic,retain) NSString* incentiveCash;
