@@ -451,7 +451,7 @@
 
 - (void)loadObjectsFromDataStore {
 	NSFetchRequest* request = [Contact fetchRequest];
-	NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"startDate" ascending:YES];
+	NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
 	[request setSortDescriptors:[NSArray arrayWithObject:descriptor]];
 	self.contacts = [[Contact objectsWithFetchRequest:request] retain];
 }

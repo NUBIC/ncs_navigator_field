@@ -118,7 +118,7 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMM dd 'at' HH:mm"];
-    self.eventDateLabel.text = [dateFormatter stringFromDate:c.startDate];
+    self.eventDateLabel.text = [dateFormatter stringFromDate:c.date];
 //    self.dwellingIdLabel.text = [self.detailItem dwelling].id;
     UILabel *header = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
     header.backgroundColor = [UIColor groupTableViewBackgroundColor];

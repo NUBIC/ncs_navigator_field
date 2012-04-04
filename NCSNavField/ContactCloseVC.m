@@ -141,11 +141,14 @@
     [b labelWithText:@"Contact Type"];
     [b singleOptionPickerForProperty:@selector(typeId) WithPickerOptions:[PickerOption contactTypes]];
 
-    [b labelWithText:@"Start Date"];
-    [b datePickerForProperty:@selector(startDate)];
+    [b labelWithText:@"Contact Date"];
+    [b datePickerForProperty:@selector(date)];
     
-    [b labelWithText:@"End Date"];
-    [b datePickerForProperty:@selector(endDate)];
+    [b labelWithText:@"Start Time"];
+    [b timePickerForProperty:@selector(startTime)];
+    
+    [b labelWithText:@"End Time"];
+    [b timePickerForProperty:@selector(endTime)];
         
     [b labelWithText:@"Who was contacted"];
     [b singleOptionPickerForProperty:@selector(whoContactedId) WithPickerOptions:[PickerOption whoContacted]];

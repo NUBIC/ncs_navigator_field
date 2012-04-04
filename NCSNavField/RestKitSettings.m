@@ -144,8 +144,9 @@ static RestKitSettings* instance;
     [contact mapKeyPathsToAttributes:
      @"contact_id", @"contactId",
      @"type", @"typeId",
-     @"start_date", @"startDate",
-     @"end_date", @"endDate",
+     @"date", @"date",
+     @"start_time", @"startTime",
+     @"end_time", @"endTime",
      @"person_id", @"personId", nil];
     [contact mapRelationship:@"person" withMapping:person];
     [contact connectRelationship:@"person" withObjectForPrimaryKeyAttribute:@"personId"];
@@ -167,10 +168,14 @@ static RestKitSettings* instance;
     // "2005-07-16T19:20+01:00",
     // http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/DataFormatting/Articles/dfDateFormatting10_4.html#//apple_ref/doc/uid/TP40002369
     // RestKit 0.9.4 date mappings
-    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd'T'HH':'mm'Z'" inTimeZone:nil];
-    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mm:ssZZ" inTimeZone:nil]; 
-    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mmZZ" inTimeZone:nil]; 
-    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mmZ" inTimeZone:nil]; 
+    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd" inTimeZone:nil];
+    [RKManagedObjectMapping addDefaultDateFormatterForString:@"hh':'mm" inTimeZone:nil];
+
+
+//    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd'T'HH':'mm'Z'" inTimeZone:nil];
+//    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mm:ssZZ" inTimeZone:nil]; 
+//    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mmZZ" inTimeZone:nil]; 
+//    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mmZ" inTimeZone:nil]; 
 }
 
 - (void)addSerializationMappingsToObjectManager:(RKObjectManager*)objectManager {
@@ -195,8 +200,9 @@ static RestKitSettings* instance;
     [contact mapKeyPathsToAttributes:
      @"contactId", @"contact_id", 
      @"typeId", @"type",
-     @"startDate", @"start_date",
-     @"endDate", @"end_date",
+     @"date", @"date",
+     @"startTime", @"start_time",
+     @"endTime", @"end_time",
      @"personId", @"person_id",
      @"initiated", @"initiated", 
      @"locationId", @"location_id",

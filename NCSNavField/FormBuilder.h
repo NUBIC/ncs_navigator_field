@@ -34,6 +34,7 @@
 - (SingleOptionPicker*) singleOptionPickerForProperty:(SEL)property WithPickerOptions:(NSArray*)options andPopoverSize:(NUPickerVCPopoverSize)popoverSize;
 - (SingleOptionPicker*) singleOptionPickerForProperty:(SEL)property WithPickerOptions:(NSArray*)options;
 - (void) datePickerForProperty:(SEL)property;
+- (void) timePickerForProperty:(SEL)property;
 - (void) textFieldForProperty:(SEL)property;
 - (void) textAreaForProperty:(SEL)property;
 

@@ -56,8 +56,9 @@
       {
          "contact_id":"227cb4a4-90d0-49b9-9acf-4472d77ae4c4",
          "type":"1",
-         "start_date":"2005-07-18T15:20",
-         "end_date":"",
+         "date":"2005-07-18",
+         "start_time":"15:20",
+         "end_time":"",
          "person_id":"4bba5fa5-67c6-48e4-8607-db78a2983a32",
          "events":[
             {
@@ -77,8 +78,9 @@
       {
          "contact_id":"007c4927-8e2c-49f5-acb7-8958e6482b6b",
          "type":"3",
-         "start_date":"2005-07-17T15:20",
-         "end_date":"",
+         "date":"2005-07-17",
+         "start_time":"15:20",
+         "end_time":"",
          "person_id":"a00edbd4-1cad-48af-ba9b-be663e0b8b9d",
          "events":[
             {
@@ -98,8 +100,9 @@
       {
          "contact_id":"4ec73c0a-f65a-4a41-b09e-9f7cc0e5ace4",
          "type":"1",
-         "start_date":"2005-07-17T15:20",
-         "end_date":"",
+         "date":"2005-07-17",
+         "start_time":"15:20",
+         "end_time":"",
          "person_id":"c2e65f3c-47e0-4816-84ed-c42f4ac428fd",
          "events":[
             {

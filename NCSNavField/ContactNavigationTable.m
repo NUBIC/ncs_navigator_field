@@ -27,12 +27,12 @@
 
 - (NSArray*) buildSectionsUsingContacts:(NSArray*) contacts {
     NSMutableArray* sections = [NSMutableArray new];
-    NSSet *uniqueDates = [NSCountedSet setWithArray:[contacts valueForKey:@"startDate"]];
+    NSSet *uniqueDates = [NSCountedSet setWithArray:[contacts valueForKey:@"date"]];
     for (NSDate *d in uniqueDates) {
         Section *s = [Section new];
         s.name = [self buildSectionNameUsingDate:d];
         
-        NSPredicate *findByDate = [NSPredicate predicateWithFormat:@"startDate == %@", d];
+        NSPredicate *findByDate = [NSPredicate predicateWithFormat:@"date == %@", d];
         NSArray *found = [contacts filteredArrayUsingPredicate:findByDate];
         s.rows = [self buildRowsUsingContacts:found];
         

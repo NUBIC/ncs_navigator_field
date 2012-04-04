@@ -1,20 +1,20 @@
 //
-//  DatePickerButton.m
+//  TimePicker.m
 //  NCSNavField
 //
-//  Created by John Dzak on 12/2/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Created by John Dzak on 4/4/12.
+//  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import "DatePicker.h"
+#import "TimePicker.h"
 #import "NUPickerVC.h"
 #import "ChangeHandler.h"
 
-@interface DatePicker ()
+@interface TimePicker ()
 - (NSString*) formatTitleUsingDate:(NSDate*)date;
 @end
 
-@implementation DatePicker
+@implementation TimePicker
 
 @synthesize date = _date;
 @synthesize button = _button;
@@ -35,7 +35,7 @@
         [self.button addTarget:self action:@selector(showPicker) forControlEvents:UIControlEventTouchUpInside];
         
         self.date = value;
-
+        
         [self addSubview:self.button];
     }
     return self;
@@ -51,7 +51,7 @@
 
 - (NSDateFormatter*) getDateFormatter {
     NSDateFormatter* dateFormatter = [[NSDateFormatter new] autorelease];
-    [dateFormatter setDateFormat:@"MMMM dd"];
+    [dateFormatter setDateFormat:@"hh:mm a"];
     return dateFormatter;
 }
 
@@ -59,9 +59,9 @@
     NUPickerVC* p= [[[NUPickerVC alloc] init] autorelease];
     [p loadView];
     [p viewDidLoad];
-    [p setupDelegate:self withTitle:@"Pick a date" date:YES];
+    [p setupDelegate:self withTitle:@"Pick a time" date:YES];
     p.contentSizeForViewInPopover = CGSizeMake(384.0, 260.0);
-    p.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+    p.datePicker.datePickerMode = UIDatePickerModeTime;
     if (self.date) {
         p.datePicker.date = self.date;
     }
@@ -97,12 +97,12 @@
     self.date = d;
     [self.handler updatedValue:d];
     [self.button setTitle:[self formatTitleUsingDate:d] forState:UIControlStateNormal];
-        
-//        [delegate deleteResponseForIndexPath:[self myIndexPathWithRow:selectedRow]];
-//        [delegate newResponseForIndexPath:[self myIndexPathWithRow:selectedRow]];
-//        [delegate showAndHideDependenciesTriggeredBy:[self myIndexPathWithRow:selectedRow]];
-//        self.textLabel.text = [(NSDictionary *)[answers objectAtIndex:selectedRow] objectForKey:@"text"];
-//        self.textLabel.textColor = RGB(1, 113, 233);
+    
+    //        [delegate deleteResponseForIndexPath:[self myIndexPathWithRow:selectedRow]];
+    //        [delegate newResponseForIndexPath:[self myIndexPathWithRow:selectedRow]];
+    //        [delegate showAndHideDependenciesTriggeredBy:[self myIndexPathWithRow:selectedRow]];
+    //        self.textLabel.text = [(NSDictionary *)[answers objectAtIndex:selectedRow] objectForKey:@"text"];
+    //        self.textLabel.textColor = RGB(1, 113, 233);
 }
 - (void) pickerCancel{
     if (self.date) {

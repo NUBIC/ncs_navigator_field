@@ -19,9 +19,11 @@
 
 @property(nonatomic,retain) NSNumber* typeId;
 
-@property(nonatomic,retain) NSDate* startDate;
+@property(nonatomic,retain) NSDate* date;
 
-@property(nonatomic,retain) NSDate* endDate;
+@property(nonatomic,retain) NSDate* startTime;
+
+@property(nonatomic,retain) NSDate* endTime;
 
 @property(nonatomic,retain) NSString* personId;
 

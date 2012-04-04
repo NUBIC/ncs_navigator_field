@@ -13,6 +13,7 @@
 #import "ChangeHandler.h"
 #import "TextField.h"
 #import "TextArea.h"
+#import "TimePicker.h"
 
 @interface FormBuilder()
 - (id) initWithView:(UIView *)view object:(id)obj cursor:(FormBuilderCursor*)cursor;
@@ -81,6 +82,13 @@
     DatePicker* b = [[[DatePicker alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:[self objectValueForKey:property]] autorelease];
     [b addChangeHandler:[[[ChangeHandler alloc] initWithObject:self.object field:property] autorelease]];
     [self.view addSubview:b];
+    [self.cursor addNewLine];
+}
+
+- (void) timePickerForProperty:(SEL)property {
+    TimePicker* t = [[[TimePicker alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:[self objectValueForKey:property]] autorelease];
+    [t addChangeHandler:[[[ChangeHandler alloc] initWithObject:self.object field:property] autorelease]];
+    [self.view addSubview:t];
     [self.cursor addNewLine];
 }
 

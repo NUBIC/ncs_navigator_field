@@ -3,9 +3,10 @@
     <entity name="Contact" representedClassName="Contact" syncable="YES">
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contactId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="dispositionId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="distanceTraveled" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="initiated" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="interpreterId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="interpreterOther" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,7 +17,7 @@
         <attribute name="personId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="privateDetail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="privateId" optional="YES" attributeType="Integer 16" syncable="YES"/>
-        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="typeId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="whoContactedId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="whoContactedOther" optional="YES" attributeType="String" syncable="YES"/>
@@ -83,7 +84,7 @@
         <relationship name="participant" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Participant" inverseName="persons" inverseEntity="Participant" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="160" positionY="192" width="128" height="375"/>
+        <element name="Contact" positionX="160" positionY="192" width="128" height="390"/>
         <element name="Event" positionX="160" positionY="192" width="128" height="285"/>
         <element name="FieldWork" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Instrument" positionX="160" positionY="192" width="128" height="90"/>
