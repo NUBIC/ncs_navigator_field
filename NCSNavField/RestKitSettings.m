@@ -187,7 +187,20 @@ static RestKitSettings* instance;
     RKManagedObjectMapping* event = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
     [event mapKeyPathsToAttributes:
      @"eventId", @"event_id",
-     @"name", @"name", nil];
+     @"name", @"name", 
+     @"eventTypeId", @"event_type_id",
+     @"eventTypeOther", @"event_type_other",
+     @"repeatKey", @"repeatKey",
+     @"startDate", @"start_date",
+     @"endDate", @"end_date",
+     @"startTime", @"start_time",
+     @"endTime", @"end_time",
+     @"incentiveTypeId", @"incentive_type_id",
+     @"incentiveCash", @"incentive_cash",
+     @"dispositionId", @"disposition_id",
+     @"dispositionCategoryId", @"disposition_category_id",
+     @"breakOffId", @"break_off_id",
+     @"comments", @"comments", nil];
     [event mapRelationship:@"instruments" withMapping:instrument];
     [objectManager.mappingProvider setSerializationMapping:event forClass:[Event class]];
 
