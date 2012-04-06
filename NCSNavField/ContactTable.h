@@ -28,4 +28,6 @@
 - (Section*) contactDetails;
 - (void) dealloc;
 
+- (NSString*) ReplaceFirstNewLine:(NSString*) original;
+
 @end

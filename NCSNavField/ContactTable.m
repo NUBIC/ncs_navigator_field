@@ -37,11 +37,13 @@
                 nil];
 }
 
+// TODO: Figure out a better way to handle large addresses like resize cell
 - (Section*) addresses {
     Row *home = [[Row alloc] initWithText:@"Home"];
+    home.rowClass = @"address";
     
     Person *p = _contact.person;
-    home.detailText = [NSString stringWithFormat:@"%@\n%@, %@ %@", p.street, p.city, p.state, p.zipCode];
+    home.detailText = [NSString stringWithFormat:@"%@\n%@, %@ %@", [self ReplaceFirstNewLine:p.street], p.city, p.state, p.zipCode];
     
     return [[[Section alloc] initWithName:@"Address" andRows:home, nil] autorelease];
 }
@@ -80,6 +82,20 @@
     [s addRow:r];
     return s;
 }
+
+- (NSString*) ReplaceFirstNewLine:(NSString*) original {
+    NSMutableString * newString = [NSMutableString stringWithString:original];
+    
+    NSRange foundRange = [original rangeOfString:@"\n"];
+    if (foundRange.location != NSNotFound)
+    {
+        [newString replaceCharactersInRange:foundRange
+                                 withString:@""];
+    }
+    
+    return [[newString retain] autorelease];
+}
+
 
 - (void) dealloc {
     [_contact release];
