@@ -190,18 +190,18 @@ static RestKitSettings* instance;
     [event mapKeyPathsToAttributes:
      @"eventId", @"event_id",
      @"name", @"name", 
-     @"eventTypeId", @"event_type_id",
+     @"eventTypeId", @"event_type",
      @"eventTypeOther", @"event_type_other",
      @"repeatKey", @"repeatKey",
-     @"startDate", @"start_date",
-     @"endDate", @"end_date",
-     @"startTime", @"start_time",
-     @"endTime", @"end_time",
-     @"incentiveTypeId", @"incentive_type_id",
+     @"startDate.jsonSchemaDate", @"start_date",
+     @"endDate.jsonSchemaDate", @"end_date",
+     @"startTime.jsonSchemaTime", @"start_time",
+     @"endTime.jsonSchemaTime", @"end_time",
+     @"incentiveTypeId", @"incentive_type",
      @"incentiveCash", @"incentive_cash",
-     @"dispositionId", @"disposition_id",
-     @"dispositionCategoryId", @"disposition_category_id",
-     @"breakOffId", @"break_off_id",
+     @"dispositionId", @"disposition",
+     @"dispositionCategoryId", @"disposition_category",
+     @"breakOffId", @"break_off",
      @"comments", @"comments", nil];
     [event mapRelationship:@"instruments" withMapping:instrument];
     [objectManager.mappingProvider setSerializationMapping:event forClass:[Event class]];
@@ -212,22 +212,22 @@ static RestKitSettings* instance;
      @"typeId", @"type",
      @"date.jsonSchemaDate", @"contact_date",
      @"startTime.jsonSchemaTime", @"start_time",
-     @"endTime", @"end_time",
+     @"endTime.jsonSchemaTime", @"end_time",
      @"personId", @"person_id",
      @"initiated", @"initiated", 
-     @"locationId", @"location_id",
+     @"locationId", @"location",
      @"locationOther", @"location_other", 
-     @"whoContactedId", @"who_contacted_id", 
+     @"whoContactedId", @"who_contacted", 
      @"whoContactedOther", @"who_contacted_other", 
      @"comments", @"comments", 
-     @"languageId", @"language_id", 
+     @"languageId", @"language", 
      @"languageOther", @"language_other", 
-     @"interpreterId", @"interpreter_id", 
+     @"interpreterId", @"interpreter", 
      @"interpreterOther", @"interpreter_other", 
-     @"privateId", @"private_id", 
+     @"privateId", @"private", 
      @"privateDetail", @"private_detail", 
      @"distanceTraveled", @"distance_traveled", 
-     @"dispositionId", @"disposition_id", nil];
+     @"dispositionId", @"disposition", nil];
     [contact mapRelationship:@"events" withMapping:event];
     [objectManager.mappingProvider setSerializationMapping:contact forClass:[Contact class]];
     
