@@ -16,7 +16,8 @@
 
 + (Person*) createPersonWithId:(NSString*)id name:(NSString*) n;
 + (NSDate*) createDateFromString:(NSString*) dateStr;
++ (NSDate*) createTimeFromString:(NSString*) timeStr;
 + (Event*) createEventWithName:(NSString*)name date:(NSDate*)date;
 + (Event*) createEventWithName:(NSString*)name date:(NSDate*)date person:(Person*)person;
-+ (Contact*) createContactWithName:(NSString*)name startDate:(NSDate*)date person:(Person*)person;
++ (Contact*) createContactWithName:(NSString*)name startDate:(NSDate*)date;
 @end

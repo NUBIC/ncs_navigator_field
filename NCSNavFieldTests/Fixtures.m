@@ -10,6 +10,7 @@
 #import "Person.h"
 #import "Event.h"
 #import "Contact.h"
+#import "RestKit.h"
 
 @implementation Fixtures
 
@@ -32,6 +33,18 @@
     return d;
 }
 
++ (NSDate*) createTimeFromString:(NSString*) timeStr {
+    NSDateFormatter* f = [[NSDateFormatter alloc] init];
+    [f setDateFormat:@"HH':'mm"];
+    [f setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    
+    NSDate* d = [f dateFromString:timeStr];
+    
+    [f dealloc];
+    
+    return d;
+}
+
 + (Event*) createEventWithName:(NSString*)name date:(NSDate*)date {
     Event *e = [[Event alloc] init];
     e.name = name;
@@ -43,10 +56,9 @@
     return [e autorelease];
 }
 
-+ (Contact*) createContactWithName:(NSString*)name startDate:(NSDate*)date person:(Person*)person {
-    Contact *c = [[Contact alloc] init];
-    c.startDate = date;
-    c.person = person;
++ (Contact*) createContactWithName:(NSString*)name startDate:(NSDate*)date {
+    Contact *c = [Contact object];
+    c.date = date;
 //    Event *e = [self createEventWithName:name date:date person:person];
     return [c autorelease];
 }

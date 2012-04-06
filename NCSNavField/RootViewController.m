@@ -390,8 +390,7 @@
     
     RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
     loader.method = RKRequestMethodPOST;
-    
-    
+        
     [loader sendSynchronously];
 }
 
@@ -402,7 +401,7 @@
     
     NSMutableArray* modifiedTemplates = [NSMutableArray new];
     for (NSDictionary* templ in [*mappableData valueForKey:@"instrument_templates"]) {
-        NSDictionary* json = [templ valueForKey:@"representation"];
+        NSDictionary* json = [templ valueForKey:@"survey"];
         NSString *jsonString = [jsonWriter stringWithObject:json];
         NSMutableDictionary* mod = [templ mutableCopy];
         [mod setObject:jsonString forKey:@"representation"];

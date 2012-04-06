@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		000D8E77152CAC5B006EE224 /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8E76152CAC5B006EE224 /* TimePicker.m */; };
+		000D8E8B152E9EE7006EE224 /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8E8A152E9EE7006EE224 /* NSDate+Additions.m */; };
 		000E64B3150EB2BF0006B31E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 000E64B2150EB2BF0006B31E /* Settings.bundle */; };
 		0013ED9B14B65D84009F85CF /* NUCas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0013ED9A14B65D84009F85CF /* NUCas.plist */; };
 		00145BA8149A7BEF00D3C1B5 /* ContactCloseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00145BA7149A7BEF00D3C1B5 /* ContactCloseVC.m */; };
@@ -104,6 +105,8 @@
 /* Begin PBXFileReference section */
 		000D8E75152CAC5B006EE224 /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
 		000D8E76152CAC5B006EE224 /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
+		000D8E89152E9EE7006EE224 /* NSDate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Additions.h"; sourceTree = "<group>"; };
+		000D8E8A152E9EE7006EE224 /* NSDate+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Additions.m"; sourceTree = "<group>"; };
 		000E64B2150EB2BF0006B31E /* Settings.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.application; name = Settings.bundle; path = NCSNavField/Settings.bundle; sourceTree = "<group>"; };
 		0013ED9A14B65D84009F85CF /* NUCas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = NUCas.plist; path = NCSNavField/NUCas.plist; sourceTree = "<group>"; };
 		00145BA6149A7BEF00D3C1B5 /* ContactCloseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCloseVC.h; sourceTree = "<group>"; };
@@ -758,6 +761,8 @@
 				0073B3671511277000543DA4 /* FieldWork.m */,
 				00860D251520EF3000FCCFCB /* TestFlightSettings.h */,
 				00860D261520EF3000FCCFCB /* TestFlightSettings.m */,
+				000D8E89152E9EE7006EE224 /* NSDate+Additions.h */,
+				000D8E8A152E9EE7006EE224 /* NSDate+Additions.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1013,6 +1018,7 @@
 				0073B3681511277000543DA4 /* FieldWork.m in Sources */,
 				00860D271520EF3000FCCFCB /* TestFlightSettings.m in Sources */,
 				000D8E77152CAC5B006EE224 /* TimePicker.m in Sources */,
+				000D8E8B152E9EE7006EE224 /* NSDate+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

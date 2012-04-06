@@ -17,6 +17,7 @@
 #import "FieldWork.h"
 #import "InstrumentTemplate.h"
 #import "ApplicationSettings.h"
+#import "NSDate+Additions.m"
 
 NSString* STORE_NAME = @"main.sqlite";
 
@@ -79,6 +80,7 @@ static RestKitSettings* instance;
     [router routeClass:[FieldWork class] toResourcePath:@"/api/v1/fieldwork/:fieldWorkId"];
     [RKObjectManager sharedManager].router = router;
     
+    [RKObjectManager sharedManager].acceptMIMEType = RKMIMETypeJSON;
     [RKObjectManager sharedManager].serializationMIMEType = RKMIMETypeJSON;
     [self addSerializationMappingsToObjectManager:objectManager];
 
@@ -144,7 +146,7 @@ static RestKitSettings* instance;
     [contact mapKeyPathsToAttributes:
      @"contact_id", @"contactId",
      @"type", @"typeId",
-     @"date", @"date",
+     @"contact_date", @"date",
      @"start_time", @"startTime",
      @"end_time", @"endTime",
      @"person_id", @"personId", nil];
@@ -163,8 +165,8 @@ static RestKitSettings* instance;
     // "2005-07-16T19:20+01:00",
     // http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/DataFormatting/Articles/dfDateFormatting10_4.html#//apple_ref/doc/uid/TP40002369
     // RestKit 0.9.4 date mappings
-    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd" inTimeZone:nil];
-    [RKManagedObjectMapping addDefaultDateFormatterForString:@"hh':'mm':'ss" inTimeZone:nil];
+    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd" inTimeZone:[NSTimeZone localTimeZone]];
+    [RKManagedObjectMapping addDefaultDateFormatterForString:@"hh':'mm':'ss" inTimeZone:[NSTimeZone localTimeZone]];
 
 
 //    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd'T'HH':'mm'Z'" inTimeZone:nil];
@@ -208,8 +210,8 @@ static RestKitSettings* instance;
     [contact mapKeyPathsToAttributes:
      @"contactId", @"contact_id", 
      @"typeId", @"type",
-     @"date", @"date",
-     @"startTime", @"start_time",
+     @"date.jsonSchemaDate", @"contact_date",
+     @"startTime.jsonSchemaTime", @"start_time",
      @"endTime", @"end_time",
      @"personId", @"person_id",
      @"initiated", @"initiated", 

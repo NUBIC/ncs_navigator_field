@@ -10,6 +10,7 @@
 
 @class InstrumentTemplate;
 @class Event;
+@class NUResponseSet;
 
 @interface Instrument : NSManagedObject 
 
