@@ -135,7 +135,7 @@
    "instrument_templates":[
       {
          "instrument_template_id":"ded83f10-e5f8-012e-9f18-00254bc472f4",
-         "representation":{
+         "survey":{
 
              "title": "INS_QUE_PregVisit1_INT_EHPBHI_P2_V2.0",
              "uuid": "ded83f10-e5f8-012e-9f18-00254bc472f4",
@@ -6415,7 +6415,7 @@
       },
       {
         "instrument_template_id":"2dcac920-3a42-012f-785c-482a143dc94d",
-        "representation":{
+        "survey":{
 
             "title": "INS_QUE_PregVisit2_INT_EHPBHI_P2_V2.0",
             "uuid": "2dcac920-3a42-012f-785c-482a143dc94d",
@@ -11845,7 +11845,7 @@
       },
       {
         "instrument_template_id":"638335b0-3a3d-012f-785a-482a143dc94d",
-        "representation":{
+        "survey":{
 
             "title": "INS_QUE_Birth_INT_EHPBHI_P2_V2.0",
             "uuid": "638335b0-3a3d-012f-785a-482a143dc94d",
@@ -15982,7 +15982,7 @@
       },
       {
         "instrument_template_id":"6f2df0e0-3a3d-012f-785b-482a143dc94d",
-        "representation":{
+        "survey":{
 
             "title": "INS_QUE_6MMother_INT_EHPBHI_P2_V1.1",
             "uuid":"6f2df0e0-3a3d-012f-785b-482a143dc94d",
