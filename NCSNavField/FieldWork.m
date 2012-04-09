@@ -23,4 +23,8 @@
     return ident;
 }
 
+- (NSArray*) emptyArray {
+    return [NSArray array];
+}
+
 @end

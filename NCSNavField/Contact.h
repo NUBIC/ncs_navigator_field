@@ -55,6 +55,8 @@
 
 @property(nonatomic,retain) NSNumber* dispositionId;
 
+@property(nonatomic,retain) NSString* version;
+
 
 #pragma mark relations
 

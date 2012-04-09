@@ -46,6 +46,7 @@
 
 @property(nonatomic,retain) NSString* comments;
 
+@property(nonatomic,retain) NSString* version;
 
 /* relationships */
 

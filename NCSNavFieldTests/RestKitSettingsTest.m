@@ -53,6 +53,8 @@ FieldWork* f;
     
     NSMutableDictionary* actual = [serializer serializedObject:&error];
     
+    // TODO: Participants and Instrument Templates should exist but empty
+    
     NSDictionary* ac = [[[actual objectForKey:@"contacts"] objectEnumerator] nextObject];
     STAssertEquals(22, [[ac objectForKey:@"type"] integerValue], @"Wrong value");
     STAssertEqualObjects(@"2012-04-04", [ac objectForKey:@"contact_date"], @"Wrong value");

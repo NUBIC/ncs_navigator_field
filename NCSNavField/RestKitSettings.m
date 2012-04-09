@@ -113,6 +113,7 @@ static RestKitSettings* instance;
     [event setPrimaryKeyAttribute:@"eventId"];
     [event mapKeyPathsToAttributes:
      @"event_id", @"eventId",
+     @"version", @"version",
      @"name", @"name", nil];
     [event mapRelationship:@"instruments" withMapping:instrument];
     
@@ -146,6 +147,7 @@ static RestKitSettings* instance;
     [contact mapKeyPathsToAttributes:
      @"contact_id", @"contactId",
      @"type", @"typeId",
+     @"version", @"version",
      @"contact_date", @"date",
      @"start_time", @"startTime",
      @"end_time", @"endTime",
@@ -180,7 +182,7 @@ static RestKitSettings* instance;
     RKManagedObjectMapping* instrument = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
     [instrument mapKeyPathsToAttributes: 
      @"instrumentId", @"instrument_id",
-     @"responseSetJson", @"response_set",
+//     @"responseSetJson", @"response_set",
      @"instrumentTemplateId", @"instrument_template_id",
      @"name", @"name", nil];
     [objectManager.mappingProvider setSerializationMapping:instrument forClass:[Instrument class]];
@@ -202,7 +204,8 @@ static RestKitSettings* instance;
      @"dispositionId", @"disposition",
      @"dispositionCategoryId", @"disposition_category",
      @"breakOffId", @"break_off",
-     @"comments", @"comments", nil];
+     @"comments", @"comments",
+     @"version", @"version", nil];
     [event mapRelationship:@"instruments" withMapping:instrument];
     [objectManager.mappingProvider setSerializationMapping:event forClass:[Event class]];
 
@@ -227,13 +230,32 @@ static RestKitSettings* instance;
      @"privateId", @"private", 
      @"privateDetail", @"private_detail", 
      @"distanceTraveled", @"distance_traveled", 
-     @"dispositionId", @"disposition", nil];
+     @"dispositionId", @"disposition",
+     @"version", @"version", nil];
     [contact mapRelationship:@"events" withMapping:event];
     [objectManager.mappingProvider setSerializationMapping:contact forClass:[Contact class]];
     
+//    
+//    // Partipant Mapping
+//    RKManagedObjectMapping* participant = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
+//    [participant setPrimaryKeyAttribute:@"pId"];
+//    [participant mapKeyPathsToAttributes:
+//     @"p_id", @"pId", nil];
+//    [objectManager.mappingProvider setMapping:participant forKeyPath:@"participants"];
+//    
+//    RKManagedObjectMapping* instrumentTemplate = [RKManagedObjectMapping mappingForClass:[NSMutableDictionary class]];
+//    [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
+//    [instrumentTemplate mapKeyPathsToAttributes:
+//     @"instrument_template_id", @"instrumentTemplateId", nil];
+//    [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
+//    [objectManager.mappingProvider setMapping:instrumentTemplate forKeyPath:@"instrument_templates"];
+//    
+//    
     RKObjectMapping* fieldWorkMapping = [RKObjectMapping mappingForClass:[NSMutableDictionary class] ];
     [fieldWorkMapping mapKeyPathsToAttributes:@"fieldWorkId", @"identifier", nil];
     [fieldWorkMapping mapRelationship:@"contacts" withMapping:contact];
+     [fieldWorkMapping mapKeyPath:@"emptyArray" toAttribute:@"instrument_templates"];
+      [fieldWorkMapping mapKeyPath:@"emptyArray" toAttribute:@"participants"];
     
     [objectManager.mappingProvider setSerializationMapping:fieldWorkMapping forClass:[FieldWork class]];
 

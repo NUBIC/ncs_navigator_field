@@ -19,6 +19,7 @@
         <attribute name="privateId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="typeId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="whoContactedId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="whoContactedOther" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Event" inverseName="contact" inverseEntity="Event" syncable="YES"/>
@@ -42,6 +43,7 @@
         <attribute name="repeatKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="events" inverseEntity="Contact" syncable="YES"/>
         <relationship name="instruments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Instrument" inverseName="event" inverseEntity="Instrument" syncable="YES"/>
     </entity>
@@ -86,8 +88,8 @@
         <relationship name="participant" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Participant" inverseName="persons" inverseEntity="Participant" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="160" positionY="192" width="128" height="390"/>
-        <element name="Event" positionX="160" positionY="192" width="128" height="315"/>
+        <element name="Contact" positionX="160" positionY="192" width="128" height="405"/>
+        <element name="Event" positionX="160" positionY="192" width="128" height="330"/>
         <element name="FieldWork" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Instrument" positionX="160" positionY="192" width="128" height="90"/>
         <element name="InstrumentTemplate" positionX="160" positionY="192" width="128" height="90"/>

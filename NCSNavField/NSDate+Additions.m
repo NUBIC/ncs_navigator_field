@@ -13,14 +13,14 @@
 - (NSString*)jsonSchemaDate {
     NSDateFormatter* f = [[NSDateFormatter alloc] init];
     [f setDateFormat:@"yyyy'-'MM'-'dd"];
-    [f setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [f setTimeZone:[NSTimeZone localTimeZone]];
     return [f stringFromDate:self];
 }
 
 - (NSString*)jsonSchemaTime {
     NSDateFormatter* f = [[NSDateFormatter alloc] init];
     [f setDateFormat:@"HH':'mm"];
-    [f setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [f setTimeZone:[NSTimeZone localTimeZone]];
     return [f stringFromDate:self];    
 }
 
