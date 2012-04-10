@@ -146,6 +146,7 @@
         }
         
         NUSurveyTVC *masterViewController = [[NUSurveyTVC alloc] initWithSurvey:survey responseSet:rs];
+        masterViewController.delegate = self;
         NUSectionTVC *detailViewController = masterViewController.sectionTVC;
         [self.navigationController pushViewController:masterViewController animated:NO];
         self.splitViewController.viewControllers = [NSArray arrayWithObjects:self.navigationController, detailViewController, nil];
@@ -153,6 +154,11 @@
         
 
     }
+}
+
+#pragma mark - surveyor_ios controller delgate
+- (void)surveyDone {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -

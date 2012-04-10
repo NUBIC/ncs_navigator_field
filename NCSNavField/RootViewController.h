@@ -17,7 +17,7 @@
 @class CasProxyTicket;
 @class SyncActivityIndicator;
 
-@interface RootViewController : SimpleTableController<RKObjectLoaderDelegate,UINavigationControllerDelegate, SimpleTableRowDelegate, CasLoginDelegate, MBProgressHUDDelegate> {
+@interface RootViewController : SimpleTableController<RKObjectLoaderDelegate,UINavigationControllerDelegate, SimpleTableRowDelegate, CasLoginDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate> {
     Instrument* _administeredInstrument;
     RKReachabilityObserver* _reachability;
     SyncActivityIndicator* _syncIndicator;
