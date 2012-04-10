@@ -39,8 +39,8 @@
     return rs;
 }
 
-- (NSString*) responseSetJson {
-    return self.responseSet.toJson;
+- (NSDictionary*) responseSetJson {
+    return self.responseSet.toDict;
 }
 
 @end
