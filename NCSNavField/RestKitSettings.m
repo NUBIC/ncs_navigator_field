@@ -182,7 +182,7 @@ static RestKitSettings* instance;
     RKManagedObjectMapping* instrument = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
     [instrument mapKeyPathsToAttributes: 
      @"instrumentId", @"instrument_id",
-     @"responseSetJson", @"response_set",
+     @"responseSetDict", @"response_set",
      @"instrumentTemplateId", @"instrument_template_id",
      @"name", @"name", nil];
     [objectManager.mappingProvider setSerializationMapping:instrument forClass:[Instrument class]];

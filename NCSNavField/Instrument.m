@@ -10,7 +10,7 @@
 
 @implementation Instrument
 
-@dynamic instrumentId, name, responseSet, responseSetJson, instrumentTemplateId, instrumentTemplate, externalResponseSetId, event;
+@dynamic instrumentId, name, responseSet, responseSetDict, instrumentTemplateId, instrumentTemplate, externalResponseSetId, event;
 
 - (NUResponseSet*) responseSet {
     NSManagedObjectContext* moc = [NUResponseSet managedObjectContext];
@@ -43,7 +43,7 @@
     self.externalResponseSetId = [responseSet valueForKey:@"uuid"];
 }
 
-- (NSDictionary*) responseSetJson {
+- (NSDictionary*) responseSetDict {
     return self.responseSet.toDict;
 }
 

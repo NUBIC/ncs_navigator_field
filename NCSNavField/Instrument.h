@@ -18,7 +18,7 @@
 
 @property(nonatomic,retain) NSString* name;
 
-@property(getter = responseSetJson,readonly) NSString* responseSetJson;
+@property(getter = responseSetDict,readonly) NSString* responseSetDict;
 
 @property(nonatomic,retain) NUResponseSet* responseSet;
 
