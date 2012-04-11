@@ -14,7 +14,7 @@
 #import "Participant.h"
 #import "NUResponseSet.h"
 #import "Contact.h"
-#import "FieldWork.h"
+#import "Fieldwork.h"
 #import "InstrumentTemplate.h"
 #import "ApplicationSettings.h"
 #import "NSDate+Additions.m"
@@ -77,7 +77,7 @@ static RestKitSettings* instance;
     [self addMappingsToObjectManager: objectManager];
     
     RKObjectRouter* router = [RKObjectRouter new];
-    [router routeClass:[FieldWork class] toResourcePath:@"/api/v1/fieldwork/:fieldWorkId"];
+    [router routeClass:[Fieldwork class] toResourcePath:@"/api/v1/fieldwork/:fieldworkId"];
     [RKObjectManager sharedManager].router = router;
     
     [RKObjectManager sharedManager].acceptMIMEType = RKMIMETypeJSON;
@@ -157,7 +157,7 @@ static RestKitSettings* instance;
     [contact mapRelationship:@"events" withMapping:event];
     [objectManager.mappingProvider setMapping:contact forKeyPath:@"contacts"];
     
-    RKManagedObjectMapping* fieldWork = [RKManagedObjectMapping mappingForClass:[FieldWork class]];
+    RKManagedObjectMapping* fieldWork = [RKManagedObjectMapping mappingForClass:[Fieldwork class]];
     [fieldWork mapRelationship:@"participants" withMapping:participant];
     [fieldWork mapRelationship:@"contacts" withMapping:contact];
     [fieldWork mapRelationship:@"instrumentTemplate" withMapping:instrumentTemplate];
@@ -252,12 +252,12 @@ static RestKitSettings* instance;
 //    
 //    
     RKObjectMapping* fieldWorkMapping = [RKObjectMapping mappingForClass:[NSMutableDictionary class] ];
-    [fieldWorkMapping mapKeyPathsToAttributes:@"fieldWorkId", @"identifier", nil];
+    [fieldWorkMapping mapKeyPathsToAttributes:@"fieldworkId", @"identifier", nil];
     [fieldWorkMapping mapRelationship:@"contacts" withMapping:contact];
      [fieldWorkMapping mapKeyPath:@"emptyArray" toAttribute:@"instrument_templates"];
       [fieldWorkMapping mapKeyPath:@"emptyArray" toAttribute:@"participants"];
     
-    [objectManager.mappingProvider setSerializationMapping:fieldWorkMapping forClass:[FieldWork class]];
+    [objectManager.mappingProvider setSerializationMapping:fieldWorkMapping forClass:[Fieldwork class]];
 
 }
 

@@ -11,11 +11,11 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@class FieldWork;
+@class Fieldwork;
 
 @interface RestKitSettingsTest : SenTestCase
 
-- (FieldWork *)fieldworkTestData;
+- (Fieldwork *)fieldworkTestData;
 
 - (NSDictionary *)deserializeJson:(NSString *)fieldworkJson;
 

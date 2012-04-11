@@ -6,15 +6,15 @@
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import "FieldWork.h"
+#import "Fieldwork.h"
 
-@implementation FieldWork
+@implementation Fieldwork
 
-@synthesize fieldWorkId;
+@synthesize fieldworkId;
 
 @dynamic uri, retrievedDate, participants, contacts, instrumentTemplates;
 
-- (NSString*)fieldWorkId {
+- (NSString*)fieldworkId {
     NSString* ident = NULL;
     if (self.uri) {
         NSString* rel = [[[NSURL alloc] initWithString:self.uri] relativePath];

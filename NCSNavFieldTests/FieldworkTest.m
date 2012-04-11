@@ -6,25 +6,25 @@
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import "FieldWorkTest.h"
-#import "FieldWork.h"
+#import "FieldworkTest.h"
+#import "Fieldwork.h"
 #import "RestKit.h"
 
-@implementation FieldWorkTest
+@implementation FieldworkTest
 
 // All code under test must be linked into the Unit Test bundle
 - (void)testGoodIdentifier
 {
-    FieldWork* f = [FieldWork object];
+    Fieldwork* f = [Fieldwork object];
     f.uri = @"http://foo.com:123/api/v1/fieldwork/xyz123?foo=bar";
-    STAssertEqualObjects(@"xyz123", f.fieldWorkId, @"Should be equal");
+    STAssertEqualObjects(@"xyz123", f.fieldworkId, @"Should be equal");
 }
 
 - (void)testBadIdentifier
 {
-    FieldWork* f = [FieldWork object];
+    Fieldwork* f = [Fieldwork object];
     f.uri = @"";
-    STAssertEqualObjects(NULL, f.fieldWorkId, @"Should be equal");
+    STAssertEqualObjects(NULL, f.fieldworkId, @"Should be equal");
 }
 
 

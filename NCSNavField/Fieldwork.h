@@ -8,9 +8,9 @@
 
 #import <CoreData/CoreData.h>
 
-@interface FieldWork : NSManagedObject
+@interface Fieldwork : NSManagedObject
 
-@property(readonly, getter = fieldWorkId) NSString *fieldWorkId;
+@property(readonly) NSString *fieldworkId;
 
 @property(nonatomic,retain) NSString* uri;
 

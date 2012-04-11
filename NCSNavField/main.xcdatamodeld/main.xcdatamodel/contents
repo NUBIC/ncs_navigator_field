@@ -23,7 +23,7 @@
         <attribute name="whoContactedId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="whoContactedOther" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Event" inverseName="contact" inverseEntity="Event" syncable="YES"/>
-        <relationship name="fieldWork" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FieldWork" inverseName="contacts" inverseEntity="FieldWork" syncable="YES"/>
+        <relationship name="fieldWork" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Fieldwork" inverseName="contacts" inverseEntity="Fieldwork" syncable="YES"/>
         <relationship name="person" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Person" inverseName="contact" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
@@ -47,7 +47,7 @@
         <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="events" inverseEntity="Contact" syncable="YES"/>
         <relationship name="instruments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Instrument" inverseName="event" inverseEntity="Instrument" syncable="YES"/>
     </entity>
-    <entity name="FieldWork" representedClassName="FieldWork" syncable="YES">
+    <entity name="Fieldwork" representedClassName="Fieldwork" syncable="YES">
         <attribute name="retrievedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="uri" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contact" inverseName="fieldWork" inverseEntity="Contact" syncable="YES"/>
@@ -66,12 +66,12 @@
     <entity name="InstrumentTemplate" representedClassName="InstrumentTemplate" syncable="YES">
         <attribute name="instrumentTemplateId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="representation" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="fieldWork" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FieldWork" inverseName="instrumentTemplates" inverseEntity="FieldWork" syncable="YES"/>
+        <relationship name="fieldWork" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Fieldwork" inverseName="instrumentTemplates" inverseEntity="Fieldwork" syncable="YES"/>
         <relationship name="instrument" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Instrument" inverseName="instrumentTemplate" inverseEntity="Instrument" syncable="YES"/>
     </entity>
     <entity name="Participant" representedClassName="Participant" syncable="YES">
         <attribute name="pId" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="fieldWork" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FieldWork" inverseName="participants" inverseEntity="FieldWork" syncable="YES"/>
+        <relationship name="fieldWork" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Fieldwork" inverseName="participants" inverseEntity="Fieldwork" syncable="YES"/>
         <relationship name="persons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="participant" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName="Person" syncable="YES">
@@ -90,7 +90,7 @@
     <elements>
         <element name="Contact" positionX="160" positionY="192" width="128" height="405"/>
         <element name="Event" positionX="160" positionY="192" width="128" height="330"/>
-        <element name="FieldWork" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Fieldwork" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Instrument" positionX="160" positionY="192" width="128" height="90"/>
         <element name="InstrumentTemplate" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Participant" positionX="160" positionY="192" width="128" height="90"/>

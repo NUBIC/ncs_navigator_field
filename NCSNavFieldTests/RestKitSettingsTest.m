@@ -8,7 +8,7 @@
 
 #import "RestKitSettingsTest.h"
 #import "RestKitSettings.h"
-#import "FieldWork.h"
+#import "Fieldwork.h"
 #import "RestKit.h"
 #import "Contact.h"
 #import "Event.h"
@@ -26,7 +26,7 @@
 - (void)setUp {
 }
 
-- (FieldWork *)fieldworkTestData {
+- (Fieldwork *)fieldworkTestData {
 //    NUResponseSet* rs = [NUResponseSet object];
 //    [rs setValue:@"RS A" forKey:@"uuid"];
     
@@ -43,7 +43,7 @@
     c.date = [Fixtures createDateFromString:@"2012-04-04 00:00"];
     c.startTime = [Fixtures createTimeFromString:@"10:45"];
     
-    FieldWork* f = [FieldWork object];
+    Fieldwork* f = [Fieldwork object];
     f.retrievedDate = [Fixtures createDateFromString:@"2012-04-1 00:00"];
     f.contacts = [NSSet setWithObject:c];
     return f;
@@ -52,10 +52,10 @@
 - (void)testSerializationMapping {
     [RestKitSettings instance];
 
-    FieldWork* f = [self fieldworkTestData]; 
+    Fieldwork* f = [self fieldworkTestData]; 
     
 
-    RKObjectMapping* fieldWorkMapping = [[RKObjectManager sharedManager].mappingProvider serializationMappingForClass:[FieldWork class]];
+    RKObjectMapping* fieldWorkMapping = [[RKObjectManager sharedManager].mappingProvider serializationMappingForClass:[Fieldwork class]];
     RKObjectSerializer* serializer = [RKObjectSerializer serializerWithObject:f mapping:fieldWorkMapping];
     NSError* error = nil;
     

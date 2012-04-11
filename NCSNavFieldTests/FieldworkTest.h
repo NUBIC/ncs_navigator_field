@@ -11,6 +11,6 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface FieldWorkTest : SenTestCase
+@interface FieldworkTest : SenTestCase
 
 @end

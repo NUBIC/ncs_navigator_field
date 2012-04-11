@@ -29,7 +29,7 @@
 #import "NUSurvey.h"
 #import "UUID.h"
 #import "NUResponseSet.h"
-#import "FieldWork.h"
+#import "Fieldwork.h"
 #import "SBJSON.h"
 
 @interface RootViewController () 
@@ -330,9 +330,9 @@
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
     
-    NSArray* all = [FieldWork findAllSortedBy:@"retrievedDate" ascending:NO];
+    NSArray* all = [Fieldwork findAllSortedBy:@"retrievedDate" ascending:NO];
     if ([all count] > 0) {
-        FieldWork* f = [all objectAtIndex:0];
+        Fieldwork* f = [all objectAtIndex:0];
         RKObjectLoader* loader = [objectManager objectLoaderForObject:f method:RKRequestMethodPUT delegate:self];
         [loader sendSynchronously];
     } else {
@@ -430,7 +430,7 @@
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
 	NSLog(@"RootViewController:didLoadObjects -- %@", objects);
     
-    FieldWork* w = [FieldWork object];
+    Fieldwork* w = [Fieldwork object];
     w.uri = [[objectLoader response] location];
     w.retrievedDate = [NSDate date];
     w.participants = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[Participant entity] name ]]]];
@@ -438,7 +438,7 @@
     w.instrumentTemplates = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[InstrumentTemplate entity] name ]]]];
     
     NSError *error = nil;    
-    if (![[FieldWork managedObjectContext] save:&error]) {
+    if (![[Fieldwork managedObjectContext] save:&error]) {
         NSLog(@"Error saving fieldwork location");
     }
     
