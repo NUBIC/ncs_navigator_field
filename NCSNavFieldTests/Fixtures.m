@@ -24,7 +24,7 @@
 + (NSDate*) createDateFromString:(NSString*) dateStr {
     NSDateFormatter* f = [[NSDateFormatter alloc] init];
     [f setDateFormat:@"yyyy'-'MM'-'dd' 'HH':'mm"];
-    [f setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [f setTimeZone:[NSTimeZone localTimeZone]];
     
     NSDate* d = [f dateFromString:dateStr];
 
@@ -36,7 +36,7 @@
 + (NSDate*) createTimeFromString:(NSString*) timeStr {
     NSDateFormatter* f = [[NSDateFormatter alloc] init];
     [f setDateFormat:@"HH':'mm"];
-    [f setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [f setTimeZone:[NSTimeZone localTimeZone]];
     
     NSDate* d = [f dateFromString:timeStr];
     

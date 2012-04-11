@@ -17,35 +17,43 @@
 #import "MRCEnumerable.h"
 #import "RestKitSettings.h"
 #import "Fixtures.h"
+#import "SBJSON.h"
+#import "NUResponseSet.h"
 
 @implementation RestKitSettingsTest
 
-Instrument* i;
-Event *e;
-Contact* c;
-FieldWork* f;
 
 - (void)setUp {
-    i = [Instrument object];
+}
+
+- (FieldWork *)fieldworkTestData {
+//    NUResponseSet* rs = [NUResponseSet object];
+//    [rs setValue:@"RS A" forKey:@"uuid"];
+    
+    Instrument* i = [Instrument object];
     i.name = @"INS A";
     
-    e = [Event object];
+    Event* e = [Event object];
     e.name = @"Birthday";
     e.instruments = [NSSet setWithObject:i];
     
-    c = [Contact object];
+    Contact* c = [Contact object];
     c.typeId = [NSNumber numberWithInt:22];
     c.events = [NSSet setWithObject:e];
     c.date = [Fixtures createDateFromString:@"2012-04-04 00:00"];
     c.startTime = [Fixtures createTimeFromString:@"10:45"];
     
-    f = [FieldWork object];
+    FieldWork* f = [FieldWork object];
     f.retrievedDate = [Fixtures createDateFromString:@"2012-04-1 00:00"];
-    f.contacts = [NSSet setWithObject:c]; 
+    f.contacts = [NSSet setWithObject:c];
+    return f;
 }
 
 - (void)testSerializationMapping {
     [RestKitSettings instance];
+
+    FieldWork* f = [self fieldworkTestData]; 
+    
 
     RKObjectMapping* fieldWorkMapping = [[RKObjectManager sharedManager].mappingProvider serializationMappingForClass:[FieldWork class]];
     RKObjectSerializer* serializer = [RKObjectSerializer serializerWithObject:f mapping:fieldWorkMapping];
@@ -66,6 +74,57 @@ FieldWork* f;
     NSDictionary* ai = [[[ae objectForKey:@"instruments"] objectEnumerator] nextObject];
     STAssertEquals(@"INS A", [ai objectForKey:@"name"], @"Wrong value");
 //    STAssertEquals(@"{survey:bla}", [ai objectForKey:@"response_set"], @"Wrong value");
+}
+
+
+
+- (void)testGeneralDeserialization { 
+    NSString* fieldworkJson = 
+        @"{                                         "
+         "  \"contacts\":[                          "
+         "    {                                     "
+         "      \"contact_id\":\"c1\",              "
+         "      \"events\":[                        "
+         "        {                                 "
+         "          \"event_id\":\"e1\"             "
+         "          \"instruments\":[               "
+         "            {                             "
+         "               \"instrument_id\":\"i1\"   "
+         "               \"response_set\":{         "
+         "                 \"uuid\":\"rs1\",         "
+         "                 \"responses\":[          "
+         "                   {\"uuid\":\"r1\"}      "
+         "                   {\"uuid\":\"r2\"}      "
+         "                 ]                        "
+         "               }                          "
+         "            }                             "
+         "          ]                               "
+         "        }                                 "
+         "      ]                                   "
+         "    }                                     "
+         "  ],                                      "
+         "  \"instrument_templates\":[]             "
+         "}                                         ";
+    
+    NSDictionary* actual = [self deserializeJson:fieldworkJson];
+    
+    Contact* ct = [[actual objectForKey:@"contacts"] objectAtIndex:0];
+    STAssertEqualObjects(ct.contactId, @"c1", @"Wrong value");
+    
+    Event* et = [[ct.events objectEnumerator] nextObject];
+    STAssertEqualObjects(et.eventId, @"e1", @"Wrong value");
+    
+    Instrument* it = [[et.instruments objectEnumerator] nextObject];
+    STAssertEqualObjects(it.instrumentId, @"i1", @"Wrong value");
+}
+
+#pragma mark - Helper Methods
+ 
+ - (NSDictionary *)deserializeJson:(NSString *)fieldworkJson {
+    NSDictionary* fieldwork = [[SBJSON new] objectWithString:fieldworkJson];
+    RKObjectMapper* mapper = [RKObjectMapper mapperWithObject:fieldwork mappingProvider:[RKObjectManager sharedManager].mappingProvider];
+    RKObjectMappingResult* result = [mapper performMapping];
+    return [result asDictionary];
 }
 
 @end
