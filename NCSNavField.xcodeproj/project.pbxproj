@@ -60,6 +60,8 @@
 		008F7DA1148BB3DD009BCF1D /* ContactInitiateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F7DA0148BB3DD009BCF1D /* ContactInitiateVC.m */; };
 		008F7DA4148C1B16009BCF1D /* FormBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F7DA3148C1B16009BCF1D /* FormBuilder.m */; };
 		008F7DA7148C64AC009BCF1D /* FormBuilderCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F7DA6148C64AC009BCF1D /* FormBuilderCursor.m */; };
+		00910BCF1535F13E00BC2820 /* InstrumentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00910BCE1535F13E00BC2820 /* InstrumentTest.m */; };
+		00910BD21535F18900BC2820 /* DatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00910BD11535F18900BC2820 /* DatabaseTest.m */; };
 		0092BA5714E32C3500134165 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0092BA5614E32C3500134165 /* icon.png */; };
 		009AD2E4142D391A0038650B /* SimpleTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009AD2E3142D391A0038650B /* SimpleTableController.m */; };
 		009BE3AF14FC2217008195F9 /* SyncActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0031315514E04BF800C0D0B1 /* SyncActivityIndicator.m */; };
@@ -313,7 +315,7 @@
 		006EBEE1141139B2003D69CF /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		006FDD88148FD2E80001BADE /* TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextField.h; sourceTree = "<group>"; };
 		006FDD89148FD2E80001BADE /* TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextField.m; sourceTree = "<group>"; };
-		0073B3661511277000543DA4 /* Fieldwork.h */ = {isa = PBXFileReference; fileEncoding = 4; path = Fieldwork.h; sourceTree = "<group>"; };
+		0073B3661511277000543DA4 /* Fieldwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fieldwork.h; sourceTree = "<group>"; };
 		0073B3671511277000543DA4 /* Fieldwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fieldwork.m; sourceTree = "<group>"; };
 		007C1F4014FBFACA0020DF30 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		00810B5D14896B070098C0D0 /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
@@ -330,6 +332,10 @@
 		008F7DA3148C1B16009BCF1D /* FormBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormBuilder.m; sourceTree = "<group>"; };
 		008F7DA5148C64AC009BCF1D /* FormBuilderCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormBuilderCursor.h; sourceTree = "<group>"; };
 		008F7DA6148C64AC009BCF1D /* FormBuilderCursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormBuilderCursor.m; sourceTree = "<group>"; };
+		00910BCD1535F13E00BC2820 /* InstrumentTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentTest.h; sourceTree = "<group>"; };
+		00910BCE1535F13E00BC2820 /* InstrumentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentTest.m; sourceTree = "<group>"; };
+		00910BD01535F18900BC2820 /* DatabaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseTest.h; sourceTree = "<group>"; };
+		00910BD11535F18900BC2820 /* DatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseTest.m; sourceTree = "<group>"; };
 		0092BA5614E32C3500134165 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		009AD2E2142D391A0038650B /* SimpleTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableController.h; sourceTree = "<group>"; };
 		009AD2E3142D391A0038650B /* SimpleTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableController.m; sourceTree = "<group>"; };
@@ -508,6 +514,10 @@
 				00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */,
 				00C2520F151A63B500F4FE3B /* FieldworkTest.h */,
 				00C25210151A63B500F4FE3B /* FieldworkTest.m */,
+				00910BCD1535F13E00BC2820 /* InstrumentTest.h */,
+				00910BCE1535F13E00BC2820 /* InstrumentTest.m */,
+				00910BD01535F18900BC2820 /* DatabaseTest.h */,
+				00910BD11535F18900BC2820 /* DatabaseTest.m */,
 			);
 			name = Tests;
 			path = NCSNavFieldTests;
@@ -1035,6 +1045,8 @@
 				00C4003A14EC381D005736EA /* DispositionCodeTest.m in Sources */,
 				00C2520D151794EB00F4FE3B /* RestKitSettingsTest.m in Sources */,
 				00C25211151A63B500F4FE3B /* FieldworkTest.m in Sources */,
+				00910BCF1535F13E00BC2820 /* InstrumentTest.m in Sources */,
+				00910BD21535F18900BC2820 /* DatabaseTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
