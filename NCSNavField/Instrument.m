@@ -39,6 +39,10 @@
     return rs;
 }
 
+- (void)setResponseSet:(NUResponseSet *)responseSet {
+    self.externalResponseSetId = [responseSet valueForKey:@"uuid"];
+}
+
 - (NSDictionary*) responseSetJson {
     return self.responseSet.toDict;
 }

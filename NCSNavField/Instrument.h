@@ -20,7 +20,7 @@
 
 @property(getter = responseSetJson,readonly) NSString* responseSetJson;
 
-@property(getter = responseSet, readonly) NUResponseSet* responseSet;
+@property(nonatomic,retain) NUResponseSet* responseSet;
 
 @property(nonatomic,retain) NSString* instrumentTemplateId;
 

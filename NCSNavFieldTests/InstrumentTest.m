@@ -8,6 +8,7 @@
 
 #import "InstrumentTest.h"
 #import "Instrument.h"
+#import "NUResponseSet.h"
 #import <CoreData.h>
 #import <RestKit.h>
 
@@ -25,7 +26,16 @@
 }
 
 
-- (void)testSetResultSet {
+- (void)testSetResultSet {    
+    Instrument* ins = [Instrument object];
+    
+    NSEntityDescription *entity =
+    [[self.model entitiesByName] objectForKey:@"ResponseSet"];
+    NUResponseSet *rs = [[NUResponseSet alloc]
+                         initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
+    [rs setValue:@"XYZ" forKey:@"uuid"];
+    ins.responseSet = rs;
+    STAssertEqualObjects(ins.externalResponseSetId, @"XYZ", @"Wrong value");
     
 }
 @end

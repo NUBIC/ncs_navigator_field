@@ -59,7 +59,6 @@
         <attribute name="instrumentId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="instrumentTemplateId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="responseSet" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="instruments" inverseEntity="Event" syncable="YES"/>
         <relationship name="instrumentTemplate" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="InstrumentTemplate" inverseName="instrument" inverseEntity="InstrumentTemplate" syncable="YES"/>
     </entity>
@@ -91,7 +90,7 @@
         <element name="Contact" positionX="160" positionY="192" width="128" height="405"/>
         <element name="Event" positionX="160" positionY="192" width="128" height="330"/>
         <element name="Fieldwork" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Instrument" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Instrument" positionX="160" positionY="192" width="128" height="135"/>
         <element name="InstrumentTemplate" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Participant" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Person" positionX="160" positionY="192" width="128" height="210"/>
