@@ -18,10 +18,6 @@
 
 @property(nonatomic,retain) NSString* name;
 
-@property(getter = responseSetDict,readonly) NSString* responseSetDict;
-
-@property(nonatomic,retain) NUResponseSet* responseSet;
-
 @property(nonatomic,retain) NSString* instrumentTemplateId;
 
 @property(nonatomic,retain) InstrumentTemplate* instrumentTemplate;
@@ -29,5 +25,14 @@
 @property(nonatomic,retain) NSString* externalResponseSetId;
 
 @property(nonatomic,retain) Event* event;
+
+
+- (NUResponseSet*) responseSet;
+
+- (NSDictionary*) responseSetDict;
+
+- (void)setResponseSet:(NUResponseSet *)responseSet;
+
+- (void) setResponseSetDict:(NSDictionary *)responseSetDict;
 
 @end

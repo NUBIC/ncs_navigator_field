@@ -7,10 +7,11 @@
 //
 
 #import "Instrument.h"
+#import "SBJSON.h"
 
 @implementation Instrument
 
-@dynamic instrumentId, name, responseSet, responseSetDict, instrumentTemplateId, instrumentTemplate, externalResponseSetId, event;
+@dynamic instrumentId, name, instrumentTemplateId, instrumentTemplate, externalResponseSetId, event;
 
 - (NUResponseSet*) responseSet {
     NSManagedObjectContext* moc = [NUResponseSet managedObjectContext];
@@ -45,6 +46,18 @@
 
 - (NSDictionary*) responseSetDict {
     return self.responseSet.toDict;
+}
+
+- (void) setResponseSetDict:(NSDictionary *)responseSetDict {
+    NSManagedObjectModel* mom = [RKObjectManager sharedManager].objectStore.managedObjectModel;
+    NSEntityDescription *entity =
+    [[mom entitiesByName] objectForKey:@"ResponseSet"];
+    NUResponseSet *rs = [[NUResponseSet alloc]
+                         initWithEntity:entity insertIntoManagedObjectContext:[NUResponseSet managedObjectContext]];
+    
+
+    [rs fromJson:[[[SBJSON alloc] init] stringWithObject:responseSetDict]];
+    self.externalResponseSetId = [rs valueForKey:@"uuid"];
 }
 
 @end

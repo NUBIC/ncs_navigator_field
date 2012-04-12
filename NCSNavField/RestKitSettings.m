@@ -104,6 +104,7 @@ static RestKitSettings* instance;
     [instrument mapKeyPathsToAttributes: 
      @"instrument_id", @"instrumentId",
      @"instrument_template_id", @"instrumentTemplateId",
+     @"response_set", @"responseSetDict",
      @"name", @"name", nil];
     [instrument mapRelationship:@"instrumentTemplate" withMapping:instrumentTemplate];
     [instrument connectRelationship:@"instrumentTemplate" withObjectForPrimaryKeyAttribute:@"instrumentTemplateId"];

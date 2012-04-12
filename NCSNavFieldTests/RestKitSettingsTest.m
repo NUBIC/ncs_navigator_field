@@ -27,11 +27,17 @@
 }
 
 - (Fieldwork *)fieldworkTestData {
-//    NUResponseSet* rs = [NUResponseSet object];
-//    [rs setValue:@"RS A" forKey:@"uuid"];
+    NSManagedObjectModel* mom = [RKObjectManager sharedManager].objectStore.managedObjectModel;
+    NSEntityDescription *entity =
+    [[mom entitiesByName] objectForKey:@"ResponseSet"];
+    NUResponseSet *rs = [[NUResponseSet alloc]
+                         initWithEntity:entity insertIntoManagedObjectContext:[NUResponseSet managedObjectContext]];
+
+    [rs setValue:@"RS A" forKey:@"uuid"];
     
     Instrument* i = [Instrument object];
     i.name = @"INS A";
+    i.responseSet = rs;
     
     Event* e = [Event object];
     e.name = @"Birthday";
@@ -69,11 +75,11 @@
     STAssertEqualObjects(@"10:45", [ac objectForKey:@"start_time"], @"Wrong value");
     
     NSDictionary* ae = [[[ac objectForKey:@"events"] objectEnumerator] nextObject];
-    STAssertEquals(@"Birthday", [ae objectForKey:@"name"], @"Wrong value");
+    STAssertEqualObjects(@"Birthday", [ae objectForKey:@"name"], @"Wrong value");
     
     NSDictionary* ai = [[[ae objectForKey:@"instruments"] objectEnumerator] nextObject];
-    STAssertEquals(@"INS A", [ai objectForKey:@"name"], @"Wrong value");
-//    STAssertEquals(@"{survey:bla}", [ai objectForKey:@"response_set"], @"Wrong value");
+    STAssertEqualObjects(@"INS A", [ai objectForKey:@"name"], @"Wrong value");
+    STAssertEqualObjects(@"RS A", [[ai objectForKey:@"response_set"] valueForKey:@"uuid"], @"Wrong value");
 }
 
 
@@ -116,6 +122,10 @@
     
     Instrument* it = [[et.instruments objectEnumerator] nextObject];
     STAssertEqualObjects(it.instrumentId, @"i1", @"Wrong value");
+    STAssertEqualObjects(it.externalResponseSetId, @"rs1", @"Wrong value");
+    
+    NUResponseSet* rs = it.responseSet;
+    STAssertEqualObjects([rs valueForKey:@"uuid"], @"rs1", @"Wrong value");
 }
 
 #pragma mark - Helper Methods
