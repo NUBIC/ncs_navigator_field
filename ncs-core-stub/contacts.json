@@ -69,7 +69,23 @@
                      "instrument_id":"1dc7e73b-d377-4686-84c4-a0b5694f4ba3",
                      "name":"Pregnancy Visit 1",
                      "instrument_template_id":"ded83f10-e5f8-012e-9f18-00254bc472f4",
-                     "response_set":{}
+                     "response_set":{
+                         "uuid":"c952b403-952b-4b8c-801d-dcfe8d754cfc",
+                         "survey_id":"ded83f10-e5f8-012e-9f18-00254bc472f4",
+                         "responses":[
+                             {
+                                 "uuid":"5f86a5ac-af7c-45b7-92d3-bc7195dd61fe",
+                                 "answer_id":"2aad6b20-4b75-012f-785f-482a143dc94d",
+                                 "question_id":"2aad4b90-4b75-012f-785f-482a143dc94d",
+                                 "value":"Beyonce Z"
+                             },
+                            {
+                                "uuid":"31acf240-7842-44b1-88dc-21d1b7e956d7",
+                                "answer_id":"2aada950-4b75-012f-785f-482a143dc94d",
+                                "question_id":"2aad88c0-4b75-012f-785f-482a143dc94d"
+                            }
+                         ]
+                     }
                   }
                ]
             }
