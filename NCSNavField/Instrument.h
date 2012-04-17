@@ -24,6 +24,39 @@
 
 @property(nonatomic,retain) NSString* externalResponseSetId;
 
+@property(nonatomic,retain) NSNumber* instrumentTypeId;
+
+@property(nonatomic,retain) NSString* instrumentTypeOther;
+
+@property(nonatomic,retain) NSString* instrumentVersion;
+
+@property(nonatomic,retain) NSString* repeatKey;
+
+@property(nonatomic,retain) NSDate* startDate;
+
+@property(nonatomic,retain) NSString* startTime;
+
+@property(nonatomic,retain) NSDate* endDate;
+
+@property(nonatomic,retain) NSNumber* status;
+
+@property(nonatomic,retain) NSInteger* breakoff;
+
+@property(nonatomic,retain) NSInteger* instrumentModeId;
+
+@property(nonatomic,retain) NSString* instrumentModeOther;
+
+@property(nonatomic,retain) NSInteger* instrumentMethodId;
+
+@property(nonatomic,retain) NSInteger* supervisorReviewId;
+
+@property(nonatomic,retain) NSInteger* dataProblem;
+
+@property(nonatomic,retain) NSString* comment;
+
+
+/* Associations */
+
 @property(nonatomic,retain) Event* event;
 
 
