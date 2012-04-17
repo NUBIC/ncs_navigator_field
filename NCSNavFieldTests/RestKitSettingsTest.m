@@ -19,6 +19,7 @@
 #import "Fixtures.h"
 #import "SBJSON.h"
 #import "NUResponseSet.h"
+#import "NSDate+Additions.h"
 
 @implementation RestKitSettingsTest
 
@@ -90,6 +91,7 @@
          "  \"contacts\":[                          "
          "    {                                     "
          "      \"contact_id\":\"c1\",              "
+         "      \"date\":\"2009-03-07\",             "
          "      \"events\":[                        "
          "        {                                 "
          "          \"event_id\":\"e1\"             "
@@ -116,6 +118,7 @@
     
     Contact* ct = [[actual objectForKey:@"contacts"] objectAtIndex:0];
     STAssertEqualObjects(ct.contactId, @"c1", @"Wrong value");
+    STAssertEqualObjects([ct.date jsonSchemaDate], @"2009-03-07", @"Wrong date");
     
     Event* et = [[ct.events objectEnumerator] nextObject];
     STAssertEqualObjects(et.eventId, @"e1", @"Wrong value");

@@ -149,7 +149,7 @@ static RestKitSettings* instance;
      @"contact_id", @"contactId",
      @"type", @"typeId",
      @"version", @"version",
-     @"contact_date", @"date",
+     @"date", @"date",
      @"start_time", @"startTime",
      @"end_time", @"endTime",
      @"person_id", @"personId", nil];

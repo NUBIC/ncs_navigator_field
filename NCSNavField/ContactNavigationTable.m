@@ -44,7 +44,7 @@
                   
 - (NSString*) buildSectionNameUsingDate:(NSDate*)date {
     NSDateFormatter *f = [[NSDateFormatter alloc] init];
-    [f setDateFormat:@"MMMM dd' at 'hh':'mm a"];
+    [f setDateFormat:@"MMMM dd"];
     NSString *name = [f stringFromDate:date];
     [f release];
     return name;

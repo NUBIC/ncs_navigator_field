@@ -11,60 +11,32 @@
 #import "Event.h"
 #import "Person.h"
 #import "Contact.h"
+#import "Section.h"
+#import "CoreData.h"
+
 @implementation ContactNavigationTableTest
 
 ContactNavigationTable* dvp;
-Event *e1, *e2, *e3;
 
-NSDateFormatter *f;
-//ModelLoader* loader;
 - (void)setUp
 {
-//    [super setUp];
-//    f = [[[NSDateFormatter alloc] init] autorelease];
-//    [f setDateFormat:@"yyyy'-'MM'-'dd' 'HH':'mm"];
-//    [f setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-//    
-//    loader = [[ModelLoader alloc] initWithName: @"MyDocument"];
-//    NSError* error = nil;
-//    if (![[loader context] save: &error])
-//    {
-//        @throw [NSException exceptionWithName: @"MOCSave" 
-//                                       reason: [error localizedDescription] 
-//                                     userInfo: nil];
-//    }
+    [super setUp];
+    
+    NSDateFormatter* f = [[[NSDateFormatter alloc] init] autorelease];
+    [f setDateFormat:@"yyyy'-'MM'-'dd'"];
+    [f setTimeZone:[NSTimeZone localTimeZone]];
 
-
-//    Person *fred = [[Person alloc] init];
-//    fred.id = @"F1";
-//    fred.name = @"Fred Flintstone";
-//    
-//    e1 = [[[Event alloc] init] autorelease];
-//    e1.name = @"Collect Soil";
-//    e1.date = [f dateFromString:@"2010-12-08 00:00"];
-//    e1.person = fred;
-//    
-//    e2 = [[[Event alloc] init] autorelease];
-//    e2.name = @"Blood Draw";
-//    e2.date = [f dateFromString:@"2010-12-08 00:00"];
-//    e2.person = fred;
-//    
-//    e3 = [[[Event alloc] init] autorelease];
-//    e3.name = @"Avoid Subject";
-//    e3.date = [f dateFromString:@"2010-12-09 00:00"];
-//    e3.person = fred;
-//    
-//    Contact* c1 = [Contact new];
-//    c1.startDate = [f dateFromString:@"2010-12-08 00:00"];
-//    
-//    Contact* c2 = [Contact new];
-//    c1.startDate = [f dateFromString:@"2010-12-08 00:00"];
-//    
-//    Contact* c3 = [Contact new];
-//    c1.startDate = [f dateFromString:@"2010-12-08 00:00"];
-//    
-//    NSArray *contacts = [NSArray arrayWithObjects:c1, c2, c3, nil];
-//    dvp = [[[ContactNavigationTable alloc] initWithContacts:contacts] autorelease];
+    Contact* c1 = [Contact object];
+    c1.date = [f dateFromString:@"2010-12-08"];
+    
+    Contact* c2 = [Contact object];
+    c2.date = [f dateFromString:@"2010-12-08"];
+    
+    Contact* c3 = [Contact object];
+    c3.date = [f dateFromString:@"2010-12-09"];
+    
+    NSArray *contacts = [NSArray arrayWithObjects:c1, c2, c3, nil];
+    dvp = [[[ContactNavigationTable alloc] initWithContacts:contacts] autorelease];
 }
 
 - (void)tearDown
@@ -72,20 +44,14 @@ NSDateFormatter *f;
     [super tearDown];
 }
 
-//- (void)testShouldCreateContact {
-//    NSManagedObjectContext* context = [loader context];
-//    Contact *c = (Contact *)[NSEntityDescription insertNewObjectForEntityForName:@"Contact" inManagedObjectContext:context];
-////    Contact* c = [Contact new];
-//    NSDate* d = [f dateFromString:@"2010-12-08 00:00"];
-//    c.startDate = d;
-//    STAssertNotNil(c.startDate, @"Guh");
-//}
-
-//- (void)testSections {
-//    NSArray* sections = dvp.sections;
-//    STAssertEquals([sections count], 2U, @"Wrong number of sections");
-//    // TODO: Test section name
-//}
+- (void)testSections {
+    NSArray* sections = dvp.sections;
+    STAssertEquals([sections count], 2U, @"Wrong number of sections");
+    Section* s0 = [sections objectAtIndex:0];
+    STAssertEqualObjects(s0.name, @"December 08", @"Wrong value");
+    Section* s1 = [sections objectAtIndex:1];
+    STAssertEqualObjects(s1.name, @"December 09", @"Wrong value");
+}
 
 @end
 
