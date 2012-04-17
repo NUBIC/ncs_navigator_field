@@ -98,18 +98,19 @@
     UIView* v = [[UIView alloc] initWithFrame:frame];
     
     FormBuilder* b = [[[FormBuilder alloc] initWithView:v object:self.contact] autorelease];
-    
-    [b labelWithText:@"Contact Type"];
-    [b singleOptionPickerForProperty:@selector(typeId) WithPickerOptions:[PickerOption contactTypes]];
 
     [b labelWithText:@"Contact Date"];
     [b datePickerForProperty:@selector(date)];
     
-    [b labelWithText:@"Start Time"];
+    [b labelWithText:@"Contact Start Time"];
     [b timePickerForProperty:@selector(startTime)];
     
-    [b labelWithText:@"End Time"];
+    [b labelWithText:@"Contact End Time"];
     [b timePickerForProperty:@selector(endTime)];
+    
+    [b labelWithText:@"Contact Method"];
+    [b singleOptionPickerForProperty:@selector(typeId) WithPickerOptions:[PickerOption contactTypes]];
+
         
     return v;
 }
@@ -119,10 +120,10 @@
     
     FormBuilder* b = [[[FormBuilder alloc] initWithView:v object:self.contact] autorelease];
     
-    [b labelWithText:@"Who was contacted"];
+    [b labelWithText:@"Person Contacted"];
     [b singleOptionPickerForProperty:@selector(whoContactedId) WithPickerOptions:[PickerOption whoContacted]];
     
-    [b labelWithText:@"Who was contacted (Other)"];
+    [b labelWithText:@"Person Contacted (Other)"];
     [b textFieldForProperty:@selector(whoContactedOther)];
     
     [b labelWithText:@"Comments"];
