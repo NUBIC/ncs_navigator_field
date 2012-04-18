@@ -11,11 +11,12 @@
 #import "Event.h"
 #import "Contact.h"
 #import "RestKit.h"
+#import "CoreData.h"
 
 @implementation Fixtures
 
 + (Person*) createPersonWithId:(NSString*)id name:(NSString*) n {
-    Person *p = [[Person alloc] init];
+    Person *p = [Person object];
     p.name = n;
     return [p autorelease];
 }
@@ -59,7 +60,6 @@
 + (Contact*) createContactWithName:(NSString*)name startDate:(NSDate*)date {
     Contact *c = [Contact object];
     c.date = date;
-//    Event *e = [self createEventWithName:name date:date person:person];
     return [c autorelease];
 }
 

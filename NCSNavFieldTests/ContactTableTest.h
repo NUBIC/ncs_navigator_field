@@ -10,4 +10,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 @interface ContactTableTest : SenTestCase
+
+- (NSArray*) generateSections;
+
 @end

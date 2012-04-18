@@ -12,9 +12,9 @@
 @implementation Instrument
 
 @dynamic instrumentId, name, instrumentTemplateId, instrumentTemplate, externalResponseSetId, event, instrumentTypeId, instrumentTypeOther,
-    instrumentVersion, repeatKey, startDate, startTime, endDate,
-    status, breakoff, instrumentModeId, instrumentModeOther,
-    instrumentMethodId, supervisorReviewId, dataProblem, comment;
+    instrumentVersion, repeatKey, startDate, startTime, endDate, endTime,
+    statusId, breakoffId, instrumentModeId, instrumentModeOther,
+    instrumentMethodId, supervisorReviewId, dataProblemId, comment;
 
 - (NUResponseSet*) responseSet {
     NSManagedObjectContext* moc = [NUResponseSet managedObjectContext];

@@ -34,23 +34,25 @@
 
 @property(nonatomic,retain) NSDate* startDate;
 
-@property(nonatomic,retain) NSString* startTime;
+@property(nonatomic,retain) NSDate* startTime;
 
 @property(nonatomic,retain) NSDate* endDate;
 
-@property(nonatomic,retain) NSNumber* status;
+@property(nonatomic,retain) NSDate* endTime;
 
-@property(nonatomic,retain) NSInteger* breakoff;
+@property(nonatomic,retain) NSNumber* statusId;
 
-@property(nonatomic,retain) NSInteger* instrumentModeId;
+@property(nonatomic,retain) NSNumber* breakoffId;
+
+@property(nonatomic,retain) NSNumber* instrumentModeId;
 
 @property(nonatomic,retain) NSString* instrumentModeOther;
 
-@property(nonatomic,retain) NSInteger* instrumentMethodId;
+@property(nonatomic,retain) NSNumber* instrumentMethodId;
 
-@property(nonatomic,retain) NSInteger* supervisorReviewId;
+@property(nonatomic,retain) NSNumber* supervisorReviewId;
 
-@property(nonatomic,retain) NSInteger* dataProblem;
+@property(nonatomic,retain) NSNumber* dataProblemId;
 
 @property(nonatomic,retain) NSString* comment;
 

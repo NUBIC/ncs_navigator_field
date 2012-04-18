@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class Dwelling;
-
 @interface Person : NSManagedObject
 
 @property(nonatomic,retain) NSString* personId;

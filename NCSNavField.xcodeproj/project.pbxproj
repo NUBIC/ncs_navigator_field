@@ -63,6 +63,7 @@
 		00910BCF1535F13E00BC2820 /* InstrumentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00910BCE1535F13E00BC2820 /* InstrumentTest.m */; };
 		00910BD21535F18900BC2820 /* DatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00910BD11535F18900BC2820 /* DatabaseTest.m */; };
 		0092BA5714E32C3500134165 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0092BA5614E32C3500134165 /* icon.png */; };
+		0095430F153E62040018DAC3 /* InstrumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095430E153E62040018DAC3 /* InstrumentVC.m */; };
 		009AD2E4142D391A0038650B /* SimpleTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009AD2E3142D391A0038650B /* SimpleTableController.m */; };
 		009BE3AF14FC2217008195F9 /* SyncActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0031315514E04BF800C0D0B1 /* SyncActivityIndicator.m */; };
 		009EE2791436220C00E6D658 /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009EE2781436220C00E6D658 /* LoginController.xib */; };
@@ -337,6 +338,8 @@
 		00910BD01535F18900BC2820 /* DatabaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseTest.h; sourceTree = "<group>"; };
 		00910BD11535F18900BC2820 /* DatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseTest.m; sourceTree = "<group>"; };
 		0092BA5614E32C3500134165 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		0095430D153E62040018DAC3 /* InstrumentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentVC.h; sourceTree = "<group>"; };
+		0095430E153E62040018DAC3 /* InstrumentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentVC.m; sourceTree = "<group>"; };
 		009AD2E2142D391A0038650B /* SimpleTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableController.h; sourceTree = "<group>"; };
 		009AD2E3142D391A0038650B /* SimpleTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableController.m; sourceTree = "<group>"; };
 		009AD2E61430D9BF0038650B /* SimpleTableRowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableRowDelegate.h; sourceTree = "<group>"; };
@@ -738,6 +741,8 @@
 				005108ED148440C000732623 /* NUScrollView.m */,
 				00A03C751499536700223FD2 /* InstrumentListVC.h */,
 				00A03C761499536700223FD2 /* InstrumentListVC.m */,
+				0095430D153E62040018DAC3 /* InstrumentVC.h */,
+				0095430E153E62040018DAC3 /* InstrumentVC.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1029,6 +1034,7 @@
 				00860D271520EF3000FCCFCB /* TestFlightSettings.m in Sources */,
 				000D8E77152CAC5B006EE224 /* TimePicker.m in Sources */,
 				000D8E8B152E9EE7006EE224 /* NSDate+Additions.m in Sources */,
+				0095430F153E62040018DAC3 /* InstrumentVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

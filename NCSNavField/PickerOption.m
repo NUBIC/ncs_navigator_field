@@ -193,4 +193,90 @@
             [self po:@"Missing in Error" value:-4], nil];
 }
 
++ (NSArray*) instrumentTypes {
+    return [[NSArray alloc] initWithObjects:
+        [self po:@"Household Enumeration Interview" value:1],
+        [self po:@"Continuous Tracking Instrument" value:2],
+        [self po:@"Pregnancy Screener Interview (EH)" value:3],
+        [self po:@"Pregnancy Screener Interview (PB)" value:4],
+        [self po:@"Pregnancy Screener Interview (HI,LI)" value:5],
+        [self po:@"Pregnancy Probability Group Follow-Up Interview" value:6],
+        [self po:@"Pregnancy Probability Group Follow-Up SAQ" value:7],
+        [self po:@"Pre-Pregnancy Interview" value:8],
+        [self po:@"Pregnancy Visit 1 Interview" value:9],
+        [self po:@"Pregnancy Visit 1 SAQ" value:10],
+        [self po:@"Pregnancy Visit 2 Interview " value:11],
+        [self po:@"Pregnancy Visit 2  SAQ" value:12],
+        [self po:@"Birth Interview" value:13],
+        [self po:@"Low-Intensity Interview (Non & Pregnant)" value:14],
+        [self po:@"Provider Based Recruitment Questionnaire" value:15],
+        [self po:@"3-Month Mother Phone Interview" value:16],
+        [self po:@"6-Month Mother Interview" value:17],
+        [self po:@"6-Month Infant Feeding SAQ" value:18],
+        [self po:@"9-Month Mother Phone Interview" value:19],
+        [self po:@"12-Month Mother Interview" value:20],
+        [self po:@"12-Month Mother SAQ" value:21],
+        [self po:@"Pre-Pregnancy SAQ" value:22],
+        [self po:@"18-Month Mother Interview" value:23],
+        [self po:@"18-Month Mother SAQ" value:24],
+        [self po:@"24-Month Mother Interview" value:25],
+        [self po:@"24-Month Mother SAQ" value:26],
+        [self po:@"Validation Instrument (All Visits through 12 Months)" value:27],
+        [self po:@"Low Intensity Invitation to High-Intensity Conversion Interview" value:28],
+        [self po:@"Biospecimen Cord Blood Instrument" value:29],
+        [self po:@"Biospecimen Adult Blood Instrument" value:30],
+        [self po:@"Biospecimen Adult Urine Instrument" value:31],
+        [self po:@"Father Interview" value:32],
+        [self po:@"Birth Interview (LI) (LOI13-SL-03-A)" value:33],
+        [self po:@"Participant Internet Usage and Contact Preference Survey (LO12-INF-17)" value:34],
+        [self po:@"Environmental Tap Water Pharmaceuticals (TWF) Technician Collect Instrument" value:35],
+        [self po:@"Environmental Tap Water Pesticides (TWQ) Technician Collect Instrument" value:36],
+        [self po:@"Environmental Vacuum Bag Dust (VBD) Technician Collect Instrument" value:37],
+        [self po:@"Household Inventory Interview (HILI)" value:38],
+        [self po:@"Other" value:-5],
+        [self po:@"Missing in Error" value:-4], nil];
+}
+
++ (NSArray*) instrumentStatuses {
+    return [[NSArray alloc] initWithObjects:
+            [self po:@"Not started" value:1],
+            [self po:@"Refused" value:-1],
+            [self po:@"Partial" value:3],
+            [self po:@"Complete" value:4],
+            [self po:@"Missing in Error" value:-4], nil];
+}
+
++ (NSArray*) instrumentModes {
+    return [[NSArray alloc] initWithObjects:
+            [self po:@"In-person, Computer Assisted (CAPI/CASI)" value:1],
+            [self po:@"Telephone, Computer Assisted (CATI)" value:2],
+            [self po:@"In-Person, Paper and Pencil" value:3],
+            [self po:@"Telephone, Paper and Pencil" value:4],
+            [self po:@"Web-based" value:5],
+            [self po:@"Other" value:-5],
+            [self po:@"Missing in Error" value:-4], nil];
+}
+
++ (NSArray*) instrumentMethods {
+    return [[NSArray alloc] initWithObjects:
+            [self po:@"Self-Administered" value:1],
+            [self po:@"Interviewer-Administered" value:2],
+            [self po:@"Missing in Error" value:-4], nil];
+}
+
+
++ (NSArray*) instrumentSupervisorReviews {
+    return [[NSArray alloc] initWithObjects:
+            [self po:@"Yes" value:1],
+            [self po:@"No" value:2],
+            [self po:@"Missing in Error" value:-4], nil];
+}
+
++ (NSArray*) instrumentDataProblems {
+    return [[NSArray alloc] initWithObjects:
+            [self po:@"Yes" value:1],
+            [self po:@"No" value:2],
+            [self po:@"Missing in Error" value:-4], nil];
+}
+
 @end

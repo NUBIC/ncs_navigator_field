@@ -7,6 +7,8 @@
 //
 
 #import "Person.h"
+#import "CoreData.h"
+#import "RestKit.h"
 
 @implementation Person
 

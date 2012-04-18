@@ -31,5 +31,11 @@
 + (NSArray*) incentives;
 + (NSArray*) dispositionCategory;
 + (NSArray*) breakoff;
++ (NSArray*) instrumentTypes;
++ (NSArray*) instrumentStatuses;
++ (NSArray*) instrumentModes;
++ (NSArray*) instrumentMethods;
++ (NSArray*) instrumentSupervisorReviews;
++ (NSArray*) instrumentDataProblems;
 
 @end
