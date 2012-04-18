@@ -83,7 +83,6 @@
 		00D93A3A1506B2CF009CFDE9 /* RestKitSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D93A391506B2CF009CFDE9 /* RestKitSettings.m */; };
 		00D93A441507CC19009CFDE9 /* Participant.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D93A431507CC19009CFDE9 /* Participant.m */; };
 		00E32348142153CD00D3AEED /* Fixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E32347142153CD00D3AEED /* Fixtures.m */; };
-		00E32351142280AD00D3AEED /* ContactManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E32350142280AD00D3AEED /* ContactManagerTest.m */; };
 		00E323571422A23A00D3AEED /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E323561422A23A00D3AEED /* Section.m */; };
 		00E3235A1422B08200D3AEED /* Row.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E323591422B08200D3AEED /* Row.m */; };
 		00E3235D1422EB6A00D3AEED /* ContactTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E3235C1422EB6A00D3AEED /* ContactTable.m */; };
@@ -370,8 +369,6 @@
 		00D93A431507CC19009CFDE9 /* Participant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Participant.m; sourceTree = "<group>"; };
 		00E32346142153CD00D3AEED /* Fixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fixtures.h; sourceTree = "<group>"; };
 		00E32347142153CD00D3AEED /* Fixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fixtures.m; sourceTree = "<group>"; };
-		00E3234F142280AD00D3AEED /* ContactManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactManagerTest.h; sourceTree = "<group>"; };
-		00E32350142280AD00D3AEED /* ContactManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactManagerTest.m; sourceTree = "<group>"; };
 		00E323551422A23A00D3AEED /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
 		00E323561422A23A00D3AEED /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
 		00E323581422B08200D3AEED /* Row.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Row.h; sourceTree = "<group>"; };
@@ -505,8 +502,6 @@
 				0045BDAE141921CD007BB8AA /* ContactTest.m */,
 				00E32346142153CD00D3AEED /* Fixtures.h */,
 				00E32347142153CD00D3AEED /* Fixtures.m */,
-				00E3234F142280AD00D3AEED /* ContactManagerTest.h */,
-				00E32350142280AD00D3AEED /* ContactManagerTest.m */,
 				00590AC61428F7D0008335EA /* ContactTableTest.h */,
 				00590AC71428F7D0008335EA /* ContactTableTest.m */,
 				004FC7101486BE8200A378DC /* PickerOptionTest.h */,
@@ -1046,7 +1041,6 @@
 				00FF37E71417D2380009B1D4 /* ContactNavigationTableTest.m in Sources */,
 				0045BDAF141921CD007BB8AA /* ContactTest.m in Sources */,
 				00E32348142153CD00D3AEED /* Fixtures.m in Sources */,
-				00E32351142280AD00D3AEED /* ContactManagerTest.m in Sources */,
 				00590AC81428F7D0008335EA /* ContactTableTest.m in Sources */,
 				00C4003A14EC381D005736EA /* DispositionCodeTest.m in Sources */,
 				00C2520D151794EB00F4FE3B /* RestKitSettingsTest.m in Sources */,

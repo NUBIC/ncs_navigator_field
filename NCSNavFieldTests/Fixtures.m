@@ -52,10 +52,6 @@
     return [e autorelease];
 }
 
-+ (Event*) createEventWithName:(NSString*)name date:(NSDate*)date person:(Person*)person {
-    Event *e = [self createEventWithName:name date:date];
-    return [e autorelease];
-}
 
 + (Contact*) createContactWithName:(NSString*)name startDate:(NSDate*)date {
     Contact *c = [Contact object];

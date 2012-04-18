@@ -31,8 +31,7 @@ Person *tom;
     
     
     
-    c = [Fixtures createContactWithName:@"Collect Soil" 
-                               startDate:[Fixtures createDateFromString:@"2010-12-08 09:30"]];
+    c = [Fixtures createContactWithName:@"Collect Soil" startDate:[Fixtures createDateFromString:@"2010-12-08 09:30"]];
     c.person = tom;
     
 }
