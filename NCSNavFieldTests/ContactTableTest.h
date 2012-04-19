@@ -9,8 +9,12 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
+@class Event;
+
 @interface ContactTableTest : SenTestCase
 
 - (NSArray*) generateSections;
+
+- (Event*)buildEvent:(NSString*)name;
 
 @end

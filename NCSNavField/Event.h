@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class Contact;
+@class Instrument;
 
 @interface Event : NSManagedObject
 
@@ -55,3 +56,12 @@
 @property(nonatomic,retain) NSSet* instruments;
 
 @end
+
+@interface Event (GeneratedAccessors)
+
+- (void)addInstrumentsObject:(Instrument*)instrument;
+
+- (void)removeInstrumentsObject:(Instrument*)instrument;
+
+@end
+

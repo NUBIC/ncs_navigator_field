@@ -29,12 +29,17 @@
 }
 
 - (NSArray*) buildSectionsFromContact:(Contact*)contact { 
-    return [NSArray arrayWithObjects: 
-                [self addresses], 
-                [self phones], 
-                [self emails],
-                [self contactDetails],
-                nil];
+    NSMutableArray* sections = [[NSMutableArray alloc] initWithCapacity:5];
+    [self addSection:[self addresses] to:sections];
+    [self addSection:[self phones] to:sections];
+    [self addSection:[self emails] to:sections];
+    [self addSection:[self contactDetails] to:sections];
+    if (_contact.initiated) {
+        for (Event* e in contact.events) {
+            [self addSection:[self event:e] to:sections];
+        }
+    }
+    return sections;
 }
 
 // TODO: Figure out a better way to handle large addresses like resize cell
@@ -82,6 +87,30 @@
     [s addRow:r];
     return s;
 }
+
+- (Section*)event:(Event*)e {
+    Section* s = [Section new];
+    s.name = e.name;
+    for (Instrument* i in e.instruments) {
+        Row* r0 = [[Row new] autorelease];
+        r0.text = i.name;
+        r0.rowClass = @"contact";
+        [s addRow:r0];
+        Row* r1 = [[Row new] autorelease];
+        r1.text = [NSString stringWithFormat:@"%@ Details", i.name];
+        r1.rowClass = @"contact";
+        [s addRow:r1];
+    }
+    
+    return s;
+}
+
+- (void)addSection:(Section*)section to:(NSMutableArray*)sections{
+    if (section != NULL) {
+        [sections addObject:section];
+    }
+}
+
 
 - (NSString*) ReplaceFirstNewLine:(NSString*) original {
     NSMutableString * newString = [NSMutableString stringWithString:original];

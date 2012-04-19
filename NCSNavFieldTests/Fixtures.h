@@ -11,12 +11,14 @@
 @class Person;
 @class Event;
 @class Contact;
+@class Instrument;
 
 @interface Fixtures : NSObject
 
 + (Person*) createPersonWithId:(NSString*)id name:(NSString*) n;
 + (NSDate*) createDateFromString:(NSString*) dateStr;
 + (NSDate*) createTimeFromString:(NSString*) timeStr;
-+ (Event*) createEventWithName:(NSString*)name date:(NSDate*)date;
-+ (Contact*) createContactWithName:(NSString*)name startDate:(NSDate*)date;
++ (Event*) createEventWithName:(NSString*)name;
++ (Instrument*) createInstrumentWithName:(NSString*)name;
++ (Contact*) createContactWithDate:(NSDate*)date;
 @end

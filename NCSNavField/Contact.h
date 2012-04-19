@@ -11,6 +11,8 @@
 @class Event;
 @class Person;
 
+
+
 @interface Contact : NSManagedObject
 
 #pragma mark properties
@@ -68,5 +70,13 @@
 #pragma mark methods
 
 - (BOOL) closed;
+
+@end
+
+@interface Contact (GeneratedAccessors)
+
+- (void)addEventsObject:(Event*)event;
+
+- (void)removeEventsObject:(Event*)event;
 
 @end

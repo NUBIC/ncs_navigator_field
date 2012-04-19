@@ -21,7 +21,7 @@ Contact* c;
 {
     [super setUp];
     
-    c = [Fixtures createContactWithName:@"Birthday" startDate:[Fixtures createDateFromString:@"2010-12-08 00:00"]];
+    c = [Fixtures createContactWithDate:[Fixtures createDateFromString:@"2010-12-08 00:00"]];
     c.startTime = [Fixtures createTimeFromString:@"10:45"];
 }
 

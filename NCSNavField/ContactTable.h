@@ -11,6 +11,7 @@
 
 @class Contact;
 @class Section;
+@class Event;
 
 @interface ContactTable : NSObject<ISimpleTable> {
     @private
@@ -26,6 +27,8 @@
 - (Section*) phones;
 - (Section*) emails;
 - (Section*) contactDetails;
+- (Section*) event:(Event*)e;
+- (void)addSection:(Section*)section to:(NSMutableArray*)sections;
 - (void) dealloc;
 
 - (NSString*) ReplaceFirstNewLine:(NSString*) original;

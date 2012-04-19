@@ -10,6 +10,7 @@
 #import "Person.h"
 #import "Event.h"
 #import "Contact.h"
+#import "Instrument.h"
 #import "RestKit.h"
 #import "CoreData.h"
 
@@ -46,14 +47,20 @@
     return d;
 }
 
-+ (Event*) createEventWithName:(NSString*)name date:(NSDate*)date {
-    Event *e = [[Event alloc] init];
++ (Event*) createEventWithName:(NSString*)name {
+    Event *e = [Event object];
     e.name = name;
     return [e autorelease];
 }
 
 
-+ (Contact*) createContactWithName:(NSString*)name startDate:(NSDate*)date {
++ (Instrument*) createInstrumentWithName:(NSString*)name {
+    Instrument *i = [Instrument object];
+    i.name = name;
+    return [i autorelease];
+}
+
++ (Contact*) createContactWithDate:(NSDate*)date {
     Contact *c = [Contact object];
     c.date = date;
     return [c autorelease];
