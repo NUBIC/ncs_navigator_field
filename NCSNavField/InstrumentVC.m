@@ -137,7 +137,7 @@
     [b singleOptionPickerForProperty:@selector(statusId) WithPickerOptions:[PickerOption instrumentStatuses]];
     
     [b labelWithText:@"Breakoff"];
-    [b textFieldForProperty:@selector(instrumentBreakoffs)];
+    [b singleOptionPickerForProperty:@selector(breakoff) WithPickerOptions:[PickerOption instrumentBreakoffs]];
     
     [b labelWithText:@"Instrument Mode"];
     [b singleOptionPickerForProperty:@selector(instrumentModeId) WithPickerOptions:[PickerOption instrumentModes]];

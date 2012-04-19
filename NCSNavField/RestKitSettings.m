@@ -185,7 +185,24 @@ static RestKitSettings* instance;
      @"instrumentId", @"instrument_id",
      @"responseSetDict", @"response_set",
      @"instrumentTemplateId", @"instrument_template_id",
-     @"name", @"name", nil];
+     @"name", @"name", 
+     @"instrumentTypeId", @"type", 
+     @"instrumentTypeOther", @"type_other",
+     @"instrumentVersion", @"instrument_version",
+     @"repeatKey", @"repeat_key",
+     @"startDate", @"start_date",
+     @"startTime", @"start_time",
+     @"endDate", @"end_date",
+     @"endTime", @"end_time",
+     @"statusId", @"status",
+     @"breakoffId", @"breakoff",
+     @"instrumentModeId", @"mode_administered",
+     @"instrumentModeOther", @"mode_administered_other",
+     @"instrumentMethodId", @"method_administered",
+     @"supervisorReviewId", @"supervisor_review",
+     @"dataProblemId", @"data_problem",
+     @"comment", @"comments",
+     nil];
     [objectManager.mappingProvider setSerializationMapping:instrument forClass:[Instrument class]];
     
     // Event Mapping

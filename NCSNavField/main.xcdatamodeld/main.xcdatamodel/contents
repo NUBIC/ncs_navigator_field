@@ -5,7 +5,7 @@
         <attribute name="contactId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="dispositionId" optional="YES" attributeType="Integer 16" syncable="YES"/>
-        <attribute name="distanceTraveled" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="distanceTraveled" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="initiated" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="interpreterId" optional="YES" attributeType="Integer 16" syncable="YES"/>

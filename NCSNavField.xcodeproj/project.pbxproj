@@ -67,8 +67,6 @@
 		009AD2E4142D391A0038650B /* SimpleTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009AD2E3142D391A0038650B /* SimpleTableController.m */; };
 		009BE3AF14FC2217008195F9 /* SyncActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0031315514E04BF800C0D0B1 /* SyncActivityIndicator.m */; };
 		009EE2791436220C00E6D658 /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009EE2781436220C00E6D658 /* LoginController.xib */; };
-		00A03C781499536700223FD2 /* InstrumentListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A03C761499536700223FD2 /* InstrumentListVC.m */; };
-		00A03C791499536700223FD2 /* InstrumentListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00A03C771499536700223FD2 /* InstrumentListVC.xib */; };
 		00A392DF14361C53003B19F3 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A392DD14361C53003B19F3 /* LoginController.m */; };
 		00B7CCA814BDFB6E00D5901C /* DispositionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B7CCA714BDFB6E00D5901C /* DispositionCode.m */; };
 		00C2520D151794EB00F4FE3B /* RestKitSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */; };
@@ -345,9 +343,6 @@
 		009AD2E71430DA180038650B /* ISimpleTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISimpleTable.h; sourceTree = "<group>"; };
 		009BE3A914FC2145008195F9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		009EE2781436220C00E6D658 /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginController.xib; path = NCSNavField/LoginController.xib; sourceTree = "<group>"; };
-		00A03C751499536700223FD2 /* InstrumentListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentListVC.h; sourceTree = "<group>"; };
-		00A03C761499536700223FD2 /* InstrumentListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentListVC.m; sourceTree = "<group>"; };
-		00A03C771499536700223FD2 /* InstrumentListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InstrumentListVC.xib; path = NCSNavField/InstrumentListVC.xib; sourceTree = "<group>"; };
 		00A2CDDA14EAFCBD00C164F7 /* libMRCEnumerable.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMRCEnumerable.a; path = "MRCEnumerable/build/Release-iphoneos/libMRCEnumerable.a"; sourceTree = "<group>"; };
 		00A392DC14361C53003B19F3 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		00A392DD14361C53003B19F3 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
@@ -734,8 +729,6 @@
 				00A392DD14361C53003B19F3 /* LoginController.m */,
 				005108EC148440C000732623 /* NUScrollView.h */,
 				005108ED148440C000732623 /* NUScrollView.m */,
-				00A03C751499536700223FD2 /* InstrumentListVC.h */,
-				00A03C761499536700223FD2 /* InstrumentListVC.m */,
 				0095430D153E62040018DAC3 /* InstrumentVC.h */,
 				0095430E153E62040018DAC3 /* InstrumentVC.m */,
 			);
@@ -783,7 +776,6 @@
 				0026E680140347E700355BCB /* DetailView.xib */,
 				0026E67A140347E700355BCB /* MainWindow.xib */,
 				009EE2781436220C00E6D658 /* LoginController.xib */,
-				00A03C771499536700223FD2 /* InstrumentListVC.xib */,
 			);
 			name = NIBs;
 			sourceTree = "<group>";
@@ -934,7 +926,6 @@
 				0026E682140347E700355BCB /* DetailView.xib in Resources */,
 				006C600B1434DF0D00F52CD8 /* README.md in Resources */,
 				009EE2791436220C00E6D658 /* LoginController.xib in Resources */,
-				00A03C791499536700223FD2 /* InstrumentListVC.xib in Resources */,
 				0013ED9B14B65D84009F85CF /* NUCas.plist in Resources */,
 				00C67AF514C765CE005D2543 /* NUCas.plist-sample in Resources */,
 				0031315E14E083C500C0D0B1 /* cacert.pem in Resources */,
@@ -1018,7 +1009,6 @@
 				00393C92148E54C000671899 /* SingleOptionPicker.m in Sources */,
 				006FDD8A148FD2E80001BADE /* TextField.m in Sources */,
 				008C5711149696DD005EC22E /* TextArea.m in Sources */,
-				00A03C781499536700223FD2 /* InstrumentListVC.m in Sources */,
 				00145BA8149A7BEF00D3C1B5 /* ContactCloseVC.m in Sources */,
 				00B7CCA814BDFB6E00D5901C /* DispositionCode.m in Sources */,
 				0018F03314C4BD160058D8F2 /* ApplicationSettings.m in Sources */,

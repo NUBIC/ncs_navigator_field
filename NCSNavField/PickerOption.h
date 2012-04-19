@@ -37,5 +37,6 @@
 + (NSArray*) instrumentMethods;
 + (NSArray*) instrumentSupervisorReviews;
 + (NSArray*) instrumentDataProblems;
++ (NSArray*) instrumentBreakoffs;
 
 @end

@@ -28,7 +28,9 @@ static TextField* _activeField = nil;
     t.returnKeyType = UIReturnKeyDone;  // type of the return key
     
     t.clearButtonMode = UITextFieldViewModeWhileEditing;	// has a clear 'x' button to the right
-    t.text = value;
+    if (value != NULL) {
+        t.text = [NSString stringWithFormat:@"%@", value];
+    }
     t.delegate = self;
     return t;
 }

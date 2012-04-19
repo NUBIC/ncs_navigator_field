@@ -23,7 +23,17 @@
 
 - (void) updatedValue:(id)value {
     if ([self.object respondsToSelector:self.field]) {
-        [self.object setValue:value forKey:NSStringFromSelector(self.field)];
+        RKObjectPropertyInspector* i = [RKObjectPropertyInspector sharedInspector];
+        Class type = [i typeForProperty:NSStringFromSelector(self.field) ofClass:[self.object class]];
+        if (type == [NSString class]) {
+            [self.object setValue:value forKey:NSStringFromSelector(self.field)];
+        } else if (type == [NSNumber class]) {
+            NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+            [f setNumberStyle:NSNumberFormatterDecimalStyle];
+            NSNumber* tranformed = [f numberFromString:value];
+            [self.object setValue:tranformed forKey:NSStringFromSelector(self.field)];
+            [f release];
+        }
     }
 }
 @end

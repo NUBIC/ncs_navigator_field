@@ -279,4 +279,11 @@
             [self po:@"Missing in Error" value:-4], nil];
 }
 
++ (NSArray*) instrumentBreakoffs {
+    return [[NSArray alloc] initWithObjects:
+        [self po:@"Yes" value:1],
+        [self po:@"No" value:2],
+        [self po:@"Missing in Error" value:-4], nil];
+}
+
 @end

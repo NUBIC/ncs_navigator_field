@@ -11,7 +11,6 @@
 #import "RootViewController.h"
 #import "ContactTable.h"
 #import "ContactInitiateVC.h"
-#import "InstrumentListVC.h"
 #import "ContactCloseVC.h"
 #import "InstrumentVC.h"
 #import "Event.h"
