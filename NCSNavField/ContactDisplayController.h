@@ -26,4 +26,6 @@
 
 @property(nonatomic, retain) IBOutlet ContactUpdateController* contactDetailController;
 
+- (void) refreshView;
+
 @end

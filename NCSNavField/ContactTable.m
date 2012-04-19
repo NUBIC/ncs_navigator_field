@@ -94,11 +94,13 @@
     for (Instrument* i in e.instruments) {
         Row* r0 = [[Row new] autorelease];
         r0.text = i.name;
-        r0.rowClass = @"contact";
+        r0.rowClass = @"instrument";
+        r0.entity = i;
         [s addRow:r0];
         Row* r1 = [[Row new] autorelease];
         r1.text = [NSString stringWithFormat:@"%@ Details", i.name];
-        r1.rowClass = @"contact";
+        r1.rowClass = @"instrument-details";
+        r1.entity = i;
         [s addRow:r1];
     }
     

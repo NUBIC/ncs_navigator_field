@@ -13,7 +13,7 @@
 #import "ContactInitiateVC.h"
 #import "InstrumentListVC.h"
 #import "ContactCloseVC.h"
-
+#import "InstrumentVC.h"
 #import "Event.h"
 #import "Section.h"
 #import "Row.h"
@@ -45,7 +45,6 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contactInitiated) name:@"ContactInitiated" object:NULL];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeContactRequested) name:@"CloseContactSelected" object:NULL];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stoppedAdministeringInstrument:) name:@"StoppedAdministeringInstrument" object:NULL];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshView) name:@"ContactClosed" object:nil];
     }
@@ -53,38 +52,20 @@
 }
 
 - (void) contactInitiated {
-    self.simpleTable = [[ContactTable alloc]initUsingContact:self.detailItem];
-    [self.tableView reloadData];
-
-    InstrumentListVC* ci = [[InstrumentListVC alloc] initWithNibName:@"InstrumentListVC" bundle:nil];
-    ci.contact = self.detailItem;
-    ci.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self presentViewController:ci animated:YES completion:NULL];
+    [self refreshView];
 }
 
 - (void) stoppedAdministeringInstrument:(NSNotification*)notification {
-    Contact* c = [[notification userInfo] objectForKey:@"contact"];
+//    Contact* c = [[notification userInfo] objectForKey:@"contact"];
     
-    if (c && c == self.detailItem) {
-        self.simpleTable = [[ContactTable alloc]initUsingContact:c];
-        [self.tableView reloadData];
-        
-        InstrumentListVC* ci = [[InstrumentListVC alloc] initWithNibName:@"InstrumentListVC" bundle:nil];
-        ci.contact = c;
-        ci.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self presentViewController:ci animated:YES completion:NULL];
-    }
+//    if (c && c == self.detailItem) {
+    [self refreshView];    
+//    }
 }
 
 - (void) refreshView {
     self.simpleTable = [[ContactTable alloc]initUsingContact:self.detailItem];
     [self.tableView reloadData];
-}
-
-- (void) closeContactRequested {
-    ContactCloseVC* cc = [[ContactCloseVC alloc] initWithContact:self.detailItem];
-    cc.modalPresentationStyle = UIModalPresentationFullScreen;  
-    [self presentViewController:cc animated:YES completion:NULL];
 }
 
 #pragma mark - Managing the detail item
@@ -159,7 +140,7 @@
 
 - (UITableViewCell*) cellForRowClass:(NSString *)rowClass {
     UITableViewCell *cell;
-    if ([rowClass isEqualToString:@"contact"]) {
+    if ([rowClass isEqualToString:@"contact"] || [rowClass isEqualToString:@"instrument"] || [rowClass isEqualToString:@"instrument-details"]) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier:rowClass] autorelease];
         cell.textLabel.font =[[UIFont fontWithName:@"Arial" size:20] autorelease];
         cell.textLabel.textAlignment = UITextAlignmentCenter;
@@ -176,27 +157,33 @@
 - (void) didSelectRow:(Row*)row {
     NSString* rc = row.rowClass;
     if ([rc isEqualToString:@"instrument"]) {
-        [UIAppDelegate.rootViewController loadSurveyor:row.entity];
-
+//        [UIAppDelegate.rootViewController loadSurveyor:row.entity];
+        
+        Instrument* selected = row.entity;
+        NSDictionary* dict = [[[NSDictionary alloc] initWithObjectsAndKeys:selected, @"instrument", nil] autorelease];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"InstrumentSelected" object:self userInfo:dict]; 
         //    [self.view deselectRowAtIndexPath:indexPath animated:YES]; 
         //    UITableViewCell *oldCell = [self.view cellForRowAtIndexPath:indexPath];
         
-        NSDateFormatter *f = [NSDateFormatter new];
-        [f setDateStyle:NSDateFormatterShortStyle];
-        [f setTimeStyle:NSDateFormatterShortStyle];
+//        NSDateFormatter *f = [NSDateFormatter new];
+//        [f setDateStyle:NSDateFormatterShortStyle];
+//        [f setTimeStyle:NSDateFormatterShortStyle];
 //        NSDate *d = [NSDate new];
         
-        //    oldCell.detailTextLabel.text = [NSString stringWithFormat:@"Completed %@", [f stringFromDate:d]];
-        
+        //    oldCell.detailTextLabel.text = [NSString stringWithFormat:@"Completed %@", [f stringFromDate:d]];        
+    } else if ([rc isEqualToString:@"instrument-details"]) {
+        Instrument* selected = row.entity;
+        InstrumentVC* ivc = [[InstrumentVC alloc] initWithInstrument:selected];   
+        ivc.modalPresentationStyle = UIModalPresentationFullScreen;  
+        [self presentViewController:ivc animated:YES completion:NULL];
     } else if ([rc isEqualToString:@"contact"]) {
         if (self.detailItem.initiated) {
             self.simpleTable = [[ContactTable alloc]initUsingContact:self.detailItem];
             [self.tableView reloadData];
             
-            InstrumentListVC* ci = [[InstrumentListVC alloc] initWithNibName:@"InstrumentListVC" bundle:nil];
-            ci.contact = self.detailItem;
-            ci.modalPresentationStyle = UIModalPresentationFormSheet;
-            [self presentViewController:ci animated:YES completion:NULL];
+            ContactCloseVC* cc = [[ContactCloseVC alloc] initWithContact:self.detailItem];
+            cc.modalPresentationStyle = UIModalPresentationFullScreen;  
+            [self presentViewController:cc animated:YES completion:NULL];
         } else {
             ContactInitiateVC* cc = [[ContactInitiateVC alloc] initWithContact:self.detailItem];
             cc.modalPresentationStyle = UIModalPresentationFormSheet;
