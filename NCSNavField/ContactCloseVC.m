@@ -44,7 +44,7 @@
     NSLog(@"viewDidAppear Size: %@", NSStringFromCGSize(self.view.frame.size));
 
     CGFloat contactFrameHeight = 850;
-    CGFloat eventFrameHeight = 850;
+    CGFloat eventFrameHeight = 800;
     CGPoint o = self.view.frame.origin;
 //    CGSize s = self.view.frame.size;
     CGFloat width = UIDeviceOrientationIsPortrait(self.interfaceOrientation) ? self.view.frame.size.width : self.view.frame.size.height;
@@ -138,23 +138,53 @@
     
     [b sectionHeader:@"Contact"];
     
-    [b labelWithText:@"Contact Type"];
-    [b singleOptionPickerForProperty:@selector(typeId) WithPickerOptions:[PickerOption contactTypes]];
-
     [b labelWithText:@"Contact Date"];
     [b datePickerForProperty:@selector(date)];
     
-    [b labelWithText:@"Start Time"];
+    [b labelWithText:@"Contact Start Time"];
     [b timePickerForProperty:@selector(startTime)];
     
-    [b labelWithText:@"End Time"];
+    [b labelWithText:@"Contact End Time"];
     [b timePickerForProperty:@selector(endTime)];
         
-    [b labelWithText:@"Who was contacted"];
+    [b labelWithText:@"Person Contacted"];
     [b singleOptionPickerForProperty:@selector(whoContactedId) WithPickerOptions:[PickerOption whoContacted]];
-    
-    [b labelWithText:@"Who was contacted (Other)"];
+
+    [b labelWithText:@"Person Contacted (Other)"];
     [b textFieldForProperty:@selector(whoContactedOther)];
+    
+    [b labelWithText:@"Contact Method"];
+    [b singleOptionPickerForProperty:@selector(typeId) WithPickerOptions:[PickerOption contactTypes]];
+    
+    [b labelWithText:@"Location"];
+    [b singleOptionPickerForProperty:@selector(locationid) WithPickerOptions:[PickerOption location]];
+    
+    [b labelWithText:@"Location (Other)"];
+    [b textFieldForProperty:@selector(locationOther)];
+    
+    [b labelWithText:@"Private"];
+    [b singleOptionPickerForProperty:@selector(privateId) WithPickerOptions:[PickerOption private]];
+    
+    [b labelWithText:@"Private Detail"];
+    [b textFieldForProperty:@selector(privateDetail)];
+    
+    return v;
+}
+
+- (UIView*) rightContactContentWithFrame:(CGRect)frame contact:(Contact*)contact {
+    UIView* v = [[UIView alloc] initWithFrame:frame];
+    
+    FormBuilder* b = [[[FormBuilder alloc] initWithView:v object:contact] autorelease];
+    
+    [b sectionHeader:@""];
+    
+    [b labelWithText:@"Distance traveled"];
+    [b textFieldForProperty:@selector(distanceTraveled)];
+    
+    [b labelWithText:@"Disposition"];
+    self.dispositionPicker = 
+    [b singleOptionPickerForProperty:@selector(dispositionId) WithPickerOptions:[DispositionCode pickerOptionsForContactTypeId:self.contact.typeId] andPopoverSize:NUPickerVCPopoverSizeLarge];
+    
     
     [b labelWithText:@"Language"];
     [b singleOptionPickerForProperty:@selector(languageId) WithPickerOptions:[PickerOption language]];
@@ -167,35 +197,6 @@
     
     [b labelWithText:@"Interpreter (Other)"];
     [b textFieldForProperty:@selector(interpreterOther)];
-    
-    return v;
-}
-
-- (UIView*) rightContactContentWithFrame:(CGRect)frame contact:(Contact*)contact {
-    UIView* v = [[UIView alloc] initWithFrame:frame];
-    
-    FormBuilder* b = [[[FormBuilder alloc] initWithView:v object:contact] autorelease];
-    
-    [b sectionHeader:@""];
-    
-    [b labelWithText:@"Location"];
-    [b singleOptionPickerForProperty:@selector(locationid) WithPickerOptions:[PickerOption location]];
-    
-    [b labelWithText:@"Location (Other)"];
-    [b textFieldForProperty:@selector(locationOther)];
-    
-    [b labelWithText:@"Was contact private"];
-    [b singleOptionPickerForProperty:@selector(privateId) WithPickerOptions:[PickerOption private]];
-    
-    [b labelWithText:@"Private Detail"];
-    [b textFieldForProperty:@selector(privateDetail)];
-    
-    [b labelWithText:@"Distance traveled"];
-    [b textFieldForProperty:@selector(distanceTraveled)];
-    
-    [b labelWithText:@"Disposition"];
-    self.dispositionPicker = 
-        [b singleOptionPickerForProperty:@selector(dispositionId) WithPickerOptions:[DispositionCode pickerOptionsForContactTypeId:self.contact.typeId] andPopoverSize:NUPickerVCPopoverSizeLarge];        
     
     [b labelWithText:@"Comments"];
     [b textAreaForProperty:@selector(comments)];
@@ -216,29 +217,23 @@
     [b labelWithText:@"Event Type (Other)"];
     [b textFieldForProperty:@selector(eventTypeOther)];
     
+    [b labelWithText:@"Disposition"];
+    [b singleOptionPickerForProperty:@selector(dispositionId) WithPickerOptions:[DispositionCode pickerOptionsForContactTypeId:self.contact.typeId] andPopoverSize:NUPickerVCPopoverSizeLarge];
+    
+    [b labelWithText:@"Disposition Category"];
+    [b singleOptionPickerForProperty:@selector(dispositionCategoryId) WithPickerOptions:[PickerOption dispositionCategory]];     
+    
+    [b labelWithText:@"Breakoff"];
+    [b singleOptionPickerForProperty:@selector(breakoffId) WithPickerOptions:[PickerOption breakoff]];     
+
     [b labelWithText:@"Repeat Key"];
     [b textFieldForProperty:@selector(repeatKey)];
-    
+
     [b labelWithText:@"Start Date"];
     [b datePickerForProperty:@selector(startDate)];
     
     [b labelWithText:@"Start Time"];
     [b timePickerForProperty:@selector(startTime)];
-    
-    [b labelWithText:@"End Date"];
-    [b datePickerForProperty:@selector(endDate)];
-
-    [b labelWithText:@"End Time"];
-    [b timePickerForProperty:@selector(endTime)];
-    
-    [b labelWithText:@"Incentive Type"];
-    [b singleOptionPickerForProperty:@selector(incentiveTypeId) WithPickerOptions:[PickerOption incentives]];
-    
-    [b labelWithText:@"Incentive (Cash)"];
-    [b textFieldForProperty:@selector(incentiveCash)];
-    
-    [b labelWithText:@"Incentive (Non-Cash)"];
-    [b textFieldForProperty:@selector(incentiveNonCash)];
     
     return v;
 }
@@ -251,15 +246,20 @@
 
     [b sectionHeader:@""];
     
-    [b labelWithText:@"Disposition"];
-    [b singleOptionPickerForProperty:@selector(dispositionId) WithPickerOptions:[DispositionCode pickerOptionsForContactTypeId:self.contact.typeId] andPopoverSize:NUPickerVCPopoverSizeLarge];
-
-    [b labelWithText:@"Disposition Category"];
-    [b singleOptionPickerForProperty:@selector(dispositionCategoryId) WithPickerOptions:[PickerOption dispositionCategory]];     
+    [b labelWithText:@"End Date"];
+    [b datePickerForProperty:@selector(endDate)];
     
-    [b labelWithText:@"Breakoff"];
-    [b singleOptionPickerForProperty:@selector(breakoffId) WithPickerOptions:[PickerOption breakoff]];     
-
+    [b labelWithText:@"End Time"];
+    [b timePickerForProperty:@selector(endTime)];
+    
+    [b labelWithText:@"Incentive Type"];
+    [b singleOptionPickerForProperty:@selector(incentiveTypeId) WithPickerOptions:[PickerOption incentives]];
+    
+    [b labelWithText:@"Incentive (Cash)"];
+    [b textFieldForProperty:@selector(incentiveCash)];
+    
+    [b labelWithText:@"Incentive (Non-Cash)"];
+    [b textFieldForProperty:@selector(incentiveNonCash)];
     
     [b labelWithText:@"Comments"];
     [b textAreaForProperty:@selector(comments)];

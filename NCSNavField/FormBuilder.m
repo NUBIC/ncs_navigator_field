@@ -100,7 +100,7 @@
 }
 
 - (void) textAreaForProperty:(SEL)property {
-    TextArea* t = [[[TextArea alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, 100) value:[self objectValueForKey:property]] autorelease];
+    TextArea* t = [[[TextArea alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, 200) value:[self objectValueForKey:property]] autorelease];
     [t addChangeHandler:[[[ChangeHandler alloc] initWithObject:self.object field:property] autorelease]];
     [self.view addSubview:t];
     [self.cursor addNewLine];
