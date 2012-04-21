@@ -12,4 +12,6 @@
 
 - (NSString*) mainFieldworkPath;
 
+- (NSString *)backupFieldworkPath;
+
 @end
