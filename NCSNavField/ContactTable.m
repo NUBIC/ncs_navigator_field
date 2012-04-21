@@ -35,7 +35,12 @@
     [self addSection:[self emails] to:sections];
     [self addSection:[self contactDetails] to:sections];
     if (_contact.initiated) {
-        for (Event* e in contact.events) {
+        NSArray* sorted = [[contact.events allObjects] sortedArrayUsingComparator:^(id a, id b) {
+            NSDate *first = [(Event*)a startDate];
+            NSDate *second = [(Event*)b startDate];
+            return [first compare:second];
+        }];
+        for (Event* e in sorted) {
             [self addSection:[self event:e] to:sections];
         }
     }

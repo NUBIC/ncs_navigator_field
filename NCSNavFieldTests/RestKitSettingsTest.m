@@ -47,11 +47,11 @@
     Contact* c = [Contact object];
     c.typeId = [NSNumber numberWithInt:22];
     c.events = [NSSet setWithObject:e];
-    c.date = [Fixtures createDateFromString:@"2012-04-04 00:00"];
+    c.date = [Fixtures createDateFromString:@"2012-04-04"];
     c.startTime = [Fixtures createTimeFromString:@"10:45"];
     
     Fieldwork* f = [Fieldwork object];
-    f.retrievedDate = [Fixtures createDateFromString:@"2012-04-1 00:00"];
+    f.retrievedDate = [Fixtures createDateFromString:@"2012-04-1"];
     f.contacts = [NSSet setWithObject:c];
     return f;
 }

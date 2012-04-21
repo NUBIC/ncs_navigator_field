@@ -15,6 +15,6 @@
 
 - (NSArray*) generateSections;
 
-- (Event*)buildEvent:(NSString*)name;
+- (Event*) buildEvent:(NSString*)name withDate:(NSString*)date;
 
 @end

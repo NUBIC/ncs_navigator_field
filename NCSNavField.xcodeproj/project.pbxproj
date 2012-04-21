@@ -47,6 +47,8 @@
 		004FC7161486BFBC00A378DC /* PickerOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 004FC7151486BFBC00A378DC /* PickerOption.m */; };
 		005108EE148440C000732623 /* NUScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005108ED148440C000732623 /* NUScrollView.m */; };
 		00590AC81428F7D0008335EA /* ContactTableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590AC71428F7D0008335EA /* ContactTableTest.m */; };
+		006C26D71541BACB00D9B3B1 /* FieldworkSyncStepsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 006C26D61541BACB00D9B3B1 /* FieldworkSyncStepsTest.m */; };
+		006C26DB1541EF3200D9B3B1 /* BackupFieldworkStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 006C26DA1541EF3200D9B3B1 /* BackupFieldworkStep.m */; };
 		006C600B1434DF0D00F52CD8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 006C600A1434DF0D00F52CD8 /* README.md */; };
 		006D47FC148D94970035DC01 /* ChangeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D47FB148D94970035DC01 /* ChangeHandler.m */; };
 		006FDD8A148FD2E80001BADE /* TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 006FDD89148FD2E80001BADE /* TextField.m */; };
@@ -307,6 +309,10 @@
 		005779C514E435EF00964B87 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = x509v3.h; path = NUCas/Vendor/OpenSSL/Headers/openssl/x509v3.h; sourceTree = "<group>"; };
 		00590AC61428F7D0008335EA /* ContactTableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableTest.h; sourceTree = "<group>"; };
 		00590AC71428F7D0008335EA /* ContactTableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableTest.m; sourceTree = "<group>"; };
+		006C26D51541BACB00D9B3B1 /* FieldworkSyncStepsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; path = FieldworkSyncStepsTest.h; sourceTree = "<group>"; };
+		006C26D61541BACB00D9B3B1 /* FieldworkSyncStepsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkSyncStepsTest.m; sourceTree = "<group>"; };
+		006C26D91541EF3200D9B3B1 /* BackupFieldworkStep.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BackupFieldworkStep.h; sourceTree = "<group>"; };
+		006C26DA1541EF3200D9B3B1 /* BackupFieldworkStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackupFieldworkStep.m; sourceTree = "<group>"; };
 		006C600A1434DF0D00F52CD8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		006D47FA148D94970035DC01 /* ChangeHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeHandler.h; sourceTree = "<group>"; };
 		006D47FB148D94970035DC01 /* ChangeHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeHandler.m; sourceTree = "<group>"; };
@@ -511,6 +517,8 @@
 				00910BCE1535F13E00BC2820 /* InstrumentTest.m */,
 				00910BD01535F18900BC2820 /* DatabaseTest.h */,
 				00910BD11535F18900BC2820 /* DatabaseTest.m */,
+				006C26D51541BACB00D9B3B1 /* FieldworkSyncStepsTest.h */,
+				006C26D61541BACB00D9B3B1 /* FieldworkSyncStepsTest.m */,
 			);
 			name = Tests;
 			path = NCSNavFieldTests;
@@ -766,6 +774,8 @@
 				00860D261520EF3000FCCFCB /* TestFlightSettings.m */,
 				000D8E89152E9EE7006EE224 /* NSDate+Additions.h */,
 				000D8E8A152E9EE7006EE224 /* NSDate+Additions.m */,
+				006C26D91541EF3200D9B3B1 /* BackupFieldworkStep.h */,
+				006C26DA1541EF3200D9B3B1 /* BackupFieldworkStep.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1020,6 +1030,7 @@
 				000D8E77152CAC5B006EE224 /* TimePicker.m in Sources */,
 				000D8E8B152E9EE7006EE224 /* NSDate+Additions.m in Sources */,
 				0095430F153E62040018DAC3 /* InstrumentVC.m in Sources */,
+				006C26DB1541EF3200D9B3B1 /* BackupFieldworkStep.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1037,6 +1048,7 @@
 				00C25211151A63B500F4FE3B /* FieldworkTest.m in Sources */,
 				00910BCF1535F13E00BC2820 /* InstrumentTest.m in Sources */,
 				00910BD21535F18900BC2820 /* DatabaseTest.m in Sources */,
+				006C26D71541BACB00D9B3B1 /* FieldworkSyncStepsTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

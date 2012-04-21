@@ -34,7 +34,7 @@ Person *tom;
     
     c = [Fixtures createContactWithDate:[Fixtures createDateFromString:@"2010-12-08 09:30"]];
     c.person = tom;
-    [c addEventsObject:[self buildEvent:@"Birth"]];
+    [c addEventsObject:[self buildEvent:@"Birth" withDate:@"2010-09-17"]];
 }
 
 - (void)testSections {
@@ -77,7 +77,7 @@ Person *tom;
 }
 
 - (void)testPregnancyAndBirthInstruments {
-    [c addEventsObject:[self buildEvent:@"Pregnancy"]];
+    [c addEventsObject:[self buildEvent:@"Pregnancy" withDate:@"2010-10-17"]];
     c.initiated = YES;
     NSArray* sections = [self generateSections];
     Section* s4 = [sections objectAtIndex:4];
@@ -99,8 +99,9 @@ Person *tom;
     return [[[ContactTable alloc] initUsingContact:c] sections];
 }
 
-- (Event*) buildEvent:(NSString*)name {
+- (Event*) buildEvent:(NSString*)name withDate:(NSString*)date {    
     Event* e = [Fixtures createEventWithName:[NSString stringWithFormat:@"%@ Event", name]];
+    e.startDate = [Fixtures createDateFromString:date];
     [e addInstrumentsObject:[Fixtures createInstrumentWithName:[NSString stringWithFormat:@"%@ Instrument", name]]];
     return e;
 }
