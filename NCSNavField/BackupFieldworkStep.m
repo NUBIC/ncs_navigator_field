@@ -24,10 +24,12 @@
     NSString* main = [self mainFieldworkPath];
     NSString* backup = [self backupFieldworkPath];
 
-    BOOL result = [self.fm copyItemAtPath:main toPath:backup error:NULL];
-    
-    if (!result) {
-        [self.fm removeItemAtPath:backup error:NULL];
+    if (main && backup) {
+        BOOL result = [self.fm copyItemAtPath:main toPath:backup error:NULL];
+        
+        if (!result) {
+            [self.fm removeItemAtPath:backup error:NULL];
+        }
     }
 }
 
