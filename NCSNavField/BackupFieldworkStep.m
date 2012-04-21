@@ -12,7 +12,7 @@
 
 @synthesize fm = _fm;
 
-- (id) init {
+- (id)init {
     self = [super init];
     if (self) {
         _fm = [[NSFileManager defaultManager] retain];
@@ -20,7 +20,7 @@
     return self;
 }
 
-- (void) perform {
+- (void)perform {
     NSString* main = [self mainFieldworkPath];
     NSString* backup = [self backupFieldworkPath];
 
@@ -33,23 +33,30 @@
     }
 }
 
-- (BOOL) success {
+- (void)rollback {
+    NSString* backup = [self backupFieldworkPath];
+    if (backup) {
+        [self.fm removeItemAtPath:[self backupFieldworkPath] error:NULL];
+    }
+}
+
+- (BOOL)success {
     NSString* backup = [self backupFieldworkPath];
     return [self.fm fileExistsAtPath:backup];
 }
 
-- (NSString*) backupFieldworkFilename {
+- (NSString*)backupFieldworkFilename {
     NSDateFormatter *timeFmt = [[NSDateFormatter alloc] init];
     [timeFmt setDateFormat:@"yyyyMMddHHmmss"];
     [timeFmt setTimeZone:[NSTimeZone localTimeZone]];
     return [NSString stringWithFormat:@"sync-backup-%@.sqlite", [timeFmt stringFromDate:[NSDate date]]];
 }
 
-- (NSString*) mainFieldworkPath {
+- (NSString*)mainFieldworkPath {
     return [[NSBundle mainBundle] pathForResource:@"main" ofType:@"sqlite"];
 }
 
-- (NSString*) backupFieldworkPath {
+- (NSString*)backupFieldworkPath {
     return [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[self backupFieldworkFilename]];
 }
 

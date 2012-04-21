@@ -59,6 +59,16 @@ BackupFieldworkStep* bfs;
     STAssertFalse([bfs success], @"Should be unsuccessful");
 }
 
+- (void)testRollback {
+    [bfs perform];
+    STAssertNotNil([self backupFieldworkPath], @"Path should exist");
+    STAssertTrue([bfs success], @"Should be successful");
+    [bfs rollback];
+    STAssertNil([self backupFieldworkPath], @"Path should not exist");
+}
+
+#pragma mark - Helper Methods
+
 - (NSString*) mainFieldworkPath {
     return [[NSBundle mainBundle] pathForResource:@"main" ofType:@"sqlite"];
 }
