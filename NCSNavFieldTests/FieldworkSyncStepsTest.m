@@ -22,6 +22,8 @@
 
 @implementation FieldworkSyncStepsTest
 
+BackupFieldworkStep* bfs;
+
 - (void) setUp {
     NSString *filePath = [self mainFieldworkPath];
     if (!filePath) {
@@ -31,6 +33,8 @@
         filePath = [self mainFieldworkPath];
     }
     STAssertNotNil(filePath, @"Path should exist");
+    
+    bfs = [BackupFieldworkStep new];
 }
 
 - (void) tearDown {
@@ -40,12 +44,10 @@
 }
 
 - (void)testBackupFieldworkFilename {
-    BackupFieldworkStep* bfs = [BackupFieldworkStep new];
     STAssertEqualObjects([bfs backupFieldworkFilename], @"sync-backup-20120420160159.sqlite", @"Wrong backup filename");
 }
 
 - (void)testPerformBackup {
-    BackupFieldworkStep* bfs = [BackupFieldworkStep new];
     [bfs perform];
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"sync-backup-20120420160159" ofType:@"sqlite"];
     STAssertNotNil(filePath, @"Path should exist");
@@ -53,7 +55,6 @@
 }
 
 - (void)testPerformBackupUnsuccessfull {
-    BackupFieldworkStep* bfs = [BackupFieldworkStep new];
     [bfs perform];
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"sync-backup-20120420160159" ofType:@"sqlite"];
     NSError* error;

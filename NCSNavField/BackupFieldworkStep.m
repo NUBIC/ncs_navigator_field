@@ -1,5 +1,5 @@
 //
-//  BackupFieldworkSetStep.m
+//  BackupFieldworkStep.m
 //  NCSNavField
 //
 //  Created by John Dzak on 4/20/12.
