@@ -10,18 +10,23 @@
 
 @interface BackupFieldworkStep : NSObject {
     NSFileManager* _fm;
+    NSDate* _performedAt;
 }
 
 @property(nonatomic,retain) NSFileManager* fm;
 
-- (void) perform;
+@property(nonatomic,retain) NSDate* performedAt;
 
-- (BOOL) success;
+- (void)perform;
 
-- (NSString*) backupFieldworkPath;
+- (void)rollback;
 
-- (NSString*) mainFieldworkPath;
+- (BOOL)success;
 
-- (NSString*) backupFieldworkFilename;
+- (NSString*)backupFieldworkPath;
+
+- (NSString*)mainFieldworkPath;
+
+- (NSString*)backupFieldworkFilename;
 
 @end

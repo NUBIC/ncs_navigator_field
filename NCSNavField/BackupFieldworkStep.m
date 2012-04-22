@@ -11,6 +11,7 @@
 @implementation BackupFieldworkStep
 
 @synthesize fm = _fm;
+@synthesize performedAt = _performedAt;
 
 - (id)init {
     self = [super init];
@@ -21,6 +22,10 @@
 }
 
 - (void)perform {
+    if (!self.performedAt) {
+        self.performedAt = [NSDate date];
+    }
+    
     NSString* main = [self mainFieldworkPath];
     NSString* backup = [self backupFieldworkPath];
 
@@ -46,10 +51,14 @@
 }
 
 - (NSString*)backupFieldworkFilename {
-    NSDateFormatter *timeFmt = [[NSDateFormatter alloc] init];
-    [timeFmt setDateFormat:@"yyyyMMddHHmmss"];
-    [timeFmt setTimeZone:[NSTimeZone localTimeZone]];
-    return [NSString stringWithFormat:@"sync-backup-%@.sqlite", [timeFmt stringFromDate:[NSDate date]]];
+    NSString* name = NULL;
+    if (self.performedAt) {
+        NSDateFormatter *timeFmt = [[NSDateFormatter alloc] init];
+        [timeFmt setDateFormat:@"yyyyMMddHHmmss"];
+        [timeFmt setTimeZone:[NSTimeZone localTimeZone]];
+        name = [NSString stringWithFormat:@"sync-backup-%@.sqlite", [timeFmt stringFromDate:[NSDate date]]]; 
+    }
+    return name;
 }
 
 - (NSString*)mainFieldworkPath {

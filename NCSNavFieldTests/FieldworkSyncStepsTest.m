@@ -35,6 +35,7 @@ BackupFieldworkStep* bfs;
     STAssertNotNil(filePath, @"Path should exist");
     
     bfs = [BackupFieldworkStep new];
+    [bfs perform];
 }
 
 - (void) tearDown {
@@ -47,20 +48,17 @@ BackupFieldworkStep* bfs;
 }
 
 - (void)testPerformBackup {
-    [bfs perform];
     STAssertNotNil([self backupFieldworkPath], @"Path should exist");
     STAssertTrue([bfs success], @"Should be successful");
 }
 
 - (void)testPerformBackupUnsuccessfull {
-    [bfs perform];
     [[NSFileManager defaultManager] removeItemAtPath:[self backupFieldworkPath] error:NULL];
     STAssertNil([[NSBundle mainBundle] pathForResource:@"sync-backup-20120420160159" ofType:@"sqlite"] , @"Path should not exist");
     STAssertFalse([bfs success], @"Should be unsuccessful");
 }
 
 - (void)testRollback {
-    [bfs perform];
     STAssertNotNil([self backupFieldworkPath], @"Path should exist");
     STAssertTrue([bfs success], @"Should be successful");
     [bfs rollback];
