@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import "FieldworkSyncStepsTest.h"
+#import "BackupFieldworkStepTest.h"
 #import "BackupFieldworkStep.h"
 
 @implementation NSDate (Stub)
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation FieldworkSyncStepsTest
+@implementation BackupFieldworkStepTest
 
 BackupFieldworkStep* bfs;
 

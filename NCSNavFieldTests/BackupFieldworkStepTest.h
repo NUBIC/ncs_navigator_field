@@ -8,7 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface FieldworkSyncStepsTest : SenTestCase
+@interface BackupFieldworkStepTest : SenTestCase
 
 - (NSString*) mainFieldworkPath;
 
