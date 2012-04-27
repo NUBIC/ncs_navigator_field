@@ -23,12 +23,16 @@
 
 @implementation PushFieldworkStepTest
 
-- (void)testPush {
-    CasServiceTicket* ticket = [CasServiceTicket new];
-    PushFieldworkStep* step = [[PushFieldworkStep alloc] initWithServiceTicket:ticket];
-    [step perform];
-    STAssertTrue([step isSuccessful], @"Should be true");
-}
+// iOS Cocoa HTTP server implementation
+// http://stackoverflow.com/questions/5358493/mini-server-implementation-in-objective-c
+
+
+//- (void)testPush {
+//    CasServiceTicket* ticket = [CasServiceTicket new];
+//    PushFieldworkStep* step = [[PushFieldworkStep alloc] initWithServiceTicket:ticket];
+//    [step perform];
+//    STAssertTrue([step isSuccessful], @"Should be true");
+//}
 
 // TODO: Add error handling
 // TODO: Test against server

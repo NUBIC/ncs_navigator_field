@@ -1,16 +1,14 @@
 //
-//  PushFieldworkStep.h
+//  RecieveFieldworkStep.h
 //  NCSNavField
 //
-//  Created by John Dzak on 4/24/12.
+//  Created by John Dzak on 4/27/12.
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@class CasProxyTicket;
-
-@interface PushFieldworkStep : NSObject<RKObjectLoaderDelegate> {
+@interface RetrieveFieldworkStep : NSObject<RKObjectLoaderDelegate> {
     CasServiceTicket* _ticket;
     NSString* _error;
     RKResponse* _response;
@@ -28,11 +26,9 @@
 
 - (BOOL) isSuccessful;
 
-- (void)pushContacts:(CasServiceTicket*)serviceTicket;
+- (void)loadDataWithProxyTicket:(CasProxyTicket*)ticket;
 
-- (void)putDataWithProxyTicket:(CasProxyTicket*)ticket;
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error;
+- (void)retrieveContacts:(CasServiceTicket*)serviceTicket;
 
 - (void)showErrorMessage:(NSString *)message;
 

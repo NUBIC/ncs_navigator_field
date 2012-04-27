@@ -56,6 +56,8 @@
 		007C1F4114FBFACA0020DF30 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 007C1F4014FBFACA0020DF30 /* Podfile */; };
 		00810AB81486D1AE0098C0D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF914112E5E0097A878 /* CoreData.framework */; };
 		00810B5F14896B070098C0D0 /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00810B5E14896B070098C0D0 /* DatePicker.m */; };
+		00816CB2154B3F830054C918 /* RetrieveFieldworkStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CB1154B3F830054C918 /* RetrieveFieldworkStep.m */; };
+		00816CB6154B49450054C918 /* FieldworkSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CB5154B49450054C918 /* FieldworkSynchronizer.m */; };
 		00860D1F1520D6C900FCCFCB /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00860D1E1520D6C900FCCFCB /* libTestFlight.a */; };
 		00860D271520EF3000FCCFCB /* TestFlightSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 00860D261520EF3000FCCFCB /* TestFlightSettings.m */; };
 		008C5711149696DD005EC22E /* TextArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 008C5710149696DD005EC22E /* TextArea.m */; };
@@ -311,7 +313,7 @@
 		005779C514E435EF00964B87 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = x509v3.h; path = NUCas/Vendor/OpenSSL/Headers/openssl/x509v3.h; sourceTree = "<group>"; };
 		00590AC61428F7D0008335EA /* ContactTableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableTest.h; sourceTree = "<group>"; };
 		00590AC71428F7D0008335EA /* ContactTableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableTest.m; sourceTree = "<group>"; };
-		006C26D51541BACB00D9B3B1 /* BackupFieldworkStepTest.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BackupFieldworkStepTest.h; sourceTree = "<group>"; };
+		006C26D51541BACB00D9B3B1 /* BackupFieldworkStepTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackupFieldworkStepTest.h; sourceTree = "<group>"; };
 		006C26D61541BACB00D9B3B1 /* BackupFieldworkStepTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackupFieldworkStepTest.m; sourceTree = "<group>"; };
 		006C26D91541EF3200D9B3B1 /* BackupFieldworkStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackupFieldworkStep.h; sourceTree = "<group>"; };
 		006C26DA1541EF3200D9B3B1 /* BackupFieldworkStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackupFieldworkStep.m; sourceTree = "<group>"; };
@@ -326,6 +328,10 @@
 		007C1F4014FBFACA0020DF30 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		00810B5D14896B070098C0D0 /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
 		00810B5E14896B070098C0D0 /* DatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePicker.m; sourceTree = "<group>"; };
+		00816CB0154B3F830054C918 /* RetrieveFieldworkStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetrieveFieldworkStep.h; sourceTree = "<group>"; };
+		00816CB1154B3F830054C918 /* RetrieveFieldworkStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetrieveFieldworkStep.m; sourceTree = "<group>"; };
+		00816CB4154B49450054C918 /* FieldworkSynchronizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkSynchronizer.h; sourceTree = "<group>"; };
+		00816CB5154B49450054C918 /* FieldworkSynchronizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkSynchronizer.m; sourceTree = "<group>"; };
 		00860D1E1520D6C900FCCFCB /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		00860D221520D6F000FCCFCB /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		00860D251520EF3000FCCFCB /* TestFlightSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlightSettings.h; sourceTree = "<group>"; };
@@ -494,6 +500,8 @@
 				006EBEE6141157BA003D69CF /* Models */,
 				006EBEE5141157B6003D69CF /* Controllers */,
 				006EBEE414115783003D69CF /* Delegates */,
+				00816CB0154B3F830054C918 /* RetrieveFieldworkStep.h */,
+				00816CB1154B3F830054C918 /* RetrieveFieldworkStep.m */,
 			);
 			name = Classes;
 			path = NCSNavField;
@@ -786,6 +794,8 @@
 				006C26DA1541EF3200D9B3B1 /* BackupFieldworkStep.m */,
 				00D1BAE9154775CB000097E7 /* PushFieldworkStep.h */,
 				00D1BAEA154775CB000097E7 /* PushFieldworkStep.m */,
+				00816CB4154B49450054C918 /* FieldworkSynchronizer.h */,
+				00816CB5154B49450054C918 /* FieldworkSynchronizer.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1042,6 +1052,8 @@
 				0095430F153E62040018DAC3 /* InstrumentVC.m in Sources */,
 				006C26DB1541EF3200D9B3B1 /* BackupFieldworkStep.m in Sources */,
 				00D1BAEB154775CB000097E7 /* PushFieldworkStep.m in Sources */,
+				00816CB2154B3F830054C918 /* RetrieveFieldworkStep.m in Sources */,
+				00816CB6154B49450054C918 /* FieldworkSynchronizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

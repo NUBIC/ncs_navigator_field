@@ -45,7 +45,7 @@
     }
 }
 
-- (BOOL)success {
+- (BOOL)isSuccessful {
     NSString* backup = [self backupFieldworkPath];
     return [self.fm fileExistsAtPath:backup];
 }

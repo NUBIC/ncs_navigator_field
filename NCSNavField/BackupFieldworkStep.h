@@ -21,7 +21,7 @@
 
 - (void)rollback;
 
-- (BOOL)success;
+- (BOOL)isSuccessful;
 
 - (NSString*)backupFieldworkPath;
 

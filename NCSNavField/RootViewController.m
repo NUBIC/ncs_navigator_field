@@ -290,171 +290,24 @@
     // http://stackoverflow.com/questions/5685331/run-mbprogresshud-in-another-thread
     [[NSRunLoop currentRunLoop] runUntilDate: [NSDate distantPast]];
     
-    self.serviceTicket = serviceTicket;
-    [self pushContacts:serviceTicket];
-    [self deleteButtonWasPressed];
-    [self retrieveContacts:serviceTicket];
-}
-
-- (void)showErrorMessage:(NSString *)message {
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-    [alert show];
-
-    NSLog(@"%@", message);
-}
-
-- (void)pushContacts:(CasServiceTicket*)serviceTicket {
-    [serviceTicket present];
-    if (serviceTicket.ok) {
-        CasConfiguration* conf = [CasConfiguration new];
-        CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
-        NSString* coreURL = [ApplicationSettings instance].coreURL;
-        
-        CasProxyTicket* t = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:serviceTicket.pgt];
-        [t reify];
-        if (!t.error) {
-            NSLog(@"Proxy ticket successfully obtained: %@", t.proxyTicket);
-            [self putDataWithProxyTicket:t];
-        } else {
-            NSString* msg = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", t.message];
-            [self showErrorMessage:msg];
-        }
-    } else {
-        NSString* msg = [NSString stringWithFormat:@"Presenting service ticket failed: %@", [serviceTicket message]];
-        [self showErrorMessage:msg];
-    }
-}
-
-- (void)putDataWithProxyTicket:(CasProxyTicket*)ticket {
-    // Load the object model via RestKit	
-    RKObjectManager* objectManager = [RKObjectManager sharedManager];
-    [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
+    FieldworkSynchronizer* sync = [[FieldworkSynchronizer alloc] initWithServiceTicket:serviceTicket];
     
-    NSArray* all = [Fieldwork findAllSortedBy:@"retrievedDate" ascending:NO];
-    if ([all count] > 0) {
-        Fieldwork* f = [all objectAtIndex:0];
-        RKObjectLoader* loader = [objectManager objectLoaderForObject:f method:RKRequestMethodPUT delegate:self];
-        [loader sendSynchronously];
-    } else {
-        [self retrieveContacts:self.serviceTicket];
-    }
-}
-
-- (void)retrieveContacts:(CasServiceTicket*)serviceTicket {
-    if (serviceTicket.pgt) {
-        CasConfiguration* conf = [CasConfiguration new];
-        CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
-        NSString* coreURL = [ApplicationSettings instance].coreURL;
-        
-        CasProxyTicket* t = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:serviceTicket.pgt];
-        [t reify];
-        if (!t.error) {
-            NSLog(@"Proxy ticket successfully obtained: %@", t.proxyTicket);
-            [self loadDataWithProxyTicket:t];
-        } else {
-            NSString* msg = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", t.message];
-            [self showErrorMessage:msg];
-        }
-    } else {
-        [serviceTicket present];
-        if (serviceTicket.ok) {
-            CasConfiguration* conf = [CasConfiguration new];
-            CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
-            NSString* coreURL = [ApplicationSettings instance].coreURL;
-            
-            CasProxyTicket* t = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:serviceTicket.pgt];
-            [t reify];
-            if (!t.error) {
-                NSLog(@"Proxy ticket successfully obtained: %@", t.proxyTicket);
-                [self loadDataWithProxyTicket:t];
-            } else {
-                NSString* msg = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", t.message];
-                [self showErrorMessage:msg];
-            }
-        } else {
-            NSString* msg = [NSString stringWithFormat:@"Presenting service ticket failed: %@", [serviceTicket message]];
-            [self showErrorMessage:msg];
-        }
-    }
-}
-
-- (void)loadDataWithProxyTicket:(CasProxyTicket*)ticket {
-    // Load the object model via RestKit	
-    RKObjectManager* objectManager = [RKObjectManager sharedManager];
-    [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
-    
-    NSDate* today = [NSDate date];
-    NSTimeInterval secondsPerWeek = 60 * 60 * 24 * 7;
-    NSDate* inOneWeek = [today dateByAddingTimeInterval:secondsPerWeek];
-    NSString* clientId = [ApplicationSettings instance].clientId;
-    
-    NSDateFormatter* rfc3339 = [[[NSDateFormatter alloc] init] autorelease];
-    [rfc3339 setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease]];
-    [rfc3339 setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
-    [rfc3339 setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-    NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@&client_id=%@", [rfc3339 stringFromDate:today], [rfc3339 stringFromDate:inOneWeek], clientId];
-    
-    RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
-    loader.method = RKRequestMethodPOST;
-        
-    [loader sendSynchronously];
-}
-
-
-#pragma RestKit
-- (void)objectLoader:(RKObjectLoader *)loader willMapData:(inout id *)mappableData {
-    SBJsonWriter *jsonWriter = [SBJsonWriter new];
-    
-    NSMutableArray* modifiedTemplates = [NSMutableArray new];
-    for (NSDictionary* templ in [*mappableData valueForKey:@"instrument_templates"]) {
-        NSDictionary* json = [templ valueForKey:@"survey"];
-        if (json) {
-            NSString *jsonString = [jsonWriter stringWithObject:json];
-            NSMutableDictionary* mod = [templ mutableCopy];
-            [mod setObject:jsonString forKey:@"representation"];
-            [modifiedTemplates addObject:mod];
-        }
-    }
-    [*mappableData setObject:modifiedTemplates forKey:@"instrument_templates"];    
-    
-    NSLog(@"Mapping Instrument Template: %@", *mappableData);
-}
-
-//- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response {
-//    if (request.method == RKRequestMethodPUT) {
-//        [self deleteButtonWasPressed];
-//        [self retrieveContacts:self.serviceTicket];
-//    }
-//}
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-	NSLog(@"RootViewController:didLoadObjects -- %@", objects);
-    
-    Fieldwork* w = [Fieldwork object];
-    w.uri = [[objectLoader response] location];
-    w.retrievedDate = [NSDate date];
-    w.participants = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[Participant entity] name ]]]];
-    w.contacts = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[Contact entity] name ]]]];    
-    w.instrumentTemplates = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[InstrumentTemplate entity] name ]]]];
-    
-    NSError *error = nil;    
-    if (![[Fieldwork managedObjectContext] save:&error]) {
-        NSLog(@"Error saving fieldwork location");
-    }
+    [sync perform];
     
     [self loadObjectsFromDataStore];
     
     self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
     
 	[self.tableView reloadData];
+
+//    
+//    self.serviceTicket = serviceTicket;
+//    [self pushContacts:serviceTicket];
+//    [self deleteButtonWasPressed];
+//    [self retrieveContacts:serviceTicket];
 }
 
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    // TODO: More user friendly error message (and show details button) and log error remotely
-	UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-	[alert show];
-	NSLog(@"Hit error: %@", error);
-}
+#pragma RestKit
 
 - (void)loadObjectsFromDataStore {
 	NSFetchRequest* request = [Contact fetchRequest];
