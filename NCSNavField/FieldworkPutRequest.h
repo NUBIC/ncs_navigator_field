@@ -10,7 +10,7 @@
 
 @class CasProxyTicket;
 
-@interface PushFieldworkStep : NSObject<RKObjectLoaderDelegate> {
+@interface FieldworkPutRequest : NSObject<RKObjectLoaderDelegate> {
     CasServiceTicket* _ticket;
     NSString* _error;
     RKResponse* _response;
@@ -24,7 +24,9 @@
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket;
 
-- (void) perform;
+- (BOOL) fieldworkExists;
+
+- (BOOL) send;
 
 - (BOOL) isSuccessful;
 

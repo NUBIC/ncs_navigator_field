@@ -31,6 +31,8 @@
 #import "NUResponseSet.h"
 #import "Fieldwork.h"
 #import "SBJSON.h"
+#import "FieldworkSynchronizeOperation.h"
+#import "ApplicationPersistentStore.h"
 
 @interface RootViewController () 
     @property(nonatomic,retain) NSArray* contacts;
@@ -270,9 +272,8 @@
 }
 
 - (void)purgeDataStore {
-    RKObjectManager* objectManager = [RKObjectManager sharedManager];
-    RKManagedObjectStore* objectStore = objectManager.objectStore;
-    [objectStore deletePersistantStore];
+    ApplicationPersistentStore* s = [ApplicationPersistentStore instance];
+    [s remove];
 }
 
 #pragma mark - Cas Login Delegate
@@ -290,7 +291,7 @@
     // http://stackoverflow.com/questions/5685331/run-mbprogresshud-in-another-thread
     [[NSRunLoop currentRunLoop] runUntilDate: [NSDate distantPast]];
     
-    FieldworkSynchronizer* sync = [[FieldworkSynchronizer alloc] initWithServiceTicket:serviceTicket];
+    FieldworkSynchronizeOperation* sync = [[FieldworkSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
     
     [sync perform];
     

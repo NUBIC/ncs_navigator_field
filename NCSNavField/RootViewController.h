@@ -17,7 +17,7 @@
 @class CasProxyTicket;
 @class SyncActivityIndicator;
 
-@interface RootViewController : SimpleTableController<RKObjectLoaderDelegate,UINavigationControllerDelegate, SimpleTableRowDelegate, CasLoginDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate> {
+@interface RootViewController : SimpleTableController<UINavigationControllerDelegate, SimpleTableRowDelegate, CasLoginDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate> {
     Instrument* _administeredInstrument;
     RKReachabilityObserver* _reachability;
     SyncActivityIndicator* _syncIndicator;
@@ -33,9 +33,6 @@
 - (void)purgeDataStore;
 - (void)loadSurveyor:(Instrument*)instrument;
 - (void)didSelectRow:(Row*)row;
-- (void)pushContacts:(CasServiceTicket*)serviceTicket;
-- (void)putDataWithProxyTicket:(CasProxyTicket*)ticket;
-- (void)loadDataWithProxyTicket:(CasProxyTicket*)ticket;
 - (void)loadObjectsFromDataStore;
 - (void)syncButtonWasPressed;
 - (void)confirmSync;
@@ -44,6 +41,5 @@
 - (void)unloadSurveyor:(Instrument*)instrument responseSet:(NUResponseSet*)rs;
 - (void)syncContacts:(CasServiceTicket*)serviceTicket;
 - (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket;
-- (void)retrieveContacts:(CasServiceTicket*)serviceTicket;
 
 @end

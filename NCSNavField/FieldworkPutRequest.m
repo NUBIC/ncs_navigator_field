@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import "PushFieldworkStep.h"
+#import "FieldworkPutRequest.h"
 #import "ApplicationSettings.h"
 #import "Fieldwork.h"
 #import "RestKit.h"
 
-@implementation PushFieldworkStep
+@implementation FieldworkPutRequest
 
 @synthesize ticket = _ticket;
 
@@ -27,8 +27,17 @@
     return self;
 }
 
-- (void) perform {
+- (BOOL) send {
+    if (![self fieldworkExists]) {
+        return true;
+    }
     [self pushContacts:self.ticket];
+    return [self isSuccessful];
+}
+
+- (BOOL) fieldworkExists {
+    NSArray* all = [Fieldwork findAllSortedBy:@"retrievedDate" ascending:NO];
+    return [all count] > 0;
 }
 
 - (BOOL) isSuccessful {

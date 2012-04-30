@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FieldworkSynchronizer : NSObject {
+@interface FieldworkSynchronizeOperation : NSObject {
     CasServiceTicket* _ticket;
 }
 
@@ -16,6 +16,10 @@
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket;
 
-- (void) perform;
+- (BOOL) perform;
+
+- (BOOL) submit;
+
+- (BOOL)recieve;
 
 @end

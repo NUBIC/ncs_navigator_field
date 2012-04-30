@@ -6,14 +6,14 @@
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import "RetrieveFieldworkStep.h"
+#import "FieldworkStepPostRequest.h"
 #import "ApplicationSettings.h"
 #import "Fieldwork.h"
 #import "Participant.h"
 #import "Contact.h"
 #import "InstrumentTemplate.h"
 
-@implementation RetrieveFieldworkStep
+@implementation FieldworkStepPostRequest
 
 @synthesize ticket = _ticket;
 
@@ -29,8 +29,9 @@
     return self;
 }
 
-- (void) perform {
+- (BOOL) send {
     [self retrieveContacts:self.ticket];
+    return [self isSuccessful];
 }
 
 - (BOOL) isSuccessful {
@@ -120,6 +121,11 @@
 //    
 //	[self.tableView reloadData];
 }
+
+- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
+    self.error = [NSString stringWithFormat:@"Object loader error while pushing fieldwork.\n%@", [error localizedDescription]];
+}
+
 
 - (void)showErrorMessage:(NSString *)message {
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];

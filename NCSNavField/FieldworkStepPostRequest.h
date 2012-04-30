@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RetrieveFieldworkStep : NSObject<RKObjectLoaderDelegate> {
+@interface FieldworkStepPostRequest : NSObject<RKObjectLoaderDelegate> {
     CasServiceTicket* _ticket;
     NSString* _error;
     RKResponse* _response;
@@ -22,7 +22,7 @@
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket;
 
-- (void) perform;
+- (BOOL) send;
 
 - (BOOL) isSuccessful;
 

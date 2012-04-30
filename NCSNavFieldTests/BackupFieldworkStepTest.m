@@ -7,7 +7,7 @@
 //
 
 #import "BackupFieldworkStepTest.h"
-#import "BackupFieldworkStep.h"
+#import "ApplicationPersistentStore.h"
 
 @implementation NSDate (Stub)
 
@@ -22,7 +22,8 @@
 
 @implementation BackupFieldworkStepTest
 
-BackupFieldworkStep* bfs;
+ApplicationPersistentStore* store;
+ApplicationPersistentStoreBackup* backup;
 
 - (void) setUp {
     NSString *filePath = [self mainFieldworkPath];
@@ -34,8 +35,8 @@ BackupFieldworkStep* bfs;
     }
     STAssertNotNil(filePath, @"Path should exist");
     
-    bfs = [BackupFieldworkStep new];
-    [bfs perform];
+    store = [ApplicationPersistentStore instance];
+    backup = [store backup];
 }
 
 - (void) tearDown {
@@ -44,24 +45,24 @@ BackupFieldworkStep* bfs;
 }
 
 - (void)testBackupFieldworkFilename {
-    STAssertEqualObjects([bfs backupFieldworkFilename], @"sync-backup-20120420160159.sqlite", @"Wrong backup filename");
+    STAssertEqualObjects([store backupFieldworkFilename], @"sync-backup-20120420160159.sqlite", @"Wrong backup filename");
 }
 
 - (void)testPerformBackup {
     STAssertNotNil([self backupFieldworkPath], @"Path should exist");
-    STAssertTrue([bfs success], @"Should be successful");
+    STAssertTrue([store success], @"Should be successful");
 }
 
 - (void)testPerformBackupUnsuccessfull {
     [[NSFileManager defaultManager] removeItemAtPath:[self backupFieldworkPath] error:NULL];
     STAssertNil([[NSBundle mainBundle] pathForResource:@"sync-backup-20120420160159" ofType:@"sqlite"] , @"Path should not exist");
-    STAssertFalse([bfs success], @"Should be unsuccessful");
+    STAssertFalse([store success], @"Should be unsuccessful");
 }
 
 - (void)testRollback {
     STAssertNotNil([self backupFieldworkPath], @"Path should exist");
-    STAssertTrue([bfs success], @"Should be successful");
-    [bfs rollback];
+    STAssertTrue([store success], @"Should be successful");
+    [store rollback];
     STAssertNil([self backupFieldworkPath], @"Path should not exist");
 }
 
