@@ -12,6 +12,9 @@
     @private
     NSString* _coreURL;
     NSString* _clientId;
+    NSString* _casServerURL;
+    NSString* _pgtReceiveURL;
+    NSString* _pgtRetrieveURL;
 }
 
 #pragma mark properties
@@ -19,6 +22,12 @@
 @property(nonatomic,retain) NSString* coreURL;
 
 @property(nonatomic,retain) NSString* clientId;
+
+@property(nonatomic,retain) NSString* casServerURL;
+
+@property(nonatomic,retain) NSString* pgtReceiveURL;
+
+@property(nonatomic,retain) NSString* pgtRetrieveURL;
 
 
 #pragma Methods
@@ -32,5 +41,13 @@
 - (NSString*) retreiveClientId;
 
 - (NSString*) retreiveCoreURL;
+
+- (NSString*) casServerURL;
+
+- (NSString*) pgtReceiveURL;
+
+- (NSString*) pgtRetrieveURL;
+
++ (CasConfiguration*) casConfiguration;
 
 @end

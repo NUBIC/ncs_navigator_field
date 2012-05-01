@@ -41,7 +41,7 @@
 
 - (void)retrieveContacts:(CasServiceTicket*)serviceTicket {
     if (serviceTicket.pgt) {
-        CasConfiguration* conf = [CasConfiguration new];
+        CasConfiguration* conf = [ApplicationSettings casConfiguration];
         CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
         NSString* coreURL = [ApplicationSettings instance].coreURL;
         
@@ -58,7 +58,7 @@
     } else {
         [serviceTicket present];
         if (serviceTicket.ok) {
-            CasConfiguration* conf = [CasConfiguration new];
+            CasConfiguration* conf = [ApplicationSettings casConfiguration];
             CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
             NSString* coreURL = [ApplicationSettings instance].coreURL;
             
