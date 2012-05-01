@@ -8,6 +8,7 @@
 
 #import "BackupFieldworkStepTest.h"
 #import "ApplicationPersistentStore.h"
+#import "ApplicationPersistentStoreBackup.h"
 
 @implementation NSDate (Stub)
 
@@ -26,6 +27,9 @@ ApplicationPersistentStore* store;
 ApplicationPersistentStoreBackup* backup;
 
 - (void) setUp {
+    NSFileManager* fm = [NSFileManager defaultManager];
+    [fm removeItemAtPath:[self backupFieldworkPath] error:NULL];
+
     NSString *filePath = [self mainFieldworkPath];
     if (!filePath) {
         filePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"main.sqlite"];
@@ -45,25 +49,19 @@ ApplicationPersistentStoreBackup* backup;
 }
 
 - (void)testBackupFieldworkFilename {
-    STAssertEqualObjects([store backupFieldworkFilename], @"sync-backup-20120420160159.sqlite", @"Wrong backup filename");
+    ApplicationPersistentStoreBackup* store = 
+        [ApplicationPersistentStoreBackup new];
+    STAssertEqualObjects([store generateBackupFilename], @"sync-backup-20120420160159.sqlite", @"Wrong backup filename");
 }
 
 - (void)testPerformBackup {
-    STAssertNotNil([self backupFieldworkPath], @"Path should exist");
-    STAssertTrue([store success], @"Should be successful");
-}
-
-- (void)testPerformBackupUnsuccessfull {
-    [[NSFileManager defaultManager] removeItemAtPath:[self backupFieldworkPath] error:NULL];
-    STAssertNil([[NSBundle mainBundle] pathForResource:@"sync-backup-20120420160159" ofType:@"sqlite"] , @"Path should not exist");
-    STAssertFalse([store success], @"Should be unsuccessful");
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[backup path]], @"Should be successful");
 }
 
 - (void)testRollback {
-    STAssertNotNil([self backupFieldworkPath], @"Path should exist");
-    STAssertTrue([store success], @"Should be successful");
-    [store rollback];
-    STAssertNil([self backupFieldworkPath], @"Path should not exist");
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[backup path]], @"Should be successful");
+    [backup remove];
+    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[backup path]], @"Should be successful");
 }
 
 #pragma mark - Helper Methods

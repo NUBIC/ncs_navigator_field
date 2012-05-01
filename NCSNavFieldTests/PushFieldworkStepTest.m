@@ -9,7 +9,7 @@
 #import "PushFieldworkStepTest.h"
 #import "CasServiceTicket.h"
 #import "RestKit.h"
-#import "PushFieldworkStep.h"
+//#import "PutFieldwork.h"
 
 @implementation RKResponse(Stub)
 - (BOOL)isSuccessful { return true; }
