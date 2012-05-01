@@ -13,6 +13,7 @@ NSString* CORE_URL = @"navigator.core.url";
 NSString* CAS_SERVER_URL = @"cas.server.url";
 NSString* PGT_RECEIVE_URL = @"pgt.receive.url";
 NSString* PGT_RETRIEVE_URL = @"pgt.retrieve.url";
+NSString* PURGE_FIELDWORK_BUTTON = @"purge.fieldwork.button";
 
 @implementation ApplicationSettings
 
@@ -21,6 +22,7 @@ NSString* PGT_RETRIEVE_URL = @"pgt.retrieve.url";
 @synthesize casServerURL=_casServerURL;
 @synthesize pgtReceiveURL=_pgtReceiveURL;
 @synthesize pgtRetrieveURL=_pgtRetrieveURL;
+@synthesize purgeFieldworkButton=_purgeFieldworkButton;
 
 static ApplicationSettings* instance;
 
@@ -32,6 +34,7 @@ static ApplicationSettings* instance;
         _casServerURL = [[self casServerURL] retain];
         _pgtReceiveURL = [[self pgtReceiveURL] retain];
         _pgtRetrieveURL = [[self pgtRetrieveURL] retain];
+        _purgeFieldworkButton = [self isPurgeFieldworkButton];
     }
     
     return self;
@@ -54,6 +57,7 @@ static ApplicationSettings* instance;
     self.casServerURL = [self casServerURL];
     self.pgtReceiveURL = [self pgtReceiveURL];
     self.pgtRetrieveURL = [self pgtRetrieveURL];
+    self.purgeFieldworkButton = [self purgeFieldworkButton];
 }
 
 - (NSString*) retreiveClientId {
@@ -82,6 +86,10 @@ static ApplicationSettings* instance;
 
 - (NSString*) pgtRetrieveURL {
     return [[NSUserDefaults standardUserDefaults] stringForKey:PGT_RETRIEVE_URL];
+}
+
+- (BOOL) isPurgeFieldworkButton {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:PURGE_FIELDWORK_BUTTON];
 }
 
 + (CasConfiguration*) casConfiguration {

@@ -15,6 +15,7 @@
     NSString* _casServerURL;
     NSString* _pgtReceiveURL;
     NSString* _pgtRetrieveURL;
+    BOOL _purgeFieldworkButton;
 }
 
 #pragma mark properties
@@ -28,6 +29,8 @@
 @property(nonatomic,retain) NSString* pgtReceiveURL;
 
 @property(nonatomic,retain) NSString* pgtRetrieveURL;
+
+@property(nonatomic) BOOL purgeFieldworkButton;
 
 
 #pragma Methods
@@ -49,5 +52,7 @@
 - (NSString*) pgtRetrieveURL;
 
 + (CasConfiguration*) casConfiguration;
+
+- (BOOL) isPurgeFieldworkButton;
 
 @end

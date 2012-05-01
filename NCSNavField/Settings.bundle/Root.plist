@@ -58,6 +58,22 @@
 			<key>Key</key>
 			<string>pgt.retrieve.url</string>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Debug</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Purge Fieldwork Button</string>
+			<key>Key</key>
+			<string>purge.fieldwork.button</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>
