@@ -48,17 +48,17 @@ ApplicationPersistentStoreBackup* backup;
     [dfm removeItemAtPath:[self backupFieldworkPath] error:NULL];
 }
 
-- (void)testBackupFieldworkFilename {
+- (void)testGenerateBackupFilename {
     ApplicationPersistentStoreBackup* store = 
         [ApplicationPersistentStoreBackup new];
     STAssertEqualObjects([store generateBackupFilename], @"sync-backup-20120420160159.sqlite", @"Wrong backup filename");
 }
 
-- (void)testPerformBackup {
+- (void)testBackup {
     STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[backup path]], @"Should be successful");
 }
 
-- (void)testRollback {
+- (void)testRemove {
     STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[backup path]], @"Should be successful");
     [backup remove];
     STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[backup path]], @"Should be successful");
