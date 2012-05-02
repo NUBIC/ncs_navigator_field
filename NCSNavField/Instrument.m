@@ -34,7 +34,7 @@
     
     NUResponseSet* rs = NULL;
     if (array != nil) {
-        NSLog(@"fetched response set: %@", array);
+        NSLog(@"fetched response set");
         rs = [[array objectEnumerator] nextObject];
     } else {
         NSLog(@"Error during fetch");                

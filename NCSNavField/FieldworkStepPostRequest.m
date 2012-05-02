@@ -101,7 +101,7 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-	NSLog(@"RootViewController:didLoadObjects -- %@", objects);
+//	NSLog(@"RootViewController:didLoadObjects -- %@", objects);
     
     Fieldwork* w = [Fieldwork object];
     w.uri = [[objectLoader response] location];

@@ -197,7 +197,7 @@
     if (![moc save:&error]) {
         NSLog(@"Error saving initiated contact");
     }
-    NSLog(@"Initialiated contact: %@", self.contact);
+    NSLog(@"Initialiated contact: %@", self.contact.contactId);
 }
 
 - (void) rollbackTransaction {
@@ -205,7 +205,7 @@
     NSManagedObjectContext* moc = [self.contact managedObjectContext];
     NSUndoManager* undoManager = [moc undoManager];
     [undoManager undo];
-    NSLog(@"Rolledback contact: %@", self.contact);
+    NSLog(@"Rolledback contact: %@", self.contact.contactId);
 }
 
 @end

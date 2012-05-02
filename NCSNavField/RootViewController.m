@@ -132,7 +132,7 @@
             {
                 NSLog(@"Error during fetch");                
             } else {
-                NSLog(@"fetched response set: %@", array);
+                NSLog(@"fetched response set");
                 rs = [[array objectEnumerator] nextObject];
             }
         }
