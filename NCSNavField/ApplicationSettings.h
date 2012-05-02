@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const SettingsDidChangeNotification;
+
 @interface ApplicationSettings : NSObject {
     @private
     NSString* _coreURL;

@@ -8,12 +8,13 @@
 
 #import "ApplicationSettings.h"
 
-NSString* CLIENT_ID = @"client.id";
-NSString* CORE_URL = @"navigator.core.url";
-NSString* CAS_SERVER_URL = @"cas.server.url";
-NSString* PGT_RECEIVE_URL = @"pgt.receive.url";
-NSString* PGT_RETRIEVE_URL = @"pgt.retrieve.url";
-NSString* PURGE_FIELDWORK_BUTTON = @"purge.fieldwork.button";
+NSString* const SettingsDidChangeNotification = @"ApplicationSettingsChanged";
+NSString* const CLIENT_ID = @"client.id";
+NSString* const CORE_URL = @"navigator.core.url";
+NSString* const CAS_SERVER_URL = @"cas.server.url";
+NSString* const PGT_RECEIVE_URL = @"pgt.receive.url";
+NSString* const PGT_RETRIEVE_URL = @"pgt.retrieve.url";
+NSString* const PURGE_FIELDWORK_BUTTON = @"purge.fieldwork.button";
 
 @implementation ApplicationSettings
 
@@ -58,6 +59,8 @@ static ApplicationSettings* instance;
     self.pgtReceiveURL = [self pgtReceiveURL];
     self.pgtRetrieveURL = [self pgtRetrieveURL];
     self.purgeFieldworkButton = [self purgeFieldworkButton];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:self];
 }
 
 - (NSString*) retreiveClientId {

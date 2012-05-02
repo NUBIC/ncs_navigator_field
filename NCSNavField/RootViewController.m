@@ -61,6 +61,7 @@
                                                  selector:@selector(reachabilityChanged:)
                                                      name:RKReachabilityDidChangeNotification
                                                    object:self.reachability];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleDeleteButton) name:SettingsDidChangeNotification object:nil];
     }
     return self;
 }
@@ -79,6 +80,15 @@
         self.navigationItem.rightBarButtonItem.enabled = TRUE;
     } else {
         self.navigationItem.rightBarButtonItem.enabled = FALSE;
+    }
+}
+
+- (void)toggleDeleteButton {
+    ApplicationSettings* s = [ApplicationSettings instance];
+    if (s.isPurgeFieldworkButton) {
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteButtonWasPressed)] autorelease];
+    } else {
+        self.navigationItem.leftBarButtonItem = NULL;
     }
 }
 
@@ -330,11 +340,7 @@
     self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     self.title = @"Contacts";
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStylePlain target:self action:@selector(syncButtonWasPressed)] autorelease];
-    if ([ApplicationSettings instance].isPurgeFieldworkButton) {
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteButtonWasPressed)] autorelease];
-    } else {
-        self.navigationItem.leftBarButtonItem = NULL;
-    }
+    [self toggleDeleteButton];
     
     // Init Sync Indicators
     self.syncIndicator = [[SyncActivityIndicator alloc] initWithView:self.splitViewController.view];

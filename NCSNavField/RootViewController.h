@@ -30,6 +30,7 @@
 @property(nonatomic,retain) MBProgressHUD* syncIndicator;
 @property(nonatomic,retain) Instrument* administeredInstrument;
 @property(nonatomic,retain) CasServiceTicket* serviceTicket;
+- (void)toggleDeleteButton;
 - (void)purgeDataStore;
 - (void)loadSurveyor:(Instrument*)instrument;
 - (void)didSelectRow:(Row*)row;
