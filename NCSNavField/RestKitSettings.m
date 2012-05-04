@@ -18,6 +18,7 @@
 #import "InstrumentTemplate.h"
 #import "ApplicationSettings.h"
 #import "NSDate+Additions.m"
+#import "NSString+Additions.m"
 
 NSString* STORE_NAME = @"main.sqlite";
 
@@ -105,7 +106,23 @@ static RestKitSettings* instance;
      @"instrument_id", @"instrumentId",
      @"instrument_template_id", @"instrumentTemplateId",
      @"response_set", @"responseSetDict",
-     @"name", @"name", nil];
+     @"name", @"name",
+     @"type", @"instrumentTypeId", 
+     @"type_other", @"instrumentTypeOther",
+     @"instrument_version", @"instrumentVersion",
+     @"repeat_key", @"repeatKey",
+     @"start_date", @"startDate",
+     @"start_time", @"startTimeJson",
+     @"end_date", @"endDate",
+     @"end_time", @"endTimeJson",
+     @"status", @"statusId",
+     @"breakoff", @"breakoffId",
+     @"mode_administered", @"instrumentModeId",
+     @"mode_administered_other", @"instrumentModeOther",
+     @"method_administered", @"instrumentMethodId",
+     @"supervisor_review", @"supervisorReviewId",
+     @"data_problem", @"dataProblemId",
+     @"comment", @"comments", nil];
     [instrument mapRelationship:@"instrumentTemplate" withMapping:instrumentTemplate];
     [instrument connectRelationship:@"instrumentTemplate" withObjectForPrimaryKeyAttribute:@"instrumentTemplateId"];
     
@@ -115,7 +132,20 @@ static RestKitSettings* instance;
     [event mapKeyPathsToAttributes:
      @"event_id", @"eventId",
      @"version", @"version",
-     @"name", @"name", nil];
+     @"name", @"name",
+     @"type", @"eventTypeId",
+     @"type_other", @"eventTypeOther",
+     @"repeat_key", @"repeatKey",
+     @"start_date", @"startDate",
+     @"end_date", @"endDate",
+     @"start_time", @"startTimeJson",
+     @"end_time", @"endTimeJson",
+     @"incentive_type", @"incentiveTypeId",
+     @"incentive_cash", @"incentiveCash",
+     @"disposition", @"dispositionId",
+     @"disposition_category", @"dispositionCategoryId",
+     @"break_off", @"breakOffId",
+     @"comments", @"comments", nil];
     [event mapRelationship:@"instruments" withMapping:instrument];
     
     // Person Mapping
@@ -150,9 +180,22 @@ static RestKitSettings* instance;
      @"type", @"typeId",
      @"version", @"version",
      @"date", @"date",
-     @"start_time", @"startTime",
-     @"end_time", @"endTime",
-     @"person_id", @"personId", nil];
+     @"start_time", @"startTimeJson",
+     @"end_time", @"endTimeJson",
+     @"person_id", @"personId", 
+     @"location", @"locationId",
+     @"location_other", @"locationOther",
+     @"who_contacted", @"whoContactedId",
+     @"who_contacted_other", @"whoContactedOther",
+     @"comments", @"comments", 
+     @"language", @"languageId",
+     @"language_other", @"languageOther",
+     @"interpreter", @"interpreterId",
+     @"interpreter_other", @"interpreterOther",
+     @"private", @"privateId",
+     @"private_detail", @"privateDetail",
+     @"distance_traveled", @"distanceTraveled",
+     @"disposition", @"dispositionId", nil];
     [contact mapRelationship:@"person" withMapping:person];
     [contact connectRelationship:@"person" withObjectForPrimaryKeyAttribute:@"personId"];
     [contact mapRelationship:@"events" withMapping:event];
@@ -164,12 +207,8 @@ static RestKitSettings* instance;
     [fieldWork mapRelationship:@"instrumentTemplate" withMapping:instrumentTemplate];
     [objectManager.mappingProvider setMapping:fieldWork forKeyPath:@"field_work"];
     
-    // TODO: Does this work?
-    // "2005-07-16T19:20+01:00",
-    // http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/DataFormatting/Articles/dfDateFormatting10_4.html#//apple_ref/doc/uid/TP40002369
-    // RestKit 0.9.4 date mappings
     [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd" inTimeZone:[NSTimeZone localTimeZone]];
-    [RKManagedObjectMapping addDefaultDateFormatterForString:@"hh':'mm':'ss" inTimeZone:[NSTimeZone localTimeZone]];
+//    [RKManagedObjectMapping addDefaultDateFormatterForString:@"hh':'mm':'ss" inTimeZone:[NSTimeZone localTimeZone]];
 
 
 //    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd'T'HH':'mm'Z'" inTimeZone:nil];
@@ -190,10 +229,10 @@ static RestKitSettings* instance;
      @"instrumentTypeOther", @"type_other",
      @"instrumentVersion", @"instrument_version",
      @"repeatKey", @"repeat_key",
-     @"startDate", @"start_date",
-     @"startTime", @"start_time",
-     @"endDate", @"end_date",
-     @"endTime", @"end_time",
+     @"startDate.jsonSchemaDate", @"start_date",
+     @"startTime.jsonSchemaTime", @"start_time",
+     @"endDate.jsonSchemaDate", @"end_date",
+     @"endTime.jsonSchemaTime", @"end_time",
      @"statusId", @"status",
      @"breakoffId", @"breakoff",
      @"instrumentModeId", @"mode_administered",
@@ -210,9 +249,9 @@ static RestKitSettings* instance;
     [event mapKeyPathsToAttributes:
      @"eventId", @"event_id",
      @"name", @"name", 
-     @"eventTypeId", @"event_type",
-     @"eventTypeOther", @"event_type_other",
-     @"repeatKey", @"repeatKey",
+     @"eventTypeId", @"type",
+     @"eventTypeOther", @"type_other",
+     @"repeatKey", @"repeat_key",
      @"startDate.jsonSchemaDate", @"start_date",
      @"endDate.jsonSchemaDate", @"end_date",
      @"startTime.jsonSchemaTime", @"start_time",
@@ -235,7 +274,6 @@ static RestKitSettings* instance;
      @"startTime.jsonSchemaTime", @"start_time",
      @"endTime.jsonSchemaTime", @"end_time",
      @"personId", @"person_id",
-     @"initiated", @"initiated", 
      @"locationId", @"location",
      @"locationOther", @"location_other", 
      @"whoContactedId", @"who_contacted", 

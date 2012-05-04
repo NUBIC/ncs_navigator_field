@@ -91,7 +91,8 @@
          "  \"contacts\":[                          "
          "    {                                     "
          "      \"contact_id\":\"c1\",              "
-         "      \"date\":\"2009-03-07\",             "
+         "      \"date\":\"2009-03-07\",            "
+         "      \"start_time\": \"10:28\",          "
          "      \"events\":[                        "
          "        {                                 "
          "          \"event_id\":\"e1\"             "
@@ -99,7 +100,7 @@
          "            {                             "
          "               \"instrument_id\":\"i1\"   "
          "               \"response_set\":{         "
-         "                 \"uuid\":\"rs1\",         "
+         "                 \"uuid\":\"rs1\",        "
          "                 \"responses\":[          "
          "                   {\"uuid\":\"r1\"}      "
          "                   {\"uuid\":\"r2\"}      "
@@ -119,6 +120,7 @@
     Contact* ct = [[actual objectForKey:@"contacts"] objectAtIndex:0];
     STAssertEqualObjects(ct.contactId, @"c1", @"Wrong value");
     STAssertEqualObjects([ct.date jsonSchemaDate], @"2009-03-07", @"Wrong date");
+    STAssertEqualObjects([ct.startTime jsonSchemaTime], @"10:28", @"Wrong time");
     
     Event* et = [[ct.events objectEnumerator] nextObject];
     STAssertEqualObjects(et.eventId, @"e1", @"Wrong value");

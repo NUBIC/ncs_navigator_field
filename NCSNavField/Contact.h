@@ -12,7 +12,6 @@
 @class Person;
 
 
-
 @interface Contact : NSManagedObject
 
 #pragma mark properties
@@ -70,6 +69,18 @@
 #pragma mark methods
 
 - (BOOL) closed;
+
+#pragma setter
+
+- (void) setStartTimeJson:(NSString*)startTime;
+
+- (void) setEndTimeJson:(NSString*)endTime;
+
+#pragma getters
+
+- (NSString*) startTimeJson;
+
+- (NSString*) endTimeJson;
 
 @end
 

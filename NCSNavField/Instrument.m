@@ -8,6 +8,8 @@
 
 #import "Instrument.h"
 #import "SBJSON.h"
+#import "NSDate+Additions.h"
+#import "NSString+Additions.h"
 
 @implementation Instrument
 
@@ -61,6 +63,23 @@
 
     [rs fromJson:[[[SBJSON alloc] init] stringWithObject:responseSetDict]];
     self.externalResponseSetId = [rs valueForKey:@"uuid"];
+}
+
+- (void) setStartTimeJson:(NSString*)startTime {
+    self.startTime = [startTime jsonTimeToDate];
+}
+
+
+- (NSString*) startTimeJson {
+    return [self.startTime jsonSchemaTime];
+}
+
+- (void) setEndTimeJson:(NSString*)endTime {
+    self.endTime = [endTime jsonTimeToDate];
+}
+
+- (NSString*) endTimeJson {
+    return [self.endTime jsonSchemaTime];
 }
 
 @end

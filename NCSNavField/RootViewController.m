@@ -102,8 +102,6 @@
     if (instrument != NULL) {
         NSString* surveyRep = instrument.instrumentTemplate.representation;
         
-        
-        //TODO: Pass response set id to load existing if exists
         NUResponseSet* rs = NULL;
         if (instrument.externalResponseSetId != NULL) {
             // TODO: This is a workaround for RestKit failing when entities are named differently than their table name

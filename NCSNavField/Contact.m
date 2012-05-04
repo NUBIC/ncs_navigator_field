@@ -9,6 +9,8 @@
 #import "Contact.h"
 #import "Event.h"
 #import "Person.h"
+#import "NSString+Additions.h"
+#import "NSDate+Additions.h"
 
 @implementation Contact
 
@@ -17,6 +19,23 @@
 
 - (BOOL) closed {
     return [self.dispositionId integerValue] != 0;
+}
+
+- (void) setStartTimeJson:(NSString*)startTime {
+    self.startTime = [startTime jsonTimeToDate];
+}
+
+
+- (NSString*) startTimeJson {
+    return [self.startTime jsonSchemaTime];
+}
+
+- (void) setEndTimeJson:(NSString*)endTime {
+    self.endTime = [endTime jsonTimeToDate];
+}
+
+- (NSString*) endTimeJson {
+    return [self.endTime jsonSchemaTime];
 }
 
 @end

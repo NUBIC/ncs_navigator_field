@@ -70,4 +70,16 @@
 
 - (void) setResponseSetDict:(NSDictionary *)responseSetDict;
 
+#pragma setter
+
+- (void) setStartTimeJson:(NSString*)startTime;
+
+- (void) setEndTimeJson:(NSString*)endTime;
+
+#pragma getters
+
+- (NSString*) startTimeJson;
+
+- (NSString*) endTimeJson;
+
 @end

@@ -55,6 +55,18 @@
 
 @property(nonatomic,retain) NSSet* instruments;
 
+#pragma setter
+
+- (void) setStartTimeJson:(NSString*)startTime;
+
+- (void) setEndTimeJson:(NSString*)endTime;
+
+#pragma getters
+
+- (NSString*) startTimeJson;
+
+- (NSString*) endTimeJson;
+
 @end
 
 @interface Event (GeneratedAccessors)

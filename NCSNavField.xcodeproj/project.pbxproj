@@ -86,6 +86,7 @@
 		00D1BAEB154775CB000097E7 /* FieldworkPutRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D1BAEA154775CB000097E7 /* FieldworkPutRequest.m */; };
 		00D93A3A1506B2CF009CFDE9 /* RestKitSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D93A391506B2CF009CFDE9 /* RestKitSettings.m */; };
 		00D93A441507CC19009CFDE9 /* Participant.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D93A431507CC19009CFDE9 /* Participant.m */; };
+		00DE998715532F8400C3A0FB /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DE998615532F8400C3A0FB /* NSString+Additions.m */; };
 		00E32348142153CD00D3AEED /* Fixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E32347142153CD00D3AEED /* Fixtures.m */; };
 		00E323571422A23A00D3AEED /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E323561422A23A00D3AEED /* Section.m */; };
 		00E3235A1422B08200D3AEED /* Row.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E323591422B08200D3AEED /* Row.m */; };
@@ -382,6 +383,8 @@
 		00D93A391506B2CF009CFDE9 /* RestKitSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitSettings.m; sourceTree = "<group>"; };
 		00D93A421507CC19009CFDE9 /* Participant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Participant.h; sourceTree = "<group>"; };
 		00D93A431507CC19009CFDE9 /* Participant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Participant.m; sourceTree = "<group>"; };
+		00DE998515532F8400C3A0FB /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Additions.h"; path = "NCSNavField/NSString+Additions.h"; sourceTree = "<group>"; };
+		00DE998615532F8400C3A0FB /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Additions.m"; path = "NCSNavField/NSString+Additions.m"; sourceTree = "<group>"; };
 		00E32346142153CD00D3AEED /* Fixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fixtures.h; sourceTree = "<group>"; };
 		00E32347142153CD00D3AEED /* Fixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fixtures.m; sourceTree = "<group>"; };
 		00E323551422A23A00D3AEED /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
@@ -441,6 +444,8 @@
 		0026E659140347E700355BCB = {
 			isa = PBXGroup;
 			children = (
+				00DE998515532F8400C3A0FB /* NSString+Additions.h */,
+				00DE998615532F8400C3A0FB /* NSString+Additions.m */,
 				001D93261520FC9A009E12C1 /* TestFlight-TeamToken.txt */,
 				000E64B2150EB2BF0006B31E /* Settings.bundle */,
 				009BE3A914FC2145008195F9 /* Security.framework */,
@@ -1058,6 +1063,7 @@
 				00816CB6154B49450054C918 /* FieldworkSynchronizeOperation.m in Sources */,
 				00816CBC154EF2350054C918 /* ApplicationPersistentStoreBackup.m in Sources */,
 				00816CBF154F165E0054C918 /* ApplicationPersistentStoreBackupOperation.m in Sources */,
+				00DE998715532F8400C3A0FB /* NSString+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

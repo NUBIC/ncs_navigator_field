@@ -40,7 +40,7 @@
         <attribute name="incentiveNonCash" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="incentiveTypeId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="repeatKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="repeatKey" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
@@ -70,7 +70,7 @@
         <attribute name="instrumentTypeOther" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="instrumentVersion" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="repeatKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="repeatKey" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="statusId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
