@@ -261,7 +261,7 @@
     }
 }
 - (void) startCasLogin {
-    CasLoginVC *login = [[CasLoginVC alloc] init];
+    CasLoginVC *login = [[CasLoginVC alloc] initWithCasConfiguration:[ApplicationSettings casConfiguration]];
     login.delegate = self;
     [self presentViewController:login animated:YES completion:NULL];
 
@@ -308,12 +308,6 @@
     self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
     
 	[self.tableView reloadData];
-
-//    
-//    self.serviceTicket = serviceTicket;
-//    [self pushContacts:serviceTicket];
-//    [self deleteButtonWasPressed];
-//    [self retrieveContacts:serviceTicket];
 }
 
 #pragma RestKit
