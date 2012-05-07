@@ -51,6 +51,7 @@
 		006C600B1434DF0D00F52CD8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 006C600A1434DF0D00F52CD8 /* README.md */; };
 		006D47FC148D94970035DC01 /* ChangeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D47FB148D94970035DC01 /* ChangeHandler.m */; };
 		006FDD8A148FD2E80001BADE /* TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 006FDD89148FD2E80001BADE /* TextField.m */; };
+		007157F11558519C00B37A64 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007157EE1558518D00B37A64 /* libTestFlight.a */; };
 		0073B3681511277000543DA4 /* Fieldwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073B3671511277000543DA4 /* Fieldwork.m */; };
 		007C1F4114FBFACA0020DF30 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 007C1F4014FBFACA0020DF30 /* Podfile */; };
 		00810AB81486D1AE0098C0D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF914112E5E0097A878 /* CoreData.framework */; };
@@ -59,7 +60,6 @@
 		00816CB6154B49450054C918 /* FieldworkSynchronizeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CB5154B49450054C918 /* FieldworkSynchronizeOperation.m */; };
 		00816CBC154EF2350054C918 /* ApplicationPersistentStoreBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CBB154EF2350054C918 /* ApplicationPersistentStoreBackup.m */; };
 		00816CBF154F165E0054C918 /* ApplicationPersistentStoreBackupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CBE154F165D0054C918 /* ApplicationPersistentStoreBackupOperation.m */; };
-		00860D1F1520D6C900FCCFCB /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00860D1E1520D6C900FCCFCB /* libTestFlight.a */; };
 		00860D271520EF3000FCCFCB /* TestFlightSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 00860D261520EF3000FCCFCB /* TestFlightSettings.m */; };
 		008C5711149696DD005EC22E /* TextArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 008C5710149696DD005EC22E /* TextArea.m */; };
 		008F7DA1148BB3DD009BCF1D /* ContactInitiateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F7DA0148BB3DD009BCF1D /* ContactInitiateVC.m */; };
@@ -323,6 +323,8 @@
 		006EBEE1141139B2003D69CF /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		006FDD88148FD2E80001BADE /* TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextField.h; sourceTree = "<group>"; };
 		006FDD89148FD2E80001BADE /* TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextField.m; sourceTree = "<group>"; };
+		007157ED1558518D00B37A64 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		007157EE1558518D00B37A64 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		0073B3661511277000543DA4 /* Fieldwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fieldwork.h; sourceTree = "<group>"; };
 		0073B3671511277000543DA4 /* Fieldwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fieldwork.m; sourceTree = "<group>"; };
 		007C1F4014FBFACA0020DF30 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
@@ -336,8 +338,6 @@
 		00816CBB154EF2350054C918 /* ApplicationPersistentStoreBackup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationPersistentStoreBackup.m; sourceTree = "<group>"; };
 		00816CBD154F165D0054C918 /* ApplicationPersistentStoreBackupOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationPersistentStoreBackupOperation.h; sourceTree = "<group>"; };
 		00816CBE154F165D0054C918 /* ApplicationPersistentStoreBackupOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationPersistentStoreBackupOperation.m; sourceTree = "<group>"; };
-		00860D1E1520D6C900FCCFCB /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		00860D221520D6F000FCCFCB /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		00860D251520EF3000FCCFCB /* TestFlightSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlightSettings.h; sourceTree = "<group>"; };
 		00860D261520EF3000FCCFCB /* TestFlightSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFlightSettings.m; sourceTree = "<group>"; };
 		008C570F149696DD005EC22E /* TextArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextArea.h; sourceTree = "<group>"; };
@@ -409,6 +409,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				007157F11558519C00B37A64 /* libTestFlight.a in Frameworks */,
 				00CA369414FC29AB000D37D2 /* QuartzCore.framework in Frameworks */,
 				00CA369314FC2980000D37D2 /* CoreGraphics.framework in Frameworks */,
 				00CA369214FC2971000D37D2 /* Security.framework in Frameworks */,
@@ -422,7 +423,6 @@
 				0026E669140347E700355BCB /* UIKit.framework in Frameworks */,
 				0026E66B140347E700355BCB /* Foundation.framework in Frameworks */,
 				D1CACF1A1F944E92AB51AE74 /* libPods.a in Frameworks */,
-				00860D1F1520D6C900FCCFCB /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +444,8 @@
 		0026E659140347E700355BCB = {
 			isa = PBXGroup;
 			children = (
+				007157ED1558518D00B37A64 /* TestFlight.h */,
+				007157EE1558518D00B37A64 /* libTestFlight.a */,
 				00DE998515532F8400C3A0FB /* NSString+Additions.h */,
 				00DE998615532F8400C3A0FB /* NSString+Additions.m */,
 				001D93261520FC9A009E12C1 /* TestFlight-TeamToken.txt */,
@@ -476,7 +478,6 @@
 		0026E667140347E700355BCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				00860D1E1520D6C900FCCFCB /* libTestFlight.a */,
 				00A2CDDA14EAFCBD00C164F7 /* libMRCEnumerable.a */,
 				0021785014E0E56600056745 /* QuartzCore.framework */,
 				003131E914E089C400C0D0B1 /* libNUSurveyor.a */,
@@ -831,7 +832,6 @@
 		00860D211520D6CE00FCCFCB /* TestFlight */ = {
 			isa = PBXGroup;
 			children = (
-				00860D221520D6F000FCCFCB /* TestFlight.h */,
 			);
 			name = TestFlight;
 			sourceTree = "<group>";
