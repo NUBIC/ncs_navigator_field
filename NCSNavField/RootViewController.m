@@ -128,9 +128,9 @@
             
             if (array == nil)
             {
-                NSLog(@"Error during fetch");                
+                NCSLog(@"Error during fetch");                
             } else {
-                NSLog(@"fetched response set");
+                NCSLog(@"fetched response set");
                 rs = [[array objectEnumerator] nextObject];
             }
         }
@@ -142,16 +142,16 @@
             NSDictionary* surveyDict = [[SBJSON new] objectWithString:surveyRep];
             rs = [NUResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[NUResponseSet managedObjectContext]];
             
-            NSLog(@"Response set uuid: %@", rs.uuid);
+            NCSLog(@"Response set uuid: %@", rs.uuid);
 
             NSManagedObjectContext* moc = [NUResponseSet managedObjectContext];
             instrument.externalResponseSetId = rs.uuid;
             NSError *error = nil;
             
             if (![moc save:&error]) {
-                NSLog(@"Error saving instrument uuid");
+                NCSLog(@"Error saving instrument uuid");
             }
-            NSLog(@"Administered instrument with external response uuid: %@", [instrument externalResponseSetId]);
+            NCSLog(@"Administered instrument with external response uuid: %@", [instrument externalResponseSetId]);
 
         }
         
@@ -200,7 +200,7 @@
 }
              
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
-//    NSLog(@"DELEGATE: switched views: message from the nav controller delegate");
+//    NCSLog(@"DELEGATE: switched views: message from the nav controller delegate");
 }
 
 #pragma Simple Table
@@ -210,7 +210,7 @@
 
 #pragma Actions
 - (void)syncButtonWasPressed {
-    NSLog(@"Sync Pressed!!!");
+    NCSLog(@"Sync Pressed!!!");
     if ([[ApplicationSettings instance] coreSynchronizeConfigured]) {
         [self confirmSync];
     } else {
@@ -249,13 +249,13 @@
     switch (buttonIndex) {
         case 0: 
         {       
-            NSLog(@"No was selected by the user");
+            NCSLog(@"No was selected by the user");
         }
         break;
             
         case 1: 
         {
-            NSLog(@"Yes was selected by the user");
+            NCSLog(@"Yes was selected by the user");
             [self startCasLogin];
         }
         break;
@@ -269,7 +269,7 @@
 }
 
 - (void) deleteButtonWasPressed {
-    NSLog(@"Delete button pressed");
+    NCSLog(@"Delete button pressed");
 
     [self purgeDataStore];
     
@@ -287,7 +287,7 @@
 
 #pragma mark - Cas Login Delegate
 - (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket {
-    NSLog(@"My Successful login: %@", serviceTicket);
+    NCSLog(@"My Successful login: %@", serviceTicket);
     [self dismissViewControllerAnimated:YES completion:^{
         [self.syncIndicator show:YES];
         [self syncContacts:serviceTicket];

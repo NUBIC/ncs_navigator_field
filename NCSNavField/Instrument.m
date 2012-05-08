@@ -36,10 +36,10 @@
     
     NUResponseSet* rs = NULL;
     if (array != nil) {
-        NSLog(@"fetched response set");
+        NCSLog(@"fetched response set");
         rs = [[array objectEnumerator] nextObject];
     } else {
-        NSLog(@"Error during fetch");                
+        NCSLog(@"Error during fetch");                
     }
     
     return rs;

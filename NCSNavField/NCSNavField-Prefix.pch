@@ -23,4 +23,24 @@
 #import "NCSNavFieldAppDelegate.h"
 #define UIAppDelegate ((NCSNavFieldAppDelegate *)[UIApplication sharedApplication].delegate)
 
+//#undef NCSLog
+//#if __cplusplus
+//extern "C" { 
+//#endif
+//    void NCSLog(NSString *format, ...)  {
+//        va_list ap;
+//        va_start(ap, format);
+//        NSLog(format, ap);
+//        TFLog(format, ap);
+//        va_end(ap);         
+//    } 
+
+#define NCSLog( s, ... ) NSLog( @"<%p %@:(%d)> %@", self, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] ); TFLog( @"<%p %@:(%d)> %@", self, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
+
+  
+//#if __cplusplus
+//}
+//#endif
+//#undef NCSLog
+
 //lcl_configure_by_name("RestKit*", RKLogLevelTrace);

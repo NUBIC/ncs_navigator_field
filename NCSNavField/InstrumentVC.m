@@ -36,7 +36,7 @@
 #pragma mark - View lifecycle
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSLog(@"viewDidAppear Size: %@", NSStringFromCGSize(self.view.frame.size));
+    NCSLog(@"Instrument Screen");
     
     CGFloat contactFrameHeight = 850;
     CGPoint o = self.view.frame.origin;
@@ -222,9 +222,9 @@
     NSError *error = nil;
     
     if (![moc save:&error]) {
-        NSLog(@"Error saving initiated contact");
+        NCSLog(@"Error saving initiated contact");
     }
-    NSLog(@"Completed event");
+    NCSLog(@"Saved instrument");
 }
 
 - (void) rollbackTransaction {
@@ -232,7 +232,7 @@
     NSManagedObjectContext* moc = [self.instrument managedObjectContext];
     NSUndoManager* undoManager = [moc undoManager];
     [undoManager undo];
-    NSLog(@"Rolledback event");
+    NCSLog(@"Rolledback event");
 }
 
 #pragma mark - Managing Keyboard

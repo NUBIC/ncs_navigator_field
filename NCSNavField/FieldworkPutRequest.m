@@ -54,7 +54,7 @@
         CasProxyTicket* t = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:serviceTicket.pgt];
         [t reify];
         if (!t.error) {
-            NSLog(@"Proxy ticket successfully obtained: %@", t.proxyTicket);
+            NCSLog(@"Proxy ticket successfully obtained: %@", t.proxyTicket);
             [self putDataWithProxyTicket:t];
         } else {
             self.error = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", t.message];
@@ -87,7 +87,7 @@
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     [alert show];
     
-    NSLog(@"%@", message);
+    NCSLog(@"%@", message);
 }
 
 @end

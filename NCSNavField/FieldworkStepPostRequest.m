@@ -49,7 +49,7 @@
         CasProxyTicket* t = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:serviceTicket.pgt];
         [t reify];
         if (!t.error) {
-            NSLog(@"Proxy ticket successfully obtained: %@", t.proxyTicket);
+            NCSLog(@"Proxy ticket successfully obtained: %@", t.proxyTicket);
             [self loadDataWithProxyTicket:t];
         } else {
             self.error = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", t.message];
@@ -66,7 +66,7 @@
             CasProxyTicket* t = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:serviceTicket.pgt];
             [t reify];
             if (!t.error) {
-                NSLog(@"Proxy ticket successfully obtained: %@", t.proxyTicket);
+                NCSLog(@"Proxy ticket successfully obtained: %@", t.proxyTicket);
                 [self loadDataWithProxyTicket:t];
             } else {
                 self.error = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", t.message];
@@ -102,7 +102,7 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-//	NSLog(@"RootViewController:didLoadObjects -- %@", objects);
+//	NCSLog(@"RootViewController:didLoadObjects -- %@", objects);
     
     Fieldwork* w = [Fieldwork object];
     w.uri = [[objectLoader response] location];
@@ -113,7 +113,7 @@
     
     NSError *error = nil;    
     if (![[Fieldwork managedObjectContext] save:&error]) {
-        NSLog(@"Error saving fieldwork location");
+        NCSLog(@"Error saving fieldwork location");
     }
 //    
 //    [self loadObjectsFromDataStore];
@@ -138,7 +138,7 @@
     }
     [*mappableData setObject:modifiedTemplates forKey:@"instrument_templates"];    
     
-    NSLog(@"Mapping Instrument Template: %@", *mappableData);
+    NCSLog(@"Mapping Instrument Template");
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
@@ -150,7 +150,7 @@
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     [alert show];
     
-    NSLog(@"%@", message);
+    NCSLog(@"%@", message);
 }
 
 @end
