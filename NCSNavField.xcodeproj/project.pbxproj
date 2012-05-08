@@ -71,8 +71,6 @@
 		0095430F153E62040018DAC3 /* InstrumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095430E153E62040018DAC3 /* InstrumentVC.m */; };
 		009AD2E4142D391A0038650B /* SimpleTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009AD2E3142D391A0038650B /* SimpleTableController.m */; };
 		009BE3AF14FC2217008195F9 /* SyncActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0031315514E04BF800C0D0B1 /* SyncActivityIndicator.m */; };
-		009EE2791436220C00E6D658 /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009EE2781436220C00E6D658 /* LoginController.xib */; };
-		00A392DF14361C53003B19F3 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A392DD14361C53003B19F3 /* LoginController.m */; };
 		00B7CCA814BDFB6E00D5901C /* DispositionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B7CCA714BDFB6E00D5901C /* DispositionCode.m */; };
 		00C2520D151794EB00F4FE3B /* RestKitSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */; };
 		00C25211151A63B500F4FE3B /* FieldworkTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C25210151A63B500F4FE3B /* FieldworkTest.m */; };
@@ -360,10 +358,7 @@
 		009AD2E61430D9BF0038650B /* SimpleTableRowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableRowDelegate.h; sourceTree = "<group>"; };
 		009AD2E71430DA180038650B /* ISimpleTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISimpleTable.h; sourceTree = "<group>"; };
 		009BE3A914FC2145008195F9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		009EE2781436220C00E6D658 /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginController.xib; path = NCSNavField/LoginController.xib; sourceTree = "<group>"; };
 		00A2CDDA14EAFCBD00C164F7 /* libMRCEnumerable.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMRCEnumerable.a; path = "MRCEnumerable/build/Release-iphoneos/libMRCEnumerable.a"; sourceTree = "<group>"; };
-		00A392DC14361C53003B19F3 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
-		00A392DD14361C53003B19F3 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		00B7CCA614BDFB6E00D5901C /* DispositionCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispositionCode.h; sourceTree = "<group>"; };
 		00B7CCA714BDFB6E00D5901C /* DispositionCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispositionCode.m; sourceTree = "<group>"; };
 		00C2520B151794EB00F4FE3B /* RestKitSettingsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitSettingsTest.h; sourceTree = "<group>"; };
@@ -751,8 +746,6 @@
 				0026E684140347E700355BCB /* RootViewController.m */,
 				009AD2E2142D391A0038650B /* SimpleTableController.h */,
 				009AD2E3142D391A0038650B /* SimpleTableController.m */,
-				00A392DC14361C53003B19F3 /* LoginController.h */,
-				00A392DD14361C53003B19F3 /* LoginController.m */,
 				005108EC148440C000732623 /* NUScrollView.h */,
 				005108ED148440C000732623 /* NUScrollView.m */,
 				0095430D153E62040018DAC3 /* InstrumentVC.h */,
@@ -815,7 +808,6 @@
 			children = (
 				0026E680140347E700355BCB /* DetailView.xib */,
 				0026E67A140347E700355BCB /* MainWindow.xib */,
-				009EE2781436220C00E6D658 /* LoginController.xib */,
 			);
 			name = NIBs;
 			sourceTree = "<group>";
@@ -964,7 +956,6 @@
 				0026E67C140347E700355BCB /* MainWindow.xib in Resources */,
 				0026E682140347E700355BCB /* DetailView.xib in Resources */,
 				006C600B1434DF0D00F52CD8 /* README.md in Resources */,
-				009EE2791436220C00E6D658 /* LoginController.xib in Resources */,
 				0031315E14E083C500C0D0B1 /* cacert.pem in Resources */,
 				0092BA5714E32C3500134165 /* icon.png in Resources */,
 				007C1F4114FBFACA0020DF30 /* Podfile in Resources */,
@@ -1033,7 +1024,6 @@
 				009AD2E4142D391A0038650B /* SimpleTableController.m in Sources */,
 				0026465D1434CDF9008D612B /* ContactNavigationTable.m in Sources */,
 				002646601434CE02008D612B /* Person.m in Sources */,
-				00A392DF14361C53003B19F3 /* LoginController.m in Sources */,
 				00C9C6E5146CE66300F6D339 /* main.xcdatamodeld in Sources */,
 				00C4095D1471DD5E00F0F3FA /* InstrumentTemplate.m in Sources */,
 				005108EE148440C000732623 /* NUScrollView.m in Sources */,
