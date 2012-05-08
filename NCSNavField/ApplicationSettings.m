@@ -7,6 +7,7 @@
 //
 
 #import "ApplicationSettings.h"
+#import "NSString+Additions.h"
 
 NSString* const SettingsDidChangeNotification = @"ApplicationSettingsChanged";
 NSString* const CLIENT_ID = @"client.id";
@@ -98,6 +99,10 @@ static ApplicationSettings* instance;
 + (CasConfiguration*) casConfiguration {
     ApplicationSettings* s = [ApplicationSettings instance];
     return [[CasConfiguration alloc] initWithCasURL:s.casServerURL receiveURL:s.pgtReceiveURL retrieveURL:s.pgtRetrieveURL];
+}
+
+- (BOOL) coreSynchronizeConfigured {
+    return !([self.coreURL empty] || [self.casServerURL empty] || [self.pgtReceiveURL empty] || [self.pgtRetrieveURL empty]);
 }
 
 - (void)dealloc {

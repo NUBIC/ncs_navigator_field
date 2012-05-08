@@ -12,4 +12,6 @@
 
 - (NSDate*)jsonTimeToDate;
 
+- (BOOL)empty;
+
 @end

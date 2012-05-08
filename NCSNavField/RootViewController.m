@@ -211,11 +211,11 @@
 #pragma Actions
 - (void)syncButtonWasPressed {
     NSLog(@"Sync Pressed!!!");
-    if ([ApplicationSettings instance].coreURL) {
+    if ([[ApplicationSettings instance] coreSynchronizeConfigured]) {
         [self confirmSync];
     } else {
         UIAlertView *message = 
-            [[UIAlertView alloc] initWithTitle:@"Configuration Error" message:@"The NCS Navigator Core URL has not been configured. Please do this in the Settings app." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [[UIAlertView alloc] initWithTitle:@"Configuration Error" message:@"Please go into settings and configure the NCS Field Application before trying to sync." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
         [message show];
     }
@@ -249,12 +249,13 @@
     switch (buttonIndex) {
         case 0: 
         {       
-            NSLog(@"Delete was cancelled by the user");
+            NSLog(@"No was selected by the user");
         }
         break;
             
         case 1: 
         {
+            NSLog(@"Yes was selected by the user");
             [self startCasLogin];
         }
         break;

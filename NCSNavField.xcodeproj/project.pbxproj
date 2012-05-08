@@ -383,8 +383,8 @@
 		00D93A391506B2CF009CFDE9 /* RestKitSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitSettings.m; sourceTree = "<group>"; };
 		00D93A421507CC19009CFDE9 /* Participant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Participant.h; sourceTree = "<group>"; };
 		00D93A431507CC19009CFDE9 /* Participant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Participant.m; sourceTree = "<group>"; };
-		00DE998515532F8400C3A0FB /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Additions.h"; path = "NCSNavField/NSString+Additions.h"; sourceTree = "<group>"; };
-		00DE998615532F8400C3A0FB /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Additions.m"; path = "NCSNavField/NSString+Additions.m"; sourceTree = "<group>"; };
+		00DE998515532F8400C3A0FB /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
+		00DE998615532F8400C3A0FB /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		00E32346142153CD00D3AEED /* Fixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fixtures.h; sourceTree = "<group>"; };
 		00E32347142153CD00D3AEED /* Fixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fixtures.m; sourceTree = "<group>"; };
 		00E323551422A23A00D3AEED /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
@@ -446,8 +446,6 @@
 			children = (
 				007157ED1558518D00B37A64 /* TestFlight.h */,
 				007157EE1558518D00B37A64 /* libTestFlight.a */,
-				00DE998515532F8400C3A0FB /* NSString+Additions.h */,
-				00DE998615532F8400C3A0FB /* NSString+Additions.m */,
 				001D93261520FC9A009E12C1 /* TestFlight-TeamToken.txt */,
 				000E64B2150EB2BF0006B31E /* Settings.bundle */,
 				009BE3A914FC2145008195F9 /* Security.framework */,
@@ -766,6 +764,8 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				00DE998515532F8400C3A0FB /* NSString+Additions.h */,
+				00DE998615532F8400C3A0FB /* NSString+Additions.m */,
 				00816CB0154B3F830054C918 /* FieldworkStepPostRequest.h */,
 				00816CB1154B3F830054C918 /* FieldworkStepPostRequest.m */,
 				00816CBA154EF2350054C918 /* ApplicationPersistentStoreBackup.h */,
