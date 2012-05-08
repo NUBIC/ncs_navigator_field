@@ -30,6 +30,7 @@
     
     TestFlightSettings *tf = [TestFlightSettings instance];
     [TestFlight takeOff:tf.teamToken];
+    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     
     // Invoked at startup to set client ID
     [ApplicationSettings instance];
