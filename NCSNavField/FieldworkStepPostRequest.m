@@ -12,6 +12,7 @@
 #import "Participant.h"
 #import "Contact.h"
 #import "InstrumentTemplate.h"
+#import "SBJsonWriter.h"
 
 @implementation FieldworkStepPostRequest
 
@@ -120,6 +121,24 @@
 //    self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
 //    
 //	[self.tableView reloadData];
+}
+
+- (void)objectLoader:(RKObjectLoader *)loader willMapData:(inout id *)mappableData {
+    SBJsonWriter *jsonWriter = [SBJsonWriter new];
+    
+    NSMutableArray* modifiedTemplates = [NSMutableArray new];
+    for (NSDictionary* templ in [*mappableData valueForKey:@"instrument_templates"]) {
+        NSDictionary* json = [templ valueForKey:@"survey"];
+        if (json) {
+            NSString *jsonString = [jsonWriter stringWithObject:json];
+            NSMutableDictionary* mod = [templ mutableCopy];
+            [mod setObject:jsonString forKey:@"representation"];
+            [modifiedTemplates addObject:mod];
+        }
+    }
+    [*mappableData setObject:modifiedTemplates forKey:@"instrument_templates"];    
+    
+    NSLog(@"Mapping Instrument Template: %@", *mappableData);
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
