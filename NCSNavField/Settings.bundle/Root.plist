@@ -30,6 +30,16 @@
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Upcoming days to sync</string>
+			<key>Key</key>
+			<string>upcoming.days.to.sync</string>
+			<key>DefaultValue</key>
+			<string>7</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>CAS</string>

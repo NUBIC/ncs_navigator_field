@@ -58,9 +58,11 @@
             [self putDataWithProxyTicket:t];
         } else {
             self.error = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", t.message];
+            [self showErrorMessage:self.error];
         }
     } else {
         self.error = [NSString stringWithFormat:@"Presenting service ticket failed: %@", [serviceTicket message]];
+        [self showErrorMessage:self.error];
     }
 }
 
@@ -80,14 +82,15 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
     self.error = [NSString stringWithFormat:@"Object loader error while pushing fieldwork.\n%@", [error localizedDescription]];
+    [self showErrorMessage:self.error];
 }
 
 
 - (void)showErrorMessage:(NSString *)message {
+    NCSLog(@"%@", message);
+
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     [alert show];
-    
-    NCSLog(@"%@", message);
 }
 
 @end

@@ -1,15 +1,15 @@
 //
-//  NSString+Additions.h
+//  NSStringHelper.h
 //  NCSNavField
 //
-//  Created by John Dzak on 5/3/12.
+//  Created by John Dzak on 5/8/12.
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (Additions)
+@interface NSStringHelper : NSObject
 
-- (NSDate*)jsonTimeToDate;
++ (BOOL) isEmpty:(NSString*)s;
 
 @end

@@ -10,6 +10,7 @@
 #import "ApplicationPersistentStore.h"
 #import "FieldworkPutRequest.h"
 #import "FieldworkStepPostRequest.h"
+#import "Fieldwork.h"
 
 @implementation FieldworkSynchronizeOperation
 
@@ -24,12 +25,18 @@
 }
 
 - (BOOL) perform {
-    BOOL submission = [self submit];
-    BOOL receive = false;
-    if (submission) {
-        receive = [self recieve];
+    BOOL success = false;
+    if ([Fieldwork submission]) {
+        BOOL submission = [self submit];
+        BOOL receive = false;
+        if (submission) {
+            receive = [self recieve];
+        }
+        success = submission && receive;
+    } else {
+        success = [self recieve];
     }
-    return submission && receive;
+    return success;
 }
 
 - (BOOL) submit {

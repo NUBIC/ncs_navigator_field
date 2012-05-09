@@ -28,6 +28,7 @@
 		0026E68D140347E700355BCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0026E66A140347E700355BCB /* Foundation.framework */; };
 		0026E68E140347E700355BCB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0026E66C140347E700355BCB /* CoreGraphics.framework */; };
 		0026E696140347E700355BCB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0026E694140347E700355BCB /* InfoPlist.strings */; };
+		00272A11155A124F009F21F5 /* NSStringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00272A10155A124E009F21F5 /* NSStringHelper.m */; };
 		002B2E4414362E4900410D09 /* nubic-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 002B2E4214362E4900410D09 /* nubic-logo.png */; };
 		002B2E4514362E4900410D09 /* nu-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 002B2E4314362E4900410D09 /* nu-logo.png */; };
 		002D3B1114E1BCFE00A30C8F /* surveyor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 002D3B0F14E1BCFE00A30C8F /* surveyor.xcdatamodeld */; };
@@ -143,6 +144,8 @@
 		0026E693140347E700355BCB /* NCSNavFieldTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NCSNavFieldTests-Info.plist"; sourceTree = "<group>"; };
 		0026E695140347E700355BCB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0026E697140347E700355BCB /* NCS NavFieldTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NCS NavFieldTests-Prefix.pch"; sourceTree = "<group>"; };
+		00272A0F155A124E009F21F5 /* NSStringHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringHelper.h; sourceTree = "<group>"; };
+		00272A10155A124E009F21F5 /* NSStringHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringHelper.m; sourceTree = "<group>"; };
 		002B2E4214362E4900410D09 /* nubic-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nubic-logo.png"; path = "NCSNavField/nubic-logo.png"; sourceTree = "<group>"; };
 		002B2E4314362E4900410D09 /* nu-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nu-logo.png"; path = "NCSNavField/nu-logo.png"; sourceTree = "<group>"; };
 		002D3B1014E1BCFE00A30C8F /* surveyor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = surveyor.xcdatamodel; sourceTree = "<group>"; };
@@ -799,6 +802,8 @@
 				00D1BAEA154775CB000097E7 /* FieldworkPutRequest.m */,
 				00816CB4154B49450054C918 /* FieldworkSynchronizeOperation.h */,
 				00816CB5154B49450054C918 /* FieldworkSynchronizeOperation.m */,
+				00272A0F155A124E009F21F5 /* NSStringHelper.h */,
+				00272A10155A124E009F21F5 /* NSStringHelper.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1054,6 +1059,7 @@
 				00816CBC154EF2350054C918 /* ApplicationPersistentStoreBackup.m in Sources */,
 				00816CBF154F165E0054C918 /* ApplicationPersistentStoreBackupOperation.m in Sources */,
 				00DE998715532F8400C3A0FB /* NSString+Additions.m in Sources */,
+				00272A11155A124F009F21F5 /* NSStringHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

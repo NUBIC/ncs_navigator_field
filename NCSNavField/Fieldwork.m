@@ -27,4 +27,8 @@
     return [NSArray array];
 }
 
++ (Fieldwork*)submission {
+    return [[Fieldwork findAllSortedBy:@"retrievedDate" ascending:NO] lastObject];
+}
+
 @end

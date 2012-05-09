@@ -5,7 +5,7 @@
         <attribute name="contactId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="dispositionId" optional="YES" attributeType="Integer 16" syncable="YES"/>
-        <attribute name="distanceTraveled" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="distanceTraveled" optional="YES" attributeType="Decimal" syncable="YES"/>
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="initiated" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="interpreterId" optional="YES" attributeType="Integer 16" syncable="YES"/>
@@ -40,7 +40,7 @@
         <attribute name="incentiveNonCash" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="incentiveTypeId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="repeatKey" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="repeatKey" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
@@ -55,26 +55,26 @@
         <relationship name="participants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Participant" inverseName="fieldWork" inverseEntity="Participant" syncable="YES"/>
     </entity>
     <entity name="Instrument" representedClassName="Instrument" syncable="YES">
-        <attribute name="breakoffId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="breakoffId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="dataProblemId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="dataProblemId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="externalResponseSetId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="instrumentId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="instrumentMethodId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="instrumentModeId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="instrumentMethodId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="instrumentModeId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="instrumentModeOther" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="instrumentTemplateId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="instrumentTypeId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="instrumentTypeId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="instrumentTypeOther" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="instrumentVersion" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="repeatKey" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="repeatKey" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="statusId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="supervisorReviewId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="statusId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="supervisorReviewId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="instruments" inverseEntity="Event" syncable="YES"/>
         <relationship name="instrumentTemplate" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="InstrumentTemplate" inverseName="instrument" inverseEntity="InstrumentTemplate" syncable="YES"/>
     </entity>

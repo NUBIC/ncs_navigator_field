@@ -183,7 +183,8 @@
             [self po:@"General Study Visits (including CASI SAQs)" value:3],
             [self po:@"Mailed Back Self Administered Questionnaires" value:4],
             [self po:@"Telephone Interview Events" value:5], 
-            [self po:@"Internet Survey Events" value:6], nil];
+            [self po:@"Internet Survey Events" value:6],
+            [self po:@"Missing in Error" value:-4], nil];
 }
 
 + (NSArray*) breakoff {

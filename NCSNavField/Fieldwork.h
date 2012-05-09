@@ -22,4 +22,6 @@
 
 @property(nonatomic,retain) NSSet* instrumentTemplates;
 
++ (Fieldwork*)submission;
+
 @end

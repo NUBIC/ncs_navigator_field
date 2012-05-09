@@ -7,7 +7,7 @@
 //
 
 #import "ApplicationSettings.h"
-#import "NSString+Additions.h"
+#import "NSStringHelper.h"
 
 NSString* const SettingsDidChangeNotification = @"ApplicationSettingsChanged";
 NSString* const CLIENT_ID = @"client.id";
@@ -16,6 +16,7 @@ NSString* const CAS_SERVER_URL = @"cas.server.url";
 NSString* const PGT_RECEIVE_URL = @"pgt.receive.url";
 NSString* const PGT_RETRIEVE_URL = @"pgt.retrieve.url";
 NSString* const PURGE_FIELDWORK_BUTTON = @"purge.fieldwork.button";
+NSString* const UPCOMING_DAYS_TO_SYNC = @"upcoming.days.to.sync";
 
 @implementation ApplicationSettings
 
@@ -25,6 +26,7 @@ NSString* const PURGE_FIELDWORK_BUTTON = @"purge.fieldwork.button";
 @synthesize pgtReceiveURL=_pgtReceiveURL;
 @synthesize pgtRetrieveURL=_pgtRetrieveURL;
 @synthesize purgeFieldworkButton=_purgeFieldworkButton;
+@synthesize upcomingDaysToSync=_upcomingDaysToSync;
 
 static ApplicationSettings* instance;
 
@@ -37,6 +39,7 @@ static ApplicationSettings* instance;
         _pgtReceiveURL = [[self pgtReceiveURL] retain];
         _pgtRetrieveURL = [[self pgtRetrieveURL] retain];
         _purgeFieldworkButton = [self isPurgeFieldworkButton];
+        _upcomingDaysToSync = [self upcomingDaysToSync];
     }
     
     return self;
@@ -60,6 +63,7 @@ static ApplicationSettings* instance;
     self.pgtReceiveURL = [self pgtReceiveURL];
     self.pgtRetrieveURL = [self pgtRetrieveURL];
     self.purgeFieldworkButton = [self purgeFieldworkButton];
+    self.upcomingDaysToSync = [self upcomingDaysToSync];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:self];
 }
@@ -96,13 +100,17 @@ static ApplicationSettings* instance;
     return [[NSUserDefaults standardUserDefaults] boolForKey:PURGE_FIELDWORK_BUTTON];
 }
 
+- (NSInteger) upcomingDaysToSync {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:UPCOMING_DAYS_TO_SYNC];
+}
+
 + (CasConfiguration*) casConfiguration {
     ApplicationSettings* s = [ApplicationSettings instance];
     return [[CasConfiguration alloc] initWithCasURL:s.casServerURL receiveURL:s.pgtReceiveURL retrieveURL:s.pgtRetrieveURL];
 }
 
 - (BOOL) coreSynchronizeConfigured {
-    return !([self.coreURL empty] || [self.casServerURL empty] || [self.pgtReceiveURL empty] || [self.pgtRetrieveURL empty]);
+    return !([NSStringHelper isEmpty:self.coreURL] || [NSStringHelper isEmpty:self.casServerURL] || [NSStringHelper isEmpty:self.pgtReceiveURL] || [NSStringHelper isEmpty:self.pgtRetrieveURL]);
 }
 
 - (void)dealloc {

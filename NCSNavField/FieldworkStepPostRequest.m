@@ -13,6 +13,7 @@
 #import "Contact.h"
 #import "InstrumentTemplate.h"
 #import "SBJsonWriter.h"
+#import "ApplicationSettings.h"
 
 @implementation FieldworkStepPostRequest
 
@@ -46,6 +47,7 @@
         CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
         NSString* coreURL = [ApplicationSettings instance].coreURL;
         
+        NCSLog(@"Requesting proxy ticket");
         CasProxyTicket* t = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:serviceTicket.pgt];
         [t reify];
         if (!t.error) {
@@ -57,12 +59,14 @@
 
         }
     } else {
+        NCSLog(@"Presenting service ticket");
         [serviceTicket present];
         if (serviceTicket.ok) {
             CasConfiguration* conf = [ApplicationSettings casConfiguration];
             CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
             NSString* coreURL = [ApplicationSettings instance].coreURL;
             
+            NCSLog(@"Requesting proxy ticket");
             CasProxyTicket* t = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:serviceTicket.pgt];
             [t reify];
             if (!t.error) {
@@ -85,7 +89,8 @@
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
     
     NSDate* today = [NSDate date];
-    NSTimeInterval secondsPerWeek = 60 * 60 * 24 * 7;
+    NSInteger days = [[ApplicationSettings instance] upcomingDaysToSync];
+    NSTimeInterval secondsPerWeek = 60 * 60 * 24 * days;
     NSDate* inOneWeek = [today dateByAddingTimeInterval:secondsPerWeek];
     NSString* clientId = [ApplicationSettings instance].clientId;
     
@@ -95,6 +100,8 @@
     [rfc3339 setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@&client_id=%@", [rfc3339 stringFromDate:today], [rfc3339 stringFromDate:inOneWeek], clientId];
     
+    
+    NCSLog(@"Requesting data from %@", path);
     RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
     loader.method = RKRequestMethodPOST;
     
@@ -102,7 +109,7 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-//	NCSLog(@"RootViewController:didLoadObjects -- %@", objects);
+	NCSLog(@"Data loaded successfully [%@]", [[objectLoader response] location]);
     
     Fieldwork* w = [Fieldwork object];
     w.uri = [[objectLoader response] location];
@@ -115,15 +122,11 @@
     if (![[Fieldwork managedObjectContext] save:&error]) {
         NCSLog(@"Error saving fieldwork location");
     }
-//    
-//    [self loadObjectsFromDataStore];
-//    
-//    self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
-//    
-//	[self.tableView reloadData];
 }
 
 - (void)objectLoader:(RKObjectLoader *)loader willMapData:(inout id *)mappableData {
+    NCSLog(@"Mapping surveys from json");
+
     SBJsonWriter *jsonWriter = [SBJsonWriter new];
     
     NSMutableArray* modifiedTemplates = [NSMutableArray new];
@@ -143,14 +146,14 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
     self.error = [NSString stringWithFormat:@"Object loader error while pushing fieldwork.\n%@", [error localizedDescription]];
+    [self showErrorMessage:self.error];
 }
 
 
 - (void)showErrorMessage:(NSString *)message {
+    NCSLog(@"%@", message);
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     [alert show];
-    
-    NCSLog(@"%@", message);
 }
 
 @end

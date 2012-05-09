@@ -41,7 +41,7 @@
 #pragma mark - View lifecycle
 
 - (void)viewDidAppear:(BOOL)animated {
-    NCSLog(@"Closing contact");
+    NCSLog(@"Close contact screen");
 
     CGFloat contactFrameHeight = 850;
     CGFloat eventFrameHeight = 800;

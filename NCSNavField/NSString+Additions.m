@@ -17,8 +17,4 @@
     return [f dateFromString:self];    
 }
 
-- (BOOL)empty {
-    return  [self length] == 0;
-}
-
 @end

@@ -18,6 +18,7 @@ extern NSString *const SettingsDidChangeNotification;
     NSString* _pgtReceiveURL;
     NSString* _pgtRetrieveURL;
     BOOL _purgeFieldworkButton;
+    NSInteger _upcomingDaysToSync;
 }
 
 #pragma mark properties
@@ -34,6 +35,7 @@ extern NSString *const SettingsDidChangeNotification;
 
 @property(nonatomic) BOOL purgeFieldworkButton;
 
+@property(nonatomic) NSInteger upcomingDaysToSync;
 
 #pragma Methods
 
@@ -58,5 +60,7 @@ extern NSString *const SettingsDidChangeNotification;
 - (BOOL) isPurgeFieldworkButton;
 
 - (BOOL) coreSynchronizeConfigured;
+
+- (NSInteger) upcomingDaysToSync;
 
 @end
