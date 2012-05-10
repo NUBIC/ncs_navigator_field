@@ -15,7 +15,7 @@
 
 @dynamic instrumentId, name, instrumentTemplateId, instrumentTemplate, externalResponseSetId, event, instrumentTypeId, instrumentTypeOther,
     instrumentVersion, repeatKey, startDate, startTime, endDate, endTime,
-    statusId, breakoffId, instrumentModeId, instrumentModeOther,
+    statusId, breakOffId, instrumentModeId, instrumentModeOther,
     instrumentMethodId, supervisorReviewId, dataProblemId, comment;
 
 - (NUResponseSet*) responseSet {

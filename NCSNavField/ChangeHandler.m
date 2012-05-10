@@ -25,15 +25,17 @@
     if ([self.object respondsToSelector:self.field]) {
         RKObjectPropertyInspector* i = [RKObjectPropertyInspector sharedInspector];
         Class type = [i typeForProperty:NSStringFromSelector(self.field) ofClass:[self.object class]];
-        if (type == [NSString class]) {
-            [self.object setValue:value forKey:NSStringFromSelector(self.field)];
-        } else if (type == [NSNumber class]) {
+        if (type == [NSNumber class]) {
             NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
             [f setNumberStyle:NSNumberFormatterDecimalStyle];
-            NSNumber* tranformed = [f numberFromString:value];
+            NSNumber* tranformed = [value isKindOfClass:[NSString class]] ? [f numberFromString:value] : value;
             [self.object setValue:tranformed forKey:NSStringFromSelector(self.field)];
             [f release];
+        } else {
+            [self.object setValue:value forKey:NSStringFromSelector(self.field)];
         }
+    } else {
+        NCSLog(@"Failed to update '%@' on the class %@", NSStringFromSelector(self.field), NSStringFromClass([self.object class]));
     }
 }
 @end

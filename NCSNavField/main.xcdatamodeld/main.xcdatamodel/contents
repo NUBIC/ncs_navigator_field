@@ -55,7 +55,7 @@
         <relationship name="participants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Participant" inverseName="fieldWork" inverseEntity="Participant" syncable="YES"/>
     </entity>
     <entity name="Instrument" representedClassName="Instrument" syncable="YES">
-        <attribute name="breakoffId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="breakOffId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dataProblemId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>

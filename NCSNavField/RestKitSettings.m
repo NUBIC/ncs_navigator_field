@@ -179,7 +179,7 @@ static RestKitSettings* instance;
      @"contact_id", @"contactId",
      @"type", @"typeId",
      @"version", @"version",
-     @"date", @"date",
+     @"contact_date", @"date",
      @"start_time", @"startTimeJson",
      @"end_time", @"endTimeJson",
      @"person_id", @"personId", 

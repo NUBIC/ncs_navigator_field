@@ -30,7 +30,7 @@
 
 @property(nonatomic,retain) NSString* instrumentVersion;
 
-@property(nonatomic,retain) NSString* repeatKey;
+@property(nonatomic,retain) NSNumber* repeatKey;
 
 @property(nonatomic,retain) NSDate* startDate;
 
@@ -42,7 +42,7 @@
 
 @property(nonatomic,retain) NSNumber* statusId;
 
-@property(nonatomic,retain) NSNumber* breakoffId;
+@property(nonatomic,retain) NSNumber* breakOffId;
 
 @property(nonatomic,retain) NSNumber* instrumentModeId;
 

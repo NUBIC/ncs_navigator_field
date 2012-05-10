@@ -30,7 +30,7 @@
 + (NSArray*) eventTypes;
 + (NSArray*) incentives;
 + (NSArray*) dispositionCategory;
-+ (NSArray*) breakoff;
++ (NSArray*) breakOff;
 + (NSArray*) instrumentTypes;
 + (NSArray*) instrumentStatuses;
 + (NSArray*) instrumentModes;

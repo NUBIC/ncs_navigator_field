@@ -137,7 +137,7 @@
     [b singleOptionPickerForProperty:@selector(statusId) WithPickerOptions:[PickerOption instrumentStatuses]];
     
     [b labelWithText:@"Breakoff"];
-    [b singleOptionPickerForProperty:@selector(breakoff) WithPickerOptions:[PickerOption instrumentBreakoffs]];
+    [b singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[PickerOption instrumentBreakoffs]];
     
     [b labelWithText:@"Instrument Mode"];
     [b singleOptionPickerForProperty:@selector(instrumentModeId) WithPickerOptions:[PickerOption instrumentModes]];
@@ -155,7 +155,7 @@
     [b singleOptionPickerForProperty:@selector(dataProblemId) WithPickerOptions:[PickerOption instrumentDataProblems]]; 
     
     [b labelWithText:@"Comments"];
-    [b textAreaForProperty:@selector(comments)];
+    [b textAreaForProperty:@selector(comment)];
     
     return v;
 }

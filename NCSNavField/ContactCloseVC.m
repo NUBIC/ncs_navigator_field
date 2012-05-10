@@ -157,7 +157,7 @@
     [b singleOptionPickerForProperty:@selector(typeId) WithPickerOptions:[PickerOption contactTypes]];
     
     [b labelWithText:@"Location"];
-    [b singleOptionPickerForProperty:@selector(locationid) WithPickerOptions:[PickerOption location]];
+    [b singleOptionPickerForProperty:@selector(locationId) WithPickerOptions:[PickerOption location]];
     
     [b labelWithText:@"Location (Other)"];
     [b textFieldForProperty:@selector(locationOther)];
@@ -224,7 +224,7 @@
     [b singleOptionPickerForProperty:@selector(dispositionCategoryId) WithPickerOptions:[PickerOption dispositionCategory]];     
     
     [b labelWithText:@"Breakoff"];
-    [b singleOptionPickerForProperty:@selector(breakoffId) WithPickerOptions:[PickerOption breakoff]];     
+    [b singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[PickerOption breakOff]];     
 
     [b labelWithText:@"Repeat Key"];
     [b textFieldForProperty:@selector(repeatKey)];

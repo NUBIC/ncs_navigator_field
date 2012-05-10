@@ -23,7 +23,7 @@
 
 @property(nonatomic,retain) NSString* eventTypeOther;
 
-@property(nonatomic,retain) NSString* repeatKey;
+@property(nonatomic,retain) NSNumber* repeatKey;
 
 @property(nonatomic,retain) NSDate* startDate;
 
