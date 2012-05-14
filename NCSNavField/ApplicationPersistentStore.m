@@ -39,7 +39,9 @@ static ApplicationPersistentStore* instance;
 }
 
 - (NSString*)path {
-    return [[NSBundle mainBundle] pathForResource:@"main" ofType:@"sqlite"];
+    RKObjectManager* objectManager = [RKObjectManager sharedManager];
+    RKManagedObjectStore* objectStore = objectManager.objectStore;
+    return objectStore.pathToStoreFile;
 }
 
 @end
