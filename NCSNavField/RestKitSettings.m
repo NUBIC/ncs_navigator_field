@@ -116,7 +116,7 @@ static RestKitSettings* instance;
      @"end_date", @"endDate",
      @"end_time", @"endTimeJson",
      @"status", @"statusId",
-     @"breakoff", @"breakOffId",
+     @"break_off", @"breakOffId",
      @"mode_administered", @"instrumentModeId",
      @"mode_administered_other", @"instrumentModeOther",
      @"method_administered", @"instrumentMethodId",
@@ -308,7 +308,7 @@ static RestKitSettings* instance;
 //    
 //    
     RKObjectMapping* fieldWorkMapping = [RKObjectMapping mappingForClass:[NSMutableDictionary class] ];
-    [fieldWorkMapping mapKeyPathsToAttributes:@"fieldworkId", @"identifier", nil];
+//    [fieldWorkMapping mapKeyPathsToAttributes:@"fieldworkId", @"identifier", nil];
     [fieldWorkMapping mapRelationship:@"contacts" withMapping:contact];
      [fieldWorkMapping mapKeyPath:@"emptyArray" toAttribute:@"instrument_templates"];
       [fieldWorkMapping mapKeyPath:@"emptyArray" toAttribute:@"participants"];
