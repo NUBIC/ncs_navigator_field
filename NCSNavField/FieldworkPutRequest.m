@@ -77,12 +77,23 @@
         // when data is returned.
         RKObjectLoader* loader = [objectManager objectLoaderForObject:f method:RKRequestMethodPUT delegate:self];
         self.response = [loader sendSynchronously];
+        NCSLog(@"Response status code: %d", [self.response statusCode]);
+
     }
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    self.error = [NSString stringWithFormat:@"Object loader error while pushing fieldwork.\n%@", [error localizedDescription]];
-    [self showErrorMessage:self.error];
+    NCSLog(@"Expected loading to fail since there is no data returned. %@");
+    NCSLog([self isSuccessful] ? @"Request is successful" : @"Request is not successful");
+    NCSLog(@"Status code is %d", [self.response statusCode]);
+    if (![self isSuccessful]) {
+        self.error = [NSString stringWithFormat:@"Object loader error while pushing fieldwork.\n%@", [error localizedDescription]];
+        [self showErrorMessage:self.error];
+    }
+}
+
+- (void)objectLoaderDidFinishLoading:(RKObjectLoader*)objectLoader {
+    NCSLog(@"Success");
 }
 
 

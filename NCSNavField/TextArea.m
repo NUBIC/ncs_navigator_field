@@ -19,8 +19,8 @@
 
 @synthesize handler = _handler;
 @synthesize textView = _textView;
-@synthesize activeField = _activeField;
 
+static TextArea* _activeField = nil;
 
 - (UITextView*)initTextViewWithFrame:(CGRect)frame value:(NSString*)value {
     CGRect r = CGRectMake(0, 0, frame.size.width, frame.size.height);
@@ -58,12 +58,16 @@
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    self.activeField = self;
+    _activeField = self;
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    self.activeField = nil;
+    _activeField = nil;
     [self.handler updatedValue:self.textView.text];
+}
+
++ (TextArea*)activeField {
+    return _activeField;
 }
 
 @end

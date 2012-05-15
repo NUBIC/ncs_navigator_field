@@ -15,6 +15,7 @@
 #import "TextField.h"
 #import "DispositionCode.h"
 #import "SingleOptionPicker.h"
+#import "TextArea.h"
 
 @implementation ContactCloseVC
 
@@ -371,14 +372,18 @@
 }
 
 - (void)keyboardWasShown:(NSNotification*)aNotification {
-    TextField* active = [TextField activeField];
-
+    NSInteger height = 80;
+    UIView* active = [TextField activeField];
+    if (!active) {
+        active = [TextArea activeField];
+        height += 140;
+    }
     if (active) {
         NSDictionary* info = [aNotification userInfo];
         
         CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
         
-        [self.scrollView setContentOffset:CGPointMake(0.0, (active.frame.origin.y + active.superview.frame.origin.y + 80)-kbSize.width) animated:YES];
+        [self.scrollView setContentOffset:CGPointMake(0.0, (active.frame.origin.y + active.superview.frame.origin.y + height)-kbSize.width) animated:YES];
 
     }    
 }

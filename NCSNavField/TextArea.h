@@ -13,18 +13,16 @@
 @interface TextArea : UIView<UITextViewDelegate> {
     ChangeHandler* _handler;
     UITextField* _textField;
-    UIView* _activeField;
 }
 
 @property(nonatomic,retain) ChangeHandler* handler;
 
 @property(nonatomic,retain) UITextView* textView;
 
-@property(nonatomic,retain) UIView* activeField;
-
 
 - (id)initWithFrame:(CGRect)frame value:(NSString*)value;
 
++ (TextArea*)activeField;
 
 - (void) addChangeHandler:(ChangeHandler*)handler;
 
