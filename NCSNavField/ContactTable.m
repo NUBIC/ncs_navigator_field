@@ -74,19 +74,19 @@
 - (Section*) contactDetails {
     Section *s = [[Section new] autorelease];
     s.name = @"Contact";
-    Row *r = [[Row new] autorelease];
-      
-    if (_contact.closed) {
-        r.text = @"Modify Closed Contact";
-    } else if (_contact.initiated) {
-        r.text = @"Continue Contact";
-    } else {
-        r.text = @"Start Contact";
-    }
     
     NSArray* eventNames = [[_contact.events allObjects] valueForKey:@"name"];
     NSString* eventsText = [eventNames componentsJoinedByString:@" and "];
-    r.detailText = eventsText;
+    
+    Row *r = [[Row new] autorelease];
+    
+    if (_contact.closed) {
+        r.text = [NSString stringWithFormat:@"Modify Closed Contact %@", eventsText];
+    } else if (_contact.initiated) {
+        r.text = [NSString stringWithFormat:@"Continue Contact for %@", eventsText];
+    } else {
+        r.text = [NSString stringWithFormat:@"Start Contact for %@", eventsText];
+    }
     r.rowClass = @"contact";
     r.entity = _contact;
     [s addRow:r];
@@ -95,15 +95,15 @@
 
 - (Section*)event:(Event*)e {
     Section* s = [Section new];
-    s.name = e.name;
+    s.name = @"Scheduled Activities";
     for (Instrument* i in e.instruments) {
         Row* r0 = [[Row new] autorelease];
-        r0.text = i.name;
+        r0.text = [NSString stringWithFormat:@"%@ %@", e.name, @"Instrument"];
         r0.rowClass = @"instrument";
         r0.entity = i;
         [s addRow:r0];
         Row* r1 = [[Row new] autorelease];
-        r1.text = [NSString stringWithFormat:@"%@ Details", i.name];
+        r1.text = [NSString stringWithFormat:@"%@ Activity Details", e.name];
         r1.rowClass = @"instrument-details";
         r1.entity = i;
         [s addRow:r1];
