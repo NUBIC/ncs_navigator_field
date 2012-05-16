@@ -306,6 +306,8 @@
     
     [self loadObjectsFromDataStore];
     
+    self.detailViewController.detailItem = NULL;
+    
     self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
     
 	[self.tableView reloadData];

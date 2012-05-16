@@ -3,7 +3,7 @@ PODS:
   - LibComponentLogging-Core (1.1.6)
   - LibComponentLogging-NSLog (1.0.4):
     - LibComponentLogging-Core (>= 1.1.6)
-  - MBProgressHUD (0.41)
+  - MBProgressHUD (0.5)
   - MRCEnumerable (0.1)
   - NUSurveyor (0.0.0)
   - RestKit/Network (0.9.3):
@@ -25,7 +25,7 @@ DOWNLOAD_ONLY:
   - RestKit (0.9.3)
 
 DEPENDENCIES:
-  - MBProgressHUD (= 0.41)
+  - MBProgressHUD (= 0.5)
   - MRCEnumerable (defined in Podfile)
   - NUSurveyor (defined in Podfile)
   - RestKit/Network (= 0.9.3)

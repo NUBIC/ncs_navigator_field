@@ -14,7 +14,7 @@ platform :ios, :deployment_target => "5.0"
 # dependency 'RestKit/ObjectMapping/JSONKit', :podspec => rk
 
 dependency 'SBJson', '2.2.3'
-dependency 'MBProgressHUD', '0.41'
+dependency 'MBProgressHUD', '0.5'
 #dependency 'LibComponentLogging-Core', '1.1.6'
 #dependency 'LibComponentLogging-NSLog', '1.0.4'
 dependency 'RestKit/Network', '0.9.3'

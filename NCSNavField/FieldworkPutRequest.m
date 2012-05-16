@@ -36,8 +36,8 @@
 }
 
 - (BOOL) fieldworkExists {
-    NSArray* all = [Fieldwork findAllSortedBy:@"retrievedDate" ascending:NO];
-    return [all count] > 0;
+    Fieldwork* f = [Fieldwork submission];
+    return f && [f.contacts count] > 0 ;
 }
 
 - (BOOL) isSuccessful {

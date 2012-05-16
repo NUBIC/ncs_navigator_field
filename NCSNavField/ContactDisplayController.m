@@ -92,21 +92,27 @@
 
 - (void)configureView
 {
-    // Update the user interface for the detail item.
-    Contact *c = self.detailItem;
-    self.simpleTable = [[ContactTable alloc]initUsingContact:c];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MMM dd 'at' HH:mm"];
-    self.eventDateLabel.text = [dateFormatter stringFromDate:c.date];
-//    self.dwellingIdLabel.text = [self.detailItem dwelling].id;
-    UILabel *header = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
-    header.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    header.textAlignment = UITextAlignmentCenter;
-    header.text = c.person.name;
-    header.font = [UIFont fontWithName:@"Arial" size:26]; 
-    self.tableView.tableHeaderView = header;
-    [self.tableView reloadData];
+    if (self.detailItem) {
+        // Update the user interface for the detail item.
+        Contact *c = self.detailItem;
+        self.simpleTable = [[ContactTable alloc]initUsingContact:c];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MMM dd 'at' HH:mm"];
+        self.eventDateLabel.text = [dateFormatter stringFromDate:c.date];
+        //    self.dwellingIdLabel.text = [self.detailItem dwelling].id;
+        UILabel *header = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
+        header.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        header.textAlignment = UITextAlignmentCenter;
+        header.text = c.person.name;
+        header.font = [UIFont fontWithName:@"Arial" size:26]; 
+        self.tableView.tableHeaderView = header;
+        [self.tableView reloadData];
+    } else {
+        self.simpleTable = NULL;
+        UITableView *myTable = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        self.tableView = myTable;
+    }
 }
 
 #pragma mark - View lifecycle
