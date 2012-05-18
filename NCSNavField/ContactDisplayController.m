@@ -125,7 +125,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    CGRect r = CGRectMake(self.view.frame.size.width-75, self.view.frame.size.height-25, 70, 25);
+    CGRect r = CGRectMake(self.view.frame.size.width-155, self.view.frame.size.height-25, 150, 25);
     UILabel* l = [[UILabel alloc] initWithFrame:r];
     l.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     l.textAlignment = UITextAlignmentRight;

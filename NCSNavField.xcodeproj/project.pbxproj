@@ -73,6 +73,8 @@
 		009AD2E4142D391A0038650B /* SimpleTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009AD2E3142D391A0038650B /* SimpleTableController.m */; };
 		009BE3AF14FC2217008195F9 /* SyncActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0031315514E04BF800C0D0B1 /* SyncActivityIndicator.m */; };
 		00B7CCA814BDFB6E00D5901C /* DispositionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B7CCA714BDFB6E00D5901C /* DispositionCode.m */; };
+		00C0C8D615655E390047A113 /* icon-test.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C0C8D515655E390047A113 /* icon-test.png */; };
+		00C0C8DA1565616A0047A113 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C0C8D91565616A0047A113 /* test.png */; };
 		00C2520D151794EB00F4FE3B /* RestKitSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */; };
 		00C25211151A63B500F4FE3B /* FieldworkTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C25210151A63B500F4FE3B /* FieldworkTest.m */; };
 		00C4003A14EC381D005736EA /* DispositionCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C4003914EC381D005736EA /* DispositionCodeTest.m */; };
@@ -364,6 +366,8 @@
 		00A2CDDA14EAFCBD00C164F7 /* libMRCEnumerable.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMRCEnumerable.a; path = "MRCEnumerable/build/Release-iphoneos/libMRCEnumerable.a"; sourceTree = "<group>"; };
 		00B7CCA614BDFB6E00D5901C /* DispositionCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispositionCode.h; sourceTree = "<group>"; };
 		00B7CCA714BDFB6E00D5901C /* DispositionCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispositionCode.m; sourceTree = "<group>"; };
+		00C0C8D515655E390047A113 /* icon-test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-test.png"; sourceTree = "<group>"; };
+		00C0C8D91565616A0047A113 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		00C2520B151794EB00F4FE3B /* RestKitSettingsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitSettingsTest.h; sourceTree = "<group>"; };
 		00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitSettingsTest.m; sourceTree = "<group>"; };
 		00C2520F151A63B500F4FE3B /* FieldworkTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkTest.h; sourceTree = "<group>"; };
@@ -442,6 +446,8 @@
 		0026E659140347E700355BCB = {
 			isa = PBXGroup;
 			children = (
+				00C0C8D91565616A0047A113 /* test.png */,
+				00C0C8D515655E390047A113 /* icon-test.png */,
 				007157ED1558518D00B37A64 /* TestFlight.h */,
 				007157EE1558518D00B37A64 /* libTestFlight.a */,
 				001D93261520FC9A009E12C1 /* TestFlight-TeamToken.txt */,
@@ -966,6 +972,8 @@
 				007C1F4114FBFACA0020DF30 /* Podfile in Resources */,
 				000E64B3150EB2BF0006B31E /* Settings.bundle in Resources */,
 				001D93271520FC9A009E12C1 /* TestFlight-TeamToken.txt in Resources */,
+				00C0C8D615655E390047A113 /* icon-test.png in Resources */,
+				00C0C8DA1565616A0047A113 /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
