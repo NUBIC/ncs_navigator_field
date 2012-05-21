@@ -74,7 +74,6 @@
 		009BE3AF14FC2217008195F9 /* SyncActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0031315514E04BF800C0D0B1 /* SyncActivityIndicator.m */; };
 		00B7CCA814BDFB6E00D5901C /* DispositionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B7CCA714BDFB6E00D5901C /* DispositionCode.m */; };
 		00C0C8D615655E390047A113 /* icon-test.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C0C8D515655E390047A113 /* icon-test.png */; };
-		00C0C8DA1565616A0047A113 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C0C8D91565616A0047A113 /* test.png */; };
 		00C2520D151794EB00F4FE3B /* RestKitSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */; };
 		00C25211151A63B500F4FE3B /* FieldworkTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C25210151A63B500F4FE3B /* FieldworkTest.m */; };
 		00C4003A14EC381D005736EA /* DispositionCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C4003914EC381D005736EA /* DispositionCodeTest.m */; };
@@ -973,7 +972,6 @@
 				000E64B3150EB2BF0006B31E /* Settings.bundle in Resources */,
 				001D93271520FC9A009E12C1 /* TestFlight-TeamToken.txt in Resources */,
 				00C0C8D615655E390047A113 /* icon-test.png in Resources */,
-				00C0C8DA1565616A0047A113 /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1183,6 +1181,7 @@
 			baseConfigurationReference = C2CA3FB4FE8942AD94694D46 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Northwestern University";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1203,6 +1202,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = NCSNavField;
+				PROVISIONING_PROFILE = "00D5A6FA-EC20-47CE-B285-C4B42B8B23AB";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
@@ -1214,6 +1214,8 @@
 			baseConfigurationReference = C2CA3FB4FE8942AD94694D46 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Northwestern University";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Northwestern University";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1233,6 +1235,8 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = NCSNavField;
+				PROVISIONING_PROFILE = "00D5A6FA-EC20-47CE-B285-C4B42B8B23AB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "00D5A6FA-EC20-47CE-B285-C4B42B8B23AB";
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;

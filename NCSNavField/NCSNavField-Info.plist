@@ -5,13 +5,13 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>NavField</string>
+	<string>NavField (Test)</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>icon-staging.png</string>
-		<string>icon.png</string>
+		<string>icon-test.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -20,18 +20,18 @@
 			<key>CFBundleIconFiles</key>
 			<array>
 				<string>icon-staging.png</string>
-				<string>icon.png</string>
+				<string>icon-test.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<false/>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>edu.northwestern.nubic.NCS-NavField</string>
+	<string>edu.northwestern.nubic.NCS-NavField-Test</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>NavField</string>
+	<string>NavField (Test)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
