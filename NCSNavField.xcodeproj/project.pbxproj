@@ -366,7 +366,6 @@
 		00B7CCA614BDFB6E00D5901C /* DispositionCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispositionCode.h; sourceTree = "<group>"; };
 		00B7CCA714BDFB6E00D5901C /* DispositionCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispositionCode.m; sourceTree = "<group>"; };
 		00C0C8D515655E390047A113 /* icon-test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-test.png"; sourceTree = "<group>"; };
-		00C0C8D91565616A0047A113 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		00C2520B151794EB00F4FE3B /* RestKitSettingsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitSettingsTest.h; sourceTree = "<group>"; };
 		00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitSettingsTest.m; sourceTree = "<group>"; };
 		00C2520F151A63B500F4FE3B /* FieldworkTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkTest.h; sourceTree = "<group>"; };
@@ -445,7 +444,6 @@
 		0026E659140347E700355BCB = {
 			isa = PBXGroup;
 			children = (
-				00C0C8D91565616A0047A113 /* test.png */,
 				00C0C8D515655E390047A113 /* icon-test.png */,
 				007157ED1558518D00B37A64 /* TestFlight.h */,
 				007157EE1558518D00B37A64 /* libTestFlight.a */,
