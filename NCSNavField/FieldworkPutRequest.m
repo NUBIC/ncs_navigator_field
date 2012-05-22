@@ -83,7 +83,7 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    NCSLog(@"Expected loading to fail since there is no data returned. %@");
+    NCSLog(@"Expected loading to fail since there is no data returned. %@", error);
     NCSLog([self isSuccessful] ? @"Request is successful" : @"Request is not successful");
     NCSLog(@"Status code is %d", [self.response statusCode]);
     if (![self isSuccessful]) {

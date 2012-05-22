@@ -18,6 +18,7 @@
 #import "Row.h"
 #import "Contact.h"
 #import "Person.h"
+#import "ApplicationInformation.h"
 
 @interface ContactDisplayController ()
 @property (nonatomic, retain) UIPopoverController *popoverController;
@@ -111,6 +112,10 @@
     } else {
         self.simpleTable = NULL;
         UITableView *myTable = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        
+        if ([ApplicationInformation isTestEnvironment]) {
+            myTable.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"test-background.png"]];
+        }
         self.tableView = myTable;
     }
 }
@@ -131,6 +136,10 @@
     l.textAlignment = UITextAlignmentRight;
     l.backgroundColor = [UIColor clearColor];
     [self.view addSubview:l];
+    
+    if ([ApplicationInformation isTestEnvironment]) {
+        ((UITableView*)self.view).backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"test-background.png"]];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

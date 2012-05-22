@@ -62,6 +62,8 @@
 		00816CBC154EF2350054C918 /* ApplicationPersistentStoreBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CBB154EF2350054C918 /* ApplicationPersistentStoreBackup.m */; };
 		00816CBF154F165E0054C918 /* ApplicationPersistentStoreBackupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CBE154F165D0054C918 /* ApplicationPersistentStoreBackupOperation.m */; };
 		00860D271520EF3000FCCFCB /* TestFlightSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 00860D261520EF3000FCCFCB /* TestFlightSettings.m */; };
+		0087225A156AF6F100CE24ED /* test-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 00872259156AF6F100CE24ED /* test-background.png */; };
+		0087225D156B0F4300CE24ED /* ApplicationInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087225C156B0F4300CE24ED /* ApplicationInformation.m */; };
 		008C5711149696DD005EC22E /* TextArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 008C5710149696DD005EC22E /* TextArea.m */; };
 		008F7DA1148BB3DD009BCF1D /* ContactInitiateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F7DA0148BB3DD009BCF1D /* ContactInitiateVC.m */; };
 		008F7DA4148C1B16009BCF1D /* FormBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F7DA3148C1B16009BCF1D /* FormBuilder.m */; };
@@ -342,6 +344,9 @@
 		00816CBE154F165D0054C918 /* ApplicationPersistentStoreBackupOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationPersistentStoreBackupOperation.m; sourceTree = "<group>"; };
 		00860D251520EF3000FCCFCB /* TestFlightSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlightSettings.h; sourceTree = "<group>"; };
 		00860D261520EF3000FCCFCB /* TestFlightSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFlightSettings.m; sourceTree = "<group>"; };
+		00872259156AF6F100CE24ED /* test-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-background.png"; sourceTree = "<group>"; };
+		0087225B156B0F4300CE24ED /* ApplicationInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationInformation.h; sourceTree = "<group>"; };
+		0087225C156B0F4300CE24ED /* ApplicationInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationInformation.m; sourceTree = "<group>"; };
 		008C570F149696DD005EC22E /* TextArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextArea.h; sourceTree = "<group>"; };
 		008C5710149696DD005EC22E /* TextArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextArea.m; sourceTree = "<group>"; };
 		008F7D9F148BB3DD009BCF1D /* ContactInitiateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInitiateVC.h; sourceTree = "<group>"; };
@@ -444,6 +449,7 @@
 		0026E659140347E700355BCB = {
 			isa = PBXGroup;
 			children = (
+				00872259156AF6F100CE24ED /* test-background.png */,
 				00C0C8D515655E390047A113 /* icon-test.png */,
 				007157ED1558518D00B37A64 /* TestFlight.h */,
 				007157EE1558518D00B37A64 /* libTestFlight.a */,
@@ -807,6 +813,8 @@
 				00816CB5154B49450054C918 /* FieldworkSynchronizeOperation.m */,
 				00272A0F155A124E009F21F5 /* NSStringHelper.h */,
 				00272A10155A124E009F21F5 /* NSStringHelper.m */,
+				0087225B156B0F4300CE24ED /* ApplicationInformation.h */,
+				0087225C156B0F4300CE24ED /* ApplicationInformation.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -970,6 +978,7 @@
 				000E64B3150EB2BF0006B31E /* Settings.bundle in Resources */,
 				001D93271520FC9A009E12C1 /* TestFlight-TeamToken.txt in Resources */,
 				00C0C8D615655E390047A113 /* icon-test.png in Resources */,
+				0087225A156AF6F100CE24ED /* test-background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1064,6 +1073,7 @@
 				00816CBF154F165E0054C918 /* ApplicationPersistentStoreBackupOperation.m in Sources */,
 				00DE998715532F8400C3A0FB /* NSString+Additions.m in Sources */,
 				00272A11155A124F009F21F5 /* NSStringHelper.m in Sources */,
+				0087225D156B0F4300CE24ED /* ApplicationInformation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
