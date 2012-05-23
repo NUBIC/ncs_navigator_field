@@ -24,8 +24,6 @@
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket;
 
-- (BOOL) fieldworkExists;
-
 - (BOOL) send;
 
 - (BOOL) isSuccessful;

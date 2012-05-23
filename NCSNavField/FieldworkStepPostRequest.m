@@ -145,7 +145,7 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    self.error = [NSString stringWithFormat:@"Object loader error while pushing fieldwork.\n%@", [error localizedDescription]];
+    self.error = [NSString stringWithFormat:@"Object loader error while retrieving fieldwork.\n%@", [error localizedDescription]];
     [self showErrorMessage:self.error];
 }
 

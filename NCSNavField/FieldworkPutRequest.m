@@ -28,16 +28,8 @@
 }
 
 - (BOOL) send {
-    if (![self fieldworkExists]) {
-        return true;
-    }
     [self pushContacts:self.ticket];
     return [self isSuccessful];
-}
-
-- (BOOL) fieldworkExists {
-    Fieldwork* f = [Fieldwork submission];
-    return f && [f.contacts count] > 0 ;
 }
 
 - (BOOL) isSuccessful {
