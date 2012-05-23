@@ -234,7 +234,7 @@ static RestKitSettings* instance;
      @"endDate.jsonSchemaDate", @"end_date",
      @"endTime.jsonSchemaTime", @"end_time",
      @"statusId", @"status",
-     @"breakOffId", @"breakoff",
+     @"breakOffId", @"break_off",
      @"instrumentModeId", @"mode_administered",
      @"instrumentModeOther", @"mode_administered_other",
      @"instrumentMethodId", @"method_administered",
