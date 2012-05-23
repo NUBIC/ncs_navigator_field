@@ -53,7 +53,7 @@ Person *tom;
     NSArray* sections = [self generateSections];
     Section* s3 = [sections objectAtIndex:3];
     Row* s3r0 = [s3.rows objectAtIndex:0];
-    STAssertEqualObjects(s3r0.text, @"Start Contact", @"Wrong value");    
+    STAssertEqualObjects(s3r0.text, @"Start Contact for Birth Event", @"Wrong value");    
 }
 
 - (void) testContinueContactRow {
@@ -61,7 +61,7 @@ Person *tom;
     NSArray* sections = [self generateSections];
     Section* s3 = [sections objectAtIndex:3];
     Row* s3r0 = [s3.rows objectAtIndex:0];
-    STAssertEqualObjects(s3r0.text, @"Continue Contact", @"Wrong value");
+    STAssertEqualObjects(s3r0.text, @"Continue Contact for Birth Event", @"Wrong value");
 }
 
 - (void)testBirthInstrument {
@@ -71,9 +71,9 @@ Person *tom;
     Row* s4r0 = [s4.rows objectAtIndex:0];
     Row* s4r1 = [s4.rows objectAtIndex:1];
     STAssertEquals([sections count], 5U, @"Wrong number of sections");
-    STAssertEqualObjects(s4.name, @"Birth Event", @"Wrong value");
-    STAssertEqualObjects(s4r0.text, @"Birth Instrument", @"Wrong value");
-    STAssertEqualObjects(s4r1.text, @"Birth Instrument Details", @"Wrong value");
+    STAssertEqualObjects(s4.name, @"Scheduled Activities", @"Wrong value");
+    STAssertEqualObjects(s4r0.text, @"Birth Event Instrument", @"Wrong value");
+    STAssertEqualObjects(s4r1.text, @"Birth Event Activity Details", @"Wrong value");
 }
 
 - (void)testPregnancyAndBirthInstruments {
@@ -87,12 +87,12 @@ Person *tom;
     Row* s5r0 = [s5.rows objectAtIndex:0];
     Row* s5r1 = [s5.rows objectAtIndex:1];
     STAssertEquals([sections count], 6U, @"Wrong number of sections");
-    STAssertEqualObjects(s4.name, @"Birth Event", @"Wrong value");
-    STAssertEqualObjects(s4r0.text, @"Birth Instrument", @"Wrong value");
-    STAssertEqualObjects(s4r1.text, @"Birth Instrument Details", @"Wrong value");
-    STAssertEqualObjects(s5.name, @"Pregnancy Event", @"Wrong value");
-    STAssertEqualObjects(s5r0.text, @"Pregnancy Instrument", @"Wrong value");
-    STAssertEqualObjects(s5r1.text, @"Pregnancy Instrument Details", @"Wrong value");
+    STAssertEqualObjects(s4.name, @"Scheduled Activities", @"Wrong value");
+    STAssertEqualObjects(s4r0.text, @"Birth Event Instrument", @"Wrong value");
+    STAssertEqualObjects(s4r1.text, @"Birth Event Activity Details", @"Wrong value");
+    STAssertEqualObjects(s5.name, @"Scheduled Activities", @"Wrong value");
+    STAssertEqualObjects(s5r0.text, @"Pregnancy Event Instrument", @"Wrong value");
+    STAssertEqualObjects(s5r1.text, @"Pregnancy Event Activity Details", @"Wrong value");
 }
 
 - (NSArray*) generateSections {

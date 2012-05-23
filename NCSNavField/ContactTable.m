@@ -132,16 +132,20 @@
 
 
 - (NSString*) ReplaceFirstNewLine:(NSString*) original {
-    NSMutableString * newString = [NSMutableString stringWithString:original];
-    
-    NSRange foundRange = [original rangeOfString:@"\n"];
-    if (foundRange.location != NSNotFound)
-    {
-        [newString replaceCharactersInRange:foundRange
-                                 withString:@""];
+    NSMutableString* trim = nil;
+    if (original) {
+        trim = [[[NSMutableString stringWithString:original] retain ]autorelease];
+        
+        NSRange foundRange = [original rangeOfString:@"\n"];
+        if (foundRange.location != NSNotFound)
+        {
+            [trim replaceCharactersInRange:foundRange
+                                     withString:@""];
+        }
+
     }
     
-    return [[newString retain] autorelease];
+    return trim;
 }
 
 
