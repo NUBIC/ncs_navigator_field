@@ -27,6 +27,7 @@ Person *tom;
     tom = [Fixtures createPersonWithId:@"T1" name:@"Tom"];
     tom.street = @"1 Sesame St";
     tom.city = @"Chicago";
+    tom.state = @"IL";
     tom.zipCode = @"60611";
     tom.cellPhone = @"111-222-3333";
     tom.email = @"tom@jones.com";
@@ -40,6 +41,22 @@ Person *tom;
 - (void)testSections {
     NSArray* sections = [self generateSections];
     STAssertEquals([sections count], 4U, @"Wrong number of sections");
+}
+
+- (void)testAddress {
+    NSArray* sections = [self generateSections];
+    Section* s0 = [sections objectAtIndex:0];
+    STAssertEqualObjects(s0.name, @"Address", @"Wrong value");
+    Row* s0r0 = [s0.rows objectAtIndex:0];
+    STAssertEqualObjects(s0r0.text, @"Home", @"Wrong value");
+    STAssertEqualObjects(s0r0.detailText, @"1 Sesame St\nChicago, IL 60611", @"Wrong value");
+}
+
+// TODO: Test address if street, city, state are nil
+//       Maybe try different formats.
+-(void)testBlankAddress {
+    tom.street = nil;
+    [self generateSections];
 }
 
 - (void) testContactSection {
@@ -94,6 +111,10 @@ Person *tom;
     STAssertEqualObjects(s5r0.text, @"Pregnancy Event Instrument", @"Wrong value");
     STAssertEqualObjects(s5r1.text, @"Pregnancy Event Activity Details", @"Wrong value");
 }
+
+
+
+#pragma mark helper methods
 
 - (NSArray*) generateSections {
     return [[[ContactTable alloc] initUsingContact:c] sections];
