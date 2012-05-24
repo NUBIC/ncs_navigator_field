@@ -2,3 +2,6 @@ source :rubygems
 
 gem "sinatra"
 gem "aker"
+gem "sequel"
+gem "sqlite3"
+gem "json"
