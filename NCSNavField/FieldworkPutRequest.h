@@ -25,11 +25,11 @@
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket;
 
-- (BOOL) put;
+- (BOOL) send;
 
 - (BOOL) isSuccessful;
 
-- (BOOL)put:(CasProxyTicket*)ticket;
+- (BOOL)send:(CasProxyTicket*)ticket;
 
 - (CasProxyTicket*) obtainProxyTicket:(CasServiceTicket*)st;
 

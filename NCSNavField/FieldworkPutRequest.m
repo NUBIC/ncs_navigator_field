@@ -27,16 +27,16 @@
     return self;
 }
 
-- (BOOL) put {
+- (BOOL) send {
     CasProxyTicket* pt = [self obtainProxyTicket:self.ticket];
-    return [self put:pt];
+    return [self send:pt];
 }
 
 - (BOOL) isSuccessful {
     return [self.response isSuccessful];
 }
 
-- (BOOL)put:(CasProxyTicket*)proxyTicket {
+- (BOOL)send:(CasProxyTicket*)proxyTicket {
     if (proxyTicket) {
         
         Fieldwork* submission = [Fieldwork submission];
