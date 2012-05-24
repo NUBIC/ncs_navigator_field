@@ -45,7 +45,7 @@
     ApplicationPersistentStoreBackup* backup = [store backup];
     if (backup) {
         FieldworkPutRequest* put = [[FieldworkPutRequest alloc] initWithServiceTicket:self.ticket];
-        if ([put send]) {
+        if ([put put]) {
             [store remove];
             success = true;
         }

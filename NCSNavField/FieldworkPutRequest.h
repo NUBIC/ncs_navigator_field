@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class CasProxyTicket;
+@class Fieldwork;
 
 @interface FieldworkPutRequest : NSObject<RKObjectLoaderDelegate> {
     CasServiceTicket* _ticket;
@@ -24,13 +25,17 @@
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket;
 
-- (BOOL) send;
+- (BOOL) put;
 
 - (BOOL) isSuccessful;
 
-- (void)pushContacts:(CasServiceTicket*)serviceTicket;
+- (BOOL)put:(CasProxyTicket*)ticket;
 
-- (void)putDataWithProxyTicket:(CasProxyTicket*)ticket;
+- (CasProxyTicket*) obtainProxyTicket:(CasServiceTicket*)st;
+
+- (RKObjectManager *)objectManager:(CasProxyTicket *)proxyTicket;
+
+- (RKObjectLoader *)objectLoader:(Fieldwork *)submission objectManager:(RKObjectManager *)objectManager;
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error;
 

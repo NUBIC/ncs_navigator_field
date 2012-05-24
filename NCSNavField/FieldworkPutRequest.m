@@ -27,51 +27,63 @@
     return self;
 }
 
-- (BOOL) send {
-    [self pushContacts:self.ticket];
-    return [self isSuccessful];
+- (BOOL) put {
+    CasProxyTicket* pt = [self obtainProxyTicket:self.ticket];
+    return [self put:pt];
 }
 
 - (BOOL) isSuccessful {
     return [self.response isSuccessful];
 }
 
-- (void)pushContacts:(CasServiceTicket*)serviceTicket {
-    [serviceTicket present];
-    if (serviceTicket.ok) {
+- (BOOL)put:(CasProxyTicket*)proxyTicket {
+    if (proxyTicket) {
+        
+        Fieldwork* submission = [Fieldwork submission];
+        if (submission) {
+            RKObjectManager *objectManager = [self objectManager:proxyTicket];
+            RKObjectLoader* loader = [self objectLoader:submission objectManager:objectManager];
+            self.response = [loader sendSynchronously];
+            NCSLog(@"Response status code: %d", [self.response statusCode]);
+        }
+    }
+    return [self isSuccessful];
+}
+
+- (CasProxyTicket*) obtainProxyTicket:(CasServiceTicket*)st {
+    CasProxyTicket* pt = NULL;
+    [st present];
+    if (st.ok) {
         CasConfiguration* conf = [ApplicationSettings casConfiguration];
         CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
         NSString* coreURL = [ApplicationSettings instance].coreURL;
         
-        CasProxyTicket* t = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:serviceTicket.pgt];
-        [t reify];
-        if (!t.error) {
-            NCSLog(@"Proxy ticket successfully obtained: %@", t.proxyTicket);
-            [self putDataWithProxyTicket:t];
+        CasProxyTicket* pending = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:st.pgt];
+        [pending reify];
+        if (!pending.error) {
+            NCSLog(@"Proxy ticket successfully obtained: %@", pending.proxyTicket);
         } else {
-            self.error = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", t.message];
-            [self showErrorMessage:self.error];
+            self.error = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", pending.message];
+            pt = pending;
         }
     } else {
-        self.error = [NSString stringWithFormat:@"Presenting service ticket failed: %@", [serviceTicket message]];
+        self.error = [NSString stringWithFormat:@"Presenting service ticket failed: %@", [st message]];
         [self showErrorMessage:self.error];
     }
+    return pt;
 }
 
-- (void)putDataWithProxyTicket:(CasProxyTicket*)proxyTicket {
+- (RKObjectManager *)objectManager:(CasProxyTicket *)proxyTicket {
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", proxyTicket.proxyTicket] forKey:@"Authorization"];
-    
-    NSArray* all = [Fieldwork findAllSortedBy:@"retrievedDate" ascending:NO];
-    if ([all count] > 0) {
-        Fieldwork* f = [all objectAtIndex:0];
-        // TODO: Serialize data and then use RKRequest so objectLoader isn't invoked
-        // when data is returned.
-        RKObjectLoader* loader = [objectManager objectLoaderForObject:f method:RKRequestMethodPUT delegate:self];
-        self.response = [loader sendSynchronously];
-        NCSLog(@"Response status code: %d", [self.response statusCode]);
+    return objectManager;
+}
 
-    }
+- (RKObjectLoader *)objectLoader:(Fieldwork *)submission objectManager:(RKObjectManager *)objectManager {
+    // TODO: Serialize data and then use RKRequest so objectLoader isn't 
+    // invoked when data is returned
+    RKObjectLoader* loader = [objectManager objectLoaderForObject:submission method:RKRequestMethodPUT delegate:self];
+    return loader;
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
