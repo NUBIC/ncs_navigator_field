@@ -90,8 +90,8 @@
     
     NSDate* today = [NSDate date];
     NSInteger days = [[ApplicationSettings instance] upcomingDaysToSync];
-    NSTimeInterval secondsPerWeek = 60 * 60 * 24 * days;
-    NSDate* inOneWeek = [today dateByAddingTimeInterval:secondsPerWeek];
+    NSTimeInterval seconds = 60 * 60 * 24 * days;
+    NSDate* inOneWeek = [today dateByAddingTimeInterval:seconds];
     NSString* clientId = [ApplicationSettings instance].clientId;
     
     NSDateFormatter* rfc3339 = [[[NSDateFormatter alloc] init] autorelease];
