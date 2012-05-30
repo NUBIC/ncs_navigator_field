@@ -20,6 +20,6 @@
 
 - (BOOL) submit;
 
-- (BOOL)recieve;
+- (BOOL)receive;
 
 @end

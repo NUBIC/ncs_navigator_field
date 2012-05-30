@@ -30,11 +30,11 @@
         BOOL submission = [self submit];
         BOOL receive = false;
         if (submission) {
-            receive = [self recieve];
+            receive = [self receive];
         }
         success = submission && receive;
     } else {
-        success = [self recieve];
+        success = [self receive];
     }
     return success;
 }
@@ -53,7 +53,7 @@
     return success;
 }
 
-- (BOOL)recieve {
+- (BOOL)receive {
     FieldworkStepPostRequest* post = [[FieldworkStepPostRequest alloc] initWithServiceTicket:self.ticket];
     return [post send];
 }
