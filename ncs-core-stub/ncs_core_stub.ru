@@ -42,6 +42,8 @@ class NCSCoreStub < Sinatra::Base
   get '/api/v1/merges/:identifier' do
     status = {"status" => :working}
     
+    puts "headers: #{headers.inspect}"
+    
     env['aker.check'].authentication_required!
     username = env['aker.check'].user.username
     if username
@@ -65,7 +67,7 @@ class NCSCoreStub < Sinatra::Base
       end
       
       content_type :json
-      status.to_json
+      {"status" => "merged"}.to_json
     end
   end
 

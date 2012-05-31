@@ -36,6 +36,7 @@
 		0037D2BD14B60AA100B7D05A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0037D2BC14B60AA100B7D05A /* libz.dylib */; };
 		0037D2BF14B60AAA00B7D05A /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0037D2BE14B60AAA00B7D05A /* libiconv.dylib */; };
 		00393C92148E54C000671899 /* SingleOptionPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00393C91148E54C000671899 /* SingleOptionPicker.m */; };
+		003B46D215752E55000724BF /* MergeStatusTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 003B46D115752E55000724BF /* MergeStatusTest.m */; };
 		00439FF814112E500097A878 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF714112E500097A878 /* CFNetwork.framework */; };
 		00439FFA14112E5E0097A878 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF914112E5E0097A878 /* CoreData.framework */; };
 		00439FFC14112E670097A878 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FFB14112E670097A878 /* MobileCoreServices.framework */; };
@@ -88,6 +89,9 @@
 		00D1BAEB154775CB000097E7 /* FieldworkPutRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D1BAEA154775CB000097E7 /* FieldworkPutRequest.m */; };
 		00D93A3A1506B2CF009CFDE9 /* RestKitSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D93A391506B2CF009CFDE9 /* RestKitSettings.m */; };
 		00D93A441507CC19009CFDE9 /* Participant.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D93A431507CC19009CFDE9 /* Participant.m */; };
+		00DC620D1575BD5900E5F825 /* MergeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC620C1575BD5900E5F825 /* MergeStatus.m */; };
+		00DC621A1576845B00E5F825 /* MergeStatusRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC62191576845B00E5F825 /* MergeStatusRequest.m */; };
+		00DC621D15768D3300E5F825 /* NSURL+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC621C15768D3300E5F825 /* NSURL+Extensions.m */; };
 		00DE998715532F8400C3A0FB /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DE998615532F8400C3A0FB /* NSString+Additions.m */; };
 		00E32348142153CD00D3AEED /* Fixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E32347142153CD00D3AEED /* Fixtures.m */; };
 		00E323571422A23A00D3AEED /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E323561422A23A00D3AEED /* Section.m */; };
@@ -162,6 +166,8 @@
 		0037D2BE14B60AAA00B7D05A /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		00393C90148E54C000671899 /* SingleOptionPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleOptionPicker.h; sourceTree = "<group>"; };
 		00393C91148E54C000671899 /* SingleOptionPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleOptionPicker.m; sourceTree = "<group>"; };
+		003B46D015752E55000724BF /* MergeStatusTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeStatusTest.h; sourceTree = "<group>"; };
+		003B46D115752E55000724BF /* MergeStatusTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeStatusTest.m; sourceTree = "<group>"; };
 		00439FF714112E500097A878 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		00439FF914112E5E0097A878 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		00439FFB14112E670097A878 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -388,6 +394,12 @@
 		00D93A391506B2CF009CFDE9 /* RestKitSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitSettings.m; sourceTree = "<group>"; };
 		00D93A421507CC19009CFDE9 /* Participant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Participant.h; sourceTree = "<group>"; };
 		00D93A431507CC19009CFDE9 /* Participant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Participant.m; sourceTree = "<group>"; };
+		00DC620B1575BD5900E5F825 /* MergeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeStatus.h; sourceTree = "<group>"; };
+		00DC620C1575BD5900E5F825 /* MergeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeStatus.m; sourceTree = "<group>"; };
+		00DC62181576845B00E5F825 /* MergeStatusRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeStatusRequest.h; sourceTree = "<group>"; };
+		00DC62191576845B00E5F825 /* MergeStatusRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeStatusRequest.m; sourceTree = "<group>"; };
+		00DC621B15768D3300E5F825 /* NSURL+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Extensions.h"; sourceTree = "<group>"; };
+		00DC621C15768D3300E5F825 /* NSURL+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Extensions.m"; sourceTree = "<group>"; };
 		00DE998515532F8400C3A0FB /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
 		00DE998615532F8400C3A0FB /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		00E32346142153CD00D3AEED /* Fixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fixtures.h; sourceTree = "<group>"; };
@@ -530,6 +542,8 @@
 				00E32347142153CD00D3AEED /* Fixtures.m */,
 				00590AC61428F7D0008335EA /* ContactTableTest.h */,
 				00590AC71428F7D0008335EA /* ContactTableTest.m */,
+				003B46D015752E55000724BF /* MergeStatusTest.h */,
+				003B46D115752E55000724BF /* MergeStatusTest.m */,
 				004FC7101486BE8200A378DC /* PickerOptionTest.h */,
 				004FC7111486BE8200A378DC /* PickerOptionTest.m */,
 				00C4003814EC381D005736EA /* DispositionCodeTest.h */,
@@ -769,6 +783,8 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				00DC62181576845B00E5F825 /* MergeStatusRequest.h */,
+				00DC62191576845B00E5F825 /* MergeStatusRequest.m */,
 				00DE998515532F8400C3A0FB /* NSString+Additions.h */,
 				00DE998615532F8400C3A0FB /* NSString+Additions.m */,
 				00816CB0154B3F830054C918 /* FieldworkStepPostRequest.h */,
@@ -815,6 +831,10 @@
 				00272A10155A124E009F21F5 /* NSStringHelper.m */,
 				0087225B156B0F4300CE24ED /* ApplicationInformation.h */,
 				0087225C156B0F4300CE24ED /* ApplicationInformation.m */,
+				00DC620B1575BD5900E5F825 /* MergeStatus.h */,
+				00DC620C1575BD5900E5F825 /* MergeStatus.m */,
+				00DC621B15768D3300E5F825 /* NSURL+Extensions.h */,
+				00DC621C15768D3300E5F825 /* NSURL+Extensions.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1074,6 +1094,9 @@
 				00DE998715532F8400C3A0FB /* NSString+Additions.m in Sources */,
 				00272A11155A124F009F21F5 /* NSStringHelper.m in Sources */,
 				0087225D156B0F4300CE24ED /* ApplicationInformation.m in Sources */,
+				00DC620D1575BD5900E5F825 /* MergeStatus.m in Sources */,
+				00DC621A1576845B00E5F825 /* MergeStatusRequest.m in Sources */,
+				00DC621D15768D3300E5F825 /* NSURL+Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1093,6 +1116,7 @@
 				00910BD21535F18900BC2820 /* DatabaseTest.m in Sources */,
 				006C26D71541BACB00D9B3B1 /* BackupFieldworkStepTest.m in Sources */,
 				00D1BAE715470C4F000097E7 /* PushFieldworkStepTest.m in Sources */,
+				003B46D215752E55000724BF /* MergeStatusTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1268,6 +1292,7 @@
 				GCC_PREFIX_HEADER = "NCSNavFieldTests/NCS NavFieldTests-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "NCSNavFieldTests/NCSNavFieldTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -1295,6 +1320,7 @@
 				GCC_PREFIX_HEADER = "NCSNavFieldTests/NCS NavFieldTests-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "NCSNavFieldTests/NCSNavFieldTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,

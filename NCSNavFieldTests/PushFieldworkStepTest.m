@@ -11,15 +11,15 @@
 #import "RestKit.h"
 //#import "PutFieldwork.h"
 
-@implementation RKResponse(Stub)
-- (BOOL)isSuccessful { return true; }
-@end
-
-@implementation RKRequest(Stub)
-- (RKResponse*)sendSynchronously {
-    return [RKResponse new];
-}
-@end
+//@implementation RKResponse(Stub)
+//- (BOOL)isSuccessful { return true; }
+//@end
+//
+//@implementation RKRequest(Stub)
+//- (RKResponse*)sendSynchronously {
+//    return [RKResponse new];
+//}
+//@end
 
 @implementation PushFieldworkStepTest
 

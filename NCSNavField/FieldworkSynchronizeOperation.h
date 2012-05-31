@@ -22,4 +22,6 @@
 
 - (BOOL)receive;
 
+- (BOOL) poll:(NSString*)fieldworkId;
+
 @end

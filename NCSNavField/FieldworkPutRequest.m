@@ -33,12 +33,11 @@
 }
 
 - (BOOL) isSuccessful {
-    return [self.response isSuccessful];
+    return !self.error;
 }
 
 - (BOOL)send:(CasProxyTicket*)proxyTicket {
     if (proxyTicket) {
-        
         Fieldwork* submission = [Fieldwork submission];
         if (submission) {
             RKObjectManager *objectManager = [self objectManager:proxyTicket];
@@ -62,9 +61,9 @@
         [pending reify];
         if (!pending.error) {
             NCSLog(@"Proxy ticket successfully obtained: %@", pending.proxyTicket);
+            pt = pending;
         } else {
             self.error = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", pending.message];
-            pt = pending;
         }
     } else {
         self.error = [NSString stringWithFormat:@"Presenting service ticket failed: %@", [st message]];
@@ -87,13 +86,11 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    NCSLog(@"Expected loading to fail since there is no data returned. %@", error);
-    NCSLog([self isSuccessful] ? @"Request is successful" : @"Request is not successful");
-    NCSLog(@"Status code is %d", [self.response statusCode]);
-    if (![self isSuccessful]) {
-        self.error = [NSString stringWithFormat:@"Object loader error while pushing fieldwork.\n%@", [error localizedDescription]];
-        [self showErrorMessage:self.error];
-    }
+    NCSLog(@"Error: Localized Description: %@", [error localizedDescription]);
+    NCSLog(@"Error: Underlying Error: %@", [error.userInfo valueForKey:NSUnderlyingErrorKey]);
+    self.error = [NSString stringWithFormat:@"Error while pushing fieldwork.\n%@", [error localizedDescription]];
+    [self showErrorMessage:self.error];
+
 }
 
 - (void)objectLoaderDidFinishLoading:(RKObjectLoader*)objectLoader {
