@@ -67,7 +67,7 @@ class NCSCoreStub < Sinatra::Base
       end
       
       content_type :json
-      {"status" => "merged"}.to_json
+      status.to_json
     end
   end
 
