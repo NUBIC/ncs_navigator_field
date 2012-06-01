@@ -12,11 +12,13 @@
 @implementation MergeStatus
 
 @synthesize status=_status;
+@synthesize fieldworkId=_fieldworkId;
+@synthesize createdAt=_createdAt;
 
 + (id) parseFromJson:(NSString*)json {
     SBJSON* sb = [[SBJSON alloc] init];
     NSDictionary* dict = [sb objectWithString:json];
-    MergeStatus* ms = [[MergeStatus alloc] init];
+    MergeStatus* ms = [MergeStatus object];
     ms.status = [dict valueForKey:@"status"];
     return ms;
 }
@@ -39,6 +41,10 @@
 
 - (BOOL) isStatus:(NSString*)status {
     return self.status && [self.status rangeOfString:status options:NSCaseInsensitiveSearch].location != NSNotFound;
+}
+
++ (MergeStatus*) latest {
+    return [[MergeStatus findAllSortedBy:@"createdAt" ascending:YES] lastObject];
 }
 
 @end

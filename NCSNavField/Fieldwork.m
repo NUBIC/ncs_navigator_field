@@ -28,7 +28,7 @@
 }
 
 + (Fieldwork*)submission {
-    Fieldwork* f = [[Fieldwork findAllSortedBy:@"retrievedDate" ascending:NO] lastObject];
+    Fieldwork* f = [[Fieldwork findAllSortedBy:@"retrievedDate" ascending:YES] lastObject];
     return [f.contacts count] > 0 ? f : nil;
 }
 

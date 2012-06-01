@@ -8,11 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MergeStatus : NSObject {
+@interface MergeStatus : NSManagedObject {
+    NSString* _fieldworkId;
     NSString* _status;
+    NSDate* _createdAt;
 }
 
 @property(nonatomic,retain) NSString* status;
+
+@property(nonatomic,retain) NSString* fieldworkId;
+
+@property(nonatomic,retain) NSDate* createdAt;
 
 + (id) parseFromJson:(NSString*)json;
 
@@ -25,5 +31,7 @@
 - (BOOL)isPending;
 
 - (BOOL)isStatus:(NSString*)status;
+
++ (MergeStatus*) latest;
 
 @end

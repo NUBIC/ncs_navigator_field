@@ -49,6 +49,7 @@ const static NSInteger POLL_REPEATS = 3;
             } else {
                 self.error = @"There was an error preventing you from obtaining your next contacts. Please call the help desk";
             }
+            [[MergeStatus currentContext] save:nil];
         }
         
         if (i != POLL_REPEATS) {
@@ -100,7 +101,10 @@ const static NSInteger POLL_REPEATS = 3;
         RKResponse* resp = [req sendSynchronously];
         if ([resp isOK] && [resp isJSON]) {
             NSLog(@"Response body: %@", resp.bodyAsString);
-            return [MergeStatus parseFromJson:resp.bodyAsString];
+            MergeStatus* ms = [MergeStatus parseFromJson:resp.bodyAsString];
+            ms.fieldworkId = self.fieldworkId;
+            ms.createdAt = [NSDate date];
+            return ms;
         }
     }
     return nil;

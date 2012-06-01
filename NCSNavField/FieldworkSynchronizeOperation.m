@@ -12,6 +12,7 @@
 #import "FieldworkStepPostRequest.h"
 #import "Fieldwork.h"
 #import "MergeStatusRequest.h"
+#import "MergeStatus.h"
 
 @implementation FieldworkSynchronizeOperation
 
@@ -38,6 +39,12 @@
             }
         }
         success = submission && receive;
+    } else if ([MergeStatus latest]) {
+        MergeStatus* ms = [MergeStatus latest];
+        BOOL poll = [self poll:ms.fieldworkId];
+        if (poll) {
+            success = [self receive];
+        }
     } else {
         success = [self receive];
     }
