@@ -8,11 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MergeStatus : NSManagedObject {
-    NSString* _fieldworkId;
-    NSString* _status;
-    NSDate* _createdAt;
-}
+@interface MergeStatus : NSManagedObject
 
 @property(nonatomic,retain) NSString* status;
 

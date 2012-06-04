@@ -11,9 +11,7 @@
 
 @implementation MergeStatus
 
-@synthesize status=_status;
-@synthesize fieldworkId=_fieldworkId;
-@synthesize createdAt=_createdAt;
+@dynamic status, fieldworkId, createdAt;
 
 + (id) parseFromJson:(NSString*)json {
     SBJSON* sb = [[SBJSON alloc] init];
