@@ -19,32 +19,6 @@
     }
     return self;
 }
-//
-//- (id)initWithMainStorePath:(NSString*)main {
-//    self = [super init];
-//    if (self) {
-//        _mainPersistentStore = [main retain];
-//        _name = [[self generateBackupFilename] retain];
-//        [NSFileManager defaultManager];
-//        if (_name && main) {
-//            <#statements#>
-//        }
-//        BOOL result = [self copy];
-//        if (!result) { return NULL; }
-//    }
-//    return self;
-//}
-//
-//- (BOOL)copy {
-//    NSString* main = [ApplicationPersistentStore path];
-//    NSString* backup = self.name;
-//    
-//    if (main && backup) {
-//        NSFileManager* fm = [NSFileManager defaultManager];
-//        return [fm copyItemAtPath:main toPath:backup error:NULL];
-//    }
-//    return FALSE;
-//}
 
 - (void)remove {
     NSString* backup = [self path];
@@ -62,7 +36,7 @@
 }
 
 - (NSString*)path {
-    return [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:self.name];
+    return [[RKDirectory applicationDataDirectory] stringByAppendingPathComponent:self.name];
 }
 
 @end
