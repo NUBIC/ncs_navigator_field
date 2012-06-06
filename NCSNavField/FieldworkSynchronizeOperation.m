@@ -43,10 +43,12 @@
     BOOL success = false;
     ApplicationPersistentStore* store = [ApplicationPersistentStore instance];
     ApplicationPersistentStoreBackup* backup = [store backup];
+    NCSLog(@"Backup result: ", [backup path]);
     if (backup) {
         FieldworkPutRequest* put = [[FieldworkPutRequest alloc] initWithServiceTicket:self.ticket];
         if ([put send]) {
             [store remove];
+            [backup remove];
             success = true;
         }
     }
