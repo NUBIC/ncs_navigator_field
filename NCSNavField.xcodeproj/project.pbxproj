@@ -31,7 +31,6 @@
 		00272A11155A124F009F21F5 /* NSStringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00272A10155A124E009F21F5 /* NSStringHelper.m */; };
 		002B2E4414362E4900410D09 /* nubic-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 002B2E4214362E4900410D09 /* nubic-logo.png */; };
 		002B2E4514362E4900410D09 /* nu-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 002B2E4314362E4900410D09 /* nu-logo.png */; };
-		002D3B1114E1BCFE00A30C8F /* surveyor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 002D3B0F14E1BCFE00A30C8F /* surveyor.xcdatamodeld */; };
 		0031315E14E083C500C0D0B1 /* cacert.pem in Resources */ = {isa = PBXBuildFile; fileRef = 0031315D14E083C500C0D0B1 /* cacert.pem */; };
 		0037D2BD14B60AA100B7D05A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0037D2BC14B60AA100B7D05A /* libz.dylib */; };
 		0037D2BF14B60AAA00B7D05A /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0037D2BE14B60AAA00B7D05A /* libiconv.dylib */; };
@@ -44,6 +43,7 @@
 		0045BDA91418017F007BB8AA /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045BDA81418017F007BB8AA /* Event.m */; };
 		0045BDAC14191FB1007BB8AA /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045BDAB14191FB1007BB8AA /* Contact.m */; };
 		0045BDAF141921CD007BB8AA /* ContactTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045BDAE141921CD007BB8AA /* ContactTest.m */; };
+		0047566F15813546009EDE69 /* surveyor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0047566D15813546009EDE69 /* surveyor.xcdatamodeld */; };
 		004FC7131486BF8300A378DC /* PickerOptionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 004FC7111486BE8200A378DC /* PickerOptionTest.m */; };
 		004FC7161486BFBC00A378DC /* PickerOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 004FC7151486BFBC00A378DC /* PickerOption.m */; };
 		005108EE148440C000732623 /* NUScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005108ED148440C000732623 /* NUScrollView.m */; };
@@ -155,7 +155,6 @@
 		00272A10155A124E009F21F5 /* NSStringHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringHelper.m; sourceTree = "<group>"; };
 		002B2E4214362E4900410D09 /* nubic-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nubic-logo.png"; path = "NCSNavField/nubic-logo.png"; sourceTree = "<group>"; };
 		002B2E4314362E4900410D09 /* nu-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nu-logo.png"; path = "NCSNavField/nu-logo.png"; sourceTree = "<group>"; };
-		002D3B1014E1BCFE00A30C8F /* surveyor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = surveyor.xcdatamodel; sourceTree = "<group>"; };
 		0031315414E04BF800C0D0B1 /* SyncActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncActivityIndicator.h; sourceTree = "<group>"; };
 		0031315514E04BF800C0D0B1 /* SyncActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncActivityIndicator.m; sourceTree = "<group>"; };
 		0031315D14E083C500C0D0B1 /* cacert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cacert.pem; sourceTree = "<group>"; };
@@ -177,6 +176,9 @@
 		0045BDAB14191FB1007BB8AA /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		0045BDAD141921CD007BB8AA /* ContactTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTest.h; sourceTree = "<group>"; };
 		0045BDAE141921CD007BB8AA /* ContactTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTest.m; sourceTree = "<group>"; };
+		004756521580F1FF009EDE69 /* main_v1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = main_v1.1.xcdatamodel; sourceTree = "<group>"; };
+		0047566E15813546009EDE69 /* surveyor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = surveyor.xcdatamodel; sourceTree = "<group>"; };
+		004756701581356B009EDE69 /* surveyor_v1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = surveyor_v1.1.xcdatamodel; sourceTree = "<group>"; };
 		004FC7101486BE8200A378DC /* PickerOptionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerOptionTest.h; sourceTree = "<group>"; };
 		004FC7111486BE8200A378DC /* PickerOptionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerOptionTest.m; sourceTree = "<group>"; };
 		004FC7141486BFBC00A378DC /* PickerOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerOption.h; sourceTree = "<group>"; };
@@ -576,11 +578,11 @@
 		00439FFF141132B70097A878 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0047566D15813546009EDE69 /* surveyor.xcdatamodeld */,
 				0088C7D714717D580051AAE6 /* Images */,
 				006EBEE8141673A1003D69CF /* Other */,
 				006EBEE714115870003D69CF /* NIBs */,
 				00C9C6E3146CE66300F6D339 /* main.xcdatamodeld */,
-				002D3B0F14E1BCFE00A30C8F /* surveyor.xcdatamodeld */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1077,7 +1079,6 @@
 				00145BA8149A7BEF00D3C1B5 /* ContactCloseVC.m in Sources */,
 				00B7CCA814BDFB6E00D5901C /* DispositionCode.m in Sources */,
 				0018F03314C4BD160058D8F2 /* ApplicationSettings.m in Sources */,
-				002D3B1114E1BCFE00A30C8F /* surveyor.xcdatamodeld in Sources */,
 				00D93A3A1506B2CF009CFDE9 /* RestKitSettings.m in Sources */,
 				00D93A441507CC19009CFDE9 /* Participant.m in Sources */,
 				0073B3681511277000543DA4 /* Fieldwork.m in Sources */,
@@ -1097,6 +1098,7 @@
 				00DC620D1575BD5900E5F825 /* MergeStatus.m in Sources */,
 				00DC621A1576845B00E5F825 /* MergeStatusRequest.m in Sources */,
 				00DC621D15768D3300E5F825 /* NSURL+Extensions.m in Sources */,
+				0047566F15813546009EDE69 /* surveyor.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1365,12 +1367,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		002D3B0F14E1BCFE00A30C8F /* surveyor.xcdatamodeld */ = {
+		0047566D15813546009EDE69 /* surveyor.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				002D3B1014E1BCFE00A30C8F /* surveyor.xcdatamodel */,
+				004756701581356B009EDE69 /* surveyor_v1.1.xcdatamodel */,
+				0047566E15813546009EDE69 /* surveyor.xcdatamodel */,
 			);
-			currentVersion = 002D3B1014E1BCFE00A30C8F /* surveyor.xcdatamodel */;
+			currentVersion = 0047566E15813546009EDE69 /* surveyor.xcdatamodel */;
 			name = surveyor.xcdatamodeld;
 			path = NCSNavField/surveyor.xcdatamodeld;
 			sourceTree = "<group>";
@@ -1379,9 +1382,10 @@
 		00C9C6E3146CE66300F6D339 /* main.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				004756521580F1FF009EDE69 /* main_v1.1.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 00C9C6E4146CE66300F6D339 /* main.xcdatamodel */;
+			currentVersion = 004756521580F1FF009EDE69 /* main_v1.1.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
