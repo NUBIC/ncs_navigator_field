@@ -1,7 +1,7 @@
 NCS Navigator Field
 ===================
 
-This is an ios application which assists field workers in data collection for the National Children's Study. 
+An ios application for the National Children's Study which assists field workers in data collection. 
 
 Configuration
 -------------
