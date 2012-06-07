@@ -7,9 +7,9 @@ Configuration
 -------------
 
 1. `cd ncs_navigator_field`
-1. touch TestFlight-TeamToken.txt
-1. git submodule init
-1. git submodule update
+1. `touch NCSNavField/TestFlight-TeamToken.txt`
+1. `git submodule init`
+1. `git submodule update`
 1. `wget http://curl.haxx.se/ca/cacert.pem`
 1. `gem install cocoapods`
 1. `pod setup`
