@@ -84,7 +84,7 @@
         <relationship name="fieldWork" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Fieldwork" inverseName="instrumentTemplates" inverseEntity="Fieldwork" syncable="YES"/>
         <relationship name="instrument" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Instrument" inverseName="instrumentTemplate" inverseEntity="Instrument" syncable="YES"/>
     </entity>
-    <entity name="MergeStatus" syncable="YES">
+    <entity name="MergeStatus" representedClassName="MergeStatus" syncable="YES">
         <attribute name="createdAt" attributeType="Date" syncable="YES"/>
         <attribute name="fieldworkId" attributeType="String" syncable="YES"/>
         <attribute name="status" attributeType="String" syncable="YES"/>
