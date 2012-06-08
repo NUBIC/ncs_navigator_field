@@ -33,6 +33,7 @@ class NCSCoreStub < Sinatra::Base
     username = env['aker.check'].user.username
     if username
       puts "request.body: #{request.body.gets.inspect}"
+      headers 'location' => 'http://localhost:4567/api/v1/merges/913b97e0-b199-11e1-afa6-0800200c9a66'
       status 202
       content_type :json
       request.body.rewind

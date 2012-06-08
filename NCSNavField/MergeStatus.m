@@ -11,7 +11,7 @@
 
 @implementation MergeStatus
 
-@dynamic status, fieldworkId, createdAt;
+@dynamic status, mergeStatusId, createdAt;
 
 + (id) parseFromJson:(NSString*)json {
     SBJSON* sb = [[SBJSON alloc] init];
@@ -43,6 +43,15 @@
 
 + (MergeStatus*) latest {
     return [[MergeStatus findAllSortedBy:@"createdAt" ascending:YES] lastObject];
+}
+
++ (NSString*)mergeStatusIdFromUri:(NSString*)uri {
+    NSString* ident = NULL;
+    if (uri) {
+        NSString* rel = [[[NSURL alloc] initWithString:uri] relativePath];
+        ident = [[rel componentsSeparatedByString:@"/"] lastObject];
+    }
+    return ident;
 }
 
 @end

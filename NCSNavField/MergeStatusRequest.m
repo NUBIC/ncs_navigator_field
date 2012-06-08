@@ -16,14 +16,14 @@
 
 const static NSInteger POLL_REPEATS = 3;
 
-@synthesize fieldworkId = _fieldworkId;
+@synthesize mergeStatusId = _mergeStatusId;
 @synthesize error = _error;
 @synthesize serviceTicket = _serviceTicket;
 
-- (id) initWithFieldworkId:(NSString*)fieldworkId andServiceTicket:(CasServiceTicket*)serviceTicket {
+- (id) initWithMergeStatusId:(NSString*)mergeStatusId andServiceTicket:(CasServiceTicket*)serviceTicket {
     self = [self init];
     if (self) {
-        _fieldworkId = [fieldworkId retain];
+        _mergeStatusId = [mergeStatusId retain];
         _serviceTicket = [serviceTicket retain];
     }
     return self;
@@ -31,7 +31,7 @@ const static NSInteger POLL_REPEATS = 3;
 
 - (NSURL*) resourceURL {
     NSString* coreURL = [[ApplicationSettings instance] coreURL];
-    return [[[NSURL alloc] initWithString:coreURL] urlByAppendingPathComponent:[NSString stringWithFormat:@"/api/v1/merges/%@", self.fieldworkId]];
+    return [[[NSURL alloc] initWithString:coreURL] urlByAppendingPathComponent:[NSString stringWithFormat:@"/api/v1/merges/%@", self.mergeStatusId]];
 }
 
 - (BOOL) poll {
@@ -102,7 +102,7 @@ const static NSInteger POLL_REPEATS = 3;
         if ([resp isOK] && [resp isJSON]) {
             NSLog(@"Response body: %@", resp.bodyAsString);
             MergeStatus* ms = [MergeStatus parseFromJson:resp.bodyAsString];
-            ms.fieldworkId = self.fieldworkId;
+            ms.mergeStatusId = self.mergeStatusId;
             ms.createdAt = [NSDate date];
             return ms;
         }

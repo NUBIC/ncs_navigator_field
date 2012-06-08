@@ -22,6 +22,6 @@
 
 - (BOOL)receive;
 
-- (BOOL) poll:(NSString*)fieldworkId;
+- (BOOL) poll:(NSString*)mergeStatusId;
 
 @end

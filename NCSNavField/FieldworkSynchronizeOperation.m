@@ -41,7 +41,7 @@
         success = submission && receive;
     } else if ([MergeStatus latest]) {
         MergeStatus* ms = [MergeStatus latest];
-        BOOL poll = [self poll:ms.fieldworkId];
+        BOOL poll = [self poll:ms.mergeStatusId];
         if (poll) {
             success = [self receive];
         }
@@ -72,8 +72,8 @@
     return [post send];
 }
 
-- (BOOL) poll:(NSString*)fieldworkId {
-    MergeStatusRequest* request = [[MergeStatusRequest alloc] initWithFieldworkId:fieldworkId andServiceTicket:self.ticket];
+- (BOOL) poll:(NSString*)mergeStatusId {
+    MergeStatusRequest* request = [[MergeStatusRequest alloc] initWithMergeStatusId:mergeStatusId andServiceTicket:self.ticket];
     return [request poll];
 }
 

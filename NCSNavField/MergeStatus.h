@@ -12,7 +12,7 @@
 
 @property(nonatomic,retain) NSString* status;
 
-@property(nonatomic,retain) NSString* fieldworkId;
+@property(nonatomic,retain) NSString* mergeStatusId;
 
 @property(nonatomic,retain) NSDate* createdAt;
 
@@ -29,5 +29,7 @@
 - (BOOL)isStatus:(NSString*)status;
 
 + (MergeStatus*) latest;
+
++ (NSString*)mergeStatusIdFromUri:(NSString*)uri;
 
 @end

@@ -86,7 +86,7 @@
     </entity>
     <entity name="MergeStatus" representedClassName="MergeStatus" syncable="YES">
         <attribute name="createdAt" attributeType="Date" syncable="YES"/>
-        <attribute name="fieldworkId" attributeType="String" syncable="YES"/>
+        <attribute name="mergeStatusId" attributeType="String" syncable="YES"/>
         <attribute name="status" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Participant" representedClassName="Participant" syncable="YES">

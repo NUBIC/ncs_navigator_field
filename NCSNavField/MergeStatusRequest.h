@@ -12,18 +12,18 @@
 @class ServiceTicket;
 
 @interface MergeStatusRequest : NSObject {
-    NSString* _fieldworkId;
+    NSString* _mergeStatusId;
     NSString* _error;
     CasServiceTicket* _serviceTicket;
 }
 
-@property(nonatomic,retain) NSString* fieldworkId;
+@property(nonatomic,retain) NSString* mergeStatusId;
 
 @property(nonatomic,retain) NSString* error;
 
 @property(nonatomic,retain) CasServiceTicket* serviceTicket;
 
-- (id) initWithFieldworkId:(NSString*)fieldworkId andServiceTicket:(CasServiceTicket*)serviceTicket;
+- (id) initWithMergeStatusId:(NSString*)fieldworkId andServiceTicket:(CasServiceTicket*)serviceTicket;
 
 - (MergeStatus*) send;
 

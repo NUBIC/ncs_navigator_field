@@ -10,6 +10,7 @@
 #import "ApplicationSettings.h"
 #import "Fieldwork.h"
 #import "RestKit.h"
+#import "MergeStatus.h"
 
 @implementation FieldworkPutRequest
 
@@ -43,6 +44,12 @@
             RKObjectManager *objectManager = [self objectManager:proxyTicket];
             RKObjectLoader* loader = [self objectLoader:submission objectManager:objectManager];
             self.response = [loader sendSynchronously];
+            if ([self.response.location length] > 0) {
+                MergeStatus* s = [MergeStatus object];
+                s.mergeStatusId = self.response.location;
+                s.status = @"pending";
+                s.createdAt = [NSDate date];
+            }
             NCSLog(@"Response status code: %d", [self.response statusCode]);
         }
     }
