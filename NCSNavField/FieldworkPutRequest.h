@@ -35,6 +35,8 @@
 
 - (RKObjectManager *)objectManager:(CasProxyTicket *)proxyTicket;
 
+- (NSString*) mergeStatusId;
+
 - (RKObjectLoader *)objectLoader:(Fieldwork *)submission objectManager:(RKObjectManager *)objectManager;
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error;

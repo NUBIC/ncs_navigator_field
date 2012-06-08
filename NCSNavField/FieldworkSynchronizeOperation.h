@@ -18,7 +18,7 @@
 
 - (BOOL) perform;
 
-- (BOOL) submit;
+- (NSString*) submit;
 
 - (BOOL)receive;
 

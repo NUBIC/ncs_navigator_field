@@ -44,12 +44,7 @@
             RKObjectManager *objectManager = [self objectManager:proxyTicket];
             RKObjectLoader* loader = [self objectLoader:submission objectManager:objectManager];
             self.response = [loader sendSynchronously];
-            if ([self.response.location length] > 0) {
-                MergeStatus* s = [MergeStatus object];
-                s.mergeStatusId = self.response.location;
-                s.status = @"pending";
-                s.createdAt = [NSDate date];
-            }
+            NSLog(@"Put response has location header: %@", self.response.location);
             NCSLog(@"Response status code: %d", [self.response statusCode]);
         }
     }
@@ -90,6 +85,10 @@
     // invoked when data is returned
     RKObjectLoader* loader = [objectManager objectLoaderForObject:submission method:RKRequestMethodPUT delegate:self];
     return loader;
+}
+
+- (NSString*) mergeStatusId {
+    return [MergeStatus mergeStatusIdFromUri:self.response.location];
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {

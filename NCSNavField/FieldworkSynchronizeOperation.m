@@ -29,16 +29,15 @@
 - (BOOL) perform {
     BOOL success = false;
     if ([Fieldwork submission]) {
-        NSString* fieldworkId = [Fieldwork submission].fieldworkId;
-        BOOL submission = [self submit];
+        NSString* statusId = [self submit];
         BOOL receive = false;
-        if (submission) {
-            BOOL poll = [self poll:fieldworkId];
+        if (statusId) {
+            BOOL poll = [self poll:statusId];
             if (poll) {
                 receive = [self receive];
             }
         }
-        success = submission && receive;
+        success = statusId && receive;
     } else if ([MergeStatus latest]) {
         MergeStatus* ms = [MergeStatus latest];
         BOOL poll = [self poll:ms.mergeStatusId];
@@ -51,20 +50,21 @@
     return success;
 }
 
-- (BOOL) submit {
-    BOOL success = false;
+- (NSString*) submit {
+    NSString* statusId = NULL;
     ApplicationPersistentStore* store = [ApplicationPersistentStore instance];
     ApplicationPersistentStoreBackup* backup = [store backup];
-    NCSLog(@"Backup result: ", [backup path]);
+    NCSLog(@"Backup path: ", [backup path]);
     if (backup) {
         FieldworkPutRequest* put = [[FieldworkPutRequest alloc] initWithServiceTicket:self.ticket];
         if ([put send]) {
             [store remove];
             [backup remove];
-            success = true;
+            statusId = [put mergeStatusId];
         }
     }
-    return success;
+
+    return statusId;
 }
 
 - (BOOL)receive {
