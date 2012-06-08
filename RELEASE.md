@@ -9,6 +9,7 @@ Test
 1. Change icon to icon-test.png
 1. Archive
 1. Create the ipa and save in /dist with NavFieldTest-x.x.ipa or NavFieldTest-x.x.x.ipa
+1. Commit the project file with the new version and the ipa file
 1. Create a tag for the release
 1. Upload ipa to download.nubic.northwestern.edu/ncs_navigator_field_test
 1. Upload ipa and dSYM to TestFlight
