@@ -63,4 +63,6 @@ extern NSString *const SettingsDidChangeNotification;
 
 - (NSInteger) upcomingDaysToSync;
 
+- (void)registerDefaultsFromSettingsBundle;
+
 @end
