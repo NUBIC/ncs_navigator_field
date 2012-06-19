@@ -37,6 +37,14 @@
     return [self isStatus:@"pending"];
 }
 
+- (BOOL) isConflict {
+    return [self isStatus:@"conflict"];
+}
+
+- (BOOL) isError {
+    return [self isStatus:@"error"];
+}
+
 - (BOOL) isStatus:(NSString*)status {
     return self.status && [self.status rangeOfString:status options:NSCaseInsensitiveSearch].location != NSNotFound;
 }

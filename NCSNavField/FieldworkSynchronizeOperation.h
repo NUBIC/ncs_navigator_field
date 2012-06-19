@@ -14,14 +14,26 @@
 
 @property(nonatomic,retain) CasServiceTicket* ticket;
 
-- (id) initWithServiceTicket:(CasServiceTicket*)ticket;
+- (id)initWithServiceTicket:(CasServiceTicket*)ticket;
 
-- (BOOL) perform;
+- (BOOL)perform;
 
-- (NSString*) submit;
+- (NSString*)submit;
 
 - (BOOL)receive;
 
-- (BOOL) poll:(NSString*)mergeStatusId;
+- (BOOL)poll:(NSString*)mergeStatusId;
+
+- (BOOL)isMerged;
+
+- (BOOL)isTimeout;
+
+- (BOOL)isWorking;
+
+- (BOOL)isPending;
+
+- (BOOL)isConflict;
+
+- (BOOL)isError;
 
 @end

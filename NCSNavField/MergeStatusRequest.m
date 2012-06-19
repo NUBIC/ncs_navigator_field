@@ -40,13 +40,13 @@ const static NSInteger POLL_REPEATS = 3;
     for (int i=1; i <= POLL_REPEATS; i++) {
         MergeStatus* status = [self send];
         if (status) {
-            if ([status isMerged]) {
+            if ([status isMerged] || [status isConflict] || [status isError]) {
                 success = true;
                 self.error = NULL;
                 break;
             } else if ([status isPending] || [status isTimeout] || [status isWorking]) {
                 self.error = @"It is taking slightly longer than expected to obtain your next contacts. Please try again a little later";
-            } else {
+            } else { 
                 self.error = @"There was an error preventing you from obtaining your next contacts. Please call the help desk";
             }
             [[MergeStatus currentContext] save:nil];
