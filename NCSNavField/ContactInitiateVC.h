@@ -18,6 +18,7 @@
 @property(nonatomic,retain) Contact* contact;
 
 - (id)initWithContact:(Contact*)contact;
+- (void) setDefaults:(Contact*) contact;
 - (UIView*) toolbarWithFrame:(CGRect)frame;
 - (UIView*) leftContentWithFrame:(CGRect)frame;
 - (UIView*) rightContentWithFrame:(CGRect)frame;

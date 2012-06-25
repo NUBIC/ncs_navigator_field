@@ -20,6 +20,9 @@
 
 
 - (id)initWithInstrument:(Instrument*)instrument;
+
+- (void) setDefaults:(Instrument*)instrument;
+
 - (UIView*) toolbarWithFrame:(CGRect)frame;
 - (UIView*) leftInstrumentContentWithFrame:(CGRect)frame contact:(Instrument*)contact;
 - (UIView*) rightInstrumentContentWithFrame:(CGRect)frame contact:(Instrument*)contact;

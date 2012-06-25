@@ -12,6 +12,7 @@
 #import "PickerOption.h"
 #import "TextField.h"
 #import "TextArea.h"
+#import "Instrument.h"
 
 @implementation InstrumentVC
 
@@ -57,6 +58,10 @@
     CGRect lRect, rRect;
     CGRectDivide(CGRectMake(150, 0, width-300, contactFrameHeight), &rRect, &lRect, (width-300) / 2, CGRectMaxXEdge);
     
+    [self startTransaction];
+
+    [self setDefaults:self.instrument];
+    
     UIView* left = [self leftInstrumentContentWithFrame:lRect contact:self.instrument];
     left.backgroundColor = [UIColor whiteColor];
     UIView* right = [self rightInstrumentContentWithFrame:rRect contact:self.instrument];
@@ -68,8 +73,6 @@
     [self.view addSubview:scroll];
     
     [self registerForKeyboardNotifications];
-        
-    [self startTransaction];
 }
 
 - (void)viewDidUnload
@@ -89,8 +92,28 @@
     [super dealloc];
 }
 
-#pragma mark - Form
 
+- (void) setDefaults:(Instrument*)instrument {
+    if (!instrument.statusId || [instrument.statusId intValue] == -4) {
+        instrument.statusId = [NSNumber numberWithInt:4];
+    }
+    
+    if (!instrument.breakOffId || [instrument.breakOffId intValue] == -4) {
+        instrument.breakOffId = [NSNumber numberWithInt:2];
+    }
+    
+    if (!instrument.instrumentMethodId || [instrument.instrumentMethodId intValue] == -4) {
+        instrument.instrumentMethodId = [NSNumber numberWithInt:1];
+    }
+    
+    if (!instrument.supervisorReviewId || [instrument.supervisorReviewId intValue] == -4) {
+        instrument.supervisorReviewId = [NSNumber numberWithInt:2];
+    }
+    
+    if (!instrument.dataProblemId || [instrument.dataProblemId intValue] == -4) {
+        instrument.dataProblemId = [NSNumber numberWithInt:2];
+    }
+}
 #pragma mark - Form
 
 - (UIView*) leftInstrumentContentWithFrame:(CGRect)frame contact:(Instrument*)instrument {
@@ -99,18 +122,6 @@
     FormBuilder* b = [[[FormBuilder alloc] initWithView:v object:instrument] autorelease];
     
     [b sectionHeader:@"Instrument"];
-    
-    [b labelWithText:@"Instrument Type"];
-    [b singleOptionPickerForProperty:@selector(instrumentTypeId) WithPickerOptions:[PickerOption instrumentTypes]];
-    
-    [b labelWithText:@"Instrument Type (Other)"];
-    [b textFieldForProperty:@selector(instrumentTypeOther)];
-    
-    [b labelWithText:@"Instrument Version"];
-    [b textFieldForProperty:@selector(instrumentVersion)];
-    
-    [b labelWithText:@"Instrument Repeat Key"];
-    [b textFieldForProperty:@selector(repeatKey)];
     
     [b labelWithText:@"Instrument Start Date"];
     [b datePickerForProperty:@selector(startDate)];
@@ -148,12 +159,6 @@
     
     [b labelWithText:@"Instrument Method"];
     [b singleOptionPickerForProperty:@selector(instrumentMethodId) WithPickerOptions:[PickerOption instrumentMethods]];
-    
-    [b labelWithText:@"Supervisor Review"];
-    [b singleOptionPickerForProperty:@selector(supervisorReviewId) WithPickerOptions:[PickerOption instrumentSupervisorReviews]];
-    
-    [b labelWithText:@"Data Problem"];
-    [b singleOptionPickerForProperty:@selector(dataProblemId) WithPickerOptions:[PickerOption instrumentDataProblems]]; 
     
     [b labelWithText:@"Comments"];
     [b textAreaForProperty:@selector(comment)];
