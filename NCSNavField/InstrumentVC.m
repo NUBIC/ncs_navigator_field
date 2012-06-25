@@ -135,6 +135,12 @@
     [b labelWithText:@"Instrument End Time"];
     [b timePickerForProperty:@selector(endTime)];
 
+    [b labelWithText:@"Instrument Status"];
+    [b singleOptionPickerForProperty:@selector(statusId) WithPickerOptions:[PickerOption instrumentStatuses]];
+    
+    [b labelWithText:@"Breakoff"];
+    [b singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[PickerOption instrumentBreakoffs]];
+    
     return v;
 }
 
@@ -144,13 +150,7 @@
     FormBuilder* b = [[[FormBuilder alloc] initWithView:v object:instrument] autorelease];
     
     [b sectionHeader:@""];
-    
-    [b labelWithText:@"Instrument Status"];
-    [b singleOptionPickerForProperty:@selector(statusId) WithPickerOptions:[PickerOption instrumentStatuses]];
-    
-    [b labelWithText:@"Breakoff"];
-    [b singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[PickerOption instrumentBreakoffs]];
-    
+     
     [b labelWithText:@"Instrument Mode"];
     [b singleOptionPickerForProperty:@selector(instrumentModeId) WithPickerOptions:[PickerOption instrumentModes]];
     

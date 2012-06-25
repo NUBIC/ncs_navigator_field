@@ -94,6 +94,9 @@
 
 - (void) instrumentSelected:(NSNotification*)notification {
     Instrument* selected = [[notification userInfo] objectForKey:@"instrument"];
+    selected.startDate = [NSDate date];
+    selected.startTime = [NSDate date];
+    [[Instrument managedObjectContext] save:NULL];
     [self loadSurveyor:selected];
 }
 
@@ -183,6 +186,9 @@
         NUResponseSet* rs = sectionVC.responseSet;
         if (rs != NULL) {
             [self unloadSurveyor:_administeredInstrument responseSet:rs];
+            self.administeredInstrument.endDate = [NSDate date];
+            self.administeredInstrument.endTime = [NSDate date];
+            [[Instrument managedObjectContext] save:NULL];
             _administeredInstrument = NULL;
         }
         
