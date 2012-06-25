@@ -177,20 +177,9 @@
 - (void) didSelectRow:(Row*)row {
     NSString* rc = row.rowClass;
     if ([rc isEqualToString:@"instrument"]) {
-//        [UIAppDelegate.rootViewController loadSurveyor:row.entity];
-        
         Instrument* selected = row.entity;
         NSDictionary* dict = [[[NSDictionary alloc] initWithObjectsAndKeys:selected, @"instrument", nil] autorelease];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"InstrumentSelected" object:self userInfo:dict]; 
-        //    [self.view deselectRowAtIndexPath:indexPath animated:YES]; 
-        //    UITableViewCell *oldCell = [self.view cellForRowAtIndexPath:indexPath];
-        
-//        NSDateFormatter *f = [NSDateFormatter new];
-//        [f setDateStyle:NSDateFormatterShortStyle];
-//        [f setTimeStyle:NSDateFormatterShortStyle];
-//        NSDate *d = [NSDate new];
-        
-        //    oldCell.detailTextLabel.text = [NSString stringWithFormat:@"Completed %@", [f stringFromDate:d]];        
     } else if ([rc isEqualToString:@"instrument-details"]) {
         Instrument* selected = row.entity;
         InstrumentVC* ivc = [[InstrumentVC alloc] initWithInstrument:selected];   
