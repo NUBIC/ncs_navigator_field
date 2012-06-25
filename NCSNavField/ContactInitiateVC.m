@@ -45,16 +45,20 @@
     
     CGRect lRect, rRect;
     CGRectDivide(rect, &rRect, &lRect, rect.size.width / 2, CGRectMaxXEdge);
+
+    [self startTransaction];
+
+    [self setDefaults:self.contact];
     
     UIView* left = [self leftContentWithFrame:lRect];
     UIView* right = [self rightContentWithFrame:rRect];
     
+
     [self.view addSubview:toolbar];
     [self.view addSubview:left];
     [self.view addSubview:right];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self startTransaction];
 }
 
 /*
@@ -94,6 +98,19 @@
 
 #pragma mark - Form
 
+- (void) setDefaults:(Contact*) contact {
+    contact.startTime = [NSDate date];
+
+    
+    if (!contact.typeId || [contact.typeId intValue] == -4) {
+        contact.typeId = [NSNumber numberWithInt:1];
+    }
+    
+    if (!contact.whoContactedId || [contact.whoContactedId intValue] == -4) {
+        contact.whoContactedId = [NSNumber numberWithInt:1];
+    }
+}
+
 - (UIView*) leftContentWithFrame:(CGRect)frame {
     UIView* v = [[UIView alloc] initWithFrame:frame];
     
@@ -104,9 +121,6 @@
     
     [b labelWithText:@"Contact Start Time"];
     [b timePickerForProperty:@selector(startTime)];
-    
-    [b labelWithText:@"Contact End Time"];
-    [b timePickerForProperty:@selector(endTime)];
     
     [b labelWithText:@"Contact Method"];
     [b singleOptionPickerForProperty:@selector(typeId) WithPickerOptions:[PickerOption contactTypes]];
