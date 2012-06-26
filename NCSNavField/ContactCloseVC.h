@@ -41,5 +41,6 @@
 - (void)registerForKeyboardNotifications;
 - (void) registerContactTypeChangeNotification;
 
+- (void) setDefaults:(Contact*)contact;
 
 @end
