@@ -23,6 +23,15 @@
     return self;
 }
 
+- (id) initWithText:(NSString*)t entity:(id)e rowClass:(NSString*)rc{
+    if (self = [super init]) {
+        self.text = t;
+        self.entity = e;
+        self.rowClass = rc;
+    }
+    return self;
+}
+
 - (id) initWithText:(NSString*)text detailText:(NSString*)dt {
     if (self = [super init]) {
         self.text = text;

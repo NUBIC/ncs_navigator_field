@@ -24,4 +24,6 @@
 
 - (id) initWithText:(NSString*)text;
 - (id) initWithText:(NSString*)text detailText:(NSString*)dt;
+- (id) initWithText:(NSString*)t entity:(id)e rowClass:(NSString*)rc;
+
 @end

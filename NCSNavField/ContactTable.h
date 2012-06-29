@@ -19,7 +19,8 @@
     NSArray *_sections;
 }
 
-@property(nonatomic,retain) NSArray *sections;
+@property(nonatomic,retain) NSArray* sections;
+@property(nonatomic,retain) Contact* contact;
 
 - (id)initUsingContact:(Contact*)contact;
 - (NSArray*) buildSectionsFromContact:(Contact*)contact;
@@ -27,10 +28,12 @@
 - (Section*) phones;
 - (Section*) emails;
 - (Section*) contactDetails;
-- (Section*) event:(Event*)e;
-- (void)addSection:(Section*)section to:(NSMutableArray*)sections;
+- (Section*) scheduledInstruments;
+- (Section*) scheduledEvents;
+- (NSArray*) sortedEvents;
 - (void) dealloc;
 
 - (NSString*) ReplaceFirstNewLine:(NSString*) original;
+- (NSArray*) rejectEmptySections:(NSArray*)raw;
 
 @end

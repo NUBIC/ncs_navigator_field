@@ -160,7 +160,7 @@
 
 - (UITableViewCell*) cellForRowClass:(NSString *)rowClass {
     UITableViewCell *cell;
-    if ([rowClass isEqualToString:@"contact"] || [rowClass isEqualToString:@"instrument"] || [rowClass isEqualToString:@"instrument-details"]) {
+    if ([rowClass isEqualToString:@"contact"] || [rowClass isEqualToString:@"instrument"] || [rowClass isEqualToString:@"instrument-details"] || [rowClass isEqualToString:@"event"]) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier:rowClass] autorelease];
         cell.textLabel.font =[[UIFont fontWithName:@"Arial" size:20] autorelease];
         cell.textLabel.textAlignment = UITextAlignmentCenter;
@@ -198,6 +198,11 @@
             cc.modalPresentationStyle = UIModalPresentationFormSheet;
             [self presentViewController:cc animated:YES completion:NULL];
         }
+    } else if ([rc isEqualToString:@"event"]) {
+//        Instrument* selected = row.entity;
+//        InstrumentVC* ivc = [[InstrumentVC alloc] initWithInstrument:selected];   
+//        ivc.modalPresentationStyle = UIModalPresentationFullScreen;  
+//        [self presentViewController:ivc animated:YES completion:NULL];
     }
 }
 
