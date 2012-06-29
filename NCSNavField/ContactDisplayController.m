@@ -19,6 +19,7 @@
 #import "Contact.h"
 #import "Person.h"
 #import "ApplicationInformation.h"
+#import "EventVC.h"
 
 @interface ContactDisplayController ()
 @property (nonatomic, retain) UIPopoverController *popoverController;
@@ -199,10 +200,10 @@
             [self presentViewController:cc animated:YES completion:NULL];
         }
     } else if ([rc isEqualToString:@"event"]) {
-//        Instrument* selected = row.entity;
-//        InstrumentVC* ivc = [[InstrumentVC alloc] initWithInstrument:selected];   
-//        ivc.modalPresentationStyle = UIModalPresentationFullScreen;  
-//        [self presentViewController:ivc animated:YES completion:NULL];
+        Event* selected = row.entity;
+        EventVC* evc = [[EventVC alloc] initWithEvent:selected];   
+        evc.modalPresentationStyle = UIModalPresentationFullScreen;  
+        [self presentViewController:evc animated:YES completion:NULL];
     }
 }
 

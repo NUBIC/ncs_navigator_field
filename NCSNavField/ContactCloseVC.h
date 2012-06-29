@@ -27,8 +27,6 @@
 - (UIView*) toolbarWithFrame:(CGRect)frame;
 - (UIView*) leftContactContentWithFrame:(CGRect)frame contact:(Contact*)contact;
 - (UIView*) rightContactContentWithFrame:(CGRect)frame contact:(Contact*)contact;
-- (UIView*) leftEventContentWithFrame:(CGRect)frame event:(Event*)event;
-- (UIView*) rightEventContentWithFrame:(CGRect)frame event:(Event*)event;
 
 - (void) cancel;
 - (void) done;
