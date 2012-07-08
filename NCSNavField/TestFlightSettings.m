@@ -18,7 +18,7 @@ static TestFlightSettings* instance;
 - (id)init {
     self = [super init];
     if (self) {
-        _teamToken = [[self retrieveTeamToken] retain];
+        _teamToken = [[[self retrieveTeamToken] retain] autorelease];
     }
     
     return self;
@@ -35,7 +35,7 @@ static TestFlightSettings* instance;
     NSString* token = NULL;
     NSData *data = [NSData dataWithContentsOfFile:[self teamTokenFilePath]];  
     if (data) {  
-        token = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+        token = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
     }
     return token;
     
@@ -44,12 +44,5 @@ static TestFlightSettings* instance;
 - (NSString*) teamTokenFilePath {
     return [[NSBundle mainBundle] pathForResource:@"TestFlight-TeamToken" ofType:@"txt"];
 }
-
-- (void)dealloc {
-    [_teamToken release];
-    [super dealloc];
-}
-
-
  
 @end

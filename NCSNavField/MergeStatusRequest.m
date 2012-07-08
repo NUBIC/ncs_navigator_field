@@ -31,7 +31,7 @@ const static NSInteger POLL_REPEATS = 3;
 
 - (NSURL*) resourceURL {
     NSString* coreURL = [[ApplicationSettings instance] coreURL];
-    return [[[NSURL alloc] initWithString:coreURL] urlByAppendingPathComponent:[NSString stringWithFormat:@"/api/v1/merges/%@", self.mergeStatusId]];
+    return [[[[NSURL alloc] initWithString:coreURL] autorelease] urlByAppendingPathComponent:[NSString stringWithFormat:@"/api/v1/merges/%@", self.mergeStatusId]];
 }
 
 - (BOOL) poll {
@@ -91,9 +91,9 @@ const static NSInteger POLL_REPEATS = 3;
 - (MergeStatus*) send {
     CasProxyTicket* pt = [self obtainProxyTicket:self.serviceTicket];
     if (pt) {
-        RKRequest* req = [[RKRequest alloc] initWithURL:[self resourceURL]];
+        RKRequest* req = [[[RKRequest alloc] initWithURL:[self resourceURL]] autorelease];
         req.method = RKRequestMethodGET;
-        NSMutableDictionary *headers = [NSMutableDictionary new];
+        NSMutableDictionary *headers = [[NSMutableDictionary new] autorelease];
         [headers setValue:@"application/json" forKey: @"Content-Type"];
         [headers setValue:[NSString stringWithFormat:@"CasProxy %@", pt.proxyTicket] forKey:@"Authorization"];
         req.additionalHTTPHeaders = headers;

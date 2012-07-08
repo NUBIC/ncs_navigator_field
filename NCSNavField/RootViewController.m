@@ -54,7 +54,7 @@
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instrumentSelected:) name:@"InstrumentSelected" object:NULL];
         
-        self.reachability = [[RKReachabilityObserver alloc] initWithHost:@"www.google.com"];
+        self.reachability = [[[RKReachabilityObserver alloc] initWithHost:@"www.google.com"] autorelease];
         
         // Register for notifications
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -138,11 +138,11 @@
             }
         }
         
-        NUSurvey* survey = [NUSurvey new];
+        NUSurvey* survey = [[NUSurvey new] autorelease];
         survey.jsonString = surveyRep;
 
         if (!rs) {
-            NSDictionary* surveyDict = [[SBJSON new] objectWithString:surveyRep];
+            NSDictionary* surveyDict = [[[SBJSON new] objectWithString:surveyRep] autorelease];
             rs = [NUResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[NUResponseSet managedObjectContext]];
             
             NCSLog(@"Response set uuid: %@", rs.uuid);
@@ -221,7 +221,7 @@
         [self confirmSync];
     } else {
         UIAlertView *message = 
-            [[UIAlertView alloc] initWithTitle:@"Configuration Error" message:@"Please go into settings and configure the NCS Field Application before trying to sync." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [[[UIAlertView alloc] initWithTitle:@"Configuration Error" message:@"Please go into settings and configure the NCS Field Application before trying to sync." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
         
         [message show];
     }
@@ -281,7 +281,7 @@
     
     self.contacts = [NSArray array];
     
-    self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
+    self.simpleTable = [[[ContactNavigationTable alloc] initWithContacts:_contacts] autorelease];
     
     self.detailViewController.detailItem = nil;
         
@@ -308,7 +308,7 @@
     // http://stackoverflow.com/questions/5685331/run-mbprogresshud-in-another-thread
     [[NSRunLoop currentRunLoop] runUntilDate: [NSDate distantPast]];
     
-    FieldworkSynchronizeOperation* sync = [[FieldworkSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
+    FieldworkSynchronizeOperation* sync = [[[FieldworkSynchronizeOperation alloc] initWithServiceTicket:serviceTicket] autorelease];
     
     [sync perform];
     
@@ -316,7 +316,7 @@
     
     self.detailViewController.detailItem = NULL;
     
-    self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
+    self.simpleTable = [[[ContactNavigationTable alloc] initWithContacts:_contacts] autorelease];
     
 	[self.tableView reloadData];
 }
@@ -327,7 +327,7 @@
 	NSFetchRequest* request = [Contact fetchRequest];
 	NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
 	[request setSortDescriptors:[NSArray arrayWithObject:descriptor]];
-	self.contacts = [[Contact objectsWithFetchRequest:request] retain];
+	self.contacts = [[Contact objectsWithFetchRequest:request] autorelease];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -346,14 +346,14 @@
     [self toggleDeleteButton];
     
     // Init Sync Indicators
-    self.syncIndicator = [[SyncActivityIndicator alloc] initWithView:self.splitViewController.view];
+    self.syncIndicator = [[[SyncActivityIndicator alloc] initWithView:self.splitViewController.view] autorelease];
     self.syncIndicator.delegate = self;
 
     [self.splitViewController.view addSubview:self.syncIndicator];
 
     // Load Data from datastore
     [self loadObjectsFromDataStore];
-    self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
+    self.simpleTable = [[[ContactNavigationTable alloc] initWithContacts:_contacts] autorelease];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -393,13 +393,6 @@
 {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
-}
-
-- (void)dealloc
-{
-    [_detailViewController release];
-    [_contacts release];
-    [super dealloc];
 }
 
 @end

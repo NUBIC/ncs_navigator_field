@@ -57,11 +57,11 @@
     NSManagedObjectModel* mom = [RKObjectManager sharedManager].objectStore.managedObjectModel;
     NSEntityDescription *entity =
     [[mom entitiesByName] objectForKey:@"ResponseSet"];
-    NUResponseSet *rs = [[NUResponseSet alloc]
-                         initWithEntity:entity insertIntoManagedObjectContext:[NUResponseSet managedObjectContext]];
+    NUResponseSet *rs = [[[NUResponseSet alloc]
+                         initWithEntity:entity insertIntoManagedObjectContext:[NUResponseSet managedObjectContext]] autorelease];
     
 
-    [rs fromJson:[[[SBJSON alloc] init] stringWithObject:responseSetDict]];
+    [rs fromJson:[[[[SBJSON alloc] init] autorelease] stringWithObject:responseSetDict]];
     self.externalResponseSetId = [rs valueForKey:@"uuid"];
 }
 

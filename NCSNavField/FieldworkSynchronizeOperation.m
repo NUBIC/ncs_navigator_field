@@ -56,7 +56,7 @@
     ApplicationPersistentStoreBackup* backup = [store backup];
     NCSLog(@"Backup path: ", [backup path]);
     if (backup) {
-        FieldworkPutRequest* put = [[FieldworkPutRequest alloc] initWithServiceTicket:self.ticket];
+        FieldworkPutRequest* put = [[[FieldworkPutRequest alloc] initWithServiceTicket:self.ticket] autorelease];
         if ([put send]) {
             [store remove];
             [backup remove];
@@ -68,12 +68,12 @@
 }
 
 - (BOOL)receive {
-    FieldworkStepPostRequest* post = [[FieldworkStepPostRequest alloc] initWithServiceTicket:self.ticket];
+    FieldworkStepPostRequest* post = [[[FieldworkStepPostRequest alloc] initWithServiceTicket:self.ticket] autorelease];
     return [post send];
 }
 
 - (BOOL) poll:(NSString*)mergeStatusId {
-    MergeStatusRequest* request = [[MergeStatusRequest alloc] initWithMergeStatusId:mergeStatusId andServiceTicket:self.ticket];
+    MergeStatusRequest* request = [[[MergeStatusRequest alloc] initWithMergeStatusId:mergeStatusId andServiceTicket:self.ticket] autorelease];
     return [request poll];
 }
 

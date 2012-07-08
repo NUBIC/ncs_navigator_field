@@ -23,7 +23,7 @@
 - (id)initUsingContact:(Contact*)contact {
     self = [super init];
     if (self) {
-        _contact = [contact retain];
+        _contact = [[contact retain] autorelease];
         _sections = [[self buildSectionsFromContact:contact] retain];
     }
     
@@ -32,8 +32,7 @@
 
 - (NSArray*) buildSectionsFromContact:(Contact*)contact { 
     NSMutableArray* s = [NSMutableArray arrayWithObjects:
-        [self addresses], [self emails], [self contactDetails], nil
-    ];
+        [self addresses], [self emails], [self contactDetails], nil];
     if (_contact.initiated) {
         [s addObject:[self scheduledInstruments]];
         [s addObject:[self scheduledEvents]];
@@ -97,7 +96,7 @@
         txt = [NSString stringWithFormat:@"Start Contact for %@", eventsText];
     }
     
-    Row* c = [[Row alloc] initWithText:txt entity:self.contact rowClass:@"contact"];
+    Row* c = [[[Row alloc] initWithText:txt entity:self.contact rowClass:@"contact"] autorelease];
     return [[[Section alloc] initWithName:@"Contact" andRows:[NSArray arrayWithObject:c]] autorelease];
 }
 
@@ -135,7 +134,7 @@
 
     for (Event* e in [self sortedEvents]) {
         NSString* t = [NSString stringWithFormat:@"%@ %@", e.name, @"Event"];
-        Row* r = [[Row alloc] initWithText:t entity:e rowClass:@"event"];
+        Row* r = [[[Row alloc] initWithText:t entity:e rowClass:@"event"] autorelease];
         [events addObject:r];
     }
     
@@ -160,7 +159,7 @@
 }
 
 - (NSArray*) rejectEmptySections:(NSArray*)raw {
-    NSMutableArray* f = [NSMutableArray new];
+    NSMutableArray* f = [[NSMutableArray new] autorelease];
     for (Section* s in raw) {
         if (s && s.rows && [s.rows count] > 0) {
             [f addObject:s];
@@ -169,11 +168,9 @@
     return f;
 }
 
-
-- (void) dealloc {
-    [_contact release];
+- (void)dealloc {
     [_sections release];
-    [super dealloc];
+    [super release];
 }
 
 @end

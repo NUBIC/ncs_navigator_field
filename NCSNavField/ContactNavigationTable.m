@@ -20,16 +20,16 @@
 - (ContactNavigationTable*)initWithContacts: (NSArray*)contacts {
     self = [super init];
     if (self) {
-        self.sections = [self buildSectionsUsingContacts:contacts];
+        _sections = [[self buildSectionsUsingContacts:contacts] retain];
     }
     return self;
 }
 
 - (NSArray*) buildSectionsUsingContacts:(NSArray*) contacts {
-    NSMutableArray* sections = [NSMutableArray new];
+    NSMutableArray* sections = [[NSMutableArray new] autorelease];
     NSSet *uniqueDates = [NSCountedSet setWithArray:[contacts valueForKey:@"date"]];
     for (NSDate *d in uniqueDates) {
-        Section *s = [Section new];
+        Section *s = [[Section new] autorelease];
         s.name = [self buildSectionNameUsingDate:d];
         
         NSPredicate *findByDate = [NSPredicate predicateWithFormat:@"date == %@", d];
@@ -51,9 +51,9 @@
 }
 
 - (NSArray*) buildRowsUsingContacts:(NSArray*)contacts {
-    NSMutableArray *rows = [NSMutableArray new];
+    NSMutableArray *rows = [[NSMutableArray new] autorelease];
     for (Contact *c in contacts) {
-        Row *r = [Row new];
+        Row *r = [[Row new] autorelease];
         r.text = c.person.name;
         r.detailText = [NSString stringWithFormat:@"%@ instruments", [NSNumber numberWithInt:[c.events count]]];
         r.entity = c;
@@ -64,6 +64,7 @@
 
 - (void)dealloc {
     [_sections release];
-    [super dealloc];
+    [super release];
 }
+
 @end

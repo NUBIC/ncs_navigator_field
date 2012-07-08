@@ -92,8 +92,8 @@
 }
 
 - (UIPopoverController*)initPopoverVCWithPicker:(NUPickerVC*)picker {
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:picker];
-    UIPopoverController* popoverVC = [[UIPopoverController alloc] initWithContentViewController: nav];
+    UINavigationController *nav = [[[UINavigationController alloc] initWithRootViewController:picker] autorelease];
+    UIPopoverController* popoverVC = [[[UIPopoverController alloc] initWithContentViewController: nav] autorelease];
     popoverVC.delegate = self;
     return popoverVC;
 }

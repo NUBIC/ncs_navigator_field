@@ -56,7 +56,7 @@
     
     /* Left and Right Pane */
     CGRect rect = CGRectMake(o.x, o.y + 50, width, height - 50 );
-    UIScrollView* scroll = [[NUScrollView alloc] initWithFrame:rect];
+    UIScrollView* scroll = [[[NUScrollView alloc] initWithFrame:rect] autorelease];
     self.scrollView = scroll;
     
     CGRect lRect, rRect;
@@ -129,7 +129,7 @@
 #pragma mark - Form
 
 - (UIView*) leftContactContentWithFrame:(CGRect)frame contact:(Contact*)contact {
-    UIView* v = [[UIView alloc] initWithFrame:frame];
+    UIView* v = [[[UIView alloc] initWithFrame:frame] autorelease];
     
     FormBuilder* b = [[[FormBuilder alloc] initWithView:v object:contact] autorelease];
     
@@ -169,7 +169,7 @@
 }
 
 - (UIView*) rightContactContentWithFrame:(CGRect)frame contact:(Contact*)contact {
-    UIView* v = [[UIView alloc] initWithFrame:frame];
+    UIView* v = [[[UIView alloc] initWithFrame:frame] autorelease];
     
     FormBuilder* b = [[[FormBuilder alloc] initWithView:v object:contact] autorelease];
     
@@ -202,29 +202,29 @@
 }
 
 - (UIView*) toolbarWithFrame:(CGRect)frame {
-    UIToolbar* t = [[UIToolbar alloc] initWithFrame:frame];
+    UIToolbar* t = [[[UIToolbar alloc] initWithFrame:frame] autorelease];
     t.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
-    UIBarButtonItem* cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+    UIBarButtonItem* cancel = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
     
-    UIBarButtonItem* flexItem1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:NULL action:NULL];
+    UIBarButtonItem* flexItem1 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:NULL action:NULL] autorelease];
     
-    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0 , 11.0f, 200.0f, 21.0f)];
+    UILabel* titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0.0 , 11.0f, 200.0f, 21.0f)] autorelease];
     [titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setTextColor:[UIColor colorWithRed:113.0/255.0 green:120.0/255.0 blue:128.0/255.0 alpha:1.0]];
     [titleLabel setText:@"Close Contact"];
     [titleLabel setTextAlignment:UITextAlignmentCenter];
-    UIBarButtonItem *toolBarTitle = [[UIBarButtonItem alloc] initWithCustomView:titleLabel];
+    UIBarButtonItem *toolBarTitle = [[[UIBarButtonItem alloc] initWithCustomView:titleLabel] autorelease];
     
     
     
     UIBarButtonItem* flexItem2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:NULL action:NULL];
     
-    UIBarButtonItem* done = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
+    UIBarButtonItem* done = [[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done)] autorelease];
     done.width = 100;
     
-    NSArray* a = [[NSArray alloc] initWithObjects:cancel, flexItem1, toolBarTitle, flexItem2, done, nil];
+    NSArray* a = [[[NSArray alloc] initWithObjects:cancel, flexItem1, toolBarTitle, flexItem2, done, nil] autorelease];
     [t setItems:a];
     return t;
 }

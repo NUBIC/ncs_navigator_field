@@ -24,16 +24,4 @@
 
 - (BOOL)poll:(NSString*)mergeStatusId;
 
-- (BOOL)isMerged;
-
-- (BOOL)isTimeout;
-
-- (BOOL)isWorking;
-
-- (BOOL)isPending;
-
-- (BOOL)isConflict;
-
-- (BOOL)isError;
-
 @end

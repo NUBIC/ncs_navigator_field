@@ -15,7 +15,7 @@
 -(id) init {
     self = [super init];
     if (self) {
-        _name = [[self generateBackupFilename] retain];
+        _name = [[self generateBackupFilename] autorelease];
     }
     return self;
 }
@@ -29,7 +29,7 @@
 }
 
 - (NSString*)generateBackupFilename {
-    NSDateFormatter *timeFmt = [[NSDateFormatter alloc] init];
+    NSDateFormatter *timeFmt = [[[NSDateFormatter alloc] init] autorelease];
     [timeFmt setDateFormat:@"yyyyMMddHHmmss"];
     [timeFmt setTimeZone:[NSTimeZone localTimeZone]];
     return [NSString stringWithFormat:@"sync-backup-%@.sqlite", [timeFmt stringFromDate:[NSDate date]]]; 

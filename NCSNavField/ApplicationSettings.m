@@ -76,7 +76,7 @@ static ApplicationSettings* instance;
     if (cid == nil)
     {
         CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-        NSString *uuid = (NSString *)CFUUIDCreateString(NULL,uuidRef);
+        NSString *uuid = [(NSString *)CFUUIDCreateString(NULL,uuidRef) autorelease];
         CFRelease(uuidRef);
         [[NSUserDefaults standardUserDefaults] setValue:uuid forKey:CLIENT_ID];
     }
@@ -109,7 +109,7 @@ static ApplicationSettings* instance;
 
 + (CasConfiguration*) casConfiguration {
     ApplicationSettings* s = [ApplicationSettings instance];
-    return [[CasConfiguration alloc] initWithCasURL:s.casServerURL receiveURL:s.pgtReceiveURL retrieveURL:s.pgtRetrieveURL];
+    return [[[CasConfiguration alloc] initWithCasURL:s.casServerURL receiveURL:s.pgtReceiveURL retrieveURL:s.pgtRetrieveURL] autorelease];
 }
 
 - (BOOL) coreSynchronizeConfigured {
