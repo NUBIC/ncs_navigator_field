@@ -11,14 +11,14 @@
 @implementation NSDate (Additions)
 
 - (NSString*)jsonSchemaDate {
-    NSDateFormatter* f = [[NSDateFormatter alloc] init];
+    NSDateFormatter* f = [[[NSDateFormatter alloc] init] autorelease];
     [f setDateFormat:@"yyyy'-'MM'-'dd"];
     [f setTimeZone:[NSTimeZone localTimeZone]];
     return [f stringFromDate:self];
 }
 
 - (NSString*)jsonSchemaTime {
-    NSDateFormatter* f = [[NSDateFormatter alloc] init];
+    NSDateFormatter* f = [[[NSDateFormatter alloc] init] autorelease];
     [f setDateFormat:@"HH':'mm"];
     [f setTimeZone:[NSTimeZone localTimeZone]];
     return [f stringFromDate:self];    

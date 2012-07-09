@@ -65,7 +65,7 @@
 }
 
 - (void) refreshView {
-    self.simpleTable = [[ContactTable alloc]initUsingContact:self.detailItem];
+    self.simpleTable = [[[ContactTable alloc]initUsingContact:self.detailItem] autorelease];
     [self.tableView reloadData];
 }
 
@@ -97,13 +97,13 @@
     if (self.detailItem) {
         // Update the user interface for the detail item.
         Contact *c = self.detailItem;
-        self.simpleTable = [[ContactTable alloc]initUsingContact:c];
+        self.simpleTable = [[[ContactTable alloc]initUsingContact:c] autorelease];
         
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
         [dateFormatter setDateFormat:@"MMM dd 'at' HH:mm"];
         self.eventDateLabel.text = [dateFormatter stringFromDate:c.date];
         //    self.dwellingIdLabel.text = [self.detailItem dwelling].id;
-        UILabel *header = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
+        UILabel *header = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)] autorelease];
         header.backgroundColor = [UIColor groupTableViewBackgroundColor];
         header.textAlignment = UITextAlignmentCenter;
         header.text = c.person.name;
@@ -112,10 +112,10 @@
         [self.tableView reloadData];
     } else {
         self.simpleTable = NULL;
-        UITableView *myTable = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        UITableView *myTable = [[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped] autorelease];
         
         if ([ApplicationInformation isTestEnvironment]) {
-            myTable.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"test-background.png"]];
+            myTable.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"test-background.png"]] autorelease];
         }
         self.tableView = myTable;
     }
@@ -132,14 +132,14 @@
 {
     [super viewDidAppear:animated];
     CGRect r = CGRectMake(self.view.frame.size.width-155, self.view.frame.size.height-25, 150, 25);
-    UILabel* l = [[UILabel alloc] initWithFrame:r];
+    UILabel* l = [[[UILabel alloc] initWithFrame:r] autorelease];
     l.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     l.textAlignment = UITextAlignmentRight;
     l.backgroundColor = [UIColor clearColor];
     [self.view addSubview:l];
     
     if ([ApplicationInformation isTestEnvironment]) {
-        ((UITableView*)self.view).backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"test-background.png"]];
+        ((UITableView*)self.view).backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"test-background.png"]] autorelease];
     }
 }
 
@@ -163,7 +163,7 @@
     UITableViewCell *cell;
     if ([rowClass isEqualToString:@"contact"] || [rowClass isEqualToString:@"instrument"] || [rowClass isEqualToString:@"instrument-details"] || [rowClass isEqualToString:@"event"]) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier:rowClass] autorelease];
-        cell.textLabel.font =[[UIFont fontWithName:@"Arial" size:20] autorelease];
+        cell.textLabel.font =[UIFont fontWithName:@"Arial" size:20];
         cell.textLabel.textAlignment = UITextAlignmentCenter;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else {
@@ -183,25 +183,25 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"InstrumentSelected" object:self userInfo:dict]; 
     } else if ([rc isEqualToString:@"instrument-details"]) {
         Instrument* selected = row.entity;
-        InstrumentVC* ivc = [[InstrumentVC alloc] initWithInstrument:selected];   
+        InstrumentVC* ivc = [[[InstrumentVC alloc] initWithInstrument:selected] autorelease];   
         ivc.modalPresentationStyle = UIModalPresentationFullScreen;  
         [self presentViewController:ivc animated:YES completion:NULL];
     } else if ([rc isEqualToString:@"contact"]) {
         if (self.detailItem.initiated) {
-            self.simpleTable = [[ContactTable alloc]initUsingContact:self.detailItem];
+            self.simpleTable = [[[ContactTable alloc]initUsingContact:self.detailItem] autorelease];
             [self.tableView reloadData];
             
-            ContactCloseVC* cc = [[ContactCloseVC alloc] initWithContact:self.detailItem];
+            ContactCloseVC* cc = [[[ContactCloseVC alloc] initWithContact:self.detailItem] autorelease];
             cc.modalPresentationStyle = UIModalPresentationFullScreen;  
             [self presentViewController:cc animated:YES completion:NULL];
         } else {
-            ContactInitiateVC* cc = [[ContactInitiateVC alloc] initWithContact:self.detailItem];
+            ContactInitiateVC* cc = [[[ContactInitiateVC alloc] initWithContact:self.detailItem] autorelease];
             cc.modalPresentationStyle = UIModalPresentationFormSheet;
             [self presentViewController:cc animated:YES completion:NULL];
         }
     } else if ([rc isEqualToString:@"event"]) {
         Event* selected = row.entity;
-        EventVC* evc = [[EventVC alloc] initWithEvent:selected];   
+        EventVC* evc = [[[EventVC alloc] initWithEvent:selected] autorelease];   
         evc.modalPresentationStyle = UIModalPresentationFullScreen;  
         [self presentViewController:evc animated:YES completion:NULL];
     }

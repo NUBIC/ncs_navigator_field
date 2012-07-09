@@ -22,9 +22,9 @@ static ApplicationPersistentStore* instance;
 }
 
 - (ApplicationPersistentStoreBackup*)backup {
-    ApplicationPersistentStoreBackup* backup = [ApplicationPersistentStoreBackup new];
+    ApplicationPersistentStoreBackup* backup = [[ApplicationPersistentStoreBackup new] autorelease];
     ApplicationPersistentStoreBackupOperation* op = 
-        [[ApplicationPersistentStoreBackupOperation alloc] initWithMainPersistentStorePath:[self path] andBackupStorePath:[backup path]];
+        [[[ApplicationPersistentStoreBackupOperation alloc] initWithMainPersistentStorePath:[self path] andBackupStorePath:[backup path]] autorelease];
     
     if ([op perform]) {
         return backup;

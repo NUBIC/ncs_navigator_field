@@ -44,7 +44,7 @@
 - (void)retrieveContacts:(CasServiceTicket*)serviceTicket {
     if (serviceTicket.pgt) {
         CasConfiguration* conf = [ApplicationSettings casConfiguration];
-        CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
+        CasClient* client = [[[CasClient alloc] initWithConfiguration:conf] autorelease];
         NSString* coreURL = [ApplicationSettings instance].coreURL;
         
         NCSLog(@"Requesting proxy ticket");
@@ -63,7 +63,7 @@
         [serviceTicket present];
         if (serviceTicket.ok) {
             CasConfiguration* conf = [ApplicationSettings casConfiguration];
-            CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
+            CasClient* client = [[[CasClient alloc] initWithConfiguration:conf] autorelease];
             NSString* coreURL = [ApplicationSettings instance].coreURL;
             
             NCSLog(@"Requesting proxy ticket");
@@ -114,9 +114,9 @@
     Fieldwork* w = [Fieldwork object];
     w.uri = [[objectLoader response] location];
     w.retrievedDate = [NSDate date];
-    w.participants = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[Participant entity] name ]]]];
-    w.contacts = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[Contact entity] name ]]]];    
-    w.instrumentTemplates = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[InstrumentTemplate entity] name ]]]];
+    w.participants = [[[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[Participant entity] name ]]]] autorelease];
+    w.contacts = [[[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[Contact entity] name ]]]] autorelease];    
+    w.instrumentTemplates = [[[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[InstrumentTemplate entity] name ]]]] autorelease];
     
     NSError *error = nil;    
     if (![[Fieldwork managedObjectContext] save:&error]) {
@@ -127,9 +127,9 @@
 - (void)objectLoader:(RKObjectLoader *)loader willMapData:(inout id *)mappableData {
     NCSLog(@"Mapping surveys from json");
 
-    SBJsonWriter *jsonWriter = [SBJsonWriter new];
+    SBJsonWriter *jsonWriter = [[SBJsonWriter new] autorelease];
     
-    NSMutableArray* modifiedTemplates = [NSMutableArray new];
+    NSMutableArray* modifiedTemplates = [[NSMutableArray new] autorelease];
     for (NSDictionary* templ in [*mappableData valueForKey:@"instrument_templates"]) {
         NSDictionary* json = [templ valueForKey:@"survey"];
         if (json) {

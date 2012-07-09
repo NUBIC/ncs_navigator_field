@@ -25,7 +25,7 @@
 
 - (id)initWithContact:contact {
     if (self = [super init]) {
-        self.contact = contact;
+        _contact = [contact retain];
 
     }
     return self;
@@ -219,7 +219,7 @@
     
     
     
-    UIBarButtonItem* flexItem2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:NULL action:NULL];
+    UIBarButtonItem* flexItem2 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:NULL action:NULL] autorelease];
     
     UIBarButtonItem* done = [[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done)] autorelease];
     done.width = 100;
@@ -235,8 +235,8 @@
 }
 
 - (void) done {
-    [self commitTransaction];
-    [self dismissViewControllerAnimated:NO completion:^{
+//    [self commitTransaction];
+    [self.presentingViewController dismissViewControllerAnimated:NO completion:^{
        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactClosed" object:self]; 
     }];
 }
@@ -337,4 +337,8 @@
     
 }
 
+- (void)dealloc {
+    [_contact release];
+    [super dealloc];
+}
 @end

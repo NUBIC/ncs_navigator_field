@@ -17,7 +17,7 @@
 - (NSString*)fieldworkId {
     NSString* ident = NULL;
     if (self.uri) {
-        NSString* rel = [[[NSURL alloc] initWithString:self.uri] relativePath];
+        NSString* rel = [[[[NSURL alloc] initWithString:self.uri] autorelease] relativePath];
         ident = [[rel componentsSeparatedByString:@"/"] lastObject];
     }
     return ident;

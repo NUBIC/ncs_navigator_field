@@ -26,6 +26,10 @@
 
 - (BOOL)isPending;
 
+- (BOOL) isConflict;
+
+- (BOOL) isError;
+
 - (BOOL)isStatus:(NSString*)status;
 
 + (MergeStatus*) latest;

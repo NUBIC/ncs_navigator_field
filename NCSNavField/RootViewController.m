@@ -142,8 +142,8 @@
         survey.jsonString = surveyRep;
 
         if (!rs) {
-            NSDictionary* surveyDict = [[[SBJSON new] objectWithString:surveyRep] autorelease];
-            rs = [NUResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[NUResponseSet managedObjectContext]];
+            NSDictionary* surveyDict = [[[SBJSON new] autorelease] objectWithString:surveyRep];
+            rs = [[NUResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[NUResponseSet managedObjectContext]] autorelease];
             
             NCSLog(@"Response set uuid: %@", rs.uuid);
 
@@ -158,7 +158,7 @@
 
         }
         
-        NUSurveyTVC *masterViewController = [[NUSurveyTVC alloc] initWithSurvey:survey responseSet:rs];
+        NUSurveyTVC *masterViewController = [[[NUSurveyTVC alloc] initWithSurvey:survey responseSet:rs] autorelease];
         masterViewController.delegate = self;
         NUSectionTVC *detailViewController = masterViewController.sectionTVC;
         [self.navigationController pushViewController:masterViewController animated:NO];
@@ -277,14 +277,14 @@
 - (void) deleteButtonWasPressed {
     NCSLog(@"Delete button pressed");
 
+//    self.detailViewController.detailItem = nil;
+
     [self purgeDataStore];
     
     self.contacts = [NSArray array];
     
     self.simpleTable = [[[ContactNavigationTable alloc] initWithContacts:_contacts] autorelease];
-    
-    self.detailViewController.detailItem = nil;
-        
+            
 	[self.tableView reloadData];
 }
 
@@ -327,7 +327,7 @@
 	NSFetchRequest* request = [Contact fetchRequest];
 	NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
 	[request setSortDescriptors:[NSArray arrayWithObject:descriptor]];
-	self.contacts = [[Contact objectsWithFetchRequest:request] autorelease];
+	self.contacts = [Contact objectsWithFetchRequest:request];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

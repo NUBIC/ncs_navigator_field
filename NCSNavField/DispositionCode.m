@@ -16,7 +16,7 @@
 @synthesize disposition = _disposition;
 @synthesize interimCode = _interimCode;
 
-- (id)initializeWithInterimCode:(NSString*)code disposition:(NSString*)disposition event:(NSString*)event {
+- (id)initWithInterimCode:(NSString*)code disposition:(NSString*)disposition event:(NSString*)event {
     if (self = [super init]) {
         self.event = event;
         self.disposition = disposition;
@@ -27,7 +27,7 @@
 }
 
 + (DispositionCode*)dc:(NSString*)event disposition:(NSString*)disposition interimCode:(NSString*)code {
-    return [[DispositionCode alloc] initializeWithInterimCode:code disposition:disposition event:event];
+    return [[[DispositionCode alloc] initWithInterimCode:code disposition:disposition event:event] autorelease];
 }
 
 + (NSArray*) pickerOptions {
@@ -55,9 +55,9 @@
 
 
 - (PickerOption*) toPickerOption {
-    return [[PickerOption alloc] 
+    return [[[PickerOption alloc] 
                        initWithText:[self disposition]
-                       value:[[self interimCode] integerValue]];
+                       value:[[self interimCode] integerValue]] autorelease];
 }
 
 
@@ -66,7 +66,7 @@
 // 2. $mdes20.disposition_codes.map{|c| "[DispositionCode dc:@\"#{c.event}\" disposition:@\"#{c.disposition}\" interimCode:@\"#{c.interim_code}\"],\n"}.each{|v| puts v}
 //
 + (NSArray*) all {
-    return [[NSArray alloc] initWithObjects:
+    return [[[NSArray alloc] initWithObjects:
             [DispositionCode dc:@"General Study Visit Event" disposition:@"Participant cognitively unable to provide informed consent/complete interview" interimCode:@"010"],
             [DispositionCode dc:@"General Study Visit Event" disposition:@"Participant deceased" interimCode:@"011"],
             [DispositionCode dc:@"General Study Visit Event" disposition:@"Participant ineligible due to pregnancy loss" interimCode:@"012"],
@@ -178,7 +178,7 @@
             [DispositionCode dc:@"Telephone Interview Event" disposition:@"Completed interview in Spanish" interimCode:@"092"],
             [DispositionCode dc:@"Telephone Interview Event" disposition:@"Partial with sufficient information in Spanish" interimCode:@"093"],
             [DispositionCode dc:@"Telephone Interview Event" disposition:@"Completed interview in Other Language" interimCode:@"094"],
-            [DispositionCode dc:@"Telephone Interview Event" disposition:@"Partial with sufficient information in Other Language" interimCode:@"095"], nil];
+            [DispositionCode dc:@"Telephone Interview Event" disposition:@"Partial with sufficient information in Other Language" interimCode:@"095"], nil] autorelease];
 }
 
 @end

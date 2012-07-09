@@ -45,8 +45,8 @@
     NSMutableArray* addresses = [[NSMutableArray new] autorelease];
 
     if (self.contact.person) {
-        Row *home = [[Row alloc] 
-                     initWithText:@"Home" entity:_contact.person rowClass:@"address"];
+        Row *home = [[[Row alloc] 
+                     initWithText:@"Home" entity:_contact.person rowClass:@"address"] autorelease];
 
         Person *p = _contact.person;
         home.detailText = [NSString stringWithFormat:@"%@\n%@, %@ %@", [self ReplaceFirstNewLine:p.street], p.city, p.state, p.zipCode];

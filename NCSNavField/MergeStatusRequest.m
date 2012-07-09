@@ -71,7 +71,7 @@ const static NSInteger POLL_REPEATS = 3;
     }
     if (st.ok) {
         CasConfiguration* conf = [ApplicationSettings casConfiguration];
-        CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
+        CasClient* client = [[[CasClient alloc] initWithConfiguration:conf] autorelease];
         NSString* coreURL = [ApplicationSettings instance].coreURL;
         
         CasProxyTicket* pending = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:st.pgt];

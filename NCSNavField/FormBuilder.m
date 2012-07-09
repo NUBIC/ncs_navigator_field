@@ -30,7 +30,7 @@
     if (self = [super init]) {
         self.view = view;
         self.object = obj;
-        self.cursor = [FormBuilderCursor new];
+        self.cursor = [[FormBuilderCursor new] autorelease];
     }
     return self;
 }

@@ -11,7 +11,7 @@
 @implementation NSString (Additions)
 
 - (NSDate*)jsonTimeToDate {
-    NSDateFormatter* f = [[NSDateFormatter alloc] init];
+    NSDateFormatter* f = [[[NSDateFormatter alloc] init] autorelease];
     [f setDateFormat:@"HH':'mm"];
     [f setTimeZone:[NSTimeZone localTimeZone]];
     return [f dateFromString:self];    
