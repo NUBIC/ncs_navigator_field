@@ -156,4 +156,9 @@
     [alert show];
 }
 
+- (void)dealloc {
+    [_ticket release];
+    [super dealloc];
+}
+
 @end

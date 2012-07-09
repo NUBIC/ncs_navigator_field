@@ -77,4 +77,9 @@
     return [request poll];
 }
 
+- (void)dealloc {
+    [_ticket release];
+    [super dealloc];
+}
+
 @end

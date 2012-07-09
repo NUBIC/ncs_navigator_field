@@ -277,7 +277,7 @@
 - (void) deleteButtonWasPressed {
     NCSLog(@"Delete button pressed");
 
-//    self.detailViewController.detailItem = nil;
+    self.detailViewController.detailItem = nil;
 
     [self purgeDataStore];
     

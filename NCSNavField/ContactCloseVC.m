@@ -235,7 +235,7 @@
 }
 
 - (void) done {
-//    [self commitTransaction];
+    [self commitTransaction];
     [self.presentingViewController dismissViewControllerAnimated:NO completion:^{
        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactClosed" object:self]; 
     }];
