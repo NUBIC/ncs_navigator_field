@@ -92,6 +92,10 @@
     [self.contact addObserver:self forKeyPath:@"typeId" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
+- (void) unregisterContactTypeChangeNotification {
+    [self.contact removeObserver:self forKeyPath:@"typeId"];
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == self.contact && [keyPath isEqualToString:@"typeId"]) {
         [self.dispositionPicker updatePickerOptions:[DispositionCode pickerOptionsForContactTypeId:self.contact.typeId]];
@@ -231,11 +235,13 @@
 
 - (void) cancel {
     [self rollbackTransaction];
+    [self unregisterContactTypeChangeNotification];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void) done {
     [self commitTransaction];
+    [self unregisterContactTypeChangeNotification];
     [self.presentingViewController dismissViewControllerAnimated:NO completion:^{
        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactClosed" object:self]; 
     }];
