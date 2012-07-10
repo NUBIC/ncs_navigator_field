@@ -114,6 +114,7 @@
 - (void)dealloc {
     [_view release];
     [_object release];
+    [_cursor release];
 }
 
 @end

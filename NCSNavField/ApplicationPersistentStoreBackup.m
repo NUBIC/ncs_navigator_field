@@ -15,7 +15,7 @@
 -(id) init {
     self = [super init];
     if (self) {
-        _name = [[self generateBackupFilename] autorelease];
+        _name = [[self generateBackupFilename] retain];
     }
     return self;
 }
@@ -37,6 +37,11 @@
 
 - (NSString*)path {
     return [[RKDirectory applicationDataDirectory] stringByAppendingPathComponent:self.name];
+}
+
+- (void)dealloc {
+    [_name release];
+    [super dealloc];
 }
 
 @end

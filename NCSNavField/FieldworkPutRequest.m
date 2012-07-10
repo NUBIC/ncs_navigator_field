@@ -34,7 +34,7 @@
 }
 
 - (BOOL) isSuccessful {
-    return !self.error;
+    return !(self.error && [self.error length] > 0);
 }
 
 - (BOOL)send:(CasProxyTicket*)proxyTicket {
