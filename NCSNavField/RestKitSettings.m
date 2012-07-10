@@ -30,15 +30,15 @@ static RestKitSettings* instance;
 @synthesize objectStoreFileName = _objectStoreFileName;
 
 + (RestKitSettings*) instance {
-    instance = [[RestKitSettings alloc] init];
+    instance = [[[RestKitSettings alloc] init] autorelease];
     return instance;
 }
 
 - (id)init {
     self = [super init];
     if (self) {
-        _baseServiceURL = [ApplicationSettings instance].coreURL;
-        _objectStoreFileName = STORE_NAME;
+        _baseServiceURL = [[ApplicationSettings instance].coreURL retain];
+        _objectStoreFileName = [STORE_NAME retain];
     }
     return self;
 }
@@ -107,22 +107,22 @@ static RestKitSettings* instance;
      @"instrument_template_id", @"instrumentTemplateId",
      @"response_set", @"responseSetDict",
      @"name", @"name",
-     @"type", @"instrumentTypeId", 
-     @"type_other", @"instrumentTypeOther",
+     @"instrument_type_code", @"instrumentTypeId", 
+     @"instrument_type_other", @"instrumentTypeOther",
      @"instrument_version", @"instrumentVersion",
-     @"repeat_key", @"repeatKey",
-     @"start_date", @"startDate",
-     @"start_time", @"startTimeJson",
-     @"end_date", @"endDate",
-     @"end_time", @"endTimeJson",
-     @"status", @"statusId",
-     @"break_off", @"breakOffId",
-     @"mode_administered", @"instrumentModeId",
-     @"mode_administered_other", @"instrumentModeOther",
-     @"method_administered", @"instrumentMethodId",
-     @"supervisor_review", @"supervisorReviewId",
-     @"data_problem", @"dataProblemId",
-     @"comment", @"comments", nil];
+     @"instrument_repeat_key", @"repeatKey",
+     @"instrument_start_date", @"startDate",
+     @"instrument_start_time", @"startTimeJson",
+     @"instrument_end_date", @"endDate",
+     @"instrument_end_time", @"endTimeJson",
+     @"instrument_status_code", @"statusId",
+     @"instrument_breakoff_code", @"breakOffId",
+     @"instrument_mode_code", @"instrumentModeId",
+     @"instrument_mode_other", @"instrumentModeOther",
+     @"instrument_method_code", @"instrumentMethodId",
+     @"supervisor_review_code", @"supervisorReviewId",
+     @"data_problem_code", @"dataProblemId",
+     @"instrument_comment", @"comment", nil];
     [instrument mapRelationship:@"instrumentTemplate" withMapping:instrumentTemplate];
     [instrument connectRelationship:@"instrumentTemplate" withObjectForPrimaryKeyAttribute:@"instrumentTemplateId"];
     
@@ -133,19 +133,19 @@ static RestKitSettings* instance;
      @"event_id", @"eventId",
      @"version", @"version",
      @"name", @"name",
-     @"type", @"eventTypeId",
-     @"type_other", @"eventTypeOther",
-     @"repeat_key", @"repeatKey",
-     @"start_date", @"startDate",
-     @"end_date", @"endDate",
-     @"start_time", @"startTimeJson",
-     @"end_time", @"endTimeJson",
-     @"incentive_type", @"incentiveTypeId",
-     @"incentive_cash", @"incentiveCash",
-     @"disposition", @"dispositionId",
-     @"disposition_category", @"dispositionCategoryId",
-     @"break_off", @"breakOffId",
-     @"comments", @"comments", nil];
+     @"event_type_code", @"eventTypeId",
+     @"event_type_other", @"eventTypeOther",
+     @"event_repeat_key", @"repeatKey",
+     @"event_start_date", @"startDate",
+     @"event_end_date", @"endDate",
+     @"event_start_time", @"startTimeJson",
+     @"event_end_time", @"endTimeJson",
+     @"event_incentive_type_code", @"incentiveTypeId",
+     @"event_incentive_cash", @"incentiveCash",
+     @"event_disposition", @"dispositionId",
+     @"event_disposition_category_code", @"dispositionCategoryId",
+     @"event_breakoff_code", @"breakOffId",
+     @"event_comment", @"comments", nil];
     [event mapRelationship:@"instruments" withMapping:instrument];
     
     // Person Mapping
@@ -177,25 +177,25 @@ static RestKitSettings* instance;
     [contact setPrimaryKeyAttribute:@"contactId"];
     [contact mapKeyPathsToAttributes:
      @"contact_id", @"contactId",
-     @"type", @"typeId",
+     @"contact_type_code", @"typeId",
      @"version", @"version",
-     @"contact_date", @"date",
-     @"start_time", @"startTimeJson",
-     @"end_time", @"endTimeJson",
+     @"contact_date_date", @"date",
+     @"contact_start_time", @"startTimeJson",
+     @"contact_end_time", @"endTimeJson",
      @"person_id", @"personId", 
-     @"location", @"locationId",
-     @"location_other", @"locationOther",
-     @"who_contacted", @"whoContactedId",
+     @"contact_location_code", @"locationId",
+     @"contact_location_other", @"locationOther",
+     @"who_contacted_code", @"whoContactedId",
      @"who_contacted_other", @"whoContactedOther",
-     @"comments", @"comments", 
-     @"language", @"languageId",
-     @"language_other", @"languageOther",
-     @"interpreter", @"interpreterId",
-     @"interpreter_other", @"interpreterOther",
-     @"private", @"privateId",
-     @"private_detail", @"privateDetail",
-     @"distance_traveled", @"distanceTraveled",
-     @"disposition", @"dispositionId", nil];
+     @"contact_comment", @"comments", 
+     @"contact_language_code", @"languageId",
+     @"contact_language_other", @"languageOther",
+     @"contact_interpret_code", @"interpreterId",
+     @"contact_interpret_other", @"interpreterOther",
+     @"contact_private_code", @"privateId",
+     @"contact_private_detail", @"privateDetail",
+     @"contact_distance", @"distanceTraveled",
+     @"contact_disposition", @"dispositionId", nil];
     [contact mapRelationship:@"person" withMapping:person];
     [contact connectRelationship:@"person" withObjectForPrimaryKeyAttribute:@"personId"];
     [contact mapRelationship:@"events" withMapping:event];
@@ -225,22 +225,22 @@ static RestKitSettings* instance;
      @"responseSetDict", @"response_set",
      @"instrumentTemplateId", @"instrument_template_id",
      @"name", @"name", 
-     @"instrumentTypeId", @"type", 
-     @"instrumentTypeOther", @"type_other",
+     @"instrumentTypeId", @"instrument_type_code", 
+     @"instrumentTypeOther", @"instrument_type_other",
      @"instrumentVersion", @"instrument_version",
-     @"repeatKey", @"repeat_key",
-     @"startDate.jsonSchemaDate", @"start_date",
-     @"startTime.jsonSchemaTime", @"start_time",
-     @"endDate.jsonSchemaDate", @"end_date",
-     @"endTime.jsonSchemaTime", @"end_time",
-     @"statusId", @"status",
-     @"breakOffId", @"break_off",
-     @"instrumentModeId", @"mode_administered",
-     @"instrumentModeOther", @"mode_administered_other",
-     @"instrumentMethodId", @"method_administered",
-     @"supervisorReviewId", @"supervisor_review",
-     @"dataProblemId", @"data_problem",
-     @"comment", @"comments",
+     @"repeatKey", @"instrument_repeat_key",
+     @"startDate.jsonSchemaDate", @"instrument_start_date",
+     @"startTime.jsonSchemaTime", @"instrument_start_time",
+     @"endDate.jsonSchemaDate", @"instrument_end_date",
+     @"endTime.jsonSchemaTime", @"instrument_end_time",
+     @"statusId", @"instrument_status_code",
+     @"breakOffId", @"instrument_breakoff_code",
+     @"instrumentModeId", @"instrument_mode_code",
+     @"instrumentModeOther", @"instrument_mode_other",
+     @"instrumentMethodId", @"instrument_method_code",
+     @"supervisorReviewId", @"supervisor_review_code",
+     @"dataProblemId", @"data_problem_code",
+     @"comment", @"instrument_comment",
      nil];
     [objectManager.mappingProvider setSerializationMapping:instrument forClass:[Instrument class]];
     
@@ -249,19 +249,19 @@ static RestKitSettings* instance;
     [event mapKeyPathsToAttributes:
      @"eventId", @"event_id",
      @"name", @"name", 
-     @"eventTypeId", @"type",
-     @"eventTypeOther", @"type_other",
-     @"repeatKey", @"repeat_key",
-     @"startDate.jsonSchemaDate", @"start_date",
-     @"endDate.jsonSchemaDate", @"end_date",
-     @"startTime.jsonSchemaTime", @"start_time",
-     @"endTime.jsonSchemaTime", @"end_time",
-     @"incentiveTypeId", @"incentive_type",
-     @"incentiveCash", @"incentive_cash",
-     @"dispositionId", @"disposition",
-     @"dispositionCategoryId", @"disposition_category",
-     @"breakOffId", @"break_off",
-     @"comments", @"comments",
+     @"eventTypeId", @"event_type_code",
+     @"eventTypeOther", @"event_type_other",
+     @"repeatKey", @"event_repeat_key",
+     @"startDate.jsonSchemaDate", @"event_start_date",
+     @"endDate.jsonSchemaDate", @"event_end_date",
+     @"startTime.jsonSchemaTime", @"event_start_time",
+     @"endTime.jsonSchemaTime", @"event_end_time",
+     @"incentiveTypeId", @"event_incentive_type_code",
+     @"incentiveCash", @"event_incentive_cash",
+     @"dispositionId", @"event_disposition",
+     @"dispositionCategoryId", @"event_disposition_category_code",
+     @"breakOffId", @"event_breakoff_code",
+     @"comments", @"event_comment",
      @"version", @"version", nil];
     [event mapRelationship:@"instruments" withMapping:instrument];
     [objectManager.mappingProvider setSerializationMapping:event forClass:[Event class]];
@@ -269,24 +269,24 @@ static RestKitSettings* instance;
     RKManagedObjectMapping* contact = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
     [contact mapKeyPathsToAttributes:
      @"contactId", @"contact_id", 
-     @"typeId", @"type",
-     @"date.jsonSchemaDate", @"contact_date",
-     @"startTime.jsonSchemaTime", @"start_time",
-     @"endTime.jsonSchemaTime", @"end_time",
+     @"typeId", @"contact_type_code",
+     @"date.jsonSchemaDate", @"contact_date_date",
+     @"startTime.jsonSchemaTime", @"contact_start_time",
+     @"endTime.jsonSchemaTime", @"contact_end_time",
      @"personId", @"person_id",
-     @"locationId", @"location",
-     @"locationOther", @"location_other", 
-     @"whoContactedId", @"who_contacted", 
+     @"locationId", @"contact_location_code",
+     @"locationOther", @"contact_location_other", 
+     @"whoContactedId", @"who_contacted_code", 
      @"whoContactedOther", @"who_contacted_other", 
-     @"comments", @"comments", 
-     @"languageId", @"language", 
-     @"languageOther", @"language_other", 
-     @"interpreterId", @"interpreter", 
-     @"interpreterOther", @"interpreter_other", 
-     @"privateId", @"private", 
-     @"privateDetail", @"private_detail", 
-     @"distanceTraveled", @"distance_traveled", 
-     @"dispositionId", @"disposition",
+     @"comments", @"contact_comment", 
+     @"languageId", @"contact_language_code", 
+     @"languageOther", @"contact_language_other", 
+     @"interpreterId", @"contact_interpret_code", 
+     @"interpreterOther", @"contact_interpret_other", 
+     @"privateId", @"contact_private_code", 
+     @"privateDetail", @"contact_private_detail", 
+     @"distanceTraveled", @"contact_distance", 
+     @"dispositionId", @"contact_disposition",
      @"version", @"version", nil];
     [contact mapRelationship:@"events" withMapping:event];
     [objectManager.mappingProvider setSerializationMapping:contact forClass:[Contact class]];
