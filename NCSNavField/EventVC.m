@@ -117,10 +117,7 @@
     
     [b labelWithText:@"Breakoff"];
     [b singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[PickerOption breakOff]];     
-    
-    [b labelWithText:@"Start Time"];
-    [b timePickerForProperty:@selector(startTime)];
-    
+        
     [b labelWithText:@"End Date"];
     [b datePickerForProperty:@selector(endDate)];
     
