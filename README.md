@@ -16,6 +16,7 @@ Configuration
 1. `cp RestKit-0.9.3-custom.podspec ~/.cocoapods/master/RestKit/0.9.3/RestKit.podspec`
 1. `pod install`
 1. Open NCSNavField.xcworkspace and change the Pods deploy target to 5.0 (Pods Project -> Build Settings -> Deploy Target)
+1. Add '#import "NUContants.h"' to Pods-prefix.psc
 
 Testing
 -------

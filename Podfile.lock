@@ -8,21 +8,19 @@ PODS:
   - NUSurveyor (1.0.1)
   - RestKit/Network (0.9.3):
     - LibComponentLogging-NSLog
-    - RestKit (= 0.9.3)
   - RestKit/ObjectMapping (0.9.3):
-    - RestKit (= 0.9.3)
     - RestKit/Network
+    - RestKit/ObjectMapping/CoreData (= 0.9.3)
+    - RestKit/ObjectMapping/JSON (= 0.9.3)
+    - RestKit/ObjectMapping/XML (= 0.9.3)
   - RestKit/ObjectMapping/CoreData (0.9.3):
-    - RestKit (= 0.9.3)
-    - RestKit/ObjectMapping (= 0.9.3)
-  - RestKit/ObjectMapping/JSONKit (0.9.3):
+    - RestKit/Network
+  - RestKit/ObjectMapping/JSON (0.9.3):
     - JSONKit
-    - RestKit (= 0.9.3)
-    - RestKit/ObjectMapping (= 0.9.3)
+    - RestKit/Network
+  - RestKit/ObjectMapping/XML (0.9.3):
+    - RestKit/Network
   - SBJson (2.2.3)
-
-DOWNLOAD_ONLY:
-  - RestKit (0.9.3)
 
 DEPENDENCIES:
   - MBProgressHUD (= 0.5)
@@ -31,5 +29,5 @@ DEPENDENCIES:
   - RestKit/Network (= 0.9.3)
   - RestKit/ObjectMapping (= 0.9.3)
   - RestKit/ObjectMapping/CoreData (= 0.9.3)
-  - RestKit/ObjectMapping/JSONKit (= 0.9.3)
+  - RestKit/ObjectMapping/JSON (= 0.9.3)
   - SBJson (= 2.2.3)
