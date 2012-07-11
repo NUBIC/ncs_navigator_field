@@ -18,7 +18,6 @@
     #import <RestKit/RKCoreData/CoreData.h>
 
     #import "TestFlight.h"
-
 #endif
 
 #import "NCSNavFieldAppDelegate.h"

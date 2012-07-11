@@ -38,17 +38,13 @@ pod do |s|
   s.platform = :ios
   s.requires_arc = true
   s.source = { :git => 'https://github.com/NUBIC/nu_surveyor.git', :tag => 'v1.0.1' }
-  s.source_files = 'NUSurveyor/NUConstants.h', 'NUSurveyor/**/*.{h,m}', 'GRMustache/*.{h,m}' #, 'JSONKit/*.{h,m}'
+  s.source_files = 'NUSurveyor/NUSurveyor-Prefix.pch', 'NUSurveyor/NUConstants.h', 'NUSurveyor/**/*.{h,m}', 'GRMustache/*.{h,m}' #, 'JSONKit/*.{h,m}'
   s.frameworks = 'QuartzCore', 'CoreGraphics'
   s.library = 'GRMustache1-ios4'
   s.xcconfig = { 'LIBRARY_SEARCH_PATHS' => '"$(BUILT_PRODUCTS_DIR)/Pods/Libraries"' }
 
+  s.prefix_header_file = 'NUSurveyor/NUSurveyor-Prefix.pch'
   # def s.post_install(target_installer)
-  #   prefix_header = config.project_pods_root + target_installer.prefix_header_filename
-  #   prefix_header.open('a') do |file|
-  #     file.puts(%{#ifdef __OBJC__\n#import "NUConstants.h"\n#endif})
-  #   end
-  # 
   #   # Add a copy build phase and make it copy the GRMustache1-ios4.a to the shared BUILT_PRODUCTS_DIR,
   #   # so that both the Pods project and the user's project will pick it up.    
   #   phase = target_installer.target.buildPhases.add(Xcodeproj::Project::PBXCopyFilesBuildPhase, 'dstPath' => 'Pods/Libraries')
