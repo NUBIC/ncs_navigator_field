@@ -1,5 +1,3 @@
-# BUG: Specifying deployment target doesn't work.
-#      http://groups.google.com/group/cocoapods/browse_thread/thread/d3761ac18d9c0ec6
 platform :ios, :deployment_target => "5.0"
 
 # BUG: RestKit's podspec doesn't include CoreData/CoreData.h because it conflicts with Apple CoreData/CoreData.h
