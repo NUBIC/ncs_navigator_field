@@ -96,7 +96,7 @@
     Instrument* selected = [[notification userInfo] objectForKey:@"instrument"];
     selected.startDate = [NSDate date];
     selected.startTime = [NSDate date];
-    [[Instrument managedObjectContext] save:NULL];
+    [[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:NULL];
     [self loadSurveyor:selected];
 }
 
@@ -114,7 +114,7 @@
             //                  [NSPredicate predicateWithFormat:@"uuid = %@", instrument.externalResponseSetId]];
             //
                         
-            NSManagedObjectContext* moc = [NUResponseSet managedObjectContext];
+            NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
             NSEntityDescription *desc = [NSEntityDescription entityForName:@"ResponseSet" inManagedObjectContext:moc];
             NSFetchRequest *req = [[[NSFetchRequest alloc] init] autorelease];
             
@@ -143,11 +143,11 @@
 
         if (!rs) {
             NSDictionary* surveyDict = [[[SBJSON new] autorelease] objectWithString:surveyRep];
-            rs = [[NUResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[NUResponseSet managedObjectContext]] autorelease];
+            rs = [[NUResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread] autorelease];
             
             NCSLog(@"Response set uuid: %@", rs.uuid);
 
-            NSManagedObjectContext* moc = [NUResponseSet managedObjectContext];
+            NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
             instrument.externalResponseSetId = rs.uuid;
             NSError *error = nil;
             
@@ -188,7 +188,7 @@
             [self unloadSurveyor:_administeredInstrument responseSet:rs];
             self.administeredInstrument.endDate = [NSDate date];
             self.administeredInstrument.endTime = [NSDate date];
-            [[Instrument managedObjectContext] save:NULL];
+            [[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:NULL];
             _administeredInstrument = NULL;
         }
         

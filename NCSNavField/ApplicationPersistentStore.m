@@ -35,7 +35,7 @@ static ApplicationPersistentStore* instance;
 - (void) remove {
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     RKManagedObjectStore* objectStore = objectManager.objectStore;
-    [objectStore deletePersistantStore];
+    [objectStore deletePersistentStore];
 }
 
 - (NSString*)path {

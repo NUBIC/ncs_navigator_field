@@ -190,13 +190,13 @@
 }
 
 - (void) startTransaction {
-    NSManagedObjectContext* moc = [Event managedObjectContext];
+    NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
     NSUndoManager* undoManager = [moc undoManager];
     [undoManager beginUndoGrouping];
 }
 
 - (void) endTransction {
-    NSManagedObjectContext* moc = [Event managedObjectContext];
+    NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
     NSUndoManager* undoManager = [moc undoManager];
     [undoManager endUndoGrouping];
     
@@ -204,7 +204,7 @@
 
 - (void) commitTransaction {
     [self endTransction];
-    NSManagedObjectContext* moc = [Event managedObjectContext];
+    NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
     NSUndoManager* undoManager = [moc undoManager];
     [undoManager removeAllActions];
     
@@ -218,7 +218,7 @@
 
 - (void) rollbackTransaction {
     [self endTransction];
-    NSManagedObjectContext* moc = [Event managedObjectContext];
+    NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
     NSUndoManager* undoManager = [moc undoManager];
     [undoManager undo];
     NCSLog(@"Rolledback event");

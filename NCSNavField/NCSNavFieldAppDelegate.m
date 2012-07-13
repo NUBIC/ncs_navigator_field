@@ -39,7 +39,7 @@
     [settings introduce];
     
     // Set Undo Manager
-    NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContext;
+    NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
     NSUndoManager *undoManager = [[[NSUndoManager alloc] init] autorelease];
     [moc setUndoManager:undoManager];
 

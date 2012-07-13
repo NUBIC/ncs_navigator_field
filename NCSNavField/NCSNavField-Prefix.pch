@@ -15,7 +15,7 @@
     #import <CoreData/CoreData.h>
 
     #import <RestKit/RestKit.h>
-    #import <RestKit/RKCoreData/CoreData.h>
+    #import <RestKit/CoreData.h>
 
     #import "TestFlight.h"
 #endif

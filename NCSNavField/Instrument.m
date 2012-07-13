@@ -19,7 +19,7 @@
     instrumentMethodId, supervisorReviewId, dataProblemId, comment;
 
 - (NUResponseSet*) responseSet {
-    NSManagedObjectContext* moc = [NUResponseSet managedObjectContext];
+    NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
     NSEntityDescription *desc = [NSEntityDescription entityForName:@"ResponseSet" inManagedObjectContext:moc];
     NSFetchRequest *req = [[[NSFetchRequest alloc] init] autorelease];
     
@@ -58,7 +58,7 @@
     NSEntityDescription *entity =
     [[mom entitiesByName] objectForKey:@"ResponseSet"];
     NUResponseSet *rs = [[[NUResponseSet alloc]
-                         initWithEntity:entity insertIntoManagedObjectContext:[NUResponseSet managedObjectContext]] autorelease];
+                         initWithEntity:entity insertIntoManagedObjectContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread] autorelease];
     
 
     [rs fromJson:[[[[SBJSON alloc] init] autorelease] stringWithObject:responseSetDict]];

@@ -118,8 +118,8 @@
     w.contacts = [[[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[Contact entity] name ]]]] autorelease];    
     w.instrumentTemplates = [[[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[InstrumentTemplate entity] name ]]]] autorelease];
     
-    NSError *error = nil;    
-    if (![[Fieldwork managedObjectContext] save:&error]) {
+    NSError **error = nil;    
+    if (![[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:error]) {
         NCSLog(@"Error saving fieldwork location");
     }
 }

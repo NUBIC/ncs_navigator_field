@@ -15,10 +15,11 @@ pod 'SBJson', '2.2.3'
 pod 'MBProgressHUD', '0.5'
 #pod 'LibComponentLogging-Core', '1.1.6'
 #pod 'LibComponentLogging-NSLog', '1.0.4'
-pod 'RestKit/Network', '0.9.3'
-pod 'RestKit/ObjectMapping', '0.9.3'
-pod 'RestKit/ObjectMapping/CoreData', '0.9.3'
-pod 'RestKit/ObjectMapping/JSON', '0.9.3'
+pod 'RestKit'
+# pod 'RestKit/Network', '0.10.1'
+# pod 'RestKit/ObjectMapping', '0.10.1'
+# pod 'RestKit/ObjectMapping/CoreData', '0.10.1'
+# pod 'RestKit/ObjectMapping/JSON', '0.10.1'
 
 # TODO: Replace with BlocksKit?
 pod do |s|

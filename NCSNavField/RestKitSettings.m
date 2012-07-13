@@ -55,11 +55,13 @@ static RestKitSettings* instance;
 + (void)reload {
     RestKitSettings* s = [RestKitSettings instance];
     s.baseServiceURL = [ApplicationSettings instance].coreURL;
-    [RKObjectManager sharedManager].client.baseURL = s.baseServiceURL;
+    [RKObjectManager sharedManager].client = [[RKClient alloc] initWithBaseURLString:s.baseServiceURL];
+
+//    [RKObjectManager sharedManager].client.baseURL = [[RKURL alloc] initWithString:s.baseServiceURL];
 }
 
 - (void)introduce {    
-    RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:self.baseServiceURL];
+    RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:[NSURL URLWithString:self.baseServiceURL]];
 
     // Initialize store
     RKManagedObjectStore* objectStore = [RKManagedObjectStore objectStoreWithStoreFilename:self.objectStoreFileName usingSeedDatabaseName:nil managedObjectModel:nil delegate:self];
@@ -91,7 +93,7 @@ static RestKitSettings* instance;
 
 - (void)addMappingsToObjectManager:(RKObjectManager *)objectManager  {
     // Instrument Template
-    RKManagedObjectMapping* instrumentTemplate = [RKManagedObjectMapping mappingForClass:[InstrumentTemplate class]];
+    RKManagedObjectMapping* instrumentTemplate = [RKManagedObjectMapping mappingForClass:[InstrumentTemplate class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
     [instrumentTemplate mapKeyPathsToAttributes:
      @"instrument_template_id", @"instrumentTemplateId",
@@ -100,7 +102,7 @@ static RestKitSettings* instance;
     [objectManager.mappingProvider setMapping:instrumentTemplate forKeyPath:@"instrument_templates"];
     
     // Instrument Mapping
-    RKManagedObjectMapping* instrument = [RKManagedObjectMapping mappingForClass:[Instrument class]];
+    RKManagedObjectMapping* instrument = [RKManagedObjectMapping mappingForClass:[Instrument class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [instrument setPrimaryKeyAttribute:@"instrumentId"];
     [instrument mapKeyPathsToAttributes: 
      @"instrument_id", @"instrumentId",
@@ -127,7 +129,7 @@ static RestKitSettings* instance;
     [instrument connectRelationship:@"instrumentTemplate" withObjectForPrimaryKeyAttribute:@"instrumentTemplateId"];
     
     // Event Mapping
-    RKManagedObjectMapping* event = [RKManagedObjectMapping mappingForClass:[Event class]];
+    RKManagedObjectMapping* event = [RKManagedObjectMapping mappingForClass:[Event class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [event setPrimaryKeyAttribute:@"eventId"];
     [event mapKeyPathsToAttributes:
      @"event_id", @"eventId",
@@ -149,7 +151,7 @@ static RestKitSettings* instance;
     [event mapRelationship:@"instruments" withMapping:instrument];
     
     // Person Mapping
-    RKManagedObjectMapping* person = [RKManagedObjectMapping mappingForClass:[Person class]];
+    RKManagedObjectMapping* person = [RKManagedObjectMapping mappingForClass:[Person class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [person setPrimaryKeyAttribute:@"personId"];
     [person mapKeyPathsToAttributes: 
      @"person_id", @"personId",
@@ -165,7 +167,7 @@ static RestKitSettings* instance;
     [objectManager.mappingProvider setMapping:person forKeyPath:@"persons"];
     
     // Partipant Mapping
-    RKManagedObjectMapping* participant = [RKManagedObjectMapping mappingForClass:[Participant class]];
+    RKManagedObjectMapping* participant = [RKManagedObjectMapping mappingForClass:[Participant class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [participant setPrimaryKeyAttribute:@"pId"];
     [participant mapKeyPathsToAttributes:
      @"p_id", @"pId", nil];
@@ -173,7 +175,7 @@ static RestKitSettings* instance;
     [objectManager.mappingProvider setMapping:participant forKeyPath:@"participants"];
 
     // Contact Mapping
-    RKManagedObjectMapping* contact = [RKManagedObjectMapping mappingForClass:[Contact class]];
+    RKManagedObjectMapping* contact = [RKManagedObjectMapping mappingForClass:[Contact class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [contact setPrimaryKeyAttribute:@"contactId"];
     [contact mapKeyPathsToAttributes:
      @"contact_id", @"contactId",
@@ -201,7 +203,7 @@ static RestKitSettings* instance;
     [contact mapRelationship:@"events" withMapping:event];
     [objectManager.mappingProvider setMapping:contact forKeyPath:@"contacts"];
     
-    RKManagedObjectMapping* fieldWork = [RKManagedObjectMapping mappingForClass:[Fieldwork class]];
+    RKManagedObjectMapping* fieldWork = [RKManagedObjectMapping mappingForClass:[Fieldwork class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [fieldWork mapRelationship:@"participants" withMapping:participant];
     [fieldWork mapRelationship:@"contacts" withMapping:contact];
     [fieldWork mapRelationship:@"instrumentTemplate" withMapping:instrumentTemplate];
