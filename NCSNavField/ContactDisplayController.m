@@ -65,7 +65,6 @@
         [self refreshView];
     }];
     [self refreshView];    
-//    }
 }
 
 - (void) refreshView {
