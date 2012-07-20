@@ -144,8 +144,10 @@ static ApplicationSettings* instance;
             {
                 // not readable: set value from Settings.bundle
                 id objectToSet = [prefSpecification objectForKey:@"DefaultValue"];
-                [defaultsToRegister setObject:objectToSet forKey:key];
-                NSLog(@"Setting object %@ for key %@", objectToSet, key);
+                if (objectToSet) {
+                    [defaultsToRegister setObject:objectToSet forKey:key];
+                    NSLog(@"Setting object %@ for key %@", objectToSet, key);
+                }
             }
             else
             {
