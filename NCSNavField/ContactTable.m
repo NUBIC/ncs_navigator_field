@@ -114,15 +114,12 @@
 
     for (Event* e in [self sortedEvents]) {
         for (Instrument* i in e.instruments) {
-            NSString* t0 = [NSString stringWithFormat:@"%@ %@", i.name, @"Instrument"];
-            NSString* t1 = [NSString stringWithFormat:@"%@ %@", t0, @"Details"];
-            Row* r0 = [[[Row alloc] 
-                        initWithText:t0 entity:i rowClass:@"instrument"] autorelease];
-            Row* r1 = [[[Row alloc] 
-                      initWithText:t1 entity:i rowClass:@"instrument-details"] autorelease];
+            NSString* t = [NSString stringWithFormat:@"%@ %@", i.name, @"Instrument"];
+            
+            Row* r = [[[Row alloc] 
+                        initWithText:t entity:i rowClass:@"instrument"] autorelease];
 
-            [instruments addObject:r0];
-            [instruments addObject:r1];
+            [instruments addObject:r];
         }
     }
     

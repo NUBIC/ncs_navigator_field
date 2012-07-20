@@ -57,9 +57,13 @@
 }
 
 - (void) stoppedAdministeringInstrument:(NSNotification*)notification {
-//    Contact* c = [[notification userInfo] objectForKey:@"contact"];
+    Instrument* i = [[notification userInfo] objectForKey:@"instrument"];
     
-//    if (c && c == self.detailItem) {
+    InstrumentVC* ivc = [[[InstrumentVC alloc] initWithInstrument:i] autorelease];   
+    ivc.modalPresentationStyle = UIModalPresentationFullScreen;  
+    [self presentViewController:ivc animated:YES completion:^{
+        [self refreshView];
+    }];
     [self refreshView];    
 //    }
 }
