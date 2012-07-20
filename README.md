@@ -15,6 +15,7 @@ Configuration
 1. `pod setup`
 1. `cp RestKit-0.9.3-custom.podspec ~/.cocoapods/master/RestKit/0.9.3/RestKit.podspec`
 1. `pod install`
+1. `./run-patches.sh`
 
 Testing
 -------
