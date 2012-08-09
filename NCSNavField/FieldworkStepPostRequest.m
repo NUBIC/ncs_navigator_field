@@ -96,7 +96,7 @@
     
     NSDateFormatter* rfc3339 = [[[NSDateFormatter alloc] init] autorelease];
     [rfc3339 setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease]];
-    [rfc3339 setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+    [rfc3339 setDateFormat:@"yyyy'-'MM'-'dd"];
     [rfc3339 setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@&client_id=%@", [rfc3339 stringFromDate:today], [rfc3339 stringFromDate:inOneWeek], clientId];
     
