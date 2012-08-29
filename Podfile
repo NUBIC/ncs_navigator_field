@@ -33,14 +33,15 @@ end
 # TODO: Add to cocoapods specs repo or NUSurveyor project
 pod do |s|
   s.name = 'NUSurveyor'
-  s.version = '1.0.1'
+  s.version = '1.0.2'
   s.platform = :ios
   s.requires_arc = true
-  s.source = { :git => 'https://github.com/NUBIC/nu_surveyor.git', :tag => 'v1.0.1' }
-  s.source_files = 'NUSurveyor/NUSurveyor-Prefix.pch', 'NUSurveyor/NUConstants.h', 'NUSurveyor/**/*.{h,m}', 'GRMustache/*.{h,m}' #, 'JSONKit/*.{h,m}'
+  s.source = { :git => 'https://github.com/NUBIC/nu_surveyor.git', :tag => 'v1.0.2' }
+  s.source_files = 'NUSurveyor/NUSurveyor-Prefix.pch', 'NUSurveyor/**/*.{h,m}', 'GRMustache/*.{h,m}' #, 'JSONKit/*.{h,m}'
   s.frameworks = 'QuartzCore', 'CoreGraphics'
+  s.preserve_paths = 'GRMustache'
   s.library = 'GRMustache1-ios4'
-  s.xcconfig = { 'LIBRARY_SEARCH_PATHS' => '"$(BUILT_PRODUCTS_DIR)/Pods/Libraries"' }
+  s.xcconfig = { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/NUSurveyor/GRMustache"' }
 
   s.prefix_header_file = 'NUSurveyor/NUSurveyor-Prefix.pch'
   # def s.post_install(target_installer)
