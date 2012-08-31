@@ -40,8 +40,15 @@ Person *tom;
 
 - (void)testSections {
     NSArray* sections = [self generateSections];
-    STAssertEquals([sections count], 4U, @"Wrong number of sections");
+    STAssertEquals([sections count], 3U, @"Wrong number of sections");
 }
+
+- (void)testSectionsWithContactStarted {
+    c.initiated = TRUE;
+    NSArray* sections = [self generateSections];
+    STAssertEquals([sections count], 5U, @"Wrong number of sections");
+}
+
 
 - (void)testAddress {
     NSArray* sections = [self generateSections];
@@ -76,9 +83,9 @@ Person *tom;
 - (void) testContinueContactRow {
     c.initiated = YES;
     NSArray* sections = [self generateSections];
-    Section* s3 = [sections objectAtIndex:3];
-    Row* s3r0 = [s3.rows objectAtIndex:0];
-    STAssertEqualObjects(s3r0.text, @"Continue Contact for Birth Event", @"Wrong value");
+    Section* s2 = [sections objectAtIndex:2];
+    Row* s2r0 = [s2.rows objectAtIndex:0];
+    STAssertEqualObjects(s2r0.text, @"Continue Contact for Birth Event", @"Wrong value");
 }
 
 - (void)testBirthInstrument {
@@ -121,7 +128,7 @@ Person *tom;
 - (Event*) buildEvent:(NSString*)name withDate:(NSString*)date {    
     Event* e = [Fixtures createEventWithName:[NSString stringWithFormat:@"%@ Event", name]];
     e.startDate = [Fixtures createDateFromString:date];
-    [e addInstrumentsObject:[Fixtures createInstrumentWithName:[NSString stringWithFormat:@"%@ Instrument", name]]];
+    [e addInstrumentsObject:[Fixtures createInstrumentWithName:name]];
     return e;
 }
 
