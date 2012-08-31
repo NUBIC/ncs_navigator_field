@@ -87,12 +87,12 @@
 
 - (void)testGeneralDeserialization { 
     NSString* fieldworkJson = 
-        @"{                                         "
-         "  \"contacts\":[                          "
-         "    {                                     "
-         "      \"contact_id\":\"c1\",              "
-         "      \"contact_date\":\"2009-03-07\",            "
-         "      \"start_time\": \"10:28\",          "
+        @"{                                           "
+         "  \"contacts\":[                            "
+         "    {                                       "
+         "      \"contact_id\":\"c1\",                "
+         "      \"contact_date_date\":\"2009-03-07\", "
+         "      \"contact_start_time\": \"10:28\",    "
          "      \"events\":[                        "
          "        {                                 "
          "          \"event_id\":\"e1\"             "
