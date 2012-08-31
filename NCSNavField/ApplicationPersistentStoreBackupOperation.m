@@ -27,7 +27,11 @@
     BOOL success = false;
     if (self.main && self.backup) {
         NSFileManager* fm = [NSFileManager defaultManager];
-        success = [fm copyItemAtPath:self.main toPath:self.backup error:NULL];
+        NSError* error = nil;
+        success = [fm copyItemAtPath:self.main toPath:self.backup error:&error];
+        if (error) {
+            NCSLog(@"Backup failed: %@", error);
+        }
     }
     return success;
 }

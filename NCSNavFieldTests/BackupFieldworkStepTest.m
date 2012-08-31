@@ -71,8 +71,7 @@ ApplicationPersistentStoreBackup* backup;
 }
 
 - (NSString *)backupFieldworkPath {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"sync-backup-20120420160159" ofType:@"sqlite"];
-    return filePath;
+    return [[ApplicationPersistentStoreBackup new] path];
 }
 
 @end
