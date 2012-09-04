@@ -127,7 +127,6 @@
     
     Instrument* it = [[et.instruments objectEnumerator] nextObject];
     STAssertEqualObjects(it.instrumentId, @"i1", @"Wrong value");
-    STAssertEqualObjects(it.externalResponseSetId, @"rs1", @"Wrong value");
     
     ResponseSet* rs = it.responseSet;
     STAssertEqualObjects([rs valueForKey:@"uuid"], @"rs1", @"Wrong value");

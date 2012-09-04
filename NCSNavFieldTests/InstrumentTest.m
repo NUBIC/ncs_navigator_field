@@ -25,17 +25,4 @@
     STAssertEqualObjects(i.instrumentId, @"12345", @"Wrong id");
 }
 
-
-- (void)testSetResultSet {    
-    Instrument* ins = [Instrument object];
-    
-    NSEntityDescription *entity =
-    [[self.model entitiesByName] objectForKey:@"ResponseSet"];
-    ResponseSet *rs = [[ResponseSet alloc]
-                         initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
-    [rs setValue:@"XYZ" forKey:@"uuid"];
-    ins.responseSet = rs;
-    STAssertEqualObjects(ins.externalResponseSetId, @"XYZ", @"Wrong value");
-    
-}
 @end

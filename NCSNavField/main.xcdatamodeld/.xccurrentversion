@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>_XCCurrentVersionName</key>
-	<string>20120904190344_change_response_set_entity.xcdatamodel</string>
+	<string>20120904204206_associate_instrument_to_response_set.xcdatamodel</string>
 </dict>
 </plist>

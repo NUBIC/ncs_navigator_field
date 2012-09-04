@@ -20,10 +20,6 @@
 
 @property(nonatomic,retain) NSString* instrumentTemplateId;
 
-@property(nonatomic,retain) InstrumentTemplate* instrumentTemplate;
-
-@property(nonatomic,retain) NSString* externalResponseSetId;
-
 @property(nonatomic,retain) NSNumber* instrumentTypeId;
 
 @property(nonatomic,retain) NSString* instrumentTypeOther;
@@ -61,16 +57,14 @@
 
 @property(nonatomic,retain) Event* event;
 
+@property(nonatomic,retain) InstrumentTemplate* instrumentTemplate;
 
-- (ResponseSet*) responseSet;
+@property(nonatomic,retain) ResponseSet* responseSet;
 
-- (NSDictionary*) responseSetDict;
-
-- (void)setResponseSet:(ResponseSet *)responseSet;
-
-- (void) setResponseSetDict:(NSDictionary *)responseSetDict;
 
 #pragma setter
+
+- (void) setResponseSetDict:(NSDictionary *)responseSetDict;
 
 - (void) setStartTimeJson:(NSString*)startTime;
 

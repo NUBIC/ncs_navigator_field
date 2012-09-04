@@ -103,38 +103,7 @@
     if (instrument != NULL) {
         NSString* surveyRep = instrument.instrumentTemplate.representation;
         
-        ResponseSet* rs = NULL;
-        if (instrument.externalResponseSetId != NULL) {
-            // TODO: This is a workaround for RestKit failing when entities are named differently than their table name
-            //       https://github.com/RestKit/RestKit/issues/506
-            //
-            //       rs = [ResponseSet objectWithPredicate: 
-            //                  [NSPredicate predicateWithFormat:@"uuid = %@", instrument.externalResponseSetId]];
-            //
-                        
-            NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
-            NSEntityDescription *desc = [NSEntityDescription entityForName:@"ResponseSet" inManagedObjectContext:moc];
-            NSFetchRequest *req = [[[NSFetchRequest alloc] init] autorelease];
-            
-            [req setEntity:desc];
-            
-            NSPredicate *p = [NSPredicate predicateWithFormat:
-                              @"uuid = %@", instrument.externalResponseSetId];
-            
-            [req setPredicate:p];
-            
-            NSError *error = nil;
-            
-            NSArray *array = [moc executeFetchRequest:req error:&error];
-            
-            if (array == nil)
-            {
-                NCSLog(@"Error during fetch");                
-            } else {
-                NCSLog(@"fetched response set");
-                rs = [[array objectEnumerator] nextObject];
-            }
-        }
+        ResponseSet* rs = instrument.responseSet;
         
         NUSurvey* survey = [[NUSurvey new] autorelease];
         survey.jsonString = surveyRep;
@@ -146,13 +115,12 @@
             NCSLog(@"Response set uuid: %@", rs.uuid);
 
             NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
-            instrument.externalResponseSetId = rs.uuid;
             NSError *error = nil;
             
             if (![moc save:&error]) {
                 NCSLog(@"Error saving instrument uuid");
             }
-            NCSLog(@"Administered instrument with external response uuid: %@", [instrument externalResponseSetId]);
+            NCSLog(@"Administered instrument with external response uuid: %@", [instrument response]);
 
         }
         

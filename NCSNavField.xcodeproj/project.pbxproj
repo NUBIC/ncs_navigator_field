@@ -121,7 +121,7 @@
 
 /* Begin PBXFileReference section */
 		000922B015F652F6005EBA3D /* ResponseSetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseSetTest.m; sourceTree = "<group>"; };
-		000922B115F652F6005EBA3D /* ResponseSetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ResponseSetTest.h; sourceTree = "<group>"; };
+		000922B115F652F6005EBA3D /* ResponseSetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseSetTest.h; sourceTree = "<group>"; };
 		000922B515F65925005EBA3D /* 20120904162849_add_pid_to_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120904162849_add_pid_to_response_set.xcdatamodel; sourceTree = "<group>"; };
 		000922B615F65D26005EBA3D /* 20120904162837_remove_all_entities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120904162837_remove_all_entities.xcdatamodel; sourceTree = "<group>"; };
 		000D8E75152CAC5B006EE224 /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
@@ -192,6 +192,7 @@
 		004FC7111486BE8200A378DC /* PickerOptionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerOptionTest.m; sourceTree = "<group>"; };
 		004FC7141486BFBC00A378DC /* PickerOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerOption.h; sourceTree = "<group>"; };
 		004FC7151486BFBC00A378DC /* PickerOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerOption.m; sourceTree = "<group>"; };
+		0050B58A15F6A9B2008B9525 /* 20120904204206_associate_instrument_to_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120904204206_associate_instrument_to_response_set.xcdatamodel; sourceTree = "<group>"; };
 		005108EC148440C000732623 /* NUScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUScrollView.h; sourceTree = "<group>"; };
 		005108ED148440C000732623 /* NUScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUScrollView.m; sourceTree = "<group>"; };
 		0057793914E4355600964B87 /* NUCas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUCas.h; path = NUCas/Code/NUCas.h; sourceTree = "<group>"; };
@@ -1402,12 +1403,13 @@
 		00C9C6E3146CE66300F6D339 /* main.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0050B58A15F6A9B2008B9525 /* 20120904204206_associate_instrument_to_response_set.xcdatamodel */,
 				004756521580F1FF009EDE69 /* main_v1.1.xcdatamodel */,
 				000922B515F65925005EBA3D /* 20120904162849_add_pid_to_response_set.xcdatamodel */,
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */;
+			currentVersion = 0050B58A15F6A9B2008B9525 /* 20120904204206_associate_instrument_to_response_set.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
