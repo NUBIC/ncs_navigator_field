@@ -32,7 +32,7 @@
     NSEntityDescription *entity =
     [[mom entitiesByName] objectForKey:@"ResponseSet"];
     NUResponseSet *rs = [[NUResponseSet alloc]
-                         initWithEntity:entity insertIntoManagedObjectContext:[NUResponseSet managedObjectContext]];
+                         initWithEntity:entity insertIntoManagedObjectContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread];
 
     [rs setValue:@"RS A" forKey:@"uuid"];
     
@@ -71,9 +71,9 @@
     // TODO: Participants and Instrument Templates should exist but empty
     
     NSDictionary* ac = [[[actual objectForKey:@"contacts"] objectEnumerator] nextObject];
-    STAssertEquals(22, [[ac objectForKey:@"type"] integerValue], @"Wrong value");
-    STAssertEqualObjects(@"2012-04-04", [ac objectForKey:@"contact_date"], @"Wrong value");
-    STAssertEqualObjects(@"10:45", [ac objectForKey:@"start_time"], @"Wrong value");
+    STAssertEquals(22, [[ac objectForKey:@"contact_type_code"] integerValue], @"Wrong value");
+    STAssertEqualObjects(@"2012-04-04", [ac objectForKey:@"contact_date_date"], @"Wrong value");
+    STAssertEqualObjects(@"10:45", [ac objectForKey:@"contact_start_time"], @"Wrong value");
     
     NSDictionary* ae = [[[ac objectForKey:@"events"] objectEnumerator] nextObject];
     STAssertEqualObjects(@"Birthday", [ae objectForKey:@"name"], @"Wrong value");

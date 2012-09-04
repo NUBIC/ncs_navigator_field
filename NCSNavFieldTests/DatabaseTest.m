@@ -18,7 +18,8 @@
 	
     // Set-up code here.
 	self.bundle = [NSBundle bundleWithIdentifier:@"nubic.NCSNavFieldTest"];
-	self.model = [NSManagedObjectModel mergedModelFromBundles:[NSBundle allBundles]];
+//    [NSManagedObjectModel modelByMergingModels:<#(NSArray *)#>]
+	self.model = [NSManagedObjectModel mergedModelFromBundles:[NSArray arrayWithObject:self.bundle]];
 	self.coord = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.model];
 	self.store = [self.coord addPersistentStoreWithType: NSInMemoryStoreType
                                           configuration: nil
