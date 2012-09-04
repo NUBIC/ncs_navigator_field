@@ -18,17 +18,15 @@
 #import "Row.h"
 #import "NUSurveyTVC.h"
 #import "NUSurveyTVC.h"
-#import "NUResponseSet.h"
+#import "ResponseSet.h"
 #import "Instrument.h"
 #import "InstrumentTemplate.h"
 #import "SBJson/SBJsonWriter.h"
-#import "NUResponseSet.h"
 #import "NUCas.h"
 #import "ApplicationSettings.h"
 #import "SyncActivityIndicator.h"
 #import "NUSurvey.h"
 #import "UUID.h"
-#import "NUResponseSet.h"
 #import "Fieldwork.h"
 #import "SBJSON.h"
 #import "FieldworkSynchronizeOperation.h"
@@ -105,12 +103,12 @@
     if (instrument != NULL) {
         NSString* surveyRep = instrument.instrumentTemplate.representation;
         
-        NUResponseSet* rs = NULL;
+        ResponseSet* rs = NULL;
         if (instrument.externalResponseSetId != NULL) {
             // TODO: This is a workaround for RestKit failing when entities are named differently than their table name
             //       https://github.com/RestKit/RestKit/issues/506
             //
-            //       rs = [NUResponseSet objectWithPredicate: 
+            //       rs = [ResponseSet objectWithPredicate: 
             //                  [NSPredicate predicateWithFormat:@"uuid = %@", instrument.externalResponseSetId]];
             //
                         
@@ -143,7 +141,7 @@
 
         if (!rs) {
             NSDictionary* surveyDict = [[[SBJSON new] autorelease] objectWithString:surveyRep];
-            rs = [[NUResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread] autorelease];
+            rs = [[ResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread] autorelease];
             
             NCSLog(@"Response set uuid: %@", rs.uuid);
 
@@ -185,7 +183,7 @@
         self.splitViewController.viewControllers = [NSArray arrayWithObjects:self.navigationController, _detailViewController, nil];
         NUResponseSet* rs = sectionVC.responseSet;
         if (rs != NULL) {
-            [self unloadSurveyor:_administeredInstrument responseSet:rs];
+            [self unloadSurveyor:_administeredInstrument];
             self.administeredInstrument.endDate = [NSDate date];
             self.administeredInstrument.endTime = [NSDate date];
             [[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:NULL];
@@ -196,7 +194,7 @@
     }    
 }
 
-- (void) unloadSurveyor:(Instrument*)instrument responseSet:(NUResponseSet*)rs {
+- (void) unloadSurveyor:(Instrument*)instrument {
     Contact* contact = instrument.event.contact;
     NSDictionary* dict = [[[NSDictionary alloc] initWithObjectsAndKeys:contact, @"contact", instrument, @"instrument", nil] autorelease];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"StoppedAdministeringInstrument" object:self userInfo:dict];

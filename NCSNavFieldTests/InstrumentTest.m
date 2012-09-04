@@ -8,7 +8,7 @@
 
 #import "InstrumentTest.h"
 #import "Instrument.h"
-#import "NUResponseSet.h"
+#import "ResponseSet.h"
 #import <CoreData.h>
 #import <RestKit.h>
 
@@ -31,7 +31,7 @@
     
     NSEntityDescription *entity =
     [[self.model entitiesByName] objectForKey:@"ResponseSet"];
-    NUResponseSet *rs = [[NUResponseSet alloc]
+    ResponseSet *rs = [[ResponseSet alloc]
                          initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
     [rs setValue:@"XYZ" forKey:@"uuid"];
     ins.responseSet = rs;

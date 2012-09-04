@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		000922B415F654A0005EBA3D /* NUResponseSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 000922B015F652F6005EBA3D /* NUResponseSetTest.m */; };
+		000922B415F654A0005EBA3D /* ResponseSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 000922B015F652F6005EBA3D /* ResponseSetTest.m */; };
 		000D8E77152CAC5B006EE224 /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8E76152CAC5B006EE224 /* TimePicker.m */; };
 		000D8E8B152E9EE7006EE224 /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8E8A152E9EE7006EE224 /* NSDate+Additions.m */; };
 		000E64B3150EB2BF0006B31E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 000E64B2150EB2BF0006B31E /* Settings.bundle */; };
@@ -35,6 +35,7 @@
 		0031315E14E083C500C0D0B1 /* cacert.pem in Resources */ = {isa = PBXBuildFile; fileRef = 0031315D14E083C500C0D0B1 /* cacert.pem */; };
 		0037D2BD14B60AA100B7D05A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0037D2BC14B60AA100B7D05A /* libz.dylib */; };
 		0037D2BF14B60AAA00B7D05A /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0037D2BE14B60AAA00B7D05A /* libiconv.dylib */; };
+		0037D8BF15F685F200C6B7EB /* ResponseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0037D8BE15F685F200C6B7EB /* ResponseSet.m */; };
 		00393C92148E54C000671899 /* SingleOptionPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00393C91148E54C000671899 /* SingleOptionPicker.m */; };
 		00439FF814112E500097A878 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF714112E500097A878 /* CFNetwork.framework */; };
 		00439FFA14112E5E0097A878 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF914112E5E0097A878 /* CoreData.framework */; };
@@ -119,8 +120,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		000922B015F652F6005EBA3D /* NUResponseSetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUResponseSetTest.m; sourceTree = "<group>"; };
-		000922B115F652F6005EBA3D /* NUResponseSetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUResponseSetTest.h; sourceTree = "<group>"; };
+		000922B015F652F6005EBA3D /* ResponseSetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseSetTest.m; sourceTree = "<group>"; };
+		000922B115F652F6005EBA3D /* ResponseSetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ResponseSetTest.h; sourceTree = "<group>"; };
 		000922B515F65925005EBA3D /* 20120904162849_add_pid_to_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120904162849_add_pid_to_response_set.xcdatamodel; sourceTree = "<group>"; };
 		000922B615F65D26005EBA3D /* 20120904162837_remove_all_entities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120904162837_remove_all_entities.xcdatamodel; sourceTree = "<group>"; };
 		000D8E75152CAC5B006EE224 /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
@@ -170,6 +171,9 @@
 		003131EB14E089C400C0D0B1 /* SBJson.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBJson.framework; path = "json-framework/build/Release/SBJson.framework"; sourceTree = "<group>"; };
 		0037D2BC14B60AA100B7D05A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		0037D2BE14B60AAA00B7D05A /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		0037D8BD15F685F200C6B7EB /* ResponseSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseSet.h; sourceTree = "<group>"; };
+		0037D8BE15F685F200C6B7EB /* ResponseSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseSet.m; sourceTree = "<group>"; };
+		0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120904190344_change_response_set_entity.xcdatamodel; sourceTree = "<group>"; };
 		00393C90148E54C000671899 /* SingleOptionPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleOptionPicker.h; sourceTree = "<group>"; };
 		00393C91148E54C000671899 /* SingleOptionPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleOptionPicker.m; sourceTree = "<group>"; };
 		00439FF714112E500097A878 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -540,8 +544,8 @@
 		0026E691140347E700355BCB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				000922B015F652F6005EBA3D /* NUResponseSetTest.m */,
-				000922B115F652F6005EBA3D /* NUResponseSetTest.h */,
+				000922B015F652F6005EBA3D /* ResponseSetTest.m */,
+				000922B115F652F6005EBA3D /* ResponseSetTest.h */,
 				00D1BAE515470C4F000097E7 /* PushFieldworkStepTest.h */,
 				00D1BAE615470C4F000097E7 /* PushFieldworkStepTest.m */,
 				0026E692140347E700355BCB /* Supporting Files */,
@@ -846,6 +850,8 @@
 				00DC620C1575BD5900E5F825 /* MergeStatus.m */,
 				00DC621B15768D3300E5F825 /* NSURL+Extensions.h */,
 				00DC621C15768D3300E5F825 /* NSURL+Extensions.m */,
+				0037D8BD15F685F200C6B7EB /* ResponseSet.h */,
+				0037D8BE15F685F200C6B7EB /* ResponseSet.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1111,6 +1117,7 @@
 				00DC621D15768D3300E5F825 /* NSURL+Extensions.m in Sources */,
 				0047566F15813546009EDE69 /* surveyor.xcdatamodeld in Sources */,
 				0078A9AE159E414400B9FBD6 /* EventVC.m in Sources */,
+				0037D8BF15F685F200C6B7EB /* ResponseSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1118,7 +1125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				000922B415F654A0005EBA3D /* NUResponseSetTest.m in Sources */,
+				000922B415F654A0005EBA3D /* ResponseSetTest.m in Sources */,
 				004FC7131486BF8300A378DC /* PickerOptionTest.m in Sources */,
 				00FF37E71417D2380009B1D4 /* ContactNavigationTableTest.m in Sources */,
 				0045BDAF141921CD007BB8AA /* ContactTest.m in Sources */,
@@ -1397,9 +1404,10 @@
 			children = (
 				004756521580F1FF009EDE69 /* main_v1.1.xcdatamodel */,
 				000922B515F65925005EBA3D /* 20120904162849_add_pid_to_response_set.xcdatamodel */,
+				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 000922B515F65925005EBA3D /* 20120904162849_add_pid_to_response_set.xcdatamodel */;
+			currentVersion = 0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";

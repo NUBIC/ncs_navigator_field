@@ -18,7 +18,7 @@
 #import "RestKitSettings.h"
 #import "Fixtures.h"
 #import "SBJSON.h"
-#import "NUResponseSet.h"
+#import "ResponseSet.h"
 #import "NSDate+Additions.h"
 
 @implementation RestKitSettingsTest
@@ -31,7 +31,7 @@
     NSManagedObjectModel* mom = [RKObjectManager sharedManager].objectStore.managedObjectModel;
     NSEntityDescription *entity =
     [[mom entitiesByName] objectForKey:@"ResponseSet"];
-    NUResponseSet *rs = [[NUResponseSet alloc]
+    ResponseSet *rs = [[ResponseSet alloc]
                          initWithEntity:entity insertIntoManagedObjectContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread];
 
     [rs setValue:@"RS A" forKey:@"uuid"];
@@ -129,7 +129,7 @@
     STAssertEqualObjects(it.instrumentId, @"i1", @"Wrong value");
     STAssertEqualObjects(it.externalResponseSetId, @"rs1", @"Wrong value");
     
-    NUResponseSet* rs = it.responseSet;
+    ResponseSet* rs = it.responseSet;
     STAssertEqualObjects([rs valueForKey:@"uuid"], @"rs1", @"Wrong value");
 }
 

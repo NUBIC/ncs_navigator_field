@@ -16,6 +16,7 @@
 @class Instrument;
 @class CasProxyTicket;
 @class SyncActivityIndicator;
+@class ResponseSet;
 
 @interface RootViewController : SimpleTableController<UINavigationControllerDelegate, SimpleTableRowDelegate, CasLoginDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate> {
     Instrument* _administeredInstrument;
@@ -39,7 +40,7 @@
 - (void)confirmSync;
 - (void)startCasLogin;
 - (void)deleteButtonWasPressed;
-- (void)unloadSurveyor:(Instrument*)instrument responseSet:(NUResponseSet*)rs;
+- (void)unloadSurveyor:(Instrument*)instrument;
 - (void)syncContacts:(CasServiceTicket*)serviceTicket;
 - (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket;
 

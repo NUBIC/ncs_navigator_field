@@ -12,6 +12,6 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "DatabaseTest.h"
 
-@interface NUResponseSetTest : DatabaseTest
+@interface ResponseSetTest : DatabaseTest
 
 @end

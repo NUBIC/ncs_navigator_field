@@ -71,6 +71,7 @@
                      "instrument_template_id":"ded83f10-e5f8-012e-9f18-00254bc472f4",
                      "response_set":{
                          "uuid":"c952b403-952b-4b8c-801d-dcfe8d754cfc",
+                         "p_id":"fc402743-7732-4d15-ad9c-729cbabdd135",
                          "survey_id":"ded83f10-e5f8-012e-9f18-00254bc472f4",
                          "responses":[
                              {
@@ -107,7 +108,9 @@
                      "instrument_id":"4a56fb51-269f-4bfe-b5ad-fdec3381bc99",
                      "name":"Pregnancy Visit 2",
                      "instrument_template_id":"2dcac920-3a42-012f-785c-482a143dc94d",
-                     "response_set":{}
+                     "response_set":{
+                         "p_id":"86b93f28-d177-45a7-be9d-27eb94f32e0e"
+                     }
                   }
                ]
             }
@@ -129,7 +132,9 @@
                      "instrument_id":"190feb29-f60c-4b39-8d2c-586c1a8cd857",
                      "name":"Birth Visit",
                      "instrument_template_id":"638335b0-3a3d-012f-785a-482a143dc94d",
-                     "response_set":{}
+                     "response_set":{
+                         "p_id":"2b0a12e9-eacc-4a89-8429-a978bfb1c870"
+                     }
                   }
                ]
             },
@@ -141,7 +146,9 @@
                      "instrument_id":"63055f80-dba2-434f-8414-72acf64d4277",
                      "name":"6 Month Visit",
                      "instrument_template_id":"6f2df0e0-3a3d-012f-785b-482a143dc94d",
-                     "response_set":{}
+                     "response_set":{
+                         "p_id":"2b0a12e9-eacc-4a89-8429-a978bfb1c870"
+                     }
                   }
                ]
             }

@@ -12,7 +12,7 @@
 #import "Person.h"
 #import "Instrument.h"
 #import "Participant.h"
-#import "NUResponseSet.h"
+#import "ResponseSet.h"
 #import "Contact.h"
 #import "Fieldwork.h"
 #import "InstrumentTemplate.h"

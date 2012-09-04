@@ -10,6 +10,7 @@
 #import "SBJSON.h"
 #import "NSDate+Additions.h"
 #import "NSString+Additions.h"
+#import "ResponseSet.h"
 
 @implementation Instrument
 
@@ -18,7 +19,7 @@
     statusId, breakOffId, instrumentModeId, instrumentModeOther,
     instrumentMethodId, supervisorReviewId, dataProblemId, comment;
 
-- (NUResponseSet*) responseSet {
+- (ResponseSet*) responseSet {
     NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
     NSEntityDescription *desc = [NSEntityDescription entityForName:@"ResponseSet" inManagedObjectContext:moc];
     NSFetchRequest *req = [[[NSFetchRequest alloc] init] autorelease];
@@ -34,7 +35,7 @@
     
     NSArray *array = [moc executeFetchRequest:req error:&error];
     
-    NUResponseSet* rs = NULL;
+    ResponseSet* rs = NULL;
     if (array != nil) {
         NCSLog(@"fetched response set");
         rs = [[array objectEnumerator] nextObject];
@@ -45,7 +46,7 @@
     return rs;
 }
 
-- (void)setResponseSet:(NUResponseSet *)responseSet {
+- (void)setResponseSet:(ResponseSet *)responseSet {
     self.externalResponseSetId = [responseSet valueForKey:@"uuid"];
 }
 
@@ -57,7 +58,7 @@
     NSManagedObjectModel* mom = [RKObjectManager sharedManager].objectStore.managedObjectModel;
     NSEntityDescription *entity =
     [[mom entitiesByName] objectForKey:@"ResponseSet"];
-    NUResponseSet *rs = [[[NUResponseSet alloc]
+    ResponseSet *rs = [[[ResponseSet alloc]
                          initWithEntity:entity insertIntoManagedObjectContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread] autorelease];
     
 

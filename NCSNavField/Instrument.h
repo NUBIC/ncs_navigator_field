@@ -10,7 +10,7 @@
 
 @class InstrumentTemplate;
 @class Event;
-@class NUResponseSet;
+@class ResponseSet;
 
 @interface Instrument : NSManagedObject 
 
@@ -62,11 +62,11 @@
 @property(nonatomic,retain) Event* event;
 
 
-- (NUResponseSet*) responseSet;
+- (ResponseSet*) responseSet;
 
 - (NSDictionary*) responseSetDict;
 
-- (void)setResponseSet:(NUResponseSet *)responseSet;
+- (void)setResponseSet:(ResponseSet *)responseSet;
 
 - (void) setResponseSetDict:(NSDictionary *)responseSetDict;
 
