@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000922B415F654A0005EBA3D /* NUResponseSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 000922B015F652F6005EBA3D /* NUResponseSetTest.m */; };
 		000D8E77152CAC5B006EE224 /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8E76152CAC5B006EE224 /* TimePicker.m */; };
 		000D8E8B152E9EE7006EE224 /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8E8A152E9EE7006EE224 /* NSDate+Additions.m */; };
 		000E64B3150EB2BF0006B31E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 000E64B2150EB2BF0006B31E /* Settings.bundle */; };
@@ -118,6 +119,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000922B015F652F6005EBA3D /* NUResponseSetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUResponseSetTest.m; sourceTree = "<group>"; };
+		000922B115F652F6005EBA3D /* NUResponseSetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUResponseSetTest.h; sourceTree = "<group>"; };
+		000922B515F65925005EBA3D /* 20120904162849_add_pid_to_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120904162849_add_pid_to_response_set.xcdatamodel; sourceTree = "<group>"; };
+		000922B615F65D26005EBA3D /* 20120904162837_remove_all_entities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120904162837_remove_all_entities.xcdatamodel; sourceTree = "<group>"; };
 		000D8E75152CAC5B006EE224 /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
 		000D8E76152CAC5B006EE224 /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
 		000D8E89152E9EE7006EE224 /* NSDate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Additions.h"; sourceTree = "<group>"; };
@@ -535,6 +540,8 @@
 		0026E691140347E700355BCB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				000922B015F652F6005EBA3D /* NUResponseSetTest.m */,
+				000922B115F652F6005EBA3D /* NUResponseSetTest.h */,
 				00D1BAE515470C4F000097E7 /* PushFieldworkStepTest.h */,
 				00D1BAE615470C4F000097E7 /* PushFieldworkStepTest.m */,
 				0026E692140347E700355BCB /* Supporting Files */,
@@ -1111,6 +1118,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000922B415F654A0005EBA3D /* NUResponseSetTest.m in Sources */,
 				004FC7131486BF8300A378DC /* PickerOptionTest.m in Sources */,
 				00FF37E71417D2380009B1D4 /* ContactNavigationTableTest.m in Sources */,
 				0045BDAF141921CD007BB8AA /* ContactTest.m in Sources */,
@@ -1375,9 +1383,10 @@
 			isa = XCVersionGroup;
 			children = (
 				004756701581356B009EDE69 /* surveyor_v1.1.xcdatamodel */,
+				000922B615F65D26005EBA3D /* 20120904162837_remove_all_entities.xcdatamodel */,
 				0047566E15813546009EDE69 /* surveyor.xcdatamodel */,
 			);
-			currentVersion = 004756701581356B009EDE69 /* surveyor_v1.1.xcdatamodel */;
+			currentVersion = 000922B615F65D26005EBA3D /* 20120904162837_remove_all_entities.xcdatamodel */;
 			name = surveyor.xcdatamodeld;
 			path = NCSNavField/surveyor.xcdatamodeld;
 			sourceTree = "<group>";
@@ -1387,9 +1396,10 @@
 			isa = XCVersionGroup;
 			children = (
 				004756521580F1FF009EDE69 /* main_v1.1.xcdatamodel */,
+				000922B515F65925005EBA3D /* 20120904162849_add_pid_to_response_set.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 004756521580F1FF009EDE69 /* main_v1.1.xcdatamodel */;
+			currentVersion = 000922B515F65925005EBA3D /* 20120904162849_add_pid_to_response_set.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
