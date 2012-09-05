@@ -103,7 +103,8 @@
     if (instrument != NULL) {
         NSString* surveyRep = instrument.instrumentTemplate.representation;
         
-        ResponseSet* rs = instrument.responseSet;
+        // TODO: Pass multiple response sets to surveyor
+        ResponseSet* rs = [[instrument.responseSets objectEnumerator] nextObject];
         
         NUSurvey* survey = [[NUSurvey new] autorelease];
         survey.jsonString = surveyRep;
@@ -120,7 +121,7 @@
             if (![moc save:&error]) {
                 NCSLog(@"Error saving instrument uuid");
             }
-            NCSLog(@"Administered instrument with external response uuid: %@", [instrument response]);
+            NCSLog(@"Administered instrument with external response uuid: %@", [instrument responseSets]);
 
         }
         

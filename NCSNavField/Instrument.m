@@ -17,16 +17,25 @@
 @dynamic instrumentId, name, instrumentTemplateId, instrumentTemplate, event, instrumentTypeId, instrumentTypeOther,
     instrumentVersion, repeatKey, startDate, startTime, endDate, endTime,
     statusId, breakOffId, instrumentModeId, instrumentModeOther,
-    instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSet;
+    instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSets;
 
-- (NSDictionary*) responseSetDict {
-    return self.responseSet.toDict;
+- (NSArray*) responseSetDicts {
+    NSMutableArray* all = [[NSMutableArray alloc] init];
+    for (ResponseSet* rs in self.responseSets) {
+        NSDictionary* d = rs.toDict;
+        [all addObject:d];
+    }
+    return all;
 }
 
-- (void) setResponseSetDict:(NSDictionary *)responseSetDict {
-    ResponseSet* rs = [ResponseSet object];
-    [rs fromJson:[[[[SBJSON alloc] init] autorelease] stringWithObject:responseSetDict]];
-    self.responseSet = rs;
+- (void) setResponseSetDicts:(NSArray*)responseSetDicts {
+    NSMutableSet* all = [[NSMutableSet alloc] init];
+    for (NSDictionary* rsDict in responseSetDicts) {
+        ResponseSet* rs = [ResponseSet object];
+        [rs fromJson:[[[[SBJSON alloc] init] autorelease] stringWithObject:rsDict]];
+        [all addObject:rs];
+    }
+    self.responseSets = all;
 }
 
 - (void) setStartTimeJson:(NSString*)startTime {

@@ -28,17 +28,13 @@
 }
 
 - (Fieldwork *)fieldworkTestData {
-    NSManagedObjectModel* mom = [RKObjectManager sharedManager].objectStore.managedObjectModel;
-    NSEntityDescription *entity =
-    [[mom entitiesByName] objectForKey:@"ResponseSet"];
-    ResponseSet *rs = [[ResponseSet alloc]
-                         initWithEntity:entity insertIntoManagedObjectContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread];
+    ResponseSet *rs = [ResponseSet object];
 
     [rs setValue:@"RS A" forKey:@"uuid"];
     
     Instrument* i = [Instrument object];
     i.name = @"INS A";
-    i.responseSet = rs;
+    i.responseSets = [NSSet setWithObjects:rs, nil];
     
     Event* e = [Event object];
     e.name = @"Birthday";
@@ -80,7 +76,9 @@
     
     NSDictionary* ai = [[[ae objectForKey:@"instruments"] objectEnumerator] nextObject];
     STAssertEqualObjects(@"INS A", [ai objectForKey:@"name"], @"Wrong value");
-    STAssertEqualObjects(@"RS A", [[ai objectForKey:@"response_set"] valueForKey:@"uuid"], @"Wrong value");
+    
+    NSArray *rs = [ai objectForKey:@"response_sets"];
+    STAssertEqualObjects(@"RS A", [[[rs objectEnumerator] nextObject] valueForKey:@"uuid"], @"Wrong value");
 }
 
 
@@ -99,13 +97,13 @@
          "          \"instruments\":[                 "
          "            {                               "
          "               \"instrument_id\":\"i1\"     "
-         "               \"response_set\":{           "
+         "               \"response_sets\":[{         "
          "                 \"uuid\":\"rs1\",          "
          "                 \"responses\":[            "
          "                   {\"uuid\":\"r1\"}        "
          "                   {\"uuid\":\"r2\"}        "
          "                 ]                          "
-         "               }                            "
+         "               }]                           "
          "            }                               "
          "          ]                                 "
          "        }                                   "
@@ -128,7 +126,7 @@
     Instrument* it = [[et.instruments objectEnumerator] nextObject];
     STAssertEqualObjects(it.instrumentId, @"i1", @"Wrong value");
     
-    ResponseSet* rs = it.responseSet;
+    ResponseSet* rs = [[it.responseSets objectEnumerator] nextObject];
     STAssertEqualObjects([rs valueForKey:@"uuid"], @"rs1", @"Wrong value");
 }
 

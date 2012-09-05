@@ -107,7 +107,7 @@ static RestKitSettings* instance;
     [instrument mapKeyPathsToAttributes: 
      @"instrument_id", @"instrumentId",
      @"instrument_template_id", @"instrumentTemplateId",
-     @"response_set", @"responseSetDict",
+     @"response_sets", @"responseSetDicts",
      @"name", @"name",
      @"instrument_type_code", @"instrumentTypeId", 
      @"instrument_type_other", @"instrumentTypeOther",
@@ -224,7 +224,7 @@ static RestKitSettings* instance;
     RKManagedObjectMapping* instrument = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
     [instrument mapKeyPathsToAttributes: 
      @"instrumentId", @"instrument_id",
-     @"responseSet.toDict", @"response_set",
+     @"responseSetDicts", @"response_sets",
      @"instrumentTemplateId", @"instrument_template_id",
      @"name", @"name", 
      @"instrumentTypeId", @"instrument_type_code", 

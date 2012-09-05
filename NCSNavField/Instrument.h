@@ -59,7 +59,7 @@
 
 @property(nonatomic,retain) InstrumentTemplate* instrumentTemplate;
 
-@property(nonatomic,retain) ResponseSet* responseSet;
+@property(nonatomic,retain) NSSet* responseSets;
 
 
 #pragma setter

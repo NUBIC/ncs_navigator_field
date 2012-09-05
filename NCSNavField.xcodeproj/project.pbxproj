@@ -176,6 +176,7 @@
 		0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120904190344_change_response_set_entity.xcdatamodel; sourceTree = "<group>"; };
 		00393C90148E54C000671899 /* SingleOptionPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleOptionPicker.h; sourceTree = "<group>"; };
 		00393C91148E54C000671899 /* SingleOptionPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleOptionPicker.m; sourceTree = "<group>"; };
+		003EDE4B15F7CE2300951B05 /* 20120905181210_update_response_set_to_response_sets.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120905181210_update_response_set_to_response_sets.xcdatamodel; sourceTree = "<group>"; };
 		00439FF714112E500097A878 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		00439FF914112E5E0097A878 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		00439FFB14112E670097A878 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -1404,12 +1405,13 @@
 			isa = XCVersionGroup;
 			children = (
 				0050B58A15F6A9B2008B9525 /* 20120904204206_associate_instrument_to_response_set.xcdatamodel */,
+				003EDE4B15F7CE2300951B05 /* 20120905181210_update_response_set_to_response_sets.xcdatamodel */,
 				004756521580F1FF009EDE69 /* main_v1.1.xcdatamodel */,
 				000922B515F65925005EBA3D /* 20120904162849_add_pid_to_response_set.xcdatamodel */,
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 0050B58A15F6A9B2008B9525 /* 20120904204206_associate_instrument_to_response_set.xcdatamodel */;
+			currentVersion = 003EDE4B15F7CE2300951B05 /* 20120905181210_update_response_set_to_response_sets.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
