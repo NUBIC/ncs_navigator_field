@@ -38,4 +38,9 @@
         NCSLog(@"Failed to update '%@' on the class %@", NSStringFromSelector(self.field), NSStringFromClass([self.object class]));
     }
 }
+
+- (void)dealloc {
+    [_object release];
+    [super dealloc];
+}
 @end

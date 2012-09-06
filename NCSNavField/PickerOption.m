@@ -287,4 +287,8 @@
         [self po:@"Missing in Error" value:-4], nil] autorelease];
 }
 
+- (void)dealloc {
+    [_text release];
+    [super release];
+}
 @end

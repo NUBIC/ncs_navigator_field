@@ -221,4 +221,9 @@
     NCSLog(@"Rolledback contact: %@", self.contact.contactId);
 }
 
+- (void) dealloc {
+    [_contact release];
+    [super dealloc];
+}
+
 @end

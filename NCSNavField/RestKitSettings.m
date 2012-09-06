@@ -55,7 +55,7 @@ static RestKitSettings* instance;
 + (void)reload {
     RestKitSettings* s = [RestKitSettings instance];
     s.baseServiceURL = [ApplicationSettings instance].coreURL;
-    [RKObjectManager sharedManager].client = [[RKClient alloc] initWithBaseURLString:s.baseServiceURL];
+    [RKObjectManager sharedManager].client = [[[RKClient alloc] initWithBaseURLString:s.baseServiceURL] autorelease];
 
 //    [RKObjectManager sharedManager].client.baseURL = [[RKURL alloc] initWithString:s.baseServiceURL];
 }

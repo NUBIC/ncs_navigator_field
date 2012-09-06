@@ -17,7 +17,7 @@
 static TextField* _activeField = nil;
 
 - (UITextField*)initTextFieldWithValue:(NSString*)value {
-    UITextField* t = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+    UITextField* t = [[[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30)] autorelease];
     t.borderStyle = UITextBorderStyleRoundedRect;
     t.textColor = [UIColor blackColor]; //text color
     t.font = [UIFont systemFontOfSize:17.0];  //font size
@@ -62,6 +62,14 @@ static TextField* _activeField = nil;
     _activeField = nil;
     [self.handler updatedValue:self.textField.text];
     
+}
+
+- (void)dealloc {
+    [_textField release];
+    if (_handler) {
+        [_handler release];
+    }
+    [super dealloc];
 }
 
 @end

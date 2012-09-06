@@ -111,4 +111,13 @@
     [self.popover dismissPopoverAnimated:NO];
 }
 
+- (void)dealloc {
+    [_button release];
+    [_date release];
+    if (_handler) {
+        [_handler release];
+    }
+    [super dealloc];
+}
+
 @end

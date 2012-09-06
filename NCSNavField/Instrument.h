@@ -64,13 +64,15 @@
 
 #pragma setter
 
-- (void) setResponseSetDict:(NSDictionary *)responseSetDict;
+- (void) setResponseSetDicts:(NSDictionary *)responseSetDict;
 
 - (void) setStartTimeJson:(NSString*)startTime;
 
 - (void) setEndTimeJson:(NSString*)endTime;
 
 #pragma getters
+
+- (NSArray*) responseSetDicts;
 
 - (NSString*) startTimeJson;
 

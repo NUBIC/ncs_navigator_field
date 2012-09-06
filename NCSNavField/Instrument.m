@@ -20,7 +20,7 @@
     instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSets;
 
 - (NSArray*) responseSetDicts {
-    NSMutableArray* all = [[NSMutableArray alloc] init];
+    NSMutableArray* all = [[[NSMutableArray alloc] init] autorelease];
     for (ResponseSet* rs in self.responseSets) {
         NSDictionary* d = rs.toDict;
         [all addObject:d];
@@ -29,7 +29,7 @@
 }
 
 - (void) setResponseSetDicts:(NSArray*)responseSetDicts {
-    NSMutableSet* all = [[NSMutableSet alloc] init];
+    NSMutableSet* all = [[[NSMutableSet alloc] init] autorelease];
     for (NSDictionary* rsDict in responseSetDicts) {
         ResponseSet* rs = [ResponseSet object];
         [rs fromJson:[[[[SBJSON alloc] init] autorelease] stringWithObject:rsDict]];
