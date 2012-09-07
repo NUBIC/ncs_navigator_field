@@ -154,5 +154,12 @@
     return p.text;
 }
 
-
+- (void)dealloc {
+    [_button release];
+    [_value release];
+    if (_handler) {
+        [_handler release];
+    }
+    [super dealloc];
+}
 @end
