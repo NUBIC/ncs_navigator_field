@@ -167,7 +167,7 @@
 
 - (void)dealloc {
     [_sections release];
-    [super release];
+    [super dealloc];
 }
 
 @end
