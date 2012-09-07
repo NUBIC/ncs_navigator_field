@@ -78,7 +78,7 @@
         <relationship name="instrumentTemplate" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="InstrumentTemplate" inverseName="instrument" inverseEntity="InstrumentTemplate" syncable="YES"/>
         <relationship name="responseSets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ResponseSet" inverseName="instrument" inverseEntity="ResponseSet" syncable="YES"/>
     </entity>
-    <entity name="InstrumentPlan" syncable="YES">
+    <entity name="InstrumentPlan" representedClassName="InstrumentPlan" syncable="YES">
         <attribute name="instrumentPlanId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="instrumentTemplates" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="InstrumentTemplate" inverseName="instrumentPlan" inverseEntity="InstrumentTemplate" syncable="YES"/>
     </entity>
