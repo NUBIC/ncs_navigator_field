@@ -433,6 +433,7 @@
 		00FF37E31417CFA30009B1D4 /* ContactNavigationTableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNavigationTableTest.h; sourceTree = "<group>"; };
 		00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactNavigationTableTest.m; sourceTree = "<group>"; };
 		493CC93326804A8ABCA31763 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F53118015FA5148006F5BB2 /* 20120907155731_add_participant_type_to_instrument_template.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20120907155731_add_participant_type_to_instrument_template.xcdatamodel; sourceTree = "<group>"; };
 		C2CA3FB4FE8942AD94694D46 /* Pods.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -1406,12 +1407,13 @@
 			children = (
 				0050B58A15F6A9B2008B9525 /* 20120904204206_associate_instrument_to_response_set.xcdatamodel */,
 				003EDE4B15F7CE2300951B05 /* 20120905181210_update_response_set_to_response_sets.xcdatamodel */,
+				4F53118015FA5148006F5BB2 /* 20120907155731_add_participant_type_to_instrument_template.xcdatamodel */,
 				004756521580F1FF009EDE69 /* main_v1.1.xcdatamodel */,
 				000922B515F65925005EBA3D /* 20120904162849_add_pid_to_response_set.xcdatamodel */,
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 003EDE4B15F7CE2300951B05 /* 20120905181210_update_response_set_to_response_sets.xcdatamodel */;
+			currentVersion = 4F53118015FA5148006F5BB2 /* 20120907155731_add_participant_type_to_instrument_template.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";

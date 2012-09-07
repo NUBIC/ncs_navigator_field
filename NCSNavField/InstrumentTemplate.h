@@ -12,5 +12,6 @@
 
 @property(nonatomic,retain) NSString* instrumentTemplateId;
 @property(nonatomic,retain) NSString* representation;
+@property(nonatomic,retain) NSString* participantType;
 
 @end

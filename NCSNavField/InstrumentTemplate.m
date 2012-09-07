@@ -9,5 +9,5 @@
 #import "InstrumentTemplate.h"
 
 @implementation InstrumentTemplate
-@dynamic instrumentTemplateId,representation;
+@dynamic instrumentTemplateId,representation,participantType;
 @end
