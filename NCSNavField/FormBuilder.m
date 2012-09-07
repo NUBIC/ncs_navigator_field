@@ -115,6 +115,7 @@
     [_view release];
     [_object release];
     [_cursor release];
+    [super dealloc];
 }
 
 @end

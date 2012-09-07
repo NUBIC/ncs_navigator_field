@@ -289,6 +289,6 @@
 
 - (void)dealloc {
     [_text release];
-    [super release];
+    [super dealloc];
 }
 @end
