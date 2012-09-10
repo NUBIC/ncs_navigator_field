@@ -17,7 +17,7 @@
 @dynamic instrumentId, name, event, instrumentTypeId, instrumentTypeOther,
     instrumentVersion, repeatKey, startDate, startTime, endDate, endTime,
     statusId, breakOffId, instrumentModeId, instrumentModeOther,
-    instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSets;
+    instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSets, instrumentPlanId, instrumentPlan;
 
 - (NSArray*) responseSetDicts {
     NSMutableArray* all = [[[NSMutableArray alloc] init] autorelease];

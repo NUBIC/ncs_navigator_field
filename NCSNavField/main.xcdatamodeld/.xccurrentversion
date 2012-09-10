@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>_XCCurrentVersionName</key>
-	<string>20120910184606_remove_instrument_template_from_instrument.xcdatamodel</string>
+	<string>20120910185414_association_instrument_to_instrument_plan.xcdatamodel</string>
 </dict>
 </plist>

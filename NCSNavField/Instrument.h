@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @class Event;
+@class InstrumentPlan;
 @class ResponseSet;
 
 @interface Instrument : NSManagedObject 
 
 @property(nonatomic,retain) NSString* instrumentId;
+
+@property(nonatomic,retain) NSString* instrumentPlanId;
 
 @property(nonatomic,retain) NSString* name;
 
@@ -53,6 +56,8 @@
 /* Associations */
 
 @property(nonatomic,retain) Event* event;
+
+@property(nonatomic,retain) InstrumentPlan* instrumentPlan;
 
 @property(nonatomic,retain) NSSet* responseSets;
 
