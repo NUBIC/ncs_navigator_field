@@ -14,7 +14,7 @@
 
 @implementation Instrument
 
-@dynamic instrumentId, name, instrumentTemplateId, instrumentTemplate, event, instrumentTypeId, instrumentTypeOther,
+@dynamic instrumentId, name, event, instrumentTypeId, instrumentTypeOther,
     instrumentVersion, repeatKey, startDate, startTime, endDate, endTime,
     statusId, breakOffId, instrumentModeId, instrumentModeOther,
     instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSets;

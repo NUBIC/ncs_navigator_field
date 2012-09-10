@@ -101,7 +101,8 @@
 #pragma surveyor
 - (void) loadSurveyor:(Instrument*)instrument {
     if (instrument != NULL) {
-        NSString* surveyRep = instrument.instrumentTemplate.representation;
+        // TODO: Get instrument templates from instrumetn plan
+        NSString* surveyRep = @"{}"; //instrument.instrumentTemplate.representation;
         
         // TODO: Pass multiple response sets to surveyor
         ResponseSet* rs = [[instrument.responseSets objectEnumerator] nextObject];

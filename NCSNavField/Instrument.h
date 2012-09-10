@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class InstrumentTemplate;
 @class Event;
 @class ResponseSet;
 
@@ -17,8 +16,6 @@
 @property(nonatomic,retain) NSString* instrumentId;
 
 @property(nonatomic,retain) NSString* name;
-
-@property(nonatomic,retain) NSString* instrumentTemplateId;
 
 @property(nonatomic,retain) NSNumber* instrumentTypeId;
 
@@ -56,8 +53,6 @@
 /* Associations */
 
 @property(nonatomic,retain) Event* event;
-
-@property(nonatomic,retain) InstrumentTemplate* instrumentTemplate;
 
 @property(nonatomic,retain) NSSet* responseSets;
 
