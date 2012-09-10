@@ -19,6 +19,7 @@
 #import "ApplicationSettings.h"
 #import "NSDate+Additions.m"
 #import "NSString+Additions.m"
+#import "InstrumentPlan.h"
 
 NSString* STORE_NAME = @"main.sqlite";
 
@@ -92,21 +93,29 @@ static RestKitSettings* instance;
 }
 
 - (void)addMappingsToObjectManager:(RKObjectManager *)objectManager  {
+    // Instrument Plan
+    RKManagedObjectMapping* instrumentPlan = [RKManagedObjectMapping mappingForClass:[InstrumentPlan class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
+    [instrumentPlan setPrimaryKeyAttribute:@"instrumentPlanId"];
+    [instrumentPlan mapKeyPathsToAttributes:
+     @"instrument_plan_id", @"instrumentPlanId", nil];
+    [instrumentPlan setPrimaryKeyAttribute:@"instrumentPlanId"];
+    [objectManager.mappingProvider setMapping:instrumentPlan forKeyPath:@"instrument_plans"];
+    
     // Instrument Template
-    RKManagedObjectMapping* instrumentTemplate = [RKManagedObjectMapping mappingForClass:[InstrumentTemplate class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
-    [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
-    [instrumentTemplate mapKeyPathsToAttributes:
-     @"instrument_template_id", @"instrumentTemplateId",
-     @"representation", @"representation", nil];
-    [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
-    [objectManager.mappingProvider setMapping:instrumentTemplate forKeyPath:@"instrument_templates"];
+//    RKManagedObjectMapping* instrumentTemplate = [RKManagedObjectMapping mappingForClass:[InstrumentTemplate class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
+//    [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
+//    [instrumentTemplate mapKeyPathsToAttributes:
+//     @"instrument_template_id", @"instrumentTemplateId",
+//     @"representation", @"representation", nil];
+//    [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
+//    [objectManager.mappingProvider setMapping:instrumentTemplate forKeyPath:@"instrument_templates"];
     
     // Instrument Mapping
     RKManagedObjectMapping* instrument = [RKManagedObjectMapping mappingForClass:[Instrument class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [instrument setPrimaryKeyAttribute:@"instrumentId"];
     [instrument mapKeyPathsToAttributes: 
      @"instrument_id", @"instrumentId",
-     @"instrument_template_id", @"instrumentTemplateId",
+     @"instrument_plan_id", @"instrumentPlanId",
      @"response_sets", @"responseSetDicts",
      @"name", @"name",
      @"instrument_type_code", @"instrumentTypeId", 
@@ -125,8 +134,8 @@ static RestKitSettings* instance;
      @"supervisor_review_code", @"supervisorReviewId",
      @"data_problem_code", @"dataProblemId",
      @"instrument_comment", @"comment", nil];
-    [instrument mapRelationship:@"instrumentTemplate" withMapping:instrumentTemplate];
-    [instrument connectRelationship:@"instrumentTemplate" withObjectForPrimaryKeyAttribute:@"instrumentTemplateId"];
+    [instrument mapRelationship:@"instrumentPlan" withMapping:instrumentPlan];
+    [instrument connectRelationship:@"instrumentPlan" withObjectForPrimaryKeyAttribute:@"instrumentPlanId"];
     
     // Event Mapping
     RKManagedObjectMapping* event = [RKManagedObjectMapping mappingForClass:[Event class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
@@ -206,7 +215,7 @@ static RestKitSettings* instance;
     RKManagedObjectMapping* fieldWork = [RKManagedObjectMapping mappingForClass:[Fieldwork class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [fieldWork mapRelationship:@"participants" withMapping:participant];
     [fieldWork mapRelationship:@"contacts" withMapping:contact];
-    [fieldWork mapRelationship:@"instrumentTemplate" withMapping:instrumentTemplate];
+//    [fieldWork mapRelationship:@"instrumentTemplate" withMapping:instrumentTemplate];
     [objectManager.mappingProvider setMapping:fieldWork forKeyPath:@"field_work"];
     
     [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd" inTimeZone:[NSTimeZone localTimeZone]];
@@ -225,7 +234,7 @@ static RestKitSettings* instance;
     [instrument mapKeyPathsToAttributes: 
      @"instrumentId", @"instrument_id",
      @"responseSetDicts", @"response_sets",
-     @"instrumentTemplateId", @"instrument_template_id",
+     @"instrumentPlanId", @"instrument_plan_id",
      @"name", @"name", 
      @"instrumentTypeId", @"instrument_type_code", 
      @"instrumentTypeOther", @"instrument_type_other",
@@ -312,7 +321,7 @@ static RestKitSettings* instance;
     RKObjectMapping* fieldWorkMapping = [RKObjectMapping mappingForClass:[NSMutableDictionary class] ];
 //    [fieldWorkMapping mapKeyPathsToAttributes:@"fieldworkId", @"identifier", nil];
     [fieldWorkMapping mapRelationship:@"contacts" withMapping:contact];
-     [fieldWorkMapping mapKeyPath:@"emptyArray" toAttribute:@"instrument_templates"];
+     [fieldWorkMapping mapKeyPath:@"emptyArray" toAttribute:@"instrument_plans"];
       [fieldWorkMapping mapKeyPath:@"emptyArray" toAttribute:@"participants"];
     
     [objectManager.mappingProvider setSerializationMapping:fieldWorkMapping forClass:[Fieldwork class]];

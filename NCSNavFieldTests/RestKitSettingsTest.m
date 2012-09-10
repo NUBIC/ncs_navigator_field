@@ -20,6 +20,7 @@
 #import "SBJSON.h"
 #import "ResponseSet.h"
 #import "NSDate+Additions.h"
+#import "InstrumentPlan.h"
 
 @implementation RestKitSettingsTest
 
@@ -29,11 +30,11 @@
 
 - (Fieldwork *)fieldworkTestData {
     ResponseSet *rs = [ResponseSet object];
-
     [rs setValue:@"RS A" forKey:@"uuid"];
     
     Instrument* i = [Instrument object];
     i.name = @"INS A";
+    i.instrumentPlanId = @"IP A";
     i.responseSets = [NSSet setWithObjects:rs, nil];
     
     Event* e = [Event object];
@@ -76,6 +77,7 @@
     
     NSDictionary* ai = [[[ae objectForKey:@"instruments"] objectEnumerator] nextObject];
     STAssertEqualObjects(@"INS A", [ai objectForKey:@"name"], @"Wrong value");
+    STAssertEqualObjects(@"IP A", [ai valueForKey:@"instrument_plan_id"], @"Wrong value");
     
     NSArray *rs = [ai objectForKey:@"response_sets"];
     STAssertEqualObjects(@"RS A", [[[rs objectEnumerator] nextObject] valueForKey:@"uuid"], @"Wrong value");
@@ -85,33 +87,46 @@
 
 - (void)testGeneralDeserialization { 
     NSString* fieldworkJson = 
-        @"{                                           "
-         "  \"contacts\":[                            "
-         "    {                                       "
-         "      \"contact_id\":\"c1\",                "
-         "      \"contact_date_date\":\"2009-03-07\", "
-         "      \"contact_start_time\": \"10:28\",    "
-         "      \"events\":[                          "
-         "        {                                   "
-         "          \"event_id\":\"e1\"               "
-         "          \"instruments\":[                 "
-         "            {                               "
-         "               \"instrument_id\":\"i1\"     "
-         "               \"response_sets\":[{         "
-         "                 \"uuid\":\"rs1\",          "
-         "                 \"responses\":[            "
-         "                   {\"uuid\":\"r1\"}        "
-         "                   {\"uuid\":\"r2\"}        "
-         "                 ]                          "
-         "               }]                           "
-         "            }                               "
-         "          ]                                 "
-         "        }                                   "
-         "      ]                                     "
-         "    }                                       "
-         "  ],                                        "
-         "  \"instrument_templates\":[]               "
-         "}                                           ";
+        @"{                                             "
+         "  \"contacts\":[                              "
+         "    {                                         "
+         "      \"contact_id\":\"c1\",                  "
+         "      \"contact_date_date\":\"2009-03-07\",   "
+         "      \"contact_start_time\": \"10:28\",      "
+         "      \"events\":[                            "
+         "        {                                     "
+         "          \"event_id\":\"e1\",                "
+         "          \"instruments\":[                   "
+         "            {                                 "
+         "               \"instrument_id\":\"i1\"       "
+         "               \"response_sets\":[{           "
+         "                 \"uuid\":\"rs1\",            "
+         "                 \"responses\":[              "
+         "                   {\"uuid\":\"r1\"}          "
+         "                   {\"uuid\":\"r2\"}          "
+         "                 ]                            "
+         "               }],                            "
+         "               \"instrument_plan_id\":\"ip1\" "
+         "            }                                 "
+         "          ]                                   "
+         "        }                                     "
+         "      ]                                       "
+         "    }                                         "
+         "  ],                                          "
+         "  \"instrument_plans\":[{                     "
+         "    \"instrument_plan_id\":\"ip1\",           "
+         "      \"instrument_templates\":[              "
+         "        {                                     "
+         "          \"instrument_template_id\":\"it1\", "
+         "          \"participant_type\":\"mother\"     "
+         "        },                                    "
+         "        {                                     "
+         "          \"instrument_template_id\":\"it2\", "
+         "          \"participant_type\":\"child\"      "
+         "        }                                     "
+         "      ]                                       "
+         "  }]                                          "
+         "}                                             ";
     
     NSDictionary* actual = [self deserializeJson:fieldworkJson];
     
@@ -128,6 +143,9 @@
     
     ResponseSet* rs = [[it.responseSets objectEnumerator] nextObject];
     STAssertEqualObjects([rs valueForKey:@"uuid"], @"rs1", @"Wrong value");
+    
+    InstrumentPlan* ip = it.instrumentPlan;
+    STAssertEqualObjects([ip valueForKey:@"instrumentPlanId"], @"ip1", @"Wrong value");
 }
 
 #pragma mark - Helper Methods
