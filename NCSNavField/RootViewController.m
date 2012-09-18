@@ -20,6 +20,7 @@
 #import "NUSurveyTVC.h"
 #import "ResponseSet.h"
 #import "Instrument.h"
+#import "InstrumentPlan.h"
 #import "InstrumentTemplate.h"
 #import "SBJson/SBJsonWriter.h"
 #import "NUCas.h"
@@ -102,7 +103,7 @@
 - (void) loadSurveyor:(Instrument*)instrument {
     if (instrument != NULL) {
         // TODO: Get instrument templates from instrumetn plan
-        NSString* surveyRep = @"{}"; //instrument.instrumentTemplate.representation;
+        NSString* surveyRep = [[instrument.instrumentPlan.instrumentTemplates objectAtIndex:0] representation];
         
         // TODO: Pass multiple response sets to surveyor
         ResponseSet* rs = [[instrument.responseSets objectEnumerator] nextObject];

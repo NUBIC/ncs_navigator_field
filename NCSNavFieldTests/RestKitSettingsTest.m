@@ -21,6 +21,7 @@
 #import "ResponseSet.h"
 #import "NSDate+Additions.h"
 #import "InstrumentPlan.h"
+#import "InstrumentTemplate.h"
 
 @implementation RestKitSettingsTest
 
@@ -138,14 +139,19 @@
     Event* et = [[ct.events objectEnumerator] nextObject];
     STAssertEqualObjects(et.eventId, @"e1", @"Wrong value");
     
-    Instrument* it = [[et.instruments objectEnumerator] nextObject];
-    STAssertEqualObjects(it.instrumentId, @"i1", @"Wrong value");
+    Instrument* ins = [[et.instruments objectEnumerator] nextObject];
+    STAssertEqualObjects(ins.instrumentId, @"i1", @"Wrong value");
     
-    ResponseSet* rs = [[it.responseSets objectEnumerator] nextObject];
+    ResponseSet* rs = [[ins.responseSets objectEnumerator] nextObject];
     STAssertEqualObjects([rs valueForKey:@"uuid"], @"rs1", @"Wrong value");
     
-    InstrumentPlan* ip = it.instrumentPlan;
+    InstrumentPlan* ip = ins.instrumentPlan;
     STAssertEqualObjects([ip valueForKey:@"instrumentPlanId"], @"ip1", @"Wrong value");
+    
+    InstrumentTemplate* it1 = [ip.instrumentTemplates objectAtIndex:0];
+    STAssertEqualObjects(it1.instrumentTemplateId, @"it1", @"Wrong id");
+    InstrumentTemplate* it2 = [ip.instrumentTemplates objectAtIndex:1];
+    STAssertEqualObjects(it2.instrumentTemplateId, @"it2", @"Wrong id");
 }
 
 #pragma mark - Helper Methods

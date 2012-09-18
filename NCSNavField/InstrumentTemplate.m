@@ -7,7 +7,17 @@
 //
 
 #import "InstrumentTemplate.h"
+#import <SBJSON.h>
 
 @implementation InstrumentTemplate
 @dynamic instrumentTemplateId,representation,participantType;
+
+- (void)setRepresentationDictionary:(NSDictionary*)r {
+    self.representation = [[[[SBJSON alloc] init] autorelease] stringWithObject:r];
+}
+
+- (NSDictionary*)representationDictionary {
+    return [[[[SBJSON alloc] init] autorelease] objectWithString:self.representation];
+}
+
 @end

@@ -124,26 +124,6 @@
     }
 }
 
-- (void)objectLoader:(RKObjectLoader *)loader willMapData:(inout id *)mappableData {
-    NCSLog(@"Mapping surveys from json");
-
-    SBJsonWriter *jsonWriter = [[SBJsonWriter new] autorelease];
-    
-    NSMutableArray* modifiedTemplates = [[NSMutableArray new] autorelease];
-    for (NSDictionary* templ in [*mappableData valueForKey:@"instrument_templates"]) {
-        NSDictionary* json = [templ valueForKey:@"survey"];
-        if (json) {
-            NSString *jsonString = [jsonWriter stringWithObject:json];
-            NSMutableDictionary* mod = [templ mutableCopy];
-            [mod setObject:jsonString forKey:@"representation"];
-            [modifiedTemplates addObject:mod];
-        }
-    }
-    [*mappableData setObject:modifiedTemplates forKey:@"instrument_templates"];    
-    
-    NCSLog(@"Mapping Instrument Template");
-}
-
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
     self.error = [NSString stringWithFormat:@"Object loader error while retrieving fieldwork.\n%@", [error localizedDescription]];
     [self showErrorMessage:self.error];

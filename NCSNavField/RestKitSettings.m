@@ -92,23 +92,23 @@ static RestKitSettings* instance;
 //    [RKClient sharedClient].showsNetworkActivityIndicatorWhenBusy = YES;
 }
 
+// De-Serialize
 - (void)addMappingsToObjectManager:(RKObjectManager *)objectManager  {
+    // Instrument Template
+    RKManagedObjectMapping* instrumentTemplate = [RKManagedObjectMapping mappingForClass:[InstrumentTemplate class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
+    [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
+    [instrumentTemplate mapKeyPathsToAttributes:
+     @"instrument_template_id", @"instrumentTemplateId",
+     @"participant_type", @"participantType",
+     @"survey", @"representationDictionary", nil];
+    
     // Instrument Plan
     RKManagedObjectMapping* instrumentPlan = [RKManagedObjectMapping mappingForClass:[InstrumentPlan class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [instrumentPlan setPrimaryKeyAttribute:@"instrumentPlanId"];
     [instrumentPlan mapKeyPathsToAttributes:
      @"instrument_plan_id", @"instrumentPlanId", nil];
-    [instrumentPlan setPrimaryKeyAttribute:@"instrumentPlanId"];
     [objectManager.mappingProvider setMapping:instrumentPlan forKeyPath:@"instrument_plans"];
-    
-    // Instrument Template
-//    RKManagedObjectMapping* instrumentTemplate = [RKManagedObjectMapping mappingForClass:[InstrumentTemplate class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
-//    [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
-//    [instrumentTemplate mapKeyPathsToAttributes:
-//     @"instrument_template_id", @"instrumentTemplateId",
-//     @"representation", @"representation", nil];
-//    [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
-//    [objectManager.mappingProvider setMapping:instrumentTemplate forKeyPath:@"instrument_templates"];
+    [instrumentPlan mapKeyPath:@"instrument_templates" toRelationship:@"instrumentTemplates" withMapping:instrumentTemplate];
     
     // Instrument Mapping
     RKManagedObjectMapping* instrument = [RKManagedObjectMapping mappingForClass:[Instrument class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
@@ -228,6 +228,7 @@ static RestKitSettings* instance;
 //    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mmZ" inTimeZone:nil]; 
 }
 
+// Serialize
 - (void)addSerializationMappingsToObjectManager:(RKObjectManager*)objectManager {
     // Instrument Mapping
     RKManagedObjectMapping* instrument = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];

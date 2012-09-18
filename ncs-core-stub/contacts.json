@@ -12,7 +12,7 @@
                     "instruments": [
                         {
                             "instrument_id": "1dc7e73b-d377-4686-84c4-a0b5694f4ba3", 
-                            "instrument_template_id": "ded83f10-e5f8-012e-9f18-00254bc472f4", 
+                            "instrument_plan_id": "a5d223be-52fb-43a7-b6c3-5dab0f113836", 
                             "name": "Pregnancy Visit 1", 
                             "response_sets": [
                                 {
@@ -53,7 +53,7 @@
                     "instruments": [
                         {
                             "instrument_id": "4a56fb51-269f-4bfe-b5ad-fdec3381bc99", 
-                            "instrument_template_id": "2dcac920-3a42-012f-785c-482a143dc94d", 
+                            "instrument_plan_id": "0dd5748a-e72e-465a-90d9-310aa28c17aa", 
                             "name": "Pregnancy Visit 2", 
                             "response_sets": [
                                 {
@@ -79,7 +79,7 @@
                     "instruments": [
                         {
                             "instrument_id": "190feb29-f60c-4b39-8d2c-586c1a8cd857", 
-                            "instrument_template_id": "638335b0-3a3d-012f-785a-482a143dc94d", 
+                            "instrument_plan_id": "85786fe9-2bb9-430c-810a-db2673568e99", 
                             "name": "Birth Visit", 
                             "response_sets": [
                                 {
@@ -95,7 +95,7 @@
                     "instruments": [
                         {
                             "instrument_id": "63055f80-dba2-434f-8414-72acf64d4277", 
-                            "instrument_template_id": "6f2df0e0-3a3d-012f-785b-482a143dc94d", 
+                            "instrument_plan_id": "56756afc-753f-41c1-b95e-87c283534977", 
                             "name": "6 Month Visit", 
                             "response_sets": [
                                 {
