@@ -32,6 +32,7 @@
 #import "SBJSON.h"
 #import "FieldworkSynchronizeOperation.h"
 #import "ApplicationPersistentStore.h"
+#import <MRCEnumerable.h>
 
 @interface RootViewController () 
     @property(nonatomic,retain) NSArray* contacts;
@@ -102,20 +103,24 @@
 #pragma surveyor
 - (void) loadSurveyor:(Instrument*)instrument {
     if (instrument != NULL) {
-        // TODO: Get instrument templates from instrumetn plan
-        NSString* surveyRep = [[instrument.instrumentPlan.instrumentTemplates objectAtIndex:0] representation];
+        // TODO: Get instrument templates from instrument plan
+        InstrumentTemplate* it = [instrument.instrumentPlan.instrumentTemplates objectAtIndex:0];
+        NSString* surveyRep = [it representation];
         
         // TODO: Pass multiple response sets to surveyor
-        ResponseSet* rs = [[instrument.responseSets objectEnumerator] nextObject];
+        ResponseSet* found = [instrument.responseSets detect:^BOOL(ResponseSet* rs) {
+            NSString* rsSurveyId = [rs valueForKey:@"survey"];
+            return [rsSurveyId isEqualToString:it.instrumentTemplateId];
+        }];
         
         NUSurvey* survey = [[NUSurvey new] autorelease];
         survey.jsonString = surveyRep;
 
-        if (!rs) {
+        if (!found) {
             NSDictionary* surveyDict = [[[SBJSON new] autorelease] objectWithString:surveyRep];
-            rs = [[ResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread] autorelease];
+            found = [[ResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread] autorelease];
             
-            NCSLog(@"Response set uuid: %@", rs.uuid);
+            NCSLog(@"Response set uuid: %@", found.uuid);
 
             NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
             NSError *error = nil;
@@ -127,7 +132,7 @@
 
         }
         
-        NUSurveyTVC *masterViewController = [[[NUSurveyTVC alloc] initWithSurvey:survey responseSet:rs] autorelease];
+        NUSurveyTVC *masterViewController = [[[NUSurveyTVC alloc] initWithSurvey:survey responseSet:found] autorelease];
         masterViewController.delegate = self;
         NUSectionTVC *detailViewController = masterViewController.sectionTVC;
         [self.navigationController pushViewController:masterViewController animated:NO];
