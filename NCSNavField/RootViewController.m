@@ -104,35 +104,6 @@
 #pragma surveyor
 - (void) loadSurveyor:(Instrument*)instrument {
     if (instrument != NULL) {
-        // TODO: Get instrument templates from instrument plan
-//        InstrumentTemplate* it = [instrument.instrumentPlan.instrumentTemplates objectAtIndex:0];
-//        NSString* surveyRep = [it representation];
-        
-        // TODO: Pass multiple response sets to surveyor
-//        ResponseSet* found = [instrument.responseSets detect:^BOOL(ResponseSet* rs) {
-//            NSString* rsSurveyId = [rs valueForKey:@"survey"];
-//            return [rsSurveyId isEqualToString:it.instrumentTemplateId];
-//        }];
-//        
-//        NUSurvey* survey = [[NUSurvey new] autorelease];
-//        survey.jsonString = surveyRep;
-
-//        if (!found) {
-//            NSDictionary* surveyDict = [[[SBJSON new] autorelease] objectWithString:surveyRep];
-//            found = [[ResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread] autorelease];
-//            
-//            NCSLog(@"Response set uuid: %@", found.uuid);
-//
-//            NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
-//            NSError *error = nil;
-//            
-//            if (![moc save:&error]) {
-//                NCSLog(@"Error saving instrument uuid");
-//            }
-//            NCSLog(@"Administered instrument with external response uuid: %@", [instrument responseSets]);
-//
-//        }
-        
         NSArray* surveys = [[instrument.instrumentPlan.instrumentTemplates array] collect:^id(InstrumentTemplate* tmpl){
             NUSurvey* s = [[NUSurvey new] autorelease];
             s.jsonString = tmpl.representation;
@@ -145,21 +116,37 @@
                 NSString* rsSurveyId = [rs valueForKey:@"survey"];
                 return [rsSurveyId isEqualToString:s.uuid];
             }];
+            
+            if (!found) {
+                NCSLog(@"No response set found for survey: %@", s.uuid);
+                NSDictionary* surveyDict = [[[SBJSON new] autorelease] objectWithString:s.jsonString];
+                found = [[ResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread] autorelease];
+
+                NCSLog(@"Creating new response set: %@", found.uuid);
+
+                NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
+                NSError *error = nil;
+
+                if (![moc save:&error]) {
+                    NCSLog(@"Error saving response set: %@", found.uuid);
+                }
+            }
             [assoc setObject:found forKey:s.uuid];
         }
         
-//        NSDictionary* as = [NSDictionary dictionaryWithObjectsAndKeys:responseSet, [survey title], responseSet2, [survey2 title], nil];
+        NCSLog(@"Loading surveyor with instrument plan: %@", instrument.instrumentPlan.instrumentPlanId);
+        
         MultiSurveyTVC *masterViewController = [[[MultiSurveyTVC alloc] initWithSurveys:surveys surveyResponseSetAssociations:assoc] autorelease];
-
         
-//        NUSurveyTVC *masterViewController = [[[NUSurveyTVC alloc] initWithSurvey:survey responseSet:found] autorelease];
         masterViewController.delegate = self;
-        NUSectionTVC *detailViewController = masterViewController.sectionTVC;
-        [self.navigationController pushViewController:masterViewController animated:NO];
-        self.splitViewController.viewControllers = [NSArray arrayWithObjects:self.navigationController, detailViewController, nil];
-        self.administeredInstrument = instrument;
         
-
+        NUSectionTVC *detailViewController = masterViewController.sectionTVC;
+        
+        [self.navigationController pushViewController:masterViewController animated:NO];
+        
+        self.splitViewController.viewControllers = [NSArray arrayWithObjects:self.navigationController, detailViewController, nil];
+        
+        self.administeredInstrument = instrument;
     }
 }
 
