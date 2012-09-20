@@ -55,16 +55,9 @@
 
 -(IBAction)buttonClicked:(id)sender
 {
-    //    UIButton *button = (UIButton *)sender;
     self.activeSurveyIndex = [sender tag];
-    
-    //    if(![button isSelected])
-    //        [cellCount replaceObjectAtIndex:_index withObject:[NSNumber numberWithInt:0]];
-    //    else
-    //        [cellCount replaceObjectAtIndex:_index withObject:[NSNumber numberWithInt:[[cellArray objectAtIndex:_index]count]]];
-    
-    [self.tableView reloadData];
-    
+   
+    [self.tableView reloadData];    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -79,11 +72,9 @@
     
     NSInteger rows = 0;
     
-    //    if (self.activeSurveyIndex == section) {
-    // Return the number of rows in the section.
+
     NUSurvey* s = [self.surveys objectAtIndex:section];
     rows = [[[s.jsonString objectFromJSONString] objectForKey:@"sections"] count];
-    //    }
     
     return rows;
 }
@@ -126,7 +117,6 @@
     self.survey = [self.surveys objectAtIndex:index];
     [self setSurveyNSD_Forced:[self.survey.jsonString objectFromJSONString]];
     
-    //    self.sectionTVC = [[NUSectionTVC alloc] initWithStyle:UITableViewStyleGrouped];
     self.sectionTVC.responseSet = [self.surveyResponseSetAssociations objectForKey:self.survey.uuid];
     self.sectionTVC.delegate = self;
     //    self.sectionTVC.renderContext = renderContext;
