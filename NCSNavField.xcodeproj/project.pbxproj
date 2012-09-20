@@ -67,6 +67,8 @@
 		00860D271520EF3000FCCFCB /* TestFlightSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 00860D261520EF3000FCCFCB /* TestFlightSettings.m */; };
 		0087225A156AF6F100CE24ED /* test-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 00872259156AF6F100CE24ED /* test-background.png */; };
 		0087225D156B0F4300CE24ED /* ApplicationInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087225C156B0F4300CE24ED /* ApplicationInformation.m */; };
+		0087A554160A5EFF005CB008 /* MultiSurveyTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087A553160A5EFF005CB008 /* MultiSurveyTVC.m */; };
+		0087A558160A6610005CB008 /* NUSurvey+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087A557160A6610005CB008 /* NUSurvey+Additions.m */; };
 		008C5711149696DD005EC22E /* TextArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 008C5710149696DD005EC22E /* TextArea.m */; };
 		008F7DA1148BB3DD009BCF1D /* ContactInitiateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F7DA0148BB3DD009BCF1D /* ContactInitiateVC.m */; };
 		008F7DA4148C1B16009BCF1D /* FormBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F7DA3148C1B16009BCF1D /* FormBuilder.m */; };
@@ -369,6 +371,10 @@
 		00872259156AF6F100CE24ED /* test-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-background.png"; sourceTree = "<group>"; };
 		0087225B156B0F4300CE24ED /* ApplicationInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationInformation.h; sourceTree = "<group>"; };
 		0087225C156B0F4300CE24ED /* ApplicationInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationInformation.m; sourceTree = "<group>"; };
+		0087A552160A5EFF005CB008 /* MultiSurveyTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiSurveyTVC.h; sourceTree = "<group>"; };
+		0087A553160A5EFF005CB008 /* MultiSurveyTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiSurveyTVC.m; sourceTree = "<group>"; };
+		0087A556160A6610005CB008 /* NUSurvey+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NUSurvey+Additions.h"; sourceTree = "<group>"; };
+		0087A557160A6610005CB008 /* NUSurvey+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NUSurvey+Additions.m"; sourceTree = "<group>"; };
 		008C570F149696DD005EC22E /* TextArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextArea.h; sourceTree = "<group>"; };
 		008C5710149696DD005EC22E /* TextArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextArea.m; sourceTree = "<group>"; };
 		008F7D9F148BB3DD009BCF1D /* ContactInitiateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInitiateVC.h; sourceTree = "<group>"; };
@@ -426,8 +432,8 @@
 		00E323591422B08200D3AEED /* Row.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Row.m; sourceTree = "<group>"; };
 		00E3235B1422EB6A00D3AEED /* ContactTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTable.h; sourceTree = "<group>"; };
 		00E3235C1422EB6A00D3AEED /* ContactTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTable.m; sourceTree = "<group>"; };
-		00EAB7DD15FE6D1C00B5B685 /* 20120910184606_remove_instrument_template_from_instrument.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20120910184606_remove_instrument_template_from_instrument.xcdatamodel; sourceTree = "<group>"; };
-		00EAB7DF15FE6F0000B5B685 /* 20120910185414_association_instrument_to_instrument_plan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20120910185414_association_instrument_to_instrument_plan.xcdatamodel; sourceTree = "<group>"; };
+		00EAB7DD15FE6D1C00B5B685 /* 20120910184606_remove_instrument_template_from_instrument.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120910184606_remove_instrument_template_from_instrument.xcdatamodel; sourceTree = "<group>"; };
+		00EAB7DF15FE6F0000B5B685 /* 20120910185414_association_instrument_to_instrument_plan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120910185414_association_instrument_to_instrument_plan.xcdatamodel; sourceTree = "<group>"; };
 		00EDE59814B4048900B8A643 /* libNUCas.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNUCas.a; path = "../NUCas/build/Release-iphoneos/libNUCas.a"; sourceTree = "<group>"; };
 		00F10AAE14DB042200387762 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		00F10AAF14DB042200387762 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
@@ -787,6 +793,8 @@
 				00145BA6149A7BEF00D3C1B5 /* ContactCloseVC.h */,
 				00145BA7149A7BEF00D3C1B5 /* ContactCloseVC.m */,
 				0026E67D140347E700355BCB /* ContactDisplayController.h */,
+				0087A552160A5EFF005CB008 /* MultiSurveyTVC.h */,
+				0087A553160A5EFF005CB008 /* MultiSurveyTVC.m */,
 				008F7D9F148BB3DD009BCF1D /* ContactInitiateVC.h */,
 				008F7DA0148BB3DD009BCF1D /* ContactInitiateVC.m */,
 				0026E67E140347E700355BCB /* ContactDisplayController.m */,
@@ -863,6 +871,8 @@
 				00DC621C15768D3300E5F825 /* NSURL+Extensions.m */,
 				0037D8BD15F685F200C6B7EB /* ResponseSet.h */,
 				0037D8BE15F685F200C6B7EB /* ResponseSet.m */,
+				0087A556160A6610005CB008 /* NUSurvey+Additions.h */,
+				0087A557160A6610005CB008 /* NUSurvey+Additions.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1130,6 +1140,8 @@
 				0078A9AE159E414400B9FBD6 /* EventVC.m in Sources */,
 				0037D8BF15F685F200C6B7EB /* ResponseSet.m in Sources */,
 				4F53118515FA58A1006F5BB2 /* InstrumentPlan.m in Sources */,
+				0087A554160A5EFF005CB008 /* MultiSurveyTVC.m in Sources */,
+				0087A558160A6610005CB008 /* NUSurvey+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
