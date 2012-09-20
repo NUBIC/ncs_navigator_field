@@ -54,7 +54,7 @@
     NSString* statusId = NULL;
     ApplicationPersistentStore* store = [ApplicationPersistentStore instance];
     ApplicationPersistentStoreBackup* backup = [store backup];
-    NCSLog(@"Backup path: ", [backup path]);
+    NCSLog(@"Backup path: %@", [backup path]);
     if (backup) {
         FieldworkPutRequest* put = [[[FieldworkPutRequest alloc] initWithServiceTicket:self.ticket] autorelease];
         if ([put send]) {
