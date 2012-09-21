@@ -130,11 +130,11 @@
 #pragma mark - Changes that should be made in Surveyor
 
 - (NSDictionary*) surveyNSD_Forced {
-    return [self performSelector:@selector(surveyNSD)];
+    return [super performSelector:@selector(surveyNSD)];
 }
 
 - (NSDictionary*) setSurveyNSD_Forced:(NSDictionary*)surveyNSD {
-    return [self performSelector:@selector(setSurveyNSD) withObject:surveyNSD];
+    return [super performSelector:@selector(setSurveyNSD:) withObject:surveyNSD];
 }
 //
 //- (void) showSection_Forced:(NSUInteger)index {
