@@ -1,27 +1,12 @@
 platform :ios, :deployment_target => "5.0"
 
-# BUG: RestKit's podspec doesn't include CoreData/CoreData.h because it conflicts with Apple CoreData/CoreData.h
-#      http://groups.google.com/group/cocoapods/browse_thread/thread/705f040f2e7aa03d
-# BUG: Specifying a podspec which contains subspecs throws exception.
-#      https://github.com/CocoaPods/CocoaPods/issues/141
-#
-# rk = "RestKit-Custom-0.9.3.podspec"
-# pod 'RestKit/Network', :podspec => rk
-# pod 'RestKit/ObjectMapping', :podspec => rk
-# pod 'RestKit/CoreData', :podspec => rk
-# pod 'RestKit/ObjectMapping/JSONKit', :podspec => rk
-
 pod 'SBJson', '2.2.3'
 pod 'MBProgressHUD', '0.5'
 #pod 'LibComponentLogging-Core', '1.1.6'
 #pod 'LibComponentLogging-NSLog', '1.0.4'
-pod 'RestKit'
-# pod 'RestKit/Network', '0.10.1'
-# pod 'RestKit/ObjectMapping', '0.10.1'
-# pod 'RestKit/ObjectMapping/CoreData', '0.10.1'
-# pod 'RestKit/ObjectMapping/JSON', '0.10.1'
+pod 'RestKit', '0.10.2'
 
-# TODO: Replace with BlocksKit?
+# TODO: Replace with BlocksKit or underscore?
 pod do |s|
   s.name = 'MRCEnumerable'
   s.version = '0.1'

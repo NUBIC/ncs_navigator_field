@@ -38,5 +38,5 @@ DEPENDENCIES:
   - MBProgressHUD (= 0.5)
   - MRCEnumerable (defined in Podfile)
   - NUSurveyor (defined in Podfile)
-  - RestKit
+  - RestKit (= 0.10.2)
   - SBJson (= 2.2.3)
