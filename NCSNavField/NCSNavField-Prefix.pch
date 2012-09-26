@@ -18,8 +18,6 @@
     #import <RestKit/CoreData.h>
 
     #import "TestFlight.h"
-
-    #import "NUSurvey+Additions.h"
 #endif
 
 #import "NCSNavFieldAppDelegate.h"

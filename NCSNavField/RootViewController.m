@@ -34,6 +34,7 @@
 #import "ApplicationPersistentStore.h"
 #import <MRCEnumerable.h>
 #import "MultiSurveyTVC.h"
+#import "NUSurvey+Additions.h"
 
 @interface RootViewController () 
     @property(nonatomic,retain) NSArray* contacts;

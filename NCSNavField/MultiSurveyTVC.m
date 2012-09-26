@@ -9,6 +9,7 @@
 #import "MultiSurveyTVC.h"
 #import <NUSurveyor/NUConstants.h>
 #import <JSONKit.h>
+#import "NUSurvey+Additions.h"
 
 @implementation MultiSurveyTVC
 

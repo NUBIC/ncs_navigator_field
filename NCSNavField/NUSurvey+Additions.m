@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
+#import <NUSurvey.h>
 #import "NUSurvey+Additions.h"
 #import <JSONKit.h>
 
