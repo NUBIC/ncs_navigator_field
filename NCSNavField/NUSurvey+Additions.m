@@ -10,6 +10,7 @@
 #import "NUSurvey+Additions.h"
 #import <JSONKit.h>
 
+// TODO: We should move this to surveyor
 @implementation NUSurvey (Additions)
 
 - (NSString*)title {
