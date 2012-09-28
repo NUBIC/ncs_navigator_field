@@ -9,7 +9,6 @@
 #import "FieldworkPutRequest.h"
 #import "ApplicationSettings.h"
 #import "Fieldwork.h"
-#import "RestKit.h"
 #import "MergeStatus.h"
 
 @implementation FieldworkPutRequest

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <RestKit/RestKit.h>
 #import "SimpleTableController.h"
 #import "SimpleTableRowDelegate.h"
 #import "MBProgressHUD.h"

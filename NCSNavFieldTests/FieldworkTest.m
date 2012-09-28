@@ -8,7 +8,6 @@
 
 #import "FieldworkTest.h"
 #import "Fieldwork.h"
-#import "RestKit.h"
 
 @implementation FieldworkTest
 

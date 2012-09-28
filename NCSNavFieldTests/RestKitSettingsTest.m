@@ -9,7 +9,6 @@
 #import "RestKitSettingsTest.h"
 #import "RestKitSettings.h"
 #import "Fieldwork.h"
-#import "RestKit.h"
 #import "Contact.h"
 #import "Event.h"
 #import "Instrument.h"

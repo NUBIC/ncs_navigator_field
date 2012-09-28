@@ -11,7 +11,6 @@
 #import "Event.h"
 #import "Contact.h"
 #import "Instrument.h"
-#import "RestKit.h"
 #import "CoreData.h"
 
 @implementation Fixtures

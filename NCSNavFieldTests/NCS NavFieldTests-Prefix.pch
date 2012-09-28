@@ -7,4 +7,6 @@
 
     #import <CoreData/CoreData.h>
 
+    #import <RestKit/RestKit.h>
+    #import <RestKit/CoreData.h>
 #endif

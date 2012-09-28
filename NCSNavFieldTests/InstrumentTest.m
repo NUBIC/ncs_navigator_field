@@ -10,7 +10,6 @@
 #import "Instrument.h"
 #import "ResponseSet.h"
 #import <CoreData.h>
-#import <RestKit.h>
 
 @implementation InstrumentTest
 

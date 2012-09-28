@@ -8,7 +8,6 @@
 
 #import "PushFieldworkStepTest.h"
 #import "CasServiceTicket.h"
-#import "RestKit.h"
 //#import "PutFieldwork.h"
 
 //@implementation RKResponse(Stub)
