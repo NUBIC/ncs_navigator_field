@@ -85,6 +85,7 @@
 		00C25211151A63B500F4FE3B /* FieldworkTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C25210151A63B500F4FE3B /* FieldworkTest.m */; };
 		00C4003A14EC381D005736EA /* DispositionCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C4003914EC381D005736EA /* DispositionCodeTest.m */; };
 		00C4095D1471DD5E00F0F3FA /* InstrumentTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C4095C1471DD5E00F0F3FA /* InstrumentTemplate.m */; };
+		00C53B3C1615F9CC00F245F9 /* MergeStatusTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C53B3B1615F9CC00F245F9 /* MergeStatusTest.m */; };
 		00C9C6E5146CE66300F6D339 /* main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00C9C6E3146CE66300F6D339 /* main.xcdatamodeld */; };
 		00CA369214FC2971000D37D2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009BE3A914FC2145008195F9 /* Security.framework */; };
 		00CA369314FC2980000D37D2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0026E66C140347E700355BCB /* CoreGraphics.framework */; };
@@ -407,6 +408,8 @@
 		00C4003914EC381D005736EA /* DispositionCodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispositionCodeTest.m; sourceTree = "<group>"; };
 		00C4095B1471DD5E00F0F3FA /* InstrumentTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentTemplate.h; sourceTree = "<group>"; };
 		00C4095C1471DD5E00F0F3FA /* InstrumentTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentTemplate.m; sourceTree = "<group>"; };
+		00C53B3A1615F9CC00F245F9 /* MergeStatusTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeStatusTest.h; sourceTree = "<group>"; };
+		00C53B3B1615F9CC00F245F9 /* MergeStatusTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeStatusTest.m; sourceTree = "<group>"; };
 		00C9C6E4146CE66300F6D339 /* main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = main.xcdatamodel; sourceTree = "<group>"; };
 		00D1BAE515470C4F000097E7 /* PushFieldworkStepTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushFieldworkStepTest.h; sourceTree = "<group>"; };
 		00D1BAE615470C4F000097E7 /* PushFieldworkStepTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushFieldworkStepTest.m; sourceTree = "<group>"; };
@@ -586,6 +589,8 @@
 				00910BD11535F18900BC2820 /* DatabaseTest.m */,
 				006C26D51541BACB00D9B3B1 /* BackupFieldworkStepTest.h */,
 				006C26D61541BACB00D9B3B1 /* BackupFieldworkStepTest.m */,
+				00C53B3A1615F9CC00F245F9 /* MergeStatusTest.h */,
+				00C53B3B1615F9CC00F245F9 /* MergeStatusTest.m */,
 			);
 			name = Tests;
 			path = NCSNavFieldTests;
@@ -1162,6 +1167,7 @@
 				00910BD21535F18900BC2820 /* DatabaseTest.m in Sources */,
 				006C26D71541BACB00D9B3B1 /* BackupFieldworkStepTest.m in Sources */,
 				00D1BAE715470C4F000097E7 /* PushFieldworkStepTest.m in Sources */,
+				00C53B3C1615F9CC00F245F9 /* MergeStatusTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

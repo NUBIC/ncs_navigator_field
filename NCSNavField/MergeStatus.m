@@ -7,7 +7,7 @@
 //
 
 #import "MergeStatus.h"
-#import "SBJSON.h"
+#import <SBJson/SBJSON.h>
 
 @implementation MergeStatus
 
@@ -17,7 +17,8 @@
     SBJSON* sb = [[[SBJSON alloc] init] autorelease];
     NSDictionary* dict = [sb objectWithString:json];
     MergeStatus* ms = [MergeStatus object];
-    ms.status = [dict valueForKey:@"status"];
+    id s = [dict objectForKey:@"status"];
+    ms.status = (s == [NSNull null]) ? nil : s ;
     return ms;
 }
 
