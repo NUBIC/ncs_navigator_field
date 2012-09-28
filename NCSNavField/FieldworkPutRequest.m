@@ -83,7 +83,16 @@
 - (RKObjectLoader *)objectLoader:(Fieldwork *)submission objectManager:(RKObjectManager *)objectManager {
     // TODO: Serialize data and then use RKRequest so objectLoader isn't 
     // invoked when data is returned
+
+    NSString* clientId = [ApplicationSettings instance].clientId;
+    
+    NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork/%@?client_id=%@", submission.fieldworkId, clientId];
+    
+    NCSLog(@"PUT %@", path);
+    
     RKObjectLoader* loader = [objectManager objectLoaderForObject:submission method:RKRequestMethodPUT delegate:self];
+    loader.resourcePath = path;
+    
     return loader;
 }
 
