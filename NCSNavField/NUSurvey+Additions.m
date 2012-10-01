@@ -20,4 +20,8 @@
 - (NSString*)uuid {
     return [[self.jsonString objectFromJSONString] objectForKey:@"uuid"];
 }
+
+- (NSDictionary*)deserialized {
+    return [self.jsonString objectFromJSONString];
+}
 @end

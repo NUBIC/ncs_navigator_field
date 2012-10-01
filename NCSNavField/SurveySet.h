@@ -26,6 +26,9 @@
 #pragma mark - Instance Methods
 
 - (id)initWithSurveys:(NSArray*)s andResponseSets:(NSArray*)rs forParticipant:(Participant*)p;
+
 - (ResponseSet*)generateResponseSetForSurveyId:(NSString*)surveyId;
+
+- (ResponseSet*)populateResponseSet:(ResponseSet*)rs forSurveyId:sid;
 
 @end
