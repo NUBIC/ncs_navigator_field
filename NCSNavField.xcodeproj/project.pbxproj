@@ -14,6 +14,8 @@
 		00145BA8149A7BEF00D3C1B5 /* ContactCloseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00145BA7149A7BEF00D3C1B5 /* ContactCloseVC.m */; };
 		0018F03314C4BD160058D8F2 /* ApplicationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0018F03214C4BD160058D8F2 /* ApplicationSettings.m */; };
 		001D93271520FC9A009E12C1 /* TestFlight-TeamToken.txt in Resources */ = {isa = PBXBuildFile; fileRef = 001D93261520FC9A009E12C1 /* TestFlight-TeamToken.txt */; };
+		001FEDD31619FA4F00DE8A3A /* SurveySet.m in Sources */ = {isa = PBXBuildFile; fileRef = 001FEDD21619FA4F00DE8A3A /* SurveySet.m */; };
+		001FEDD71619FC4000DE8A3A /* SurveySetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 001FEDD61619FC4000DE8A3A /* SurveySetTest.m */; };
 		0026465D1434CDF9008D612B /* ContactNavigationTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026465C1434CDF9008D612B /* ContactNavigationTable.m */; };
 		002646601434CE02008D612B /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026465F1434CE02008D612B /* Person.m */; };
 		0026E669140347E700355BCB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0026E668140347E700355BCB /* UIKit.framework */; };
@@ -138,6 +140,10 @@
 		0018F03114C4BD160058D8F2 /* ApplicationSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationSettings.h; sourceTree = "<group>"; };
 		0018F03214C4BD160058D8F2 /* ApplicationSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationSettings.m; sourceTree = "<group>"; };
 		001D93261520FC9A009E12C1 /* TestFlight-TeamToken.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "TestFlight-TeamToken.txt"; path = "NCSNavField/TestFlight-TeamToken.txt"; sourceTree = "<group>"; };
+		001FEDD11619FA4F00DE8A3A /* SurveySet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveySet.h; sourceTree = "<group>"; };
+		001FEDD21619FA4F00DE8A3A /* SurveySet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveySet.m; sourceTree = "<group>"; };
+		001FEDD51619FC4000DE8A3A /* SurveySetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveySetTest.h; sourceTree = "<group>"; };
+		001FEDD61619FC4000DE8A3A /* SurveySetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveySetTest.m; sourceTree = "<group>"; };
 		0021785014E0E56600056745 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0026465B1434CDF9008D612B /* ContactNavigationTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNavigationTable.h; sourceTree = "<group>"; };
 		0026465C1434CDF9008D612B /* ContactNavigationTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactNavigationTable.m; sourceTree = "<group>"; };
@@ -591,6 +597,8 @@
 				006C26D61541BACB00D9B3B1 /* BackupFieldworkStepTest.m */,
 				00C53B3A1615F9CC00F245F9 /* MergeStatusTest.h */,
 				00C53B3B1615F9CC00F245F9 /* MergeStatusTest.m */,
+				001FEDD51619FC4000DE8A3A /* SurveySetTest.h */,
+				001FEDD61619FC4000DE8A3A /* SurveySetTest.m */,
 			);
 			name = Tests;
 			path = NCSNavFieldTests;
@@ -878,6 +886,8 @@
 				0037D8BE15F685F200C6B7EB /* ResponseSet.m */,
 				0087A556160A6610005CB008 /* NUSurvey+Additions.h */,
 				0087A557160A6610005CB008 /* NUSurvey+Additions.m */,
+				001FEDD11619FA4F00DE8A3A /* SurveySet.h */,
+				001FEDD21619FA4F00DE8A3A /* SurveySet.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1147,6 +1157,7 @@
 				4F53118515FA58A1006F5BB2 /* InstrumentPlan.m in Sources */,
 				0087A554160A5EFF005CB008 /* MultiSurveyTVC.m in Sources */,
 				0087A558160A6610005CB008 /* NUSurvey+Additions.m in Sources */,
+				001FEDD31619FA4F00DE8A3A /* SurveySet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1168,6 +1179,7 @@
 				006C26D71541BACB00D9B3B1 /* BackupFieldworkStepTest.m in Sources */,
 				00D1BAE715470C4F000097E7 /* PushFieldworkStepTest.m in Sources */,
 				00C53B3C1615F9CC00F245F9 /* MergeStatusTest.m in Sources */,
+				001FEDD71619FC4000DE8A3A /* SurveySetTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
