@@ -12,6 +12,8 @@
 #import <MRCEnumerable/MRCEnumerable.h>
 #import <NUSurveyor/NUSurvey.h>
 #import "NUSurvey+Additions.h"
+#import <NUSurveyor/NUResponse.h>
+#import <NUSurveyor/NUResponse.h>
 
 @implementation SurveySet
 
@@ -24,8 +26,14 @@
         _surveys = [s retain];
         _responseSets = [rs retain];
         _participant = [p retain];
+        
+        _prepopulatedQuestionRefs = [[self defaultPrepopulatedQuestionRefs] retain];
     }
     return self;
+}
+
+- (NSArray*) defaultPrepopulatedQuestionRefs {
+    return [[[NSMutableArray alloc] initWithObjects:[[[PrepopulatedQuestionRef alloc] initWithReferenceIdentifier:@"foo" dataExportIdentifier:@"bar"] autorelease], nil] autorelease];
 }
 
 - (ResponseSet*)generateResponseSetForSurveyId:(NSString*)sid {
@@ -36,46 +44,85 @@
 }
 
 - (ResponseSet*)populateResponseSet:(ResponseSet*)rs forSurveyId:sid {
-    NSArray* pre = [self preopulatedQuestionsForSurveyId:sid];
-    [self applyPrePopulatedQuestions:pre toResponseSet:rs];
+    NSArray* pre = [self prePopulatedResponsesForSurveyId:sid];
+    [self applyPrePopulatedResponses:pre toResponseSet:rs];
     return rs;
 }
 
-- (void)applyPrePopulatedQuestions:(NSArray*)pre toResponseSet:(ResponseSet*)rs {
-    for (NSDictionary* question in pre) {
-        if ([[question objectForKey:@"reference_identifier"] isEqualToString:@"foo"]) {
-            [rs newResponseForQuestion:@"que-a" Answer:@"ans-a" Value:@"bar"];
-        }
+- (void)applyPrePopulatedResponses:(NSArray*)pre toResponseSet:(ResponseSet*)rs {
+    for (NUResponse* r in pre) {
+        [rs newResponseForQuestion:[r valueForKey:@"question"] Answer:[r valueForKey:@"answer"] Value:[r valueForKey:@"value"]];
     }
 }
 
 // TODO: Move to surveyor
-- (NSArray*)preopulatedQuestionsForSurveyId:(NSString*)sid {
-    NSMutableArray* result = [NSMutableArray new];
-    NUSurvey* found = [self.surveys detect:^BOOL(NUSurvey* s){
-        return [[s uuid] isEqualToString:sid];
-    }];
-    if (found) {
-        for (NSDictionary* section in [[found deserialized] valueForKey:@"sections"]) {
-            for (NSDictionary* questionOrGroup in [section valueForKey:@"questions_and_groups"]) {
-                if ([[questionOrGroup valueForKey:@"reference_identifier"] isEqualToString:@"foo"]) {
-                    [result addObject:questionOrGroup];
-                }
-                for (NSDictionary* groupQuestion in [section valueForKey:@"questions"]) {
-                    // TODO: Implement Me
-                    NSLog(@"Implement Me");
-                }
-            }
-        }        
+- (NSArray*)prePopulatedResponsesForSurveyId:(NSString*)sid {
+    NSMutableArray* result = [[NSMutableArray new] autorelease];
+//    NUSurvey* found = [self.surveys detect:^BOOL(NUSurvey* s){
+//        return [[s uuid] isEqualToString:sid];
+//    }];
+//    if (found) {
+//        NSDictionary* qs = [self questionDictByRefIdForSurvey:found];
+//        NSArray* refIds = [[self prePopulatedQuestionRefDictByRefId] allKeys];
+//        for (NSString* refId in refIds) {
+//            NSDictionary* foundQ = [qs objectForKey:refId];
+//            if (foundQ) {
+//                NUResponse* r = [[NUResponse new] autorelease];
+//                [r setValue:[foundQ valueForKey:@"question"] forKey:@"question"];
+//                [r setValue:[foundQ valueForKey:@"answer"] forKey:@"answer"];
+//                NUResponse* foundR = [[NUResponse findByAttribute:@"data_export_identifier" withValue:[[self prePopulatedQuestionRefDictByRefId] objectForKey:refId]] lastObject];
+//                [r setValue:[foundR valueForKey:@"value"] forKey:@"value"];
+//                [result addObject:r];
+//            }
+//        }
+//    }
+    return result;
+}
+
+- (NSDictionary*) prePopulatedQuestionRefDictByRefId {
+    NSMutableDictionary* result = [[NSMutableDictionary new] autorelease];
+    for (PrepopulatedQuestionRef* ref in self.prepopulatedQuestionRefs) {
+        [result setValue:ref forKey:ref.referenceIdentifier];
     }
     return result;
 }
 
+- (NSDictionary*) questionDictByRefIdForSurvey:(NUSurvey*)survey {
+    NSMutableDictionary* result = [[NSMutableDictionary new] autorelease];
+    for (NSDictionary* section in [[survey deserialized] valueForKey:@"sections"]) {
+        for (NSDictionary* questionOrGroup in [section valueForKey:@"questions_and_groups"]) {
+            [result setValue:questionOrGroup forKey:[questionOrGroup valueForKey:@"reference_identifier"]];
+            for (NSDictionary* groupQuestion in [section valueForKey:@"questions"]) {
+                [result setValue:groupQuestion forKey:[groupQuestion valueForKey:@"reference_identifier"]];
+            }
+        }
+    }
+    return result;
+}
 
 - (void)dealloc {
     [_surveys release];
     [_responseSets release];
     [_participant release];
+    [_prepopulatedQuestionRefs release];
+    [super dealloc];
+}
+
+@end
+
+@implementation PrepopulatedQuestionRef
+
+- (id)initWithReferenceIdentifier:(NSString*)rid dataExportIdentifier:(NSString*)deid {
+    if (self = [self init]) {
+        _referenceIdentifier = [rid retain];
+        _dataExportIdentifier = [deid retain];
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [_referenceIdentifier release];
+    [_dataExportIdentifier release];
     [super dealloc];
 }
 

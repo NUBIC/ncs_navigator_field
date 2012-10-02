@@ -15,6 +15,7 @@
     NSArray* _surveys;
     NSArray* _responseSets;
     Participant* _participant;
+    NSArray* _prepopulatedQuestionRefs;
 }
 
 @property(nonatomic,retain) NSArray* surveys;
@@ -23,6 +24,8 @@
 
 @property(nonatomic,retain) Participant* participant;
 
+@property(nonatomic,retain) NSArray* prepopulatedQuestionRefs;
+
 #pragma mark - Instance Methods
 
 - (id)initWithSurveys:(NSArray*)s andResponseSets:(NSArray*)rs forParticipant:(Participant*)p;
@@ -30,5 +33,20 @@
 - (ResponseSet*)generateResponseSetForSurveyId:(NSString*)surveyId;
 
 - (ResponseSet*)populateResponseSet:(ResponseSet*)rs forSurveyId:sid;
+
+- (NSArray*) defaultPrepopulatedQuestionRefs;
+
+@end
+
+@interface PrepopulatedQuestionRef : NSObject {
+    NSString* _referenceIdentifier;
+    NSString* _dataExportIdentifier;
+}
+
+@property(nonatomic,retain) NSString* referenceIdentifier;
+
+@property(nonatomic,retain) NSString* dataExportIdentifier;
+
+- (id)initWithReferenceIdentifier:(NSString*)rid dataExportIdentifier:(NSString*)dai;
 
 @end

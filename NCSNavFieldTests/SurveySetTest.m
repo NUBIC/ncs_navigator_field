@@ -21,6 +21,7 @@ static SurveySet* surveySet;
 - (void)setUp {
     participant = [self createParticipant:@"yak423"];
     responseSet = [self createResponseSetWithSurveyId:@"survey-a" participantId:participant.pId];
+    [responseSet newResponseForQuestion:@"que-a" Answer:@"ans-a" Value:@"bar"];
     
     NUSurvey* survey = [[NUSurvey new] autorelease];
     survey.jsonString =
@@ -54,9 +55,20 @@ static SurveySet* surveySet;
     ResponseSet* a = [surveySet populateResponseSet:responseSet forSurveyId:@"survey-a"];
     STAssertEqualObjects([a valueForKey:@"survey"], @"survey-a", @"Wrong survey id");
     STAssertEqualObjects([a valueForKey:@"pId"], @"yak423", @"Wrong pId");
-    STAssertFalse([[a responses] count] > 1, @"Should be empty");
+    STAssertEquals((int)[[a responses] count], 1, @"Should be 1");
     NUResponse* r = [[[a responses] objectEnumerator] nextObject];
     STAssertEqualObjects([r valueForKey:@"value"], @"bar", @"Wrong response value");
+}
+
+- (void)testPopulateResponseSetWithDifferentResponseValue {
+    responseSet.responses = [NSMutableSet new];
+    [responseSet newResponseForQuestion:@"que-a" Answer:@"ans-a" Value:@"lok"];
+    ResponseSet* a = [surveySet populateResponseSet:responseSet forSurveyId:@"survey-a"];
+    STAssertEqualObjects([a valueForKey:@"survey"], @"survey-a", @"Wrong survey id");
+    STAssertEqualObjects([a valueForKey:@"pId"], @"yak423", @"Wrong pId");
+    STAssertEquals((int)[[a responses] count], 1, @"Should be 1");
+    NUResponse* r = [[[a responses] objectEnumerator] nextObject];
+    STAssertEqualObjects([r valueForKey:@"value"], @"lok", @"Wrong response value");
 }
 
 - (void)testPopulateResponseSetWithoutPrepopulatedQuestions {
