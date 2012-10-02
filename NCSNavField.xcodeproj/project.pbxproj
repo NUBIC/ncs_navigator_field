@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00010412161B73AA00952C3C /* NUResponse+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00010411161B73AA00952C3C /* NUResponse+Additions.m */; };
 		000922B415F654A0005EBA3D /* ResponseSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 000922B015F652F6005EBA3D /* ResponseSetTest.m */; };
 		000D8E77152CAC5B006EE224 /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8E76152CAC5B006EE224 /* TimePicker.m */; };
 		000D8E8B152E9EE7006EE224 /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8E8A152E9EE7006EE224 /* NSDate+Additions.m */; };
@@ -126,6 +127,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00010410161B73AA00952C3C /* NUResponse+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NUResponse+Additions.h"; sourceTree = "<group>"; };
+		00010411161B73AA00952C3C /* NUResponse+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NUResponse+Additions.m"; sourceTree = "<group>"; };
 		000922B015F652F6005EBA3D /* ResponseSetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseSetTest.m; sourceTree = "<group>"; };
 		000922B115F652F6005EBA3D /* ResponseSetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseSetTest.h; sourceTree = "<group>"; };
 		000922B515F65925005EBA3D /* 20120904162849_add_pid_to_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120904162849_add_pid_to_response_set.xcdatamodel; sourceTree = "<group>"; };
@@ -888,6 +891,8 @@
 				0087A557160A6610005CB008 /* NUSurvey+Additions.m */,
 				001FEDD11619FA4F00DE8A3A /* SurveySet.h */,
 				001FEDD21619FA4F00DE8A3A /* SurveySet.m */,
+				00010410161B73AA00952C3C /* NUResponse+Additions.h */,
+				00010411161B73AA00952C3C /* NUResponse+Additions.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1158,6 +1163,7 @@
 				0087A554160A5EFF005CB008 /* MultiSurveyTVC.m in Sources */,
 				0087A558160A6610005CB008 /* NUSurvey+Additions.m in Sources */,
 				001FEDD31619FA4F00DE8A3A /* SurveySet.m in Sources */,
+				00010412161B73AA00952C3C /* NUResponse+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

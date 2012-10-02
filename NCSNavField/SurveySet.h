@@ -10,6 +10,7 @@
 
 @class ResponseSet;
 @class Participant;
+@class NUSurvey;
 
 @interface SurveySet : NSObject {
     NSArray* _surveys;
@@ -33,6 +34,8 @@
 - (ResponseSet*)generateResponseSetForSurveyId:(NSString*)surveyId;
 
 - (ResponseSet*)populateResponseSet:(ResponseSet*)rs forSurveyId:sid;
+
+- (NSDictionary*) questionDictByRefIdForSurvey:(NUSurvey*)survey;
 
 - (NSArray*) defaultPrepopulatedQuestionRefs;
 

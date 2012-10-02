@@ -12,8 +12,9 @@
 #import <MRCEnumerable/MRCEnumerable.h>
 #import <NUSurveyor/NUSurvey.h>
 #import "NUSurvey+Additions.h"
+#import <NUSurveyor/NUResponseSet.h>
 #import <NUSurveyor/NUResponse.h>
-#import <NUSurveyor/NUResponse.h>
+#import "NUResponse+Additions.h"
 
 @implementation SurveySet
 
@@ -33,7 +34,8 @@
 }
 
 - (NSArray*) defaultPrepopulatedQuestionRefs {
-    return [[[NSMutableArray alloc] initWithObjects:[[[PrepopulatedQuestionRef alloc] initWithReferenceIdentifier:@"foo" dataExportIdentifier:@"bar"] autorelease], nil] autorelease];
+    return [[[NSMutableArray alloc] initWithObjects:
+             [[[PrepopulatedQuestionRef alloc] initWithReferenceIdentifier:@"pre_populated_foo" dataExportIdentifier:@"bar"] autorelease], nil] autorelease];
 }
 
 - (ResponseSet*)generateResponseSetForSurveyId:(NSString*)sid {
@@ -58,26 +60,58 @@
 // TODO: Move to surveyor
 - (NSArray*)prePopulatedResponsesForSurveyId:(NSString*)sid {
     NSMutableArray* result = [[NSMutableArray new] autorelease];
-//    NUSurvey* found = [self.surveys detect:^BOOL(NUSurvey* s){
-//        return [[s uuid] isEqualToString:sid];
-//    }];
-//    if (found) {
-//        NSDictionary* qs = [self questionDictByRefIdForSurvey:found];
-//        NSArray* refIds = [[self prePopulatedQuestionRefDictByRefId] allKeys];
-//        for (NSString* refId in refIds) {
-//            NSDictionary* foundQ = [qs objectForKey:refId];
-//            if (foundQ) {
-//                NUResponse* r = [[NUResponse new] autorelease];
-//                [r setValue:[foundQ valueForKey:@"question"] forKey:@"question"];
-//                [r setValue:[foundQ valueForKey:@"answer"] forKey:@"answer"];
-//                NUResponse* foundR = [[NUResponse findByAttribute:@"data_export_identifier" withValue:[[self prePopulatedQuestionRefDictByRefId] objectForKey:refId]] lastObject];
-//                [r setValue:[foundR valueForKey:@"value"] forKey:@"value"];
-//                [result addObject:r];
-//            }
-//        }
-//    }
+    NUSurvey* dstSurvey = [self findByUUID:sid inSurveys:self.surveys];
+    if (dstSurvey) {
+        NSDictionary* questionsByRefId = [self questionDictByRefIdForSurvey:dstSurvey];
+        for (NSString* refId in [[self prePopulatedQuestionRefDictByRefId] allKeys]) {
+            NSDictionary* dstQuestion = [questionsByRefId objectForKey:refId];
+            NSDictionary* dstAnswer = [[[dstQuestion objectForKey:@"answers"] objectEnumerator] nextObject];
+            if (dstQuestion && dstAnswer) {
+                NUResponse* transient = [NUResponse transient];
+                [transient setValue:[dstQuestion valueForKey:@"uuid"] forKey:@"question"];
+                [transient setValue:[dstAnswer valueForKey:@"uuid"] forKey:@"answer"];
+                PrepopulatedQuestionRef* ref = [[self prePopulatedQuestionRefDictByRefId] objectForKey:refId];
+                NSDictionary* srcQuestion = [self findQuestionDictByDataExportIdentifier:ref.dataExportIdentifier inSurveys:self.surveys];
+                NUResponse* srcResponse = [self findResponseByQuestionUUID:[srcQuestion valueForKey:@"uuid"] inResponseSets:self.responseSets];
+                [transient setValue:[srcResponse valueForKey:@"value"] forKey:@"value"];
+                [result addObject:transient];
+            }
+        }
+    }
     return result;
 }
+
+- (NUSurvey*)findByUUID:(NSString*)uuid inSurveys:(NSArray*)surveys {
+    return [surveys detect:^BOOL(NUSurvey* s){
+        return [[s uuid] isEqualToString:uuid];
+    }];
+}
+
+- (NSDictionary*) questionDictByRefIdForSurvey:(NUSurvey*)survey {
+    return [self questionDictByAttribute:@"reference_identifier" forSurvey:survey];
+}
+
+- (NSDictionary*) questionDictByDataExportIdForSurvey:(NUSurvey*)survey {
+    return [self questionDictByAttribute:@"data_export_identifier" forSurvey:survey];
+}
+
+- (NSDictionary*) questionDictByAttribute:(NSString*)attr forSurvey:(NUSurvey*)survey {
+    NSMutableDictionary* result = [[NSMutableDictionary new] autorelease];
+    for (NSDictionary* section in [[survey deserialized] valueForKey:@"sections"]) {
+        for (NSDictionary* questionOrGroup in [section valueForKey:@"questions_and_groups"]) {
+            if ([questionOrGroup valueForKey:attr]) {
+                [result setValue:questionOrGroup forKey:[questionOrGroup valueForKey:attr]];
+            }
+            for (NSDictionary* groupQuestion in [section valueForKey:@"questions"]) {
+                if ([groupQuestion valueForKey:attr]) {
+                    [result setValue:groupQuestion forKey:[groupQuestion valueForKey:attr]];
+                }
+            }
+        }
+    }
+    return result;
+}
+
 
 - (NSDictionary*) prePopulatedQuestionRefDictByRefId {
     NSMutableDictionary* result = [[NSMutableDictionary new] autorelease];
@@ -87,17 +121,21 @@
     return result;
 }
 
-- (NSDictionary*) questionDictByRefIdForSurvey:(NUSurvey*)survey {
-    NSMutableDictionary* result = [[NSMutableDictionary new] autorelease];
-    for (NSDictionary* section in [[survey deserialized] valueForKey:@"sections"]) {
-        for (NSDictionary* questionOrGroup in [section valueForKey:@"questions_and_groups"]) {
-            [result setValue:questionOrGroup forKey:[questionOrGroup valueForKey:@"reference_identifier"]];
-            for (NSDictionary* groupQuestion in [section valueForKey:@"questions"]) {
-                [result setValue:groupQuestion forKey:[groupQuestion valueForKey:@"reference_identifier"]];
-            }
+- (NSDictionary*)findQuestionDictByDataExportIdentifier:(NSString*)dei inSurveys:(NSArray*)surveys {
+    for (NUSurvey* s in surveys) {
+        NSDictionary* questionsByDEI = [self questionDictByDataExportIdForSurvey:s];
+        if ([questionsByDEI objectForKey:dei]) {
+            return [questionsByDEI objectForKey:dei];
         }
     }
-    return result;
+    return nil;
+}
+
+- (NUResponse*)findResponseByQuestionUUID:(NSString*)uuid inResponseSets:(NSArray*)responseSets {
+    for (ResponseSet* rs in responseSets) {
+        return [[rs responsesForQuestion:uuid] lastObject];
+    }
+    return nil;
 }
 
 - (void)dealloc {
