@@ -36,7 +36,20 @@
 
 - (NSArray*) defaultPrePopulatedQuestionRefs {
     return [NSArray arrayWithObjects:
-            [self destRefId:@"pre_populated_foo" srcDataExpId:@"bar"], nil];
+//            [self destRefId:@"prepopulated_name" srcDataExpId:nil],
+//            [self destRefId:@"prepopulated_date_of_birth" srcDataExpId:nil],
+//            [self destRefId:@"prepopulated_ppg_status" srcDataExpId:nil],
+//            [self destRefId:@"prepopulated_local_sc" srcDataExpId:nil],
+//            [self destRefId:@"prepopulated_sc_phone_number" srcDataExpId:nil],
+//            [self destRefId:@"prepopulated_baby_name" srcDataExpId:nil],
+//            [self destRefId:@"prepopulated_childs_birth_date" srcDataExpId:nil],
+            [self destRefId:@"pre_populated_release_answer_from_part_one" srcDataExpId:@"BIRTH_VISIT_LI.RELEASE"],
+            [self destRefId:@"pre_populated_mult_child_answer_from_part_one_for_6MM" srcDataExpId:@"SIX_MTH_MOTHER.MULT_CHILD"],
+            [self destRefId:@"pre_populated_mult_child_answer_from_part_one_for_12MM" srcDataExpId:@"TWELVE_MTH_MOTHER.MULT_CHILD"],
+            [self destRefId:@"pre_populated_mult_child_answer_from_part_one_for_18MM" srcDataExpId:@"EIGHTEEN_MTH_MOTHER.MULT_CHILD"],
+            [self destRefId:@"pre_populated_mult_child_answer_from_part_one_for_24MM" srcDataExpId:@"TWENTY_FOUR_MTH_MOTHER.MULT_CHILD"],
+            [self destRefId:@"pre_populated_child_qnum_answer_from_mother_detail_for_18MM" srcDataExpId:@"EIGHTEEN_MTH_MOTHER_DETAIL.CHILD_QNUM"],
+            [self destRefId:@"pre_populated_child_qnum_answer_from_mother_detail_for_24MM" srcDataExpId:@"TWENTY_FOUR_MTH_MOTHER_DETAIL.CHILD_QNUM"], nil];
 }
 
 - (PrePopulatedQuestionRefSet*) destRefId:(NSString*)destRefId srcDataExpId:(NSString*)srcExpId {
