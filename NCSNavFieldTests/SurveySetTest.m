@@ -32,9 +32,17 @@ static NUSurvey* surveyB;
          "    \"questions_and_groups\":["
          "      { "
          "        \"uuid\":\"q1\","
-         "        \"data_export_identifier\":\"foo\","
+         "        \"data_export_identifier\":\"name\","
          "        \"answers\":["
          "          {\"uuid\":\"a1\", \"type\":\"string\"}"
+         "        ]"
+         "      },"
+         "      { "
+         "        \"uuid\":\"q2\","
+         "        \"data_export_identifier\":\"color\","
+         "        \"answers\":["
+         "          {\"uuid\":\"a2\", \"reference_identifier\":\"red\"},"
+         "          {\"uuid\":\"a3\", \"reference_identifier\":\"blue\"}"
          "        ]"
          "      }"
          "    ]"
@@ -44,19 +52,27 @@ static NUSurvey* surveyB;
     surveyB = [[NUSurvey new] autorelease];
     surveyB.jsonString =
         @"{"
-        "  \"uuid\":\"survey-b\","
-        "  \"sections\":[{"
-        "    \"questions_and_groups\":["
-        "      { "
-        "        \"uuid\":\"q10\","
-        "        \"reference_identifier\":\"pre_populated_foo\","
-        "        \"answers\":["
-        "          {\"uuid\":\"a10\", \"type\":\"hidden\"}"
-        "        ]"
-        "      }"
-        "    ]"
-        "  }]"
-        "}";
+         "  \"uuid\":\"survey-b\","
+         "  \"sections\":[{"
+         "    \"questions_and_groups\":["
+         "      { "
+         "        \"uuid\":\"q10\","
+         "        \"reference_identifier\":\"pre_populated_name\","
+         "        \"answers\":["
+         "          {\"uuid\":\"a10\", \"type\":\"hidden\"}"
+         "        ]"
+         "      },"
+         "      { "
+         "        \"uuid\":\"q11\","
+         "        \"reference_identifier\":\"pre_populated_color\","
+         "        \"answers\":["
+         "          {\"uuid\":\"a11\", \"reference_identifier\":\"red\"},"
+         "          {\"uuid\":\"a12\", \"reference_identifier\":\"blue\"}"
+         "        ]"
+         "      }"
+         "    ]"
+         "  }]"
+         "}";
     
     responseSetA = [self createResponseSetWithSurveyId:@"survey-a" participantId:participant.pId];
     [responseSetA newResponseForQuestion:@"q1" Answer:@"a1" Value:@"woot"];
@@ -66,7 +82,7 @@ static NUSurvey* surveyB;
     
     surveySet = [[[SurveySet alloc] initWithSurveys:[NSArray arrayWithObjects:surveyA,surveyB,nil] andResponseSets:[NSArray arrayWithObject:responseSetA] forParticipant:participant] autorelease];
 
-    surveySet.prePopulatedQuestionRefs = [NSArray arrayWithObjects: [self destRefId:@"pre_populated_foo" srcDataExpId:@"foo"], nil];
+    surveySet.prePopulatedQuestionRefs = [NSArray arrayWithObjects: [self destRefId:@"pre_populated_name" srcDataExpId:@"name"], nil];
 }
 
 #pragma mark - SurveySet#generateResponseSet
@@ -136,7 +152,7 @@ static NUSurvey* surveyB;
 - (void)testQuestionDictByAttribute {
 //    NSDictionary* act = [surveySet questionDictByRefIdForSurvey:surveyB];
 //    STAssertEquals((int) [act count], 1, @"Wrong number of questions");
-//    STAssertEqualObjects([[[act allKeys] objectEnumerator] nextObject], @"pre_populated_foo", @"Wrong reference identifier");
+//    STAssertEqualObjects([[[act allKeys] objectEnumerator] nextObject], @"pre_populated_name", @"Wrong reference identifier");
 }
 
 #pragma mark - Helper Methods
