@@ -50,6 +50,10 @@
 
 - (id)initWithAttribute:(NSString*)attr value:(NSString*)value;
 
+- (NSDictionary*)resolveInSurvey:(NUSurvey*)survey;
+
+- (NSDictionary*)resolveInSurveys:(NSArray*)surveys;
+
 @end
 
 #pragma mark - PrepopulatedQuestionRef

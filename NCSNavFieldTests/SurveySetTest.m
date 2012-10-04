@@ -113,15 +113,18 @@ static NUSurvey* surveyB;
     STAssertTrue([[act responses] count] == 0, @"Should be empty");
 }
 
-- (void)testPopulateResponseSetWithIncorrectPid {
-    
+- (void) testPopulateResponseSetWithNullResponseSet {
+    ResponseSet* act = [surveySet populateResponseSet:nil forSurveyId:@"survey-b"];
+    STAssertEqualObjects([act valueForKey:@"survey"], @"survey-b", @"Wrong survey id");
+    STAssertEqualObjects([act valueForKey:@"pId"], @"yak423", @"Wrong pId");
+    STAssertEquals((int)[[act responses] count], 1, @"Should be 1");
+    NUResponse* r = [[[act responses] objectEnumerator] nextObject];
+    STAssertEqualObjects([r valueForKey:@"question"], @"q2", @"Wrong question");
+    STAssertEqualObjects([r valueForKey:@"answer"], @"a2", @"Wrong answer");
+    STAssertEqualObjects([r valueForKey:@"value"], @"woot", @"Wrong response value");
 }
 
-- (void)testPopulateResponseSetWithIncorrectSurveyId {
-    
-}
-
-#pragma mark - SurveySet#questionDictByAttribute
+#pragma mark - QuestionRef#questionDictByAttribute
 
 - (void)testQuestionDictByAttribute {
 //    NSDictionary* act = [surveySet questionDictByRefIdForSurvey:surveyB];
