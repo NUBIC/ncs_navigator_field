@@ -52,7 +52,8 @@
 }
 
 - (ResponseSet*)populateResponseSet:(ResponseSet*)rs forSurveyId:sid {
-    NSArray* pre = [self prePopulatedResponsesForSurveyId:sid];
+    NUSurvey* survey = [self findSurveyByUUID:sid inSurveys:self.surveys];
+    NSArray* pre = [self prePopulatedResponsesForSurvey:survey];
     [self applyPrePopulatedResponses:pre toResponseSet:rs];
     [[NSManagedObjectContext contextForCurrentThread] save:nil];
     return rs;
@@ -70,12 +71,11 @@
 }
 
 // TODO: Move to surveyor
-- (NSArray*)prePopulatedResponsesForSurveyId:(NSString*)sid {
+- (NSArray*)prePopulatedResponsesForSurvey:(NUSurvey*)survey {
     NSMutableArray* result = [[NSMutableArray new] autorelease];
-    NUSurvey* dstSurvey = [self findSurveyByUUID:sid inSurveys:self.surveys];
-    if (dstSurvey) {
+    if (survey) {
         for (PrePopulatedQuestionRefSet* pqrs in self.prepopulatedQuestionRefs) {
-            NSDictionary* dstQuestion = [self findQuestionDictByQuestionRef:pqrs.dest inSurveys:[NSArray arrayWithObject:dstSurvey]];
+            NSDictionary* dstQuestion = [self findQuestionDictByQuestionRef:pqrs.dest inSurveys:[NSArray arrayWithObject:survey]];
             NSDictionary* dstAnswer = [[[dstQuestion objectForKey:@"answers"] objectEnumerator] nextObject];
             
             if (dstQuestion && dstAnswer) {
