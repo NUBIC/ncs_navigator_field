@@ -83,17 +83,27 @@
     if (survey) {
         for (PrePopulatedQuestionRefSet* pqrs in self.prePopulatedQuestionRefs) {
             NSDictionary* dstQuestion = [pqrs.dest resolveInSurvey:survey];
-            NSDictionary* dstAnswer = [[[dstQuestion objectForKey:@"answers"] objectEnumerator] nextObject];
             
-            if (dstQuestion && dstAnswer) {
-                NUResponse* transient = [NUResponse transient];
-                [transient setValue:[dstQuestion valueForKey:@"uuid"] forKey:@"question"];
-                [transient setValue:[dstAnswer valueForKey:@"uuid"] forKey:@"answer"];
-                
+            if (dstQuestion) {
                 NSDictionary* srcQuestion = [pqrs.src resolveInSurveys:self.surveys];
                 NUResponse* srcResponse = [self findResponseByQuestionUUID:[srcQuestion valueForKey:@"uuid"] inResponseSets:self.responseSets];
-                [transient setValue:[srcResponse valueForKey:@"value"] forKey:@"value"];
-                [result addObject:transient];
+                AnswerRef* srcAnswerRef = [[AnswerRef alloc] initWithAttribute:@"uuid" value:[srcResponse valueForKey:@"answer"]];
+                NSDictionary* srcAnswer = [srcAnswerRef resolveInSurveys:self.surveys];
+                
+                AnswerRef* dstAnswerRef = [[AnswerRef alloc] initWithAttribute:@"reference_identifier" value:[srcAnswer valueForKey:@"reference_identifier"]];
+                NSDictionary* dstAnswer = [dstAnswerRef resolveInSurvey:survey];
+                if (!dstAnswer) {
+                    dstAnswer = [[[dstQuestion objectForKey:@"answers"] objectEnumerator] nextObject];
+                }
+                
+                if (dstQuestion && dstAnswer && srcResponse) {
+                    NUResponse* transient = [NUResponse transient];
+                    [transient setValue:[dstQuestion valueForKey:@"uuid"] forKey:@"question"];
+                    [transient setValue:[dstAnswer valueForKey:@"uuid"] forKey:@"answer"];
+                    [transient setValue:[srcResponse valueForKey:@"value"] forKey:@"value"];
+                    [result addObject:transient];
+                }
+                
             }
         }
     }
@@ -161,6 +171,64 @@
             for (NSDictionary* groupQuestion in [section valueForKey:@"questions"]) {
                 if ([groupQuestion valueForKey:attr]) {
                     [result setValue:groupQuestion forKey:[groupQuestion valueForKey:attr]];
+                }
+            }
+        }
+    }
+    return result;
+}
+
+- (void)dealloc {
+    [_attribute release];
+    [_value release];
+    [super dealloc];
+}
+
+@end
+
+
+#pragma mark - AnswerRef
+
+@implementation AnswerRef
+
+@synthesize attribute = _attribute, value = _value;
+
+- (id)initWithAttribute:(NSString*)attr value:(NSString*)value {
+    if (self = [self init]) {
+        _attribute = [attr retain];
+        _value = [value retain];
+    }
+    return self;
+}
+
+- (NSDictionary*)resolveInSurvey:(NUSurvey*)survey {
+    return [self resolveInSurveys:[NSArray arrayWithObject:survey]];
+}
+
+- (NSDictionary*)resolveInSurveys:(NSArray*)surveys {
+    for (NUSurvey* s in surveys) {
+        NSDictionary* questionsByIdentifier = [self questionDictByAttribute:self.attribute forSurvey:s];
+        if ([questionsByIdentifier objectForKey:self.value]) {
+            return [questionsByIdentifier objectForKey:self.value];
+        }
+    }
+    return nil;
+}
+
+- (NSDictionary*) questionDictByAttribute:(NSString*)attr forSurvey:(NUSurvey*)survey {
+    NSMutableDictionary* result = [[NSMutableDictionary new] autorelease];
+    for (NSDictionary* section in [[survey deserialized] valueForKey:@"sections"]) {
+        for (NSDictionary* questionOrGroup in [section valueForKey:@"questions_and_groups"]) {
+            for (NSDictionary* answer in [questionOrGroup valueForKey:@"answers"]) {
+                if ([answer valueForKey:attr]) {
+                    [result setValue:answer forKey:[answer valueForKey:attr]];
+                }
+            }
+            for (NSDictionary* groupQuestion in [section valueForKey:@"questions"]) {
+                for (NSDictionary* answer in [groupQuestion valueForKey:@"answers"]) {
+                    if ([answer valueForKey:attr]) {
+                        [result setValue:answer forKey:[answer valueForKey:attr]];
+                    }
                 }
             }
         }

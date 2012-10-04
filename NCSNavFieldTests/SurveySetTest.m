@@ -82,7 +82,9 @@ static NUSurvey* surveyB;
     
     surveySet = [[[SurveySet alloc] initWithSurveys:[NSArray arrayWithObjects:surveyA,surveyB,nil] andResponseSets:[NSArray arrayWithObject:responseSetA] forParticipant:participant] autorelease];
 
-    surveySet.prePopulatedQuestionRefs = [NSArray arrayWithObjects: [self destRefId:@"pre_populated_name" srcDataExpId:@"name"], nil];
+    surveySet.prePopulatedQuestionRefs = [NSArray arrayWithObjects:
+                                          [self destRefId:@"pre_populated_name" srcDataExpId:@"name"],
+                                          [self destRefId:@"pre_populated_color" srcDataExpId:@"color"], nil];
 }
 
 #pragma mark - SurveySet#generateResponseSet
@@ -131,7 +133,7 @@ static NUSurvey* surveyB;
     STAssertTrue([[act responses] count] == 0, @"Should be empty");
 }
 
-- (void) testPopulateResponseSetWithNullResponseSet {
+- (void)testPopulateResponseSetWithNullResponseSet {
     ResponseSet* act = [surveySet populateResponseSet:nil forSurveyId:@"survey-b"];
     STAssertEqualObjects([act valueForKey:@"survey"], @"survey-b", @"Wrong survey id");
     STAssertEqualObjects([act valueForKey:@"pId"], @"yak423", @"Wrong pId");
@@ -142,9 +144,21 @@ static NUSurvey* surveyB;
     STAssertEqualObjects([r valueForKey:@"value"], @"woot", @"Wrong response value");
 }
 
-- (void) testPopulateResponseSetWithMissingResponseSetAndSurveyId {
+- (void)testPopulateResponseSetWithMissingResponseSetAndSurveyId {
     ResponseSet* act = [surveySet populateResponseSet:nil forSurveyId:nil];
     STAssertNil(act, @"Should be nil");
+}
+
+- (void)testPopulateResponseSetWithPickOne {
+    [responseSetA newResponseForQuestion:@"q2" Answer:@"a3" Value:nil];
+    ResponseSet* act = [surveySet populateResponseSet:nil forSurveyId:@"survey-b"];
+    STAssertEqualObjects([act valueForKey:@"survey"], @"survey-b", @"Wrong survey id");
+    STAssertEqualObjects([act valueForKey:@"pId"], @"yak423", @"Wrong pId");
+    STAssertEquals((int)[[act responses] count], 2, @"Should be 1");
+    NUResponse* r = [[act responsesForQuestion:@"q11" Answer:@"a12"] lastObject];
+    STAssertEqualObjects([r valueForKey:@"question"], @"q11", @"Wrong question");
+    STAssertEqualObjects([r valueForKey:@"answer"], @"a12", @"Wrong answer");
+    STAssertNil([r valueForKey:@"value"], @"Wrong response value");
 }
 
 #pragma mark - QuestionRef#questionDictByAttribute

@@ -56,6 +56,25 @@
 
 @end
 
+#pragma mark - AnswerRef
+
+@interface AnswerRef : NSObject {
+    NSString* _attribute;
+    NSString* _value;
+}
+
+@property(nonatomic,retain) NSString* attribute;
+
+@property(nonatomic,retain) NSString* value;
+
+- (id)initWithAttribute:(NSString*)attr value:(NSString*)value;
+
+- (NSDictionary*)resolveInSurvey:(NUSurvey*)survey;
+
+- (NSDictionary*)resolveInSurveys:(NSArray*)surveys;
+
+@end
+
 #pragma mark - PrepopulatedQuestionRef
 
 @interface PrePopulatedQuestionRefSet : NSObject {
