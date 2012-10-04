@@ -53,7 +53,12 @@
 
 - (void)applyPrePopulatedResponses:(NSArray*)pre toResponseSet:(ResponseSet*)rs {
     for (NUResponse* r in pre) {
-        [rs newResponseForQuestion:[r valueForKey:@"question"] Answer:[r valueForKey:@"answer"] Value:[r valueForKey:@"value"]];
+        NUResponse* existing = [[rs responsesForQuestion:[r valueForKey:@"question"] Answer:[r valueForKey:@"answer"]] lastObject];
+        if (existing) {
+            [existing setValue:[r valueForKey:@"value"] forKey:@"value"];
+        } else {
+            [rs newResponseForQuestion:[r valueForKey:@"question"] Answer:[r valueForKey:@"answer"] Value:[r valueForKey:@"value"]];
+        }
     }
 }
 
@@ -148,6 +153,8 @@
 
 @end
 
+#pragma mark - PrepopulatedQuestionRef
+
 @implementation PrepopulatedQuestionRef
 
 - (id)initWithReferenceIdentifier:(NSString*)rid dataExportIdentifier:(NSString*)deid {
@@ -161,6 +168,28 @@
 - (void)dealloc {
     [_referenceIdentifier release];
     [_dataExportIdentifier release];
+    [super dealloc];
+}
+
+@end
+
+#pragma mark - QuestionRef
+
+@implementation QuestionRef
+
+@synthesize attribute = _attribute, value = _value;
+
+- (id)initWithAttribute:(NSString*)attr value:(NSString*)value {
+    if (self = [self init]) {
+        _attribute = [attr retain];
+        _value = [value retain];
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [_attribute release];
+    [_value release];
     [super dealloc];
 }
 
