@@ -65,6 +65,8 @@ static NUSurvey* surveyB;
     responseSetB = [self createResponseSetWithSurveyId:@"survey-b" participantId:participant.pId];
     
     surveySet = [[[SurveySet alloc] initWithSurveys:[NSArray arrayWithObjects:surveyA,surveyB,nil] andResponseSets:[NSArray arrayWithObject:responseSetA] forParticipant:participant] autorelease];
+
+    surveySet.prePopulatedQuestionRefs = [NSArray arrayWithObjects: [self destRefId:@"pre_populated_foo" srcDataExpId:@"bar"], nil];
 }
 
 #pragma mark - SurveySet#generateResponseSet
@@ -124,6 +126,11 @@ static NUSurvey* surveyB;
     STAssertEqualObjects([r valueForKey:@"value"], @"woot", @"Wrong response value");
 }
 
+- (void) testPopulateResponseSetWithMissingResponseSetAndSurveyId {
+    ResponseSet* act = [surveySet populateResponseSet:nil forSurveyId:nil];
+    STAssertNil(act, @"Should be nil");
+}
+
 #pragma mark - QuestionRef#questionDictByAttribute
 
 - (void)testQuestionDictByAttribute {
@@ -145,6 +152,12 @@ static NUSurvey* surveyB;
     [rs setValue:sid forKey:@"survey"];
     [rs setValue:pid forKey:@"pId"];
     return rs;
+}
+
+- (PrePopulatedQuestionRefSet*) destRefId:(NSString*)destRefId srcDataExpId:(NSString*)srcExpId {
+    QuestionRef* src = [[[QuestionRef alloc] initWithAttribute:@"data_export_identifier" value:srcExpId] autorelease];
+    QuestionRef* dest = [[[QuestionRef alloc] initWithAttribute:@"reference_identifier" value:destRefId] autorelease];
+    return [[[PrePopulatedQuestionRefSet alloc] initWithSource:src destination:dest] autorelease];
 }
 
 @end

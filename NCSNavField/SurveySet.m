@@ -21,6 +21,7 @@
 @synthesize surveys = _surveys;
 @synthesize responseSets = _responseSets;
 @synthesize participant = _participant;
+@synthesize prePopulatedQuestionRefs = _prePopulatedQuestionRefs;
 
 - (id)initWithSurveys:(NSArray*)s andResponseSets:(NSArray*)rs forParticipant:(Participant*)p {
     if (self = [self init]) {
@@ -28,12 +29,12 @@
         _responseSets = [rs retain];
         _participant = [p retain];
         
-        _prepopulatedQuestionRefs = [[self defaultPrepopulatedQuestionRefs] retain];
+        _prePopulatedQuestionRefs = [[self defaultPrePopulatedQuestionRefs] retain];
     }
     return self;
 }
 
-- (NSArray*) defaultPrepopulatedQuestionRefs {
+- (NSArray*) defaultPrePopulatedQuestionRefs {
     return [NSArray arrayWithObjects:
             [self destRefId:@"pre_populated_foo" srcDataExpId:@"bar"], nil];
 }
@@ -45,18 +46,21 @@
 }
 
 - (ResponseSet*)generateResponseSetForSurveyId:(NSString*)sid {
-    ResponseSet* rs = [ResponseSet object];
-    [rs setValue:self.participant.pId forKey:@"pId"];
-    [rs setValue:sid forKey:@"survey"];
+    ResponseSet* rs = nil;
+    if (sid) {
+        rs = [ResponseSet object];
+        [rs setValue:self.participant.pId forKey:@"pId"];
+        [rs setValue:sid forKey:@"survey"];
+    }
     return rs;
 }
 
 - (ResponseSet*)populateResponseSet:(ResponseSet*)rs forSurveyId:sid {
-    NUSurvey* survey = [self findSurveyByUUID:sid inSurveys:self.surveys];
-    NSArray* pre = [self prePopulatedResponsesForSurvey:survey];
     if (!rs) {
         rs = [self generateResponseSetForSurveyId:sid];
     }
+    NUSurvey* survey = [self findSurveyByUUID:sid inSurveys:self.surveys];
+    NSArray* pre = [self prePopulatedResponsesForSurvey:survey];
     [self applyPrePopulatedResponses:pre toResponseSet:rs];
     [[NSManagedObjectContext contextForCurrentThread] save:nil];
     return rs;
@@ -77,7 +81,7 @@
 - (NSArray*)prePopulatedResponsesForSurvey:(NUSurvey*)survey {
     NSMutableArray* result = [[NSMutableArray new] autorelease];
     if (survey) {
-        for (PrePopulatedQuestionRefSet* pqrs in self.prepopulatedQuestionRefs) {
+        for (PrePopulatedQuestionRefSet* pqrs in self.prePopulatedQuestionRefs) {
             NSDictionary* dstQuestion = [pqrs.dest resolveInSurvey:survey];
             NSDictionary* dstAnswer = [[[dstQuestion objectForKey:@"answers"] objectEnumerator] nextObject];
             
@@ -113,7 +117,7 @@
     [_surveys release];
     [_responseSets release];
     [_participant release];
-    [_prepopulatedQuestionRefs release];
+    [_prePopulatedQuestionRefs release];
     [super dealloc];
 }
 

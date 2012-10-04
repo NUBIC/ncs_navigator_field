@@ -16,7 +16,7 @@
     NSArray* _surveys;
     NSArray* _responseSets;
     Participant* _participant;
-    NSArray* _prepopulatedQuestionRefs;
+    NSArray* _prePopulatedQuestionRefs;
 }
 
 @property(nonatomic,retain) NSArray* surveys;
@@ -25,7 +25,7 @@
 
 @property(nonatomic,retain) Participant* participant;
 
-@property(nonatomic,retain) NSArray* prepopulatedQuestionRefs;
+@property(nonatomic,retain) NSArray* prePopulatedQuestionRefs;
 
 #pragma mark - Instance Methods
 
