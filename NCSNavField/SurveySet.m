@@ -35,10 +35,10 @@
 
 - (NSArray*) defaultPrepopulatedQuestionRefs {
     return [NSArray arrayWithObjects:
-            [self qrsWithDestRefId:@"pre_populated_foo" srcDataExpId:@"bar"], nil];
+            [self destRefId:@"pre_populated_foo" srcDataExpId:@"bar"], nil];
 }
 
-- (PrePopulatedQuestionRefSet*) qrsWithDestRefId:(NSString*)destRefId srcDataExpId:(NSString*)srcExpId {
+- (PrePopulatedQuestionRefSet*) destRefId:(NSString*)destRefId srcDataExpId:(NSString*)srcExpId {
     QuestionRef* src = [[[QuestionRef alloc] initWithAttribute:@"data_export_identifier" value:srcExpId] autorelease];
     QuestionRef* dest = [[[QuestionRef alloc] initWithAttribute:@"reference_identifier" value:destRefId] autorelease];
     return [[[PrePopulatedQuestionRefSet alloc] initWithSource:src destination:dest] autorelease];
@@ -54,6 +54,7 @@
 - (ResponseSet*)populateResponseSet:(ResponseSet*)rs forSurveyId:sid {
     NSArray* pre = [self prePopulatedResponsesForSurveyId:sid];
     [self applyPrePopulatedResponses:pre toResponseSet:rs];
+    [[NSManagedObjectContext contextForCurrentThread] save:nil];
     return rs;
 }
 
