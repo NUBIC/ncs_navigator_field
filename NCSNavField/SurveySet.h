@@ -35,25 +35,6 @@
 
 - (ResponseSet*)populateResponseSet:(ResponseSet*)rs forSurveyId:sid;
 
-- (NSDictionary*) questionDictByRefIdForSurvey:(NUSurvey*)survey;
-
-- (NSArray*) defaultPrepopulatedQuestionRefs;
-
-@end
-
-#pragma mark - PrepopulatedQuestionRef
-
-@interface PrepopulatedQuestionRef : NSObject {
-    NSString* _referenceIdentifier;
-    NSString* _dataExportIdentifier;
-}
-
-@property(nonatomic,retain) NSString* referenceIdentifier;
-
-@property(nonatomic,retain) NSString* dataExportIdentifier;
-
-- (id)initWithReferenceIdentifier:(NSString*)rid dataExportIdentifier:(NSString*)dai;
-
 @end
 
 #pragma mark - QuestionRef
@@ -70,3 +51,19 @@
 - (id)initWithAttribute:(NSString*)attr value:(NSString*)value;
 
 @end
+
+#pragma mark - PrepopulatedQuestionRef
+
+@interface PrePopulatedQuestionRefSet : NSObject {
+    QuestionRef* _src;
+    QuestionRef* _dest;
+}
+
+@property(nonatomic,retain) QuestionRef* src;
+
+@property(nonatomic,retain) QuestionRef* dest;
+
+- (id)initWithSource:(QuestionRef*)src destination:(QuestionRef*)dest;
+
+@end
+

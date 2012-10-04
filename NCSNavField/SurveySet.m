@@ -34,8 +34,14 @@
 }
 
 - (NSArray*) defaultPrepopulatedQuestionRefs {
-    return [[[NSMutableArray alloc] initWithObjects:
-             [[[PrepopulatedQuestionRef alloc] initWithReferenceIdentifier:@"pre_populated_foo" dataExportIdentifier:@"bar"] autorelease], nil] autorelease];
+    return [NSArray arrayWithObjects:
+            [self qrsWithDestRefId:@"pre_populated_foo" srcDataExpId:@"bar"], nil];
+}
+
+- (PrePopulatedQuestionRefSet*) qrsWithDestRefId:(NSString*)destRefId srcDataExpId:(NSString*)srcExpId {
+    QuestionRef* src = [[[QuestionRef alloc] initWithAttribute:@"data_export_identifier" value:srcExpId] autorelease];
+    QuestionRef* dest = [[[QuestionRef alloc] initWithAttribute:@"reference_identifier" value:destRefId] autorelease];
+    return [[[PrePopulatedQuestionRefSet alloc] initWithSource:src destination:dest] autorelease];
 }
 
 - (ResponseSet*)generateResponseSetForSurveyId:(NSString*)sid {
@@ -65,18 +71,18 @@
 // TODO: Move to surveyor
 - (NSArray*)prePopulatedResponsesForSurveyId:(NSString*)sid {
     NSMutableArray* result = [[NSMutableArray new] autorelease];
-    NUSurvey* dstSurvey = [self findByUUID:sid inSurveys:self.surveys];
+    NUSurvey* dstSurvey = [self findSurveyByUUID:sid inSurveys:self.surveys];
     if (dstSurvey) {
-        NSDictionary* questionsByRefId = [self questionDictByRefIdForSurvey:dstSurvey];
-        for (NSString* refId in [[self prePopulatedQuestionRefDictByRefId] allKeys]) {
-            NSDictionary* dstQuestion = [questionsByRefId objectForKey:refId];
+        for (PrePopulatedQuestionRefSet* pqrs in self.prepopulatedQuestionRefs) {
+            NSDictionary* dstQuestion = [self findQuestionDictByQuestionRef:pqrs.dest inSurveys:[NSArray arrayWithObject:dstSurvey]];
             NSDictionary* dstAnswer = [[[dstQuestion objectForKey:@"answers"] objectEnumerator] nextObject];
+            
             if (dstQuestion && dstAnswer) {
                 NUResponse* transient = [NUResponse transient];
                 [transient setValue:[dstQuestion valueForKey:@"uuid"] forKey:@"question"];
                 [transient setValue:[dstAnswer valueForKey:@"uuid"] forKey:@"answer"];
-                PrepopulatedQuestionRef* ref = [[self prePopulatedQuestionRefDictByRefId] objectForKey:refId];
-                NSDictionary* srcQuestion = [self findQuestionDictByDataExportIdentifier:ref.dataExportIdentifier inSurveys:self.surveys];
+                
+                NSDictionary* srcQuestion = [self findQuestionDictByQuestionRef:pqrs.src inSurveys:self.surveys];
                 NUResponse* srcResponse = [self findResponseByQuestionUUID:[srcQuestion valueForKey:@"uuid"] inResponseSets:self.responseSets];
                 [transient setValue:[srcResponse valueForKey:@"value"] forKey:@"value"];
                 [result addObject:transient];
@@ -86,18 +92,21 @@
     return result;
 }
 
-- (NUSurvey*)findByUUID:(NSString*)uuid inSurveys:(NSArray*)surveys {
+- (NUSurvey*)findSurveyByUUID:(NSString*)uuid inSurveys:(NSArray*)surveys {
     return [surveys detect:^BOOL(NUSurvey* s){
         return [[s uuid] isEqualToString:uuid];
     }];
 }
 
-- (NSDictionary*) questionDictByRefIdForSurvey:(NUSurvey*)survey {
-    return [self questionDictByAttribute:@"reference_identifier" forSurvey:survey];
-}
 
-- (NSDictionary*) questionDictByDataExportIdForSurvey:(NUSurvey*)survey {
-    return [self questionDictByAttribute:@"data_export_identifier" forSurvey:survey];
+- (NSDictionary*)findQuestionDictByQuestionRef:(QuestionRef*)ref inSurveys:(NSArray*)surveys {
+    for (NUSurvey* s in surveys) {
+        NSDictionary* questionsByIdentifier = [self questionDictByAttribute:ref.attribute forSurvey:s];
+        if ([questionsByIdentifier objectForKey:ref.value]) {
+            return [questionsByIdentifier objectForKey:ref.value];
+        }
+    }
+    return nil;
 }
 
 - (NSDictionary*) questionDictByAttribute:(NSString*)attr forSurvey:(NUSurvey*)survey {
@@ -117,25 +126,6 @@
     return result;
 }
 
-
-- (NSDictionary*) prePopulatedQuestionRefDictByRefId {
-    NSMutableDictionary* result = [[NSMutableDictionary new] autorelease];
-    for (PrepopulatedQuestionRef* ref in self.prepopulatedQuestionRefs) {
-        [result setValue:ref forKey:ref.referenceIdentifier];
-    }
-    return result;
-}
-
-- (NSDictionary*)findQuestionDictByDataExportIdentifier:(NSString*)dei inSurveys:(NSArray*)surveys {
-    for (NUSurvey* s in surveys) {
-        NSDictionary* questionsByDEI = [self questionDictByDataExportIdForSurvey:s];
-        if ([questionsByDEI objectForKey:dei]) {
-            return [questionsByDEI objectForKey:dei];
-        }
-    }
-    return nil;
-}
-
 - (NUResponse*)findResponseByQuestionUUID:(NSString*)uuid inResponseSets:(NSArray*)responseSets {
     for (ResponseSet* rs in responseSets) {
         return [[rs responsesForQuestion:uuid] lastObject];
@@ -148,26 +138,6 @@
     [_responseSets release];
     [_participant release];
     [_prepopulatedQuestionRefs release];
-    [super dealloc];
-}
-
-@end
-
-#pragma mark - PrepopulatedQuestionRef
-
-@implementation PrepopulatedQuestionRef
-
-- (id)initWithReferenceIdentifier:(NSString*)rid dataExportIdentifier:(NSString*)deid {
-    if (self = [self init]) {
-        _referenceIdentifier = [rid retain];
-        _dataExportIdentifier = [deid retain];
-    }
-    return self;
-}
-
-- (void)dealloc {
-    [_referenceIdentifier release];
-    [_dataExportIdentifier release];
     [super dealloc];
 }
 
@@ -190,6 +160,28 @@
 - (void)dealloc {
     [_attribute release];
     [_value release];
+    [super dealloc];
+}
+
+@end
+
+#pragma mark - PrepopulatedQuestionRef
+
+@implementation PrePopulatedQuestionRefSet
+
+@synthesize src = _src, dest = _dest;
+
+- (id)initWithSource:(QuestionRef*)src destination:(QuestionRef*)dest {
+    if (self = [self init]) {
+        _src = [src retain];
+        _dest = [dest retain];
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [_src release];
+    [_dest release];
     [super dealloc];
 }
 
