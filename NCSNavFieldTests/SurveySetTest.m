@@ -32,7 +32,7 @@ static NUSurvey* surveyB;
          "    \"questions_and_groups\":["
          "      { "
          "        \"uuid\":\"q1\","
-         "        \"data_export_identifier\":\"bar\","
+         "        \"data_export_identifier\":\"foo\","
          "        \"answers\":["
          "          {\"uuid\":\"a1\", \"type\":\"string\"}"
          "        ]"
@@ -48,10 +48,10 @@ static NUSurvey* surveyB;
         "  \"sections\":[{"
         "    \"questions_and_groups\":["
         "      { "
-        "        \"uuid\":\"q2\","
+        "        \"uuid\":\"q10\","
         "        \"reference_identifier\":\"pre_populated_foo\","
         "        \"answers\":["
-        "          {\"uuid\":\"a2\", \"type\":\"hidden\"}"
+        "          {\"uuid\":\"a10\", \"type\":\"hidden\"}"
         "        ]"
         "      }"
         "    ]"
@@ -66,7 +66,7 @@ static NUSurvey* surveyB;
     
     surveySet = [[[SurveySet alloc] initWithSurveys:[NSArray arrayWithObjects:surveyA,surveyB,nil] andResponseSets:[NSArray arrayWithObject:responseSetA] forParticipant:participant] autorelease];
 
-    surveySet.prePopulatedQuestionRefs = [NSArray arrayWithObjects: [self destRefId:@"pre_populated_foo" srcDataExpId:@"bar"], nil];
+    surveySet.prePopulatedQuestionRefs = [NSArray arrayWithObjects: [self destRefId:@"pre_populated_foo" srcDataExpId:@"foo"], nil];
 }
 
 #pragma mark - SurveySet#generateResponseSet
@@ -89,13 +89,13 @@ static NUSurvey* surveyB;
     STAssertEqualObjects([act valueForKey:@"pId"], @"yak423", @"Wrong pId");
     STAssertEquals((int)[[act responses] count], 1, @"Should be 1");
     NUResponse* r = [[[act responses] objectEnumerator] nextObject];
-    STAssertEqualObjects([r valueForKey:@"question"], @"q2", @"Wrong question");
-    STAssertEqualObjects([r valueForKey:@"answer"], @"a2", @"Wrong answer");
+    STAssertEqualObjects([r valueForKey:@"question"], @"q10", @"Wrong question");
+    STAssertEqualObjects([r valueForKey:@"answer"], @"a10", @"Wrong answer");
     STAssertEqualObjects([r valueForKey:@"value"], @"woot", @"Wrong response value");
 }
 
 - (void)testPopulateResponseSetWithDifferentResponseValue {
-    [responseSetB newResponseForQuestion:@"q2" Answer:@"a2" Value:@"lok"];
+    [responseSetB newResponseForQuestion:@"q10" Answer:@"a10" Value:@"lok"];
     ResponseSet* act = [surveySet populateResponseSet:responseSetB forSurveyId:@"survey-b"];
     STAssertEqualObjects([act valueForKey:@"survey"], @"survey-b", @"Wrong survey id");
     STAssertEqualObjects([act valueForKey:@"pId"], @"yak423", @"Wrong pId");
@@ -121,8 +121,8 @@ static NUSurvey* surveyB;
     STAssertEqualObjects([act valueForKey:@"pId"], @"yak423", @"Wrong pId");
     STAssertEquals((int)[[act responses] count], 1, @"Should be 1");
     NUResponse* r = [[[act responses] objectEnumerator] nextObject];
-    STAssertEqualObjects([r valueForKey:@"question"], @"q2", @"Wrong question");
-    STAssertEqualObjects([r valueForKey:@"answer"], @"a2", @"Wrong answer");
+    STAssertEqualObjects([r valueForKey:@"question"], @"q10", @"Wrong question");
+    STAssertEqualObjects([r valueForKey:@"answer"], @"a10", @"Wrong answer");
     STAssertEqualObjects([r valueForKey:@"value"], @"woot", @"Wrong response value");
 }
 
