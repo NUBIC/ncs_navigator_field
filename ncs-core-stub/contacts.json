@@ -5718,18 +5718,21 @@
                                         "answers": [
                                             {
                                                 "text": "Yes", 
-                                                "uuid": "1c66da71-bc59-4da5-b3b9-dd3439d40392"
+                                                "uuid": "1c66da71-bc59-4da5-b3b9-dd3439d40392",
+                                                "reference_identifier": "1"
                                             }, 
                                             {
                                                 "text": "No", 
-                                                "uuid": "d7644801-fdd2-4fed-827c-70b0a17afff8"
+                                                "uuid": "d7644801-fdd2-4fed-827c-70b0a17afff8",
+                                                "reference_identifier": "2"
                                             }
                                         ], 
                                         "help_text": "Ask only if needed. If multiple birth and at least one baby has been released from hospital, select \"yes\"", 
                                         "pick": "one", 
                                         "reference_identifier": "RELEASE", 
                                         "text": "{Has baby/Have babies} been released from the hospital?", 
-                                        "uuid": "10c6fcca-9443-4ddf-ab98-01ee622dba20"
+                                        "uuid": "10c6fcca-9443-4ddf-ab98-01ee622dba20",
+                                        "data_export_identifier": "BIRTH_VISIT_LI.RELEASE"
                                     }, 
                                     {
                                         "answers": [
@@ -6015,11 +6018,15 @@
                                         "answers": [
                                             {
                                                 "text": "Yes", 
-                                                "uuid": "cf4d1ee2-0404-4733-9d0f-1a07b21630ae"
+                                                "uuid": "cf4d1ee2-0404-4733-9d0f-1a07b21630ae",
+                                                "reference_identifier": "1"
+
                                             }, 
                                             {
                                                 "text": "No", 
-                                                "uuid": "cb591921-e708-40af-8916-3cfcc3efdea0"
+                                                "uuid": "cb591921-e708-40af-8916-3cfcc3efdea0",
+                                                "reference_identifier": "2"
+
                                             }
                                         ], 
                                         "reference_identifier": "pre_populated_release_answer_from_part_one", 
