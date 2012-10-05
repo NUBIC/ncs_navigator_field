@@ -122,17 +122,18 @@
                 NCSLog(@"No response set found for survey: %@", s.uuid);
                 NSDictionary* surveyDict = [[[SBJSON new] autorelease] objectWithString:s.jsonString];
                 found = [[ResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread] autorelease];
+                [instrument addResponseSetsObject:found];
 
                 NCSLog(@"Creating new response set: %@", found.uuid);
-
-                NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
-                NSError *error = nil;
-
-                if (![moc save:&error]) {
-                    NCSLog(@"Error saving response set: %@", found.uuid);
-                }
             }
             [assoc setObject:found forKey:s.uuid];
+        }
+        
+        NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
+        NSError *error = nil;
+        
+        if (![moc save:&error]) {
+            NCSLog(@"Error saving response sets");
         }
         
         NCSLog(@"Loading surveyor with instrument plan: %@", instrument.instrumentPlan.instrumentPlanId);

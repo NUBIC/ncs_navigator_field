@@ -131,7 +131,10 @@
 
 - (NUResponse*)findResponseByQuestionUUID:(NSString*)uuid inResponseSets:(NSArray*)responseSets {
     for (ResponseSet* rs in responseSets) {
-        return [[rs responsesForQuestion:uuid] lastObject];
+        NUResponse* r = [[rs responsesForQuestion:uuid] lastObject];
+        if (r) {
+            return r;
+        }
     }
     return nil;
 }

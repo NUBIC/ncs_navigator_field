@@ -79,3 +79,11 @@
 - (NSString*) endTimeJson;
 
 @end
+
+@interface Instrument (GeneratedAccessors)
+
+- (void)addResponseSetsObject:(ResponseSet*)rs;
+
+- (void)removeResponseSetsObject:(ResponseSet*)rs;
+
+@end
