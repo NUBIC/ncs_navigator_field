@@ -10,6 +10,9 @@
 #import <NUSurveyor/NUConstants.h>
 #import <JSONKit.h>
 #import "NUSurvey+Additions.h"
+#import "Participant.h"
+#import "ResponseSet.h"
+#import "SurveySet.h"
 
 @implementation MultiSurveyTVC
 
@@ -118,7 +121,11 @@
     self.survey = [self.surveys objectAtIndex:index];
     [self setSurveyNSD_Forced:[self.survey.jsonString objectFromJSONString]];
     
-    self.sectionTVC.responseSet = [self.surveyResponseSetAssociations objectForKey:self.survey.uuid];
+    ResponseSet* rs = [self.surveyResponseSetAssociations objectForKey:self.survey.uuid];
+    Participant* p = [Participant findFirstByAttribute:@"pId" withValue:[rs valueForKey:@"pId"]];
+    SurveySet* ss = [[SurveySet alloc] initWithSurveys:self.surveys andResponseSets:[self.surveyResponseSetAssociations  allValues] forParticipant:p];
+    [ss populateResponseSet:rs forSurveyId:self.survey.uuid];
+    self.sectionTVC.responseSet = rs;
     self.sectionTVC.delegate = self;
     //    self.sectionTVC.renderContext = renderContext;
     
