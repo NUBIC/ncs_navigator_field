@@ -100,17 +100,21 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    NCSLog(@"Error: Localized Description: %@", [error localizedDescription]);
-    NCSLog(@"Error: Underlying Error: %@", [error.userInfo valueForKey:NSUnderlyingErrorKey]);
-    self.error = [NSString stringWithFormat:@"Error while pushing fieldwork.\n%@", [error localizedDescription]];
-    [self showErrorMessage:self.error];
-
+    // We're only showing an error if the response failed because
+    // upon success Cases will return a response with the body
+    // {"success":true}, which is unmappable and causes RestKit to
+    // throw an error.
+    if (!objectLoader.response.isSuccessful) {
+        NCSLog(@"Error: Localized Description: %@", [error localizedDescription]);
+        NCSLog(@"Error: Underlying Error: %@", [error.userInfo valueForKey:NSUnderlyingErrorKey]);
+        self.error = [NSString stringWithFormat:@"Error while pushing fieldwork.\n%@", [error localizedDescription]];
+        [self showErrorMessage:self.error];
+    }
 }
 
 - (void)objectLoaderDidFinishLoading:(RKObjectLoader*)objectLoader {
     NCSLog(@"Success");
 }
-
 
 - (void)showErrorMessage:(NSString *)message {
     NCSLog(@"%@", message);
