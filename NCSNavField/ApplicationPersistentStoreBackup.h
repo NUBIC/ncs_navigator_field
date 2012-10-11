@@ -20,4 +20,6 @@
 
 - (NSString*)path;
 
++ (void)removeAll;
+
 @end

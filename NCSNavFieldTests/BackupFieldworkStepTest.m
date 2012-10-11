@@ -31,13 +31,10 @@ ApplicationPersistentStoreBackup* backup;
     [fm removeItemAtPath:[self backupFieldworkPath] error:NULL];
 
     NSString *filePath = [self mainFieldworkPath];
-    if (!filePath) {
-        filePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"main.sqlite"];
-        NSData *data = [@"Test" dataUsingEncoding:NSUTF8StringEncoding];
-        [data writeToFile:filePath atomically:YES];
-        filePath = [self mainFieldworkPath];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        [self touch:filePath];
     }
-    STAssertNotNil(filePath, @"Path should exist");
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[self mainFieldworkPath]], @"main.sqlite should exist");
     
     store = [ApplicationPersistentStore instance];
     backup = [store backup];
@@ -55,23 +52,45 @@ ApplicationPersistentStoreBackup* backup;
 }
 
 - (void)testBackup {
-    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[backup path]], @"Should be successful");
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[backup path]], @"Should backup successfully");
 }
 
 - (void)testRemove {
-    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[backup path]], @"Should be successful");
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[backup path]], @"Should exist");
     [backup remove];
-    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[backup path]], @"Should be successful");
+    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[backup path]], @"Should not exist");
+}
+
+- (void)testRemoveAll {
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[backup path]], @"Should exist");
+    [ApplicationPersistentStoreBackup removeAll];
+    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[backup path]], @"Should not exist");
+}
+
+- (void)testRemoveAllOnlyRemovesBackups {
+    NSString* tf = [[[backup path] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"testfile"];
+    [self touch:tf];
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:tf], @"Should exist");
+    [ApplicationPersistentStoreBackup removeAll];
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:tf], @"Should exist");
 }
 
 #pragma mark - Helper Methods
 
 - (NSString*) mainFieldworkPath {
-    return [[NSBundle mainBundle] pathForResource:@"main" ofType:@"sqlite"];
+    return [[ApplicationPersistentStore new] path];
 }
 
 - (NSString *)backupFieldworkPath {
     return [[ApplicationPersistentStoreBackup new] path];
+}
+
+- (NSString*)testFilePath {
+    return [[[backup path] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"testfile"];
+}
+
+- (void)touch:(NSString*)path {
+    [[NSData data] writeToFile:path options:NSDataWritingAtomic error:nil];
 }
 
 @end

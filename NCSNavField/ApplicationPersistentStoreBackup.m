@@ -32,11 +32,34 @@
     NSDateFormatter *timeFmt = [[[NSDateFormatter alloc] init] autorelease];
     [timeFmt setDateFormat:@"yyyyMMddHHmmss"];
     [timeFmt setTimeZone:[NSTimeZone localTimeZone]];
-    return [NSString stringWithFormat:@"sync-backup-%@.sqlite", [timeFmt stringFromDate:[NSDate date]]]; 
+    return [NSString stringWithFormat:@"%@-%@.sqlite", [ApplicationPersistentStoreBackup prefix], [timeFmt stringFromDate:[NSDate date]]];
+}
+
++ (NSString*) prefix {
+    return @"sync-backup";
 }
 
 - (NSString*)path {
     return [[RKDirectory applicationDataDirectory] stringByAppendingPathComponent:self.name];
+}
+
++ (void)removeAll {
+    NSString* path = [RKDirectory applicationDataDirectory];
+    NSFileManager* fm = [[[NSFileManager alloc] init] autorelease];
+    NSDirectoryEnumerator* en = [fm enumeratorAtPath:path];
+    NSError* err = nil;
+    BOOL res;
+    
+    NSString* file;
+    while (file = [en nextObject]) {
+        BOOL isBackup = [file rangeOfString:[ApplicationPersistentStoreBackup prefix] options:(NSCaseInsensitiveSearch | NSAnchoredSearch)].location != NSNotFound;
+        if (isBackup) {
+            res = [fm removeItemAtPath:[path stringByAppendingPathComponent:file] error:&err];
+        }
+        if (!res && err) {
+            NCSLog(@"Could not remove backup: %@", err);
+        }
+    }
 }
 
 - (void)dealloc {

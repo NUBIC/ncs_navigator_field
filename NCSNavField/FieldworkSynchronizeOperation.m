@@ -13,6 +13,7 @@
 #import "Fieldwork.h"
 #import "MergeStatusRequest.h"
 #import "MergeStatus.h"
+#import "ApplicationPersistentStoreBackup.h"
 
 @implementation FieldworkSynchronizeOperation
 
@@ -59,7 +60,7 @@
         FieldworkPutRequest* put = [[[FieldworkPutRequest alloc] initWithServiceTicket:self.ticket] autorelease];
         if ([put send]) {
             [store remove];
-            [backup remove];
+            [ApplicationPersistentStoreBackup removeAll];
             statusId = [put mergeStatusId];
         }
     }
