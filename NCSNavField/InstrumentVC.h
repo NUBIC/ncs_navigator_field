@@ -15,8 +15,8 @@
     UIScrollView* _scrollView;
 }
 
-@property(nonatomic,retain) Instrument* instrument;
-@property(nonatomic,retain) UIScrollView* scrollView;
+@property(nonatomic,strong) Instrument* instrument;
+@property(nonatomic,strong) UIScrollView* scrollView;
 
 
 - (id)initWithInstrument:(Instrument*)instrument;

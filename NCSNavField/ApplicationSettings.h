@@ -23,15 +23,15 @@ extern NSString *const SettingsDidChangeNotification;
 
 #pragma mark properties
 
-@property(nonatomic,retain) NSString* coreURL;
+@property(nonatomic,strong) NSString* coreURL;
 
-@property(nonatomic,retain) NSString* clientId;
+@property(nonatomic,strong) NSString* clientId;
 
-@property(nonatomic,retain) NSString* casServerURL;
+@property(nonatomic,strong) NSString* casServerURL;
 
-@property(nonatomic,retain) NSString* pgtReceiveURL;
+@property(nonatomic,strong) NSString* pgtReceiveURL;
 
-@property(nonatomic,retain) NSString* pgtRetrieveURL;
+@property(nonatomic,strong) NSString* pgtRetrieveURL;
 
 @property(nonatomic) BOOL purgeFieldworkButton;
 

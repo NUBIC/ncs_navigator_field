@@ -18,7 +18,7 @@
 + (Person*) createPersonWithId:(NSString*)id name:(NSString*) n {
     Person *p = [Person object];
     p.name = n;
-    return [p autorelease];
+    return p;
 }
 
 
@@ -29,7 +29,6 @@
     
     NSDate* d = [f dateFromString:dateStr];
 
-    [f dealloc];
     
     return d;
 }
@@ -41,7 +40,6 @@
     
     NSDate* d = [f dateFromString:timeStr];
     
-    [f dealloc];
     
     return d;
 }
@@ -49,20 +47,20 @@
 + (Event*) createEventWithName:(NSString*)name {
     Event *e = [Event object];
     e.name = name;
-    return [e autorelease];
+    return e;
 }
 
 
 + (Instrument*) createInstrumentWithName:(NSString*)name {
     Instrument *i = [Instrument object];
     i.name = name;
-    return [i autorelease];
+    return i;
 }
 
 + (Contact*) createContactWithDate:(NSDate*)date {
     Contact *c = [Contact object];
     c.date = date;
-    return [c autorelease];
+    return c;
 }
 
 @end

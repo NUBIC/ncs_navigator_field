@@ -37,8 +37,8 @@
 #import "NUSurvey+Additions.h"
 
 @interface RootViewController () 
-    @property(nonatomic,retain) NSArray* contacts;
-    @property(nonatomic,retain) ContactNavigationTable* table;
+    @property(nonatomic,strong) NSArray* contacts;
+    @property(nonatomic,strong) ContactNavigationTable* table;
 @end
 
 @implementation RootViewController
@@ -56,7 +56,7 @@
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instrumentSelected:) name:@"InstrumentSelected" object:NULL];
         
-        self.reachability = [[[RKReachabilityObserver alloc] initWithHost:@"www.google.com"] autorelease];
+        self.reachability = [[RKReachabilityObserver alloc] initWithHost:@"www.google.com"];
         
         // Register for notifications
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -88,7 +88,7 @@
 - (void)toggleDeleteButton {
     ApplicationSettings* s = [ApplicationSettings instance];
     if (s.isPurgeFieldworkButton) {
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteButtonWasPressed)] autorelease];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteButtonWasPressed)];
     } else {
         self.navigationItem.leftBarButtonItem = NULL;
     }
@@ -106,12 +106,12 @@
 - (void) loadSurveyor:(Instrument*)instrument {
     if (instrument != NULL) {
         NSArray* surveys = [[instrument.instrumentPlan.instrumentTemplates array] collect:^id(InstrumentTemplate* tmpl){
-            NUSurvey* s = [[NUSurvey new] autorelease];
+            NUSurvey* s = [NUSurvey new];
             s.jsonString = tmpl.representation;
             return s;
         }];
         
-        NSMutableDictionary* assoc = [[NSMutableDictionary new] autorelease];
+        NSMutableDictionary* assoc = [NSMutableDictionary new];
         for (NUSurvey* s in surveys) {
             ResponseSet* found = [instrument.responseSets detect:^BOOL(ResponseSet* rs) {
                 NSString* rsSurveyId = [rs valueForKey:@"survey"];
@@ -120,8 +120,8 @@
             
             if (!found) {
                 NCSLog(@"No response set found for survey: %@", s.uuid);
-                NSDictionary* surveyDict = [[[SBJSON new] autorelease] objectWithString:s.jsonString];
-                found = [[ResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread] autorelease];
+                NSDictionary* surveyDict = [[SBJSON new] objectWithString:s.jsonString];
+                found = [ResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread];
                 [instrument addResponseSetsObject:found];
 
                 NCSLog(@"Creating new response set: %@", found.uuid);
@@ -138,7 +138,7 @@
         
         NCSLog(@"Loading surveyor with instrument plan: %@", instrument.instrumentPlan.instrumentPlanId);
         
-        MultiSurveyTVC *masterViewController = [[[MultiSurveyTVC alloc] initWithSurveys:surveys surveyResponseSetAssociations:assoc] autorelease];
+        MultiSurveyTVC *masterViewController = [[MultiSurveyTVC alloc] initWithSurveys:surveys surveyResponseSetAssociations:assoc];
         
         masterViewController.delegate = self;
         
@@ -181,7 +181,7 @@
 
 - (void) unloadSurveyor:(Instrument*)instrument {
     Contact* contact = instrument.event.contact;
-    NSDictionary* dict = [[[NSDictionary alloc] initWithObjectsAndKeys:contact, @"contact", instrument, @"instrument", nil] autorelease];
+    NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:contact, @"contact", instrument, @"instrument", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"StoppedAdministeringInstrument" object:self userInfo:dict];
     
 //    [surveyorMoc 
@@ -204,7 +204,7 @@
         [self confirmSync];
     } else {
         UIAlertView *message = 
-            [[[UIAlertView alloc] initWithTitle:@"Configuration Error" message:@"Please go into settings and configure the NCS Field Application before trying to sync." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+            [[UIAlertView alloc] initWithTitle:@"Configuration Error" message:@"Please go into settings and configure the NCS Field Application before trying to sync." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
         [message show];
     }
@@ -222,12 +222,12 @@
     NSString* msg = [NSString stringWithFormat:
                      @"\nThis sync will:\n\n1. Save %d contacts on the server\n2. Retrieve new server contacts\n3. Remove %d completed contacts\n\nWould you like to continue?", [self.contacts count], closed];
     
-    UIAlertView *alert = [[[UIAlertView alloc] 
+    UIAlertView *alert = [[UIAlertView alloc] 
                           initWithTitle: @"Synchronize Contacts"
                           message: msg
                           delegate: self
                           cancelButtonTitle: @"Cancel"
-                          otherButtonTitles: @"Sync", nil] autorelease];
+                          otherButtonTitles: @"Sync", nil];
 
     
     [alert show];
@@ -266,7 +266,7 @@
     
     self.contacts = [NSArray array];
     
-    self.simpleTable = [[[ContactNavigationTable alloc] initWithContacts:_contacts] autorelease];
+    self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
             
 	[self.tableView reloadData];
 }
@@ -291,7 +291,7 @@
     // http://stackoverflow.com/questions/5685331/run-mbprogresshud-in-another-thread
     [[NSRunLoop currentRunLoop] runUntilDate: [NSDate distantPast]];
     
-    FieldworkSynchronizeOperation* sync = [[[FieldworkSynchronizeOperation alloc] initWithServiceTicket:serviceTicket] autorelease];
+    FieldworkSynchronizeOperation* sync = [[FieldworkSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
     
     [sync perform];
     
@@ -299,7 +299,7 @@
     
     self.detailViewController.detailItem = NULL;
     
-    self.simpleTable = [[[ContactNavigationTable alloc] initWithContacts:_contacts] autorelease];
+    self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
     
 	[self.tableView reloadData];
 }
@@ -325,18 +325,18 @@
     self.clearsSelectionOnViewWillAppear = NO;
     self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     self.title = @"Contacts";
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStylePlain target:self action:@selector(syncButtonWasPressed)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStylePlain target:self action:@selector(syncButtonWasPressed)];
     [self toggleDeleteButton];
     
     // Init Sync Indicators
-    self.syncIndicator = [[[SyncActivityIndicator alloc] initWithView:self.splitViewController.view] autorelease];
+    self.syncIndicator = [[SyncActivityIndicator alloc] initWithView:self.splitViewController.view];
     self.syncIndicator.delegate = self;
 
     [self.splitViewController.view addSubview:self.syncIndicator];
 
     // Load Data from datastore
     [self loadObjectsFromDataStore];
-    self.simpleTable = [[[ContactNavigationTable alloc] initWithContacts:_contacts] autorelease];
+    self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
 }
 
 - (void)viewWillAppear:(BOOL)animated

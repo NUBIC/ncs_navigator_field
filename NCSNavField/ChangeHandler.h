@@ -13,7 +13,7 @@
     SEL _field;
 }
 
-@property(nonatomic,retain) id object;
+@property(nonatomic,strong) id object;
 @property(nonatomic) SEL field;
 
 - (id) initWithObject:(id)object field:(SEL)field;

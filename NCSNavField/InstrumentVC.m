@@ -21,7 +21,7 @@
 
 - (id)initWithInstrument:instrument {
     if (self = [super init]) {
-        _instrument = [instrument retain];
+        _instrument = instrument;
     }
     return self;
 }
@@ -52,7 +52,7 @@
     
     /* Left and Right Pane */
     CGRect rect = CGRectMake(o.x, o.y + 50, width, height - 50 );
-    UIScrollView* scroll = [[[NUScrollView alloc] initWithFrame:rect] autorelease];
+    UIScrollView* scroll = [[NUScrollView alloc] initWithFrame:rect];
     self.scrollView = scroll;
     
     CGRect lRect, rRect;
@@ -87,10 +87,6 @@
 	return YES;
 }
 
-- (void)dealloc {
-    [_instrument release];
-    [super dealloc];
-}
 
 
 - (void) setDefaults:(Instrument*)instrument {
@@ -117,9 +113,9 @@
 #pragma mark - Form
 
 - (UIView*) leftInstrumentContentWithFrame:(CGRect)frame contact:(Instrument*)instrument {
-    UIView* v = [[[UIView alloc] initWithFrame:frame] autorelease];
+    UIView* v = [[UIView alloc] initWithFrame:frame];
     
-    FormBuilder* b = [[[FormBuilder alloc] initWithView:v object:instrument] autorelease];
+    FormBuilder* b = [[FormBuilder alloc] initWithView:v object:instrument];
     
     [b sectionHeader:@"Instrument"];
     
@@ -145,9 +141,9 @@
 }
 
 - (UIView*) rightInstrumentContentWithFrame:(CGRect)frame contact:(Instrument*)instrument {
-    UIView* v = [[[UIView alloc] initWithFrame:frame] autorelease];
+    UIView* v = [[UIView alloc] initWithFrame:frame];
     
-    FormBuilder* b = [[[FormBuilder alloc] initWithView:v object:instrument] autorelease];
+    FormBuilder* b = [[FormBuilder alloc] initWithView:v object:instrument];
     
     [b sectionHeader:@""];
      
@@ -167,29 +163,29 @@
 }
 
 - (UIView*) toolbarWithFrame:(CGRect)frame {
-    UIToolbar* t = [[[UIToolbar alloc] initWithFrame:frame] autorelease];
+    UIToolbar* t = [[UIToolbar alloc] initWithFrame:frame];
     t.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
-    UIBarButtonItem* cancel = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
+    UIBarButtonItem* cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     
-    UIBarButtonItem* flexItem1 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:NULL action:NULL] autorelease];
+    UIBarButtonItem* flexItem1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:NULL action:NULL];
     
-    UILabel* titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0.0 , 11.0f, 200.0f, 21.0f)] autorelease];
+    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0 , 11.0f, 200.0f, 21.0f)];
     [titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setTextColor:[UIColor colorWithRed:113.0/255.0 green:120.0/255.0 blue:128.0/255.0 alpha:1.0]];
     [titleLabel setText:@"Instrument"];
     [titleLabel setTextAlignment:UITextAlignmentCenter];
-    UIBarButtonItem *toolBarTitle = [[[UIBarButtonItem alloc] initWithCustomView:titleLabel] autorelease];
+    UIBarButtonItem *toolBarTitle = [[UIBarButtonItem alloc] initWithCustomView:titleLabel];
     
     
     
-    UIBarButtonItem* flexItem2 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:NULL action:NULL] autorelease];
+    UIBarButtonItem* flexItem2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:NULL action:NULL];
     
-    UIBarButtonItem* done = [[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done)] autorelease];
+    UIBarButtonItem* done = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
     done.width = 100;
     
-    NSArray* a = [[[NSArray alloc] initWithObjects:cancel, flexItem1, toolBarTitle, flexItem2, done, nil] autorelease];
+    NSArray* a = [[NSArray alloc] initWithObjects:cancel, flexItem1, toolBarTitle, flexItem2, done, nil];
     [t setItems:a];
     return t;
 }

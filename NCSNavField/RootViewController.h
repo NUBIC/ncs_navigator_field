@@ -25,11 +25,11 @@
 }
 
 		
-@property (nonatomic, retain) IBOutlet ContactDisplayController *detailViewController;
-@property(nonatomic,retain) RKReachabilityObserver* reachability;
-@property(nonatomic,retain) MBProgressHUD* syncIndicator;
-@property(nonatomic,retain) Instrument* administeredInstrument;
-@property(nonatomic,retain) CasServiceTicket* serviceTicket;
+@property (nonatomic, strong) IBOutlet ContactDisplayController *detailViewController;
+@property(nonatomic,strong) RKReachabilityObserver* reachability;
+@property(nonatomic,strong) MBProgressHUD* syncIndicator;
+@property(nonatomic,strong) Instrument* administeredInstrument;
+@property(nonatomic,strong) CasServiceTicket* serviceTicket;
 - (void)toggleDeleteButton;
 - (void)purgeDataStore;
 - (void)loadSurveyor:(Instrument*)instrument;

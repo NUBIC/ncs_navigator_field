@@ -19,9 +19,9 @@
     SingleOptionPicker* _dispositionPicker;
 }
 
-@property(nonatomic,retain) Contact* contact;
-@property(nonatomic,retain) UIScrollView* scrollView;
-@property(nonatomic,retain) SingleOptionPicker* dispositionPicker;
+@property(nonatomic,strong) Contact* contact;
+@property(nonatomic,strong) UIScrollView* scrollView;
+@property(nonatomic,strong) SingleOptionPicker* dispositionPicker;
 
 - (id)initWithContact:(Contact*)contact;
 - (UIView*) toolbarWithFrame:(CGRect)frame;

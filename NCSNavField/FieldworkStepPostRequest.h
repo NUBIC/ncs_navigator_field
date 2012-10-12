@@ -14,11 +14,11 @@
     RKResponse* _response;
 }
 
-@property(nonatomic,retain) CasServiceTicket* ticket;
+@property(nonatomic,strong) CasServiceTicket* ticket;
 
-@property(nonatomic,retain) NSString* error;
+@property(nonatomic,strong) NSString* error;
 
-@property(nonatomic,retain) RKResponse* response;
+@property(nonatomic,strong) RKResponse* response;
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket;
 

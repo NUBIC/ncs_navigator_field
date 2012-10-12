@@ -27,10 +27,5 @@
     self.rows = rows;
 }
 
-- (void) dealloc {
-    [_rows release];
-    [_name release];
-    [super dealloc];
-}
 
 @end

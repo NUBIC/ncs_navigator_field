@@ -13,11 +13,11 @@
 @dynamic instrumentTemplateId,representation,participantType;
 
 - (void)setRepresentationDictionary:(NSDictionary*)r {
-    self.representation = [[[[SBJSON alloc] init] autorelease] stringWithObject:r];
+    self.representation = [[[SBJSON alloc] init] stringWithObject:r];
 }
 
 - (NSDictionary*)representationDictionary {
-    return [[[[SBJSON alloc] init] autorelease] objectWithString:self.representation];
+    return [[[SBJSON alloc] init] objectWithString:self.representation];
 }
 
 @end

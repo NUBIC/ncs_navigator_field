@@ -15,7 +15,7 @@
 -(id) init {
     self = [super init];
     if (self) {
-        _name = [[self generateBackupFilename] retain];
+        _name = [self generateBackupFilename];
     }
     return self;
 }
@@ -29,7 +29,7 @@
 }
 
 - (NSString*)generateBackupFilename {
-    NSDateFormatter *timeFmt = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *timeFmt = [[NSDateFormatter alloc] init];
     [timeFmt setDateFormat:@"yyyyMMddHHmmss"];
     [timeFmt setTimeZone:[NSTimeZone localTimeZone]];
     return [NSString stringWithFormat:@"%@-%@.sqlite", [ApplicationPersistentStoreBackup prefix], [timeFmt stringFromDate:[NSDate date]]];
@@ -45,7 +45,7 @@
 
 + (void)removeAll {
     NSString* path = [RKDirectory applicationDataDirectory];
-    NSFileManager* fm = [[[NSFileManager alloc] init] autorelease];
+    NSFileManager* fm = [[NSFileManager alloc] init];
     NSDirectoryEnumerator* en = [fm enumeratorAtPath:path];
     NSError* err = nil;
     BOOL res;
@@ -62,9 +62,5 @@
     }
 }
 
-- (void)dealloc {
-    [_name release];
-    [super dealloc];
-}
 
 @end

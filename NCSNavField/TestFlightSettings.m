@@ -18,7 +18,7 @@ static TestFlightSettings* instance;
 - (id)init {
     self = [super init];
     if (self) {
-        _teamToken = [[[self retrieveTeamToken] retain] autorelease];
+        _teamToken = [self retrieveTeamToken];
     }
     
     return self;
@@ -35,7 +35,7 @@ static TestFlightSettings* instance;
     NSString* token = NULL;
     NSData *data = [NSData dataWithContentsOfFile:[self teamTokenFilePath]];  
     if (data) {  
-        token = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
+        token = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     }
     return token;
     

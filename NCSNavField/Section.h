@@ -14,7 +14,7 @@
     NSString *_name;
 }
 
-@property(nonatomic,retain) NSArray *rows;
+@property(nonatomic,strong) NSArray *rows;
 @property(nonatomic,copy) NSString *name;
 
 - (Section*) initWithName:(NSString*)name andRows:(NSArray*) rows;

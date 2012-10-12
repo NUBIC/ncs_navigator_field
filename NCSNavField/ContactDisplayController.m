@@ -22,7 +22,7 @@
 #import "EventVC.h"
 
 @interface ContactDisplayController ()
-@property (nonatomic, retain) UIPopoverController *popoverController;
+@property (nonatomic, strong) UIPopoverController *popoverController;
 - (void)configureView;
 @end
 
@@ -59,7 +59,7 @@
 - (void) stoppedAdministeringInstrument:(NSNotification*)notification {
     Instrument* i = [[notification userInfo] objectForKey:@"instrument"];
     
-    InstrumentVC* ivc = [[[InstrumentVC alloc] initWithInstrument:i] autorelease];   
+    InstrumentVC* ivc = [[InstrumentVC alloc] initWithInstrument:i];   
     ivc.modalPresentationStyle = UIModalPresentationFullScreen;  
     [self presentViewController:ivc animated:YES completion:^{
         [self refreshView];
@@ -68,7 +68,7 @@
 }
 
 - (void) refreshView {
-    self.simpleTable = [[[ContactTable alloc]initUsingContact:self.detailItem] autorelease];
+    self.simpleTable = [[ContactTable alloc]initUsingContact:self.detailItem];
     [self.tableView reloadData];
 }
 
@@ -80,8 +80,7 @@
 - (void)setDetailItem:(Contact*)newDetailItem
 {
     if (_detailItem != newDetailItem) {
-        [_detailItem release];
-        _detailItem = [newDetailItem retain];
+        _detailItem = newDetailItem;
         
         // Update the view.
         [self configureView];
@@ -100,13 +99,13 @@
     if (self.detailItem) {
         // Update the user interface for the detail item.
         Contact *c = self.detailItem;
-        self.simpleTable = [[[ContactTable alloc]initUsingContact:c] autorelease];
+        self.simpleTable = [[ContactTable alloc]initUsingContact:c];
         
-        NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"MMM dd 'at' HH:mm"];
         self.eventDateLabel.text = [dateFormatter stringFromDate:c.date];
         //    self.dwellingIdLabel.text = [self.detailItem dwelling].id;
-        UILabel *header = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)] autorelease];
+        UILabel *header = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
         header.backgroundColor = [UIColor groupTableViewBackgroundColor];
         header.textAlignment = UITextAlignmentCenter;
         header.text = c.person.name;
@@ -115,10 +114,10 @@
         [self.tableView reloadData];
     } else {
         self.simpleTable = NULL;
-        UITableView *myTable = [[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped] autorelease];
+        UITableView *myTable = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         
         if ([ApplicationInformation isTestEnvironment]) {
-            myTable.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"test-background.png"]] autorelease];
+            myTable.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"test-background.png"]];
         }
         self.tableView = myTable;
     }
@@ -135,14 +134,14 @@
 {
     [super viewDidAppear:animated];
     CGRect r = CGRectMake(self.view.frame.size.width-155, self.view.frame.size.height-25, 150, 25);
-    UILabel* l = [[[UILabel alloc] initWithFrame:r] autorelease];
+    UILabel* l = [[UILabel alloc] initWithFrame:r];
     l.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     l.textAlignment = UITextAlignmentRight;
     l.backgroundColor = [UIColor clearColor];
     [self.view addSubview:l];
     
     if ([ApplicationInformation isTestEnvironment]) {
-        ((UITableView*)self.view).backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"test-background.png"]] autorelease];
+        ((UITableView*)self.view).backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"test-background.png"]];
     }
 }
 
@@ -165,12 +164,12 @@
 - (UITableViewCell*) cellForRowClass:(NSString *)rowClass {
     UITableViewCell *cell;
     if ([rowClass isEqualToString:@"contact"] || [rowClass isEqualToString:@"instrument"] || [rowClass isEqualToString:@"instrument-details"] || [rowClass isEqualToString:@"event"]) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier:rowClass] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier:rowClass];
         cell.textLabel.font =[UIFont fontWithName:@"Arial" size:20];
         cell.textLabel.textAlignment = UITextAlignmentCenter;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2  reuseIdentifier:rowClass] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2  reuseIdentifier:rowClass];
         cell.textLabel.numberOfLines = 0;
         cell.detailTextLabel.numberOfLines = 0;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -182,29 +181,29 @@
     NSString* rc = row.rowClass;
     if ([rc isEqualToString:@"instrument"]) {
         Instrument* selected = row.entity;
-        NSDictionary* dict = [[[NSDictionary alloc] initWithObjectsAndKeys:selected, @"instrument", nil] autorelease];
+        NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:selected, @"instrument", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"InstrumentSelected" object:self userInfo:dict]; 
     } else if ([rc isEqualToString:@"instrument-details"]) {
         Instrument* selected = row.entity;
-        InstrumentVC* ivc = [[[InstrumentVC alloc] initWithInstrument:selected] autorelease];   
+        InstrumentVC* ivc = [[InstrumentVC alloc] initWithInstrument:selected];   
         ivc.modalPresentationStyle = UIModalPresentationFullScreen;  
         [self presentViewController:ivc animated:YES completion:NULL];
     } else if ([rc isEqualToString:@"contact"]) {
         if (self.detailItem.initiated) {
-            self.simpleTable = [[[ContactTable alloc]initUsingContact:self.detailItem] autorelease];
+            self.simpleTable = [[ContactTable alloc]initUsingContact:self.detailItem];
             [self.tableView reloadData];
             
-            ContactCloseVC* cc = [[[ContactCloseVC alloc] initWithContact:self.detailItem] autorelease];
+            ContactCloseVC* cc = [[ContactCloseVC alloc] initWithContact:self.detailItem];
             cc.modalPresentationStyle = UIModalPresentationFullScreen;  
             [self presentViewController:cc animated:YES completion:NULL];
         } else {
-            ContactInitiateVC* cc = [[[ContactInitiateVC alloc] initWithContact:self.detailItem] autorelease];
+            ContactInitiateVC* cc = [[ContactInitiateVC alloc] initWithContact:self.detailItem];
             cc.modalPresentationStyle = UIModalPresentationFormSheet;
             [self presentViewController:cc animated:YES completion:NULL];
         }
     } else if ([rc isEqualToString:@"event"]) {
         Event* selected = row.entity;
-        EventVC* evc = [[[EventVC alloc] initWithEvent:selected] autorelease];   
+        EventVC* evc = [[EventVC alloc] initWithEvent:selected];   
         evc.modalPresentationStyle = UIModalPresentationFullScreen;  
         [self presentViewController:evc animated:YES completion:NULL];
     }
@@ -218,7 +217,6 @@
     NSMutableArray *items = [[self.toolbar items] mutableCopy];
     [items insertObject:barButtonItem atIndex:0];
     [self.toolbar setItems:items animated:YES];
-    [items release];
     self.popoverController = pc;
 }
 
@@ -228,7 +226,6 @@
     NSMutableArray *items = [[self.toolbar items] mutableCopy];
     [items removeObjectAtIndex:0];
     [self.toolbar setItems:items animated:YES];
-    [items release];
     self.popoverController = nil;
 }
 
@@ -259,13 +256,5 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
-- (void)dealloc
-{
-    [_myPopoverController release];
-    [_toolbar release];
-    [_detailItem release];
-    [_detailDescriptionLabel release];
-    [super dealloc];
-}
 
 @end

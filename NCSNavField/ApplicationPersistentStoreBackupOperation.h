@@ -13,8 +13,8 @@
     NSString* _backup;
 }
 
-@property(nonatomic,retain) NSString* main;
-@property(nonatomic,retain) NSString* backup;
+@property(nonatomic,strong) NSString* main;
+@property(nonatomic,strong) NSString* backup;
 
 -(id)initWithMainPersistentStorePath:(NSString*)main andBackupStorePath:(NSString*)backupPath;
 

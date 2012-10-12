@@ -13,8 +13,8 @@
 
 @interface InstrumentPlan : NSManagedObject
 
-@property (nonatomic, retain) NSString * instrumentPlanId;
-@property (nonatomic, retain) NSOrderedSet *instrumentTemplates;
+@property (nonatomic, strong) NSString * instrumentPlanId;
+@property (nonatomic, strong) NSOrderedSet *instrumentTemplates;
 @end
 
 @interface InstrumentPlan (CoreDataGeneratedAccessors)

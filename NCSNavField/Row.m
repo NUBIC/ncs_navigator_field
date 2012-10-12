@@ -40,11 +40,4 @@
     return self;
 }
 
-- (void) dealloc {
-    [_entity release];
-    [_text release];
-    [_detailText release];
-    [_rowClass release];
-    [super dealloc];
-}
 @end

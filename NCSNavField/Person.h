@@ -10,17 +10,17 @@
 
 @interface Person : NSManagedObject
 
-@property(nonatomic,retain) NSString* personId;
-@property(nonatomic,retain) NSString* name;
-@property(nonatomic,retain) NSString* email;
-@property(nonatomic,retain) NSString* cellPhone;
-@property(nonatomic,retain) NSString* homePhone;
-@property(nonatomic,retain) NSString* street;
-@property(nonatomic,retain) NSString* city;
-@property(nonatomic,retain) NSString* zipCode; 
-@property(nonatomic,retain) NSString* state;
+@property(nonatomic,strong) NSString* personId;
+@property(nonatomic,strong) NSString* name;
+@property(nonatomic,strong) NSString* email;
+@property(nonatomic,strong) NSString* cellPhone;
+@property(nonatomic,strong) NSString* homePhone;
+@property(nonatomic,strong) NSString* street;
+@property(nonatomic,strong) NSString* city;
+@property(nonatomic,strong) NSString* zipCode; 
+@property(nonatomic,strong) NSString* state;
 
 
-@property(nonatomic,retain) NSString* participant;
+@property(nonatomic,strong) NSString* participant;
 
 @end

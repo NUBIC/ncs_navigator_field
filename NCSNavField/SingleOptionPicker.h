@@ -33,17 +33,17 @@ enum {
     NUPickerVCPopoverSize _popoverSize;
 }
 
-@property(nonatomic,retain) NSNumber* value;
+@property(nonatomic,strong) NSNumber* value;
 
-@property(nonatomic,retain) UIButton* button;
+@property(nonatomic,strong) UIButton* button;
 
-@property(nonatomic,retain) NUPickerVC* picker;
+@property(nonatomic,strong) NUPickerVC* picker;
 
-@property(nonatomic,retain) ChangeHandler* handler;
+@property(nonatomic,strong) ChangeHandler* handler;
 
-@property(nonatomic,retain) NSArray* pickerOptions;
+@property(nonatomic,strong) NSArray* pickerOptions;
 
-@property(nonatomic,retain) UIPopoverController* popover;
+@property(nonatomic,strong) UIPopoverController* popover;
 
 @property(nonatomic) NUPickerVCPopoverSize popoverSize;
 

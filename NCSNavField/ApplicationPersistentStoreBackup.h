@@ -12,7 +12,7 @@
     NSString* _name;
 }
 
-@property(nonatomic,retain) NSString* name;
+@property(nonatomic,strong) NSString* name;
 
 - (void)remove;
 

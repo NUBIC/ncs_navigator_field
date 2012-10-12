@@ -15,7 +15,7 @@
     Contact* _contact;
 }
 
-@property(nonatomic,retain) Contact* contact;
+@property(nonatomic,strong) Contact* contact;
 
 - (id)initWithContact:(Contact*)contact;
 - (void) setDefaults:(Contact*) contact;

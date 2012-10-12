@@ -22,7 +22,7 @@
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket {
     self = [super init];
     if (self) {
-        _ticket = [ticket retain];
+        _ticket = ticket;
     }
     return self;
 }
@@ -57,7 +57,7 @@
     ApplicationPersistentStoreBackup* backup = [store backup];
     NCSLog(@"Backup path: %@", [backup path]);
     if (backup) {
-        FieldworkPutRequest* put = [[[FieldworkPutRequest alloc] initWithServiceTicket:self.ticket] autorelease];
+        FieldworkPutRequest* put = [[FieldworkPutRequest alloc] initWithServiceTicket:self.ticket];
         if ([put send]) {
             [store remove];
             [ApplicationPersistentStoreBackup removeAll];
@@ -69,18 +69,14 @@
 }
 
 - (BOOL)receive {
-    FieldworkStepPostRequest* post = [[[FieldworkStepPostRequest alloc] initWithServiceTicket:self.ticket] autorelease];
+    FieldworkStepPostRequest* post = [[FieldworkStepPostRequest alloc] initWithServiceTicket:self.ticket];
     return [post send];
 }
 
 - (BOOL) poll:(NSString*)mergeStatusId {
-    MergeStatusRequest* request = [[[MergeStatusRequest alloc] initWithMergeStatusId:mergeStatusId andServiceTicket:self.ticket] autorelease];
+    MergeStatusRequest* request = [[MergeStatusRequest alloc] initWithMergeStatusId:mergeStatusId andServiceTicket:self.ticket];
     return [request poll];
 }
 
-- (void)dealloc {
-    [_ticket release];
-    [super dealloc];
-}
 
 @end

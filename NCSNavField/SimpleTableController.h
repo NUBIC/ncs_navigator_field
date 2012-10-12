@@ -15,7 +15,7 @@
     id<ISimpleTable> _simpleTable;
 }
 
-@property(nonatomic,retain) id<ISimpleTable> simpleTable;
+@property(nonatomic,strong) id<ISimpleTable> simpleTable;
 
 - (void) didSelectRow:(Row*)row;
 - (UITableViewCell*)cellForRowClass:(NSString*)rowClass;

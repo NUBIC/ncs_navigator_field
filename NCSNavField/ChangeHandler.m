@@ -30,7 +30,6 @@
             [f setNumberStyle:NSNumberFormatterDecimalStyle];
             NSNumber* tranformed = [value isKindOfClass:[NSString class]] ? [f numberFromString:value] : value;
             [self.object setValue:tranformed forKey:NSStringFromSelector(self.field)];
-            [f release];
         } else {
             [self.object setValue:value forKey:NSStringFromSelector(self.field)];
         }
@@ -39,8 +38,4 @@
     }
 }
 
-- (void)dealloc {
-    [_object release];
-    [super dealloc];
-}
 @end

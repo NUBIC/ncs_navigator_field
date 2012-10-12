@@ -50,13 +50,13 @@
 }
 
 - (NSDateFormatter*) getDateFormatter {
-    NSDateFormatter* dateFormatter = [[NSDateFormatter new] autorelease];
+    NSDateFormatter* dateFormatter = [NSDateFormatter new];
     [dateFormatter setDateFormat:@"hh:mm a"];
     return dateFormatter;
 }
 
 - (NUPickerVC*) buildPickerVC {
-    NUPickerVC* p= [[[NUPickerVC alloc] init] autorelease];
+    NUPickerVC* p= [[NUPickerVC alloc] init];
     [p loadView];
     [p viewDidLoad];
     [p setupDelegate:self withTitle:@"Pick a time" date:YES];
@@ -69,8 +69,8 @@
 }
 
 - (UIPopoverController*)buildPopoverVCWithPicker:(NUPickerVC*)picker {
-    UINavigationController *nav = [[[UINavigationController alloc] initWithRootViewController:picker] autorelease];
-    UIPopoverController* popoverVC = [[[UIPopoverController alloc] initWithContentViewController: nav] autorelease];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:picker];
+    UIPopoverController* popoverVC = [[UIPopoverController alloc] initWithContentViewController: nav];
     popoverVC.delegate = self;
     return popoverVC;
 }
@@ -111,13 +111,5 @@
     [self.popover dismissPopoverAnimated:NO];
 }
 
-- (void)dealloc {
-    [_button release];
-    [_date release];
-    if (_handler) {
-        [_handler release];
-    }
-    [super dealloc];
-}
 
 @end

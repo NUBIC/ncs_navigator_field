@@ -16,9 +16,9 @@
     NSString* _interimCode;
 }
 
-@property(nonatomic,retain) NSString* event;
-@property(nonatomic,retain) NSString* disposition;
-@property(nonatomic,retain) NSString* interimCode;
+@property(nonatomic,strong) NSString* event;
+@property(nonatomic,strong) NSString* disposition;
+@property(nonatomic,strong) NSString* interimCode;
 
 + (NSArray*) all;
 + (NSArray*) pickerOptions;

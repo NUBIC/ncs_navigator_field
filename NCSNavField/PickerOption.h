@@ -13,7 +13,7 @@
     NSInteger _value;
 }
 
-@property(nonatomic,retain) NSString* text;
+@property(nonatomic,strong) NSString* text;
 
 - (id) initWithText:(NSString*)t value:(NSInteger)v;
 - (NSInteger) value;

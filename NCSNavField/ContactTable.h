@@ -19,8 +19,8 @@
     NSArray *_sections;
 }
 
-@property(nonatomic,retain) NSArray* sections;
-@property(nonatomic,retain) Contact* contact;
+@property(nonatomic,strong) NSArray* sections;
+@property(nonatomic,strong) Contact* contact;
 
 - (id)initUsingContact:(Contact*)contact;
 - (NSArray*) buildSectionsFromContact:(Contact*)contact;

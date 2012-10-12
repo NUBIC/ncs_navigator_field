@@ -14,9 +14,9 @@
     NSInteger _activeSurveyIndex;
 }
 
-@property(nonatomic,retain) NSArray* surveys;
+@property(nonatomic,strong) NSArray* surveys;
 
-@property(nonatomic,retain) NSDictionary* surveyResponseSetAssociations;
+@property(nonatomic,strong) NSDictionary* surveyResponseSetAssociations;
 
 @property(nonatomic) NSInteger activeSurveyIndex;
 

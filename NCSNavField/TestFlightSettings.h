@@ -12,7 +12,7 @@
     NSString* _teamToken;
 }
 
-@property(nonatomic,retain) NSString* teamToken;
+@property(nonatomic,strong) NSString* teamToken;
 
 + (TestFlightSettings*) instance;
 

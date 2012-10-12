@@ -22,7 +22,7 @@
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket {
     self = [super init];
     if (self) {
-        _ticket = [ticket retain];
+        _ticket = ticket;
     }
     return self;
 }
@@ -55,7 +55,7 @@
     [st present];
     if (st.ok) {
         CasConfiguration* conf = [ApplicationSettings casConfiguration];
-        CasClient* client = [[[CasClient alloc] initWithConfiguration:conf] autorelease];
+        CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
         NSString* coreURL = [ApplicationSettings instance].coreURL;
         
         CasProxyTicket* pending = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:st.pgt];
@@ -119,7 +119,7 @@
 - (void)showErrorMessage:(NSString *)message {
     NCSLog(@"%@", message);
 
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 }
 

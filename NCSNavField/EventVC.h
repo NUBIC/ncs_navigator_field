@@ -16,8 +16,8 @@
     UIScrollView* _scrollView;
 }
 
-@property(nonatomic,retain) Event* event;
-@property(nonatomic,retain) UIScrollView* scrollView;
+@property(nonatomic,strong) Event* event;
+@property(nonatomic,strong) UIScrollView* scrollView;
 
 - (id)initWithEvent:event;
 

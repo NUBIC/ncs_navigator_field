@@ -22,7 +22,7 @@ ContactNavigationTable* dvp;
 {
     [super setUp];
     
-    NSDateFormatter* f = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter* f = [[NSDateFormatter alloc] init];
     [f setDateFormat:@"yyyy'-'MM'-'dd'"];
     [f setTimeZone:[NSTimeZone localTimeZone]];
 
@@ -36,7 +36,7 @@ ContactNavigationTable* dvp;
     c3.date = [f dateFromString:@"2010-12-09"];
     
     NSArray *contacts = [NSArray arrayWithObjects:c1, c2, c3, nil];
-    dvp = [[[ContactNavigationTable alloc] initWithContacts:contacts] autorelease];
+    dvp = [[ContactNavigationTable alloc] initWithContacts:contacts];
 }
 
 - (void)tearDown

@@ -15,9 +15,9 @@
     NSString* _objectStoreFileName;
 }
 
-@property(nonatomic,retain) NSString* baseServiceURL;
+@property(nonatomic,strong) NSString* baseServiceURL;
 
-@property(nonatomic,retain) NSString* objectStoreFileName;
+@property(nonatomic,strong) NSString* objectStoreFileName;
 
 + (RestKitSettings*) instance;
 

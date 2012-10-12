@@ -15,7 +15,7 @@
     NSDictionary* entities = [[[[NSManagedObjectContext contextForCurrentThread] persistentStoreCoordinator] managedObjectModel] entitiesByName];
     NSEntityDescription *entity = [entities objectForKey:@"Response"];
     id object = [[self alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
-    return [object autorelease];
+    return object;
 }
 
 @end

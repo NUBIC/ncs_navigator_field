@@ -53,7 +53,7 @@
 }
 
 - (UITableViewCell*)cellForRowClass:(NSString*)rowClass {
-    return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier:rowClass] autorelease];
+    return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier:rowClass];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

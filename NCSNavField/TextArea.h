@@ -15,9 +15,9 @@
     UITextField* _textField;
 }
 
-@property(nonatomic,retain) ChangeHandler* handler;
+@property(nonatomic,strong) ChangeHandler* handler;
 
-@property(nonatomic,retain) UITextView* textView;
+@property(nonatomic,strong) UITextView* textView;
 
 
 - (id)initWithFrame:(CGRect)frame value:(NSString*)value;

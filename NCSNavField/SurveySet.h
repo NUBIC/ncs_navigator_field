@@ -19,13 +19,13 @@
     NSArray* _prePopulatedQuestionRefs;
 }
 
-@property(nonatomic,retain) NSArray* surveys;
+@property(nonatomic,strong) NSArray* surveys;
 
-@property(nonatomic,retain) NSArray* responseSets;
+@property(nonatomic,strong) NSArray* responseSets;
 
-@property(nonatomic,retain) Participant* participant;
+@property(nonatomic,strong) Participant* participant;
 
-@property(nonatomic,retain) NSArray* prePopulatedQuestionRefs;
+@property(nonatomic,strong) NSArray* prePopulatedQuestionRefs;
 
 #pragma mark - Instance Methods
 
@@ -44,9 +44,9 @@
     NSString* _value;
 }
 
-@property(nonatomic,retain) NSString* attribute;
+@property(nonatomic,strong) NSString* attribute;
 
-@property(nonatomic,retain) NSString* value;
+@property(nonatomic,strong) NSString* value;
 
 - (id)initWithAttribute:(NSString*)attr value:(NSString*)value;
 
@@ -63,9 +63,9 @@
     NSString* _value;
 }
 
-@property(nonatomic,retain) NSString* attribute;
+@property(nonatomic,strong) NSString* attribute;
 
-@property(nonatomic,retain) NSString* value;
+@property(nonatomic,strong) NSString* value;
 
 - (id)initWithAttribute:(NSString*)attr value:(NSString*)value;
 
@@ -82,9 +82,9 @@
     QuestionRef* _dest;
 }
 
-@property(nonatomic,retain) QuestionRef* src;
+@property(nonatomic,strong) QuestionRef* src;
 
-@property(nonatomic,retain) QuestionRef* dest;
+@property(nonatomic,strong) QuestionRef* dest;
 
 - (id)initWithSource:(QuestionRef*)src destination:(QuestionRef*)dest;
 

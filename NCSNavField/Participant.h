@@ -10,8 +10,8 @@
 
 @interface Participant : NSManagedObject
 
-@property(nonatomic,retain) NSString* pId;
+@property(nonatomic,strong) NSString* pId;
 
-@property(nonatomic,retain) NSSet* persons;
+@property(nonatomic,strong) NSSet* persons;
 
 @end

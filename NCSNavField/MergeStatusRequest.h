@@ -17,11 +17,11 @@
     CasServiceTicket* _serviceTicket;
 }
 
-@property(nonatomic,retain) NSString* mergeStatusId;
+@property(nonatomic,strong) NSString* mergeStatusId;
 
-@property(nonatomic,retain) NSString* error;
+@property(nonatomic,strong) NSString* error;
 
-@property(nonatomic,retain) CasServiceTicket* serviceTicket;
+@property(nonatomic,strong) CasServiceTicket* serviceTicket;
 
 - (id) initWithMergeStatusId:(NSString*)fieldworkId andServiceTicket:(CasServiceTicket*)serviceTicket;
 

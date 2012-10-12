@@ -14,52 +14,52 @@
 
 @interface Instrument : NSManagedObject 
 
-@property(nonatomic,retain) NSString* instrumentId;
+@property(nonatomic,strong) NSString* instrumentId;
 
-@property(nonatomic,retain) NSString* instrumentPlanId;
+@property(nonatomic,strong) NSString* instrumentPlanId;
 
-@property(nonatomic,retain) NSString* name;
+@property(nonatomic,strong) NSString* name;
 
-@property(nonatomic,retain) NSNumber* instrumentTypeId;
+@property(nonatomic,strong) NSNumber* instrumentTypeId;
 
-@property(nonatomic,retain) NSString* instrumentTypeOther;
+@property(nonatomic,strong) NSString* instrumentTypeOther;
 
-@property(nonatomic,retain) NSString* instrumentVersion;
+@property(nonatomic,strong) NSString* instrumentVersion;
 
-@property(nonatomic,retain) NSNumber* repeatKey;
+@property(nonatomic,strong) NSNumber* repeatKey;
 
-@property(nonatomic,retain) NSDate* startDate;
+@property(nonatomic,strong) NSDate* startDate;
 
-@property(nonatomic,retain) NSDate* startTime;
+@property(nonatomic,strong) NSDate* startTime;
 
-@property(nonatomic,retain) NSDate* endDate;
+@property(nonatomic,strong) NSDate* endDate;
 
-@property(nonatomic,retain) NSDate* endTime;
+@property(nonatomic,strong) NSDate* endTime;
 
-@property(nonatomic,retain) NSNumber* statusId;
+@property(nonatomic,strong) NSNumber* statusId;
 
-@property(nonatomic,retain) NSNumber* breakOffId;
+@property(nonatomic,strong) NSNumber* breakOffId;
 
-@property(nonatomic,retain) NSNumber* instrumentModeId;
+@property(nonatomic,strong) NSNumber* instrumentModeId;
 
-@property(nonatomic,retain) NSString* instrumentModeOther;
+@property(nonatomic,strong) NSString* instrumentModeOther;
 
-@property(nonatomic,retain) NSNumber* instrumentMethodId;
+@property(nonatomic,strong) NSNumber* instrumentMethodId;
 
-@property(nonatomic,retain) NSNumber* supervisorReviewId;
+@property(nonatomic,strong) NSNumber* supervisorReviewId;
 
-@property(nonatomic,retain) NSNumber* dataProblemId;
+@property(nonatomic,strong) NSNumber* dataProblemId;
 
-@property(nonatomic,retain) NSString* comment;
+@property(nonatomic,strong) NSString* comment;
 
 
 /* Associations */
 
-@property(nonatomic,retain) Event* event;
+@property(nonatomic,strong) Event* event;
 
-@property(nonatomic,retain) InstrumentPlan* instrumentPlan;
+@property(nonatomic,strong) InstrumentPlan* instrumentPlan;
 
-@property(nonatomic,retain) NSSet* responseSets;
+@property(nonatomic,strong) NSSet* responseSets;
 
 
 #pragma setter

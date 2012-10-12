@@ -10,11 +10,11 @@
 
 @interface MergeStatus : NSManagedObject
 
-@property(nonatomic,retain) NSString* status;
+@property(nonatomic,strong) NSString* status;
 
-@property(nonatomic,retain) NSString* mergeStatusId;
+@property(nonatomic,strong) NSString* mergeStatusId;
 
-@property(nonatomic,retain) NSDate* createdAt;
+@property(nonatomic,strong) NSDate* createdAt;
 
 + (id) parseFromJson:(NSString*)json;
 

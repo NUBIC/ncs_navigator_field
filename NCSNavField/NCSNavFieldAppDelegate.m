@@ -40,7 +40,7 @@
     
     // Set Undo Manager
     NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
-    NSUndoManager *undoManager = [[[NSUndoManager alloc] init] autorelease];
+    NSUndoManager *undoManager = [[NSUndoManager alloc] init];
     [moc setUndoManager:undoManager];
 
     // Override point for customization after application launch.
@@ -99,12 +99,6 @@
      */
 }
 
-- (void)dealloc
-{
-    [_window release];
-    [_splitViewController release];
-    [super dealloc];
-}
 
 
 @end

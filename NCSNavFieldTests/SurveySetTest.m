@@ -25,7 +25,7 @@ static NUSurvey* surveyB;
 - (void)setUp {
     participant = [self createParticipant:@"yak423"];
 
-    surveyA = [[NUSurvey new] autorelease];
+    surveyA = [NUSurvey new];
     surveyA.jsonString =
         @"{"
          "  \"uuid\":\"survey-a\","
@@ -50,7 +50,7 @@ static NUSurvey* surveyB;
          "  }]"
          "}";
     
-    surveyB = [[NUSurvey new] autorelease];
+    surveyB = [NUSurvey new];
     surveyB.jsonString =
         @"{"
          "  \"uuid\":\"survey-b\","
@@ -81,7 +81,7 @@ static NUSurvey* surveyB;
     participant = [self createParticipant:@"yak423"];
     responseSetB = [self createResponseSetWithSurveyId:@"survey-b" participantId:participant.pId];
     
-    surveySet = [[[SurveySet alloc] initWithSurveys:[NSArray arrayWithObjects:surveyA,surveyB,nil] andResponseSets:[NSArray arrayWithObject:responseSetA] forParticipant:participant] autorelease];
+    surveySet = [[SurveySet alloc] initWithSurveys:[NSArray arrayWithObjects:surveyA,surveyB,nil] andResponseSets:[NSArray arrayWithObject:responseSetA] forParticipant:participant];
 
     surveySet.prePopulatedQuestionRefs = [NSArray arrayWithObjects:
                                           [self destRefId:@"pre_populated_name" srcDataExpId:@"name"],
@@ -91,7 +91,7 @@ static NUSurvey* surveyB;
 #pragma mark - SurveySet#generateResponseSet
 
 - (void)testEmptyResponseSetGenerated {
-    SurveySet* ss = [[[SurveySet alloc] initWithSurveys:[NSArray array] andResponseSets:[NSArray array] forParticipant:participant] autorelease];
+    SurveySet* ss = [[SurveySet alloc] initWithSurveys:[NSArray array] andResponseSets:[NSArray array] forParticipant:participant];
     
     ResponseSet* act = [ss generateResponseSetForSurveyId:@"survey-z"];
     
@@ -127,7 +127,7 @@ static NUSurvey* surveyB;
     NUSurvey* noPrePop = [NUSurvey new];
     noPrePop.jsonString = @"{\"uuid\":\"survey-d\"}";
     ResponseSet* rsNoPrePop = [self createResponseSetWithSurveyId:@"survey-d" participantId:participant.pId];
-    SurveySet* ss = [[[SurveySet alloc] initWithSurveys:[NSArray arrayWithObject:noPrePop] andResponseSets:[NSArray arrayWithObject:rsNoPrePop] forParticipant:participant] autorelease];
+    SurveySet* ss = [[SurveySet alloc] initWithSurveys:[NSArray arrayWithObject:noPrePop] andResponseSets:[NSArray arrayWithObject:rsNoPrePop] forParticipant:participant];
     ResponseSet* act = [ss populateResponseSet:rsNoPrePop forSurveyId:@"survey-d"];
     STAssertEqualObjects([act valueForKey:@"survey"], @"survey-d", @"Wrong survey id");
     STAssertEqualObjects([act valueForKey:@"pId"], @"yak423", @"Wrong pId");
@@ -186,9 +186,9 @@ static NUSurvey* surveyB;
 }
 
 - (PrePopulatedQuestionRefSet*) destRefId:(NSString*)destRefId srcDataExpId:(NSString*)srcExpId {
-    QuestionRef* src = [[[QuestionRef alloc] initWithAttribute:@"data_export_identifier" value:srcExpId] autorelease];
-    QuestionRef* dest = [[[QuestionRef alloc] initWithAttribute:@"reference_identifier" value:destRefId] autorelease];
-    return [[[PrePopulatedQuestionRefSet alloc] initWithSource:src destination:dest] autorelease];
+    QuestionRef* src = [[QuestionRef alloc] initWithAttribute:@"data_export_identifier" value:srcExpId];
+    QuestionRef* dest = [[QuestionRef alloc] initWithAttribute:@"reference_identifier" value:destRefId];
+    return [[PrePopulatedQuestionRefSet alloc] initWithSource:src destination:dest];
 }
 
 @end

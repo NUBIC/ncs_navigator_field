@@ -14,7 +14,7 @@
 @dynamic status, mergeStatusId, createdAt;
 
 + (id) parseFromJson:(NSString*)json {
-    SBJSON* sb = [[[SBJSON alloc] init] autorelease];
+    SBJSON* sb = [[SBJSON alloc] init];
     NSDictionary* dict = [sb objectWithString:json];
     MergeStatus* ms = [MergeStatus object];
     id s = [dict objectForKey:@"status"];
@@ -57,7 +57,7 @@
 + (NSString*)mergeStatusIdFromUri:(NSString*)uri {
     NSString* ident = NULL;
     if (uri) {
-        NSString* rel = [[[[NSURL alloc] initWithString:uri] autorelease] relativePath];
+        NSString* rel = [[[NSURL alloc] initWithString:uri] relativePath];
         ident = [[rel componentsSeparatedByString:@"/"] lastObject];
     }
     return ident;

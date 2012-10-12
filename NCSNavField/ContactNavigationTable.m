@@ -20,16 +20,16 @@
 - (ContactNavigationTable*)initWithContacts: (NSArray*)contacts {
     self = [super init];
     if (self) {
-        _sections = [[self buildSectionsUsingContacts:contacts] retain];
+        _sections = [self buildSectionsUsingContacts:contacts];
     }
     return self;
 }
 
 - (NSArray*) buildSectionsUsingContacts:(NSArray*) contacts {
-    NSMutableArray* sections = [[NSMutableArray new] autorelease];
+    NSMutableArray* sections = [NSMutableArray new];
     NSSet *uniqueDates = [NSCountedSet setWithArray:[contacts valueForKey:@"date"]];
     for (NSDate *d in uniqueDates) {
-        Section *s = [[Section new] autorelease];
+        Section *s = [Section new];
         s.name = [self buildSectionNameUsingDate:d];
         
         NSPredicate *findByDate = [NSPredicate predicateWithFormat:@"date == %@", d];
@@ -46,14 +46,13 @@
     NSDateFormatter *f = [[NSDateFormatter alloc] init];
     [f setDateFormat:@"MMMM dd"];
     NSString *name = [f stringFromDate:date];
-    [f release];
     return name;
 }
 
 - (NSArray*) buildRowsUsingContacts:(NSArray*)contacts {
-    NSMutableArray *rows = [[NSMutableArray new] autorelease];
+    NSMutableArray *rows = [NSMutableArray new];
     for (Contact *c in contacts) {
-        Row *r = [[Row new] autorelease];
+        Row *r = [Row new];
         r.text = c.person.name;
         r.detailText = [NSString stringWithFormat:@"%@ instruments", [NSNumber numberWithInt:[c.events count]]];
         r.entity = c;
@@ -62,9 +61,5 @@
     return rows;
 }
 
-- (void)dealloc {
-    [_sections release];
-    [super dealloc];
-}
 
 @end

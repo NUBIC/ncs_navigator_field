@@ -30,7 +30,7 @@
     if (self = [super init]) {
         self.view = view;
         self.object = obj;
-        self.cursor = [[FormBuilderCursor new] autorelease];
+        self.cursor = [FormBuilderCursor new];
     }
     return self;
 }
@@ -45,11 +45,11 @@
 }
 
 - (FormBuilder*) fieldsForObject:(id)object {
-    return [[[FormBuilder alloc] initWithView:self.view object:object cursor:self.cursor] autorelease];
+    return [[FormBuilder alloc] initWithView:self.view object:object cursor:self.cursor];
 }
 
 - (void) sectionHeader:(NSString*)text {
-    UILabel* l = [[[UILabel alloc] initWithFrame:CGRectMake(2, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT)] autorelease];
+    UILabel* l = [[UILabel alloc] initWithFrame:CGRectMake(2, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT)];
     l.text = text;
     l.backgroundColor = [UIColor colorWithRed: 1.0 green: 1.0 blue: 1.0 alpha:0.0];
     l.font = [UIFont boldSystemFontOfSize:18];
@@ -59,7 +59,7 @@
 }
 
 - (void) labelWithText:(NSString*)text {
-    UILabel* l = [[[UILabel alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT)] autorelease];
+    UILabel* l = [[UILabel alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT)];
     l.text = text;
     l.backgroundColor = [UIColor colorWithRed: 1.0 green: 1.0 blue: 1.0 alpha:0.0];
     [self.view addSubview:l];
@@ -67,8 +67,8 @@
 }
 
 - (SingleOptionPicker*) singleOptionPickerForProperty:(SEL)property WithPickerOptions:(NSArray*)options andPopoverSize:(NUPickerVCPopoverSize)popoverSize {
-    SingleOptionPicker* b = [[[SingleOptionPicker alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:(NSNumber*)[self objectValueForKey:property] pickerOptions:options popoverSize:popoverSize] autorelease];
-    [b addChangeHandler:[[[ChangeHandler alloc] initWithObject:self.object field:property] autorelease]];
+    SingleOptionPicker* b = [[SingleOptionPicker alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:(NSNumber*)[self objectValueForKey:property] pickerOptions:options popoverSize:popoverSize];
+    [b addChangeHandler:[[ChangeHandler alloc] initWithObject:self.object field:property]];
     [self.view addSubview:b];
     [self.cursor addNewLine];
     return b;
@@ -79,29 +79,29 @@
 }
 
 - (void) datePickerForProperty:(SEL)property {
-    DatePicker* b = [[[DatePicker alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:[self objectValueForKey:property]] autorelease];
-    [b addChangeHandler:[[[ChangeHandler alloc] initWithObject:self.object field:property] autorelease]];
+    DatePicker* b = [[DatePicker alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:[self objectValueForKey:property]];
+    [b addChangeHandler:[[ChangeHandler alloc] initWithObject:self.object field:property]];
     [self.view addSubview:b];
     [self.cursor addNewLine];
 }
 
 - (void) timePickerForProperty:(SEL)property {
-    TimePicker* t = [[[TimePicker alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:[self objectValueForKey:property]] autorelease];
-    [t addChangeHandler:[[[ChangeHandler alloc] initWithObject:self.object field:property] autorelease]];
+    TimePicker* t = [[TimePicker alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:[self objectValueForKey:property]];
+    [t addChangeHandler:[[ChangeHandler alloc] initWithObject:self.object field:property]];
     [self.view addSubview:t];
     [self.cursor addNewLine];
 }
 
 - (void) textFieldForProperty:(SEL)property {
-    TextField* t = [[[TextField alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:[self objectValueForKey:property]] autorelease];
-    [t addChangeHandler:[[[ChangeHandler alloc] initWithObject:self.object field:property] autorelease]];
+    TextField* t = [[TextField alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:[self objectValueForKey:property]];
+    [t addChangeHandler:[[ChangeHandler alloc] initWithObject:self.object field:property]];
     [self.view addSubview:t];
     [self.cursor addNewLine];
 }
 
 - (void) textAreaForProperty:(SEL)property {
-    TextArea* t = [[[TextArea alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, 200) value:[self objectValueForKey:property]] autorelease];
-    [t addChangeHandler:[[[ChangeHandler alloc] initWithObject:self.object field:property] autorelease]];
+    TextArea* t = [[TextArea alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, 200) value:[self objectValueForKey:property]];
+    [t addChangeHandler:[[ChangeHandler alloc] initWithObject:self.object field:property]];
     [self.view addSubview:t];
     [self.cursor addNewLine];
 }
@@ -111,11 +111,5 @@
     return [_object respondsToSelector:key] ? [_object performSelector:key] : NULL;
 }
 
-- (void)dealloc {
-    [_view release];
-    [_object release];
-    [_cursor release];
-    [super dealloc];
-}
 
 @end

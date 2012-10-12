@@ -16,7 +16,7 @@
     BOOL _editable;
 }
 
-@property(nonatomic,retain) id entity;
+@property(nonatomic,strong) id entity;
 @property(nonatomic,copy) NSString *text;
 @property(nonatomic,copy) NSString *detailText;
 @property(nonatomic,copy) NSString *rowClass;

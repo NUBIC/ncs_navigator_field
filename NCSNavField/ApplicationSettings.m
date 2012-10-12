@@ -33,11 +33,11 @@ static ApplicationSettings* instance;
 - (id)init {
     self = [super init];
     if (self) {
-        _clientId = [[self retreiveClientId] retain];
-        _coreURL = [[self retreiveCoreURL] retain];
-        _casServerURL = [[self casServerURL] retain];
-        _pgtReceiveURL = [[self pgtReceiveURL] retain];
-        _pgtRetrieveURL = [[self pgtRetrieveURL] retain];
+        _clientId = [self retreiveClientId];
+        _coreURL = [self retreiveCoreURL];
+        _casServerURL = [self casServerURL];
+        _pgtReceiveURL = [self pgtReceiveURL];
+        _pgtRetrieveURL = [self pgtRetrieveURL];
         _purgeFieldworkButton = [self isPurgeFieldworkButton];
         _upcomingDaysToSync = [self upcomingDaysToSync];
         
@@ -76,7 +76,7 @@ static ApplicationSettings* instance;
     if (cid == nil)
     {
         CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-        NSString *uuid = [(NSString *)CFUUIDCreateString(NULL,uuidRef) autorelease];
+        NSString *uuid = (NSString *)CFBridgingRelease(CFUUIDCreateString(NULL,uuidRef));
         CFRelease(uuidRef);
         [[NSUserDefaults standardUserDefaults] setValue:uuid forKey:CLIENT_ID];
     }
@@ -109,7 +109,7 @@ static ApplicationSettings* instance;
 
 + (CasConfiguration*) casConfiguration {
     ApplicationSettings* s = [ApplicationSettings instance];
-    return [[[CasConfiguration alloc] initWithCasURL:s.casServerURL receiveURL:s.pgtReceiveURL retrieveURL:s.pgtRetrieveURL] autorelease];
+    return [[CasConfiguration alloc] initWithCasURL:s.casServerURL receiveURL:s.pgtReceiveURL retrieveURL:s.pgtRetrieveURL];
 }
 
 - (BOOL) coreSynchronizeConfigured {
@@ -158,16 +158,7 @@ static ApplicationSettings* instance;
     }
     
     [defs registerDefaults:defaultsToRegister];
-    [defaultsToRegister release];
     [defs synchronize];
 }
 
-- (void)dealloc {
-    [_coreURL release];
-    [_clientId release];
-    [_casServerURL release];
-    [_pgtReceiveURL release];
-    [_pgtRetrieveURL release];
-    [super dealloc];
-}
 @end

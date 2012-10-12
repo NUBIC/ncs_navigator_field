@@ -10,17 +10,17 @@
 
 @interface Fieldwork : NSManagedObject
 
-@property(readonly) NSString *fieldworkId;
+@property(weak, readonly) NSString *fieldworkId;
 
-@property(nonatomic,retain) NSString* uri;
+@property(nonatomic,strong) NSString* uri;
 
-@property(nonatomic,retain) NSDate* retrievedDate;
+@property(nonatomic,strong) NSDate* retrievedDate;
 
-@property(nonatomic,retain) NSSet* participants;
+@property(nonatomic,strong) NSSet* participants;
 
-@property(nonatomic,retain) NSSet* contacts;
+@property(nonatomic,strong) NSSet* contacts;
 
-@property(nonatomic,retain) NSSet* instrumentTemplates;
+@property(nonatomic,strong) NSSet* instrumentTemplates;
 
 + (Fieldwork*)submission;
 

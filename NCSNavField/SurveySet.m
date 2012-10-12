@@ -25,11 +25,11 @@
 
 - (id)initWithSurveys:(NSArray*)s andResponseSets:(NSArray*)rs forParticipant:(Participant*)p {
     if (self = [self init]) {
-        _surveys = [s retain];
-        _responseSets = [rs retain];
-        _participant = [p retain];
+        _surveys = s;
+        _responseSets = rs;
+        _participant = p;
         
-        _prePopulatedQuestionRefs = [[self defaultPrePopulatedQuestionRefs] retain];
+        _prePopulatedQuestionRefs = [self defaultPrePopulatedQuestionRefs];
     }
     return self;
 }
@@ -53,9 +53,9 @@
 }
 
 - (PrePopulatedQuestionRefSet*) destRefId:(NSString*)destRefId srcDataExpId:(NSString*)srcExpId {
-    QuestionRef* src = [[[QuestionRef alloc] initWithAttribute:@"data_export_identifier" value:srcExpId] autorelease];
-    QuestionRef* dest = [[[QuestionRef alloc] initWithAttribute:@"reference_identifier" value:destRefId] autorelease];
-    return [[[PrePopulatedQuestionRefSet alloc] initWithSource:src destination:dest] autorelease];
+    QuestionRef* src = [[QuestionRef alloc] initWithAttribute:@"data_export_identifier" value:srcExpId];
+    QuestionRef* dest = [[QuestionRef alloc] initWithAttribute:@"reference_identifier" value:destRefId];
+    return [[PrePopulatedQuestionRefSet alloc] initWithSource:src destination:dest];
 }
 
 - (ResponseSet*)generateResponseSetForSurveyId:(NSString*)sid {
@@ -92,7 +92,7 @@
 
 // TODO: Move to surveyor
 - (NSArray*)prePopulatedResponsesForSurvey:(NUSurvey*)survey {
-    NSMutableArray* result = [[NSMutableArray new] autorelease];
+    NSMutableArray* result = [NSMutableArray new];
     if (survey) {
         for (PrePopulatedQuestionRefSet* pqrs in self.prePopulatedQuestionRefs) {
             NSDictionary* dstQuestion = [pqrs.dest resolveInSurvey:survey];
@@ -139,13 +139,6 @@
     return nil;
 }
 
-- (void)dealloc {
-    [_surveys release];
-    [_responseSets release];
-    [_participant release];
-    [_prePopulatedQuestionRefs release];
-    [super dealloc];
-}
 
 @end
 
@@ -157,8 +150,8 @@
 
 - (id)initWithAttribute:(NSString*)attr value:(NSString*)value {
     if (self = [self init]) {
-        _attribute = [attr retain];
-        _value = [value retain];
+        _attribute = attr;
+        _value = value;
     }
     return self;
 }
@@ -178,7 +171,7 @@
 }
 
 - (NSDictionary*) questionDictByAttribute:(NSString*)attr forSurvey:(NUSurvey*)survey {
-    NSMutableDictionary* result = [[NSMutableDictionary new] autorelease];
+    NSMutableDictionary* result = [NSMutableDictionary new];
     for (NSDictionary* section in [[survey deserialized] valueForKey:@"sections"]) {
         for (NSDictionary* questionOrGroup in [section valueForKey:@"questions_and_groups"]) {
             if ([questionOrGroup valueForKey:attr]) {
@@ -194,11 +187,6 @@
     return result;
 }
 
-- (void)dealloc {
-    [_attribute release];
-    [_value release];
-    [super dealloc];
-}
 
 @end
 
@@ -211,8 +199,8 @@
 
 - (id)initWithAttribute:(NSString*)attr value:(NSString*)value {
     if (self = [self init]) {
-        _attribute = [attr retain];
-        _value = [value retain];
+        _attribute = attr;
+        _value = value;
     }
     return self;
 }
@@ -232,7 +220,7 @@
 }
 
 - (NSDictionary*) questionDictByAttribute:(NSString*)attr forSurvey:(NUSurvey*)survey {
-    NSMutableDictionary* result = [[NSMutableDictionary new] autorelease];
+    NSMutableDictionary* result = [NSMutableDictionary new];
     for (NSDictionary* section in [[survey deserialized] valueForKey:@"sections"]) {
         for (NSDictionary* questionOrGroup in [section valueForKey:@"questions_and_groups"]) {
             for (NSDictionary* answer in [questionOrGroup valueForKey:@"answers"]) {
@@ -252,11 +240,6 @@
     return result;
 }
 
-- (void)dealloc {
-    [_attribute release];
-    [_value release];
-    [super dealloc];
-}
 
 @end
 
@@ -268,16 +251,11 @@
 
 - (id)initWithSource:(QuestionRef*)src destination:(QuestionRef*)dest {
     if (self = [self init]) {
-        _src = [src retain];
-        _dest = [dest retain];
+        _src = src;
+        _dest = dest;
     }
     return self;
 }
 
-- (void)dealloc {
-    [_src release];
-    [_dest release];
-    [super dealloc];
-}
 
 @end

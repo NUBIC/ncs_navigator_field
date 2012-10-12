@@ -21,9 +21,9 @@
     FormBuilderCursor* _cursor;
 }
 
-@property(nonatomic,retain)UIView* view;
-@property(nonatomic,retain)id object;
-@property(nonatomic,retain)FormBuilderCursor* cursor;
+@property(nonatomic,strong)UIView* view;
+@property(nonatomic,strong)id object;
+@property(nonatomic,strong)FormBuilderCursor* cursor;
 
 - (id) initWithView:(UIView*)view object:(id)obj;
 

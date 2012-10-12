@@ -12,7 +12,7 @@
     CasServiceTicket* _ticket;
 }
 
-@property(nonatomic,retain) CasServiceTicket* ticket;
+@property(nonatomic,strong) CasServiceTicket* ticket;
 
 - (id)initWithServiceTicket:(CasServiceTicket*)ticket;
 

@@ -19,12 +19,12 @@
     UIPopoverController* _popover;
 }
 
-@property(nonatomic,retain) NSDate* date;
-@property(nonatomic,retain) UIButton* button;
-@property(nonatomic,retain) NUPickerVC* picker;
-@property(nonatomic,retain) ChangeHandler* handler;
-@property(nonatomic,retain) UIPopoverController* popover;
-@property(readonly,getter = getDateFormatter) NSDateFormatter* dateFormatter;
+@property(nonatomic,strong) NSDate* date;
+@property(nonatomic,strong) UIButton* button;
+@property(nonatomic,strong) NUPickerVC* picker;
+@property(nonatomic,strong) ChangeHandler* handler;
+@property(nonatomic,strong) UIPopoverController* popover;
+@property(weak, readonly,getter = getDateFormatter) NSDateFormatter* dateFormatter;
 
 - (id)initWithFrame:(CGRect)frame value:(NSDate*)value;
 - (void) addChangeHandler:(ChangeHandler*)handler;

@@ -16,54 +16,54 @@
 
 #pragma mark properties
 
-@property(nonatomic,retain) NSString* contactId;
+@property(nonatomic,strong) NSString* contactId;
 
-@property(nonatomic,retain) NSNumber* typeId;
+@property(nonatomic,strong) NSNumber* typeId;
 
-@property(nonatomic,retain) NSDate* date;
+@property(nonatomic,strong) NSDate* date;
 
-@property(nonatomic,retain) NSDate* startTime;
+@property(nonatomic,strong) NSDate* startTime;
 
-@property(nonatomic,retain) NSDate* endTime;
+@property(nonatomic,strong) NSDate* endTime;
 
-@property(nonatomic,retain) NSString* personId;
+@property(nonatomic,strong) NSString* personId;
 
 @property(nonatomic) BOOL initiated;
 
-@property(nonatomic,retain) NSNumber* locationId;
+@property(nonatomic,strong) NSNumber* locationId;
 
-@property(nonatomic,retain) NSString* locationOther;
+@property(nonatomic,strong) NSString* locationOther;
 
-@property(nonatomic,retain) NSNumber* whoContactedId;
+@property(nonatomic,strong) NSNumber* whoContactedId;
 
-@property(nonatomic,retain) NSString* whoContactedOther;
+@property(nonatomic,strong) NSString* whoContactedOther;
 
-@property(nonatomic,retain) NSString* comments;
+@property(nonatomic,strong) NSString* comments;
 
-@property(nonatomic,retain) NSNumber* languageId;
+@property(nonatomic,strong) NSNumber* languageId;
 
-@property(nonatomic,retain) NSString* languageOther;
+@property(nonatomic,strong) NSString* languageOther;
 
-@property(nonatomic,retain) NSNumber* interpreterId;
+@property(nonatomic,strong) NSNumber* interpreterId;
 
-@property(nonatomic,retain) NSString* interpreterOther;
+@property(nonatomic,strong) NSString* interpreterOther;
 
-@property(nonatomic,retain) NSNumber* privateId;
+@property(nonatomic,strong) NSNumber* privateId;
 
-@property(nonatomic,retain) NSString* privateDetail;
+@property(nonatomic,strong) NSString* privateDetail;
 
-@property(nonatomic,retain) NSNumber* distanceTraveled;
+@property(nonatomic,strong) NSNumber* distanceTraveled;
 
-@property(nonatomic,retain) NSNumber* dispositionId;
+@property(nonatomic,strong) NSNumber* dispositionId;
 
-@property(nonatomic,retain) NSString* version;
+@property(nonatomic,strong) NSString* version;
 
 
 #pragma mark relations
 
-@property(nonatomic,retain) NSSet* events;
+@property(nonatomic,strong) NSSet* events;
 
-@property(nonatomic,retain) Person* person;
+@property(nonatomic,strong) Person* person;
 
 
 #pragma mark methods

@@ -17,8 +17,8 @@
     self = [super init];
     
     if (self) {
-        _main = [main retain];
-        _backup = [backup retain];
+        _main = main;
+        _backup = backup;
     }
     return self;
 }

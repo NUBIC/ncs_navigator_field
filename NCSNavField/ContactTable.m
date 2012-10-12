@@ -23,8 +23,8 @@
 - (id)initUsingContact:(Contact*)contact {
     self = [super init];
     if (self) {
-        _contact = [[contact retain] autorelease];
-        _sections = [[self buildSectionsFromContact:contact] retain];
+        _contact = contact;
+        _sections = [self buildSectionsFromContact:contact];
     }
     
     return self;
@@ -42,44 +42,44 @@
 
 // TODO: Figure out a better way to handle large addresses like resize cell
 - (Section*) addresses {
-    NSMutableArray* addresses = [[NSMutableArray new] autorelease];
+    NSMutableArray* addresses = [NSMutableArray new];
 
     if (self.contact.person) {
-        Row *home = [[[Row alloc] 
-                     initWithText:@"Home" entity:_contact.person rowClass:@"address"] autorelease];
+        Row *home = [[Row alloc] 
+                     initWithText:@"Home" entity:_contact.person rowClass:@"address"];
 
         Person *p = _contact.person;
         home.detailText = [NSString stringWithFormat:@"%@\n%@, %@ %@", [self ReplaceFirstNewLine:p.street], p.city, p.state, p.zipCode];
         [addresses addObject:home];
     }
 
-    return [[[Section alloc] initWithName:@"Address" andRows:addresses] autorelease];
+    return [[Section alloc] initWithName:@"Address" andRows:addresses];
 }
 
 - (Section*) phones {
-    NSMutableArray* phones = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray* phones = [[NSMutableArray alloc] init];
 
     if (![NSStringHelper isEmpty:_contact.person.homePhone]) {
-        Row* home = [[[Row alloc] initWithText:@"Home" detailText:_contact.person.homePhone] autorelease];
+        Row* home = [[Row alloc] initWithText:@"Home" detailText:_contact.person.homePhone];
         [phones addObject:home];
     }
     if (![NSStringHelper isEmpty:_contact.person.cellPhone]) {
-        Row* cell = [[[Row alloc] initWithText:@"Cell" detailText:_contact.person.cellPhone] autorelease];
+        Row* cell = [[Row alloc] initWithText:@"Cell" detailText:_contact.person.cellPhone];
         [phones addObject:cell];
     }
     
-    return [[[Section alloc] initWithName:@"Phone" andRows:phones] autorelease];
+    return [[Section alloc] initWithName:@"Phone" andRows:phones];
 }
 
 - (Section*) emails {
-    NSMutableArray* emails = [[NSMutableArray new] autorelease];
+    NSMutableArray* emails = [NSMutableArray new];
     
     if (![NSStringHelper isEmpty:self.contact.person.email]) {
-        Row* home =[[[Row alloc] initWithText:@"Home" detailText:_contact.person.email] autorelease];
+        Row* home =[[Row alloc] initWithText:@"Home" detailText:_contact.person.email];
         [emails addObject:home];
     }
 
-    return [[[Section alloc] initWithName:@"Email" andRows:emails] autorelease];
+    return [[Section alloc] initWithName:@"Email" andRows:emails];
 }
 
 
@@ -96,8 +96,8 @@
         txt = [NSString stringWithFormat:@"Start Contact for %@", eventsText];
     }
     
-    Row* c = [[[Row alloc] initWithText:txt entity:self.contact rowClass:@"contact"] autorelease];
-    return [[[Section alloc] initWithName:@"Contact" andRows:[NSArray arrayWithObject:c]] autorelease];
+    Row* c = [[Row alloc] initWithText:txt entity:self.contact rowClass:@"contact"];
+    return [[Section alloc] initWithName:@"Contact" andRows:[NSArray arrayWithObject:c]];
 }
 
 - (NSArray*) sortedEvents {
@@ -110,38 +110,38 @@
 }
 
 - (Section*) scheduledInstruments {
-    NSMutableArray* instruments = [[NSMutableArray new] autorelease];
+    NSMutableArray* instruments = [NSMutableArray new];
 
     for (Event* e in [self sortedEvents]) {
         for (Instrument* i in e.instruments) {
             NSString* t = [NSString stringWithFormat:@"%@ %@", i.name, @"Instrument"];
             
-            Row* r = [[[Row alloc] 
-                        initWithText:t entity:i rowClass:@"instrument"] autorelease];
+            Row* r = [[Row alloc] 
+                        initWithText:t entity:i rowClass:@"instrument"];
 
             [instruments addObject:r];
         }
     }
     
-    return [[[Section alloc] initWithName:@"Scheduled Instruments" andRows:instruments] autorelease];
+    return [[Section alloc] initWithName:@"Scheduled Instruments" andRows:instruments];
 }
 
 - (Section*) scheduledEvents {
-    NSMutableArray* events = [[NSMutableArray new] autorelease];
+    NSMutableArray* events = [NSMutableArray new];
 
     for (Event* e in [self sortedEvents]) {
         NSString* t = [NSString stringWithFormat:@"%@ %@", e.name, @"Event"];
-        Row* r = [[[Row alloc] initWithText:t entity:e rowClass:@"event"] autorelease];
+        Row* r = [[Row alloc] initWithText:t entity:e rowClass:@"event"];
         [events addObject:r];
     }
     
-    return [[[Section alloc] initWithName:@"Events" andRows:events] autorelease];
+    return [[Section alloc] initWithName:@"Events" andRows:events];
 }
 
 - (NSString*) ReplaceFirstNewLine:(NSString*) original {
     NSMutableString* trim = nil;
     if (original) {
-        trim = [[[NSMutableString stringWithString:original] retain ]autorelease];
+        trim = [NSMutableString stringWithString:original];
         
         NSRange foundRange = [original rangeOfString:@"\n"];
         if (foundRange.location != NSNotFound)
@@ -156,7 +156,7 @@
 }
 
 - (NSArray*) rejectEmptySections:(NSArray*)raw {
-    NSMutableArray* f = [[NSMutableArray new] autorelease];
+    NSMutableArray* f = [NSMutableArray new];
     for (Section* s in raw) {
         if (s && s.rows && [s.rows count] > 0) {
             [f addObject:s];
@@ -165,9 +165,5 @@
     return f;
 }
 
-- (void)dealloc {
-    [_sections release];
-    [super dealloc];
-}
 
 @end

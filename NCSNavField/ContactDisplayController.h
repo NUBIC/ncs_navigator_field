@@ -18,13 +18,13 @@
     ContactUpdateController* _contactDetailController;
 }
 
-@property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
-@property (nonatomic, retain) Contact* detailItem;
-@property (nonatomic, retain) IBOutlet UILabel *detailDescriptionLabel;
-@property (nonatomic, retain) IBOutlet UILabel *eventDateLabel;
-@property (nonatomic, retain) IBOutlet UILabel* dwellingIdLabel;
+@property (nonatomic, strong) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, strong) Contact* detailItem;
+@property (nonatomic, strong) IBOutlet UILabel *detailDescriptionLabel;
+@property (nonatomic, strong) IBOutlet UILabel *eventDateLabel;
+@property (nonatomic, strong) IBOutlet UILabel* dwellingIdLabel;
 
-@property(nonatomic, retain) IBOutlet ContactUpdateController* contactDetailController;
+@property(nonatomic, strong) IBOutlet ContactUpdateController* contactDetailController;
 
 - (void) refreshView;
 

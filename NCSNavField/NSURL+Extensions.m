@@ -12,7 +12,7 @@
 
 - (NSURL*) urlByAppendingPathComponent: (NSString*) component {
     CFURLRef newURL = CFURLCreateCopyAppendingPathComponent( kCFAllocatorDefault, (CFURLRef)[self absoluteURL], (CFStringRef)component, [component hasSuffix:@"/"] );
-    return [NSMakeCollectable(newURL) autorelease];
+    return CFBridgingRelease(newURL);
 }
 
 @end

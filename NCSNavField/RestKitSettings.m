@@ -31,15 +31,15 @@ static RestKitSettings* instance;
 @synthesize objectStoreFileName = _objectStoreFileName;
 
 + (RestKitSettings*) instance {
-    instance = [[[RestKitSettings alloc] init] autorelease];
+    instance = [[RestKitSettings alloc] init];
     return instance;
 }
 
 - (id)init {
     self = [super init];
     if (self) {
-        _baseServiceURL = [[ApplicationSettings instance].coreURL retain];
-        _objectStoreFileName = [STORE_NAME retain];
+        _baseServiceURL = [ApplicationSettings instance].coreURL;
+        _objectStoreFileName = STORE_NAME;
     }
     return self;
 }
@@ -47,8 +47,8 @@ static RestKitSettings* instance;
 - (id)initWithBaseServiceURL:(NSString*)url objectStoreFileName:(NSString*)file {
     self = [super init];
     if (self) {
-        _baseServiceURL = [url retain];
-        _objectStoreFileName = [file retain];
+        _baseServiceURL = url;
+        _objectStoreFileName = file;
     }
     return self;
 }
@@ -56,7 +56,7 @@ static RestKitSettings* instance;
 + (void)reload {
     RestKitSettings* s = [RestKitSettings instance];
     s.baseServiceURL = [ApplicationSettings instance].coreURL;
-    [RKObjectManager sharedManager].client = [[[RKClient alloc] initWithBaseURLString:s.baseServiceURL] autorelease];
+    [RKObjectManager sharedManager].client = [[RKClient alloc] initWithBaseURLString:s.baseServiceURL];
 
 //    [RKObjectManager sharedManager].client.baseURL = [[RKURL alloc] initWithString:s.baseServiceURL];
 }
@@ -80,7 +80,7 @@ static RestKitSettings* instance;
     
     [self addMappingsToObjectManager: objectManager];
     
-    RKObjectRouter* router = [[RKObjectRouter new] autorelease];
+    RKObjectRouter* router = [RKObjectRouter new];
     [router routeClass:[Fieldwork class] toResourcePath:@"/api/v1/fieldwork/:fieldworkId"];
     [RKObjectManager sharedManager].router = router;
     
@@ -351,10 +351,5 @@ static RestKitSettings* instance;
 }
 
 
-- (void)dealloc {
-    [_baseServiceURL release];
-    [_objectStoreFileName release];
-    [super dealloc];
-}
 
 @end
