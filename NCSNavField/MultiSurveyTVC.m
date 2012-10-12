@@ -14,6 +14,10 @@
 #import "ResponseSet.h"
 #import "SurveySet.h"
 
+@interface NUSurveyTVC()
+- (void) showSection:(NSUInteger) index;
+@end
+
 @implementation MultiSurveyTVC
 
 
@@ -114,7 +118,7 @@
     }
     
     // TODO: Fix for ARC
-	//[self showSection:indexPath.row];
+    [self showSection:indexPath.row];
 }
 
 - (void)setActiveSurvey:(NSInteger)index {
