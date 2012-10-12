@@ -12,7 +12,7 @@
 
 
 @interface TextArea()
-    - (UITextView*)initTextViewWithFrame:(CGRect)frame value:(NSString*)value;
+    - (UITextView*)buildTextViewWithFrame:(CGRect)frame value:(NSString*)value;
 @end
 
 @implementation TextArea
@@ -22,7 +22,7 @@
 
 static TextArea* _activeField = nil;
 
-- (UITextView*)initTextViewWithFrame:(CGRect)frame value:(NSString*)value {
+- (UITextView*)buildTextViewWithFrame:(CGRect)frame value:(NSString*)value {
     CGRect r = CGRectMake(0, 0, frame.size.width, frame.size.height);
     UITextView* t = [[UITextView alloc] initWithFrame:r];
     t.text = value;
@@ -47,7 +47,7 @@ static TextArea* _activeField = nil;
 - (id)initWithFrame:(CGRect)frame value:(NSString*)value {
     self = [super initWithFrame:frame];
     if (self) {
-        self.textView = [self initTextViewWithFrame:frame value:value];
+        self.textView = [self buildTextViewWithFrame:frame value:value];
         [self addSubview:self.textView];
     }
     return self;

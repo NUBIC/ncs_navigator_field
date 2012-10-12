@@ -55,7 +55,7 @@
     return dateFormatter;
 }
 
-- (NUPickerVC*) initPickerVC {
+- (NUPickerVC*) buildPickerVC {
     NUPickerVC* p= [[[NUPickerVC alloc] init] autorelease];
     [p loadView];
     [p viewDidLoad];
@@ -68,7 +68,7 @@
     return p;
 }
 
-- (UIPopoverController*)initPopoverVCWithPicker:(NUPickerVC*)picker {
+- (UIPopoverController*)buildPopoverVCWithPicker:(NUPickerVC*)picker {
     UINavigationController *nav = [[[UINavigationController alloc] initWithRootViewController:picker] autorelease];
     UIPopoverController* popoverVC = [[[UIPopoverController alloc] initWithContentViewController: nav] autorelease];
     popoverVC.delegate = self;
@@ -77,10 +77,10 @@
 
 - (void)showPicker {
     if (!self.picker) {
-        self.picker = [self initPickerVC];
+        self.picker = [self buildPickerVC];
     }
     if (!self.popover) {
-        self.popover = [self initPopoverVCWithPicker:self.picker];
+        self.popover = [self buildPopoverVCWithPicker:self.picker];
     }
     [self.popover presentPopoverFromRect:self.frame inView:self.superview permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
 }

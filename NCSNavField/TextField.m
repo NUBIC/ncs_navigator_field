@@ -16,7 +16,7 @@
 
 static TextField* _activeField = nil;
 
-- (UITextField*)initTextFieldWithValue:(NSString*)value {
+- (UITextField*)buildTextFieldWithValue:(NSString*)value {
     UITextField* t = [[[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30)] autorelease];
     t.borderStyle = UITextBorderStyleRoundedRect;
     t.textColor = [UIColor blackColor]; //text color
@@ -38,7 +38,7 @@ static TextField* _activeField = nil;
 - (id)initWithFrame:(CGRect)frame value:(NSString*)value {
     self = [super initWithFrame:frame];
     if (self) {
-        self.textField = [self initTextFieldWithValue:value];        
+        self.textField = [self buildTextFieldWithValue:value];        
         [self addSubview:self.textField];
     }
     return self;

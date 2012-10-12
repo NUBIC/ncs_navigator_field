@@ -11,6 +11,7 @@
 #import "ResponseSet.h"
 #import "Participant.h"
 #import <NUSurveyor/NUSurvey.h>
+#import <NUSurveyor/NUResponse.h>
 
 @implementation SurveySetTest
 

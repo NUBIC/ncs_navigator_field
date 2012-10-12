@@ -113,7 +113,8 @@
         [self setActiveSurvey:selected];
     }
     
-	[self showSection:indexPath.row];
+    // TODO: Fix for ARC
+	//[self showSection:indexPath.row];
 }
 
 - (void)setActiveSurvey:(NSInteger)index {
