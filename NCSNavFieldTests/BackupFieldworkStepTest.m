@@ -43,6 +43,7 @@ ApplicationPersistentStoreBackup* backup;
 - (void) tearDown {
     NSFileManager* dfm = [NSFileManager defaultManager];
     [dfm removeItemAtPath:[self backupFieldworkPath] error:NULL];
+    [dfm removeItemAtPath:[self testFilePath] error:NULL];
 }
 
 - (void)testGenerateBackupFilename {
@@ -68,7 +69,7 @@ ApplicationPersistentStoreBackup* backup;
 }
 
 - (void)testRemoveAllOnlyRemovesBackups {
-    NSString* tf = [[[backup path] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"testfile"];
+    NSString* tf = [self testFilePath];
     [self touch:tf];
     STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:tf], @"Should exist");
     [ApplicationPersistentStoreBackup removeAll];
