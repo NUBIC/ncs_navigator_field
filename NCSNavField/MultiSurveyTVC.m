@@ -117,7 +117,6 @@
         [self setActiveSurvey:selected];
     }
     
-    // TODO: Fix for ARC
     [self showSection:indexPath.row];
 }
 
