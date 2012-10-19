@@ -20,15 +20,12 @@
 
 @synthesize surveys = _surveys;
 @synthesize responseSets = _responseSets;
-@synthesize participant = _participant;
 @synthesize prePopulatedQuestionRefs = _prePopulatedQuestionRefs;
 
-- (id)initWithSurveys:(NSArray*)s andResponseSets:(NSArray*)rs forParticipant:(Participant*)p {
+- (id)initWithSurveys:(NSArray*)s andResponseSets:(NSArray*)rs {
     if (self = [self init]) {
         _surveys = s;
-        _responseSets = rs;
-        _participant = p;
-        
+        _responseSets = rs;        
         _prePopulatedQuestionRefs = [self defaultPrePopulatedQuestionRefs];
     }
     return self;
@@ -58,19 +55,19 @@
     return [[PrePopulatedQuestionRefSet alloc] initWithSource:src destination:dest];
 }
 
-- (ResponseSet*)generateResponseSetForSurveyId:(NSString*)sid {
+- (ResponseSet*)generateResponseSetForSurveyId:(NSString*)sid participantId:(NSString*)pid {
     ResponseSet* rs = nil;
     if (sid) {
         rs = [ResponseSet object];
-        [rs setValue:self.participant.pId forKey:@"pId"];
+        [rs setValue:pid forKey:@"pId"];
         [rs setValue:sid forKey:@"survey"];
     }
     return rs;
 }
 
-- (ResponseSet*)populateResponseSet:(ResponseSet*)rs forSurveyId:sid {
+- (ResponseSet*)populateResponseSet:(ResponseSet*)rs forSurveyId:sid forParticipant:(Participant*) pt {
     if (!rs) {
-        rs = [self generateResponseSetForSurveyId:sid];
+        rs = [self generateResponseSetForSurveyId:sid participantId:pt.pId];
     }
     NUSurvey* survey = [self findSurveyByUUID:sid inSurveys:self.surveys];
     NSArray* pre = [self prePopulatedResponsesForSurvey:survey];

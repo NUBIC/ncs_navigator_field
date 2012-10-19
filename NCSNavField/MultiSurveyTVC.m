@@ -128,8 +128,8 @@
     
     ResponseSet* rs = [self.surveyResponseSetAssociations objectForKey:self.survey.uuid];
     Participant* p = [Participant findFirstByAttribute:@"pId" withValue:[rs valueForKey:@"pId"]];
-    SurveySet* ss = [[SurveySet alloc] initWithSurveys:self.surveys andResponseSets:[self.surveyResponseSetAssociations  allValues] forParticipant:p];
-    [ss populateResponseSet:rs forSurveyId:self.survey.uuid];
+    SurveySet* ss = [[SurveySet alloc] initWithSurveys:self.surveys andResponseSets:[self.surveyResponseSetAssociations  allValues]];
+    [ss populateResponseSet:rs forSurveyId:self.survey.uuid forParticipant:p];
     self.sectionTVC.responseSet = rs;
     self.sectionTVC.delegate = self;
     //    self.sectionTVC.renderContext = renderContext;

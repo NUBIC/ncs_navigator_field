@@ -81,7 +81,7 @@ static NUSurvey* surveyB;
     participant = [self createParticipant:@"yak423"];
     responseSetB = [self createResponseSetWithSurveyId:@"survey-b" participantId:participant.pId];
     
-    surveySet = [[SurveySet alloc] initWithSurveys:[NSArray arrayWithObjects:surveyA,surveyB,nil] andResponseSets:[NSArray arrayWithObject:responseSetA] forParticipant:participant];
+    surveySet = [[SurveySet alloc] initWithSurveys:[NSArray arrayWithObjects:surveyA,surveyB,nil] andResponseSets:[NSArray arrayWithObject:responseSetA]];
 
     surveySet.prePopulatedQuestionRefs = [NSArray arrayWithObjects:
                                           [self destRefId:@"pre_populated_name" srcDataExpId:@"name"],
@@ -91,9 +91,9 @@ static NUSurvey* surveyB;
 #pragma mark - SurveySet#generateResponseSet
 
 - (void)testEmptyResponseSetGenerated {
-    SurveySet* ss = [[SurveySet alloc] initWithSurveys:[NSArray array] andResponseSets:[NSArray array] forParticipant:participant];
+    SurveySet* ss = [[SurveySet alloc] initWithSurveys:[NSArray array] andResponseSets:[NSArray array]];
     
-    ResponseSet* act = [ss generateResponseSetForSurveyId:@"survey-z"];
+    ResponseSet* act = [ss generateResponseSetForSurveyId:@"survey-z" participantId:participant.pId];
     
     STAssertEqualObjects([act valueForKey:@"survey"], @"survey-z", @"Wrong survey id");
     STAssertEqualObjects([act valueForKey:@"pId"], @"yak423", @"Wrong pId");
@@ -103,7 +103,7 @@ static NUSurvey* surveyB;
 #pragma mark - SurveySet#populateResponseSet
 
 - (void)testPopulateResponseSet {
-    ResponseSet* act = [surveySet populateResponseSet:responseSetB forSurveyId:@"survey-b"];
+    ResponseSet* act = [surveySet populateResponseSet:responseSetB forSurveyId:@"survey-b" forParticipant:participant];
     STAssertEqualObjects([act valueForKey:@"survey"], @"survey-b", @"Wrong survey id");
     STAssertEqualObjects([act valueForKey:@"pId"], @"yak423", @"Wrong pId");
     STAssertEquals((int)[[act responses] count], 1, @"Should be 1");
@@ -115,7 +115,7 @@ static NUSurvey* surveyB;
 
 - (void)testPopulateResponseSetWithDifferentResponseValue {
     [responseSetB newResponseForQuestion:@"q10" Answer:@"a10" Value:@"lok"];
-    ResponseSet* act = [surveySet populateResponseSet:responseSetB forSurveyId:@"survey-b"];
+    ResponseSet* act = [surveySet populateResponseSet:responseSetB forSurveyId:@"survey-b" forParticipant:participant];
     STAssertEqualObjects([act valueForKey:@"survey"], @"survey-b", @"Wrong survey id");
     STAssertEqualObjects([act valueForKey:@"pId"], @"yak423", @"Wrong pId");
     STAssertEquals((int)[[act responses] count], 1, @"Should be 1");
@@ -127,15 +127,15 @@ static NUSurvey* surveyB;
     NUSurvey* noPrePop = [NUSurvey new];
     noPrePop.jsonString = @"{\"uuid\":\"survey-d\"}";
     ResponseSet* rsNoPrePop = [self createResponseSetWithSurveyId:@"survey-d" participantId:participant.pId];
-    SurveySet* ss = [[SurveySet alloc] initWithSurveys:[NSArray arrayWithObject:noPrePop] andResponseSets:[NSArray arrayWithObject:rsNoPrePop] forParticipant:participant];
-    ResponseSet* act = [ss populateResponseSet:rsNoPrePop forSurveyId:@"survey-d"];
+    SurveySet* ss = [[SurveySet alloc] initWithSurveys:[NSArray arrayWithObject:noPrePop] andResponseSets:[NSArray arrayWithObject:rsNoPrePop]];
+    ResponseSet* act = [ss populateResponseSet:rsNoPrePop forSurveyId:@"survey-d" forParticipant:participant];
     STAssertEqualObjects([act valueForKey:@"survey"], @"survey-d", @"Wrong survey id");
     STAssertEqualObjects([act valueForKey:@"pId"], @"yak423", @"Wrong pId");
     STAssertTrue([[act responses] count] == 0, @"Should be empty");
 }
 
 - (void)testPopulateResponseSetWithNullResponseSet {
-    ResponseSet* act = [surveySet populateResponseSet:nil forSurveyId:@"survey-b"];
+    ResponseSet* act = [surveySet populateResponseSet:nil forSurveyId:@"survey-b" forParticipant:participant];
     STAssertEqualObjects([act valueForKey:@"survey"], @"survey-b", @"Wrong survey id");
     STAssertEqualObjects([act valueForKey:@"pId"], @"yak423", @"Wrong pId");
     STAssertEquals((int)[[act responses] count], 1, @"Should be 1");
@@ -146,13 +146,13 @@ static NUSurvey* surveyB;
 }
 
 - (void)testPopulateResponseSetWithMissingResponseSetAndSurveyId {
-    ResponseSet* act = [surveySet populateResponseSet:nil forSurveyId:nil];
+    ResponseSet* act = [surveySet populateResponseSet:nil forSurveyId:nil forParticipant:participant];
     STAssertNil(act, @"Should be nil");
 }
 
 - (void)testPopulateResponseSetWithPickOne {
     [responseSetA newResponseForQuestion:@"q2" Answer:@"a3" Value:nil];
-    ResponseSet* act = [surveySet populateResponseSet:nil forSurveyId:@"survey-b"];
+    ResponseSet* act = [surveySet populateResponseSet:nil forSurveyId:@"survey-b" forParticipant:participant];
     STAssertEqualObjects([act valueForKey:@"survey"], @"survey-b", @"Wrong survey id");
     STAssertEqualObjects([act valueForKey:@"pId"], @"yak423", @"Wrong pId");
     STAssertEquals((int)[[act responses] count], 2, @"Should be 1");

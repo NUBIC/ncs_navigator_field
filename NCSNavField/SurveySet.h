@@ -15,7 +15,6 @@
 @interface SurveySet : NSObject {
     NSArray* _surveys;
     NSArray* _responseSets;
-    Participant* _participant;
     NSArray* _prePopulatedQuestionRefs;
 }
 
@@ -23,17 +22,15 @@
 
 @property(nonatomic,strong) NSArray* responseSets;
 
-@property(nonatomic,strong) Participant* participant;
-
 @property(nonatomic,strong) NSArray* prePopulatedQuestionRefs;
 
 #pragma mark - Instance Methods
 
-- (id)initWithSurveys:(NSArray*)s andResponseSets:(NSArray*)rs forParticipant:(Participant*)p;
+- (id)initWithSurveys:(NSArray*)s andResponseSets:(NSArray*)rs;
 
-- (ResponseSet*)generateResponseSetForSurveyId:(NSString*)surveyId;
+- (ResponseSet*)generateResponseSetForSurveyId:(NSString*)sid participantId:(NSString*)pid;
 
-- (ResponseSet*)populateResponseSet:(ResponseSet*)rs forSurveyId:sid;
+- (ResponseSet*)populateResponseSet:(ResponseSet*)rs forSurveyId:sid forParticipant:(Participant*) pt;
 
 @end
 
