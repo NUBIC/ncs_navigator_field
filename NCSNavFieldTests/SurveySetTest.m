@@ -30,6 +30,7 @@ static NUSurvey* surveyB;
         @"{"
          "  \"uuid\":\"survey-a\","
          "  \"sections\":[{"
+         "    \"title\":\"zang\","
          "    \"questions_and_groups\":["
          "      { "
          "        \"uuid\":\"q1\","
@@ -55,6 +56,7 @@ static NUSurvey* surveyB;
         @"{"
          "  \"uuid\":\"survey-b\","
          "  \"sections\":[{"
+         "    \"title\":\"zeek\","
          "    \"questions_and_groups\":["
          "      { "
          "        \"uuid\":\"q10\","
@@ -72,6 +74,8 @@ static NUSurvey* surveyB;
          "        ]"
          "      }"
          "    ]"
+         "  },{"
+         "    \"title\":\"zork\""
          "  }]"
          "}";
     
@@ -160,6 +164,43 @@ static NUSurvey* surveyB;
     STAssertEqualObjects([r valueForKey:@"question"], @"q11", @"Wrong question");
     STAssertEqualObjects([r valueForKey:@"answer"], @"a12", @"Wrong answer");
     STAssertNil([r valueForKey:@"value"], @"Wrong response value");
+}
+
+#pragma mark - SurveySet#SectionforSurveyIndex:SectionIndex
+
+- (void)testSectionforSurveyIndex {
+    NSDictionary* s = [surveySet sectionforSurveyIndex:0 sectionIndex:0];
+    STAssertEqualObjects([s objectForKey:@"title"], @"zang", @"Wrong section");
+}
+
+- (void)testSectionforSurveyIndexWhenSurveyOutOfBounds {
+    NSDictionary* s = [surveySet sectionforSurveyIndex:99 sectionIndex:0];
+    STAssertNil(s, @"Should not exist");
+}
+
+- (void)testSectionforSurveyIndexWhenSectionOutOfBounds {
+    NSDictionary* s = [surveySet sectionforSurveyIndex:0 sectionIndex:99];
+    STAssertNil(s, @"Should not exist");
+}
+
+- (void)testPreviousSectionForSurveyIndex {
+    NSDictionary* s = [surveySet previousSectionfromSurveyIndex:1 sectionIndex:1];
+    STAssertEqualObjects([s objectForKey:@"title"], @"zeek", @"Wrong section");
+}
+
+- (void)testPreviousSectionForSurveyIndexWhenFirstSection {
+    NSDictionary* s = [surveySet previousSectionfromSurveyIndex:1 sectionIndex:0];
+    STAssertEqualObjects([s objectForKey:@"title"], @"zang", @"Wrong section");
+}
+
+- (void)testNextSectionForSurveyIndex {
+    NSDictionary* s = [surveySet nextSectionfromSurveyIndex:1 sectionIndex:0];
+    STAssertEqualObjects([s objectForKey:@"title"], @"zork", @"Wrong section");
+}
+
+- (void)testNextSectionForSurveyIndexWhenLastSection {
+    NSDictionary* s = [surveySet nextSectionfromSurveyIndex:0 sectionIndex:0];
+    STAssertEqualObjects([s objectForKey:@"title"], @"zeek", @"Wrong section");
 }
 
 #pragma mark - QuestionRef#questionDictByAttribute

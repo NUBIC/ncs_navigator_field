@@ -32,6 +32,12 @@
 
 - (ResponseSet*)populateResponseSet:(ResponseSet*)rs forSurveyId:sid forParticipant:(Participant*) pt;
 
+- (NSDictionary*)sectionforSurveyIndex:(NSInteger)sui sectionIndex:(NSInteger)sei;
+
+- (NSDictionary*)previousSectionfromSurveyIndex:(NSInteger)sui sectionIndex:(NSInteger)sei;
+
+- (NSDictionary*)nextSectionfromSurveyIndex:(NSInteger)sui sectionIndex:(NSInteger)sei;
+
 @end
 
 #pragma mark - QuestionRef

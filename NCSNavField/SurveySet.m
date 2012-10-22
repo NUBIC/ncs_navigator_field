@@ -136,6 +136,47 @@
     return nil;
 }
 
+- (NSDictionary*)sectionforSurveyIndex:(NSInteger)sui sectionIndex:(NSInteger)sei {
+    NSDictionary* found = nil;
+    
+    if (sui < [self.surveys count]) {
+        NUSurvey* su = [self.surveys objectAtIndex:sui];
+        if (su) {
+            NSArray* secs = [[su deserialized] objectForKey:@"sections"];
+            if (sei < [secs count]) {
+                found = [secs objectAtIndex:sei];
+            }
+        }
+    }
+    
+    return found;
+}
+
+- (NSDictionary*)previousSectionfromSurveyIndex:(NSInteger)sui sectionIndex:(NSInteger)sei {
+    NSDictionary* found = [self sectionforSurveyIndex:sui sectionIndex:sei - 1];
+    
+    if (!found) {
+        NUSurvey* psu = [self.surveys objectAtIndex:sui - 1];
+        if (psu) {
+            NSDictionary* psecs = [[psu deserialized] objectForKey:@"sections"];
+            if (psecs) {
+                found = [self sectionforSurveyIndex:sui - 1 sectionIndex:[psecs count] - 1];
+            }
+        }
+    }
+    
+    return found;
+}
+
+- (NSDictionary*)nextSectionfromSurveyIndex:(NSInteger)sui sectionIndex:(NSInteger)sei {
+    NSDictionary* found = [self sectionforSurveyIndex:sui sectionIndex:sei + 1];
+    
+    if (!found) {
+        found = [self sectionforSurveyIndex:sui + 1 sectionIndex:0];
+    }
+
+    return found;
+}
 
 @end
 
