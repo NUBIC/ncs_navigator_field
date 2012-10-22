@@ -153,6 +153,10 @@
 }
 
 - (NSDictionary*)previousSectionfromSurveyIndex:(NSInteger)sui sectionIndex:(NSInteger)sei {
+    if (sui<= 0 && sei <= 0) {
+        return nil;
+    }
+    
     NSDictionary* found = [self sectionforSurveyIndex:sui sectionIndex:sei - 1];
     
     if (!found) {

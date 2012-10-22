@@ -173,12 +173,12 @@ static NUSurvey* surveyB;
     STAssertEqualObjects([s objectForKey:@"title"], @"zang", @"Wrong section");
 }
 
-- (void)testSectionforSurveyIndexWhenSurveyOutOfBounds {
+- (void)testSectionforSurveyIndexWhenSurveyOutOfUpperBounds {
     NSDictionary* s = [surveySet sectionforSurveyIndex:99 sectionIndex:0];
     STAssertNil(s, @"Should not exist");
 }
 
-- (void)testSectionforSurveyIndexWhenSectionOutOfBounds {
+- (void)testSectionforSurveyIndexWhenSectionOutOfUpperBounds {
     NSDictionary* s = [surveySet sectionforSurveyIndex:0 sectionIndex:99];
     STAssertNil(s, @"Should not exist");
 }

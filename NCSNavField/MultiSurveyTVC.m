@@ -111,31 +111,37 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger selected = indexPath.section;
-    
-    if ([self activeSurveyIndex] != selected) {
-        [self setActiveSurvey:selected];
-    }
-    
-    [self showSection:indexPath.row];
+    [self setActiveSurveyWithSurveyIndex:indexPath.section activeSectionWithSectionIndex:indexPath.row];
 }
 
-- (void)setActiveSurvey:(NSInteger)index {
-    
-    self.survey = [self.surveys objectAtIndex:index];
-    [self setSurveyNSD_Forced:[self.survey.jsonString objectFromJSONString]];
-    
-    ResponseSet* rs = [self.surveyResponseSetAssociations objectForKey:self.survey.uuid];
-    Participant* p = [Participant findFirstByAttribute:@"pId" withValue:[rs valueForKey:@"pId"]];
+- (void)setActiveSurveyWithSurveyIndex:(NSInteger)sui activeSectionWithSectionIndex:(NSInteger)sei {
     SurveySet* ss = [[SurveySet alloc] initWithSurveys:self.surveys andResponseSets:[self.surveyResponseSetAssociations  allValues]];
-    [ss populateResponseSet:rs forSurveyId:self.survey.uuid forParticipant:p];
-    self.sectionTVC.responseSet = rs;
-    self.sectionTVC.delegate = self;
-    //    self.sectionTVC.renderContext = renderContext;
     
-    [self.sectionTVC.responseSet setValue:[[self surveyNSD_Forced] objectForKey:@"uuid"] forKey:@"survey"];
-    [self.sectionTVC.responseSet generateDependencyGraph:[self surveyNSD_Forced]];
-    [NUResponseSet saveContext:self.sectionTVC.responseSet.managedObjectContext withMessage:@"NUSurveyTVC initWithSurvey"];
+    if ([self activeSurveyIndex] != sui) {
+        self.survey = [self.surveys objectAtIndex:sui];
+        [self setSurveyNSD_Forced:[self.survey.jsonString objectFromJSONString]];
+        
+        ResponseSet* rs = [self.surveyResponseSetAssociations objectForKey:self.survey.uuid];
+        Participant* p = [Participant findFirstByAttribute:@"pId" withValue:[rs valueForKey:@"pId"]];
+        [ss populateResponseSet:rs forSurveyId:self.survey.uuid forParticipant:p];
+        self.sectionTVC.responseSet = rs;
+        self.sectionTVC.delegate = self;
+        // TODO: Fix render context
+        // self.sectionTVC.renderContext = renderContext;
+        
+        [self.sectionTVC.responseSet setValue:[[self surveyNSD_Forced] objectForKey:@"uuid"] forKey:@"survey"];
+        [self.sectionTVC.responseSet generateDependencyGraph:[self surveyNSD_Forced]];
+        [NUResponseSet saveContext:self.sectionTVC.responseSet.managedObjectContext withMessage:@"NUSurveyTVC initWithSurvey"];
+    }
+    
+    // REFACTOR: Logic should be moved into sectionTVC?
+    NSDictionary* previous = [ss previousSectionfromSurveyIndex:sui sectionIndex:sei];
+    self.sectionTVC.prevSectionTitle = previous ? [previous objectForKey:@"title"] : nil;
+    NSDictionary* next = [ss nextSectionfromSurveyIndex:sui sectionIndex:sei];
+    self.sectionTVC.nextSectionTitle = next ? [next objectForKey:@"title"] : nil;
+    [self.sectionTVC setDetailItem:[ss sectionforSurveyIndex:sui sectionIndex:sei]];
+    [self.sectionTVC.tableView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
+    self.sectionTVC.pageControl.currentPage = sei;
 }
 
 
