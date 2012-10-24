@@ -34,7 +34,20 @@ static TextField* _activeField = nil;
     t.delegate = self;
     return t;
 }
-
+/*
+ Use this if you need to make the textfield accept numbers only.
+ */
+- (id)initWithFrame:(CGRect)frame value:(NSString*)value numbersOnly:(BOOL)bNumsOnly
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.bNumbersOnly=bNumsOnly;
+        self.textField = [self buildTextFieldWithValue:value];
+        [self.textField setKeyboardType:UIKeyboardTypeNumberPad];
+        [self addSubview:self.textField];
+    }
+    return self;
+}
 - (id)initWithFrame:(CGRect)frame value:(NSString*)value {
     self = [super initWithFrame:frame];
     if (self) {
@@ -43,6 +56,29 @@ static TextField* _activeField = nil;
     }
     return self;
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(self.bNumbersOnly) {
+        NSCharacterSet *myCharSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789\n"];
+        for (int i = 0; i < [string length]; i++) {
+            unichar c = [string characterAtIndex:i];
+            if (![myCharSet characterIsMember:c]) {
+                return NO;
+            }
+        }
+        return YES;
+    }
+    else
+        return YES;
+
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
+
 
 - (void) addChangeHandler:(ChangeHandler*)handler {
     self.handler = handler;

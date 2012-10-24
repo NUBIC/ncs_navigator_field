@@ -180,7 +180,7 @@
     [b sectionHeader:@""];
     
     [b labelWithText:@"Distance traveled (in miles)"];
-    [b textFieldForProperty:@selector(distanceTraveled)];
+    [b textFieldForProperty:@selector(distanceTraveled) numbersOnly:YES];
     
     [b labelWithText:@"Disposition"];
     self.dispositionPicker = 

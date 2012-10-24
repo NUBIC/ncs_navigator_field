@@ -16,14 +16,13 @@
 }
 
 @property(nonatomic,strong) ChangeHandler* handler;
-
+@property(assign) BOOL bNumbersOnly;
 @property(nonatomic,strong) UITextField* textField;
 
-
+- (id)initWithFrame:(CGRect)frame value:(NSString*)value numbersOnly:(BOOL)bNumsOnly;
 - (id)initWithFrame:(CGRect)frame value:(NSString*)value;
 
 - (void) addChangeHandler:(ChangeHandler*)handler;
-
 + (TextField*)activeField;
 
 //- (void)registerForKeyboardNotifications;

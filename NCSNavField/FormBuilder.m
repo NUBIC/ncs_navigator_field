@@ -92,6 +92,19 @@
     [self.cursor addNewLine];
 }
 
+- (void) textFieldForProperty:(SEL)property numbersOnly:(BOOL)bNumOnly {
+    
+    if(!bNumOnly) {
+        [self timePickerForProperty:property];
+    }
+    else {
+        TextField* t = [[TextField alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:[self objectValueForKey:property] numbersOnly:YES];
+        [t addChangeHandler:[[ChangeHandler alloc] initWithObject:self.object field:property]];
+        [self.view addSubview:t];
+        [self.cursor addNewLine];
+    }
+}
+
 - (void) textFieldForProperty:(SEL)property {
     TextField* t = [[TextField alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:[self objectValueForKey:property]];
     [t addChangeHandler:[[ChangeHandler alloc] initWithObject:self.object field:property]];
