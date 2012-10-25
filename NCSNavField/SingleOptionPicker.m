@@ -28,10 +28,16 @@
 @synthesize popoverSize = _popoverSize;
 
 - (id)initWithFrame:(CGRect)frame value:(NSNumber*)value pickerOptions:(NSArray*)options {
+    NSAssert(value!=nil,@"Value is nil when you are init'ing SingleOptionPicker. Check Check initWithFrame:value:pickerOptions:");
     return [self initWithFrame:frame value:value pickerOptions:options popoverSize:NUPickerVCPopoverSizeRegular];
 }
 
 - (id)initWithFrame:(CGRect)frame value:(NSNumber*)value pickerOptions:(NSArray*)options popoverSize:(NUPickerVCPopoverSize)popoverSize {
+    /*if(value==nil)
+    {
+        NSLog(@"Description: %@",[self description]);
+    }
+    NSAssert(value!=nil,@"Value is nil when you are init'ing SingleOptionPicker. Check initWithFrame:value:pickerOptions:popoverSize:");*/
     self = [super initWithFrame:frame];
     if (self) {
         self.value = value;
@@ -61,7 +67,6 @@
     return self;
 }
 
-
 - (void) addChangeHandler:(ChangeHandler*)handler {
     self.handler = handler;
 }
@@ -77,9 +82,10 @@
     PickerOption* title = [PickerOption findWithValue:[self.value integerValue] fromOptions:self.pickerOptions];
     if (title) {
         [self.button setTitle:title.text forState:UIControlStateNormal];
+        NSInteger index = [self.pickerOptions indexOfObject:title];
+        [p.picker selectRow:index inComponent:0 animated:NO];
     }
-    NSInteger index = [self.pickerOptions indexOfObject:title];
-    [p.picker selectRow:index inComponent:0 animated:NO];
+    
     return p;
 }
 
@@ -111,7 +117,6 @@
     if (!self.popover) {
         self.popover = [self buildPopoverVCWithPicker:self.picker];
     }
-    
     [self.popover presentPopoverFromRect:self.frame inView:self.superview permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
@@ -127,7 +132,8 @@
 - (void) pickerCancel{
     NSInteger old = [self.value integerValue];
     PickerOption* o = [PickerOption findWithValue:old fromOptions:self.pickerOptions];
-    [self.picker.picker selectRow:[self.pickerOptions indexOfObject:o] inComponent:0 animated:NO];
+    if(o!=nil)
+        [self.picker.picker selectRow:[self.pickerOptions indexOfObject:o] inComponent:0 animated:NO];
     [self.popover dismissPopoverAnimated:NO];
 }
 

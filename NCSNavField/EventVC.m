@@ -233,15 +233,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardDidShowNotification object:nil];
-    
-    
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
-    
-    
-    
 }
 
 - (void)keyboardWasShown:(NSNotification*)aNotification {
@@ -255,9 +249,9 @@
     
     if (active) {
         NSDictionary* info = [aNotification userInfo];
-        
         CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-        [self.scrollView setContentOffset:CGPointMake(0.0, (active.frame.origin.y + active.superview.frame.origin.y + height)-kbSize.width) animated:YES];
+        CGPoint newPoint = CGPointMake(0.0,(active.frame.origin.y + active.superview.frame.origin.y + height)-kbSize.width);
+        [self.scrollView setContentOffset:newPoint animated:YES];
     }    
 }
 
@@ -270,6 +264,7 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
+    //Lets animate it back to (0,0) and allow scrolling.
     [self.scrollView setContentOffset:CGPointMake(0.0, 0.0) animated:YES];
     
 }

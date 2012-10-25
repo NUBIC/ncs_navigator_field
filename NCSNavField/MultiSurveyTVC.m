@@ -41,7 +41,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    UIView* v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 323, 40)];
+    UIView* v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 323, 40)];
     v.backgroundColor = RGB(220, 220, 220);
     
     //Label
