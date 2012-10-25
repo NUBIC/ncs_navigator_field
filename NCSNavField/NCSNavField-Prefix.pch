@@ -17,7 +17,7 @@
     #import <RestKit/RestKit.h>
     #import <RestKit/CoreData.h>
 
-    #import "TestFlight.h"
+    #import <TestFlightSDK/TestFlight.h>
 #endif
 
 #import "NCSNavFieldAppDelegate.h"
