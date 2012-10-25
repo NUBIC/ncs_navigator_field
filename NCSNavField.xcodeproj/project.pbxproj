@@ -1299,9 +1299,9 @@
 					"$(inherited)",
 				);
 				OTHER_LDFLAGS = (
-					"-lGRMustache1-ios4",
-					"-ObjC",
 					"-all_load",
+					"-ObjC",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = NCSNavField;
 				PROVISIONING_PROFILE = "";
@@ -1333,9 +1333,9 @@
 					"$(inherited)",
 				);
 				OTHER_LDFLAGS = (
-					"-lGRMustache1-ios4",
-					"-ObjC",
 					"-all_load",
+					"-ObjC",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = NCSNavField;
 				PROVISIONING_PROFILE = "";
