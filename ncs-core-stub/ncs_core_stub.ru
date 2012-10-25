@@ -6,6 +6,9 @@ require 'sinatra'
 require "sequel"
 require 'sqlite3'
 require 'json'
+require 'openssl'
+
+OpenSSL::SSL::SSLContext::DEFAULT_PARAMS[:verify_mode] = OpenSSL::SSL::VERIFY_NONE
 
 class NCSCoreStub < Sinatra::Base
   DB = Sequel.sqlite
@@ -79,7 +82,11 @@ Aker.configure do
   authorities :cas
   ui_mode :cas
   api_mode :cas_proxy
-  central '/etc/nubic/bcsec-local.yml'
+  if File.exist?("aker-local.yml")
+    central 'aker-local.yml'
+  else 
+    central '/etc/nubic/aker-local.yml'
+  end
 end
 
 use Rack::Session::Cookie

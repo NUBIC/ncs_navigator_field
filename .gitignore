@@ -19,5 +19,9 @@ xcuserdata
 NUCas.plist
 TestFlight-TeamToken.txt
 
+# ncs-core-stub
+ncs-core-stub/aker-local.yml
+
+
 # Cocoapods generated artifacts
 Pods
