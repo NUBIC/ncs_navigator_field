@@ -36,6 +36,7 @@
 - (void) datePickerForProperty:(SEL)property;
 - (void) timePickerForProperty:(SEL)property;
 - (void) textFieldForProperty:(SEL)property numbersOnly:(BOOL)bNumOnly;
+-(void)textFieldForProperty:(SEL)property currency:(BOOL)bCurrencyOnly;
 - (void) textFieldForProperty:(SEL)property;
 - (void) textAreaForProperty:(SEL)property;
 

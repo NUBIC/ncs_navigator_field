@@ -138,7 +138,7 @@
     [b singleOptionPickerForProperty:@selector(incentiveTypeId) WithPickerOptions:[PickerOption incentives]];
     
     [b labelWithText:@"Cash Incentive (xx.xx)"];
-    [b textFieldForProperty:@selector(incentiveCash)];
+    [b textFieldForProperty:@selector(incentiveCash) currency:YES];
     
     [b labelWithText:@"Non-Cash Incentive"];
     [b textFieldForProperty:@selector(incentiveNonCash)];

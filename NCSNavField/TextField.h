@@ -17,8 +17,10 @@
 
 @property(nonatomic,strong) ChangeHandler* handler;
 @property(assign) BOOL bNumbersOnly;
+@property(assign) BOOL bCurrencyFormat;
 @property(nonatomic,strong) UITextField* textField;
 
+- (id)initWithFrame:(CGRect)frame value:(NSString*)value currencyFormat:(BOOL)bCurrencyOnly;
 - (id)initWithFrame:(CGRect)frame value:(NSString*)value numbersOnly:(BOOL)bNumsOnly;
 - (id)initWithFrame:(CGRect)frame value:(NSString*)value;
 
