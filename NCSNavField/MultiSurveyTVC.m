@@ -19,8 +19,6 @@
 @end
 
 @implementation MultiSurveyTVC
-
-
 @synthesize surveys=_surveys, surveyResponseSetAssociations=_surveyResponseSetAssociations, activeSurveyIndex=_activeSurveyIndex;
 
 

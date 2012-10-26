@@ -85,7 +85,6 @@
         NSInteger index = [self.pickerOptions indexOfObject:title];
         [p.picker selectRow:index inComponent:0 animated:NO];
     }
-    
     return p;
 }
 
@@ -99,7 +98,7 @@
 
 - (UIPopoverController*)buildPopoverVCWithPicker:(NUPickerVC*)picker {
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:picker];
-    UIPopoverController* popoverVC = [[UIPopoverController alloc] initWithContentViewController: nav];
+    UIPopoverController* popoverVC = [[UIPopoverController alloc] initWithContentViewController:nav];
     popoverVC.delegate = self;
     return popoverVC;
 }
@@ -110,14 +109,15 @@
 }
 
 - (void)showPicker {
+    [self postPopoverNotification];
     if (!self.picker) {
         self.picker = [self buildPickerVC];
     }
-
     if (!self.popover) {
         self.popover = [self buildPopoverVCWithPicker:self.picker];
     }
     [self.popover presentPopoverFromRect:self.frame inView:self.superview permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    
 }
 
 - (void) pickerDone{

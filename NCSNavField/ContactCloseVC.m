@@ -76,10 +76,9 @@
     scroll.backgroundColor = [UIColor colorWithRed:214.0/255.0 green:216.0/255.0 blue:222.0/255.0 alpha:1.0];
     [self.view addSubview:scroll];
     
+    [self.view registerForPopoverNotifications];
     [self registerForKeyboardNotifications];
-    
     [self registerContactTypeChangeNotification];
-    
 }
 
 - (void) setDefaults:(Contact*)contact {
@@ -289,26 +288,11 @@
 // Taken from:
 //http://developer.apple.com/library/ios/#documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html
 - (void)registerForKeyboardNotifications
-
 {
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-     
-                                             selector:@selector(keyboardWasShown:)
-     
-                                                 name:UIKeyboardDidShowNotification object:nil];
-    
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-     
-                                             selector:@selector(keyboardWillBeHidden:)
-     
-                                                 name:UIKeyboardWillHideNotification object:nil];
-    
-    
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
 }
+
 
 - (void)keyboardWasShown:(NSNotification*)aNotification {
     NSInteger height = 80;
@@ -332,15 +316,10 @@
 // Called when the UIKeyboardWillHideNotification is sent
 
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
-
 {
-    
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    
     self.scrollView.contentInset = contentInsets;
-    
     self.scrollView.scrollIndicatorInsets = contentInsets;
-    
 }
 
 @end

@@ -76,6 +76,8 @@
 }
 
 - (void)showPicker {
+    [self postPopoverNotification];
+    [self.superview endEditing:YES];
     if (!self.picker) {
         self.picker = [self buildPickerVC];
     }

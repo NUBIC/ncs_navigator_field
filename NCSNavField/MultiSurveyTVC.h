@@ -7,6 +7,7 @@
 //
 
 #import "NUSurveyTVC.h"
+#import "UIView+Additions.h"
 
 @interface MultiSurveyTVC : NUSurveyTVC {
     NSArray* _surveys;

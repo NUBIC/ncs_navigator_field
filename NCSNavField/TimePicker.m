@@ -76,6 +76,7 @@
 }
 
 - (void)showPicker {
+    [self postPopoverNotification];
     if (!self.picker) {
         self.picker = [self buildPickerVC];
     }
@@ -91,7 +92,7 @@
 	//  [self  pickerDone];  
 }
 
-- (void) pickerDone{
+- (void) pickerDone {
     [self.popover dismissPopoverAnimated:NO];
     NSDate* d = [self.picker.datePicker date]; 
     self.date = d;

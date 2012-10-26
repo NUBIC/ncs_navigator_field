@@ -52,13 +52,15 @@
     
     UIView* left = [self leftContentWithFrame:lRect];
     UIView* right = [self rightContentWithFrame:rRect];
+    [left registerForPopoverNotifications];
+    [right registerForPopoverNotifications];
     
-
     [self.view addSubview:toolbar];
     [self.view addSubview:left];
     [self.view addSubview:right];
-    self.view.backgroundColor = [UIColor whiteColor];
     
+    self.view.backgroundColor = [UIColor whiteColor];
+   
 }
 
 /*
@@ -78,7 +80,6 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    
     // WARNING: Do not use if you're using self.frame
     // use viewDidAppear instead 
 }

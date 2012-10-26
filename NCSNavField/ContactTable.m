@@ -82,7 +82,6 @@
     return [[Section alloc] initWithName:@"Email" andRows:emails];
 }
 
-
 - (Section*) contactDetails {
     NSArray* eventNames = [[_contact.events allObjects] valueForKey:@"name"];
     NSString* eventsText = [eventNames componentsJoinedByString:@" and "];

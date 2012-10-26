@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UIView+Additions.h"
 
 @class NUPickerVC;
 @class ChangeHandler;
@@ -19,17 +20,11 @@ enum {
 
 @interface SingleOptionPicker : UIView<UIPopoverControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
     NSNumber* _value;
-    
     UIButton* _button;
-    
     NUPickerVC* _picker;
-    
     ChangeHandler* _handler;
-    
     NSArray* _pickerOptions;
-    
     UIPopoverController* _popover;
-    
     NUPickerVCPopoverSize _popoverSize;
 }
 

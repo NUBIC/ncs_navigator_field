@@ -71,7 +71,7 @@
         
     scroll.backgroundColor = [UIColor colorWithRed:214.0/255.0 green:216.0/255.0 blue:222.0/255.0 alpha:1.0];
     [self.view addSubview:scroll];
-    
+    [self.view registerForPopoverNotifications];
     [self registerForKeyboardNotifications];
 }
 

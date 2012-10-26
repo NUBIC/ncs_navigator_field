@@ -110,6 +110,7 @@
 		00FF37DE1417C50D0009B1D4 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37DD1417C50D0009B1D4 /* Instrument.m */; };
 		00FF37E71417D2380009B1D4 /* ContactNavigationTableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */; };
 		00FF37E81417D2B80009B1D4 /* ContactNavigationTableTest.h in Resources */ = {isa = PBXBuildFile; fileRef = 00FF37E31417CFA30009B1D4 /* ContactNavigationTableTest.h */; };
+		2237A32E163B294B009E3A13 /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2237A32D163B294B009E3A13 /* UIView+Additions.m */; };
 		4F53118515FA58A1006F5BB2 /* InstrumentPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */; };
 		D1CACF1A1F944E92AB51AE74 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 493CC93326804A8ABCA31763 /* libPods.a */; };
 		F75259C3F792403F9EE94A8A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 493CC93326804A8ABCA31763 /* libPods.a */; };
@@ -451,6 +452,8 @@
 		00FF37DD1417C50D0009B1D4 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
 		00FF37E31417CFA30009B1D4 /* ContactNavigationTableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNavigationTableTest.h; sourceTree = "<group>"; };
 		00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactNavigationTableTest.m; sourceTree = "<group>"; };
+		2237A32C163B294B009E3A13 /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
+		2237A32D163B294B009E3A13 /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
 		493CC93326804A8ABCA31763 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F53118015FA5148006F5BB2 /* 20120907155731_add_participant_type_to_instrument_template.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120907155731_add_participant_type_to_instrument_template.xcdatamodel; sourceTree = "<group>"; };
 		4F53118215FA5519006F5BB2 /* 20120907161507_create_instrument_plan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120907161507_create_instrument_plan.xcdatamodel; sourceTree = "<group>"; };
@@ -930,6 +933,7 @@
 		00FF37E21417CA320009B1D4 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				2237A32B163B2928009E3A13 /* Categories */,
 				00393C90148E54C000671899 /* SingleOptionPicker.h */,
 				00393C91148E54C000671899 /* SingleOptionPicker.m */,
 				006D47FA148D94970035DC01 /* ChangeHandler.h */,
@@ -956,6 +960,15 @@
 				000D8E76152CAC5B006EE224 /* TimePicker.m */,
 			);
 			name = Presenters;
+			sourceTree = "<group>";
+		};
+		2237A32B163B2928009E3A13 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				2237A32C163B294B009E3A13 /* UIView+Additions.h */,
+				2237A32D163B294B009E3A13 /* UIView+Additions.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1151,6 +1164,7 @@
 				0087A558160A6610005CB008 /* NUSurvey+Additions.m in Sources */,
 				001FEDD31619FA4F00DE8A3A /* SurveySet.m in Sources */,
 				00010412161B73AA00952C3C /* NUResponse+Additions.m in Sources */,
+				2237A32E163B294B009E3A13 /* UIView+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

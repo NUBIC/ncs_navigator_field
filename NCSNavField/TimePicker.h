@@ -7,6 +7,7 @@
 //
 
 #import <CoreData/CoreData.h>
+#import "UIView+Additions.h"
 
 @class NUPickerVC;
 @class ChangeHandler;

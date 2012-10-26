@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIView+Additions.h"
 
 @class FormBuilder;
 @class Contact;

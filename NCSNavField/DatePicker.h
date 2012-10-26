@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIView+Additions.h"
 
 @class NUPickerVC;
 @class ChangeHandler;
@@ -27,5 +28,5 @@
 @property(weak, readonly,getter = getDateFormatter) NSDateFormatter* dateFormatter;
 
 - (id)initWithFrame:(CGRect)frame value:(NSDate*)value;
-- (void) addChangeHandler:(ChangeHandler*)handler;
+- (void)addChangeHandler:(ChangeHandler*)handler;
 @end
