@@ -21,6 +21,7 @@
 #import "NSDate+Additions.h"
 #import "InstrumentPlan.h"
 #import "InstrumentTemplate.h"
+#import "EventTemplate.h"
 
 @implementation RestKitSettingsTest
 
@@ -153,13 +154,33 @@
     STAssertEqualObjects(it2.instrumentTemplateId, @"it2", @"Wrong id");
 }
 
+- (void)testInstrumentTemplateDeserialization {
+    NSString* json =
+        @"{ "
+         "   \"event_templates\": [{             "
+         "     \"name\": \"Pregnancy Screener\", "
+         "     \"event_repeat_key\": 0,          "
+         "     \"event_type_code\": 34           "
+         "   }]                                  "
+         "}                                      ";
+    
+    NSArray* actual = [[self deserializeJson:json] objectForKey:@"event_templates"];
+    
+    STAssertEquals([actual count], 1U, @"Should have 1 event template");
+    EventTemplate* et = [actual objectAtIndex:0];
+    STAssertEqualObjects(et.name, @"Pregnancy Screener", @"Wrong name");
+    STAssertEqualObjects(et.eventRepeatKey, [NSNumber numberWithInt:0], @"Wrong repeat key");
+    STAssertEqualObjects(et.eventTypeCode, [NSNumber numberWithInt:34], @"Wrong type code");
+}
+
 #pragma mark - Helper Methods
  
  - (NSDictionary *)deserializeJson:(NSString *)fieldworkJson {
-    NSDictionary* fieldwork = [[SBJSON new] objectWithString:fieldworkJson];
-    RKObjectMapper* mapper = [RKObjectMapper mapperWithObject:fieldwork mappingProvider:[RKObjectManager sharedManager].mappingProvider];
-    RKObjectMappingResult* result = [mapper performMapping];
-    return [result asDictionary];
+     NSDictionary* fieldwork = [[SBJSON new] objectWithString:fieldworkJson];
+     NSAssert(fieldwork != nil, @"Problem parsing fieldwork JSON");
+     RKObjectMapper* mapper = [RKObjectMapper mapperWithObject:fieldwork mappingProvider:[RKObjectManager sharedManager].mappingProvider];
+     RKObjectMappingResult* result = [mapper performMapping];
+     return [result asDictionary];
 }
 
 @end

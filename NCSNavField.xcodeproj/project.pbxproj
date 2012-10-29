@@ -210,7 +210,7 @@
 		0050B58A15F6A9B2008B9525 /* 20120904204206_associate_instrument_to_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120904204206_associate_instrument_to_response_set.xcdatamodel; sourceTree = "<group>"; };
 		005108EC148440C000732623 /* NUScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUScrollView.h; sourceTree = "<group>"; };
 		005108ED148440C000732623 /* NUScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUScrollView.m; sourceTree = "<group>"; };
-		0054CFDB163EFA7900F9AB81 /* 20121029175349_create_event_templates.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121029175349_create_event_templates.xcdatamodel; sourceTree = "<group>"; };
+		0054CFDB163EFA7900F9AB81 /* 20121029175349_create_event_templates.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121029175349_create_event_templates.xcdatamodel; sourceTree = "<group>"; };
 		0054CFDD163EFAFE00F9AB81 /* EventTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTemplate.h; sourceTree = "<group>"; };
 		0054CFDE163EFAFE00F9AB81 /* EventTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTemplate.m; sourceTree = "<group>"; };
 		0057793914E4355600964B87 /* NUCas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUCas.h; path = NUCas/Code/NUCas.h; sourceTree = "<group>"; };
@@ -1477,7 +1477,7 @@
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 00A78E691638E3B70060EBD1 /* 20121025030410_add_response_group_to_response.xcdatamodel */;
+			currentVersion = 0054CFDB163EFA7900F9AB81 /* 20121029175349_create_event_templates.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
