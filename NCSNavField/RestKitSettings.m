@@ -20,6 +20,7 @@
 #import "NSDate+Additions.m"
 #import "NSString+Additions.m"
 #import "InstrumentPlan.h"
+#import "EventTemplate.h"
 
 NSString* STORE_NAME = @"main.sqlite";
 
@@ -212,20 +213,20 @@ static RestKitSettings* instance;
     [contact mapRelationship:@"events" withMapping:event];
     [objectManager.mappingProvider setMapping:contact forKeyPath:@"contacts"];
     
+    RKManagedObjectMapping* eventTemplate = [RKManagedObjectMapping mappingForClass:[EventTemplate class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
+    [eventTemplate mapKeyPathsToAttributes:
+     @"name", @"name",
+     @"event_repeat_key", @"eventRepeatKey",
+     @"event_type_code", @"eventTypeCode", nil];
+    [contact mapRelationship:@"instruments" withMapping:eventTemplate];
+    [objectManager.mappingProvider setMapping:eventTemplate forKeyPath:@"event_templates"];
+    
     RKManagedObjectMapping* fieldWork = [RKManagedObjectMapping mappingForClass:[Fieldwork class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [fieldWork mapRelationship:@"participants" withMapping:participant];
     [fieldWork mapRelationship:@"contacts" withMapping:contact];
-//    [fieldWork mapRelationship:@"instrumentTemplate" withMapping:instrumentTemplate];
     [objectManager.mappingProvider setMapping:fieldWork forKeyPath:@"field_work"];
     
     [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd" inTimeZone:[NSTimeZone localTimeZone]];
-//    [RKManagedObjectMapping addDefaultDateFormatterForString:@"hh':'mm':'ss" inTimeZone:[NSTimeZone localTimeZone]];
-
-
-//    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd'T'HH':'mm'Z'" inTimeZone:nil];
-//    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mm:ssZZ" inTimeZone:nil]; 
-//    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mmZZ" inTimeZone:nil]; 
-//    [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'hh:mmZ" inTimeZone:nil]; 
 }
 
 // Serialize

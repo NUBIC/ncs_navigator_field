@@ -51,6 +51,7 @@
 		004FC7131486BF8300A378DC /* PickerOptionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 004FC7111486BE8200A378DC /* PickerOptionTest.m */; };
 		004FC7161486BFBC00A378DC /* PickerOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 004FC7151486BFBC00A378DC /* PickerOption.m */; };
 		005108EE148440C000732623 /* NUScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005108ED148440C000732623 /* NUScrollView.m */; };
+		0054CFDF163EFAFE00F9AB81 /* EventTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0054CFDE163EFAFE00F9AB81 /* EventTemplate.m */; };
 		00590AC81428F7D0008335EA /* ContactTableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590AC71428F7D0008335EA /* ContactTableTest.m */; };
 		006C26D71541BACB00D9B3B1 /* BackupFieldworkStepTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 006C26D61541BACB00D9B3B1 /* BackupFieldworkStepTest.m */; };
 		006C26DB1541EF3200D9B3B1 /* ApplicationPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 006C26DA1541EF3200D9B3B1 /* ApplicationPersistentStore.m */; };
@@ -209,6 +210,9 @@
 		0050B58A15F6A9B2008B9525 /* 20120904204206_associate_instrument_to_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120904204206_associate_instrument_to_response_set.xcdatamodel; sourceTree = "<group>"; };
 		005108EC148440C000732623 /* NUScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUScrollView.h; sourceTree = "<group>"; };
 		005108ED148440C000732623 /* NUScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUScrollView.m; sourceTree = "<group>"; };
+		0054CFDB163EFA7900F9AB81 /* 20121029175349_create_event_templates.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121029175349_create_event_templates.xcdatamodel; sourceTree = "<group>"; };
+		0054CFDD163EFAFE00F9AB81 /* EventTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTemplate.h; sourceTree = "<group>"; };
+		0054CFDE163EFAFE00F9AB81 /* EventTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTemplate.m; sourceTree = "<group>"; };
 		0057793914E4355600964B87 /* NUCas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUCas.h; path = NUCas/Code/NUCas.h; sourceTree = "<group>"; };
 		0057793A14E4357100964B87 /* CasClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CasClient.h; path = NUCas/Code/NUCas/CasClient.h; sourceTree = "<group>"; };
 		0057793B14E4357100964B87 /* CasConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CasConfiguration.h; path = NUCas/Code/NUCas/CasConfiguration.h; sourceTree = "<group>"; };
@@ -828,6 +832,8 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0054CFDD163EFAFE00F9AB81 /* EventTemplate.h */,
+				0054CFDE163EFAFE00F9AB81 /* EventTemplate.m */,
 				4F53118315FA58A1006F5BB2 /* InstrumentPlan.h */,
 				4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */,
 				00DC62181576845B00E5F825 /* MergeStatusRequest.h */,
@@ -1165,6 +1171,7 @@
 				001FEDD31619FA4F00DE8A3A /* SurveySet.m in Sources */,
 				00010412161B73AA00952C3C /* NUResponse+Additions.m in Sources */,
 				2237A32E163B294B009E3A13 /* UIView+Additions.m in Sources */,
+				0054CFDF163EFAFE00F9AB81 /* EventTemplate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1464,12 +1471,13 @@
 				00EAB7DD15FE6D1C00B5B685 /* 20120910184606_remove_instrument_template_from_instrument.xcdatamodel */,
 				00EAB7DF15FE6F0000B5B685 /* 20120910185414_association_instrument_to_instrument_plan.xcdatamodel */,
 				00A78E691638E3B70060EBD1 /* 20121025030410_add_response_group_to_response.xcdatamodel */,
+				0054CFDB163EFA7900F9AB81 /* 20121029175349_create_event_templates.xcdatamodel */,
 				004756521580F1FF009EDE69 /* main_v1.1.xcdatamodel */,
 				000922B515F65925005EBA3D /* 20120904162849_add_pid_to_response_set.xcdatamodel */,
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 00A78E691638E3B70060EBD1 /* 20121025030410_add_response_group_to_response.xcdatamodel */;
+			currentVersion = 0054CFDB163EFA7900F9AB81 /* 20121029175349_create_event_templates.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
