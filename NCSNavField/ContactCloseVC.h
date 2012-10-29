@@ -19,7 +19,8 @@
     UIScrollView* _scrollView;
     SingleOptionPicker* _dispositionPicker;
 }
-
+@property(nonatomic,strong) UIView *left;
+@property(nonatomic,strong) UIView *right;
 @property(nonatomic,strong) Contact* contact;
 @property(nonatomic,strong) UIScrollView* scrollView;
 @property(nonatomic,strong) SingleOptionPicker* dispositionPicker;

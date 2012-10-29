@@ -19,7 +19,7 @@
 
 @property(nonatomic,strong) Event* event;
 @property(nonatomic,strong) UIScrollView* scrollView;
-
+@property(nonatomic,strong) UIView *left,*right;
 - (id)initWithEvent:event;
 
 - (UIView*) toolbarWithFrame:(CGRect)frame;

@@ -22,6 +22,7 @@
 @synthesize contact=_contact;
 @synthesize scrollView = _scrollView;
 @synthesize dispositionPicker = _dispositionPicker;
+@synthesize left,right;
 
 - (id)initWithContact:contact {
     if (self = [super init]) {
@@ -66,9 +67,9 @@
 
     [self setDefaults:self.contact];
     
-    UIView* left = [self leftContactContentWithFrame:lRect contact:self.contact];
+    left = [self leftContactContentWithFrame:lRect contact:self.contact];
     left.backgroundColor = [UIColor whiteColor];
-    UIView* right = [self rightContactContentWithFrame:rRect contact:self.contact];
+    right = [self rightContactContentWithFrame:rRect contact:self.contact];
     right.backgroundColor = [UIColor whiteColor];
     [scroll addSubview:left];
     [scroll addSubview:right];    
@@ -76,9 +77,18 @@
     scroll.backgroundColor = [UIColor colorWithRed:214.0/255.0 green:216.0/255.0 blue:222.0/255.0 alpha:1.0];
     [self.view addSubview:scroll];
     
+    [left registerForPopoverNotifications];
+    [right registerForPopoverNotifications];
+    
     [self.view registerForPopoverNotifications];
     [self registerForKeyboardNotifications];
     [self registerContactTypeChangeNotification];
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self.view];
+    [[NSNotificationCenter defaultCenter] removeObserver:left];
+    [[NSNotificationCenter defaultCenter] removeObserver:right];
 }
 
 - (void) setDefaults:(Contact*)contact {
@@ -110,12 +120,9 @@
 }
 */
 
-//- (void) viewDidLoad {
-//    [super viewDidLoad];
-//    
-//    // WARNING: Do not use if you're using self.frame
-//    // use viewDidAppear instead 
-//}
+- (void) viewDidLoad {
+    [super viewDidLoad];
+}
 
 - (void)viewDidUnload
 {
@@ -184,7 +191,6 @@
     [b labelWithText:@"Disposition"];
     self.dispositionPicker = 
     [b singleOptionPickerForProperty:@selector(dispositionId) WithPickerOptions:[DispositionCode pickerOptionsForContactTypeId:self.contact.typeId] andPopoverSize:NUPickerVCPopoverSizeLarge];
-    
     
     [b labelWithText:@"Language of interview"];
     [b singleOptionPickerForProperty:@selector(languageId) WithPickerOptions:[PickerOption language]];
@@ -293,7 +299,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-
 - (void)keyboardWasShown:(NSNotification*)aNotification {
     NSInteger height = 80;
     UIView* active = [TextField activeField];
@@ -321,5 +326,6 @@
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
 }
+
 
 @end

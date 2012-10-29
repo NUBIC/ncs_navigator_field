@@ -18,7 +18,7 @@
 
 @property(nonatomic,strong) Instrument* instrument;
 @property(nonatomic,strong) UIScrollView* scrollView;
-
+@property(nonatomic,strong) UIView *left,*right;
 
 - (id)initWithInstrument:(Instrument*)instrument;
 

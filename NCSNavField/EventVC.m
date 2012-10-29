@@ -18,7 +18,7 @@
 
 @synthesize event=_event;
 @synthesize scrollView=_scrollView;
-
+@synthesize left,right;
 - (id)initWithEvent:event {
     if (self = [super init]) {
         _event = event;
@@ -61,17 +61,24 @@
     
     [self setDefaults:self.event];
     
-    UIView* left = [self leftEventContentWithFrame:lRect event:self.event];
+    left = [self leftEventContentWithFrame:lRect event:self.event];
     left.backgroundColor = [UIColor whiteColor];
-    UIView* right = [self rightEventContentWithFrame:rRect event:self.event];
+    right = [self rightEventContentWithFrame:rRect event:self.event];
     right.backgroundColor = [UIColor whiteColor];
     [scroll addSubview:left];
     [scroll addSubview:right];    
     
     scroll.backgroundColor = [UIColor colorWithRed:214.0/255.0 green:216.0/255.0 blue:222.0/255.0 alpha:1.0];
     [self.view addSubview:scroll];
+    [left registerForPopoverNotifications];
+    [right registerForPopoverNotifications];
     [self.view registerForPopoverNotifications];
     [self registerForKeyboardNotifications];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:left];
+    [[NSNotificationCenter defaultCenter] removeObserver:right];
 }
 
 /*
@@ -256,7 +263,6 @@
 }
 
 
-
 // Called when the UIKeyboardWillHideNotification is sent
 
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification {
@@ -265,6 +271,7 @@
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
     //Lets animate it back to (0,0) and allow scrolling.
+#warning This is moving the UIPopoverViewController aware from the button that it is supposed to use to make the selection.
     [self.scrollView setContentOffset:CGPointMake(0.0, 0.0) animated:YES];
     
 }

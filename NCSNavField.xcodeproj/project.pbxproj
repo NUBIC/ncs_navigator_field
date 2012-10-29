@@ -953,9 +953,9 @@
 				006FDD88148FD2E80001BADE /* TextField.h */,
 				006FDD89148FD2E80001BADE /* TextField.m */,
 				008C570F149696DD005EC22E /* TextArea.h */,
+				008C5710149696DD005EC22E /* TextArea.m */,
 				0031315414E04BF800C0D0B1 /* SyncActivityIndicator.h */,
 				0031315514E04BF800C0D0B1 /* SyncActivityIndicator.m */,
-				008C5710149696DD005EC22E /* TextArea.m */,
 				000D8E75152CAC5B006EE224 /* TimePicker.h */,
 				000D8E76152CAC5B006EE224 /* TimePicker.m */,
 			);

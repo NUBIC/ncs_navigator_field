@@ -15,7 +15,7 @@
 @implementation ContactInitiateVC
 
 @synthesize contact=_contact;
-
+@synthesize left,right;
 - (id)initWithContact:contact {
     if (self = [super init]) {
         self.contact = contact;
@@ -50,8 +50,8 @@
 
     [self setDefaults:self.contact];
     
-    UIView* left = [self leftContentWithFrame:lRect];
-    UIView* right = [self rightContentWithFrame:rRect];
+    left = [self leftContentWithFrame:lRect];
+    right = [self rightContentWithFrame:rRect];
     [left registerForPopoverNotifications];
     [right registerForPopoverNotifications];
     
@@ -60,7 +60,11 @@
     [self.view addSubview:right];
     
     self.view.backgroundColor = [UIColor whiteColor];
-   
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:left];
+    [[NSNotificationCenter defaultCenter] removeObserver:right];
 }
 
 /*

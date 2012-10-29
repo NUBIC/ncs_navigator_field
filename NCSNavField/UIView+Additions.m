@@ -10,15 +10,17 @@
 
 @implementation UIView (Additions)
 -(void)postPopoverNotification {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"EndEditingNotification" object:nil];
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center postNotificationName:@"EndEditingNotification" object:nil];
 }
 -(void)registerForPopoverNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissKeyboard) name:@"EndEditingNotification" object:nil];
 }
+
 -(void)dismissKeyboard {
-    /*if([self.superview isKindOfClass:[UIView class]]) {
-        [self.superview endEditing:YES];
-    }*/
-    [self endEditing:YES];
+    if([self respondsToSelector:@selector(endEditing:)])
+        [self endEditing:YES];
+    else
+        NSLog(@"Does not respond to selector dismissKeyboard.");
 }
 @end

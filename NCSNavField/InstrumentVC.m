@@ -18,6 +18,7 @@
 
 @synthesize instrument=_instrument;
 @synthesize scrollView=_scrollView;
+@synthesize left,right;
 
 - (id)initWithInstrument:instrument {
     if (self = [super init]) {
@@ -62,17 +63,24 @@
 
     [self setDefaults:self.instrument];
     
-    UIView* left = [self leftInstrumentContentWithFrame:lRect contact:self.instrument];
+    left = [self leftInstrumentContentWithFrame:lRect contact:self.instrument];
     left.backgroundColor = [UIColor whiteColor];
-    UIView* right = [self rightInstrumentContentWithFrame:rRect contact:self.instrument];
+    right = [self rightInstrumentContentWithFrame:rRect contact:self.instrument];
     right.backgroundColor = [UIColor whiteColor];
     [scroll addSubview:left];
     [scroll addSubview:right];    
         
     scroll.backgroundColor = [UIColor colorWithRed:214.0/255.0 green:216.0/255.0 blue:222.0/255.0 alpha:1.0];
     [self.view addSubview:scroll];
-    [self.view registerForPopoverNotifications];
+    //[self.view registerForPopoverNotifications];
+    [left registerForPopoverNotifications];
+    [right registerForPopoverNotifications];
     [self registerForKeyboardNotifications];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:left];
+    [[NSNotificationCenter defaultCenter] removeObserver:right];
 }
 
 - (void)viewDidUnload

@@ -21,7 +21,6 @@
 @implementation MultiSurveyTVC
 @synthesize surveys=_surveys, surveyResponseSetAssociations=_surveyResponseSetAssociations, activeSurveyIndex=_activeSurveyIndex;
 
-
 - (id)initWithSurveys:(NSArray*)surveys surveyResponseSetAssociations:(NSDictionary *)surveyResponseSetAssociations {
     
     NUSurvey* s = [surveys objectAtIndex:0];
@@ -33,7 +32,6 @@
         self.surveys = surveys;
         self.surveyResponseSetAssociations = surveyResponseSetAssociations;
     }
-    
     return self;
 }
 
