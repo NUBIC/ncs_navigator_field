@@ -160,7 +160,10 @@
          "   \"event_templates\": [{             "
          "     \"name\": \"Pregnancy Screener\", "
          "     \"event_repeat_key\": 0,          "
-         "     \"event_type_code\": 34           "
+         "     \"event_type_code\": 34,          "
+         "     \"instruments\":[{                "
+         "          \"name\": \"Preg Scr Ins\"   "
+         "      }]                               "
          "   }]                                  "
          "}                                      ";
     
@@ -171,6 +174,8 @@
     STAssertEqualObjects(et.name, @"Pregnancy Screener", @"Wrong name");
     STAssertEqualObjects(et.eventRepeatKey, [NSNumber numberWithInt:0], @"Wrong repeat key");
     STAssertEqualObjects(et.eventTypeCode, [NSNumber numberWithInt:34], @"Wrong type code");
+    Instrument* ins = [[[et instruments] objectEnumerator] nextObject];
+    STAssertEqualObjects(ins.name, @"Preg Scr Ins", @"Wrong name");
 }
 
 #pragma mark - Helper Methods

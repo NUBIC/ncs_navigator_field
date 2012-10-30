@@ -218,7 +218,7 @@ static RestKitSettings* instance;
      @"name", @"name",
      @"event_repeat_key", @"eventRepeatKey",
      @"event_type_code", @"eventTypeCode", nil];
-    [contact mapRelationship:@"instruments" withMapping:eventTemplate];
+    [eventTemplate mapRelationship:@"instruments" withMapping:instrument];
     [objectManager.mappingProvider setMapping:eventTemplate forKeyPath:@"event_templates"];
     
     RKManagedObjectMapping* fieldWork = [RKManagedObjectMapping mappingForClass:[Fieldwork class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
