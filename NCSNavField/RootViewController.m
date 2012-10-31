@@ -35,6 +35,7 @@
 #import <MRCEnumerable.h>
 #import "MultiSurveyTVC.h"
 #import "NUSurvey+Additions.h"
+#import <RestKit/RestKit.h>
 
 @interface RootViewController () 
     @property(nonatomic,strong) NSArray* contacts;

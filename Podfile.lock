@@ -9,7 +9,7 @@ PODS:
 - MBProgressHUD (0.5)
 - MRCEnumerable (0.1)
 - NSData+Base64 (1.0.0)
-- NUSurveyor (1.1.dev1)
+- NUSurveyor (1.1.dev2)
 - RestKit (0.10.2):
   - RestKit/JSON (= 0.10.2)
 - RestKit/JSON (0.10.2):
@@ -54,12 +54,12 @@ SPEC CHECKSUMS:
   FileMD5Hash: c3b015e6fb293eea0a0c276747f61f20408c2644
   ISO8601DateFormatter: dc05a2481edf49668d85d3ff8c466c32eb544780
   JSONKit: a01a22c75f27eae76b4badd55a91c20fe6e86477
-  LibComponentLogging-Core: 1a37d3c5e15673ff69d242c580d54e50ecd5b727
+  LibComponentLogging-Core: b60eaa23dc20d87264e885fa296798d33de602f0
   LibComponentLogging-NSLog: a4bb0f6de612eef7b5fcdbd9cc96dc868ba1f2df
   MBProgressHUD: b23ee11c42253d6d804e8e0bfabdc334e8b2571f
   MRCEnumerable: 4d76635c2a723ea6c648e7496969b639d128f6c1
   NSData+Base64: 8b910cb8a64f45daec6fb15936c36a9a911c57ca
-  NUSurveyor: aaeb0d177c340d8ab61fec1122f4c5e60ad538e5
+  NUSurveyor: cb77ef1d5a87b6039508a8217601b7048cbcb7c9
   RestKit: a9f24f857c792183bcc656f891abe93d38e342ee
   RestKit/JSON: a9f24f857c792183bcc656f891abe93d38e342ee
   RestKit/Network: a9f24f857c792183bcc656f891abe93d38e342ee

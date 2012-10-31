@@ -16,6 +16,7 @@
 @class CasProxyTicket;
 @class SyncActivityIndicator;
 @class ResponseSet;
+@class RKReachabilityObserver;
 
 @interface RootViewController : SimpleTableController<UINavigationControllerDelegate, SimpleTableRowDelegate, CasLoginDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate> {
     Instrument* _administeredInstrument;
