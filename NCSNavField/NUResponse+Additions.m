@@ -7,7 +7,6 @@
 //
 
 #import "NUResponse+Additions.h"
-#import <RestKit/RestKit.h>
 
 @implementation NUResponse (Additions)
 

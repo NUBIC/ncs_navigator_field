@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import <CoreData/CoreData.h>
-
 @interface Participant : NSManagedObject
 
 @property(nonatomic,strong) NSString* pId;
