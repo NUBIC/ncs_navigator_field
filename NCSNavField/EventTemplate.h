@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @class Instrument;
+@class Event;
 
 @interface EventTemplate : NSManagedObject
 
@@ -17,6 +18,13 @@
 @property (nonatomic, retain) NSNumber * eventRepeatKey;
 @property (nonatomic, retain) NSNumber * eventTypeCode;
 @property (nonatomic, retain) NSSet *instruments;
+
+#pragma mark - Methods
+
++ (EventTemplate*)pregnancyScreeningTemplate;
+
+- (Event*)buildEvent;
+
 @end
 
 @interface EventTemplate (CoreDataGeneratedAccessors)
