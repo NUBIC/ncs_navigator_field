@@ -19,11 +19,11 @@
 
 @property(nonatomic,strong) NSString* name;
 
-@property(nonatomic,strong) NSNumber* eventTypeId;
+@property(nonatomic,strong) NSNumber* eventTypeCode;
 
 @property(nonatomic,strong) NSString* eventTypeOther;
 
-@property(nonatomic,strong) NSNumber* repeatKey;
+@property(nonatomic,strong) NSNumber* eventRepeatKey;
 
 @property(nonatomic,strong) NSDate* startDate;
 

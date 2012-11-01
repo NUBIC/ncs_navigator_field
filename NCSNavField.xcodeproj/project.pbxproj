@@ -452,6 +452,7 @@
 		00EDE59814B4048900B8A643 /* libNUCas.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNUCas.a; path = "../NUCas/build/Release-iphoneos/libNUCas.a"; sourceTree = "<group>"; };
 		00F10AAE14DB042200387762 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		00F10AAF14DB042200387762 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
+		00F9408A1643119C00176840 /* 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel; sourceTree = "<group>"; };
 		00FF37DC1417C50D0009B1D4 /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
 		00FF37DD1417C50D0009B1D4 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
 		00FF37E31417CFA30009B1D4 /* ContactNavigationTableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNavigationTableTest.h; sourceTree = "<group>"; };
@@ -1472,12 +1473,13 @@
 				00EAB7DF15FE6F0000B5B685 /* 20120910185414_association_instrument_to_instrument_plan.xcdatamodel */,
 				00A78E691638E3B70060EBD1 /* 20121025030410_add_response_group_to_response.xcdatamodel */,
 				0054CFDB163EFA7900F9AB81 /* 20121029175349_create_event_templates.xcdatamodel */,
+				00F9408A1643119C00176840 /* 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel */,
 				004756521580F1FF009EDE69 /* main_v1.1.xcdatamodel */,
 				000922B515F65925005EBA3D /* 20120904162849_add_pid_to_response_set.xcdatamodel */,
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 0054CFDB163EFA7900F9AB81 /* 20121029175349_create_event_templates.xcdatamodel */;
+			currentVersion = 00F9408A1643119C00176840 /* 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
