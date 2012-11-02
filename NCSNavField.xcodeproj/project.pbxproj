@@ -82,6 +82,8 @@
 		0095430F153E62040018DAC3 /* InstrumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095430E153E62040018DAC3 /* InstrumentVC.m */; };
 		009AD2E4142D391A0038650B /* SimpleTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009AD2E3142D391A0038650B /* SimpleTableController.m */; };
 		009BE3AF14FC2217008195F9 /* SyncActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0031315514E04BF800C0D0B1 /* SyncActivityIndicator.m */; };
+		00AB8E9616431D150097F7CD /* NSManagedObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AB8E9516431D150097F7CD /* NSManagedObject+Additions.m */; };
+		00AB8E99164358290097F7CD /* NSManagedObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AB8E98164358290097F7CD /* NSManagedObjectTest.m */; };
 		00B7CCA814BDFB6E00D5901C /* DispositionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B7CCA714BDFB6E00D5901C /* DispositionCode.m */; };
 		00C0C8D615655E390047A113 /* icon-test.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C0C8D515655E390047A113 /* icon-test.png */; };
 		00C2520D151794EB00F4FE3B /* RestKitSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */; };
@@ -410,6 +412,10 @@
 		009BE3A914FC2145008195F9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		00A2CDDA14EAFCBD00C164F7 /* libMRCEnumerable.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMRCEnumerable.a; path = "MRCEnumerable/build/Release-iphoneos/libMRCEnumerable.a"; sourceTree = "<group>"; };
 		00A78E691638E3B70060EBD1 /* 20121025030410_add_response_group_to_response.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121025030410_add_response_group_to_response.xcdatamodel; sourceTree = "<group>"; };
+		00AB8E9416431D150097F7CD /* NSManagedObject+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Additions.h"; sourceTree = "<group>"; };
+		00AB8E9516431D150097F7CD /* NSManagedObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Additions.m"; sourceTree = "<group>"; };
+		00AB8E97164358290097F7CD /* NSManagedObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSManagedObjectTest.h; sourceTree = "<group>"; };
+		00AB8E98164358290097F7CD /* NSManagedObjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectTest.m; sourceTree = "<group>"; };
 		00B7CCA614BDFB6E00D5901C /* DispositionCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispositionCode.h; sourceTree = "<group>"; };
 		00B7CCA714BDFB6E00D5901C /* DispositionCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispositionCode.m; sourceTree = "<group>"; };
 		00C0C8D515655E390047A113 /* icon-test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-test.png"; sourceTree = "<group>"; };
@@ -453,9 +459,9 @@
 		00EDE59814B4048900B8A643 /* libNUCas.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNUCas.a; path = "../NUCas/build/Release-iphoneos/libNUCas.a"; sourceTree = "<group>"; };
 		00F10AAE14DB042200387762 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		00F10AAF14DB042200387762 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
-		00F9408A1643119C00176840 /* 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel; sourceTree = "<group>"; };
 		00F940821642E08100176840 /* EventTemplateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTemplateTest.h; sourceTree = "<group>"; };
 		00F940831642E08100176840 /* EventTemplateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTemplateTest.m; sourceTree = "<group>"; };
+		00F9408A1643119C00176840 /* 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel; sourceTree = "<group>"; };
 		00FF37DC1417C50D0009B1D4 /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
 		00FF37DD1417C50D0009B1D4 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
 		00FF37E31417CFA30009B1D4 /* ContactNavigationTableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNavigationTableTest.h; sourceTree = "<group>"; };
@@ -610,6 +616,8 @@
 				00C53B3B1615F9CC00F245F9 /* MergeStatusTest.m */,
 				001FEDD51619FC4000DE8A3A /* SurveySetTest.h */,
 				001FEDD61619FC4000DE8A3A /* SurveySetTest.m */,
+				00AB8E97164358290097F7CD /* NSManagedObjectTest.h */,
+				00AB8E98164358290097F7CD /* NSManagedObjectTest.m */,
 			);
 			name = Tests;
 			path = NCSNavFieldTests;
@@ -838,6 +846,7 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				00AB8E9216431CEA0097F7CD /* Categories */,
 				0054CFDD163EFAFE00F9AB81 /* EventTemplate.h */,
 				0054CFDE163EFAFE00F9AB81 /* EventTemplate.m */,
 				4F53118315FA58A1006F5BB2 /* InstrumentPlan.h */,
@@ -931,6 +940,15 @@
 				002B2E4314362E4900410D09 /* nu-logo.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		00AB8E9216431CEA0097F7CD /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				00AB8E9416431D150097F7CD /* NSManagedObject+Additions.h */,
+				00AB8E9516431D150097F7CD /* NSManagedObject+Additions.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		00F10AAD14DB040800387762 /* MBProgressHUD */ = {
@@ -1178,6 +1196,7 @@
 				00010412161B73AA00952C3C /* NUResponse+Additions.m in Sources */,
 				2237A32E163B294B009E3A13 /* UIView+Additions.m in Sources */,
 				0054CFDF163EFAFE00F9AB81 /* EventTemplate.m in Sources */,
+				00AB8E9616431D150097F7CD /* NSManagedObject+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1201,6 +1220,7 @@
 				00C53B3C1615F9CC00F245F9 /* MergeStatusTest.m in Sources */,
 				001FEDD71619FC4000DE8A3A /* SurveySetTest.m in Sources */,
 				00F940841642E08100176840 /* EventTemplateTest.m in Sources */,
+				00AB8E99164358290097F7CD /* NSManagedObjectTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

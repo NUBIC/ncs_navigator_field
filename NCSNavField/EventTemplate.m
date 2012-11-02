@@ -9,6 +9,7 @@
 #import "EventTemplate.h"
 #import "Instrument.h"
 #import "Event.h"
+#import "NSManagedObject+Additions.h"
 
 
 @implementation EventTemplate
@@ -19,7 +20,7 @@
 @dynamic instruments;
 
 + (EventTemplate*)pregnancyScreeningTemplate {
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name CONTAINS %@ AND name CONTAINS %@", @"preg", @"screen"];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[c] %@ AND name CONTAINS[c] %@", @"preg", @"screen"];
     return [EventTemplate findFirstWithPredicate:predicate];
 }
 
@@ -29,12 +30,17 @@
     for (NSString* attr in eventAttrs) {
         id value = [self valueForKey:attr];
         id eventHasAttribute = [[[Event entityDescription] attributesByName] objectForKey:attr];
-        if (value && eventHasAttribute) {
+        if (eventHasAttribute) {
             [e setValue:value forKey:attr];
         } else {
             NCSLog(@"Error: Attribute '%@' does not exist on event", attr);
         }
     }
+    
+    for (Instrument* i in self.instruments) {
+        [e addInstrumentsObject:(Instrument*)[i clone]];
+    }
+
     return e;
 }
 
