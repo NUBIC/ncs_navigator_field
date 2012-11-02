@@ -21,7 +21,6 @@
 - (NSArray*) buildSectionsUsingContacts:(NSArray*) contacts;
 - (NSString*) buildSectionNameUsingDate:(NSDate*)date;
 - (NSArray*) buildRowsUsingContacts:(NSArray*)contacts;
-- (void)dealloc;
 
 @property(nonatomic,strong) NSArray* sections;
 

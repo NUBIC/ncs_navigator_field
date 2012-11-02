@@ -53,7 +53,7 @@
     NSMutableArray *rows = [NSMutableArray new];
     for (Contact *c in contacts) {
         Row *r = [Row new];
-        r.text = c.person.name;
+        r.text = c.person.name ? c.person.name : @"(Person name missing)";
         r.detailText = [NSString stringWithFormat:@"%@ instruments", [NSNumber numberWithInt:[c.events count]]];
         r.entity = c;
         [rows addObject:r];
