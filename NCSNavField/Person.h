@@ -23,4 +23,8 @@
 
 @property(nonatomic,strong) NSString* participant;
 
+#pragma mark - Methods
+
++ (Person*)person;
+
 @end
