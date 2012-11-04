@@ -31,7 +31,6 @@
 - (Section*) scheduledInstruments;
 - (Section*) scheduledEvents;
 - (NSArray*) sortedEvents;
-- (void) dealloc;
 
 - (NSString*) ReplaceFirstNewLine:(NSString*) original;
 - (NSArray*) rejectEmptySections:(NSArray*)raw;
