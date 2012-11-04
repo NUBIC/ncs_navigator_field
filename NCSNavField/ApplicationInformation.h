@@ -12,4 +12,6 @@
 
 + (BOOL) isTestEnvironment;
 
++ (NSString*) datasourceName;
+
 @end

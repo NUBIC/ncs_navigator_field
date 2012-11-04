@@ -12,8 +12,7 @@
 @implementation ResponseSetTest
 
 - (void)testSetPid {
-    NSEntityDescription *e = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
-    ResponseSet *r = [[ResponseSet alloc] initWithEntity:e insertIntoManagedObjectContext:self.ctx];
+    ResponseSet *r = [ResponseSet object];
     [r setValue:@"1d" forKey:@"pId"];
     NSError* error = nil;
     [self.ctx save:&error];
@@ -22,15 +21,13 @@
 }
 
 - (void)testToDictWithPid {
-    NSEntityDescription *e = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
-    ResponseSet *r = [[ResponseSet alloc] initWithEntity:e insertIntoManagedObjectContext:self.ctx];
+    ResponseSet *r = [ResponseSet object];
     [r setValue:@"1d" forKey:@"pId"];
     STAssertEqualObjects([[r toDict] objectForKey:@"p_id"], @"1d", @"Wrong p_id");
 }
 
 - (void)testFromJsonWithPid {
-    NSEntityDescription *e = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
-    ResponseSet *r = [[ResponseSet alloc] initWithEntity:e insertIntoManagedObjectContext:self.ctx];
+    ResponseSet *r = [ResponseSet object];
     [r fromJson:@"{\"p_id\":\"1d\"}"];
     STAssertEqualObjects([r valueForKey:@"pId"], @"1d", @"Wrong pId");
 }

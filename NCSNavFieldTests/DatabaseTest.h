@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSManagedObjectModel *surveyorModel;
 @property (nonatomic, strong) NSPersistentStore *store;
 
+@property(nonatomic,strong) RKManagedObjectStore* rkStore;
+
 - (void)setUp;
 - (void)tearDown;
 

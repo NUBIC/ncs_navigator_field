@@ -21,6 +21,7 @@
 #import "NSString+Additions.m"
 #import "InstrumentPlan.h"
 #import "EventTemplate.h"
+#import "ApplicationInformation.h"
 
 NSString* STORE_NAME = @"main.sqlite";
 
@@ -40,7 +41,11 @@ static RestKitSettings* instance;
     self = [super init];
     if (self) {
         _baseServiceURL = [ApplicationSettings instance].coreURL;
-        _objectStoreFileName = STORE_NAME;
+        if ([ApplicationInformation datasourceName]) {
+            _objectStoreFileName = [ApplicationInformation datasourceName];
+        } else {
+            _objectStoreFileName = STORE_NAME;
+        }
     }
     return self;
 }

@@ -15,38 +15,17 @@
 - (void)setUp
 {
     [super setUp];
-	
-    // Set-up code here.
-	self.bundle = [NSBundle bundleWithIdentifier:@"nubic.NCSNavFieldTest"];
-//    [NSManagedObjectModel modelByMergingModels:<#(NSArray *)#>]
-	self.model = [NSManagedObjectModel mergedModelFromBundles:[NSArray arrayWithObject:self.bundle]];
-	self.coord = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.model];
-	self.store = [self.coord addPersistentStoreWithType: NSInMemoryStoreType
-                                          configuration: nil
-                                                    URL: nil
-                                                options: nil 
-                                                  error: NULL];
-	self.ctx = [[NSManagedObjectContext alloc] init];
-	[self.ctx setPersistentStoreCoordinator: self.coord];
 }
 
 - (void)tearDown
 {
-    // Tear-down code here.
-	self.ctx = nil;
-	NSError *error = nil;
-	STAssertTrue([self.coord removePersistentStore: self.store error: &error], 
-                 @"couldn't remove persistent store: %@", error);
-	self.store = nil;
-	self.coord = nil;
-	self.model = nil;
-    self.bundle = nil;
+    [[RKObjectManager sharedManager].objectStore deletePersistentStore];
 	
     [super tearDown];
 }
 
 - (void)testThatEnvironmentWorks {
-	STAssertNotNil(self.store, @"no persistent store");
+	STAssertNotNil([RKObjectManager sharedManager].objectStore, @"no persistent store");
 }
 
 @end

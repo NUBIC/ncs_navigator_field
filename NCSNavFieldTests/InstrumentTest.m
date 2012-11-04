@@ -9,19 +9,15 @@
 #import "InstrumentTest.h"
 #import "Instrument.h"
 #import "ResponseSet.h"
-#import <CoreData.h>
 
 @implementation InstrumentTest
 
 - (void)testSanity {
-    Instrument* ins = [Instrument createInContext:self.ctx];
+    Instrument* ins = [Instrument object];
     ins.instrumentId = @"12345";
-    [self.ctx save:nil];
-    // BUG: Workaround for issue with findFirst
-    //    Instrument* found = [Instrument findFirstByAttribute:@"instrumentId" withValue:@"12345" inContext:self.ctx];
-    NSArray* found = [Instrument findByAttribute:@"instrumentId" withValue:@"12345" inContext:self.ctx];
-    Instrument* i = [found objectAtIndex:0];
-    STAssertEqualObjects(i.instrumentId, @"12345", @"Wrong id");
+    [[ins managedObjectContext] save:nil];
+    Instrument* found = [Instrument findFirstByAttribute:@"instrumentId" withValue:@"12345"];
+    STAssertEqualObjects(found.instrumentId, @"12345", @"Wrong id");
 }
 
 @end

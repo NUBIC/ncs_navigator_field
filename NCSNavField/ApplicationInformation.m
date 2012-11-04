@@ -16,4 +16,8 @@
     
 }
 
++ (NSString*) datasourceName {
+    return [[[NSProcessInfo processInfo] environment] objectForKey:@"DATASOURCE_NAME"];
+}
+
 @end
