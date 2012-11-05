@@ -83,6 +83,7 @@
 		009AD2E4142D391A0038650B /* SimpleTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009AD2E3142D391A0038650B /* SimpleTableController.m */; };
 		009BE3AF14FC2217008195F9 /* SyncActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0031315514E04BF800C0D0B1 /* SyncActivityIndicator.m */; };
 		009EEEFB16442B8900EB98D1 /* PersonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EEEFA16442B8900EB98D1 /* PersonTest.m */; };
+		009EEF1316485AF500EB98D1 /* Provider.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EEF1216485AF500EB98D1 /* Provider.m */; };
 		00AB8E9616431D150097F7CD /* NSManagedObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AB8E9516431D150097F7CD /* NSManagedObject+Additions.m */; };
 		00AB8E99164358290097F7CD /* NSManagedObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AB8E98164358290097F7CD /* NSManagedObjectTest.m */; };
 		00B7CCA814BDFB6E00D5901C /* DispositionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B7CCA714BDFB6E00D5901C /* DispositionCode.m */; };
@@ -410,6 +411,9 @@
 		009BE3A914FC2145008195F9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		009EEEF916442B8900EB98D1 /* PersonTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTest.h; sourceTree = "<group>"; };
 		009EEEFA16442B8900EB98D1 /* PersonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTest.m; sourceTree = "<group>"; };
+		009EEF0F164858B100EB98D1 /* 20121105202659_create_providers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121105202659_create_providers.xcdatamodel; sourceTree = "<group>"; };
+		009EEF1116485AF500EB98D1 /* Provider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Provider.h; sourceTree = "<group>"; };
+		009EEF1216485AF500EB98D1 /* Provider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Provider.m; sourceTree = "<group>"; };
 		00A2CDDA14EAFCBD00C164F7 /* libMRCEnumerable.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMRCEnumerable.a; path = "MRCEnumerable/build/Release-iphoneos/libMRCEnumerable.a"; sourceTree = "<group>"; };
 		00A78E691638E3B70060EBD1 /* 20121025030410_add_response_group_to_response.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121025030410_add_response_group_to_response.xcdatamodel; sourceTree = "<group>"; };
 		00AB8E9416431D150097F7CD /* NSManagedObject+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Additions.h"; sourceTree = "<group>"; };
@@ -848,6 +852,8 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				009EEF1116485AF500EB98D1 /* Provider.h */,
+				009EEF1216485AF500EB98D1 /* Provider.m */,
 				00AB8E9216431CEA0097F7CD /* Categories */,
 				0054CFDD163EFAFE00F9AB81 /* EventTemplate.h */,
 				0054CFDE163EFAFE00F9AB81 /* EventTemplate.m */,
@@ -1196,6 +1202,7 @@
 				2237A32E163B294B009E3A13 /* UIView+Additions.m in Sources */,
 				0054CFDF163EFAFE00F9AB81 /* EventTemplate.m in Sources */,
 				00AB8E9616431D150097F7CD /* NSManagedObject+Additions.m in Sources */,
+				009EEF1316485AF500EB98D1 /* Provider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1491,6 +1498,7 @@
 		00C9C6E3146CE66300F6D339 /* main.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				009EEF0F164858B100EB98D1 /* 20121105202659_create_providers.xcdatamodel */,
 				0050B58A15F6A9B2008B9525 /* 20120904204206_associate_instrument_to_response_set.xcdatamodel */,
 				003EDE4B15F7CE2300951B05 /* 20120905181210_update_response_set_to_response_sets.xcdatamodel */,
 				4F53118015FA5148006F5BB2 /* 20120907155731_add_participant_type_to_instrument_template.xcdatamodel */,
@@ -1505,7 +1513,7 @@
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 00F9408A1643119C00176840 /* 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel */;
+			currentVersion = 009EEF0F164858B100EB98D1 /* 20121105202659_create_providers.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
