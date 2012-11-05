@@ -21,6 +21,7 @@
 - (NSArray*) buildSectionsUsingContacts:(NSArray*) contacts;
 - (NSString*) buildSectionNameUsingDate:(NSDate*)date;
 - (NSArray*) buildRowsUsingContacts:(NSArray*)contacts;
+- (NSIndexPath*)findIndexPathForContact:(Contact*)contact;
 
 @property(nonatomic,strong) NSArray* sections;
 

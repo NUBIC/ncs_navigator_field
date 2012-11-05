@@ -61,5 +61,19 @@
     return rows;
 }
 
+- (NSIndexPath*)findIndexPathForContact:(Contact*)contact {
+    NSIndexPath* result = nil;
+    for (Section* s in self.sections) {
+        for (Row* r in s.rows) {
+            if (r.entity == contact) {
+                NSInteger sIndex = [self.sections indexOfObject:s];
+                NSInteger rIndex = [s.rows indexOfObject:r];
+                result = [NSIndexPath indexPathForRow:rIndex inSection:sIndex];
+            }
+        }
+    }
+    return result;
+}
+
 
 @end
