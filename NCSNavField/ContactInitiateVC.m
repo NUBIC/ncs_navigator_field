@@ -185,7 +185,8 @@
 - (void) done {
     [self commitTransaction];
     [self dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactInitiated" object:self];
+        NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.contact, @"contact", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactInitiated" object:self userInfo:dict];
     }];
 }
 
