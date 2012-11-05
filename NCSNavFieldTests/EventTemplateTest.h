@@ -7,7 +7,8 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "DatabaseTest.h"
 
-@interface EventTemplateTest : SenTestCase
+@interface EventTemplateTest : DatabaseTest
 
 @end

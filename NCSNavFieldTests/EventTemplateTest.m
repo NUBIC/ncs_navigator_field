@@ -35,4 +35,14 @@
     STAssertTrue(actualInstrument.objectID != instrument.objectID, @"Instrument should be duplicated");    
 }
 
+- (void)testPregnancyScreeningTemplate {
+    EventTemplate* t = [EventTemplate object];
+    t.name = @"Pregnancy Screener";
+    STAssertEqualObjects([EventTemplate pregnancyScreeningTemplate], t, nil);
+}
+
+- (void)testPregnancyScreeningTemplateWhenNoneExists {
+    STAssertNil([EventTemplate pregnancyScreeningTemplate], nil);
+}
+
 @end
