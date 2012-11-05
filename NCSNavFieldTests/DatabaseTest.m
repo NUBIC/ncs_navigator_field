@@ -15,12 +15,13 @@
 - (void)setUp
 {
     [super setUp];
+    
+    [[RKObjectManager sharedManager].objectStore deletePersistentStore];
+    [[NSManagedObjectContext contextForCurrentThread] reset];
 }
 
 - (void)tearDown
-{
-    [[RKObjectManager sharedManager].objectStore deletePersistentStore];
-	
+{   
     [super tearDown];
 }
 
