@@ -45,12 +45,14 @@
     NSMutableArray* addresses = [NSMutableArray new];
 
     if (self.contact.person) {
-        Row *home = [[Row alloc] 
-                     initWithText:@"Home" entity:_contact.person rowClass:@"address"];
-
-        Person *p = _contact.person;
-        home.detailText = [NSString stringWithFormat:@"%@\n%@, %@ %@", [self ReplaceFirstNewLine:p.street], p.city, p.state, p.zipCode];
-        [addresses addObject:home];
+        NSString* addr = [self.contact.person formattedAddress];
+        if (addr) {
+            Row *home = [[Row alloc]
+                         initWithText:@"Home" entity:_contact.person rowClass:@"address"];
+            
+            home.detailText = addr;
+            [addresses addObject:home];
+        }
     }
 
     return [[Section alloc] initWithName:@"Address" andRows:addresses];

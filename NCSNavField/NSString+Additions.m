@@ -17,4 +17,8 @@
     return [f dateFromString:self];    
 }
 
+- (BOOL)isBlank {
+    return self == nil || [self isEqualToString:[NSString string]];
+}
+
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "Person.h"
+#import "NSString+Additions.h"
+#import <MRCEnumerable/MRCEnumerable.h>
 
 @implementation Person
 
@@ -29,5 +31,24 @@ static const NSString* NEW_PERSON_NAME = @"New Person";
     NSPredicate* p = [NSPredicate predicateWithFormat:@"name BEGINSWITH[c] %@", NEW_PERSON_NAME];
     return [[Person findAllWithPredicate:p] count];
 }
+
+- (NSString*)addressLineOne {
+    return [self.street isBlank] ? nil : self.street;
+}
+
+- (NSString*)addressLineTwo {
+    NSArray* all = [NSArray arrayWithObjects:self.city, self.state, self.zipCode, nil];
+    NSArray* filtered = [all reject:^BOOL(id obj) {
+        return [obj isBlank];
+    }];
+    return [filtered empty] ? nil : [filtered componentsJoinedByString:@" "];
+}
+
+- (NSString*)formattedAddress {
+    NSArray* all = [NSArray arrayWithObjects:[self addressLineOne], [self addressLineTwo], nil];
+    NSArray* filtered = [all reject:^BOOL(id obj) {
+        return [obj isBlank];
+    }];
+    return [filtered empty] ? nil : [filtered componentsJoinedByString:@"\n"];}
 
 @end

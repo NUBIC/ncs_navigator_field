@@ -27,4 +27,10 @@
 
 + (Person*)person;
 
+- (NSString*)addressLineOne;
+
+- (NSString*)addressLineTwo;
+
+- (NSString*)formattedAddress;
+
 @end
