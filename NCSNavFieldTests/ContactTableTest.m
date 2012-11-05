@@ -56,7 +56,7 @@ Person *tom;
     STAssertEqualObjects(s0.name, @"Address", @"Wrong value");
     Row* s0r0 = [s0.rows objectAtIndex:0];
     STAssertEqualObjects(s0r0.text, @"Home", @"Wrong value");
-    STAssertEqualObjects(s0r0.detailText, @"1 Sesame St\nChicago, IL 60611", @"Wrong value");
+    STAssertEqualObjects(s0r0.detailText, @"1 Sesame St\nChicago IL 60611", @"Wrong value");
 }
 
 // TODO: Test address if street, city, state are nil
