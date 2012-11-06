@@ -159,6 +159,42 @@
     return YES;
 }
 
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Section *s = [self.simpleTable.sections objectAtIndex:indexPath.section];
+    Row *r = [s.rows objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    if([s.name isEqualToString:@"Scheduled Instruments"])
+    {
+        Instrument *instrument = r.entity;
+        if(instrument.startDate) {
+            cell.textLabel.textColor = [UIColor blackColor];
+            cell.userInteractionEnabled=YES;
+        }
+        else {
+            cell.textLabel.textColor = [UIColor grayColor];
+            cell.userInteractionEnabled=NO;
+        }
+        //We need to check the previous row and see if it has a start date. If it does,
+        //and the current row does not we need to enable this one. This is the "current" row.
+        if(indexPath.row==0) {
+            //This is the first row and therefore should be enabled no matter what.
+            cell.textLabel.textColor = [UIColor blackColor];
+            cell.userInteractionEnabled=YES;
+        }
+        else {
+            Row *prevRow = [s.rows objectAtIndex:(indexPath.row-1)];
+            Instrument *prevInstrument = prevRow.entity;
+            if((prevInstrument.startDate)
+               &&(!instrument.startDate)) {
+                cell.textLabel.textColor = [UIColor blackColor];
+                cell.userInteractionEnabled=YES;
+            }
+        }
+    }
+    return cell;
+}
+
 #pragma mark - Table view support
 
 - (UITableViewCell*) cellForRowClass:(NSString *)rowClass {
