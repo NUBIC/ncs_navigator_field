@@ -82,6 +82,9 @@
 		0095430F153E62040018DAC3 /* InstrumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095430E153E62040018DAC3 /* InstrumentVC.m */; };
 		009AD2E4142D391A0038650B /* SimpleTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009AD2E3142D391A0038650B /* SimpleTableController.m */; };
 		009BE3AF14FC2217008195F9 /* SyncActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0031315514E04BF800C0D0B1 /* SyncActivityIndicator.m */; };
+		009EEEFB16442B8900EB98D1 /* PersonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EEEFA16442B8900EB98D1 /* PersonTest.m */; };
+		00AB8E9616431D150097F7CD /* NSManagedObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AB8E9516431D150097F7CD /* NSManagedObject+Additions.m */; };
+		00AB8E99164358290097F7CD /* NSManagedObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AB8E98164358290097F7CD /* NSManagedObjectTest.m */; };
 		00B7CCA814BDFB6E00D5901C /* DispositionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B7CCA714BDFB6E00D5901C /* DispositionCode.m */; };
 		00C0C8D615655E390047A113 /* icon-test.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C0C8D515655E390047A113 /* icon-test.png */; };
 		00C2520D151794EB00F4FE3B /* RestKitSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */; };
@@ -106,13 +109,10 @@
 		00E3235A1422B08200D3AEED /* Row.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E323591422B08200D3AEED /* Row.m */; };
 		00E3235D1422EB6A00D3AEED /* ContactTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E3235C1422EB6A00D3AEED /* ContactTable.m */; };
 		00EDE59914B4048900B8A643 /* libNUCas.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EDE59814B4048900B8A643 /* libNUCas.a */; };
-		00F82FA615F160130072C327 /* surveyor.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 0047566D15813546009EDE69 /* surveyor.xcdatamodeld */; };
-		00F82FA715F160130072C327 /* main.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 00C9C6E3146CE66300F6D339 /* main.xcdatamodeld */; };
+		00F940841642E08100176840 /* EventTemplateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F940831642E08100176840 /* EventTemplateTest.m */; };
 		00FF37DE1417C50D0009B1D4 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37DD1417C50D0009B1D4 /* Instrument.m */; };
 		00FF37E71417D2380009B1D4 /* ContactNavigationTableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */; };
-		00FF37E81417D2B80009B1D4 /* ContactNavigationTableTest.h in Resources */ = {isa = PBXBuildFile; fileRef = 00FF37E31417CFA30009B1D4 /* ContactNavigationTableTest.h */; };
 		2237A32E163B294B009E3A13 /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2237A32D163B294B009E3A13 /* UIView+Additions.m */; };
-		22A594D91648450700B56E44 /* SimpleTableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A594D81648450700B56E44 /* SimpleTableTest.m */; };
 		4F53118515FA58A1006F5BB2 /* InstrumentPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */; };
 		D1CACF1A1F944E92AB51AE74 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 493CC93326804A8ABCA31763 /* libPods.a */; };
 		F75259C3F792403F9EE94A8A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 493CC93326804A8ABCA31763 /* libPods.a */; };
@@ -408,8 +408,14 @@
 		009AD2E61430D9BF0038650B /* SimpleTableRowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableRowDelegate.h; sourceTree = "<group>"; };
 		009AD2E71430DA180038650B /* ISimpleTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISimpleTable.h; sourceTree = "<group>"; };
 		009BE3A914FC2145008195F9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		009EEEF916442B8900EB98D1 /* PersonTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTest.h; sourceTree = "<group>"; };
+		009EEEFA16442B8900EB98D1 /* PersonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTest.m; sourceTree = "<group>"; };
 		00A2CDDA14EAFCBD00C164F7 /* libMRCEnumerable.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMRCEnumerable.a; path = "MRCEnumerable/build/Release-iphoneos/libMRCEnumerable.a"; sourceTree = "<group>"; };
 		00A78E691638E3B70060EBD1 /* 20121025030410_add_response_group_to_response.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121025030410_add_response_group_to_response.xcdatamodel; sourceTree = "<group>"; };
+		00AB8E9416431D150097F7CD /* NSManagedObject+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Additions.h"; sourceTree = "<group>"; };
+		00AB8E9516431D150097F7CD /* NSManagedObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Additions.m"; sourceTree = "<group>"; };
+		00AB8E97164358290097F7CD /* NSManagedObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSManagedObjectTest.h; sourceTree = "<group>"; };
+		00AB8E98164358290097F7CD /* NSManagedObjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectTest.m; sourceTree = "<group>"; };
 		00B7CCA614BDFB6E00D5901C /* DispositionCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispositionCode.h; sourceTree = "<group>"; };
 		00B7CCA714BDFB6E00D5901C /* DispositionCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispositionCode.m; sourceTree = "<group>"; };
 		00C0C8D515655E390047A113 /* icon-test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-test.png"; sourceTree = "<group>"; };
@@ -453,14 +459,15 @@
 		00EDE59814B4048900B8A643 /* libNUCas.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNUCas.a; path = "../NUCas/build/Release-iphoneos/libNUCas.a"; sourceTree = "<group>"; };
 		00F10AAE14DB042200387762 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		00F10AAF14DB042200387762 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
+		00F940821642E08100176840 /* EventTemplateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTemplateTest.h; sourceTree = "<group>"; };
+		00F940831642E08100176840 /* EventTemplateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTemplateTest.m; sourceTree = "<group>"; };
+		00F9408A1643119C00176840 /* 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel; sourceTree = "<group>"; };
 		00FF37DC1417C50D0009B1D4 /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
 		00FF37DD1417C50D0009B1D4 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
 		00FF37E31417CFA30009B1D4 /* ContactNavigationTableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNavigationTableTest.h; sourceTree = "<group>"; };
 		00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactNavigationTableTest.m; sourceTree = "<group>"; };
 		2237A32C163B294B009E3A13 /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		2237A32D163B294B009E3A13 /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
-		22A594D71648450700B56E44 /* SimpleTableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableTest.h; sourceTree = "<group>"; };
-		22A594D81648450700B56E44 /* SimpleTableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableTest.m; sourceTree = "<group>"; };
 		493CC93326804A8ABCA31763 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F53118015FA5148006F5BB2 /* 20120907155731_add_participant_type_to_instrument_template.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120907155731_add_participant_type_to_instrument_template.xcdatamodel; sourceTree = "<group>"; };
 		4F53118215FA5519006F5BB2 /* 20120907161507_create_instrument_plan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120907161507_create_instrument_plan.xcdatamodel; sourceTree = "<group>"; };
@@ -576,6 +583,10 @@
 		0026E691140347E700355BCB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				009EEEF916442B8900EB98D1 /* PersonTest.h */,
+				009EEEFA16442B8900EB98D1 /* PersonTest.m */,
+				00F940821642E08100176840 /* EventTemplateTest.h */,
+				00F940831642E08100176840 /* EventTemplateTest.m */,
 				000922B015F652F6005EBA3D /* ResponseSetTest.m */,
 				000922B115F652F6005EBA3D /* ResponseSetTest.h */,
 				00D1BAE515470C4F000097E7 /* PushFieldworkStepTest.h */,
@@ -607,8 +618,8 @@
 				00C53B3B1615F9CC00F245F9 /* MergeStatusTest.m */,
 				001FEDD51619FC4000DE8A3A /* SurveySetTest.h */,
 				001FEDD61619FC4000DE8A3A /* SurveySetTest.m */,
-				22A594D71648450700B56E44 /* SimpleTableTest.h */,
-				22A594D81648450700B56E44 /* SimpleTableTest.m */,
+				00AB8E97164358290097F7CD /* NSManagedObjectTest.h */,
+				00AB8E98164358290097F7CD /* NSManagedObjectTest.m */,
 			);
 			name = Tests;
 			path = NCSNavFieldTests;
@@ -837,6 +848,7 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				00AB8E9216431CEA0097F7CD /* Categories */,
 				0054CFDD163EFAFE00F9AB81 /* EventTemplate.h */,
 				0054CFDE163EFAFE00F9AB81 /* EventTemplate.m */,
 				4F53118315FA58A1006F5BB2 /* InstrumentPlan.h */,
@@ -930,6 +942,15 @@
 				002B2E4314362E4900410D09 /* nu-logo.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		00AB8E9216431CEA0097F7CD /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				00AB8E9416431D150097F7CD /* NSManagedObject+Additions.h */,
+				00AB8E9516431D150097F7CD /* NSManagedObject+Additions.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		00F10AAD14DB040800387762 /* MBProgressHUD */ = {
@@ -1075,10 +1096,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00F82FA615F160130072C327 /* surveyor.xcdatamodeld in Resources */,
-				00F82FA715F160130072C327 /* main.xcdatamodeld in Resources */,
 				0026E696140347E700355BCB /* InfoPlist.strings in Resources */,
-				00FF37E81417D2B80009B1D4 /* ContactNavigationTableTest.h in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1177,6 +1195,7 @@
 				00010412161B73AA00952C3C /* NUResponse+Additions.m in Sources */,
 				2237A32E163B294B009E3A13 /* UIView+Additions.m in Sources */,
 				0054CFDF163EFAFE00F9AB81 /* EventTemplate.m in Sources */,
+				00AB8E9616431D150097F7CD /* NSManagedObject+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1199,7 +1218,9 @@
 				00D1BAE715470C4F000097E7 /* PushFieldworkStepTest.m in Sources */,
 				00C53B3C1615F9CC00F245F9 /* MergeStatusTest.m in Sources */,
 				001FEDD71619FC4000DE8A3A /* SurveySetTest.m in Sources */,
-				22A594D91648450700B56E44 /* SimpleTableTest.m in Sources */,
+				00F940841642E08100176840 /* EventTemplateTest.m in Sources */,
+				00AB8E99164358290097F7CD /* NSManagedObjectTest.m in Sources */,
+				009EEEFB16442B8900EB98D1 /* PersonTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1478,12 +1499,13 @@
 				00EAB7DF15FE6F0000B5B685 /* 20120910185414_association_instrument_to_instrument_plan.xcdatamodel */,
 				00A78E691638E3B70060EBD1 /* 20121025030410_add_response_group_to_response.xcdatamodel */,
 				0054CFDB163EFA7900F9AB81 /* 20121029175349_create_event_templates.xcdatamodel */,
+				00F9408A1643119C00176840 /* 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel */,
 				004756521580F1FF009EDE69 /* main_v1.1.xcdatamodel */,
 				000922B515F65925005EBA3D /* 20120904162849_add_pid_to_response_set.xcdatamodel */,
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 0054CFDB163EFA7900F9AB81 /* 20121029175349_create_event_templates.xcdatamodel */;
+			currentVersion = 00F9408A1643119C00176840 /* 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
