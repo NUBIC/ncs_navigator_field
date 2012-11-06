@@ -53,6 +53,7 @@
 
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
+    self.accessibilityLabel = @"RootViewControler";
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instrumentSelected:) name:@"InstrumentSelected" object:NULL];
         

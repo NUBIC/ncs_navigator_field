@@ -26,10 +26,16 @@
 - (id)initWithFrame:(CGRect)frame value:(NSDate*)value {
     self = [super initWithFrame:frame];
     if (self) {
+        self.accessibilityLabel = @"Time Picker";
+        self.isAccessibilityElement=YES;
+
         // Create button
         self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         self.button.frame = CGRectMake(0, 0, 200, 30);
         [self.button setTitle:[self formatTitleUsingDate:value] forState:UIControlStateNormal];
+        
+        self.button.accessibilityLabel = @"button";
+        self.button.isAccessibilityElement=YES;
         
         // Setup button target
         [self.button addTarget:self action:@selector(showPicker) forControlEvents:UIControlEventTouchUpInside];
@@ -110,6 +116,15 @@
         self.picker.datePicker.date = self.date;
     }
     [self.popover dismissPopoverAnimated:NO];
+}
+
+#pragma mark - Accessibility
+-(BOOL)isAccessibilityElement {
+    return YES;
+}
+
+-(NSString*)accessibilityLabel {
+    return @"Time Picker";
 }
 
 

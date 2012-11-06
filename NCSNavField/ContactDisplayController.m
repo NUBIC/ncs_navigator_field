@@ -99,7 +99,7 @@
     if (self.detailItem) {
         // Update the user interface for the detail item.
         Contact *c = self.detailItem;
-        self.simpleTable = [[ContactTable alloc]initUsingContact:c];
+        self.simpleTable = [[ContactTable alloc] initUsingContact:c];
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"MMM dd 'at' HH:mm"];

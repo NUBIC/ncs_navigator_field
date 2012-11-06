@@ -19,5 +19,13 @@
     }
     return self;
 }
+#pragma mark - Accessibility
+-(BOOL)isAccessibilityElement {
+    return YES;
+}
+
+-(NSString*)accessibilityLabel {
+    return @"Sync Activity Indicator";
+}
 
 @end

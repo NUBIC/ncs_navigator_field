@@ -29,6 +29,8 @@
 
 - (id)initWithFrame:(CGRect)frame value:(NSNumber*)value pickerOptions:(NSArray*)options {
     NSAssert(value!=nil,@"Value is nil when you are init'ing SingleOptionPicker. Check Check initWithFrame:value:pickerOptions:");
+    self.accessibilityLabel = @"Single Option Picker";
+    self.isAccessibilityElement=YES;
     return [self initWithFrame:frame value:value pickerOptions:options popoverSize:NUPickerVCPopoverSizeRegular];
 }
 
@@ -40,6 +42,9 @@
     NSAssert(value!=nil,@"Value is nil when you are init'ing SingleOptionPicker. Check initWithFrame:value:pickerOptions:popoverSize:");*/
     self = [super initWithFrame:frame];
     if (self) {
+        self.accessibilityLabel = @"Single Option Picker";
+        self.isAccessibilityElement=YES;
+        
         self.value = value;
         self.pickerOptions = options;
         self.popoverSize = popoverSize;
@@ -155,9 +160,19 @@
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     return [self.pickerOptions count];
 }
+
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     PickerOption* p = [self.pickerOptions objectAtIndex:row];
     return p.text;
+}
+
+#pragma mark - Accessibility 
+-(BOOL)isAccessibilityElement {
+    return YES;
+}
+
+-(NSString*)accessibilityLabel {
+    return @"Single Option Picker";
 }
 
 @end

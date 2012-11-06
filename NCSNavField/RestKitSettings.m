@@ -84,7 +84,7 @@ static RestKitSettings* instance;
         }
     }
     
-    [self addMappingsToObjectManager: objectManager];
+    [self addMappingsToObjectManager:objectManager];
     
     RKObjectRouter* router = [RKObjectRouter new];
     [router routeClass:[Fieldwork class] toResourcePath:@"/api/v1/fieldwork/:fieldworkId"];

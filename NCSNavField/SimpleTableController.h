@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ISimpleTable.h"
-
+#import "Instrument.h"
 @class Row;
 
 @interface SimpleTableController : UITableViewController {

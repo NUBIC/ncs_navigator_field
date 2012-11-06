@@ -75,8 +75,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     NSInteger rows = 0;
-    
-
     NUSurvey* s = [self.surveys objectAtIndex:section];
     rows = [[[s.jsonString objectFromJSONString] objectForKey:@"sections"] count];
     

@@ -13,7 +13,7 @@
 @synthesize object = _object;
 @synthesize field = _field;
 
-- (id) initWithObject:(id)object field:(SEL)field {
+-(id)initWithObject:(id)object field:(SEL)field {
     if (self = [super init]) {
         self.object = object;
         self.field = field;
@@ -21,7 +21,7 @@
     return self;
 }
 
-- (void) updatedValue:(id)value {
+- (void)updatedValue:(id)value {
     if ([self.object respondsToSelector:self.field]) {
         RKObjectPropertyInspector* i = [RKObjectPropertyInspector sharedInspector];
         Class type = [i typeForProperty:NSStringFromSelector(self.field) ofClass:[self.object class]];

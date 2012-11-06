@@ -33,7 +33,8 @@
         
         // Setup button target
         [self.button addTarget:self action:@selector(showPicker) forControlEvents:UIControlEventTouchUpInside];
-        
+        self.button.isAccessibilityElement=YES;
+        self.button.accessibilityLabel = @"button";
         self.date = value;
 
         [self addSubview:self.button];
@@ -111,6 +112,15 @@
         self.picker.datePicker.date = self.date;
     }
     [self.popover dismissPopoverAnimated:NO];
+}
+
+#pragma mark - Accessibility
+-(BOOL)isAccessibilityElement {
+    return YES;
+}
+
+-(NSString*)accessibilityLabel {
+    return @"Date Picker";
 }
 
 

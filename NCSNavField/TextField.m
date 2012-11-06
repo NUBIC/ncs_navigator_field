@@ -68,7 +68,7 @@ static TextField* _activeField = nil;
 - (id)initWithFrame:(CGRect)frame value:(NSString*)value {
     self = [super initWithFrame:frame];
     if (self) {
-        self.textField = [self buildTextFieldWithValue:value];        
+        self.textField = [self buildTextFieldWithValue:value];
         [self addSubview:self.textField];
     }
     return self;
@@ -135,5 +135,13 @@ static TextField* _activeField = nil;
     [self.handler updatedValue:self.textField.text];
 }
 
+#pragma mark - Accessibility
+-(BOOL)isAccessibilityElement {
+    return YES;
+}
+
+-(NSString*)accessibilityLabel {
+    return @"Text Field";
+}
 
 @end

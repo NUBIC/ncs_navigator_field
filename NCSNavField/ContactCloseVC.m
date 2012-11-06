@@ -61,6 +61,7 @@
     self.scrollView = scroll;
     
     CGRect lRect, rRect;
+    
     CGRectDivide(CGRectMake(150, 0, width-300, contactFrameHeight), &rRect, &lRect, (width-300) / 2, CGRectMaxXEdge);
     
     [self startTransaction];

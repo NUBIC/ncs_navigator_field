@@ -28,7 +28,6 @@
     [f setTimeZone:[NSTimeZone localTimeZone]];
     
     NSDate* d = [f dateFromString:dateStr];
-
     
     return d;
 }

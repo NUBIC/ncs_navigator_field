@@ -14,7 +14,6 @@
 
 @interface DatabaseTest : SenTestCase
 
-
 @property (nonatomic, strong) NSBundle *bundle;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *coord;
 @property (nonatomic, strong) NSManagedObjectContext *ctx;

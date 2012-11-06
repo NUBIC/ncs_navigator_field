@@ -70,4 +70,13 @@ static TextArea* _activeField = nil;
     return _activeField;
 }
 
+#pragma mark - Accessibility
+-(BOOL)isAccessibilityElement {
+    return YES;
+}
+
+-(NSString*)accessibilityLabel {
+    return @"Text Area";
+}
+
 @end

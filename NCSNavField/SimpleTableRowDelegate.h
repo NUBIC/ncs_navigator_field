@@ -11,5 +11,5 @@
 
 @protocol SimpleTableRowDelegate <NSObject>
 
-- (void) didSelectRow:(Row*)r;
+- (void)didSelectRow:(Row*)r;
 @end

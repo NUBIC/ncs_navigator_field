@@ -166,5 +166,13 @@
     return f;
 }
 
+#pragma mark - Accessibility
+-(BOOL)isAccessibilityElement {
+    return YES;
+}
+
+-(NSString*)accessibilityLabel {
+    return @"Contact Table";
+}
 
 @end
