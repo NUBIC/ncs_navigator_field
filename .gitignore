@@ -25,3 +25,6 @@ ncs-core-stub/aker-local.yml
 
 # Cocoapods generated artifacts
 Pods
+
+#Ignoring developer certificates
+*.pem
