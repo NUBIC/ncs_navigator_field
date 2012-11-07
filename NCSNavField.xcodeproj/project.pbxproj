@@ -42,6 +42,7 @@
 		0037D2BF14B60AAA00B7D05A /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0037D2BE14B60AAA00B7D05A /* libiconv.dylib */; };
 		0037D8BF15F685F200C6B7EB /* ResponseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0037D8BE15F685F200C6B7EB /* ResponseSet.m */; };
 		00393C92148E54C000671899 /* SingleOptionPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00393C91148E54C000671899 /* SingleOptionPicker.m */; };
+		003DEFD4164ACC9100E89C25 /* EventTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003DEFD3164ACC9100E89C25 /* EventTemplate.m */; };
 		00439FF814112E500097A878 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF714112E500097A878 /* CFNetwork.framework */; };
 		00439FFA14112E5E0097A878 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF914112E5E0097A878 /* CoreData.framework */; };
 		00439FFC14112E670097A878 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FFB14112E670097A878 /* MobileCoreServices.framework */; };
@@ -52,7 +53,6 @@
 		004FC7131486BF8300A378DC /* PickerOptionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 004FC7111486BE8200A378DC /* PickerOptionTest.m */; };
 		004FC7161486BFBC00A378DC /* PickerOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 004FC7151486BFBC00A378DC /* PickerOption.m */; };
 		005108EE148440C000732623 /* NUScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005108ED148440C000732623 /* NUScrollView.m */; };
-		0054CFDF163EFAFE00F9AB81 /* EventTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0054CFDE163EFAFE00F9AB81 /* EventTemplate.m */; };
 		00590AC81428F7D0008335EA /* ContactTableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590AC71428F7D0008335EA /* ContactTableTest.m */; };
 		006C26D71541BACB00D9B3B1 /* BackupFieldworkStepTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 006C26D61541BACB00D9B3B1 /* BackupFieldworkStepTest.m */; };
 		006C26DB1541EF3200D9B3B1 /* ApplicationPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 006C26DA1541EF3200D9B3B1 /* ApplicationPersistentStore.m */; };
@@ -184,7 +184,7 @@
 		00272A10155A124E009F21F5 /* NSStringHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringHelper.m; sourceTree = "<group>"; };
 		002B2E4214362E4900410D09 /* nubic-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nubic-logo.png"; path = "NCSNavField/nubic-logo.png"; sourceTree = "<group>"; };
 		002B2E4314362E4900410D09 /* nu-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nu-logo.png"; path = "NCSNavField/nu-logo.png"; sourceTree = "<group>"; };
-		003059FE164AC2DB00A086F8 /* 20121107162417_order_instruments_on_event.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121107162417_order_instruments_on_event.xcdatamodel; sourceTree = "<group>"; };
+		003059FE164AC2DB00A086F8 /* 20121107162417_order_instruments_on_event.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121107162417_order_instruments_on_event.xcdatamodel; sourceTree = "<group>"; };
 		00305A00164AC31C00A086F8 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		00305A01164AC31C00A086F8 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		0031315414E04BF800C0D0B1 /* SyncActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncActivityIndicator.h; sourceTree = "<group>"; };
@@ -200,6 +200,9 @@
 		0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120904190344_change_response_set_entity.xcdatamodel; sourceTree = "<group>"; };
 		00393C90148E54C000671899 /* SingleOptionPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleOptionPicker.h; sourceTree = "<group>"; };
 		00393C91148E54C000671899 /* SingleOptionPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleOptionPicker.m; sourceTree = "<group>"; };
+		003DEFD1164ACC6900E89C25 /* 20121107170535_order_instruments_on_event_template.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121107170535_order_instruments_on_event_template.xcdatamodel; sourceTree = "<group>"; };
+		003DEFD2164ACC9100E89C25 /* EventTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTemplate.h; sourceTree = "<group>"; };
+		003DEFD3164ACC9100E89C25 /* EventTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTemplate.m; sourceTree = "<group>"; };
 		003EDE4B15F7CE2300951B05 /* 20120905181210_update_response_set_to_response_sets.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120905181210_update_response_set_to_response_sets.xcdatamodel; sourceTree = "<group>"; };
 		00439FF714112E500097A878 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		00439FF914112E5E0097A878 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -220,8 +223,6 @@
 		005108EC148440C000732623 /* NUScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUScrollView.h; sourceTree = "<group>"; };
 		005108ED148440C000732623 /* NUScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUScrollView.m; sourceTree = "<group>"; };
 		0054CFDB163EFA7900F9AB81 /* 20121029175349_create_event_templates.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121029175349_create_event_templates.xcdatamodel; sourceTree = "<group>"; };
-		0054CFDD163EFAFE00F9AB81 /* EventTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTemplate.h; sourceTree = "<group>"; };
-		0054CFDE163EFAFE00F9AB81 /* EventTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTemplate.m; sourceTree = "<group>"; };
 		0057793914E4355600964B87 /* NUCas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUCas.h; path = NUCas/Code/NUCas.h; sourceTree = "<group>"; };
 		0057793A14E4357100964B87 /* CasClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CasClient.h; path = NUCas/Code/NUCas/CasClient.h; sourceTree = "<group>"; };
 		0057793B14E4357100964B87 /* CasConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CasConfiguration.h; path = NUCas/Code/NUCas/CasConfiguration.h; sourceTree = "<group>"; };
@@ -861,13 +862,13 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				003DEFD2164ACC9100E89C25 /* EventTemplate.h */,
+				003DEFD3164ACC9100E89C25 /* EventTemplate.m */,
 				00305A00164AC31C00A086F8 /* Event.h */,
 				00305A01164AC31C00A086F8 /* Event.m */,
 				001AC578164AC01700E3ECBD /* Provider.h */,
 				001AC579164AC01700E3ECBD /* Provider.m */,
 				00AB8E9216431CEA0097F7CD /* Categories */,
-				0054CFDD163EFAFE00F9AB81 /* EventTemplate.h */,
-				0054CFDE163EFAFE00F9AB81 /* EventTemplate.m */,
 				4F53118315FA58A1006F5BB2 /* InstrumentPlan.h */,
 				4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */,
 				00DC62181576845B00E5F825 /* MergeStatusRequest.h */,
@@ -1210,11 +1211,11 @@
 				001FEDD31619FA4F00DE8A3A /* SurveySet.m in Sources */,
 				00010412161B73AA00952C3C /* NUResponse+Additions.m in Sources */,
 				2237A32E163B294B009E3A13 /* UIView+Additions.m in Sources */,
-				0054CFDF163EFAFE00F9AB81 /* EventTemplate.m in Sources */,
 				00AB8E9616431D150097F7CD /* NSManagedObject+Additions.m in Sources */,
 				009EEF1C164870AC00EB98D1 /* ProviderListViewController.m in Sources */,
 				001AC57A164AC01700E3ECBD /* Provider.m in Sources */,
 				00305A02164AC31C00A086F8 /* Event.m in Sources */,
+				003DEFD4164ACC9100E89C25 /* EventTemplate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1510,6 +1511,7 @@
 		00C9C6E3146CE66300F6D339 /* main.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				003DEFD1164ACC6900E89C25 /* 20121107170535_order_instruments_on_event_template.xcdatamodel */,
 				003059FE164AC2DB00A086F8 /* 20121107162417_order_instruments_on_event.xcdatamodel */,
 				001AC576164ABFD500E3ECBD /* 20121107161152_add_recruited_to_providers.xcdatamodel */,
 				009EEF0F164858B100EB98D1 /* 20121105202659_create_providers.xcdatamodel */,
@@ -1527,7 +1529,7 @@
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 001AC576164ABFD500E3ECBD /* 20121107161152_add_recruited_to_providers.xcdatamodel */;
+			currentVersion = 003DEFD1164ACC6900E89C25 /* 20121107170535_order_instruments_on_event_template.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";

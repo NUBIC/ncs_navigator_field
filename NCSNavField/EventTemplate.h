@@ -17,7 +17,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * eventRepeatKey;
 @property (nonatomic, retain) NSNumber * eventTypeCode;
-@property (nonatomic, retain) NSSet *instruments;
+@property (nonatomic, retain) NSOrderedSet *instruments;
 
 #pragma mark - Methods
 
@@ -29,9 +29,16 @@
 
 @interface EventTemplate (CoreDataGeneratedAccessors)
 
+- (void)insertObject:(Instrument *)value inInstrumentsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromInstrumentsAtIndex:(NSUInteger)idx;
+- (void)insertInstruments:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeInstrumentsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInInstrumentsAtIndex:(NSUInteger)idx withObject:(Instrument *)alue;
+- (void)replaceInstrumentsAtIndexes:(NSIndexSet *)indexes withInstruments:(NSArray *)alues;
 - (void)addInstrumentsObject:(Instrument *)value;
 - (void)removeInstrumentsObject:(Instrument *)value;
-- (void)addInstruments:(NSSet *)values;
-- (void)removeInstruments:(NSSet *)values;
+
+- (void)addInstruments:(NSOrderedSet *)values;
+- (void)removeInstruments:(NSOrderedSet *)values;
 
 @end

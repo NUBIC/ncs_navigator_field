@@ -53,7 +53,7 @@
 
 @property(nonatomic,strong) Contact* contact;
 
-@property(nonatomic,strong) NSSet* instruments;
+@property(nonatomic,strong) NSOrderedSet* instruments;
 
 #pragma setter
 
