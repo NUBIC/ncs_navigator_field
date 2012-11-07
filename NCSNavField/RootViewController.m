@@ -314,12 +314,6 @@
 	self.contacts = [Contact objectsWithFetchRequest:request];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-    [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-}
-
 #pragma lifecycle
 - (void) loadView {
     [super loadView];
