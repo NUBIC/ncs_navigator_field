@@ -7,15 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-
 
 @interface Provider : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * locationNum;
+@property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * practiceNum;
-@property (nonatomic, retain) NSString * providerId;
 @property (nonatomic, retain) NSNumber * recruited;
 
 @end

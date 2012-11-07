@@ -11,10 +11,9 @@
 
 @implementation Provider
 
-@dynamic locationNum;
+@dynamic location;
 @dynamic name;
 @dynamic practiceNum;
-@dynamic providerId;
 @dynamic recruited;
 
 @end
