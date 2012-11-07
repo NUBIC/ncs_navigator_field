@@ -1,0 +1,22 @@
+{
+    "providers": [
+        {
+            "location": "1",
+            "name": "Northwestern Memorial Hospital", 
+            "practice_num": 1, 
+            "recruited": true
+        },
+        {
+            "location": "2",
+            "name": "Baylor Health Care System", 
+            "practice_num": 1, 
+            "recruited": true
+        },
+        {
+            "location": "3",
+            "name": "Jimbo's Garage", 
+            "practice_num": 1, 
+            "recruited": false
+        }
+    ]
+}

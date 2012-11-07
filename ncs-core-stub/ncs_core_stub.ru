@@ -27,7 +27,7 @@ class NCSCoreStub < Sinatra::Base
         "Missing parameters #{missing.join(', ')}"
       end
     else    
-      403
+      401
     end
   end
 
@@ -75,22 +75,37 @@ class NCSCoreStub < Sinatra::Base
     end
   end
 
-end
-
-require 'aker'
-Aker.configure do
-  authorities :cas
-  ui_mode :cas
-  api_mode :cas_proxy
-  if File.exist?("aker-local.yml")
-    central 'aker-local.yml'
-  else 
-    central '/etc/nubic/aker-local.yml'
+  get '/api/v1/providers' do
+    env['aker.check'].authentication_required!
+    username = env['aker.check'].user.username
+    if username
+      if request.env["HTTP_X_CLIENT_ID"]
+        status 200
+        content_type :json
+        IO.read("providers.json")
+      else
+        400
+      end
+    else
+      401
+    end
   end
 end
 
-use Rack::Session::Cookie
+# require 'aker'
+# Aker.configure do
+#   authorities :cas
+#   ui_mode :cas
+#   api_mode :cas_proxy
+#   if File.exist?("aker-local.yml")
+#     central 'aker-local.yml'
+#   else 
+#     central '/etc/nubic/aker-local.yml'
+#   end
+# end
 
-Aker::Rack.use_in(self)
+# use Rack::Session::Cookie
+
+# Aker::Rack.use_in(self)
 
 run NCSCoreStub
