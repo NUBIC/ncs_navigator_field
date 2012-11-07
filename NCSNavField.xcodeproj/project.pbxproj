@@ -14,6 +14,7 @@
 		000E64B3150EB2BF0006B31E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 000E64B2150EB2BF0006B31E /* Settings.bundle */; };
 		00145BA8149A7BEF00D3C1B5 /* ContactCloseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00145BA7149A7BEF00D3C1B5 /* ContactCloseVC.m */; };
 		0018F03314C4BD160058D8F2 /* ApplicationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0018F03214C4BD160058D8F2 /* ApplicationSettings.m */; };
+		001AC57A164AC01700E3ECBD /* Provider.m in Sources */ = {isa = PBXBuildFile; fileRef = 001AC579164AC01700E3ECBD /* Provider.m */; };
 		001D93271520FC9A009E12C1 /* TestFlight-TeamToken.txt in Resources */ = {isa = PBXBuildFile; fileRef = 001D93261520FC9A009E12C1 /* TestFlight-TeamToken.txt */; };
 		001FEDD31619FA4F00DE8A3A /* SurveySet.m in Sources */ = {isa = PBXBuildFile; fileRef = 001FEDD21619FA4F00DE8A3A /* SurveySet.m */; };
 		001FEDD71619FC4000DE8A3A /* SurveySetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 001FEDD61619FC4000DE8A3A /* SurveySetTest.m */; };
@@ -83,7 +84,6 @@
 		009AD2E4142D391A0038650B /* SimpleTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009AD2E3142D391A0038650B /* SimpleTableController.m */; };
 		009BE3AF14FC2217008195F9 /* SyncActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0031315514E04BF800C0D0B1 /* SyncActivityIndicator.m */; };
 		009EEEFB16442B8900EB98D1 /* PersonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EEEFA16442B8900EB98D1 /* PersonTest.m */; };
-		009EEF1316485AF500EB98D1 /* Provider.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EEF1216485AF500EB98D1 /* Provider.m */; };
 		009EEF1C164870AC00EB98D1 /* ProviderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EEF1A164870AC00EB98D1 /* ProviderListViewController.m */; };
 		009EEF1D164870AC00EB98D1 /* ProviderListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009EEF1B164870AC00EB98D1 /* ProviderListViewController.xib */; };
 		00AB8E9616431D150097F7CD /* NSManagedObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AB8E9516431D150097F7CD /* NSManagedObject+Additions.m */; };
@@ -147,6 +147,9 @@
 		00145BA7149A7BEF00D3C1B5 /* ContactCloseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCloseVC.m; sourceTree = "<group>"; };
 		0018F03114C4BD160058D8F2 /* ApplicationSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationSettings.h; sourceTree = "<group>"; };
 		0018F03214C4BD160058D8F2 /* ApplicationSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationSettings.m; sourceTree = "<group>"; };
+		001AC576164ABFD500E3ECBD /* 20121107161152_add_recruited_to_providers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121107161152_add_recruited_to_providers.xcdatamodel; sourceTree = "<group>"; };
+		001AC578164AC01700E3ECBD /* Provider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Provider.h; sourceTree = "<group>"; };
+		001AC579164AC01700E3ECBD /* Provider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Provider.m; sourceTree = "<group>"; };
 		001D93261520FC9A009E12C1 /* TestFlight-TeamToken.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "TestFlight-TeamToken.txt"; path = "NCSNavField/TestFlight-TeamToken.txt"; sourceTree = "<group>"; };
 		001FEDD11619FA4F00DE8A3A /* SurveySet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveySet.h; sourceTree = "<group>"; };
 		001FEDD21619FA4F00DE8A3A /* SurveySet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveySet.m; sourceTree = "<group>"; };
@@ -413,9 +416,7 @@
 		009BE3A914FC2145008195F9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		009EEEF916442B8900EB98D1 /* PersonTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTest.h; sourceTree = "<group>"; };
 		009EEEFA16442B8900EB98D1 /* PersonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTest.m; sourceTree = "<group>"; };
-		009EEF0F164858B100EB98D1 /* 20121105202659_create_providers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121105202659_create_providers.xcdatamodel; sourceTree = "<group>"; };
-		009EEF1116485AF500EB98D1 /* Provider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Provider.h; sourceTree = "<group>"; };
-		009EEF1216485AF500EB98D1 /* Provider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Provider.m; sourceTree = "<group>"; };
+		009EEF0F164858B100EB98D1 /* 20121105202659_create_providers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121105202659_create_providers.xcdatamodel; sourceTree = "<group>"; };
 		009EEF19164870AC00EB98D1 /* ProviderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviderListViewController.h; sourceTree = "<group>"; };
 		009EEF1A164870AC00EB98D1 /* ProviderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderListViewController.m; sourceTree = "<group>"; };
 		009EEF1B164870AC00EB98D1 /* ProviderListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProviderListViewController.xib; path = NCSNavField/ProviderListViewController.xib; sourceTree = "<group>"; };
@@ -859,8 +860,8 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				009EEF1116485AF500EB98D1 /* Provider.h */,
-				009EEF1216485AF500EB98D1 /* Provider.m */,
+				001AC578164AC01700E3ECBD /* Provider.h */,
+				001AC579164AC01700E3ECBD /* Provider.m */,
 				00AB8E9216431CEA0097F7CD /* Categories */,
 				0054CFDD163EFAFE00F9AB81 /* EventTemplate.h */,
 				0054CFDE163EFAFE00F9AB81 /* EventTemplate.m */,
@@ -1211,8 +1212,8 @@
 				2237A32E163B294B009E3A13 /* UIView+Additions.m in Sources */,
 				0054CFDF163EFAFE00F9AB81 /* EventTemplate.m in Sources */,
 				00AB8E9616431D150097F7CD /* NSManagedObject+Additions.m in Sources */,
-				009EEF1316485AF500EB98D1 /* Provider.m in Sources */,
 				009EEF1C164870AC00EB98D1 /* ProviderListViewController.m in Sources */,
+				001AC57A164AC01700E3ECBD /* Provider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1508,6 +1509,7 @@
 		00C9C6E3146CE66300F6D339 /* main.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				001AC576164ABFD500E3ECBD /* 20121107161152_add_recruited_to_providers.xcdatamodel */,
 				009EEF0F164858B100EB98D1 /* 20121105202659_create_providers.xcdatamodel */,
 				0050B58A15F6A9B2008B9525 /* 20120904204206_associate_instrument_to_response_set.xcdatamodel */,
 				003EDE4B15F7CE2300951B05 /* 20120905181210_update_response_set_to_response_sets.xcdatamodel */,
@@ -1523,7 +1525,7 @@
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 009EEF0F164858B100EB98D1 /* 20121105202659_create_providers.xcdatamodel */;
+			currentVersion = 001AC576164ABFD500E3ECBD /* 20121107161152_add_recruited_to_providers.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
