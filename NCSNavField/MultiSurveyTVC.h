@@ -23,6 +23,4 @@
 
 - (id)initWithSurveys:(NSArray*)surveys surveyResponseSetAssociations:(NSDictionary *)surveyResponseSetAssociations;
 
-- (void)setActiveSurvey:(NSInteger)index;
-
 @end
