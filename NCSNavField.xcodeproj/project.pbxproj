@@ -36,6 +36,7 @@
 		00272A11155A124F009F21F5 /* NSStringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00272A10155A124E009F21F5 /* NSStringHelper.m */; };
 		002B2E4414362E4900410D09 /* nubic-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 002B2E4214362E4900410D09 /* nubic-logo.png */; };
 		002B2E4514362E4900410D09 /* nu-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 002B2E4314362E4900410D09 /* nu-logo.png */; };
+		00305A02164AC31C00A086F8 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 00305A01164AC31C00A086F8 /* Event.m */; };
 		0031315E14E083C500C0D0B1 /* cacert.pem in Resources */ = {isa = PBXBuildFile; fileRef = 0031315D14E083C500C0D0B1 /* cacert.pem */; };
 		0037D2BD14B60AA100B7D05A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0037D2BC14B60AA100B7D05A /* libz.dylib */; };
 		0037D2BF14B60AAA00B7D05A /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0037D2BE14B60AAA00B7D05A /* libiconv.dylib */; };
@@ -45,7 +46,6 @@
 		00439FFA14112E5E0097A878 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF914112E5E0097A878 /* CoreData.framework */; };
 		00439FFC14112E670097A878 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FFB14112E670097A878 /* MobileCoreServices.framework */; };
 		00439FFE14112E6F0097A878 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FFD14112E6F0097A878 /* SystemConfiguration.framework */; };
-		0045BDA91418017F007BB8AA /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045BDA81418017F007BB8AA /* Event.m */; };
 		0045BDAC14191FB1007BB8AA /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045BDAB14191FB1007BB8AA /* Contact.m */; };
 		0045BDAF141921CD007BB8AA /* ContactTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045BDAE141921CD007BB8AA /* ContactTest.m */; };
 		0047566F15813546009EDE69 /* surveyor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0047566D15813546009EDE69 /* surveyor.xcdatamodeld */; };
@@ -147,7 +147,7 @@
 		00145BA7149A7BEF00D3C1B5 /* ContactCloseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCloseVC.m; sourceTree = "<group>"; };
 		0018F03114C4BD160058D8F2 /* ApplicationSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationSettings.h; sourceTree = "<group>"; };
 		0018F03214C4BD160058D8F2 /* ApplicationSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationSettings.m; sourceTree = "<group>"; };
-		001AC576164ABFD500E3ECBD /* 20121107161152_add_recruited_to_providers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121107161152_add_recruited_to_providers.xcdatamodel; sourceTree = "<group>"; };
+		001AC576164ABFD500E3ECBD /* 20121107161152_add_recruited_to_providers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121107161152_add_recruited_to_providers.xcdatamodel; sourceTree = "<group>"; };
 		001AC578164AC01700E3ECBD /* Provider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Provider.h; sourceTree = "<group>"; };
 		001AC579164AC01700E3ECBD /* Provider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Provider.m; sourceTree = "<group>"; };
 		001D93261520FC9A009E12C1 /* TestFlight-TeamToken.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "TestFlight-TeamToken.txt"; path = "NCSNavField/TestFlight-TeamToken.txt"; sourceTree = "<group>"; };
@@ -184,6 +184,9 @@
 		00272A10155A124E009F21F5 /* NSStringHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringHelper.m; sourceTree = "<group>"; };
 		002B2E4214362E4900410D09 /* nubic-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nubic-logo.png"; path = "NCSNavField/nubic-logo.png"; sourceTree = "<group>"; };
 		002B2E4314362E4900410D09 /* nu-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nu-logo.png"; path = "NCSNavField/nu-logo.png"; sourceTree = "<group>"; };
+		003059FE164AC2DB00A086F8 /* 20121107162417_order_instruments_on_event.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121107162417_order_instruments_on_event.xcdatamodel; sourceTree = "<group>"; };
+		00305A00164AC31C00A086F8 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		00305A01164AC31C00A086F8 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		0031315414E04BF800C0D0B1 /* SyncActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncActivityIndicator.h; sourceTree = "<group>"; };
 		0031315514E04BF800C0D0B1 /* SyncActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncActivityIndicator.m; sourceTree = "<group>"; };
 		0031315D14E083C500C0D0B1 /* cacert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cacert.pem; sourceTree = "<group>"; };
@@ -202,7 +205,6 @@
 		00439FF914112E5E0097A878 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		00439FFB14112E670097A878 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		00439FFD14112E6F0097A878 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		0045BDA81418017F007BB8AA /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		0045BDAA14191FB1007BB8AA /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		0045BDAB14191FB1007BB8AA /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		0045BDAD141921CD007BB8AA /* ContactTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTest.h; sourceTree = "<group>"; };
@@ -367,7 +369,6 @@
 		006C600A1434DF0D00F52CD8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		006D47FA148D94970035DC01 /* ChangeHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeHandler.h; sourceTree = "<group>"; };
 		006D47FB148D94970035DC01 /* ChangeHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeHandler.m; sourceTree = "<group>"; };
-		006EBEE1141139B2003D69CF /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		006FDD88148FD2E80001BADE /* TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextField.h; sourceTree = "<group>"; };
 		006FDD89148FD2E80001BADE /* TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextField.m; sourceTree = "<group>"; };
 		0073B3661511277000543DA4 /* Fieldwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fieldwork.h; sourceTree = "<group>"; };
@@ -860,6 +861,8 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				00305A00164AC31C00A086F8 /* Event.h */,
+				00305A01164AC31C00A086F8 /* Event.m */,
 				001AC578164AC01700E3ECBD /* Provider.h */,
 				001AC579164AC01700E3ECBD /* Provider.m */,
 				00AB8E9216431CEA0097F7CD /* Categories */,
@@ -881,8 +884,6 @@
 				0026465F1434CE02008D612B /* Person.m */,
 				0045BDAA14191FB1007BB8AA /* Contact.h */,
 				0045BDAB14191FB1007BB8AA /* Contact.m */,
-				006EBEE1141139B2003D69CF /* Event.h */,
-				0045BDA81418017F007BB8AA /* Event.m */,
 				00FF37DC1417C50D0009B1D4 /* Instrument.h */,
 				00FF37DD1417C50D0009B1D4 /* Instrument.m */,
 				00E323551422A23A00D3AEED /* Section.h */,
@@ -1159,7 +1160,6 @@
 				0026E67F140347E700355BCB /* ContactDisplayController.m in Sources */,
 				0026E685140347E700355BCB /* RootViewController.m in Sources */,
 				00FF37DE1417C50D0009B1D4 /* Instrument.m in Sources */,
-				0045BDA91418017F007BB8AA /* Event.m in Sources */,
 				0045BDAC14191FB1007BB8AA /* Contact.m in Sources */,
 				00E323571422A23A00D3AEED /* Section.m in Sources */,
 				00E3235A1422B08200D3AEED /* Row.m in Sources */,
@@ -1214,6 +1214,7 @@
 				00AB8E9616431D150097F7CD /* NSManagedObject+Additions.m in Sources */,
 				009EEF1C164870AC00EB98D1 /* ProviderListViewController.m in Sources */,
 				001AC57A164AC01700E3ECBD /* Provider.m in Sources */,
+				00305A02164AC31C00A086F8 /* Event.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1509,6 +1510,7 @@
 		00C9C6E3146CE66300F6D339 /* main.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				003059FE164AC2DB00A086F8 /* 20121107162417_order_instruments_on_event.xcdatamodel */,
 				001AC576164ABFD500E3ECBD /* 20121107161152_add_recruited_to_providers.xcdatamodel */,
 				009EEF0F164858B100EB98D1 /* 20121105202659_create_providers.xcdatamodel */,
 				0050B58A15F6A9B2008B9525 /* 20120904204206_associate_instrument_to_response_set.xcdatamodel */,
