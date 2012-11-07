@@ -40,7 +40,7 @@
     
     Event* e = [Event object];
     e.name = @"Birthday";
-    e.instruments = [NSSet setWithObject:i];
+    e.instruments = [NSOrderedSet orderedSetWithObject:i];
     
     Contact* c = [Contact object];
     c.typeId = [NSNumber numberWithInt:22];

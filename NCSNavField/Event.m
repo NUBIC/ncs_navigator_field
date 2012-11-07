@@ -30,4 +30,12 @@
     return [self.endTime jsonSchemaTime];
 }
 
+// BUG: This is a workaround for a bug when using the generated method
+//      addInstrumentsObject to add an instrument to the ordered set.
+//      https://openradar.appspot.com/10114310
+- (void)addInstrumentsObject:(Instrument *)value {
+    NSMutableOrderedSet *instruments = [[NSMutableOrderedSet alloc] initWithOrderedSet:self.instruments];
+    [instruments addObject:value];
+    self.instruments = instruments;
+}
 @end

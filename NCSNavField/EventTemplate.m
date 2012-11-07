@@ -37,14 +37,9 @@
         }
     }
 
-    // BUG: This is a workaround for a bug when using the generated method
-    //      addInstrumentsObject to add an instrument to the ordered set.
-    //      https://openradar.appspot.com/10114310
-    NSMutableOrderedSet *instruments = [[NSMutableOrderedSet alloc] initWithOrderedSet:self.instruments];
     for (Instrument* i in self.instruments) {
-        [instruments addObject:(Instrument*)[i clone]];
+        [e addInstrumentsObject:(Instrument*)[i clone]];
     }
-    self.instruments = instruments;
 
     return e;
 }
