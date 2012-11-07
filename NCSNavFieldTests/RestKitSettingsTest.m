@@ -22,6 +22,8 @@
 #import "InstrumentPlan.h"
 #import "InstrumentTemplate.h"
 #import "EventTemplate.h"
+#import "Provider.h"
+#import <MRCEnumerable/MRCEnumerable.h>
 
 @implementation RestKitSettingsTest
 
@@ -176,6 +178,21 @@
     STAssertEqualObjects(et.eventTypeCode, [NSNumber numberWithInt:34], @"Wrong type code");
     Instrument* ins = [[[et instruments] objectEnumerator] nextObject];
     STAssertEqualObjects(ins.name, @"Preg Scr Ins", @"Wrong name");
+}
+
+- (void)testProviderDeserialization {
+    NSString* json =
+        @"{ "
+         "  \"providers\": [       "
+         "    {\"name\": \"One\"}, "
+         "    {\"name\": \"Two\"}  "
+         "  ]                      "
+         "}                        ";
+    
+    NSArray* actual = [[self deserializeJson:json] objectForKey:@"providers"];
+    STAssertEquals([actual count], 2U, @"Should have 2 providers");
+    STAssertEqualObjects(((Provider*)[actual objectAtIndex:0]).name, @"One", nil);
+    STAssertEqualObjects(((Provider*)[actual objectAtIndex:1]).name, @"Two", nil);
 }
 
 #pragma mark - Helper Methods

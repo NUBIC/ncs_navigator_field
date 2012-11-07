@@ -22,6 +22,7 @@
 #import "InstrumentPlan.h"
 #import "EventTemplate.h"
 #import "ApplicationInformation.h"
+#import "Provider.h"
 
 NSString* STORE_NAME = @"main.sqlite";
 
@@ -100,6 +101,11 @@ static RestKitSettings* instance;
 
 // De-Serialize
 - (void)addMappingsToObjectManager:(RKObjectManager *)objectManager  {
+    [self addFieldworkMappingsToObjectManager:objectManager];
+    [self addProviderMappingsToObjectManager:objectManager];
+}
+
+- (void)addFieldworkMappingsToObjectManager:(RKObjectManager*)objectManager {
     // Instrument Template
     RKManagedObjectMapping* instrumentTemplate = [RKManagedObjectMapping mappingForClass:[InstrumentTemplate class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
@@ -119,12 +125,12 @@ static RestKitSettings* instance;
     // Instrument Mapping
     RKManagedObjectMapping* instrument = [RKManagedObjectMapping mappingForClass:[Instrument class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [instrument setPrimaryKeyAttribute:@"instrumentId"];
-    [instrument mapKeyPathsToAttributes: 
+    [instrument mapKeyPathsToAttributes:
      @"instrument_id", @"instrumentId",
      @"instrument_plan_id", @"instrumentPlanId",
      @"response_sets", @"responseSetDicts",
      @"name", @"name",
-     @"instrument_type_code", @"instrumentTypeId", 
+     @"instrument_type_code", @"instrumentTypeId",
      @"instrument_type_other", @"instrumentTypeOther",
      @"instrument_version", @"instrumentVersion",
      @"instrument_repeat_key", @"repeatKey",
@@ -168,12 +174,12 @@ static RestKitSettings* instance;
     // Person Mapping
     RKManagedObjectMapping* person = [RKManagedObjectMapping mappingForClass:[Person class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [person setPrimaryKeyAttribute:@"personId"];
-    [person mapKeyPathsToAttributes: 
+    [person mapKeyPathsToAttributes:
      @"person_id", @"personId",
      @"name", @"name",
      @"home_phone", @"homePhone",
      @"cell_phone", @"cellPhone",
-     @"email", @"email", 
+     @"email", @"email",
      @"street", @"street",
      @"city", @"city",
      @"state", @"state",
@@ -188,7 +194,7 @@ static RestKitSettings* instance;
      @"p_id", @"pId", nil];
     [participant mapRelationship:@"persons" withMapping:person];
     [objectManager.mappingProvider setMapping:participant forKeyPath:@"participants"];
-
+    
     // Contact Mapping
     RKManagedObjectMapping* contact = [RKManagedObjectMapping mappingForClass:[Contact class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [contact setPrimaryKeyAttribute:@"contactId"];
@@ -199,12 +205,12 @@ static RestKitSettings* instance;
      @"contact_date_date", @"date",
      @"contact_start_time", @"startTimeJson",
      @"contact_end_time", @"endTimeJson",
-     @"person_id", @"personId", 
+     @"person_id", @"personId",
      @"contact_location_code", @"locationId",
      @"contact_location_other", @"locationOther",
      @"who_contacted_code", @"whoContactedId",
      @"who_contacted_other", @"whoContactedOther",
-     @"contact_comment", @"comments", 
+     @"contact_comment", @"comments",
      @"contact_language_code", @"languageId",
      @"contact_language_other", @"languageOther",
      @"contact_interpret_code", @"interpreterId",
@@ -232,6 +238,16 @@ static RestKitSettings* instance;
     [objectManager.mappingProvider setMapping:fieldWork forKeyPath:@"field_work"];
     
     [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd" inTimeZone:[NSTimeZone localTimeZone]];
+}
+
+- (void)addProviderMappingsToObjectManager:(RKObjectManager*)objectManager {
+    RKManagedObjectMapping* provider = [RKManagedObjectMapping mappingForClass:[Provider class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
+    [provider mapKeyPathsToAttributes:
+     @"name", @"name",
+     @"location", @"location",
+     @"practice_num", @"practiceNum",
+     @"recruited", @"recruited", nil];
+    [objectManager.mappingProvider setMapping:provider forKeyPath:@"providers"];
 }
 
 // Serialize
