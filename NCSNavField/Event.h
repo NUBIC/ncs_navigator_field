@@ -75,8 +75,8 @@
 - (void)removeObjectFromInstrumentsAtIndex:(NSUInteger)idx;
 - (void)insertInstruments:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
 - (void)removeInstrumentsAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInInstrumentsAtIndex:(NSUInteger)idx withObject:(Instrument *)alue;
-- (void)replaceInstrumentsAtIndexes:(NSIndexSet *)indexes withInstruments:(NSArray *)alues;
+- (void)replaceObjectInInstrumentsAtIndex:(NSUInteger)idx withObject:(Instrument *)value;
+- (void)replaceInstrumentsAtIndexes:(NSIndexSet *)indexes withInstruments:(NSArray *)values;
 - (void)addInstrumentsObject:(Instrument *)value;
 - (void)removeInstrumentsObject:(Instrument *)value;
 - (void)addInstruments:(NSOrderedSet *)values;
