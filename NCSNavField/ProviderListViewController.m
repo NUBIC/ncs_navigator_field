@@ -11,6 +11,11 @@
 
 @implementation ProviderListViewController
 
+NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY = @"ProviderSelected";
+
+@synthesize providers = _providers;
+@synthesize additionalNotificationContext = _additionalNotificationContext;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -55,6 +60,18 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.providers count];
+}
+
+#pragma mark - UITableViewDelegate Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Provider* p = self.providers[indexPath.row];
+    if (p) {
+        NSMutableDictionary* ctx = [NSMutableDictionary dictionaryWithDictionary:self.additionalNotificationContext];
+        [ctx setValue:p forKey:@"provider"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PROVIDER_SELECTED_NOTIFICATION_KEY object:self userInfo:ctx];
+        [self dismissModalViewControllerAnimated:NO];
+    }
 }
 
 @end

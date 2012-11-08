@@ -10,9 +10,12 @@
 
 @interface ProviderListViewController : UIViewController {
     NSArray* _providers;
+    NSDictionary* _additionalNotificationContext;
 }
 
 @property(nonatomic,retain) NSArray* providers;
+
+@property(nonatomic,retain) NSDictionary* additionalNotificationContext;
 
 - (IBAction)cancelButtonPressed;
 
