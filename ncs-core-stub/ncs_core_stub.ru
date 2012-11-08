@@ -92,20 +92,20 @@ class NCSCoreStub < Sinatra::Base
   end
 end
 
-# require 'aker'
-# Aker.configure do
-#   authorities :cas
-#   ui_mode :cas
-#   api_mode :cas_proxy
-#   if File.exist?("aker-local.yml")
-#     central 'aker-local.yml'
-#   else 
-#     central '/etc/nubic/aker-local.yml'
-#   end
-# end
+require 'aker'
+Aker.configure do
+  authorities :cas
+  ui_mode :cas
+  api_mode :cas_proxy
+  if File.exist?("aker-local.yml")
+    central 'aker-local.yml'
+  else 
+    central '/etc/nubic/aker-local.yml'
+  end
+end
 
-# use Rack::Session::Cookie
+use Rack::Session::Cookie
 
-# Aker::Rack.use_in(self)
+Aker::Rack.use_in(self)
 
 run NCSCoreStub
