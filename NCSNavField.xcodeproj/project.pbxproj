@@ -43,6 +43,7 @@
 		0037D8BF15F685F200C6B7EB /* ResponseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0037D8BE15F685F200C6B7EB /* ResponseSet.m */; };
 		00393C92148E54C000671899 /* SingleOptionPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00393C91148E54C000671899 /* SingleOptionPicker.m */; };
 		003DEFD4164ACC9100E89C25 /* EventTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003DEFD3164ACC9100E89C25 /* EventTemplate.m */; };
+		003DEFFC164B4EF500E89C25 /* ProviderSynchronizeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 003DEFFB164B4EF500E89C25 /* ProviderSynchronizeOperation.m */; };
 		00439FF814112E500097A878 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF714112E500097A878 /* CFNetwork.framework */; };
 		00439FFA14112E5E0097A878 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF914112E5E0097A878 /* CoreData.framework */; };
 		00439FFC14112E670097A878 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FFB14112E670097A878 /* MobileCoreServices.framework */; };
@@ -203,7 +204,9 @@
 		003DEFD1164ACC6900E89C25 /* 20121107170535_order_instruments_on_event_template.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121107170535_order_instruments_on_event_template.xcdatamodel; sourceTree = "<group>"; };
 		003DEFD2164ACC9100E89C25 /* EventTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTemplate.h; sourceTree = "<group>"; };
 		003DEFD3164ACC9100E89C25 /* EventTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTemplate.m; sourceTree = "<group>"; };
-		003DEFE8164B1BCE00E89C25 /* 20121107224331_update_provider_attributes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121107224331_update_provider_attributes.xcdatamodel; sourceTree = "<group>"; };
+		003DEFE8164B1BCE00E89C25 /* 20121107224331_update_provider_attributes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121107224331_update_provider_attributes.xcdatamodel; sourceTree = "<group>"; };
+		003DEFFA164B4EF500E89C25 /* ProviderSynchronizeOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviderSynchronizeOperation.h; sourceTree = "<group>"; };
+		003DEFFB164B4EF500E89C25 /* ProviderSynchronizeOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderSynchronizeOperation.m; sourceTree = "<group>"; };
 		003EDE4B15F7CE2300951B05 /* 20120905181210_update_response_set_to_response_sets.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120905181210_update_response_set_to_response_sets.xcdatamodel; sourceTree = "<group>"; };
 		00439FF714112E500097A878 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		00439FF914112E5E0097A878 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -863,6 +866,8 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				003DEFFA164B4EF500E89C25 /* ProviderSynchronizeOperation.h */,
+				003DEFFB164B4EF500E89C25 /* ProviderSynchronizeOperation.m */,
 				003DEFD2164ACC9100E89C25 /* EventTemplate.h */,
 				003DEFD3164ACC9100E89C25 /* EventTemplate.m */,
 				00305A00164AC31C00A086F8 /* Event.h */,
@@ -1217,6 +1222,7 @@
 				001AC57A164AC01700E3ECBD /* Provider.m in Sources */,
 				00305A02164AC31C00A086F8 /* Event.m in Sources */,
 				003DEFD4164ACC9100E89C25 /* EventTemplate.m in Sources */,
+				003DEFFC164B4EF500E89C25 /* ProviderSynchronizeOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
