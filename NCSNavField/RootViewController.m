@@ -174,6 +174,10 @@
             
             ResponseGenerator* g = [[ResponseGenerator alloc] initWithSurvey:s context:context];
             for (NUResponse* resp in [g responses]) {
+                NSArray* existing = [found responsesForQuestion:[resp valueForKey:@"question"]];
+                for (NUResponse* e in existing) {
+                    [e deleteEntity];
+                }
                 [found newResponseForQuestion:[resp valueForKey:@"question"] Answer:[resp valueForKey:@"answer"] responseGroup:nil Value:[resp valueForKey:@"value"]];
             }
 
