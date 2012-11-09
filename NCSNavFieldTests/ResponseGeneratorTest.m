@@ -47,7 +47,7 @@ static NUSurvey* survey;
         "               \"type\": \"string\",                                   "
         "                \"uuid\": \"q2a1\"                                     "
         "             }                                                         "
-        "           ]                                                          "
+        "           ]                                                           "
         "         }                                                             "
         "       ]                                                               "
         "     },                                                                "
@@ -63,7 +63,7 @@ static NUSurvey* survey;
         "                   \"type\": \"string\",                               "
         "                   \"uuid\": \"q3a1\"                                  "
         "               }                                                       "
-        "            ]                                                         "
+        "            ]                                                          "
         "         },                                                            "
         "         {                                                             "
         "           \"reference_identifier\": \"address\",                      "
@@ -73,9 +73,21 @@ static NUSurvey* survey;
         "             {                                                         "
         "               \"reference_identifier\": \"address\",                  "
         "               \"type\": \"string\",                                   "
-        "                \"uuid\": \"q3a1\"                                     "
+        "                \"uuid\": \"q4a1\"                                     "
         "             }                                                         "
-        "           ]                                                          "
+        "           ]                                                           "
+        "         },                                                            "
+        "         {                                                             "
+        "           \"reference_identifier\": \"PREPOPULATED_SEX\",             "
+        "           \"text\": \"Sex\",                                          "
+        "           \"uuid\": \"q5\",                                           "
+        "           \"answers\": [                                              "
+        "             {                                                         "
+        "               \"reference_identifier\": \"sex\",                      "
+        "               \"type\": \"string\",                                   "
+        "                \"uuid\": \"q5a1\"                                     "
+        "             }                                                         "
+        "           ]                                                           "
         "         }                                                             "
         "       ]                                                               "
         "     }                                                                 "
@@ -89,7 +101,7 @@ static NUSurvey* survey;
 
 - (void)testPrepopulatedQuestions {
     ResponseGenerator* g = [[ResponseGenerator alloc] initWithSurvey:survey context:nil];
-    STAssertEquals([[g prepopulatedQuestions:survey] count], 3U, nil);
+    STAssertEquals([[g prepopulatedQuestions:survey] count], 4U, nil);
 }
 
 - (void)testParsePrepopulatedPostTextForReferenceIdentifier {
@@ -142,6 +154,15 @@ static NUSurvey* survey;
     NSDictionary* context = @{};
     ResponseGenerator* g = [[ResponseGenerator alloc] initWithSurvey:survey context:context];
     STAssertEquals([[g responses] count], 0U, nil);
+}
+
+- (void)testGenerateResponsesWithCapitalizedQuestionReferenceIdentifiers {
+    NSDictionary* context = @{ @"sex": @"male" };
+    ResponseGenerator* g = [[ResponseGenerator alloc] initWithSurvey:survey context:context];
+    NSArray* actual = [g responses];
+    STAssertEquals([actual count], 1U, nil);
+    NUResponse* r0 = actual[0];
+    STAssertEqualObjects([r0 valueForKey:@"value"], @"male", nil);
 }
 
 @end

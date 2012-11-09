@@ -41,7 +41,7 @@
     NSDictionary* deserial = [self.survey deserialized];
     for (NSDictionary* section in [deserial valueForKey:@"sections"]) {
         for (NSDictionary* question in [section valueForKey:@"questions_and_groups"]) {
-            NSString* refId = [question valueForKey:@"reference_identifier"];
+            NSString* refId = [self referenceIdentifierOfQuestion:question];
             if ([self parsePrepopulatedPostTextForReferenceIdentifier:refId]) {
                 [result addObject:question];
             }
@@ -54,7 +54,7 @@
 - (NSArray*) selectQuestions:(NSArray*)questions referencedInContext:(NSDictionary*)context {
     return [questions select:^BOOL(id obj){
         NSDictionary* question = obj;
-        NSString* refId = [question valueForKey:@"reference_identifier"];
+        NSString* refId = [self referenceIdentifierOfQuestion:question];
         NSString* parsed = [self parsePrepopulatedPostTextForReferenceIdentifier:refId];
         BOOL inContext = [[self.context allKeys] indexOfObject:parsed] != NSNotFound;
         return parsed && inContext;
@@ -67,7 +67,7 @@
         NSString* qUUID = [question valueForKey:@"uuid"];
         NSDictionary* answer = [[question valueForKey:@"answers"] objectAtIndex:0];
         NSString* aUUID = [answer valueForKey:@"uuid"];
-        NSString* parsedRef = [self parsePrepopulatedPostTextForReferenceIdentifier:[question valueForKey:@"reference_identifier"]];
+        NSString* parsedRef = [self parsePrepopulatedPostTextForReferenceIdentifier:[self referenceIdentifierOfQuestion:question]];
         NSString* value = self.context[parsedRef] ? [NSString stringWithFormat:@"%@", self.context[parsedRef]] : nil;
         NUResponse* response = [NUResponse transient];
         [response setValue:[UUID generateUuidString] forKey:@"uuid"];
@@ -84,9 +84,14 @@
     if (refId) {
         NSRange range = [refId rangeOfString:@"prepopulated_" options:(NSAnchoredSearch|NSCaseInsensitiveSearch)];
         if (range.location != NSNotFound) {
-            result = [refId stringByReplacingCharactersInRange:range withString:[NSString string]];
+            result = [[refId stringByReplacingCharactersInRange:range withString:[NSString string]] lowercaseString];
         }
     }
     return result;
 }
+
+- (NSString*)referenceIdentifierOfQuestion:(NSDictionary*)question {
+    return [[question valueForKey:@"reference_identifier"] lowercaseString];
+}
+
 @end
