@@ -11,7 +11,7 @@
 @class MergeStatus;
 @class ServiceTicket;
 
-@interface MergeStatusRequest : NSObject {
+@interface MergeStatusRequest : NSObject<RKRequestDelegate> {
     NSString* _mergeStatusId;
     NSString* _error;
     CasServiceTicket* _serviceTicket;
