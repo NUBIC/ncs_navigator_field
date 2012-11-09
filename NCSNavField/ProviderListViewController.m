@@ -19,7 +19,8 @@ NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY = @"ProviderSelected";
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.providers = [Provider allObjects];
+        NSPredicate* p = [NSPredicate predicateWithFormat:@"recruited = %d", TRUE];
+        self.providers = [Provider findAllSortedBy:@"name" ascending:YES withPredicate:p];
     }
     return self;
 }
