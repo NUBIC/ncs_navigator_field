@@ -96,6 +96,8 @@ const static NSInteger POLL_REPEATS = 3;
         NSMutableDictionary *headers = [NSMutableDictionary new];
         [headers setValue:@"application/json" forKey: @"Content-Type"];
         [headers setValue:[NSString stringWithFormat:@"CasProxy %@", pt.proxyTicket] forKey:@"Authorization"];
+        [headers setValue:ApplicationSettings.instance.clientId forKey:@"X-Client-ID"];
+
         req.additionalHTTPHeaders = headers;
         
         RKResponse* resp = [req sendSynchronously];

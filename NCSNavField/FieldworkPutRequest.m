@@ -76,6 +76,7 @@
 - (RKObjectManager *)objectManager:(CasProxyTicket *)proxyTicket {
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", proxyTicket.proxyTicket] forKey:@"Authorization"];
+    [objectManager.client.HTTPHeaders setValue:ApplicationSettings.instance.clientId forKey:@"X-Client-ID"];
     return objectManager;
 }
 
@@ -85,7 +86,7 @@
 
     NSString* clientId = [ApplicationSettings instance].clientId;
     
-    NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork/%@?client_id=%@", submission.fieldworkId, clientId];
+    NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork/%@", submission.fieldworkId];
     
     NCSLog(@"PUT %@", path);
     
