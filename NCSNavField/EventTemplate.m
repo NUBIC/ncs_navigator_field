@@ -24,6 +24,10 @@
     return [EventTemplate findFirstWithPredicate:predicate];
 }
 
++ (Instrument*)pregnancyScreeningInstrument {
+    return [[EventTemplate pregnancyScreeningTemplate].instruments objectAtIndex:0];
+}
+
 - (Event*)buildEvent {
     Event* e = [Event object];
     NSArray* eventAttrs = [[[EventTemplate entityDescription] attributesByName] allKeys];
