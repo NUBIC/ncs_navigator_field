@@ -22,6 +22,7 @@ class NCSCoreStub < Sinatra::Base
         if request.env["HTTP_X_CLIENT_ID"]
           headers 'location' => 'http://localhost:4567/api/v1/fieldwork/92c37ba9-7297-4763-9c7f-80ac6ad16727'
           content_type :json
+          status 201
           IO.read("contacts.json")
         else
           status 400
