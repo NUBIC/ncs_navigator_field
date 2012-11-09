@@ -64,11 +64,14 @@
 - (NSArray*) buildAndPopulateQuestions:(NSArray*)questions withContext:(NSDictionary*)context{
     return [questions collect:^id(id obj){
         NSDictionary* question = obj;
-        NSString* qUUID = [question valueForKey:@"uuid"];
-        NSDictionary* answer = [[question valueForKey:@"answers"] objectAtIndex:0];
-        NSString* aUUID = [answer valueForKey:@"uuid"];
         NSString* parsedRef = [self parsePrepopulatedPostTextForReferenceIdentifier:[self referenceIdentifierOfQuestion:question]];
         NSString* value = self.context[parsedRef] ? [NSString stringWithFormat:@"%@", self.context[parsedRef]] : nil;
+        NSString* qUUID = [question valueForKey:@"uuid"];
+        NSDictionary* answer = [self findAnswerFromAnswers:[question valueForKey:@"answers"] withReferenceIdentifier:value];
+        if (!answer) {
+            answer = [[question valueForKey:@"answers"] objectAtIndex:0];
+        }
+        NSString* aUUID = [answer valueForKey:@"uuid"];
         NUResponse* response = [NUResponse transient];
         [response setValue:[UUID generateUuidString] forKey:@"uuid"];
         [response setValue:qUUID forKey:@"question"];
@@ -77,6 +80,18 @@
         return response;
     }];
 
+}
+
+- (NSDictionary*)findAnswerFromAnswers:(NSArray*)answers withReferenceIdentifier:(NSString*)refId {
+    NSDictionary* result = nil;
+    
+    for (NSDictionary* answer in answers) {
+        if ([[self referenceIdentifierOfQuestion:answer] isEqualToString:refId]) {
+            result = answer;
+            break;
+        }
+    }
+    return result;
 }
 
 - (NSString*) parsePrepopulatedPostTextForReferenceIdentifier:(NSString*)refId{

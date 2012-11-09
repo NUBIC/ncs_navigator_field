@@ -25,7 +25,8 @@
     return @{
         @"provider_id": self.provider.location,
         @"practice_num": self.provider.practiceNum,
-        @"name_practice": self.provider.name
+        @"name_practice": self.provider.name,
+        @"mode_of_contact": @"capi"
     };
 }
 
