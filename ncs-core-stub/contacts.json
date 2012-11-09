@@ -5,7 +5,7 @@
             "contact_id": "227cb4a4-90d0-49b9-9acf-4472d77ae4c4", 
             "contact_start_time": "15:20:00", 
             "contact_type_code": "1", 
-            "date": "2005-07-18", 
+            "contact_date_date": "2005-07-18", 
             "events": [
                 {
                     "event_id": "127f6f57-de6b-4c38-a4b7-fdd9f5e29331", 
@@ -46,7 +46,7 @@
             "contact_id": "007c4927-8e2c-49f5-acb7-8958e6482b6b", 
             "contact_start_time": "15:20:00", 
             "contact_type_code": "3", 
-            "date": "2005-07-17", 
+            "contact_date_date": "2005-07-17", 
             "events": [
                 {
                     "event_id": "883d5830-91ed-4dd4-9303-903eee737082", 
@@ -73,7 +73,7 @@
             "contact_id": "4ec73c0a-f65a-4a41-b09e-9f7cc0e5ace4", 
             "contact_start_time": "15:20:00", 
             "contact_type_code": "1", 
-            "date": "2005-07-17", 
+            "contact_date_date": "2005-07-17", 
             "events": [
                 {
                     "event_id": "6b8550d6-f715-4f13-b34a-78710e22a862", 
