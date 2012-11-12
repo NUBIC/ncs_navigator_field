@@ -10,6 +10,7 @@
 #import "SimpleTableController.h"
 #import "SimpleTableRowDelegate.h"
 #import "MBProgressHUD.h"
+#import "CasLoginDelegate.h"
 
 @class ContactDisplayController;
 @class Instrument;
@@ -17,6 +18,9 @@
 @class SyncActivityIndicator;
 @class ResponseSet;
 @class RKReachabilityObserver;
+@class CasServiceTicket;
+
+FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 
 @interface RootViewController : SimpleTableController<UINavigationControllerDelegate, SimpleTableRowDelegate, CasLoginDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate> {
     Instrument* _administeredInstrument;
@@ -25,7 +29,6 @@
     CasServiceTicket* _serviceTicket;
 }
 
-		
 @property (nonatomic, strong) IBOutlet ContactDisplayController *detailViewController;
 @property(nonatomic,strong) RKReachabilityObserver* reachability;
 @property(nonatomic,strong) MBProgressHUD* syncIndicator;
@@ -35,7 +38,6 @@
 - (void)purgeDataStore;
 - (void)loadSurveyor:(Instrument*)instrument;
 - (void)didSelectRow:(Row*)row;
-- (void)loadObjectsFromDataStore;
 - (void)syncButtonWasPressed;
 - (void)confirmSync;
 - (void)startCasLogin;
@@ -43,5 +45,8 @@
 - (void)unloadSurveyor:(Instrument*)instrument;
 - (void)syncContacts:(CasServiceTicket*)serviceTicket;
 - (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket;
+
+#pragma mark - TableView
+- (UIView*)tableHeaderView;
 
 @end

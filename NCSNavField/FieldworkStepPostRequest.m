@@ -87,6 +87,8 @@
     // Load the object model via RestKit	
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
+    [objectManager.client.HTTPHeaders setValue:ApplicationSettings.instance.clientId forKey:@"X-Client-ID"];
+
     
     NSDate* today = [NSDate date];
     NSInteger days = [[ApplicationSettings instance] upcomingDaysToSync];
@@ -98,7 +100,7 @@
     [rfc3339 setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     [rfc3339 setDateFormat:@"yyyy'-'MM'-'dd"];
     [rfc3339 setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-    NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@&client_id=%@", [rfc3339 stringFromDate:today], [rfc3339 stringFromDate:inOneWeek], clientId];
+    NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@", [rfc3339 stringFromDate:today], [rfc3339 stringFromDate:inOneWeek]];
     
     
     NCSLog(@"Requesting data from %@", path);

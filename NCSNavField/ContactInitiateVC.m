@@ -104,8 +104,14 @@
 #pragma mark - Form
 
 - (void) setDefaults:(Contact*) contact {
-    contact.startTime = [NSDate date];
-    
+    if (!contact.date) {
+        contact.date = [NSDate date];
+    }
+
+    if (!contact.startTime) {
+        contact.startTime = [NSDate date];
+    }
+
     if (!contact.typeId || [contact.typeId intValue] == -4) {
         contact.typeId = [NSNumber numberWithInt:1];
     }

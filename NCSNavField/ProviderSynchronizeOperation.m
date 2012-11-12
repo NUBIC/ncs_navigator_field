@@ -7,6 +7,7 @@
 //
 
 #import "ProviderSynchronizeOperation.h"
+#import "CasServiceTicket.h"
 #import "ApplicationSettings.h"
 
 @implementation ProviderSynchronizeOperation

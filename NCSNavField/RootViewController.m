@@ -35,6 +35,15 @@
 #import <MRCEnumerable.h>
 #import "MultiSurveyTVC.h"
 #import "NUSurvey+Additions.h"
+#import "ContactInitiateVC.h"
+#import "EventTemplate.h"
+#import "Person.h"
+#import "ProviderListViewController.h"
+#import "ProviderSynchronizeOperation.h"
+#import "Provider.h"
+#import "ResponseGenerator.h"
+#import "SurveyContextGenerator.h"
+#import <NUSurveyor/NUResponse.h>
 
 @interface RootViewController () 
     @property(nonatomic,strong) NSArray* contacts;
@@ -65,10 +74,12 @@
                                                      name:RKReachabilityDidChangeNotification
                                                    object:self.reachability];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleDeleteButton) name:SettingsDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contactInitiated:) name:@"ContactInitiated" object:NULL];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(providerSelected:) name:PROVIDER_SELECTED_NOTIFICATION_KEY object:NULL];
+
     }
     return self;
 }
-
 
 - (void)reachabilityChanged:(NSNotification *)notification {
     RKReachabilityObserver* observer = (RKReachabilityObserver *) [notification object];
@@ -97,14 +108,47 @@
 
 - (void) instrumentSelected:(NSNotification*)notification {
     Instrument* selected = [[notification userInfo] objectForKey:@"instrument"];
-    selected.startDate = [NSDate date];
-    selected.startTime = [NSDate date];
+    Instrument* screener = [EventTemplate pregnancyScreeningInstrument];
+    BOOL isPbsScreener = [selected.instrumentPlanId isEqual:screener.instrumentPlanId];
+    if (isPbsScreener) {
+        ProviderListViewController* plvc = [[ProviderListViewController alloc] initWithNibName:@"ProviderListViewController" bundle:nil];
+        plvc.modalPresentationStyle = UIModalPresentationFormSheet;
+        plvc.additionalNotificationContext = @{ @"instrument": selected };
+        [self presentViewController:plvc animated:NO completion:nil];
+    } else {
+        selected.startDate = [NSDate date];
+        selected.startTime = [NSDate date];
+        [[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:NULL];
+        [self loadSurveyor:selected context:nil];
+    }
+}
+
+- (void) providerSelected:(NSNotification*)notification {
+    Provider* provider = [[notification userInfo] objectForKey:@"provider"];
+    Instrument* instrument = [[notification userInfo] objectForKey:@"instrument"];
+    
+    instrument.startDate = [NSDate date];
+    instrument.startTime = [NSDate date];
     [[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:NULL];
-    [self loadSurveyor:selected];
+    SurveyContextGenerator* g = [[SurveyContextGenerator alloc] initWithProvider:provider];
+    [self loadSurveyor:instrument context:[g context]];
+}
+
+- (void)contactInitiated:(NSNotification*)notification {
+    self.contacts = [Contact allObjects];
+    ContactNavigationTable* table = [[ContactNavigationTable alloc] initWithContacts:self.contacts];
+    self.simpleTable = table;
+
+	[self.tableView reloadData];
+    
+    Contact* current = [[notification userInfo] objectForKey:@"contact"];
+    NSIndexPath* indexPath = [table findIndexPathForContact:current];
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    self.detailViewController.detailItem = current;
 }
 
 #pragma surveyor
-- (void) loadSurveyor:(Instrument*)instrument {
+- (void) loadSurveyor:(Instrument*)instrument context:(NSDictionary*)context {
     if (instrument != NULL) {
         NSArray* surveys = [[instrument.instrumentPlan.instrumentTemplates array] collect:^id(InstrumentTemplate* tmpl){
             NUSurvey* s = [NUSurvey new];
@@ -127,6 +171,16 @@
 
                 NCSLog(@"Creating new response set: %@", found.uuid);
             }
+            
+            ResponseGenerator* g = [[ResponseGenerator alloc] initWithSurvey:s context:context];
+            for (NUResponse* resp in [g responses]) {
+                NSArray* existing = [found responsesForQuestion:[resp valueForKey:@"question"]];
+                for (NUResponse* e in existing) {
+                    [e deleteEntity];
+                }
+                [found newResponseForQuestion:[resp valueForKey:@"question"] Answer:[resp valueForKey:@"answer"] responseGroup:nil Value:[resp valueForKey:@"value"]];
+            }
+
             [assoc setObject:found forKey:s.uuid];
         }
         
@@ -261,15 +315,21 @@
 - (void) deleteButtonWasPressed {
     NCSLog(@"Delete button pressed");
 
-    self.detailViewController.detailItem = nil;
-
     [self purgeDataStore];
     
     self.contacts = [NSArray array];
+}
+
+- (void)setContacts:(NSArray *)contacts {
+    _contacts = contacts;
     
-    self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
-            
+    self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:contacts];
+    
 	[self.tableView reloadData];
+    
+    self.tableView.tableHeaderView = [self tableHeaderView];
+    
+    self.detailViewController.detailItem = NULL;
 }
 
 - (void)purgeDataStore {
@@ -296,28 +356,24 @@
     
     [sync perform];
     
-    [self loadObjectsFromDataStore];
+    ProviderSynchronizeOperation* pSync = [[ProviderSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
     
-    self.detailViewController.detailItem = NULL;
+    [pSync perform];
+
     
-    self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
-    
-	[self.tableView reloadData];
+    self.contacts = [self contactsFromDataStore];
 }
 
 #pragma RestKit
 
-- (void)loadObjectsFromDataStore {
-	NSFetchRequest* request = [Contact fetchRequest];
-	NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
-	[request setSortDescriptors:[NSArray arrayWithObject:descriptor]];
-	self.contacts = [Contact objectsWithFetchRequest:request];
+- (NSArray*)contactsFromDataStore {
+    return [Contact findAllSortedBy:@"date" ascending:YES];
 }
 
 #pragma lifecycle
 - (void) loadView {
     [super loadView];
-    self.clearsSelectionOnViewWillAppear = NO;
+//    self.tableclearsSelectionOnViewWillAppear = NO;
     self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     self.title = @"Contacts";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStylePlain target:self action:@selector(syncButtonWasPressed)];
@@ -329,14 +385,40 @@
 
     [self.splitViewController.view addSubview:self.syncIndicator];
 
-    // Load Data from datastore
-    [self loadObjectsFromDataStore];
-    self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
+    self.contacts = [self contactsFromDataStore];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.tableView.tableHeaderView = [self tableHeaderView];
+}
+
+- (UIView*)tableHeaderView {
+    UIView* header = nil;
+    if ([EventTemplate pregnancyScreeningTemplate]) {
+        header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
+        UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        button.frame = CGRectMake(0, 5, 150, 40);
+        [button setTitle:@"Screen Participant" forState:UIControlStateNormal];
+        [header addSubview:button];
+        button.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin);
+        button.center = header.center;
+        [button addTarget:self action:@selector(screenParticipant:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return header;
+}
+
+- (IBAction)screenParticipant:(UIButton *)button {
+    Contact* screening = [Contact object];
+    screening.person = [Person person];
+    EventTemplate* pregnancyScreeningEventTmpl = [EventTemplate pregnancyScreeningTemplate];
+    if (pregnancyScreeningEventTmpl) {
+        Event* pregnancyScreeningEvent = [pregnancyScreeningEventTmpl buildEvent];
+        [screening addEventsObject:pregnancyScreeningEvent];
+        ContactInitiateVC* civc = [[ContactInitiateVC alloc] initWithContact:screening];
+        civc.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:civc animated:YES completion:nil];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -23,6 +23,8 @@
 
 + (EventTemplate*)pregnancyScreeningTemplate;
 
++ (Instrument*)pregnancyScreeningInstrument;
+
 - (Event*)buildEvent;
 
 @end

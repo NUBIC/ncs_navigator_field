@@ -92,14 +92,17 @@ const static NSInteger POLL_REPEATS = 3;
     CasProxyTicket* pt = [self obtainProxyTicket:self.serviceTicket];
     if (pt) {
         RKRequest* req = [[RKRequest alloc] initWithURL:[self resourceURL]];
+        req.delegate = self;
         req.method = RKRequestMethodGET;
         NSMutableDictionary *headers = [NSMutableDictionary new];
         [headers setValue:@"application/json" forKey: @"Content-Type"];
         [headers setValue:[NSString stringWithFormat:@"CasProxy %@", pt.proxyTicket] forKey:@"Authorization"];
+        [headers setValue:ApplicationSettings.instance.clientId forKey:@"X-Client-ID"];
+
         req.additionalHTTPHeaders = headers;
         
         RKResponse* resp = [req sendSynchronously];
-        if ([resp isOK] && [resp isJSON]) {
+        if ([resp isSuccessful] && [resp isJSON]) {
             NSLog(@"Response body: %@", resp.bodyAsString);
             MergeStatus* ms = [MergeStatus parseFromJson:resp.bodyAsString];
             ms.mergeStatusId = self.mergeStatusId;
@@ -109,6 +112,16 @@ const static NSInteger POLL_REPEATS = 3;
     }
     return nil;
 }
+
+- (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error {
+    NSString* errorMsg = [NSString stringWithFormat:@"Problem checking merge status.\n%@", [error localizedDescription]];
+    [self showErrorMessage:errorMsg];
+}
+
+- (void)requestDidTimeout:(RKRequest *)request {
+    [self showErrorMessage:@"Merge status check timed out"];
+}
+
 
 - (void)showErrorMessage:(NSString *)message {
     NCSLog(@"%@", message);
