@@ -20,12 +20,12 @@
     return self;
 }
 
--(NSDictionary*)toDict {
-    return [[NSDictionary alloc] initWithObjectsAndKeys:self.text,@"text",[NSNumber numberWithInt:self.value],@"value",nil];
+-(NSDictionary*)toDict:(NSString*)listName {
+    return [[NSDictionary alloc] initWithObjectsAndKeys:self.text,@"display_text",[NSNumber numberWithInt:self.value],@"local_code",listName,@"list_name",nil];
 }
 
--(NSString*)toJSON {
-    NSDictionary *dict = [self toDict];
+-(NSString*)toJSON:(NSString*)listName {
+    NSDictionary *dict = [self toDict:listName];
     NSString *str = [[[SBJSON alloc] init] stringWithObject:dict];
     return str;
 }
@@ -297,33 +297,43 @@
         [self po:@"Missing in Error" value:-4], nil];
 }
 
--(void)writeToFiles {
+-(void)writeToFile {
+    NSMutableString *strJSON = [NSMutableString stringWithString:@"{ "];
+    NSArray* arrDc = [DispositionCode all];
+    [strJSON appendString:@"\"event_disposition_codes\": ["];
+    for(DispositionCode *dc in arrDc) {
+        [strJSON appendString:@" "];
+        [strJSON appendString:[dc toJsonString]];
+        [strJSON appendString:@","];
+    }
+    [strJSON deleteCharactersInRange:NSMakeRange([strJSON length]-1, 1)];
+    [strJSON appendString:@" ], \"ncs_codes\": ["];
     NSArray *arrSelectors = [[NSArray alloc] initWithObjects:@"contactTypes",@"whoContacted",@"language",
                              @"interpreter",@"location",@"private",@"disposition",@"eventTypes",@"incentives",
                              @"dispositionCategory",@"breakOff",@"instrumentTypes",@"instrumentStatuses",@"instrumentModes",
                              @"instrumentMethods",@"instrumentSupervisorReviews",@"instrumentDataProblems",@"instrumentBreakoffs",nil];
+    
     for(NSString *str in arrSelectors) {
         SEL s = NSSelectorFromString(str);
         NSArray *arrPicker = [PickerOption performSelector:s];
-        NSMutableString *strJSON = [NSMutableString stringWithString:@"["];
         for(PickerOption *po in arrPicker) {
             [strJSON appendString:@" "];
-            [strJSON appendString:[po toJSON]];
+            [strJSON appendString:[po toJSON:str]];
             [strJSON appendString:@","];
         }
-        [strJSON deleteCharactersInRange:NSMakeRange([strJSON length]-1, 1)];
-        [strJSON appendString:@"]"];
-        NSString *documentsDirectory = @"~/Code/ncs_navigator_field/ncs-core-stub";
-        
-        //make a file name to write the data to using the documents directory:
-        NSString *fileName = [NSString stringWithFormat:@"%@/event_types.json",
-                              documentsDirectory];
-        //save content to the documents directory
-        [strJSON writeToFile:fileName
-                  atomically:NO
-                    encoding:NSStringEncodingConversionAllowLossy
-                       error:nil];
     }
+    [strJSON deleteCharactersInRange:NSMakeRange([strJSON length]-1, 1)];
+    [strJSON appendString:@" ]"];
+    [strJSON appendString:@" }"];
+    NSString *documentsDirectory = @"~/Code/ncs_navigator_field/ncs-core-stub";
+    //make a file name to write the data to using the documents directory:
+    NSString *fileName = [NSString stringWithFormat:@"%@/MDES.json",
+                          documentsDirectory];
+    //save content to the documents directory
+    [strJSON writeToFile:fileName
+              atomically:NO
+                encoding:NSStringEncodingConversionAllowLossy
+                   error:nil];
 }
 
 @end

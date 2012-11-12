@@ -24,5 +24,6 @@
 + (NSArray*) pickerOptions;
 - (PickerOption*) toPickerOption;
 + (NSArray*) pickerOptionsForContactTypeId:(NSNumber*)typeId;
-
+-(NSString*)toJsonString;
+-(NSDictionary*)toDict;
 @end

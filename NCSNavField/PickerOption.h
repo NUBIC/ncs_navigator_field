@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SBJSON.h"
+#import "DispositionCode.h"
 
 @interface PickerOption : NSObject {
     NSString* _text;
@@ -16,8 +18,9 @@
 @property(nonatomic,strong) NSString* text;
 
 - (id) initWithText:(NSString*)t value:(NSInteger)v;
--(NSDictionary*)toDict;
--(NSString*)toJSON;
+-(NSDictionary*)toDict:(NSString*)listName;
+-(NSString*)toJSON:(NSString*)listName;
+-(void)writeToFile;
 - (NSInteger) value;
 + (NSArray*) contactTypes;
 + (PickerOption*) findWithValue:(NSInteger)value fromOptions:(NSArray*)options; 

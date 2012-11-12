@@ -26,6 +26,16 @@
     return self;
 }
 
+-(NSDictionary*)toDict {
+    return [[NSDictionary alloc] initWithObjectsAndKeys:self.event,@"category_code",self.interimCode,@"code",self.disposition,@"name",nil];
+}
+
+-(NSString*)toJsonString {
+    NSDictionary *dict = [self toDict];
+    NSString *str = [[[SBJSON alloc] init] stringWithObject:dict];
+    return str;
+}
+
 + (DispositionCode*)dc:(NSString*)event disposition:(NSString*)disposition interimCode:(NSString*)code {
     return [[DispositionCode alloc] initWithInterimCode:code disposition:disposition event:event];
 }
