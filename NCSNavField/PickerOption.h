@@ -16,6 +16,8 @@
 @property(nonatomic,strong) NSString* text;
 
 - (id) initWithText:(NSString*)t value:(NSInteger)v;
+-(NSDictionary*)toDict;
+-(NSString*)toJSON;
 - (NSInteger) value;
 + (NSArray*) contactTypes;
 + (PickerOption*) findWithValue:(NSInteger)value fromOptions:(NSArray*)options; 
