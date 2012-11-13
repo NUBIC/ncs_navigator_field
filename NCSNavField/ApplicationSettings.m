@@ -5,7 +5,10 @@
 //  Created by John Dzak on 1/16/12.
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
-
+/*
+ This represents a thin wrapper around the NSUserDefaults that we set for the user. We either pull these from the defaults that 
+ is containted in the Settings bundle in the Root.plist.
+ */
 #import "ApplicationSettings.h"
 #import "NSStringHelper.h"
 
@@ -17,6 +20,14 @@ NSString* const PGT_RECEIVE_URL = @"pgt.receive.url";
 NSString* const PGT_RETRIEVE_URL = @"pgt.retrieve.url";
 NSString* const PURGE_FIELDWORK_BUTTON = @"purge.fieldwork.button";
 NSString* const UPCOMING_DAYS_TO_SYNC = @"upcoming.days.to.sync";
+
+//This makes the method declaration private. This is a singleton
+//and we don't want any consumers of this class to call the init method.
+//We want them to call the instance class method. That enforces its
+//singleton-ness.
+@interface ApplicationSettings (Private)
+-(id)init;
+@end
 
 @implementation ApplicationSettings
 
@@ -40,7 +51,7 @@ static ApplicationSettings* instance;
         _pgtRetrieveURL = [self pgtRetrieveURL];
         _purgeFieldworkButton = [self isPurgeFieldworkButton];
         _upcomingDaysToSync = [self upcomingDaysToSync];
-        
+         [[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:self];
         [self registerDefaultsFromSettingsBundle];
 
     }
@@ -54,11 +65,13 @@ static ApplicationSettings* instance;
     }
     return instance;
 }
-
+#warning Do we need this? 
+//See comment below.
 + (void) reload {
     [[ApplicationSettings instance] reload];
 }
-
+#warning Do we need this? 
+//We should not need this. This should be set up when we initially instantiate the object and never again. 
 - (void) reload {
     self.clientId = [self retreiveClientId];
     self.coreURL = [self retreiveCoreURL];
@@ -67,7 +80,7 @@ static ApplicationSettings* instance;
     self.pgtRetrieveURL = [self pgtRetrieveURL];
     self.purgeFieldworkButton = [self purgeFieldworkButton];
     self.upcomingDaysToSync = [self upcomingDaysToSync];
-    
+    //We need this. 
     [[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:self];
 }
 
@@ -115,7 +128,7 @@ static ApplicationSettings* instance;
 - (BOOL) coreSynchronizeConfigured {
     return !([NSStringHelper isEmpty:self.coreURL] || [NSStringHelper isEmpty:self.casServerURL] || [NSStringHelper isEmpty:self.pgtReceiveURL] || [NSStringHelper isEmpty:self.pgtRetrieveURL]);
 }
-
+//Should we throw an exception here if the Settings.bundle is not found? Isn't that a fatal error? 
 - (void)registerDefaultsFromSettingsBundle {
     NSLog(@"Registering default values from Settings.bundle");
     NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
