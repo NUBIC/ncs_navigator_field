@@ -7,7 +7,7 @@
 //
 
 #import <CoreData/CoreData.h>
-
+#import "DispositionCode.h"
 @class RKObjectManager;
 
 @interface RestKitSettings : NSObject {
@@ -25,7 +25,7 @@
 
 - (id) init;
 
-- (id)initWithBaseServiceURL:(NSString*)url objectStoreFileName:(NSString*)file;
+//- (id)initWithBaseServiceURL:(NSString*)url objectStoreFileName:(NSString*)file;
 
 - (void)introduce;
 

@@ -26,6 +26,15 @@
 
 NSString* STORE_NAME = @"main.sqlite";
 
+@interface RestKitSettings (Private)
+-(id)init;
+-(id)initWithBaseServiceURL:(NSString*)url objectStoreFileName:(NSString*)file;
+@end
+
+/*
+ Singleton to set up all mappings between run-time objects and RestKit. 
+ See process @ www.xxxxx.com (SFH needs to set up a RestKit workflow.)
+ */
 @implementation RestKitSettings
 
 static RestKitSettings* instance;
@@ -33,7 +42,7 @@ static RestKitSettings* instance;
 @synthesize baseServiceURL = _baseServiceURL;
 @synthesize objectStoreFileName = _objectStoreFileName;
 
-+ (RestKitSettings*) instance {
++ (RestKitSettings*)instance {
     instance = [[RestKitSettings alloc] init];
     return instance;
 }
@@ -42,6 +51,7 @@ static RestKitSettings* instance;
     self = [super init];
     if (self) {
         _baseServiceURL = [ApplicationSettings instance].coreURL;
+        [RKObjectManager sharedManager].client = [[RKClient alloc] initWithBaseURLString:_baseServiceURL];
         if ([ApplicationInformation datasourceName]) {
             _objectStoreFileName = [ApplicationInformation datasourceName];
         } else {
@@ -50,7 +60,7 @@ static RestKitSettings* instance;
     }
     return self;
 }
-
+#warning It looks like this method will never get called. However, lets leave it. 
 - (id)initWithBaseServiceURL:(NSString*)url objectStoreFileName:(NSString*)file {
     self = [super init];
     if (self) {
@@ -59,7 +69,7 @@ static RestKitSettings* instance;
     }
     return self;
 }
-
+//Due to the change in init, we *shouldn't* need this anymore. 
 + (void)reload {
     RestKitSettings* s = [RestKitSettings instance];
     s.baseServiceURL = [ApplicationSettings instance].coreURL;
@@ -89,6 +99,7 @@ static RestKitSettings* instance;
     
     RKObjectRouter* router = [RKObjectRouter new];
     [router routeClass:[Fieldwork class] toResourcePath:@"/api/v1/fieldwork/:fieldworkId"];
+    [router routeClass:[DispositionCode class] toResourcePath:@"/api/v1/code_lists"];
     [RKObjectManager sharedManager].router = router;
     
     [RKObjectManager sharedManager].acceptMIMEType = RKMIMETypeJSON;
@@ -103,6 +114,20 @@ static RestKitSettings* instance;
 - (void)addMappingsToObjectManager:(RKObjectManager *)objectManager  {
     [self addFieldworkMappingsToObjectManager:objectManager];
     [self addProviderMappingsToObjectManager:objectManager];
+    [self addDispositionCodeMappingsToObjectManager:objectManager];
+}
+
+-(void)addDispositionCodeMappingsToObjectManager:(RKObjectManager*)objectManager {
+    RKManagedObjectMapping *objMapDc = [RKManagedObjectMapping mappingForClass:[DispositionCode class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
+    [objMapDc setPrimaryKeyAttribute:@"interimCode"];
+    [objMapDc mapKeyPathsToAttributes:@"category_code",@"event",@"name",@"disposition",@"code",@"interimCode",nil];
+    [objectManager.mappingProvider setMapping:objMapDc forKeyPath:@"dispositioncode"];
+}
+
+-(void)addPickerOptionMappingsToObjectManager:(RKObjectManager*)objectManager {
+    RKManagedObjectMapping *objPo = [RKManagedObjectMapping mappingForClass:[PickerOption class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
+    [objPo setPrimaryKeyAttribute:@""];
+    [objPo mapKeyPathsToAttributes:@"",@"",@"",@"",@"",@"", nil];
 }
 
 - (void)addFieldworkMappingsToObjectManager:(RKObjectManager*)objectManager {
