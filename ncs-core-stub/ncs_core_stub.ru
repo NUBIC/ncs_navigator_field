@@ -103,6 +103,22 @@ class NCSCoreStub < Sinatra::Base
       401
     end
   end
+
+  get '/api/v1/code_lists' do
+    env['aker.check'].authentication_required!
+    username = env['aker.check'].user.username
+    if username
+      if request.env["HTTP_X_CLIENT_ID"]
+        status 200
+        content_type :json
+        IO.read("code_lists.json")
+      else
+        400
+      end
+    else
+      401
+    end
+  end
 end
 
 require 'aker'
