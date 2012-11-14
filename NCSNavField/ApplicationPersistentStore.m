@@ -9,6 +9,14 @@
 #import "ApplicationPersistentStore.h"
 #import "ApplicationPersistentStoreBackup.h"
 #import "ApplicationPersistentStoreBackupOperation.h"
+/*
+ Singleton utilized to handle the backup of the sqlite db instance. Any time we want to take the current
+ sqlite db instance and copy it in the file system for safe keeping, we will call 'backup' on this singleton.
+ If we want to remove the currently utilized db, we can call remove here as well.
+ */
+@interface ApplicationPersistentStore (Private)
+-(id)init;
+@end
 
 @implementation ApplicationPersistentStore
 
@@ -20,7 +28,7 @@ static ApplicationPersistentStore* instance;
     }
     return instance;
 }
-
+//This is the entry method to back up the database as an extra level of security just in case.
 - (ApplicationPersistentStoreBackup*)backup {
     ApplicationPersistentStoreBackup* backup = [ApplicationPersistentStoreBackup new];
     ApplicationPersistentStoreBackupOperation* op = 

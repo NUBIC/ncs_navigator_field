@@ -7,7 +7,11 @@
 //
 
 #import "ApplicationPersistentStoreBackupOperation.h"
-
+/*
+ The main class we use to create the backup of the current sqlite instance.
+ Called from ApplicationPersistentStore to take the current object store (sqlite db)
+ and back it up to the device by *copying* it.
+ */
 @implementation ApplicationPersistentStoreBackupOperation
 
 @synthesize main = _main;
@@ -22,7 +26,7 @@
     }
     return self;
 }
-
+//Copy the currently used persistent sqlite db to the backup loaction. 
 - (BOOL) perform {
     BOOL success = false;
     if (self.main && self.backup) {

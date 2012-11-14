@@ -65,13 +65,11 @@ static ApplicationSettings* instance;
     }
     return instance;
 }
-#warning Do we need this? 
-//See comment below.
+
 + (void) reload {
     [[ApplicationSettings instance] reload];
 }
-#warning Do we need this? 
-//We should not need this. This should be set up when we initially instantiate the object and never again. 
+
 - (void) reload {
     self.clientId = [self retreiveClientId];
     self.coreURL = [self retreiveCoreURL];
@@ -95,6 +93,7 @@ static ApplicationSettings* instance;
     }
     return cid;
 }
+#pragma mark - Accessor methods for User Settings
 
 - (NSString*) retreiveCoreURL {
     return [[NSUserDefaults standardUserDefaults] stringForKey:CORE_URL];
@@ -128,6 +127,9 @@ static ApplicationSettings* instance;
 - (BOOL) coreSynchronizeConfigured {
     return !([NSStringHelper isEmpty:self.coreURL] || [NSStringHelper isEmpty:self.casServerURL] || [NSStringHelper isEmpty:self.pgtReceiveURL] || [NSStringHelper isEmpty:self.pgtRetrieveURL]);
 }
+
+#pragma mark Register User Defaults from Settings Bundle
+
 //Should we throw an exception here if the Settings.bundle is not found? Isn't that a fatal error? 
 - (void)registerDefaultsFromSettingsBundle {
     NSLog(@"Registering default values from Settings.bundle");

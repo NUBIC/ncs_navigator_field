@@ -7,7 +7,9 @@
 //
 
 #import "ApplicationPersistentStoreBackup.h"
-
+//Class that contains methods to create a sqlite database
+//backup as a fail-safe. This class contains the methods to
+//remove the files and constructing the name and so forth. 
 @implementation ApplicationPersistentStoreBackup
 
 @synthesize name = _name;
@@ -19,7 +21,7 @@
     }
     return self;
 }
-
+//Remove the sqlite db corresponding to this particular instance.
 - (void)remove {
     NSString* backup = [self path];
     if (backup) {
@@ -27,7 +29,7 @@
         [fm removeItemAtPath:[self path] error:NULL];
     }
 }
-
+//We need a unique file name for the backup sqlite db.
 - (NSString*)generateBackupFilename {
     NSDateFormatter *timeFmt = [[NSDateFormatter alloc] init];
     [timeFmt setDateFormat:@"yyyyMMddHHmmss"];
@@ -38,11 +40,11 @@
 + (NSString*) prefix {
     return @"sync-backup";
 }
-
+//Get the path to where the sqlite db associated with this instance is stored. 
 - (NSString*)path {
     return [[RKDirectory applicationDataDirectory] stringByAppendingPathComponent:self.name];
 }
-
+//Remove all the sqlite db backup files that exist on device.
 + (void)removeAll {
     NSString* path = [RKDirectory applicationDataDirectory];
     NSFileManager* fm = [[NSFileManager alloc] init];
