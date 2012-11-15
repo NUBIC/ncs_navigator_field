@@ -7,7 +7,9 @@
 //
 
 #import "RKRequest.h"
+#import "CasProxyTicket.h"
+#import "ApplicationSettings.h"
 
 @interface RKRequest (Additions)
-
+-(void)addAdditionalHeaders:(CasProxyTicket*)t;
 @end
