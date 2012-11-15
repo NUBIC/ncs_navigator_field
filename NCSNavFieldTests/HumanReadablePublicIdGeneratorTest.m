@@ -11,16 +11,20 @@
 
 @implementation HumanReadablePublicIdGeneratorTest
 
-- (void)testHumanReadable {
+- (void)testGenerate {
     NSString* expectedCharClass = @"[2-9abcdefhkrstwxyz]";
     
     NSString* expected = [NSString stringWithFormat:@"^%@{3}-%@{2}-%@{4}$", expectedCharClass, expectedCharClass, expectedCharClass];
-    NSString* actual = [HumanReadablePublicIdGenerator createPublicId];
-    STAssertTrue([actual rangeOfString:expected options:NSRegularExpressionSearch].location != NSNotFound, @"Should follow format XXX-XX-XXXX");
+    NSString* actual = [HumanReadablePublicIdGenerator generate];
+    STAssertTrue([actual rangeOfString:expected options:NSRegularExpressionSearch].location != NSNotFound, @"%@ should follow format XXX-XX-XXXX", actual);
 }
 
 - (void)testHumanReadableIsRandom {
-    //defaults to a random human readble ID string
+    NSSet* all = [NSSet setWithObjects:
+                    [HumanReadablePublicIdGenerator generate],
+                    [HumanReadablePublicIdGenerator generate],
+                    [HumanReadablePublicIdGenerator generate],nil];
+    STAssertEquals([all count], 3U, nil);
 }
 
 - (void)testHumanReadableGetsNewIdWhenCollision {
