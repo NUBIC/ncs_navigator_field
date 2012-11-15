@@ -7,7 +7,8 @@
 //
 
 #import <NUCas/NUCas.h>
+@class CasProxyTicket;
 
 @interface CasServiceTicket (Additions)
-
+- (CasProxyTicket*) obtainProxyTicket:(NSString*)error;
 @end
