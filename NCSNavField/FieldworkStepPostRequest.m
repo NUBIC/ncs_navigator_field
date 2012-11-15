@@ -14,6 +14,7 @@
 #import "InstrumentTemplate.h"
 #import "SBJsonWriter.h"
 #import "ApplicationSettings.h"
+#import "NSDate+Additions.h"
 
 @implementation FieldworkStepPostRequest
 
@@ -96,11 +97,7 @@
     NSDate* inOneWeek = [today dateByAddingTimeInterval:seconds];
     NSString* clientId = [ApplicationSettings instance].clientId;
     
-    NSDateFormatter* rfc3339 = [[NSDateFormatter alloc] init];
-    [rfc3339 setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
-    [rfc3339 setDateFormat:@"yyyy'-'MM'-'dd"];
-    [rfc3339 setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-    NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@", [rfc3339 stringFromDate:today], [rfc3339 stringFromDate:inOneWeek]];
+    NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@", [today toYYYYMMDD], [inOneWeek toYYYYMMDD]];
     
     
     NCSLog(@"Requesting data from %@", path);

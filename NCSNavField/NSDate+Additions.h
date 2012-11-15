@@ -11,4 +11,6 @@
 @interface NSDate (Additions)
 - (NSString*)jsonSchemaDate;
 - (NSString*)jsonSchemaTime;
+- (NSString*)toRFC3339;
+-(NSString*)toYYYYMMDD;
 @end

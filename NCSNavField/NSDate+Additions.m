@@ -24,4 +24,25 @@
     return [f stringFromDate:self];    
 }
 
+-(NSString*)toRFC3339 {
+    NSDateFormatter* f = [[NSDateFormatter alloc] init];
+    [f setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [f setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+    [f setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    /*NSDateFormatter* df3339 = [[NSDateFormatter alloc] init];
+    [df3339 setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [df3339 setDateFormat:@"yyyy'-'MM'-'dd"];
+    [df3339 setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];*/
+    return [f stringFromDate:self];
+}
+
+-(NSString*)toYYYYYMMDD {
+     NSDateFormatter* f = [[NSDateFormatter alloc] init];
+     [f setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+     [f setDateFormat:@"yyyy'-'MM'-'dd"];
+     [f setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+     return [f stringFromDate:self];
+
+}
+
 @end
