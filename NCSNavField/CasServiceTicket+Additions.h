@@ -6,7 +6,8 @@
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import <NUCas/NUCas.h>
+#import "NUCas.h"
+
 @class CasProxyTicket;
 
 @interface CasServiceTicket (Additions)

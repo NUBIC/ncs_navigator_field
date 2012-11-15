@@ -9,6 +9,7 @@
 #import "ProviderSynchronizeOperation.h"
 #import "CasServiceTicket.h"
 #import "ApplicationSettings.h"
+#import "CasServiceTicket+Additions.h"
 
 @implementation ProviderSynchronizeOperation
 
@@ -27,27 +28,12 @@
         NCSLog(@"Presenting service ticket");
         [self.ticket present];
     }
-    
-    if (self.ticket.ok) {
-        CasConfiguration* conf = [ApplicationSettings casConfiguration];
-        CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
-        NSString* coreURL = [ApplicationSettings instance].coreURL;
-        
-        NCSLog(@"Requesting proxy ticket");
-        CasProxyTicket* t = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:self.ticket.pgt];
-        [t reify];
-        if (!t.error) {
-            NCSLog(@"Proxy ticket successfully obtained: %@", t.proxyTicket);
-            [self sendRequestAndLoadDataWithProxyTicket:t];
-        } else {
-            NSString* error = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", t.message];
-            [self showErrorMessage:error];
-            
-        }
-    } else {
-        NSString* error = [NSString stringWithFormat:@"Service ticket error: %@", [self.ticket message]];
-            [self showErrorMessage:error];
-    }
+    NSString *error = [NSString new];
+    CasProxyTicket *pt = [self.ticket obtainProxyTicket:error];
+    if([error length]>0)
+        [self showErrorMessage:error];
+    else
+        [self sendRequestAndLoadDataWithProxyTicket:pt];
 }
 
 - (void)sendRequestAndLoadDataWithProxyTicket:(CasProxyTicket*)ticket {
