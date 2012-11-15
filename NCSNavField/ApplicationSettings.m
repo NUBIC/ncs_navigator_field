@@ -10,7 +10,7 @@
  is containted in the Settings bundle in the Root.plist.
  */
 #import "ApplicationSettings.h"
-#import "NSStringHelper.h"
+#import "NSString+Additions.h"
 
 NSString* const SettingsDidChangeNotification = @"ApplicationSettingsChanged";
 NSString* const CLIENT_ID = @"client.id";
@@ -51,7 +51,7 @@ static ApplicationSettings* instance;
         _pgtRetrieveURL = [self pgtRetrieveURL];
         _purgeFieldworkButton = [self isPurgeFieldworkButton];
         _upcomingDaysToSync = [self upcomingDaysToSync];
-         [[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:self];
+        //[[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:self];
         [self registerDefaultsFromSettingsBundle];
 
     }
@@ -125,7 +125,7 @@ static ApplicationSettings* instance;
 }
 
 - (BOOL) coreSynchronizeConfigured {
-    return !([NSStringHelper isEmpty:self.coreURL] || [NSStringHelper isEmpty:self.casServerURL] || [NSStringHelper isEmpty:self.pgtReceiveURL] || [NSStringHelper isEmpty:self.pgtRetrieveURL]);
+    return !([self.coreURL isEmpty] || [self.casServerURL isEmpty] || [self.pgtReceiveURL isEmpty] || [self.pgtRetrieveURL isEmpty]);
 }
 
 #pragma mark Register User Defaults from Settings Bundle

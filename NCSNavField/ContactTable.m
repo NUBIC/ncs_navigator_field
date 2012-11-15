@@ -13,7 +13,7 @@
 #import "Person.h"
 #import "Event.h"
 #import "Instrument.h"
-#import "NSStringHelper.h"
+#import "NSString+Additions.h"
 
 @implementation ContactTable
 
@@ -61,11 +61,11 @@
 - (Section*) phones {
     NSMutableArray* phones = [[NSMutableArray alloc] init];
 
-    if (![NSStringHelper isEmpty:_contact.person.homePhone]) {
+    if (![_contact.person.homePhone isEmpty]) {
         Row* home = [[Row alloc] initWithText:@"Home" detailText:_contact.person.homePhone];
         [phones addObject:home];
     }
-    if (![NSStringHelper isEmpty:_contact.person.cellPhone]) {
+    if (![_contact.person.cellPhone isEmpty]) {
         Row* cell = [[Row alloc] initWithText:@"Cell" detailText:_contact.person.cellPhone];
         [phones addObject:cell];
     }
@@ -76,7 +76,7 @@
 - (Section*) emails {
     NSMutableArray* emails = [NSMutableArray new];
     
-    if (![NSStringHelper isEmpty:self.contact.person.email]) {
+    if (![self.contact.person.email isEmpty]) {
         Row* home =[[Row alloc] initWithText:@"Home" detailText:_contact.person.email];
         [emails addObject:home];
     }
