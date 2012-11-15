@@ -20,10 +20,13 @@
 
 @implementation HumanReadablePublicIdGenerator
 
-+ (NSString*)generate {
-    NSArray* const CHARS = @[@"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"a", @"b", @"c", @"d", @"e", @"f", @"h", @"k", @"r", @"s", @"t", @"w", @"x", @"y", @"z"];
++ (NSArray*)chars {
+    return @[@"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"a", @"b", @"c", @"d", @"e", @"f", @"h", @"k", @"r", @"s", @"t", @"w", @"x", @"y", @"z"];
     
-    NSArray* const PATTERN = @[@3, @2, @4];
+}
++ (NSString*)generate {
+    NSArray* CHARS = [HumanReadablePublicIdGenerator chars];
+    NSArray* PATTERN = @[@3, @2, @4];
 
     return [[PATTERN collect:^id(id obj) {
         NSUInteger segmentLength = [obj unsignedIntValue];
@@ -33,20 +36,15 @@
 }
 
 + (NSString*)toCharsWithRandom:(NSUInteger)rand segmentLength:(NSUInteger)segmentLength {
-        NSArray* const CHARS = @[@"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"a", @"b", @"c", @"d", @"e", @"f", @"h", @"k", @"r", @"s", @"t", @"w", @"x", @"y", @"z"];
+    NSArray* CHARS = [HumanReadablePublicIdGenerator chars];
     
     NSMutableString* converted = [NSMutableString new];
     while (rand > 0) {
         [converted appendString:CHARS[(rand % [CHARS count])]];
         rand /= [CHARS count];
     }
-    return [[converted substringToIndex:segmentLength] stringByReplacingOccurrencesOfString:@" " withString:CHARS[0]];
+    NSString* format = [NSString stringWithFormat:@"%%%ds", segmentLength];
+    return [[NSString stringWithFormat:format, [converted UTF8String]] stringByReplacingOccurrencesOfString:@" " withString:CHARS[0]];
 }
-//
-//+ (NSInteger*)prng {
-//    @prng = Random.new
-//    return prng;
-//}
-
 
 @end
