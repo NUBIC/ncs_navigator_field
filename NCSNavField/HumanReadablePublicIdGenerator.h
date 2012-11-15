@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@interface Random : NSObject
+
++ (NSUInteger)randWithLimit:(NSUInteger)limit;
+
+@end
+
 @interface HumanReadablePublicIdGenerator : NSObject
 
-+ (NSString*)createPublicId;
++ (NSString*)generate;
 
 @end
