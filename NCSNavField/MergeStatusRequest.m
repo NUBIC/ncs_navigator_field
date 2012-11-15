@@ -10,6 +10,8 @@
 #import "MergeStatus.h"
 #import "NSURL+Extensions.h"
 #import "ApplicationSettings.h"
+#import "RKRequest+Additions.h"
+#import "CasServiceTicket+Additions.h"
 
 @implementation MergeStatusRequest
 
@@ -29,7 +31,7 @@ const static NSInteger POLL_REPEATS = 3;
     return self;
 }
 
-- (NSURL*) resourceURL {
+- (NSURL*)resourceURL {
     NSString* coreURL = [[ApplicationSettings instance] coreURL];
     return [[[NSURL alloc] initWithString:coreURL] urlByAppendingPathComponent:[NSString stringWithFormat:@"/api/v1/merges/%@", self.mergeStatusId]];
 }
@@ -63,7 +65,7 @@ const static NSInteger POLL_REPEATS = 3;
     
     return success;
 }
-
+//This exists in a category on CasServiceTicket, eventually move this functionality to the CAS project? 
 - (CasProxyTicket*) obtainProxyTicket:(CasServiceTicket*)st {
     CasProxyTicket* pt = NULL;
     if (!st.pgt) {
@@ -89,17 +91,15 @@ const static NSInteger POLL_REPEATS = 3;
 }
 
 - (MergeStatus*) send {
+    //We can also use this. I'm not 100% sure that this is the best solution, but it would be nice to save coding and have a single point
+    //where this functionality is handled (easier when we want to make changes.) (See the one line directly below.)
+    //CasProxyTicket *pt = [self.ticket obtainProxyTicket:self.error];
     CasProxyTicket* pt = [self obtainProxyTicket:self.serviceTicket];
     if (pt) {
         RKRequest* req = [[RKRequest alloc] initWithURL:[self resourceURL]];
         req.delegate = self;
         req.method = RKRequestMethodGET;
-        NSMutableDictionary *headers = [NSMutableDictionary new];
-        [headers setValue:@"application/json" forKey: @"Content-Type"];
-        [headers setValue:[NSString stringWithFormat:@"CasProxy %@", pt.proxyTicket] forKey:@"Authorization"];
-        [headers setValue:ApplicationSettings.instance.clientId forKey:@"X-Client-ID"];
-
-        req.additionalHTTPHeaders = headers;
+        [req addAdditionalHeaders:pt];
         
         RKResponse* resp = [req sendSynchronously];
         if ([resp isSuccessful] && [resp isJSON]) {
@@ -112,6 +112,8 @@ const static NSInteger POLL_REPEATS = 3;
     }
     return nil;
 }
+
+#pragma mark RKRequestDelegate
 
 - (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error {
     NSString* errorMsg = [NSString stringWithFormat:@"Problem checking merge status.\n%@", [error localizedDescription]];

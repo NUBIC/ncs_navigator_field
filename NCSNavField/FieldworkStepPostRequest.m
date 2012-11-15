@@ -110,6 +110,8 @@
     [loader sendSynchronously];
 }
 
+#pragma mark RKObjectLoaderDelegate
+
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
 	NCSLog(@"Data loaded successfully [%@]", [[objectLoader response] location]);
     

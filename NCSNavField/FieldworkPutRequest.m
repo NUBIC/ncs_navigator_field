@@ -10,6 +10,7 @@
 #import "ApplicationSettings.h"
 #import "Fieldwork.h"
 #import "MergeStatus.h"
+#import "CasServiceTicket+Additions.h"
 
 @implementation FieldworkPutRequest
 
@@ -28,6 +29,9 @@
 }
 
 - (BOOL) send {
+    //We can also use this. I'm not 100% sure that this is the best solution, but it would be nice to save coding and have a single point
+    //where this functionality is handled (easier when we want to make changes.) (See the one line directly below.)
+    //CasProxyTicket *pt = [self.ticket obtainProxyTicket:self.error];
     CasProxyTicket* pt = [self obtainProxyTicket:self.ticket];
     return [self send:pt];
 }
@@ -49,7 +53,7 @@
     }
     return [self isSuccessful];
 }
-
+//Instead of defining this here and in a few other places, we can use the method from the category.
 - (CasProxyTicket*) obtainProxyTicket:(CasServiceTicket*)st {
     CasProxyTicket* pt = NULL;
     [st present];
