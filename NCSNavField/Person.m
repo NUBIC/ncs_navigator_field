@@ -9,6 +9,7 @@
 #import "Person.h"
 #import "NSString+Additions.h"
 #import <MRCEnumerable/MRCEnumerable.h>
+#import <NUSurveyor/UUID.h>
 
 @implementation Person
 
@@ -19,6 +20,7 @@ static const NSString* NEW_PERSON_NAME = @"New Person";
 + (Person*)person {
     Person* p = [Person object];
     p.firstName = [self buildNewPersonName];
+    p.personId = [UUID generateUuidString];
     return p;
 }
 
