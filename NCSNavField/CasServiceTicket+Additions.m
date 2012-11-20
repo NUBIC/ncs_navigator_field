@@ -28,7 +28,6 @@
         }
     } else {
         error = [NSString stringWithFormat:@"Presenting service ticket failed: %@", [self message]];
-        //[self showErrorMessage:error];
     }
     return pt;
 }
