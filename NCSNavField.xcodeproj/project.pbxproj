@@ -89,6 +89,7 @@
 		009A48A2165C476500601959 /* CasServiceTicket+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 009A48A1165C476500601959 /* CasServiceTicket+Additions.m */; };
 		009A48A5165C47C200601959 /* Contact+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 009A48A4165C47C200601959 /* Contact+Additions.m */; };
 		009A48A8165C47EF00601959 /* RKRequest+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 009A48A7165C47EF00601959 /* RKRequest+Additions.m */; };
+		009A48AB165C48A000601959 /* NcsCodeSynchronizeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 009A48AA165C48A000601959 /* NcsCodeSynchronizeOperation.m */; };
 		009AD2E4142D391A0038650B /* SimpleTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009AD2E3142D391A0038650B /* SimpleTableController.m */; };
 		009BE3AF14FC2217008195F9 /* SyncActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0031315514E04BF800C0D0B1 /* SyncActivityIndicator.m */; };
 		009EEEFB16442B8900EB98D1 /* PersonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EEEFA16442B8900EB98D1 /* PersonTest.m */; };
@@ -436,6 +437,8 @@
 		009A48A4165C47C200601959 /* Contact+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Contact+Additions.m"; sourceTree = "<group>"; };
 		009A48A6165C47EE00601959 /* RKRequest+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RKRequest+Additions.h"; sourceTree = "<group>"; };
 		009A48A7165C47EF00601959 /* RKRequest+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RKRequest+Additions.m"; sourceTree = "<group>"; };
+		009A48A9165C48A000601959 /* NcsCodeSynchronizeOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NcsCodeSynchronizeOperation.h; sourceTree = "<group>"; };
+		009A48AA165C48A000601959 /* NcsCodeSynchronizeOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NcsCodeSynchronizeOperation.m; sourceTree = "<group>"; };
 		009AD2E2142D391A0038650B /* SimpleTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableController.h; sourceTree = "<group>"; };
 		009AD2E3142D391A0038650B /* SimpleTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableController.m; sourceTree = "<group>"; };
 		009AD2E61430D9BF0038650B /* SimpleTableRowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableRowDelegate.h; sourceTree = "<group>"; };
@@ -889,6 +892,8 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				009A48A9165C48A000601959 /* NcsCodeSynchronizeOperation.h */,
+				009A48AA165C48A000601959 /* NcsCodeSynchronizeOperation.m */,
 				009A489E165C45B300601959 /* MdesCode.h */,
 				009A489F165C45B300601959 /* MdesCode.m */,
 				003DF019164C49FD00E89C25 /* ResponseGenerator.h */,
@@ -1259,6 +1264,7 @@
 				009A48A2165C476500601959 /* CasServiceTicket+Additions.m in Sources */,
 				009A48A5165C47C200601959 /* Contact+Additions.m in Sources */,
 				009A48A8165C47EF00601959 /* RKRequest+Additions.m in Sources */,
+				009A48AB165C48A000601959 /* NcsCodeSynchronizeOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
