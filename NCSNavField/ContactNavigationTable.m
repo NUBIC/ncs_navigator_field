@@ -5,13 +5,16 @@
 //  Created by John Dzak on 9/7/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
-
+#import <MRCEnumerable/MRCEnumerable.h>
 #import "ContactNavigationTable.h"
 #import "Event.h"
 #import "Contact.h"
 #import "Section.h"
 #import "Row.h"
 #import "Person.h"
+#import "NSDate+Additions.h"
+#import "NSString+Additions.h"
+#import "Contact+Additions.h"
 
 @implementation ContactNavigationTable
 
@@ -26,21 +29,25 @@
 }
 
 - (NSArray*) buildSectionsUsingContacts:(NSArray*) contacts {
-    NSMutableArray* sections = [NSMutableArray new];
-    NSSet *uniqueDates = [NSCountedSet setWithArray:[contacts valueForKey:@"date"]];
-    for (NSDate *d in uniqueDates) {
-        Section *s = [Section new];
-        s.name = [self buildSectionNameUsingDate:d];
-        
-        NSPredicate *findByDate = [NSPredicate predicateWithFormat:@"date == %@", d];
-        NSArray *found = [contacts filteredArrayUsingPredicate:findByDate];
-        s.rows = [self buildRowsUsingContacts:found];
-        
-        [sections addObject:s];
-    }
-    return sections;
+        NSMutableArray* sections = [NSMutableArray new];
+        NSMutableArray *sectionNames = [NSMutableArray new];
+        for(Contact *c in contacts) {
+            NSMutableArray *found = [[NSMutableArray alloc] init];
+            for(Contact *d in contacts)
+            {
+                if([c onSameDay:d])
+                    [found addObject:d];
+            }
+            Section *s = [Section new];
+            s.name = [self buildSectionNameUsingDate:c.date];
+            s.rows = [self buildRowsUsingContacts:found];
+            if(![sectionNames containsObject:s.name]) {
+                [sections addObject:s];
+                [sectionNames addObject:s.name];
+            }
+        }
+        return sections;
 }
-
                   
 - (NSString*) buildSectionNameUsingDate:(NSDate*)date {
     NSDateFormatter *f = [[NSDateFormatter alloc] init];
