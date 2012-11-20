@@ -11,6 +11,7 @@
 @interface NSString (Additions)
 
 - (NSDate*)jsonTimeToDate;
+-(NSDate*)fromYYYYMMDD;
 - (BOOL)isBlank;
 - (BOOL)isEmpty;
 @end

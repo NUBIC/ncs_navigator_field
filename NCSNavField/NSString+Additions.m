@@ -25,4 +25,12 @@
     return [self length] == 0;
 }
 
+-(NSDate*)fromYYYYMMDD {
+    NSDateFormatter* f = [[NSDateFormatter alloc] init];
+    [f setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [f setDateFormat:@"yyyy'-'MM'-'dd"];
+    [f setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    return [f dateFromString:self];
+}
+
 @end
