@@ -360,6 +360,9 @@
     
     [pSync perform];
 
+    NcsCodeSynchronizeOperation *nSync = [[NcsCodeSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
+    
+    [nSync perform];
     
     self.contacts = [self contactsFromDataStore];
 }

@@ -11,6 +11,7 @@
 #import "SimpleTableRowDelegate.h"
 #import "MBProgressHUD.h"
 #import "CasLoginDelegate.h"
+#import "NcsCodeSynchronizeOperation.h"
 
 @class ContactDisplayController;
 @class Instrument;
