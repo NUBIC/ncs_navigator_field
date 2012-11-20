@@ -23,6 +23,7 @@
 #import "EventTemplate.h"
 #import "ApplicationInformation.h"
 #import "Provider.h"
+#import "MdesCode.h"
 
 NSString* STORE_NAME = @"main.sqlite";
 
@@ -60,7 +61,6 @@ static RestKitSettings* instance;
     }
     return self;
 }
-#warning It looks like this method will never get called. However, lets leave it. 
 - (id)initWithBaseServiceURL:(NSString*)url objectStoreFileName:(NSString*)file {
     self = [super init];
     if (self) {
@@ -88,7 +88,7 @@ static RestKitSettings* instance;
     // Setup Data Protection
     // iOS 4 encryption
     NSError *error = nil;
-    if([self RSRunningOnOS4OrBetter]){
+    if([self RSRunningOnOS4OrBetter]) {
         NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:NSFileProtectionComplete forKey:NSFileProtectionKey];
         if(![[NSFileManager defaultManager] setAttributes:fileAttributes ofItemAtPath:objectStore.pathToStoreFile error:&error]){
             NCSLog(@"Data protection is not enabled for %@", objectStore.pathToStoreFile);
@@ -99,7 +99,8 @@ static RestKitSettings* instance;
     
     RKObjectRouter* router = [RKObjectRouter new];
     [router routeClass:[Fieldwork class] toResourcePath:@"/api/v1/fieldwork/:fieldworkId"];
-    [router routeClass:[DispositionCode class] toResourcePath:@"/api/v1/code_lists"];
+    [router routeClass:[MdesCode class] toResourcePath:@"/api/v1/code_lists"];
+    
     [RKObjectManager sharedManager].router = router;
     
     [RKObjectManager sharedManager].acceptMIMEType = RKMIMETypeJSON;
@@ -107,27 +108,22 @@ static RestKitSettings* instance;
     [self addSerializationMappingsToObjectManager:objectManager];
 
     // Enable automatic network activity indicator management
-//    [RKClient sharedClient].showsNetworkActivityIndicatorWhenBusy = YES;
+    //[RKClient sharedClient].showsNetworkActivityIndicatorWhenBusy = YES;
 }
 
 // De-Serialize
 - (void)addMappingsToObjectManager:(RKObjectManager *)objectManager  {
     [self addFieldworkMappingsToObjectManager:objectManager];
     [self addProviderMappingsToObjectManager:objectManager];
-    [self addDispositionCodeMappingsToObjectManager:objectManager];
+    [self addOptionMappingsToObjectManager:objectManager];
 }
 
--(void)addDispositionCodeMappingsToObjectManager:(RKObjectManager*)objectManager {
-    RKManagedObjectMapping *objMapDc = [RKManagedObjectMapping mappingForClass:[DispositionCode class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
-    [objMapDc setPrimaryKeyAttribute:@"interimCode"];
-    [objMapDc mapKeyPathsToAttributes:@"category_code",@"event",@"name",@"disposition",@"code",@"interimCode",nil];
-    [objectManager.mappingProvider setMapping:objMapDc forKeyPath:@"dispositioncode"];
-}
-
--(void)addPickerOptionMappingsToObjectManager:(RKObjectManager*)objectManager {
-    RKManagedObjectMapping *objPo = [RKManagedObjectMapping mappingForClass:[PickerOption class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
-    [objPo setPrimaryKeyAttribute:@""];
-    [objPo mapKeyPathsToAttributes:@"",@"",@"",@"",@"",@"", nil];
+-(void)addOptionMappingsToObjectManager:(RKObjectManager*)objectManager {
+    RKManagedObjectMapping *objPo = [RKManagedObjectMapping mappingForClass:[MdesCode class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
+    [objPo mapKeyPath:@"display_text" toAttribute:@"displayText"];
+    [objPo mapKeyPath:@"list_name" toAttribute:@"listName"];
+    [objPo mapKeyPath:@"local_code" toAttribute:@"localCode"];
+    [objectManager.mappingProvider setMapping:objPo forKeyPath:@"ncs_codes"];
 }
 
 - (void)addFieldworkMappingsToObjectManager:(RKObjectManager*)objectManager {

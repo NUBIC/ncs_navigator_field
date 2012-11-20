@@ -7,7 +7,6 @@
 //
 
 #import <CoreData/CoreData.h>
-#import "DispositionCode.h"
 @class RKObjectManager;
 
 @interface RestKitSettings : NSObject {
@@ -34,6 +33,8 @@
 - (void)addSerializationMappingsToObjectManager:(RKObjectManager*)objectManager;
 
 - (BOOL) RSRunningOnOS4OrBetter;
+
+-(void)addOptionMappingsToObjectManager:(RKObjectManager*)objectManager;
 
 
 @end
