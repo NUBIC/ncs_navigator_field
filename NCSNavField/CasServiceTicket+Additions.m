@@ -12,7 +12,10 @@
 @implementation CasServiceTicket (Additions)
 - (CasProxyTicket*) obtainProxyTicket:(NSString*)error {
     CasProxyTicket* pt = NULL;
-    [self present];
+    if (!self.pgt) {
+        [self present];
+    }
+
     if (self.ok) {
         CasConfiguration* conf = [ApplicationSettings casConfiguration];
         CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
