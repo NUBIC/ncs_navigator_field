@@ -44,7 +44,8 @@
         rand /= [CHARS count];
     }
     NSString* format = [NSString stringWithFormat:@"%%%ds", segmentLength];
-    return [[NSString stringWithFormat:format, [converted UTF8String]] stringByReplacingOccurrencesOfString:@" " withString:CHARS[0]];
+    NSString* formatted = [NSString stringWithFormat:format, [converted UTF8String]];
+    return [formatted stringByReplacingOccurrencesOfString:@" " withString:CHARS[0]];
 }
 
 @end
