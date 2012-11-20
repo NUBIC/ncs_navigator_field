@@ -2,14 +2,26 @@
 //  Participant.h
 //  NCSNavField
 //
-//  Created by John Dzak on 3/7/12.
+//  Created by John Dzak on 11/20/12.
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+
+@class Fieldwork, Person;
+
 @interface Participant : NSManagedObject
 
-@property(nonatomic,strong) NSString* pId;
+@property (nonatomic, retain) NSString * pId;
+@property (nonatomic, retain) NSSet *persons;
+@end
 
-@property(nonatomic,strong) NSSet* persons;
+@interface Participant (CoreDataGeneratedAccessors)
+
+- (void)addPersonsObject:(Person *)value;
+- (void)removePersonsObject:(Person *)value;
+- (void)addPersons:(NSSet *)values;
+- (void)removePersons:(NSSet *)values;
 
 @end
