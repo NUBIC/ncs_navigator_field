@@ -115,7 +115,8 @@ static RestKitSettings* instance;
 - (void)addMappingsToObjectManager:(RKObjectManager *)objectManager  {
     [self addFieldworkMappingsToObjectManager:objectManager];
     [self addProviderMappingsToObjectManager:objectManager];
-    [self addOptionMappingsToObjectManager:objectManager];
+    // FIX: Commented out to fix the build
+//    [self addOptionMappingsToObjectManager:objectManager];
 }
 
 -(void)addOptionMappingsToObjectManager:(RKObjectManager*)objectManager {

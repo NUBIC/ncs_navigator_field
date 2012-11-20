@@ -33,7 +33,6 @@
 		0026E68D140347E700355BCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0026E66A140347E700355BCB /* Foundation.framework */; };
 		0026E68E140347E700355BCB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0026E66C140347E700355BCB /* CoreGraphics.framework */; };
 		0026E696140347E700355BCB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0026E694140347E700355BCB /* InfoPlist.strings */; };
-		00272A11155A124F009F21F5 /* NSStringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00272A10155A124E009F21F5 /* NSStringHelper.m */; };
 		002B2E4414362E4900410D09 /* nubic-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 002B2E4214362E4900410D09 /* nubic-logo.png */; };
 		002B2E4514362E4900410D09 /* nu-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 002B2E4314362E4900410D09 /* nu-logo.png */; };
 		00305A02164AC31C00A086F8 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 00305A01164AC31C00A086F8 /* Event.m */; };
@@ -86,6 +85,10 @@
 		00910BD21535F18900BC2820 /* DatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00910BD11535F18900BC2820 /* DatabaseTest.m */; };
 		0092BA5714E32C3500134165 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0092BA5614E32C3500134165 /* icon.png */; };
 		0095430F153E62040018DAC3 /* InstrumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095430E153E62040018DAC3 /* InstrumentVC.m */; };
+		009A48A0165C45B300601959 /* MdesCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 009A489F165C45B300601959 /* MdesCode.m */; };
+		009A48A2165C476500601959 /* CasServiceTicket+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 009A48A1165C476500601959 /* CasServiceTicket+Additions.m */; };
+		009A48A5165C47C200601959 /* Contact+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 009A48A4165C47C200601959 /* Contact+Additions.m */; };
+		009A48A8165C47EF00601959 /* RKRequest+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 009A48A7165C47EF00601959 /* RKRequest+Additions.m */; };
 		009AD2E4142D391A0038650B /* SimpleTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009AD2E3142D391A0038650B /* SimpleTableController.m */; };
 		009BE3AF14FC2217008195F9 /* SyncActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0031315514E04BF800C0D0B1 /* SyncActivityIndicator.m */; };
 		009EEEFB16442B8900EB98D1 /* PersonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EEEFA16442B8900EB98D1 /* PersonTest.m */; };
@@ -93,7 +96,6 @@
 		009EEF1D164870AC00EB98D1 /* ProviderListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009EEF1B164870AC00EB98D1 /* ProviderListViewController.xib */; };
 		00AB8E9616431D150097F7CD /* NSManagedObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AB8E9516431D150097F7CD /* NSManagedObject+Additions.m */; };
 		00AB8E99164358290097F7CD /* NSManagedObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AB8E98164358290097F7CD /* NSManagedObjectTest.m */; };
-		00B7CCA814BDFB6E00D5901C /* DispositionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B7CCA714BDFB6E00D5901C /* DispositionCode.m */; };
 		00C0C8D615655E390047A113 /* icon-test.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C0C8D515655E390047A113 /* icon-test.png */; };
 		00C2520D151794EB00F4FE3B /* RestKitSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */; };
 		00C25211151A63B500F4FE3B /* FieldworkTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C25210151A63B500F4FE3B /* FieldworkTest.m */; };
@@ -427,6 +429,13 @@
 		0092BA5614E32C3500134165 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		0095430D153E62040018DAC3 /* InstrumentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentVC.h; sourceTree = "<group>"; };
 		0095430E153E62040018DAC3 /* InstrumentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentVC.m; sourceTree = "<group>"; };
+		009A489E165C45B300601959 /* MdesCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MdesCode.h; sourceTree = "<group>"; };
+		009A489F165C45B300601959 /* MdesCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MdesCode.m; sourceTree = "<group>"; };
+		009A48A1165C476500601959 /* CasServiceTicket+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CasServiceTicket+Additions.m"; sourceTree = "<group>"; };
+		009A48A3165C47C200601959 /* Contact+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Contact+Additions.h"; sourceTree = "<group>"; };
+		009A48A4165C47C200601959 /* Contact+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Contact+Additions.m"; sourceTree = "<group>"; };
+		009A48A6165C47EE00601959 /* RKRequest+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RKRequest+Additions.h"; sourceTree = "<group>"; };
+		009A48A7165C47EF00601959 /* RKRequest+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RKRequest+Additions.m"; sourceTree = "<group>"; };
 		009AD2E2142D391A0038650B /* SimpleTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableController.h; sourceTree = "<group>"; };
 		009AD2E3142D391A0038650B /* SimpleTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableController.m; sourceTree = "<group>"; };
 		009AD2E61430D9BF0038650B /* SimpleTableRowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableRowDelegate.h; sourceTree = "<group>"; };
@@ -444,8 +453,6 @@
 		00AB8E9516431D150097F7CD /* NSManagedObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Additions.m"; sourceTree = "<group>"; };
 		00AB8E97164358290097F7CD /* NSManagedObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSManagedObjectTest.h; sourceTree = "<group>"; };
 		00AB8E98164358290097F7CD /* NSManagedObjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectTest.m; sourceTree = "<group>"; };
-		00B7CCA614BDFB6E00D5901C /* DispositionCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispositionCode.h; sourceTree = "<group>"; };
-		00B7CCA714BDFB6E00D5901C /* DispositionCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispositionCode.m; sourceTree = "<group>"; };
 		00C0C8D515655E390047A113 /* icon-test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-test.png"; sourceTree = "<group>"; };
 		00C2520B151794EB00F4FE3B /* RestKitSettingsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitSettingsTest.h; sourceTree = "<group>"; };
 		00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitSettingsTest.m; sourceTree = "<group>"; };
@@ -882,6 +889,8 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				009A489E165C45B300601959 /* MdesCode.h */,
+				009A489F165C45B300601959 /* MdesCode.m */,
 				003DF019164C49FD00E89C25 /* ResponseGenerator.h */,
 				003DF01A164C49FD00E89C25 /* ResponseGenerator.m */,
 				003DF00A164C2C0100E89C25 /* SurveyContextGenerator.h */,
@@ -919,8 +928,6 @@
 				00E323591422B08200D3AEED /* Row.m */,
 				00C4095B1471DD5E00F0F3FA /* InstrumentTemplate.h */,
 				00C4095C1471DD5E00F0F3FA /* InstrumentTemplate.m */,
-				00B7CCA614BDFB6E00D5901C /* DispositionCode.h */,
-				00B7CCA714BDFB6E00D5901C /* DispositionCode.m */,
 				0018F03114C4BD160058D8F2 /* ApplicationSettings.h */,
 				0018F03214C4BD160058D8F2 /* ApplicationSettings.m */,
 				00D93A381506B2CF009CFDE9 /* RestKitSettings.h */,
@@ -990,6 +997,11 @@
 		00AB8E9216431CEA0097F7CD /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				009A48A6165C47EE00601959 /* RKRequest+Additions.h */,
+				009A48A7165C47EF00601959 /* RKRequest+Additions.m */,
+				009A48A3165C47C200601959 /* Contact+Additions.h */,
+				009A48A4165C47C200601959 /* Contact+Additions.m */,
+				009A48A1165C476500601959 /* CasServiceTicket+Additions.m */,
 				00AB8E9416431D150097F7CD /* NSManagedObject+Additions.h */,
 				00AB8E9516431D150097F7CD /* NSManagedObject+Additions.m */,
 			);
@@ -1207,7 +1219,6 @@
 				006FDD8A148FD2E80001BADE /* TextField.m in Sources */,
 				008C5711149696DD005EC22E /* TextArea.m in Sources */,
 				00145BA8149A7BEF00D3C1B5 /* ContactCloseVC.m in Sources */,
-				00B7CCA814BDFB6E00D5901C /* DispositionCode.m in Sources */,
 				0018F03314C4BD160058D8F2 /* ApplicationSettings.m in Sources */,
 				00D93A3A1506B2CF009CFDE9 /* RestKitSettings.m in Sources */,
 				00D93A441507CC19009CFDE9 /* Participant.m in Sources */,
@@ -1223,7 +1234,6 @@
 				00816CBC154EF2350054C918 /* ApplicationPersistentStoreBackup.m in Sources */,
 				00816CBF154F165E0054C918 /* ApplicationPersistentStoreBackupOperation.m in Sources */,
 				00DE998715532F8400C3A0FB /* NSString+Additions.m in Sources */,
-				00272A11155A124F009F21F5 /* NSStringHelper.m in Sources */,
 				0087225D156B0F4300CE24ED /* ApplicationInformation.m in Sources */,
 				00DC620D1575BD5900E5F825 /* MergeStatus.m in Sources */,
 				00DC621A1576845B00E5F825 /* MergeStatusRequest.m in Sources */,
@@ -1245,6 +1255,10 @@
 				003DEFFC164B4EF500E89C25 /* ProviderSynchronizeOperation.m in Sources */,
 				003DF00C164C2C0100E89C25 /* SurveyContextGenerator.m in Sources */,
 				003DF01B164C49FD00E89C25 /* ResponseGenerator.m in Sources */,
+				009A48A0165C45B300601959 /* MdesCode.m in Sources */,
+				009A48A2165C476500601959 /* CasServiceTicket+Additions.m in Sources */,
+				009A48A5165C47C200601959 /* Contact+Additions.m in Sources */,
+				009A48A8165C47EF00601959 /* RKRequest+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
