@@ -13,7 +13,6 @@
 #import "Contact.h"
 #import "Event.h"
 #import "TextField.h"
-#import "DispositionCode.h"
 #import "SingleOptionPicker.h"
 #import "TextArea.h"
 
@@ -108,7 +107,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == self.contact && [keyPath isEqualToString:@"typeId"]) {
-        [self.dispositionPicker updatePickerOptions:[DispositionCode pickerOptionsForContactTypeId:self.contact.typeId]];
+        //[self.dispositionPicker updatePickerOptions:[DispositionCode pickerOptionsForContactTypeId:self.contact.typeId]];
         self.contact.dispositionId = NULL;
         [self.dispositionPicker clearResponse];
     }
@@ -190,8 +189,9 @@
     [b textFieldForProperty:@selector(distanceTraveled) numbersOnly:YES];
     
     [b labelWithText:@"Disposition"];
-    self.dispositionPicker = 
-    [b singleOptionPickerForProperty:@selector(dispositionId) WithPickerOptions:[DispositionCode pickerOptionsForContactTypeId:self.contact.typeId] andPopoverSize:NUPickerVCPopoverSizeLarge];
+    //TODO
+    /*self.dispositionPicker =
+    [b singleOptionPickerForProperty:@selector(dispositionId) WithPickerOptions:[DispositionCode pickerOptionsForContactTypeId:self.contact.typeId] andPopoverSize:NUPickerVCPopoverSizeLarge];*/
     
     [b labelWithText:@"Language of interview"];
     [b singleOptionPickerForProperty:@selector(languageId) WithPickerOptions:[PickerOption language]];
