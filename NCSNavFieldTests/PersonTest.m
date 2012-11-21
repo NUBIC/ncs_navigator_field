@@ -13,9 +13,9 @@
 
 - (void)testNewPersons {
     Person* p1 = [Person person];
-    STAssertEqualObjects(p1.name, @"New Person #1", nil);
+    STAssertEqualObjects(p1.firstName, @"New Person #1", nil);
     Person* p2 = [Person person];
-    STAssertEqualObjects(p2.name, @"New Person #2", nil);
+    STAssertEqualObjects(p2.firstName, @"New Person #2", nil);
 }
 
 - (void)testAddressLineOne {

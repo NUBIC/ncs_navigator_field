@@ -51,7 +51,7 @@
 - (void)testCloneWithHasOne {
     Contact* base = [Contact object];
     Person* basePerson = [Person object];
-    basePerson.name = @"Fred";
+    basePerson.firstName = @"Fred";
     base.person = basePerson;
     Contact* cloned = (Contact*) [base clone];
     STAssertTrue(basePerson.objectID != cloned.person.objectID, nil);

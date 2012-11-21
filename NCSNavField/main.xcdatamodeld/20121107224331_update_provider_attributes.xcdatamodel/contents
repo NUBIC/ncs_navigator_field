@@ -26,15 +26,6 @@
         <relationship name="fieldWork" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Fieldwork" inverseName="contacts" inverseEntity="Fieldwork" syncable="YES"/>
         <relationship name="person" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Person" inverseName="contact" inverseEntity="Person" syncable="YES"/>
     </entity>
-    <entity name="DispositionCode" representedClassName="DispositionCode" syncable="YES">
-        <attribute name="categoryCode" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="disposition" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="event" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="finalCategory" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="finalCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="interimCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="subcategory" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="breakOffId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
@@ -105,20 +96,10 @@
         <relationship name="fieldWork" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Fieldwork" inverseName="instrumentTemplates" inverseEntity="Fieldwork" syncable="YES"/>
         <relationship name="instrumentPlan" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="InstrumentPlan" inverseName="instrumentTemplates" inverseEntity="InstrumentPlan" syncable="YES"/>
     </entity>
-    <entity name="MdesCode" representedClassName="MdesCode" syncable="YES">
-        <attribute name="displayText" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="listName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="localCode" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-    </entity>
     <entity name="MergeStatus" representedClassName="MergeStatus" syncable="YES">
         <attribute name="createdAt" attributeType="Date" syncable="YES"/>
         <attribute name="mergeStatusId" attributeType="String" syncable="YES"/>
         <attribute name="status" attributeType="String" syncable="YES"/>
-    </entity>
-    <entity name="Option" representedClassName="Option" syncable="YES">
-        <attribute name="displayText" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="listName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="localCode" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Participant" representedClassName="Participant" syncable="YES">
         <attribute name="pId" optional="YES" attributeType="String" syncable="YES"/>
@@ -165,7 +146,6 @@
     </entity>
     <elements>
         <element name="Contact" positionX="0" positionY="0" width="128" height="405"/>
-        <element name="DispositionCode" positionX="306" positionY="-72" width="128" height="150"/>
         <element name="Event" positionX="0" positionY="0" width="128" height="330"/>
         <element name="EventTemplate" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Fieldwork" positionX="0" positionY="0" width="128" height="120"/>
@@ -178,7 +158,5 @@
         <element name="Provider" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Response" positionX="0" positionY="0" width="128" height="165"/>
         <element name="ResponseSet" positionX="0" positionY="0" width="128" height="150"/>
-        <element name="Option" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="MdesCode" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>

@@ -14,11 +14,11 @@
 
 static const NSString* NEW_PERSON_NAME = @"New Person";
 
-@dynamic personId, name, email, homePhone, cellPhone, street, city, zipCode, state, participant;
+@dynamic cellPhone, city, email, firstName, homePhone, lastName, middleName, personId, prefixCode, relationshipCode, state, street, suffixCode, zipCode;
 
 + (Person*)person {
     Person* p = [Person object];
-    p.name = [self buildNewPersonName];
+    p.firstName = [self buildNewPersonName];
     return p;
 }
 
@@ -28,10 +28,23 @@ static const NSString* NEW_PERSON_NAME = @"New Person";
 }
 
 + (NSInteger)newPersonCount {
-    NSPredicate* p = [NSPredicate predicateWithFormat:@"name BEGINSWITH[c] %@", NEW_PERSON_NAME];
+    NSPredicate* p = [NSPredicate predicateWithFormat:@"firstName BEGINSWITH[c] %@", NEW_PERSON_NAME];
     return [[Person findAllWithPredicate:p] count];
 }
 
+- (NSString*)name {
+    NSMutableArray* name = [NSMutableArray new];
+    if (self.firstName) {
+        [name addObject:self.firstName];
+    }
+    if (self.middleName) {
+        [name addObject:self.lastName];
+    }
+    if (self.lastName) {
+        [name addObject:self.lastName];
+    }
+    return [name componentsJoinedByString:@" "];
+}
 - (NSString*)addressLineOne {
     return [self.street isBlank] ? nil : self.street;
 }
