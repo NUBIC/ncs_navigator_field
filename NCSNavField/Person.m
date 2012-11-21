@@ -21,6 +21,7 @@ static const NSString* NEW_PERSON_NAME = @"New Person";
     Person* p = [Person object];
     p.firstName = [self buildNewPersonName];
     p.personId = [UUID generateUuidString];
+    p.relationshipCode = [NSNumber numberWithInt:1];
     return p;
 }
 
