@@ -197,14 +197,19 @@ static RestKitSettings* instance;
     RKManagedObjectMapping* person = [RKManagedObjectMapping mappingForClass:[Person class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [person setPrimaryKeyAttribute:@"personId"];
     [person mapKeyPathsToAttributes:
-     @"person_id", @"personId",
-     @"name", @"name",
-     @"home_phone", @"homePhone",
      @"cell_phone", @"cellPhone",
-     @"email", @"email",
-     @"street", @"street",
      @"city", @"city",
+     @"email", @"email",
+     @"first_name", @"firstName",
+     @"home_phone", @"homePhone",
+     @"last_name", @"lastName",
+     @"middle_name", @"middleName",
+     @"person_id", @"personId",
+     @"prefix_code", @"prefixCode",
+     @"relationship_code", @"relationshipCode",
      @"state", @"state",
+     @"street", @"street",
+     @"suffix_code", @"suffixCode",
      @"zip_code", @"zipCode", nil];
     [person setPrimaryKeyAttribute:@"personId"];
     [objectManager.mappingProvider setMapping:person forKeyPath:@"persons"];
