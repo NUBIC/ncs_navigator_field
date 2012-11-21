@@ -17,7 +17,7 @@
 
 + (Person*) createPersonWithId:(NSString*)id name:(NSString*) n {
     Person *p = [Person object];
-    p.name = n;
+    p.firstName = n;
     return p;
 }
 
