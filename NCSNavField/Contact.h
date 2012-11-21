@@ -58,9 +58,6 @@
 
 @property(nonatomic,strong) NSString* version;
 
-#pragma mark Comparison 
-
--(BOOL)onSameDay:(Contact*)c;
 
 #pragma mark relations
 
