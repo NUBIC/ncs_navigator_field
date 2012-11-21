@@ -47,27 +47,27 @@
   
 // TODO: Move into external library like mdes gem
 + (NSArray*) contactTypes {
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"CONTACT_TYPE_CL1"];
+    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"CONTACT_TYPE_CL1" orderedBy:@"local code" ascending:YES];
     return arr;
 }
 
 + (NSArray*) whoContacted {
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"CONTACTED_PERSON_CL1"];
+    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"CONTACTED_PERSON_CL1" orderedBy:@"localCode" ascending:YES];
     return arr;
 }
 
 + (NSArray*) language {
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"LANGUAGE_CL1"];
+    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"LANGUAGE_CL1" orderedBy:@"localCode" ascending:YES];
     return arr;
 }
 
 + (NSArray*) interpreter {
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"TRANSLATION_METHOD_CL1"];
+    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"TRANSLATION_METHOD_CL1" orderedBy:@"localCode" ascending:YES];
     return arr;
 }
 
 + (NSArray*) location {
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"CONTACT_LOCATION_CL1"];
+    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"CONTACT_LOCATION_CL1" orderedBy:@"localCode" ascending:YES];
     return arr;
 }
 
@@ -84,17 +84,17 @@
 }
 
 + (NSArray*) eventTypes {
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"EVENT_TYPE_CL1"];
+    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"EVENT_TYPE_CL1" orderedBy:@"localCode" ascending:YES];
     return arr;
 }
 
 + (NSArray*) incentives {
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"INCENTIVE_TYPE_CL1"];
+    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"INCENTIVE_TYPE_CL1" orderedBy:@"localCode" ascending:YES];
     return arr;
 }
 
 + (NSArray*) dispositionCategory {
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"INCENTIVE_TYPE_CL1"];
+    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"INCENTIVE_TYPE_CL1" orderedBy:@"localCode" ascending:YES];
     return arr;
 }
 //They want to stop and come back later if "yes".
@@ -107,24 +107,24 @@
 
 + (NSArray*) instrumentTypes {
     //EVENT_DSPSTN_CAT_CL1
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"EVENT_DSPSTN_CAT_CL1"];
+    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"EVENT_DSPSTN_CAT_CL1" orderedBy:@"localCode" ascending:YES];
     return arr;
 }
 
 + (NSArray*) instrumentStatuses {
     //INSTRUMENT_STATUS_CL1
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"INSTRUMENT_STATUS_CL1"];
+    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"INSTRUMENT_STATUS_CL1" orderedBy:@"localCode" ascending:YES];
     return arr;
 }
 
 + (NSArray*) instrumentModes {
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"INSTRUMENT_ADMIN_MODE_CL1"];
+    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"INSTRUMENT_ADMIN_MODE_CL1" orderedBy:@"localCode" ascending:YES];
     return arr;
 }
 
 + (NSArray*) instrumentMethods {
     //INSTRUMENT_ADMIN_METHOD_CL1
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"INSTRUMENT_ADMIN_METHOD_CL1"];
+    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"INSTRUMENT_ADMIN_METHOD_CL1" orderedBy:@"localCode" ascending:YES];
     return arr;
 }
 
