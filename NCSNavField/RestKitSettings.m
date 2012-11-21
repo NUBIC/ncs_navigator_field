@@ -353,13 +353,12 @@ static RestKitSettings* instance;
     [objectManager.mappingProvider setSerializationMapping:contact forClass:[Contact class]];
     
 //    
-//    // Partipant Mapping
-//    RKManagedObjectMapping* participant = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
-//    [participant setPrimaryKeyAttribute:@"pId"];
-//    [participant mapKeyPathsToAttributes:
-//     @"p_id", @"pId", nil];
-//    [objectManager.mappingProvider setMapping:participant forKeyPath:@"participants"];
-//    
+    // Partipant Mapping
+    RKManagedObjectMapping* participant = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
+    [participant mapKeyPathsToAttributes:
+     @"pId", @"p_id", nil];
+    [objectManager.mappingProvider setMapping:participant forKeyPath:@"participants"];
+//
 //    RKManagedObjectMapping* instrumentTemplate = [RKManagedObjectMapping mappingForClass:[NSMutableDictionary class]];
 //    [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
 //    [instrumentTemplate mapKeyPathsToAttributes:
@@ -371,8 +370,8 @@ static RestKitSettings* instance;
     RKObjectMapping* fieldWorkMapping = [RKObjectMapping mappingForClass:[NSMutableDictionary class] ];
 //    [fieldWorkMapping mapKeyPathsToAttributes:@"fieldworkId", @"identifier", nil];
     [fieldWorkMapping mapRelationship:@"contacts" withMapping:contact];
-     [fieldWorkMapping mapKeyPath:@"emptyArray" toAttribute:@"instrument_plans"];
-      [fieldWorkMapping mapKeyPath:@"emptyArray" toAttribute:@"participants"];
+    [fieldWorkMapping mapKeyPath:@"emptyArray" toAttribute:@"instrument_plans"];
+    [fieldWorkMapping mapRelationship:@"participants" withMapping:participant];
     
     [objectManager.mappingProvider setSerializationMapping:fieldWorkMapping forClass:[Fieldwork class]];
 

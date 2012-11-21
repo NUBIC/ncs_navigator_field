@@ -23,6 +23,7 @@
 #import "InstrumentTemplate.h"
 #import "EventTemplate.h"
 #import "Provider.h"
+#import "Participant.h"
 #import <MRCEnumerable/MRCEnumerable.h>
 
 @implementation RestKitSettingsTest
@@ -86,7 +87,22 @@
     STAssertEqualObjects(@"RS A", [[[rs objectEnumerator] nextObject] valueForKey:@"uuid"], @"Wrong value");
 }
 
+- (void)testParticipantSerializationMapping {
+    [RestKitSettings instance];
+    
+    Fieldwork* f = [Fieldwork object];
+    [f addParticipantsObject:[Participant object]];
+    
+    RKObjectMapping* fieldWorkMapping = [[RKObjectManager sharedManager].mappingProvider serializationMappingForClass:[Fieldwork class]];
+    RKObjectSerializer* serializer = [RKObjectSerializer serializerWithObject:f mapping:fieldWorkMapping];
+    NSError* error = nil;
+    
+    NSMutableDictionary* actual = [serializer serializedObject:&error];
+        
+    STAssertEquals([[actual objectForKey:@"participants"] count], 1U, nil);
+//    NSDictionary* ac = [[ objectEnumerator] nextObject];
 
+}
 
 - (void)testGeneralDeserialization { 
     NSString* fieldworkJson = 
