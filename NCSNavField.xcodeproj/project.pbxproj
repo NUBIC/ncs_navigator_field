@@ -67,6 +67,7 @@
 		0073B3681511277000543DA4 /* Fieldwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073B3671511277000543DA4 /* Fieldwork.m */; };
 		0078A9AE159E414400B9FBD6 /* EventVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0078A9AD159E414400B9FBD6 /* EventVC.m */; };
 		007C1F4114FBFACA0020DF30 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 007C1F4014FBFACA0020DF30 /* Podfile */; };
+		007F4760165C885B00AD9AFE /* Contact+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 007F475F165C885B00AD9AFE /* Contact+Additions.m */; };
 		00810AB81486D1AE0098C0D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF914112E5E0097A878 /* CoreData.framework */; };
 		00810B5F14896B070098C0D0 /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00810B5E14896B070098C0D0 /* DatePicker.m */; };
 		00816CB2154B3F830054C918 /* FieldworkStepPostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CB1154B3F830054C918 /* FieldworkStepPostRequest.m */; };
@@ -393,6 +394,8 @@
 		0078A9AC159E414400B9FBD6 /* EventVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventVC.h; sourceTree = "<group>"; };
 		0078A9AD159E414400B9FBD6 /* EventVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventVC.m; sourceTree = "<group>"; };
 		007C1F4014FBFACA0020DF30 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		007F475E165C885B00AD9AFE /* Contact+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Contact+Additions.h"; sourceTree = "<group>"; };
+		007F475F165C885B00AD9AFE /* Contact+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Contact+Additions.m"; sourceTree = "<group>"; };
 		00810B5D14896B070098C0D0 /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
 		00810B5E14896B070098C0D0 /* DatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePicker.m; sourceTree = "<group>"; };
 		00816CB0154B3F830054C918 /* FieldworkStepPostRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkStepPostRequest.h; sourceTree = "<group>"; };
@@ -990,6 +993,8 @@
 		00AB8E9216431CEA0097F7CD /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				007F475E165C885B00AD9AFE /* Contact+Additions.h */,
+				007F475F165C885B00AD9AFE /* Contact+Additions.m */,
 				00AB8E9416431D150097F7CD /* NSManagedObject+Additions.h */,
 				00AB8E9516431D150097F7CD /* NSManagedObject+Additions.m */,
 			);
@@ -1245,6 +1250,7 @@
 				003DEFFC164B4EF500E89C25 /* ProviderSynchronizeOperation.m in Sources */,
 				003DF00C164C2C0100E89C25 /* SurveyContextGenerator.m in Sources */,
 				003DF01B164C49FD00E89C25 /* ResponseGenerator.m in Sources */,
+				007F4760165C885B00AD9AFE /* Contact+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
