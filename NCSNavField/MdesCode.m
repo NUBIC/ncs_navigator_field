@@ -15,13 +15,17 @@
 @dynamic listName;
 @dynamic localCode;
 
-+(NSArray*)retrieveAllObjectsForListName:(NSString*)listName orderedBy:(NSString*)order ascending:(BOOL)ascending
++(NSArray*)retrieveAllObjectsForListName:(NSString*)listName
 {
     NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"listName == %@", listName];
     [request setEntity:[NSEntityDescription entityForName:@"MdesCode" inManagedObjectContext:moc]];
     [request setPredicate:predicate];
+   
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
+                                       initWithKey:@"localCode" ascending:YES];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
     NSError *error = nil;
     NSMutableArray *results = [[moc executeFetchRequest:request error:&error] mutableCopy];
@@ -38,9 +42,6 @@
     if(nIdx>=0)
         [results removeObjectAtIndex:nIdx];
     return results;
-}
--(void)event {
-    @throw [[NSException alloc] initWithName:@"event called on MDES" reason:[[NSThread callStackSymbols] description] userInfo:nil];
 }
 -(NSString*)value {
     return [self.localCode stringValue];

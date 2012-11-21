@@ -16,6 +16,6 @@
 @property (nonatomic, retain) NSString * listName;
 @property (nonatomic, retain) NSNumber *localCode;
 
-+(NSArray*)retrieveAllObjectsForListName:(NSString*)listName orderedBy:(NSString*)order ascending:(BOOL)ascending;
++(NSArray*)retrieveAllObjectsForListName:(NSString*)listName;
 +(NSArray*)all;
 @end
