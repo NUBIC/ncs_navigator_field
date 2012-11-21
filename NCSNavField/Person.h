@@ -10,18 +10,20 @@
 
 @interface Person : NSManagedObject
 
-@property(nonatomic,strong) NSString* personId;
-@property(nonatomic,strong) NSString* name;
-@property(nonatomic,strong) NSString* email;
 @property(nonatomic,strong) NSString* cellPhone;
-@property(nonatomic,strong) NSString* homePhone;
-@property(nonatomic,strong) NSString* street;
 @property(nonatomic,strong) NSString* city;
-@property(nonatomic,strong) NSString* zipCode; 
+@property(nonatomic,strong) NSString* email;
+@property(nonatomic,strong) NSString* firstName;
+@property(nonatomic,strong) NSString* homePhone;
+@property(nonatomic,strong) NSString* lastName;
+@property(nonatomic,strong) NSString* middleName;
+@property(nonatomic,strong) NSString* personId;
+@property(nonatomic,strong) NSNumber* prefixCode;
+@property(nonatomic,strong) NSNumber* relationshipCode;
 @property(nonatomic,strong) NSString* state;
-
-
-@property(nonatomic,strong) NSString* participant;
+@property(nonatomic,strong) NSString* street;
+@property(nonatomic,strong) NSNumber* suffixCode;
+@property(nonatomic,strong) NSString* zipCode;
 
 #pragma mark - Methods
 
@@ -32,5 +34,7 @@
 - (NSString*)addressLineTwo;
 
 - (NSString*)formattedAddress;
+
+- (NSString*)name;
 
 @end
