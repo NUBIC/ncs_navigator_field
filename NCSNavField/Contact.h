@@ -70,6 +70,8 @@
 
 - (BOOL) closed;
 
+-(BOOL)onSameDay:(Contact*)c;
+
 #pragma setter
 
 - (void) setStartTimeJson:(NSString*)startTime;
@@ -89,5 +91,7 @@
 - (void)addEventsObject:(Event*)event;
 
 - (void)removeEventsObject:(Event*)event;
+
+
 
 @end

@@ -9,5 +9,4 @@
 #import "Contact.h"
 
 @interface Contact (Additions)
--(BOOL)onSameDay:(Contact*)c;
 @end

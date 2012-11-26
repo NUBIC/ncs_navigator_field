@@ -14,7 +14,6 @@
 #import "Person.h"
 #import "NSDate+Additions.h"
 #import "NSString+Additions.h"
-#import "Contact+Additions.h"
 
 @implementation ContactNavigationTable
 
