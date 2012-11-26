@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @class Person;
+@class Participant;
 @class Event;
 @class Contact;
 @class Instrument;
 
 @interface Fixtures : NSObject
 
++ (Participant*)createParticipantWithId:(NSString*)id person:(Person*)person;
 + (Person*) createPersonWithId:(NSString*)id name:(NSString*) n;
 + (NSDate*) createDateFromString:(NSString*) dateStr;
 + (NSDate*) createTimeFromString:(NSString*) timeStr;

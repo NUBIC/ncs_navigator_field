@@ -330,21 +330,31 @@ static RestKitSettings* instance;
     [contact mapRelationship:@"events" withMapping:event];
     [objectManager.mappingProvider setSerializationMapping:contact forClass:[Contact class]];
     
-//    
+    // Person Mapping
+    RKManagedObjectMapping* person = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
+    [person mapKeyPathsToAttributes:
+     @"cellPhone", @"cell_phone",
+     @"city", @"city",
+     @"email", @"email",
+     @"firstName", @"first_name",
+     @"homePhone", @"home_phone",
+     @"lastName", @"last_name",
+     @"middleName", @"middle_name",
+     @"personId", @"person_id",
+     @"prefixCode", @"prefix_code",
+     @"relationshipCode", @"relationship_code",
+     @"state", @"state",
+     @"street", @"street",
+     @"suffixCode", @"suffix_code",
+     @"zipCode", @"zip_code", nil];
+
     // Partipant Mapping
     RKManagedObjectMapping* participant = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
     [participant mapKeyPathsToAttributes:
      @"pId", @"p_id", nil];
+    [participant mapRelationship:@"persons" withMapping:person];
     [objectManager.mappingProvider setSerializationMapping:participant forClass:[Participant class]];
-//
-//    RKManagedObjectMapping* instrumentTemplate = [RKManagedObjectMapping mappingForClass:[NSMutableDictionary class]];
-//    [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
-//    [instrumentTemplate mapKeyPathsToAttributes:
-//     @"instrument_template_id", @"instrumentTemplateId", nil];
-//    [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
-//    [objectManager.mappingProvider setMapping:instrumentTemplate forKeyPath:@"instrument_templates"];
-//    
-//    
+
     RKObjectMapping* fieldWorkMapping = [RKObjectMapping mappingForClass:[NSMutableDictionary class] ];
 //    [fieldWorkMapping mapKeyPathsToAttributes:@"fieldworkId", @"identifier", nil];
     [fieldWorkMapping mapRelationship:@"contacts" withMapping:contact];

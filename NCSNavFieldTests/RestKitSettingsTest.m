@@ -90,18 +90,21 @@
 - (void)testParticipantSerializationMapping {
     [RestKitSettings instance];
     
+    Participant* p = [Fixtures createParticipantWithId:@"abc" person:[Fixtures createPersonWithId:@"xyz" name:@"Frank"]];
     Fieldwork* f = [Fieldwork object];
-    [f addParticipantsObject:[Participant object]];
+    [f addParticipantsObject:p];
     
     RKObjectMapping* fieldWorkMapping = [[RKObjectManager sharedManager].mappingProvider serializationMappingForClass:[Fieldwork class]];
     RKObjectSerializer* serializer = [RKObjectSerializer serializerWithObject:f mapping:fieldWorkMapping];
     NSError* error = nil;
     
     NSMutableDictionary* actual = [serializer serializedObject:&error];
-        
-    STAssertEquals([[actual objectForKey:@"participants"] count], 1U, nil);
-//    NSDictionary* ac = [[ objectEnumerator] nextObject];
-
+    
+    NSDictionary* participants = [actual objectForKey:@"participants"];
+    NSDictionary* participant = [[participants objectEnumerator] nextObject];
+    STAssertEqualObjects([participant valueForKey:@"p_id"], @"abc", nil);
+    NSDictionary* person = [[[participant valueForKey:@"persons"] objectEnumerator] nextObject];
+    STAssertEqualObjects([person valueForKey:@"first_name"], @"Frank", nil);
 }
 
 - (void)testGeneralDeserialization { 

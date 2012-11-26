@@ -8,6 +8,7 @@
 
 #import "Fixtures.h"
 #import "Person.h"
+#import "Participant.h"
 #import "Event.h"
 #import "Contact.h"
 #import "Instrument.h"
@@ -15,8 +16,17 @@
 
 @implementation Fixtures
 
+
++ (Participant*)createParticipantWithId:(NSString*)id person:(Person*)person {
+    Participant* p = [Participant object];
+    p.pId = id;
+    [p addPersonsObject:person];
+    return p;
+}
+
 + (Person*) createPersonWithId:(NSString*)id name:(NSString*) n {
     Person *p = [Person object];
+    p.personId = id;
     p.firstName = n;
     return p;
 }
