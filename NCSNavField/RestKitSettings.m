@@ -335,7 +335,7 @@ static RestKitSettings* instance;
     RKManagedObjectMapping* participant = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
     [participant mapKeyPathsToAttributes:
      @"pId", @"p_id", nil];
-    [objectManager.mappingProvider setMapping:participant forKeyPath:@"participants"];
+    [objectManager.mappingProvider setSerializationMapping:participant forClass:[Participant class]];
 //
 //    RKManagedObjectMapping* instrumentTemplate = [RKManagedObjectMapping mappingForClass:[NSMutableDictionary class]];
 //    [instrumentTemplate setPrimaryKeyAttribute:@"instrumentTemplateId"];
