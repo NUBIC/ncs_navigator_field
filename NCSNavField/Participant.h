@@ -15,6 +15,11 @@
 
 @property (nonatomic, retain) NSString * pId;
 @property (nonatomic, retain) NSSet *persons;
+
++ (Participant*)participant;
+
+- (Person*)selfPerson;
+
 @end
 
 @interface Participant (CoreDataGeneratedAccessors)

@@ -10,7 +10,7 @@
 #import "Instrument.h"
 #import "Event.h"
 #import "NSManagedObject+Additions.h"
-
+#import "Participant.h"
 
 @implementation EventTemplate
 
@@ -28,7 +28,7 @@
     return [[EventTemplate pregnancyScreeningTemplate].instruments objectAtIndex:0];
 }
 
-- (Event*)buildEvent {
+- (Event*)buildEventForParticipant:(Participant*)participant {
     Event* e = [Event object];
     NSArray* eventAttrs = [[[EventTemplate entityDescription] attributesByName] allKeys];
     for (NSString* attr in eventAttrs) {
@@ -44,6 +44,8 @@
     for (Instrument* i in self.instruments) {
         [e addInstrumentsObject:(Instrument*)[i clone]];
     }
+    
+    e.pId = participant.pId;
 
     return e;
 }

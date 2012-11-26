@@ -67,4 +67,8 @@ static const NSString* NEW_PERSON_NAME = @"New Person";
     }];
     return [filtered empty] ? nil : [filtered componentsJoinedByString:@"\n"];}
 
+- (BOOL) isSelfRelationship {
+    return [self.relationshipCode isEqualToNumber:[NSNumber numberWithInt:1]];
+}
+
 @end

@@ -37,4 +37,6 @@
 
 - (NSString*)name;
 
+- (BOOL) isSelfRelationship;
+
 @end

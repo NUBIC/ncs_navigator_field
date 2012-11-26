@@ -9,7 +9,7 @@
 #import "Participant.h"
 #import "Person.h"
 #import "HumanReadablePublicIdGenerator.h"
-
+#import <MRCEnumerable/MRCEnumerable.h>
 
 @implementation Participant
 
@@ -22,6 +22,13 @@
     p.pId = [HumanReadablePublicIdGenerator generate];
     [p addPersonsObject:[Person person]];
     return p;
+}
+
+- (Person*)selfPerson {
+    return [self.persons detect:^BOOL(id obj) {
+        Person* p = (Person*) obj;
+        return [p isSelfRelationship];
+    }];
 }
 
 @end

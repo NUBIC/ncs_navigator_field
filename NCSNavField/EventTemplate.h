@@ -11,6 +11,7 @@
 
 @class Instrument;
 @class Event;
+@class Participant;
 
 @interface EventTemplate : NSManagedObject
 
@@ -25,7 +26,7 @@
 
 + (Instrument*)pregnancyScreeningInstrument;
 
-- (Event*)buildEvent;
+- (Event*)buildEventForParticipant:(Participant*)participant;
 
 @end
 
