@@ -190,7 +190,8 @@ static RestKitSettings* instance;
      @"event_disposition", @"dispositionId",
      @"event_disposition_category_code", @"dispositionCategoryId",
      @"event_breakoff_code", @"breakOffId",
-     @"event_comment", @"comments", nil];
+     @"event_comment", @"comments",
+     @"p_id", @"pId", nil];
     [event mapRelationship:@"instruments" withMapping:instrument];
     
     // Person Mapping
@@ -323,7 +324,8 @@ static RestKitSettings* instance;
      @"dispositionCategoryId", @"event_disposition_category_code",
      @"breakOffId", @"event_breakoff_code",
      @"comments", @"event_comment",
-     @"version", @"version", nil];
+     @"version", @"version",
+     @"pId", @"p_id", nil];
     [event mapRelationship:@"instruments" withMapping:instrument];
     [objectManager.mappingProvider setSerializationMapping:event forClass:[Event class]];
 
