@@ -1583,7 +1583,7 @@
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 009A4892165C173E00601959 /* 20121120195321_add_new_person_attributes.xcdatamodel */;
+			currentVersion = 004E1DFB1663F6E100EA6CDE /* 20121126191319_add_pId_to_event.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
