@@ -26,6 +26,8 @@
 
 + (Instrument*)pregnancyScreeningInstrument;
 
++ (EventTemplate*)pregnancyVisitOneTemplate;
+
 - (Event*)buildEventForParticipant:(Participant*)participant;
 
 @end
