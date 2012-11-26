@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>_XCCurrentVersionName</key>
-	<string>20121120195321_add_new_person_attributes.xcdatamodel</string>
+	<string>20121126191319_add_pId_to_event.xcdatamodel</string>
 </dict>
 </plist>
