@@ -49,6 +49,8 @@
 
 @property(nonatomic,strong) NSString* version;
 
+@property(nonatomic,strong) NSString* pId;
+
 /* relationships */
 
 @property(nonatomic,strong) Contact* contact;

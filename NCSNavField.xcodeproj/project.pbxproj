@@ -238,6 +238,7 @@
 		004756521580F1FF009EDE69 /* main_v1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = main_v1.1.xcdatamodel; sourceTree = "<group>"; };
 		0047566E15813546009EDE69 /* surveyor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = surveyor.xcdatamodel; sourceTree = "<group>"; };
 		004756701581356B009EDE69 /* surveyor_v1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = surveyor_v1.1.xcdatamodel; sourceTree = "<group>"; };
+		004E1DFB1663F6E100EA6CDE /* 20121126191319_add_pId_to_event.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121126191319_add_pId_to_event.xcdatamodel; sourceTree = "<group>"; };
 		004FC7101486BE8200A378DC /* PickerOptionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerOptionTest.h; sourceTree = "<group>"; };
 		004FC7111486BE8200A378DC /* PickerOptionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerOptionTest.m; sourceTree = "<group>"; };
 		004FC7141486BFBC00A378DC /* PickerOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerOption.h; sourceTree = "<group>"; };
@@ -436,9 +437,7 @@
 		0092BA5614E32C3500134165 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		0095430D153E62040018DAC3 /* InstrumentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentVC.h; sourceTree = "<group>"; };
 		0095430E153E62040018DAC3 /* InstrumentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentVC.m; sourceTree = "<group>"; };
-		009A48A3165C47C200601959 /* Contact+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Contact+Additions.h"; sourceTree = "<group>"; };
-		009A48A4165C47C200601959 /* Contact+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Contact+Additions.m"; sourceTree = "<group>"; };
-		009A4892165C173E00601959 /* 20121120195321_add_new_person_attributes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121120195321_add_new_person_attributes.xcdatamodel; sourceTree = "<group>"; };
+		009A4892165C173E00601959 /* 20121120195321_add_new_person_attributes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121120195321_add_new_person_attributes.xcdatamodel; sourceTree = "<group>"; };
 		009AD2E2142D391A0038650B /* SimpleTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableController.h; sourceTree = "<group>"; };
 		009AD2E3142D391A0038650B /* SimpleTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableController.m; sourceTree = "<group>"; };
 		009AD2E61430D9BF0038650B /* SimpleTableRowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableRowDelegate.h; sourceTree = "<group>"; };
@@ -1565,6 +1564,7 @@
 			children = (
 				003DEFE8164B1BCE00E89C25 /* 20121107224331_update_provider_attributes.xcdatamodel */,
 				009A4892165C173E00601959 /* 20121120195321_add_new_person_attributes.xcdatamodel */,
+				004E1DFB1663F6E100EA6CDE /* 20121126191319_add_pId_to_event.xcdatamodel */,
 				003DEFD1164ACC6900E89C25 /* 20121107170535_order_instruments_on_event_template.xcdatamodel */,
 				003059FE164AC2DB00A086F8 /* 20121107162417_order_instruments_on_event.xcdatamodel */,
 				001AC576164ABFD500E3ECBD /* 20121107161152_add_recruited_to_providers.xcdatamodel */,
