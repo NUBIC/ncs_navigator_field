@@ -172,6 +172,22 @@
     STAssertEqualObjects(it2.instrumentTemplateId, @"it2", @"Wrong id");
 }
 
+- (void)testParticipantsDeserialization {
+    NSString* json =
+    @"{ "
+    "   \"participants\": [{                "
+    "     \"p_id\": \"abc\",                "
+    "     \"persons\":[{                    "
+    "       \"first_name\": \"Frank\"       "
+    "     }]                                "
+    "   }]                                  "
+    "}                                      ";
+    
+    NSDictionary* actual = [self deserializeJson:json];
+    Participant* p = [[actual objectForKey:@"participants"] objectAtIndex:0];
+    STAssertEqualObjects(p.pId, @"abc", @"Wrong value");
+}
+
 - (void)testInstrumentTemplateDeserialization {
     NSString* json =
         @"{ "
