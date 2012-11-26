@@ -180,6 +180,10 @@
                 }
                 [found newResponseForQuestion:[resp valueForKey:@"question"] Answer:[resp valueForKey:@"answer"] responseGroup:nil Value:[resp valueForKey:@"value"]];
             }
+            
+            if (![found valueForKey:@"pId"]) {
+                [found setValue:instrument.event.pId forKey:@"pId"];
+            }
 
             [assoc setObject:found forKey:s.uuid];
         }
