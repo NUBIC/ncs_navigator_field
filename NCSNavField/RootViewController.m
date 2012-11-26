@@ -413,10 +413,11 @@
 
 - (IBAction)screenParticipant:(UIButton *)button {
     Contact* screening = [Contact object];
-    screening.person = [Person person];
+    Participant* participant = [Participant participant];
+    screening.person = [participant selfPerson];
     EventTemplate* pregnancyScreeningEventTmpl = [EventTemplate pregnancyScreeningTemplate];
     if (pregnancyScreeningEventTmpl) {
-        Event* pregnancyScreeningEvent = [pregnancyScreeningEventTmpl buildEvent];
+        Event* pregnancyScreeningEvent = [pregnancyScreeningEventTmpl buildEventForParticipant:participant];
         [screening addEventsObject:pregnancyScreeningEvent];
         ContactInitiateVC* civc = [[ContactInitiateVC alloc] initWithContact:screening];
         civc.modalPresentationStyle = UIModalPresentationFormSheet;
