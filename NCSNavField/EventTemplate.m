@@ -27,6 +27,10 @@
     return [[EventTemplate pregnancyScreeningTemplate].instruments objectAtIndex:0];
 }
 
++ (EventTemplate*)pregnancyVisitOneTemplate {
+    return [EventTemplate findFirstByAttribute:@"eventTypeCode" withValue:[NSNumber numberWithInt:13]];
+}
+
 - (Event*)buildEventForParticipant:(Participant*)participant {
     Event* e = [Event object];
     NSArray* eventAttrs = [[[EventTemplate entityDescription] attributesByName] allKeys];

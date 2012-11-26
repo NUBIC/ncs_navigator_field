@@ -416,14 +416,20 @@
     Contact* screening = [Contact object];
     Participant* participant = [Participant participant];
     screening.person = [participant selfPerson];
+    
     EventTemplate* pregnancyScreeningEventTmpl = [EventTemplate pregnancyScreeningTemplate];
     if (pregnancyScreeningEventTmpl) {
-        Event* pregnancyScreeningEvent = [pregnancyScreeningEventTmpl buildEventForParticipant:participant];
-        [screening addEventsObject:pregnancyScreeningEvent];
-        ContactInitiateVC* civc = [[ContactInitiateVC alloc] initWithContact:screening];
-        civc.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self presentViewController:civc animated:YES completion:nil];
+        [screening addEventsObject:[pregnancyScreeningEventTmpl buildEventForParticipant:participant]];
     }
+    
+    EventTemplate* pregnancyVisitOneEventTmpl = [EventTemplate pregnancyVisitOneTemplate];
+    if (pregnancyVisitOneEventTmpl) {
+        [screening addEventsObject:[pregnancyVisitOneEventTmpl buildEventForParticipant:participant]];
+    }
+    
+    ContactInitiateVC* civc = [[ContactInitiateVC alloc] initWithContact:screening];
+    civc.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:civc animated:YES completion:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
