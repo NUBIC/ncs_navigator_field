@@ -123,17 +123,26 @@
     ], 
     "event_templates": [
         {
-            "event_repeat_key": 0, 
             "event_type_code": 34, 
             "instruments": [
                 {
                     "instrument_plan_id": "d802dcb1-544d-4f44-abcb-a25bf47de230", 
-                    "instrument_repeat_key": 0, 
                     "instrument_type_code": 34, 
                     "name": "PBS Participant Eligibility Screening"
                 }
             ], 
             "name": "Pregnancy Screener"
+        },
+        {
+            "event_type_code": 13, 
+            "instruments": [
+                {
+                    "instrument_plan_id": "a5d223be-52fb-43a7-b6c3-5dab0f113836", 
+                    "instrument_type_code": 13, 
+                    "name": "PBS Pregnancy Visit 1"
+                }
+            ], 
+            "name": "Pregnancy Visit 1"
         }
     ], 
     "instrument_plans": [

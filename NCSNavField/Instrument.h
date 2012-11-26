@@ -57,8 +57,6 @@
 
 @property(nonatomic,strong) Event* event;
 
-@property(nonatomic,strong) InstrumentPlan* instrumentPlan;
-
 @property(nonatomic,strong) NSSet* responseSets;
 
 
@@ -77,6 +75,8 @@
 - (NSString*) startTimeJson;
 
 - (NSString*) endTimeJson;
+
+- (InstrumentPlan*)instrumentPlan;
 
 @end
 
