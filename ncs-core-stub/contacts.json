@@ -129,8 +129,8 @@
                 {
                     "instrument_plan_id": "d802dcb1-544d-4f44-abcb-a25bf47de230", 
                     "instrument_repeat_key": 0, 
-                    "instrument_type_code": 44, 
-                    "name": "Pregnancy Screener Instrument"
+                    "instrument_type_code": 34, 
+                    "name": "PBS Participant Eligibility Screening"
                 }
             ], 
             "name": "Pregnancy Screener"

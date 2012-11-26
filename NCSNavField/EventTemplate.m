@@ -20,8 +20,7 @@
 @dynamic instruments;
 
 + (EventTemplate*)pregnancyScreeningTemplate {
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[c] %@ AND name CONTAINS[c] %@", @"preg", @"screen"];
-    return [EventTemplate findFirstWithPredicate:predicate];
+    return [EventTemplate findFirstByAttribute:@"eventTypeCode" withValue:[NSNumber numberWithInt:34]];
 }
 
 + (Instrument*)pregnancyScreeningInstrument {
