@@ -13,6 +13,9 @@
 @class Event;
 @class Participant;
 
+FOUNDATION_EXPORT NSInteger const PREGNANCY_SCREENING_EVENT_TYPE_CODE;
+FOUNDATION_EXPORT NSInteger const PREGNANCY_VISIT_ONE_EVENT_TYPE_CODE;
+
 @interface EventTemplate : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
