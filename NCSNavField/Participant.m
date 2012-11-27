@@ -24,10 +24,11 @@
     return p;
 }
 
+// Person record for this participant
 - (Person*)selfPerson {
     return [self.persons detect:^BOOL(id obj) {
         Person* p = (Person*) obj;
-        return [p isSelfRelationship];
+        return [p isPersonSameAsParticipant];
     }];
 }
 

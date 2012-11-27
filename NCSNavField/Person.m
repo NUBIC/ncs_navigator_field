@@ -11,6 +11,8 @@
 #import <MRCEnumerable/MRCEnumerable.h>
 #import <NUSurveyor/UUID.h>
 
+NSInteger const PERSON_RELATIONSHIP_CODE_SELF = 1;
+
 @implementation Person
 
 static const NSString* NEW_PERSON_NAME = @"New Person";
@@ -21,7 +23,7 @@ static const NSString* NEW_PERSON_NAME = @"New Person";
     Person* p = [Person object];
     p.firstName = [self buildNewPersonName];
     p.personId = [UUID generateUuidString];
-    p.relationshipCode = [NSNumber numberWithInt:1]; // Self
+    p.relationshipCode = [NSNumber numberWithInt:PERSON_RELATIONSHIP_CODE_SELF];
     return p;
 }
 
@@ -67,8 +69,8 @@ static const NSString* NEW_PERSON_NAME = @"New Person";
     }];
     return [filtered empty] ? nil : [filtered componentsJoinedByString:@"\n"];}
 
-- (BOOL) isSelfRelationship {
-    return [self.relationshipCode isEqualToNumber:[NSNumber numberWithInt:1]];
+- (BOOL) isPersonSameAsParticipant {
+    return [self.relationshipCode isEqualToNumber:[NSNumber numberWithInt:PERSON_RELATIONSHIP_CODE_SELF]];
 }
 
 @end
