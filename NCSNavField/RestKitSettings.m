@@ -361,6 +361,7 @@ static RestKitSettings* instance;
 //    [fieldWorkMapping mapKeyPathsToAttributes:@"fieldworkId", @"identifier", nil];
     [fieldWorkMapping mapRelationship:@"contacts" withMapping:contact];
     [fieldWorkMapping mapKeyPath:@"emptyArray" toAttribute:@"instrument_plans"];
+    [fieldWorkMapping mapKeyPath:@"emptyArray" toAttribute:@"event_templates"];
     [fieldWorkMapping mapRelationship:@"participants" withMapping:participant];
     
     [objectManager.mappingProvider setSerializationMapping:fieldWorkMapping forClass:[Fieldwork class]];
