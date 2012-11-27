@@ -43,7 +43,7 @@ static const NSString* NEW_PERSON_NAME = @"New Person";
         [name addObject:self.firstName];
     }
     if (self.middleName) {
-        [name addObject:self.lastName];
+        [name addObject:self.middleName];
     }
     if (self.lastName) {
         [name addObject:self.lastName];
