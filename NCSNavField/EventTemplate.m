@@ -12,6 +12,9 @@
 #import "NSManagedObject+Additions.h"
 #import "Participant.h"
 
+NSInteger const PREGNANCY_SCREENING_EVENT_TYPE_CODE = 34;
+NSInteger const PREGNANCY_VISIT_ONE_EVENT_TYPE_CODE = 13;
+
 @implementation EventTemplate
 
 @dynamic name;
@@ -20,7 +23,7 @@
 @dynamic instruments;
 
 + (EventTemplate*)pregnancyScreeningTemplate {
-    return [EventTemplate findFirstByAttribute:@"eventTypeCode" withValue:[NSNumber numberWithInt:34]];
+    return [EventTemplate findFirstByAttribute:@"eventTypeCode" withValue:[NSNumber numberWithInt:PREGNANCY_SCREENING_EVENT_TYPE_CODE]];
 }
 
 + (Instrument*)pregnancyScreeningInstrument {
@@ -28,7 +31,7 @@
 }
 
 + (EventTemplate*)pregnancyVisitOneTemplate {
-    return [EventTemplate findFirstByAttribute:@"eventTypeCode" withValue:[NSNumber numberWithInt:13]];
+    return [EventTemplate findFirstByAttribute:@"eventTypeCode" withValue:[NSNumber numberWithInt:PREGNANCY_VISIT_ONE_EVENT_TYPE_CODE]];
 }
 
 - (Event*)buildEventForParticipant:(Participant*)participant {
