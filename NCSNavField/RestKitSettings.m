@@ -121,26 +121,11 @@ static RestKitSettings* instance;
 
 -(void)addOptionMappingsToObjectManager:(RKObjectManager*)objectManager {
     
-    /*
-     @property (nonatomic, retain) NSString * displayText;
-     @property (nonatomic, retain) NSString *listName;
-     @property (nonatomic, retain) NSNumber *localCode;
-     */
-    
     RKManagedObjectMapping *objPo = [RKManagedObjectMapping mappingForClass:[MdesCode class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [objPo mapKeyPath:@"display_text" toAttribute:@"displayText"];
     [objPo mapKeyPath:@"list_name" toAttribute:@"listName"];
     [objPo mapKeyPath:@"local_code" toAttribute:@"localCode"];
     [objectManager.mappingProvider setMapping:objPo forKeyPath:@"ncs_codes"];
-    
-    /*
-     @property (nonatomic, retain) NSString * subCategory;
-     @property (nonatomic, retain) NSString * categoryCode;
-     @property (nonatomic, retain) NSString * disposition;
-     @property (nonatomic, retain) NSNumber * finalCategory;
-     @property (nonatomic, retain) NSString * finalCode;
-     @property (nonatomic, retain) NSString * interimCode;
-     */
     
     RKManagedObjectMapping *objDc = [RKManagedObjectMapping mappingForClass:[DispositionCode class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [objDc mapKeyPath:@"category_code" toAttribute:@"categoryCode"];
