@@ -28,10 +28,15 @@
 }
 
 - (NSArray*) buildSectionsUsingContacts:(NSArray*) contacts {
-    @try {
         NSMutableArray* sections = [NSMutableArray new];
         NSMutableArray *sectionNames = [NSMutableArray new];
         for(Contact *c in contacts) {
+            //Let's make sure that the date is not nil, else throw
+            //an exception.
+            /*if(!c.date) {
+             [NSException raise:@"Contact.date is nil in ContactNavigationTable:buildSectionsUsingContacts:" format:@""];
+             }*/
+            NSAssert(c.date!=nil, @"Contact.date should never be nil");
             NSMutableArray *found = [[NSMutableArray alloc] init];
             for(Contact *d in contacts)
             {
@@ -47,11 +52,6 @@
             }
         }
         return sections;
-    }
-    @catch(NSException *ex) {
-        NSLog(@"%@",[ex reason]);
-        @throw ex;
-    }
 }
 
 - (NSString*) buildSectionNameUsingDate:(NSDate*)date {
