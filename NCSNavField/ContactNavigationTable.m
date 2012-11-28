@@ -33,13 +33,15 @@
         for(Contact *c in contacts) {
             //Let's make sure that the date is not nil, else throw
             //an exception.
-            /*if(!c.date) {
-             [NSException raise:@"Contact.date is nil in ContactNavigationTable:buildSectionsUsingContacts:" format:@""];
-             }*/
-            NSAssert(c.date!=nil, @"Contact.date should never be nil");
+            if(!c.date) {
+                [NSException raise:@"Contact.date is nil in ContactNavigationTable:buildSectionsUsingContacts:" format:@""];
+            }
             NSMutableArray *found = [[NSMutableArray alloc] init];
             for(Contact *d in contacts)
             {
+                if(!d.date) {
+                    [NSException raise:@"Contact.date is nil in ContactNavigationTable:buildSectionsUsingContacts:" format:@""];
+                }
                 if([c onSameDay:d])
                     [found addObject:d];
             }
