@@ -25,22 +25,22 @@
 {
     NSLog(@"Retrieving List Name: %@",listName);
     
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"listName == %@", listName];
-        NSMutableArray *results = [[NSMutableArray alloc] initWithArray:[self findAllSortedBy:@"localCode" ascending:NO withPredicate:predicate inContext:[MdesCode managedObjectContext]]];
-        //We should do some error handing here based on anything returned from error.
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"listName == %@", listName];
+    NSMutableArray *results = [[NSMutableArray alloc] initWithArray:[self findAllSortedBy:@"localCode" ascending:NO withPredicate:predicate inContext:[MdesCode managedObjectContext]]];
+    //We should do some error handing here based on anything returned from error.
 
-        //YUCK!
-        int nIdx = -1;
-        for(int i=0;i<[results count];i++) {
-            MdesCode *code = [results objectAtIndex:i];
-            if([code.localCode isEqualToNumber:[NSNumber numberWithInt:-4]]) {
-                nIdx = i;
-                break;
-            }
+    //YUCK!
+    int nIdx = -1;
+    for(int i=0;i<[results count];i++) {
+        MdesCode *code = [results objectAtIndex:i];
+        if([code.localCode isEqualToNumber:[NSNumber numberWithInt:-4]]) {
+            nIdx = i;
+            break;
         }
-        if(nIdx>=0)
-            [results removeObjectAtIndex:nIdx];
-        return results;
+    }
+    if(nIdx>=0)
+        [results removeObjectAtIndex:nIdx];
+    return results;
 }
 
 +(void)createMdesCode:(NSString*)t listName:(NSString*)li localCode:(NSNumber*)lc {
@@ -77,19 +77,9 @@
 #pragma mark - 
 #pragma Create Yes/No Lists.
 
-//They want to stop and come back later if "yes".
-+ (NSArray*) breakOff {
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"breakOff"];
-    if([arr count]==0) {
-        [MdesCode createMdesCode:@"Yes" listName:@"breakOff" localCode:[NSNumber numberWithInt:1]];
-        [MdesCode createMdesCode:@"No" listName:@"breakOff" localCode:[NSNumber numberWithInt:2]];
-    }
-    else
-        return arr;
-    return [self breakOff];
-}
 
 + (NSArray*) instrumentSupervisorReviews {
+    [self retrieveAllObjectsForListName:@""];
     NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"instrumentSupervisorReviews"];
     if([arr count]==0) {
         [MdesCode createMdesCode:@"Yes" listName:@"instrumentSupervisorReviews" localCode:[NSNumber numberWithInt:1]];
@@ -99,6 +89,7 @@
 }
 
 + (NSArray*) privateList {
+    [self retrieveAllObjectsForListName:@""];
     NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"privateList"];
     if([arr count]==0) {
         [MdesCode createMdesCode:@"Yes" listName:@"privateList" localCode:[NSNumber numberWithInt:1]];
@@ -110,6 +101,7 @@
 }
 
 + (NSArray*) instrumentDataProblems {
+    [self retrieveAllObjectsForListName:@""];
     NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"instrumentDataProblems"];
     if([arr count]==0) {
         [MdesCode createMdesCode:@"Yes" listName:@"instrumentDataProblems" localCode:[NSNumber numberWithInt:1]];

@@ -123,7 +123,7 @@
     [b sectionHeader:[NSString stringWithFormat:@"%@ %@", e.name, @"Event"]];
     
     [b labelWithText:@"Breakoff"];
-    [b singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[MdesCode breakOff]];
+    [b singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONFIRM_TYPE_CL2"]];
         
     [b labelWithText:@"End Date"];
     [b datePickerForProperty:@selector(endDate)];

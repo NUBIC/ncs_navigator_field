@@ -53,10 +53,9 @@
         return YES;
     }
     @catch(NSException *ex) {
-        NSLog(@"%@",[ex reason]);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:[NSString stringWithFormat:@"Something went wrong : %@",[ex reason]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        NSLog(@"Something went wrong: %@",[ex reason]);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Something went wrong." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-        
     }
 }
 

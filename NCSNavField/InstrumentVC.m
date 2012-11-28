@@ -143,7 +143,7 @@
     [b singleOptionPickerForProperty:@selector(statusId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"INSTRUMENT_STATUS_CL1"]];
     
     [b labelWithText:@"Breakoff"];
-    [b singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[MdesCode breakOff]];
+    [b singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONFIRM_TYPE_CL2"]];
     
     return v;
 }
