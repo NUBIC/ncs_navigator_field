@@ -80,7 +80,6 @@ static RestKitSettings* instance;
 }
 
 - (void)introduce {
-    @try {
     RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:[NSURL URLWithString:self.baseServiceURL]];
 
     // Initialize store
@@ -111,11 +110,6 @@ static RestKitSettings* instance;
 
     // Enable automatic network activity indicator management
     //[RKClient sharedClient].showsNetworkActivityIndicatorWhenBusy = YES;
-    }
-    @catch(NSException *ex) {
-        NSLog(@"%@",[ex reason]);
-        @throw ex;
-    }
 }
 
 // De-Serialize

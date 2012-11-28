@@ -36,36 +36,30 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     NCSLog(@"Contact Initiative VC");
-    @try {
-        UIView* toolbar = [self toolbarWithFrame:CGRectMake(0, -2, self.view.frame.size.width, 50)];
+    UIView* toolbar = [self toolbarWithFrame:CGRectMake(0, -2, self.view.frame.size.width, 50)];
 
-        /* Left and Right Pane */
-        CGPoint o = self.view.frame.origin;
-        CGSize s = self.view.frame.size;
-        CGRect rect = CGRectMake(o.x, o.y + 50, s.width, s.height - 50 );
+    /* Left and Right Pane */
+    CGPoint o = self.view.frame.origin;
+    CGSize s = self.view.frame.size;
+    CGRect rect = CGRectMake(o.x, o.y + 50, s.width, s.height - 50 );
 
-        CGRect lRect, rRect;
-        CGRectDivide(rect, &rRect, &lRect, rect.size.width / 2, CGRectMaxXEdge);
+    CGRect lRect, rRect;
+    CGRectDivide(rect, &rRect, &lRect, rect.size.width / 2, CGRectMaxXEdge);
 
-        [self startTransaction];
+    [self startTransaction];
 
-        [self setDefaults:self.contact];
+    [self setDefaults:self.contact];
 
-        left = [self leftContentWithFrame:lRect];
-        right = [self rightContentWithFrame:rRect];
-        [left registerForPopoverNotifications];
-        [right registerForPopoverNotifications];
+    left = [self leftContentWithFrame:lRect];
+    right = [self rightContentWithFrame:rRect];
+    [left registerForPopoverNotifications];
+    [right registerForPopoverNotifications];
 
-        [self.view addSubview:toolbar];
-        [self.view addSubview:left];
-        [self.view addSubview:right];
+    [self.view addSubview:toolbar];
+    [self.view addSubview:left];
+    [self.view addSubview:right];
 
-        self.view.backgroundColor = [UIColor whiteColor];
-    }
-    @catch(NSException *ex) {
-        NSLog(@"%@",[ex reason]);
-        @throw ex;
-    }
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -128,7 +122,6 @@
 }
 
 - (UIView*) leftContentWithFrame:(CGRect)frame {
-    @try {
         UIView* v = [[UIView alloc] initWithFrame:frame];
 
         FormBuilder* b = [[FormBuilder alloc] initWithView:v object:self.contact];
@@ -142,15 +135,9 @@
         [b labelWithText:@"Contact Method"];
         [b singleOptionPickerForProperty:@selector(typeId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONTACT_TYPE_CL1"]];
         return v;
-    }
-    @catch(NSException *ex) {
-        NSLog(@"%@",[ex reason]);
-        @throw ex;
-    }
 }
 
 - (UIView*) rightContentWithFrame:(CGRect)frame {
-    @try {
         UIView* v = [[UIView alloc] initWithFrame:frame];
         
         FormBuilder* b = [[FormBuilder alloc] initWithView:v object:self.contact];
@@ -164,11 +151,6 @@
         [b labelWithText:@"Comments"];
         [b textAreaForProperty:@selector(comments)];
         return v;
-    }
-    @catch (NSException *ex) {
-        NSLog(@"%@",[ex reason]);
-        @throw ex;
-    }
 }
 
 - (UIView*) toolbarWithFrame:(CGRect)frame {

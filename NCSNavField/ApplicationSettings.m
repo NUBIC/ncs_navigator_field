@@ -42,7 +42,6 @@ NSString* const UPCOMING_DAYS_TO_SYNC = @"upcoming.days.to.sync";
 static ApplicationSettings* instance;
 
 - (id)init {
-    @try {
         self = [super init];
         if (self) {
             _clientId = [self retreiveClientId];
@@ -57,11 +56,6 @@ static ApplicationSettings* instance;
 
         }
         return self;
-    }
-    @catch (NSException *ex) {
-        NSLog(@"%@",[ex reason]);
-        @throw ex;
-    }
 }
 
 + (ApplicationSettings*) instance {

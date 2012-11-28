@@ -24,7 +24,7 @@
 +(NSArray*)retrieveAllObjectsForListName:(NSString*)listName
 {
     NSLog(@"Retrieving List Name: %@",listName);
-    @try {
+    
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"listName == %@", listName];
         NSMutableArray *results = [[NSMutableArray alloc] initWithArray:[self findAllSortedBy:@"localCode" ascending:NO withPredicate:predicate inContext:[MdesCode managedObjectContext]]];
         //We should do some error handing here based on anything returned from error.
@@ -41,11 +41,6 @@
         if(nIdx>=0)
             [results removeObjectAtIndex:nIdx];
         return results;
-    }
-    @catch(NSException *ex) {
-        NSLog(@"%@",[ex reason]);
-        @throw ex;
-    }
 }
 
 +(void)createMdesCode:(NSString*)t listName:(NSString*)li localCode:(NSNumber*)lc {
