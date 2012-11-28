@@ -24,10 +24,11 @@
 #import "ApplicationInformation.h"
 #import "Provider.h"
 #import "MdesCode.h"
+#import "DispositionCode.h"
 
 NSString* STORE_NAME = @"main.sqlite";
 
-@interface RestKitSettings (Private)
+@interface RestKitSettings ()
 -(id)init;
 -(id)initWithBaseServiceURL:(NSString*)url objectStoreFileName:(NSString*)file;
 @end
@@ -78,7 +79,8 @@ static RestKitSettings* instance;
 //    [RKObjectManager sharedManager].client.baseURL = [[RKURL alloc] initWithString:s.baseServiceURL];
 }
 
-- (void)introduce {    
+- (void)introduce {
+    @try {
     RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:[NSURL URLWithString:self.baseServiceURL]];
 
     // Initialize store
@@ -100,7 +102,7 @@ static RestKitSettings* instance;
     RKObjectRouter* router = [RKObjectRouter new];
     [router routeClass:[Fieldwork class] toResourcePath:@"/api/v1/fieldwork/:fieldworkId"];
     [router routeClass:[MdesCode class] toResourcePath:@"/api/v1/code_lists"];
-    
+    [router routeClass:[DispositionCode class] toResourcePath:@"/api/v1/code_lists"];
     [RKObjectManager sharedManager].router = router;
     
     [RKObjectManager sharedManager].acceptMIMEType = RKMIMETypeJSON;
@@ -109,22 +111,51 @@ static RestKitSettings* instance;
 
     // Enable automatic network activity indicator management
     //[RKClient sharedClient].showsNetworkActivityIndicatorWhenBusy = YES;
+    }
+    @catch(NSException *ex) {
+        NSLog(@"%@",[ex reason]);
+        @throw ex;
+    }
 }
 
 // De-Serialize
 - (void)addMappingsToObjectManager:(RKObjectManager *)objectManager  {
     [self addFieldworkMappingsToObjectManager:objectManager];
     [self addProviderMappingsToObjectManager:objectManager];
-    // FIX: Commented out to fix the build
-//    [self addOptionMappingsToObjectManager:objectManager];
+    [self addOptionMappingsToObjectManager:objectManager];
 }
 
 -(void)addOptionMappingsToObjectManager:(RKObjectManager*)objectManager {
+    
+    /*
+     @property (nonatomic, retain) NSString * displayText;
+     @property (nonatomic, retain) NSString *listName;
+     @property (nonatomic, retain) NSNumber *localCode;
+     */
+    
     RKManagedObjectMapping *objPo = [RKManagedObjectMapping mappingForClass:[MdesCode class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [objPo mapKeyPath:@"display_text" toAttribute:@"displayText"];
     [objPo mapKeyPath:@"list_name" toAttribute:@"listName"];
     [objPo mapKeyPath:@"local_code" toAttribute:@"localCode"];
     [objectManager.mappingProvider setMapping:objPo forKeyPath:@"ncs_codes"];
+    
+    /*
+     @property (nonatomic, retain) NSString * subCategory;
+     @property (nonatomic, retain) NSString * categoryCode;
+     @property (nonatomic, retain) NSString * disposition;
+     @property (nonatomic, retain) NSNumber * finalCategory;
+     @property (nonatomic, retain) NSString * finalCode;
+     @property (nonatomic, retain) NSString * interimCode;
+     */
+    
+    RKManagedObjectMapping *objDc = [RKManagedObjectMapping mappingForClass:[DispositionCode class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
+    [objDc mapKeyPath:@"category_code" toAttribute:@"categoryCode"];
+    [objDc mapKeyPath:@"disposition" toAttribute:@"disposition"];
+    [objDc mapKeyPath:@"final_category" toAttribute:@"finalCategory"];
+    [objDc mapKeyPath:@"final_code" toAttribute:@"finalCode"];
+    [objDc mapKeyPath:@"interim_code" toAttribute:@"interimCode"];
+    [objDc mapKeyPath:@"sub_category" toAttribute:@"subCategory"];
+    [objectManager.mappingProvider setMapping:objDc forKeyPath:@"disposition_codes"];
 }
 
 - (void)addFieldworkMappingsToObjectManager:(RKObjectManager*)objectManager {
