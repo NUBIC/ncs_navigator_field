@@ -170,7 +170,7 @@
     [b labelWithText:@"Location (Other)"];
     [b textFieldForProperty:@selector(locationOther)];
     
-    [b labelWithText:@"Where there privacy issues?"];
+    [b labelWithText:@"Were there privacy issues?"];
     [b singleOptionPickerForProperty:@selector(privateId) WithPickerOptions:[PickerOption private]];
     
     [b labelWithText:@"What were the privacy issues?"];

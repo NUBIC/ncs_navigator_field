@@ -11,13 +11,14 @@
 #import "NSDate+Additions.h"
 #import "NSString+Additions.h"
 #import "ResponseSet.h"
+#import "InstrumentPlan.h"
 
 @implementation Instrument
 
 @dynamic instrumentId, name, event, instrumentTypeId, instrumentTypeOther,
     instrumentVersion, repeatKey, startDate, startTime, endDate, endTime,
     statusId, breakOffId, instrumentModeId, instrumentModeOther,
-    instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSets, instrumentPlanId, instrumentPlan;
+    instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSets, instrumentPlanId;
 
 - (NSArray*) responseSetDicts {
     NSMutableArray* all = [[NSMutableArray alloc] init];
@@ -53,6 +54,10 @@
 
 - (NSString*) endTimeJson {
     return [self.endTime jsonSchemaTime];
+}
+
+- (InstrumentPlan*)instrumentPlan {
+    return [InstrumentPlan findFirstByAttribute:@"instrumentPlanId" withValue:self.instrumentPlanId];
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXPORT NSInteger const PERSON_RELATIONSHIP_CODE_SELF;
+
 @interface Person : NSManagedObject
 
 @property(nonatomic,strong) NSString* cellPhone;
@@ -37,6 +39,6 @@
 
 - (NSString*)name;
 
-- (BOOL) isSelfRelationship;
+- (BOOL) isPersonSameAsParticipant;
 
 @end

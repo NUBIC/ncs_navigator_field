@@ -17,16 +17,16 @@
 @implementation Fixtures
 
 
-+ (Participant*)createParticipantWithId:(NSString*)id person:(Person*)person {
++ (Participant*)createParticipantWithId:(NSString*)aId person:(Person*)person {
     Participant* p = [Participant object];
-    p.pId = id;
+    p.pId = aId;
     [p addPersonsObject:person];
     return p;
 }
 
-+ (Person*) createPersonWithId:(NSString*)id name:(NSString*) n {
++ (Person*) createPersonWithId:(NSString*)aId name:(NSString*) n {
     Person *p = [Person object];
-    p.personId = id;
+    p.personId = aId;
     p.firstName = n;
     return p;
 }
