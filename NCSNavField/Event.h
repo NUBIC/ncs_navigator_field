@@ -57,6 +57,10 @@
 
 @property(nonatomic,strong) NSOrderedSet* instruments;
 
+#pragma mark - Methods
+
++ (Event*)event;
+
 #pragma setter
 
 - (void) setStartTimeJson:(NSString*)startTime;

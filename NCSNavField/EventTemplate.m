@@ -11,6 +11,7 @@
 #import "Event.h"
 #import "NSManagedObject+Additions.h"
 #import "Participant.h"
+#import <NUSurveyor/UUID.h>
 
 NSInteger const PREGNANCY_SCREENING_EVENT_TYPE_CODE = 34;
 NSInteger const PREGNANCY_VISIT_ONE_EVENT_TYPE_CODE = 13;
@@ -35,7 +36,7 @@ NSInteger const PREGNANCY_VISIT_ONE_EVENT_TYPE_CODE = 13;
 }
 
 - (Event*)buildEventForParticipant:(Participant*)participant {
-    Event* e = [Event object];
+    Event* e = [Event event];
     NSArray* eventAttrs = [[[EventTemplate entityDescription] attributesByName] allKeys];
     for (NSString* attr in eventAttrs) {
         id value = [self valueForKey:attr];
@@ -48,7 +49,9 @@ NSInteger const PREGNANCY_VISIT_ONE_EVENT_TYPE_CODE = 13;
     }
 
     for (Instrument* i in self.instruments) {
-        [e addInstrumentsObject:(Instrument*)[i clone]];
+        Instrument* cloned = (Instrument*)[i clone];
+        cloned.instrumentId = [UUID generateUuidString];
+        [e addInstrumentsObject:cloned];
     }
     
     e.pId = participant.pId;

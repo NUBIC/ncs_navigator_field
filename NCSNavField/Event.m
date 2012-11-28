@@ -9,10 +9,19 @@
 #import "Event.h"
 #import "NSString+Additions.h"
 #import "NSDate+Additions.h"
+#import <NUSurveyor/UUID.h>
 
 @implementation Event
 
 @dynamic eventId, name, eventTypeCode, eventTypeOther, eventRepeatKey, startDate, endDate, startTime, endTime, incentiveTypeId, incentiveCash, incentiveNonCash, dispositionId, dispositionCategoryId, breakOffId, comments, contact, instruments, version, pId;
+
++ (Event*)event {
+    Event* e = [Event object];
+    e.eventId = [UUID generateUuidString];
+    e.startDate = [NSDate date];
+    e.startTime = [NSDate date];
+    return e;
+}
 
 - (void) setStartTimeJson:(NSString*)startTime {
     self.startTime = [startTime jsonTimeToDate];
