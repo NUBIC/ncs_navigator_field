@@ -417,6 +417,9 @@
 
 - (IBAction)screenParticipant:(UIButton *)button {
     Contact* screening = [Contact object];
+    screening.date = [NSDate date];
+    screening.startTime = [NSDate date];
+    
     Participant* participant = [Participant participant];
     screening.person = [participant selfPerson];
     
@@ -429,6 +432,10 @@
     if (pregnancyVisitOneEventTmpl) {
         [screening addEventsObject:[pregnancyVisitOneEventTmpl buildEventForParticipant:participant]];
     }
+    
+    [[Contact currentContext] save:nil];
+    
+    self.contacts = [self contactsFromDataStore];
     
     ContactInitiateVC* civc = [[ContactInitiateVC alloc] initWithContact:screening];
     civc.modalPresentationStyle = UIModalPresentationFormSheet;
