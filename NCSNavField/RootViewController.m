@@ -413,9 +413,7 @@
 }
 
 - (IBAction)screenParticipant:(UIButton *)button {
-    Contact* screening = [Contact object];
-    screening.date = [NSDate date];
-    screening.startTime = [NSDate date];
+    Contact* screening = [Contact contact];
     
     Participant* participant = [Participant participant];
     screening.person = [participant selfPerson];
