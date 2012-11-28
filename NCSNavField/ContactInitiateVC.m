@@ -35,31 +35,37 @@
 #pragma mark - View lifecycle
 
 - (void)viewDidAppear:(BOOL)animated {
-    
-    UIView* toolbar = [self toolbarWithFrame:CGRectMake(0, -2, self.view.frame.size.width, 50)];
-    
-    /* Left and Right Pane */
-    CGPoint o = self.view.frame.origin;
-    CGSize s = self.view.frame.size;
-    CGRect rect = CGRectMake(o.x, o.y + 50, s.width, s.height - 50 );
-    
-    CGRect lRect, rRect;
-    CGRectDivide(rect, &rRect, &lRect, rect.size.width / 2, CGRectMaxXEdge);
+    NCSLog(@"Contact Initiative VC");
+    @try {
+        UIView* toolbar = [self toolbarWithFrame:CGRectMake(0, -2, self.view.frame.size.width, 50)];
 
-    [self startTransaction];
+        /* Left and Right Pane */
+        CGPoint o = self.view.frame.origin;
+        CGSize s = self.view.frame.size;
+        CGRect rect = CGRectMake(o.x, o.y + 50, s.width, s.height - 50 );
 
-    [self setDefaults:self.contact];
-    
-    left = [self leftContentWithFrame:lRect];
-    right = [self rightContentWithFrame:rRect];
-    [left registerForPopoverNotifications];
-    [right registerForPopoverNotifications];
-    
-    [self.view addSubview:toolbar];
-    [self.view addSubview:left];
-    [self.view addSubview:right];
-    
-    self.view.backgroundColor = [UIColor whiteColor];
+        CGRect lRect, rRect;
+        CGRectDivide(rect, &rRect, &lRect, rect.size.width / 2, CGRectMaxXEdge);
+
+        [self startTransaction];
+
+        [self setDefaults:self.contact];
+
+        left = [self leftContentWithFrame:lRect];
+        right = [self rightContentWithFrame:rRect];
+        [left registerForPopoverNotifications];
+        [right registerForPopoverNotifications];
+
+        [self.view addSubview:toolbar];
+        [self.view addSubview:left];
+        [self.view addSubview:right];
+
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
+    @catch(NSException *ex) {
+        NSLog(@"%@",[ex reason]);
+        @throw ex;
+    }
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -122,38 +128,47 @@
 }
 
 - (UIView*) leftContentWithFrame:(CGRect)frame {
-    UIView* v = [[UIView alloc] initWithFrame:frame];
-    
-    FormBuilder* b = [[FormBuilder alloc] initWithView:v object:self.contact];
+    @try {
+        UIView* v = [[UIView alloc] initWithFrame:frame];
 
-    [b labelWithText:@"Contact Date"];
-    [b datePickerForProperty:@selector(date)];
-    
-    [b labelWithText:@"Contact Start Time"];
-    [b timePickerForProperty:@selector(startTime)];
-    
-    [b labelWithText:@"Contact Method"];
-    [b singleOptionPickerForProperty:@selector(typeId) WithPickerOptions:[PickerOption contactTypes]];
+        FormBuilder* b = [[FormBuilder alloc] initWithView:v object:self.contact];
 
-        
-    return v;
+        [b labelWithText:@"Contact Date"];
+        [b datePickerForProperty:@selector(date)];
+
+        [b labelWithText:@"Contact Start Time"];
+        [b timePickerForProperty:@selector(startTime)];
+
+        [b labelWithText:@"Contact Method"];
+        [b singleOptionPickerForProperty:@selector(typeId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONTACT_TYPE_CL1"]];
+        return v;
+    }
+    @catch(NSException *ex) {
+        NSLog(@"%@",[ex reason]);
+        @throw ex;
+    }
 }
 
 - (UIView*) rightContentWithFrame:(CGRect)frame {
-    UIView* v = [[UIView alloc] initWithFrame:frame];
-    
-    FormBuilder* b = [[FormBuilder alloc] initWithView:v object:self.contact];
-    
-    [b labelWithText:@"Person Contacted"];
-    [b singleOptionPickerForProperty:@selector(whoContactedId) WithPickerOptions:[PickerOption whoContacted]];
-    
-    [b labelWithText:@"Person Contacted (Other)"];
-    [b textFieldForProperty:@selector(whoContactedOther)];
-    
-    [b labelWithText:@"Comments"];
-    [b textAreaForProperty:@selector(comments)];
-
-    return v;
+    @try {
+        UIView* v = [[UIView alloc] initWithFrame:frame];
+        
+        FormBuilder* b = [[FormBuilder alloc] initWithView:v object:self.contact];
+        
+        [b labelWithText:@"Person Contacted"];
+        [b singleOptionPickerForProperty:@selector(whoContactedId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONTACTED_PERSON_CL1"]];
+        
+        [b labelWithText:@"Person Contacted (Other)"];
+        [b textFieldForProperty:@selector(whoContactedOther)];
+        
+        [b labelWithText:@"Comments"];
+        [b textAreaForProperty:@selector(comments)];
+        return v;
+    }
+    @catch (NSException *ex) {
+        NSLog(@"%@",[ex reason]);
+        @throw ex;
+    }
 }
 
 - (UIView*) toolbarWithFrame:(CGRect)frame {

@@ -16,7 +16,6 @@
 
 @implementation NCSNavFieldAppDelegate
 
-
 @synthesize window=_window;
 
 @synthesize splitViewController=_splitViewController;
@@ -27,30 +26,38 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    TestFlightSettings *tf = [TestFlightSettings instance];
-    [TestFlight takeOff:tf.teamToken];
-    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-    
-    // Invoked at startup to set client ID
-    [ApplicationSettings instance];
-    
-    RestKitSettings* settings = [RestKitSettings instance];
-    [settings introduce];
-    
-    // Set Undo Manager
-    NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
-    NSUndoManager *undoManager = [[NSUndoManager alloc] init];
-    [moc setUndoManager:undoManager];
+    @try {
+        
+        TestFlightSettings *tf = [TestFlightSettings instance];
+        [TestFlight takeOff:tf.teamToken];
+        [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+        
+        // Invoked at startup to set client ID
+        [ApplicationSettings instance];
+        
+        RestKitSettings* settings = [RestKitSettings instance];
+        [settings introduce];
+        
+        // Set Undo Manager
+        NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
+        NSUndoManager *undoManager = [[NSUndoManager alloc] init];
+        [moc setUndoManager:undoManager];
 
-    // Override point for customization after application launch.
-    // Add the split view controller's view to the window and display.
-    self.window.rootViewController = self.splitViewController;
-    [self.window makeKeyAndVisible];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
+        // Override point for customization after application launch.
+        // Add the split view controller's view to the window and display.
+        self.window.rootViewController = self.splitViewController;
+        [self.window makeKeyAndVisible];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
 
-    return YES;
+        return YES;
+    }
+    @catch(NSException *ex) {
+        NSLog(@"%@",[ex reason]);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:[NSString stringWithFormat:@"Something went wrong : %@",[ex reason]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        
+    }
 }
 
 - (void)settingsChanged:(NSNotification *)notif

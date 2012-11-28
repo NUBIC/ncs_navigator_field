@@ -25,7 +25,7 @@ NSString* const UPCOMING_DAYS_TO_SYNC = @"upcoming.days.to.sync";
 //and we don't want any consumers of this class to call the init method.
 //We want them to call the instance class method. That enforces its
 //singleton-ness.
-@interface ApplicationSettings (Private)
+@interface ApplicationSettings ()
 -(id)init;
 @end
 
@@ -42,21 +42,26 @@ NSString* const UPCOMING_DAYS_TO_SYNC = @"upcoming.days.to.sync";
 static ApplicationSettings* instance;
 
 - (id)init {
-    self = [super init];
-    if (self) {
-        _clientId = [self retreiveClientId];
-        _coreURL = [self retreiveCoreURL];
-        _casServerURL = [self casServerURL];
-        _pgtReceiveURL = [self pgtReceiveURL];
-        _pgtRetrieveURL = [self pgtRetrieveURL];
-        _purgeFieldworkButton = [self isPurgeFieldworkButton];
-        _upcomingDaysToSync = [self upcomingDaysToSync];
-        //[[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:self];
-        [self registerDefaultsFromSettingsBundle];
+    @try {
+        self = [super init];
+        if (self) {
+            _clientId = [self retreiveClientId];
+            _coreURL = [self retreiveCoreURL];
+            _casServerURL = [self casServerURL];
+            _pgtReceiveURL = [self pgtReceiveURL];
+            _pgtRetrieveURL = [self pgtRetrieveURL];
+            _purgeFieldworkButton = [self isPurgeFieldworkButton];
+            _upcomingDaysToSync = [self upcomingDaysToSync];
+            //[[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:self];
+            [self registerDefaultsFromSettingsBundle];
 
+        }
+        return self;
     }
-    
-    return self;
+    @catch (NSException *ex) {
+        NSLog(@"%@",[ex reason]);
+        @throw ex;
+    }
 }
 
 + (ApplicationSettings*) instance {

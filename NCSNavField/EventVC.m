@@ -123,7 +123,7 @@
     [b sectionHeader:[NSString stringWithFormat:@"%@ %@", e.name, @"Event"]];
     
     [b labelWithText:@"Breakoff"];
-    [b singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[PickerOption breakOff]];     
+    [b singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[MdesCode breakOff]];
         
     [b labelWithText:@"End Date"];
     [b datePickerForProperty:@selector(endDate)];
@@ -142,7 +142,7 @@
     [b sectionHeader:@""];
     
     [b labelWithText:@"Incentive Type"];
-    [b singleOptionPickerForProperty:@selector(incentiveTypeId) WithPickerOptions:[PickerOption incentives]];
+    [b singleOptionPickerForProperty:@selector(incentiveTypeId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"INCENTIVE_TYPE_CL1"]];
     
     [b labelWithText:@"Cash Incentive (xx.xx)"];
     [b textFieldForProperty:@selector(incentiveCash) currency:YES];

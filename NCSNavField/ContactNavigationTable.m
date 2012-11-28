@@ -28,6 +28,7 @@
 }
 
 - (NSArray*) buildSectionsUsingContacts:(NSArray*) contacts {
+    @try {
         NSMutableArray* sections = [NSMutableArray new];
         NSMutableArray *sectionNames = [NSMutableArray new];
         for(Contact *c in contacts) {
@@ -46,8 +47,13 @@
             }
         }
         return sections;
+    }
+    @catch(NSException *ex) {
+        NSLog(@"%@",[ex reason]);
+        @throw ex;
+    }
 }
-                  
+
 - (NSString*) buildSectionNameUsingDate:(NSDate*)date {
     NSDateFormatter *f = [[NSDateFormatter alloc] init];
     [f setDateFormat:@"MMMM dd"];

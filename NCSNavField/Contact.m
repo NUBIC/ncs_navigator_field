@@ -25,8 +25,6 @@
     self.startTime = [startTime jsonTimeToDate];
 }
 
-
-
 - (NSString*) startTimeJson {
     return [self.startTime jsonSchemaTime];
 }
@@ -40,10 +38,14 @@
 }
 
 -(BOOL)onSameDay:(Contact*)c {
+    
     NSDate *myDate,*yourDate;
     NSDateComponents *myComponents,*yourComponents;
     myDate = self.date;
     yourDate = c.date;
+    //Check for nils
+    if(!myDate || !yourDate) //If either is nil, then obviously they don't match. 
+        return FALSE;
     NSCalendar *cal = [NSCalendar currentCalendar];
     myComponents = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:myDate];
     yourComponents = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:yourDate];

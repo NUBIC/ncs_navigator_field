@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SBJSON.h"
+#import "MdesCode.h"
 
 @interface PickerOption : NSObject {
     NSString *text;
@@ -21,26 +22,6 @@
 - (id) initWithText:(NSString*)t value:(NSInteger)v;
 -(NSDictionary*)toDict:(NSString*)listName;
 -(NSString*)toJSON:(NSString*)listName;
--(void)writeToFile;
-+ (NSArray*) contactTypes;
-+ (PickerOption*) findWithValue:(NSInteger)value fromOptions:(NSArray*)options; 
-+ (NSArray*) contactTypes;
-+ (NSArray*) whoContacted;
-+ (NSArray*) language;
-+ (NSArray*) interpreter;
-+ (NSArray*) location;
-+ (NSArray*) private;
-+ (NSArray*) disposition;
-+ (NSArray*) eventTypes;
-+ (NSArray*) incentives;
-+ (NSArray*) dispositionCategory;
-+ (NSArray*) breakOff;
-+ (NSArray*) instrumentTypes;
-+ (NSArray*) instrumentStatuses;
-+ (NSArray*) instrumentModes;
-+ (NSArray*) instrumentMethods;
-+ (NSArray*) instrumentSupervisorReviews;
-+ (NSArray*) instrumentDataProblems;
-+ (NSArray*) instrumentBreakoffs;
-
++ (MdesCode*) findWithValue:(NSInteger)value fromOptions:(NSArray*)options;
+-(NSNumber*)value;
 @end

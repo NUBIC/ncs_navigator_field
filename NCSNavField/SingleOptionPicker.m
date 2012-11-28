@@ -28,18 +28,12 @@
 @synthesize popoverSize = _popoverSize;
 
 - (id)initWithFrame:(CGRect)frame value:(NSNumber*)value pickerOptions:(NSArray*)options {
-    NSAssert(value!=nil,@"Value is nil when you are init'ing SingleOptionPicker. Check Check initWithFrame:value:pickerOptions:");
     self.accessibilityLabel = @"Single Option Picker";
     self.isAccessibilityElement=YES;
     return [self initWithFrame:frame value:value pickerOptions:options popoverSize:NUPickerVCPopoverSizeRegular];
 }
 
 - (id)initWithFrame:(CGRect)frame value:(NSNumber*)value pickerOptions:(NSArray*)options popoverSize:(NUPickerVCPopoverSize)popoverSize {
-    /*if(value==nil)
-    {
-        NSLog(@"Description: %@",[self description]);
-    }
-    NSAssert(value!=nil,@"Value is nil when you are init'ing SingleOptionPicker. Check initWithFrame:value:pickerOptions:popoverSize:");*/
     self = [super initWithFrame:frame];
     if (self) {
         self.accessibilityLabel = @"Single Option Picker";
@@ -57,9 +51,9 @@
         // Set title
         NSString* title = @"Pick One";
         if (value) {
-            PickerOption* o = [PickerOption findWithValue:[value integerValue] fromOptions:options];
+            MdesCode* o = [PickerOption findWithValue:[value integerValue] fromOptions:options];
             if (o) {
-                title = o.text;
+                title = o.displayText;
             }
         }
         [self.button setTitle:title forState:UIControlStateNormal];
@@ -84,9 +78,9 @@
 
     p.contentSizeForViewInPopover = [self CGSizeFromPopoverSize:self.popoverSize];
 
-    PickerOption* title = [PickerOption findWithValue:[self.value integerValue] fromOptions:self.pickerOptions];
+    MdesCode* title = [PickerOption findWithValue:[self.value integerValue] fromOptions:self.pickerOptions];
     if (title) {
-        [self.button setTitle:title.text forState:UIControlStateNormal];
+        [self.button setTitle:title.displayText forState:UIControlStateNormal];
         NSInteger index = [self.pickerOptions indexOfObject:title];
         [p.picker selectRow:index inComponent:0 animated:NO];
     }
@@ -127,16 +121,16 @@
 
 - (void) pickerDone{
     NSUInteger selected = [self.picker.picker selectedRowInComponent:0]; 
-    PickerOption* o = [self.pickerOptions objectAtIndex:selected];
-    NSNumber* new = [NSNumber numberWithInteger:o.value];
+    MdesCode* o = [self.pickerOptions objectAtIndex:selected];
+    NSNumber* new = o.localCode;
     self.value = new;
     [self.handler updatedValue:new];
-    [self.button setTitle:o.text forState:UIControlStateNormal];
+    [self.button setTitle:o.displayText forState:UIControlStateNormal];
     [self.popover dismissPopoverAnimated:NO];
 }
 - (void) pickerCancel{
     NSInteger old = [self.value integerValue];
-    PickerOption* o = [PickerOption findWithValue:old fromOptions:self.pickerOptions];
+    MdesCode* o = [PickerOption findWithValue:old fromOptions:self.pickerOptions];
     if(o!=nil)
         [self.picker.picker selectRow:[self.pickerOptions indexOfObject:o] inComponent:0 animated:NO];
     [self.popover dismissPopoverAnimated:NO];
@@ -162,8 +156,8 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    PickerOption* p = [self.pickerOptions objectAtIndex:row];
-    return p.text;
+    MdesCode* p = [self.pickerOptions objectAtIndex:row];
+    return p.displayText;
 }
 
 #pragma mark - Accessibility 
@@ -173,6 +167,10 @@
 
 -(NSString*)accessibilityLabel {
     return @"Single Option Picker";
+}
+
+-(void)setPickerOptions:(NSArray *)pickerOptions {
+    _pickerOptions = pickerOptions;
 }
 
 @end

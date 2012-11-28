@@ -140,10 +140,10 @@
     [b timePickerForProperty:@selector(endTime)];
 
     [b labelWithText:@"Instrument Status"];
-    [b singleOptionPickerForProperty:@selector(statusId) WithPickerOptions:[PickerOption instrumentStatuses]];
+    [b singleOptionPickerForProperty:@selector(statusId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"INSTRUMENT_STATUS_CL1"]];
     
     [b labelWithText:@"Breakoff"];
-    [b singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[PickerOption instrumentBreakoffs]];
+    [b singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[MdesCode breakOff]];
     
     return v;
 }
@@ -156,13 +156,13 @@
     [b sectionHeader:@""];
      
     [b labelWithText:@"Instrument Mode"];
-    [b singleOptionPickerForProperty:@selector(instrumentModeId) WithPickerOptions:[PickerOption instrumentModes]];
+    [b singleOptionPickerForProperty:@selector(instrumentModeId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"INSTRUMENT_ADMIN_MODE_CL1"]];
     
     [b labelWithText:@"Instrument Mode (Other)"];
     [b textFieldForProperty:@selector(instrumentModeOther)];
     
     [b labelWithText:@"Instrument Method"];
-    [b singleOptionPickerForProperty:@selector(instrumentMethodId) WithPickerOptions:[PickerOption instrumentMethods]];
+    [b singleOptionPickerForProperty:@selector(instrumentMethodId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"INSTRUMENT_ADMIN_METHOD_CL1"]];
     
     [b labelWithText:@"Comments"];
     [b textAreaForProperty:@selector(comment)];

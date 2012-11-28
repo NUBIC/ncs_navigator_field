@@ -9,13 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import <MRCEnumerable.h>
+#import "NSManagedObject+ActiveRecord.h"
 
 @interface MdesCode : NSManagedObject
 
 @property (nonatomic, retain) NSString * displayText;
-@property (nonatomic, retain) NSString * listName;
+@property (nonatomic, retain) NSString *listName;
 @property (nonatomic, retain) NSNumber *localCode;
 
-+(NSArray*)retrieveAllObjectsForListName:(NSString*)listName orderedBy:(NSString*)order ascending:(BOOL)ascending;
++(void)createMdesCode:(NSString*)t listName:(NSString*)li localCode:(NSNumber*)lc;
++(NSArray*)retrieveAllObjectsForListName:(NSString*)listName;
 +(NSArray*)all;
++(NSArray*)breakOff;
++(NSArray*)privateList;
 @end

@@ -379,20 +379,26 @@
 
 #pragma lifecycle
 - (void) loadView {
-    [super loadView];
-//    self.tableclearsSelectionOnViewWillAppear = NO;
-    self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
-    self.title = @"Contacts";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStylePlain target:self action:@selector(syncButtonWasPressed)];
-    [self toggleDeleteButton];
-    
-    // Init Sync Indicators
-    self.syncIndicator = [[SyncActivityIndicator alloc] initWithView:self.splitViewController.view];
-    self.syncIndicator.delegate = self;
+    @try {
+        [super loadView];
+    //    self.tableclearsSelectionOnViewWillAppear = NO;
+        self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
+        self.title = @"Contacts";
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStylePlain target:self action:@selector(syncButtonWasPressed)];
+        [self toggleDeleteButton];
+        
+        // Init Sync Indicators
+        self.syncIndicator = [[SyncActivityIndicator alloc] initWithView:self.splitViewController.view];
+        self.syncIndicator.delegate = self;
 
-    [self.splitViewController.view addSubview:self.syncIndicator];
+        [self.splitViewController.view addSubview:self.syncIndicator];
 
-    self.contacts = [self contactsFromDataStore];
+        self.contacts = [self contactsFromDataStore];
+    }
+    @catch(NSException *ex) {
+        NSLog(@"%@",[ex reason]);
+        @throw ex;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

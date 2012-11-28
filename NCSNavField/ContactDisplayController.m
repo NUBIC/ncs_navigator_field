@@ -68,7 +68,7 @@
 }
 
 - (void) refreshView {
-    self.simpleTable = [[ContactTable alloc]initUsingContact:self.detailItem];
+    self.simpleTable = [[ContactTable alloc] initUsingContact:self.detailItem];
     [self.tableView reloadData];
 }
 
@@ -96,6 +96,7 @@
 
 - (void)configureView
 {
+    @try {
     if (self.detailItem) {
         // Update the user interface for the detail item.
         Contact *c = self.detailItem;
@@ -120,6 +121,11 @@
             myTable.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"test-background.png"]];
         }
         self.tableView = myTable;
+    }
+    }
+    @catch (NSException *ex) {
+        NSLog(@"%@",[ex reason]);
+        @throw ex; 
     }
 }
 
