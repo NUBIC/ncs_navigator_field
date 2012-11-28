@@ -11,11 +11,19 @@
 #import "Person.h"
 #import "NSString+Additions.h"
 #import "NSDate+Additions.h"
+#import <NUSurveyor/UUID.h>
 
 @implementation Contact
 
 @dynamic contactId, typeId, date, startTime, endTime, personId, person, initiated, events, locationId, locationOther, whoContactedId, whoContactedOther, comments, languageId, languageOther, interpreterId, interpreterOther, privateId, privateDetail, distanceTraveled, dispositionId, version;
 
++ (Contact*)contact {
+    Contact* c = [Contact object];
+    c.contactId = [UUID generateUuidString];
+    c.date = [NSDate date];
+    c.startTime = [NSDate date];
+    return c;
+}
 
 - (BOOL) closed {
     return [self.dispositionId integerValue] != 0;

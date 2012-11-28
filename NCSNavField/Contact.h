@@ -68,6 +68,8 @@
 
 #pragma mark methods
 
++ (Contact*)contact;
+
 - (BOOL) closed;
 
 -(BOOL)onSameDay:(Contact*)c;
