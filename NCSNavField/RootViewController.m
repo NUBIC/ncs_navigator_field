@@ -379,7 +379,6 @@
 
 #pragma lifecycle
 - (void) loadView {
-    @try {
         [super loadView];
     //    self.tableclearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
@@ -394,11 +393,6 @@
         [self.splitViewController.view addSubview:self.syncIndicator];
 
         self.contacts = [self contactsFromDataStore];
-    }
-    @catch(NSException *ex) {
-        NSLog(@"%@",[ex reason]);
-        @throw ex;
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
