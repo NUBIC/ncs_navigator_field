@@ -159,6 +159,19 @@
     return YES;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Section *s = [self.simpleTable.sections objectAtIndex:indexPath.section];
+    Row *r = [s.rows objectAtIndex:indexPath.row];
+    
+    if([s.name isEqualToString:@"Address"]) {
+        NSInteger length = [[r.detailText componentsSeparatedByCharactersInSet:
+                             [NSCharacterSet newlineCharacterSet]] count];
+        CGFloat f = length*18.0f;
+        return MAX(44.0f,f);
+    }
+    return 44.0f;
+}
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     Section *s = [self.simpleTable.sections objectAtIndex:indexPath.section];
     Row *r = [s.rows objectAtIndex:indexPath.row];
