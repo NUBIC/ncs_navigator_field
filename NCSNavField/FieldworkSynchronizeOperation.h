@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ProviderSynchronizeOperation.h"
+@class ProviderSynchronizeOperation;
 
 @interface FieldworkSynchronizeOperation : NSObject {
     CasServiceTicket* _ticket;
+    id<UserErrorDelegate> delegate;
 }
 
+@property(nonatomic,strong) id<UserErrorDelegate> delegate;
 @property(nonatomic,strong) CasServiceTicket* ticket;
 
 - (id)initWithServiceTicket:(CasServiceTicket*)ticket;
