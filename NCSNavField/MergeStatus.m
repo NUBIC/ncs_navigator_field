@@ -50,7 +50,7 @@
     return self.status && [self.status rangeOfString:status options:NSCaseInsensitiveSearch].location != NSNotFound;
 }
 
-+ (MergeStatus*) latestMergeStatus {
++ (MergeStatus*) latest {
     return [[MergeStatus findAllSortedBy:@"createdAt" ascending:YES] lastObject];
 }
 

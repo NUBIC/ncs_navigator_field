@@ -49,7 +49,7 @@
 
 - (BOOL)send:(CasProxyTicket*)proxyTicket {
     if (proxyTicket) {
-        Fieldwork* submission = [Fieldwork fieldworkNeededToBeSubmitted];
+        Fieldwork* submission = [Fieldwork fieldworkToBeSubmitted];
         if (submission) {
             RKObjectManager *objectManager = [self objectManager:proxyTicket];
             RKObjectLoader* loader = [self objectLoader:submission objectManager:objectManager];

@@ -32,7 +32,7 @@
 
 - (BOOL)isStatus:(NSString*)status;
 
-+ (MergeStatus*) latestMergeStatus;
++ (MergeStatus*) latest;
 
 + (NSString*)mergeStatusIdFromUri:(NSString*)uri;
 
