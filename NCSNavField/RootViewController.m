@@ -368,7 +368,6 @@
     bSuccess = [sync perform];
     
     if(!bSuccess) {
-        [self showAlertView:@"fieldwork upload"];
         return;
     }
     
@@ -376,10 +375,8 @@
     pSync.delegate = self;
     bSuccess = [pSync perform];
     
-    if(!bSuccess) {
-        [self showAlertView:@"provider synch"];
+    if(!bSuccess) //Should we stop right here? If the provider pull didn't work, stop.
         return;
-    }
 
     NcsCodeSynchronizeOperation *nSync = [[NcsCodeSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
     nSync.delegate = self;
