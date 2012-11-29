@@ -238,7 +238,7 @@
 		004756521580F1FF009EDE69 /* main_v1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = main_v1.1.xcdatamodel; sourceTree = "<group>"; };
 		0047566E15813546009EDE69 /* surveyor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = surveyor.xcdatamodel; sourceTree = "<group>"; };
 		004756701581356B009EDE69 /* surveyor_v1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = surveyor_v1.1.xcdatamodel; sourceTree = "<group>"; };
-		004E1DFB1663F6E100EA6CDE /* 20121126191319_add_pId_to_event.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121126191319_add_pId_to_event.xcdatamodel; sourceTree = "<group>"; };
+		004E1DFB1663F6E100EA6CDE /* 20121126191319_add_pId_to_event.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121126191319_add_pId_to_event.xcdatamodel; sourceTree = "<group>"; };
 		004FC7101486BE8200A378DC /* PickerOptionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerOptionTest.h; sourceTree = "<group>"; };
 		004FC7111486BE8200A378DC /* PickerOptionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerOptionTest.m; sourceTree = "<group>"; };
 		004FC7141486BFBC00A378DC /* PickerOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerOption.h; sourceTree = "<group>"; };
@@ -455,6 +455,7 @@
 		00AB8E9516431D150097F7CD /* NSManagedObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Additions.m"; sourceTree = "<group>"; };
 		00AB8E97164358290097F7CD /* NSManagedObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSManagedObjectTest.h; sourceTree = "<group>"; };
 		00AB8E98164358290097F7CD /* NSManagedObjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectTest.m; sourceTree = "<group>"; };
+		00ABB420166702A300BCA177 /* 20121129023553_change_instrument_plan_to_instrument_template_to_many_to_many.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121129023553_change_instrument_plan_to_instrument_template_to_many_to_many.xcdatamodel; sourceTree = "<group>"; };
 		00B7CCA614BDFB6E00D5901C /* DispositionCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispositionCode.h; sourceTree = "<group>"; };
 		00B7CCA714BDFB6E00D5901C /* DispositionCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispositionCode.m; sourceTree = "<group>"; };
 		00C0C8D515655E390047A113 /* icon-test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-test.png"; sourceTree = "<group>"; };
@@ -1565,6 +1566,7 @@
 				003DEFE8164B1BCE00E89C25 /* 20121107224331_update_provider_attributes.xcdatamodel */,
 				009A4892165C173E00601959 /* 20121120195321_add_new_person_attributes.xcdatamodel */,
 				004E1DFB1663F6E100EA6CDE /* 20121126191319_add_pId_to_event.xcdatamodel */,
+				00ABB420166702A300BCA177 /* 20121129023553_change_instrument_plan_to_instrument_template_to_many_to_many.xcdatamodel */,
 				003DEFD1164ACC6900E89C25 /* 20121107170535_order_instruments_on_event_template.xcdatamodel */,
 				003059FE164AC2DB00A086F8 /* 20121107162417_order_instruments_on_event.xcdatamodel */,
 				001AC576164ABFD500E3ECBD /* 20121107161152_add_recruited_to_providers.xcdatamodel */,
@@ -1583,7 +1585,7 @@
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 004E1DFB1663F6E100EA6CDE /* 20121126191319_add_pId_to_event.xcdatamodel */;
+			currentVersion = 00ABB420166702A300BCA177 /* 20121129023553_change_instrument_plan_to_instrument_template_to_many_to_many.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
