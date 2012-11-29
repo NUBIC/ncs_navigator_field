@@ -395,7 +395,7 @@
 
 -(void)showAlertView:(NSString*)strError {
     //https://github.com/gpambrozio/BlockAlertsAnd-ActionSheets
-    _alertView = [BlockAlertView alertWithTitle:@"Woops!" message:[NSString stringWithFormat:@"Well this is embarrassing! Something has gone wrong with your sync. %@",strError]];
+    _alertView = [BlockAlertView alertWithTitle:@"Whoops!" message:[NSString stringWithFormat:@"Well this is embarrassing! Something has gone wrong with your sync. %@",strError]];
     
     //Needed to prevent retain cycle.
     __block RootViewController *blocksafeSelf = self;
