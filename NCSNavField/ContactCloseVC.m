@@ -171,7 +171,7 @@
     [b textFieldForProperty:@selector(locationOther)];
     
     [b labelWithText:@"Were there privacy issues?"];
-    [b singleOptionPickerForProperty:@selector(privateId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONFIRM_TYPE_CL2"]];
+    [b singleOptionPickerForProperty:@selector(privateId) WithPickerOptions:[MdesCode privateList]];
     
     [b labelWithText:@"What were the privacy issues?"];
     [b textFieldForProperty:@selector(privateDetail)];

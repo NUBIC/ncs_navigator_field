@@ -48,7 +48,6 @@
 @interface RootViewController () 
     @property(nonatomic,strong) NSArray* contacts;
     @property(nonatomic,strong) ContactNavigationTable* table;
-    @property(nonatomic,strong) BlockAlertView *alertView;
 @end
 
 @implementation RootViewController
@@ -60,7 +59,6 @@
 @synthesize syncIndicator=_syncIndicator;
 @synthesize administeredInstrument=_administeredInstrument;
 @synthesize serviceTicket=_serviceTicket;
-@synthesize alertView=_alertView;
 
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
@@ -264,7 +262,10 @@
     if ([[ApplicationSettings instance] coreSynchronizeConfigured]) {
         [self confirmSync];
     } else {
-        [self showAlertView:@"cas login"];
+        UIAlertView *message = 
+            [[UIAlertView alloc] initWithTitle:@"Configuration Error" message:@"Please go into settings and configure the NCS Field Application before trying to sync." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [message show];
     }
 }
 
@@ -311,7 +312,6 @@
 - (void) startCasLogin {
     CasLoginVC *login = [[CasLoginVC alloc] initWithCasConfiguration:[ApplicationSettings casConfiguration]];
     login.delegate = self;
-    
     [self presentViewController:login animated:YES completion:NULL];
 
 }
@@ -342,7 +342,6 @@
 }
 
 #pragma mark - Cas Login Delegate
-
 - (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket {
     NCSLog(@"My Successful login: %@", serviceTicket);
     [self dismissViewControllerAnimated:YES completion:^{
@@ -352,54 +351,24 @@
     }];
 }
 
--(void)failure:(NSError *)err
-{
-    
-}
-
 - (void)syncContacts:(CasServiceTicket*)serviceTicket {
-// Bumping the runloop so the UI can update and show the spinner
-// http://stackoverflow.com/questions/5685331/run-mbprogresshud-in-another-thread
+    // Bumping the runloop so the UI can update and show the spinner
+    // http://stackoverflow.com/questions/5685331/run-mbprogresshud-in-another-thread
     [[NSRunLoop currentRunLoop] runUntilDate: [NSDate distantPast]];
-
-    BOOL bSuccess=YES;
-    FieldworkSynchronizeOperation* sync = [[FieldworkSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
-    sync.delegate=self;
-    bSuccess = [sync perform];
     
-    if(!bSuccess) {
-        return;
-    }
+    FieldworkSynchronizeOperation* sync = [[FieldworkSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
+    
+    [sync perform];
     
     ProviderSynchronizeOperation* pSync = [[ProviderSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
-    pSync.delegate = self;
-    bSuccess = [pSync perform];
     
-    if(!bSuccess) //Should we stop right here? If the provider pull didn't work, stop.
-        return;
+    [pSync perform];
 
     NcsCodeSynchronizeOperation *nSync = [[NcsCodeSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
-    nSync.delegate = self;
-    bSuccess = [nSync perform];
+    
+    [nSync perform];
     
     self.contacts = [self contactsFromDataStore];
-}
-
-#pragma mark 
-#pragma mark - UserErrorDelegate
-
--(void)showAlertView:(NSString*)strError {
-    //https://github.com/gpambrozio/BlockAlertsAnd-ActionSheets
-    _alertView = [BlockAlertView alertWithTitle:@"Woops!" message:[NSString stringWithFormat:@"Well this is embarrassing! Something has gone wrong with your sync during %@. It could be your settings.",strError]];
-    
-    //Needed to prevent retain cycle.
-    __block RootViewController *blocksafeSelf = self;
-    
-    [_alertView setCancelButtonWithTitle:@"Try Again" block:^(){
-        [blocksafeSelf syncButtonWasPressed];}
-     ];
-    [_alertView setDestructiveButtonWithTitle:@"Cancel" block:^(){}];
-    [_alertView show];
 }
 
 #pragma RestKit

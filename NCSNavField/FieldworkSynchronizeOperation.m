@@ -18,7 +18,7 @@
 @implementation FieldworkSynchronizeOperation
 
 @synthesize ticket = _ticket;
-@synthesize delegate = _delegate;
+
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket {
     self = [super init];
     if (self) {

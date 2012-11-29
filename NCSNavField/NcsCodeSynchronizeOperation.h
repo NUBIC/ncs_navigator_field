@@ -7,17 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ProviderSynchronizeOperation.h" //Fix this later
-@class ProviderSynchronizeOperation;
 
 @interface NcsCodeSynchronizeOperation : NSObject <RKObjectLoaderDelegate> {
     CasServiceTicket* _ticket;
-    id<UserErrorDelegate> _delegate;
 }
 @property(nonatomic,strong) CasServiceTicket* ticket;
-@property(nonatomic,strong) id<UserErrorDelegate> delegate;
 
 - (id)initWithServiceTicket:(CasServiceTicket*)ticket;
-- (BOOL)perform;
+- (void)perform;
 
 @end
