@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>_XCCurrentVersionName</key>
-	<string>20121126191731_addMdes_and_dispcode_entities.xcdatamodel</string>
+	<string>20121129023553_change_instrument_plan_to_instrument_template_to_many_to_many.xcdatamodel</string>
 </dict>
 </plist>

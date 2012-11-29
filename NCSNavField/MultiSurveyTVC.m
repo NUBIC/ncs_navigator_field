@@ -23,7 +23,7 @@
 
 - (id)initWithSurveys:(NSArray*)surveys surveyResponseSetAssociations:(NSDictionary *)surveyResponseSetAssociations {
     
-    NUSurvey* s = [surveys objectAtIndex:0];
+    NUSurvey* s = [surveys count] > 0 ? [surveys objectAtIndex:0] : nil;
     NUResponseSet* rs = [surveyResponseSetAssociations objectForKey:[s uuid]];
     
     self = [self initWithSurvey:s responseSet:rs renderContext:[NSDictionary dictionary]];
