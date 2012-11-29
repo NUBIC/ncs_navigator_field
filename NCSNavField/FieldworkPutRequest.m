@@ -19,7 +19,6 @@
 @synthesize error = _error;
 
 @synthesize response = _response;
-@synthesize delegate = _delegate;
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket {
     self = [super init];
@@ -119,11 +118,14 @@
 }
 
 - (void)objectLoaderDidFinishLoading:(RKObjectLoader*)objectLoader {
-    [_delegate showAlertView:@"the fieldwork step"];
+    NCSLog(@"Success");
 }
 
 - (void)showErrorMessage:(NSString *)message {
-    [_delegate showAlertView:@"the fieldwork step"];
+    NCSLog(@"%@", message);
+
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ProviderSynchronizeOperation.h"
 
 @class CasProxyTicket;
 @class Fieldwork;
@@ -16,7 +15,6 @@
     CasServiceTicket* _ticket;
     NSString* _error;
     RKResponse* _response;
-    id<UserErrorDelegate> _delegate;
 }
 
 @property(nonatomic,strong) CasServiceTicket* ticket;
@@ -24,8 +22,6 @@
 @property(nonatomic,strong) NSString* error;
 
 @property(nonatomic,strong) RKResponse* response;
-
-@property(nonatomic,strong) id<UserErrorDelegate> delegate;
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket;
 

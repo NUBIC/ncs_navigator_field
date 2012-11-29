@@ -17,7 +17,7 @@
 #import "NSDate+Additions.h"
 
 @implementation FieldworkStepPostRequest
-@synthesize delegate = _delegate;
+
 @synthesize ticket = _ticket;
 
 @synthesize error = _error;
@@ -126,13 +126,15 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    [_delegate showAlertView:@"fieldwork step"];
+    self.error = [NSString stringWithFormat:@"Object loader error while retrieving fieldwork.\n%@", [error localizedDescription]];
+    [self showErrorMessage:self.error];
 }
 
 
 - (void)showErrorMessage:(NSString *)message {
     NCSLog(@"%@", message);
-     [_delegate showAlertView:@"fieldwork step"];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
 }
 
 

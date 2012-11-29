@@ -11,19 +11,12 @@
 #import "ApplicationSettings.h"
 #import "CasServiceTicket+Additions.h"
 
-@interface ProviderSynchronizeOperation () {
-    BOOL _bThrewException;
-}
-@property(atomic,assign) BOOL bThrewException;
-@end
-
 @implementation ProviderSynchronizeOperation
 
 @synthesize ticket = _ticket;
 @synthesize delegate = _delegate;
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket {
-    _bThrewException=NO;
     self = [super init];
     if (self) {
         _ticket = ticket;
@@ -59,19 +52,20 @@
     RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
     loader.method = RKRequestMethodGET;
     
-    [loader sendSynchronously];
-    return !_bThrewException;
+    RKResponse *response = [loader sendSynchronously];
+    if(response.failureError)
+        return NO;
+    else return YES;
 }
 
 - (void)showErrorMessage:(NSString *)message {
-    _bThrewException=YES;
     [_delegate showAlertView:@"the fetch for providers"];
 }
 
 #pragma mark - RKObjectLoaderDelegate Methods
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
-    _bThrewException=YES;
+    //id<UserErrorDelegate> delegate;
     [_delegate showAlertView:@"the fetch for providers"];
 
 }

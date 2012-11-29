@@ -58,7 +58,6 @@
     NCSLog(@"Backup path: %@", [backup path]);
     if (backup) {
         FieldworkPutRequest* put = [[FieldworkPutRequest alloc] initWithServiceTicket:self.ticket];
-        put.delegate=_delegate;
         if ([put send]) {
             [store remove];
             [ApplicationPersistentStoreBackup removeAll];
@@ -71,7 +70,6 @@
 
 - (BOOL)receive {
     FieldworkStepPostRequest* post = [[FieldworkStepPostRequest alloc] initWithServiceTicket:self.ticket];
-    post.delegate = _delegate;
     return [post send];
 }
 
