@@ -9,7 +9,7 @@
 #import "FieldworkSynchronizeOperation.h"
 #import "ApplicationPersistentStore.h"
 #import "FieldworkPutRequest.h"
-#import "FieldworkStepPostRequest.h"
+#import "FieldworkStepRetrieveContacts.h"
 #import "Fieldwork.h"
 #import "MergeStatusRequest.h"
 #import "MergeStatus.h"
@@ -28,30 +28,57 @@
 }
 
 - (BOOL) perform {
-    BOOL success = false;
-    if ([Fieldwork submission]) {
-        NSString* statusId = [self submit];
-        BOOL receive = false;
-        if (statusId) {
-            BOOL poll = [self poll:statusId];
-            if (poll) {
-                receive = [self receive];
+    @try {
+        //#1 Does Fieldwork Need to be submitted?
+        if ([Fieldwork fieldworkNeededToBeSubmitted]) {
+            //#2 Let's try to put that on the server.
+            NSString* statusPutRequest = [self putFieldwork];
+            
+            if (statusPutRequest) { 
+                BOOL didMergeStatusRequestSucceed = [self doMergeStatusRequest:statusPutRequest];
+                if (didMergeStatusRequestSucceed) {
+                    BOOL didRetrieveContacts = [self doFieldworkRetrieveContacts];
+                    if(!didRetrieveContacts)
+                    {
+                        [_delegate showAlertView:CONTACT_RETRIEVAL];
+                        return false;
+                    }
+                }
+                else {
+                    [_delegate showAlertView:MERGE_DATA];
+                    return false;
+                }
+            }
+            else {
+                [_delegate showAlertView:PUTTING_DATA_ON_SERVER];
+                return false;
             }
         }
-        success = statusId && receive;
-    } else if ([MergeStatus latest]) {
-        MergeStatus* ms = [MergeStatus latest];
-        BOOL poll = [self poll:ms.mergeStatusId];
-        if (poll) {
-            success = [self receive];
+        //Fieldwork does not need to be submitted, let's look at the latest merge status and see if it exists.
+        else if ([MergeStatus latestMergeStatus]) {
+            MergeStatus* ms = [MergeStatus latestMergeStatus];
+            BOOL didMergePollingWork = [self doMergeStatusRequest:ms.mergeStatusId];
+            if (didMergePollingWork) {
+                BOOL bDidReceiveContacts = [self doFieldworkRetrieveContacts];
+                if(!bDidReceiveContacts)
+                   [_delegate showAlertView:@"merging work"];
+                return bDidReceiveContacts;
+            }
         }
-    } else {
-        success = [self receive];
+        //There is no merge status to attempt. 
+        else {
+            BOOL bDidReceiveContacts = [self doFieldworkRetrieveContacts];
+            if(!bDidReceiveContacts)
+                [_delegate showAlertView:CONTACT_RETRIEVAL];
+            return bDidReceiveContacts;
+        }
     }
-    return success;
+    @catch(NSException *ex) {
+        @throw ex;
+    }
 }
 
-- (NSString*) submit {
+- (NSString*) putFieldwork {
     NSString* statusId = NULL;
     ApplicationPersistentStore* store = [ApplicationPersistentStore instance];
     ApplicationPersistentStoreBackup* backup = [store backup];
@@ -69,13 +96,13 @@
     return statusId;
 }
 
-- (BOOL)receive {
-    FieldworkStepPostRequest* post = [[FieldworkStepPostRequest alloc] initWithServiceTicket:self.ticket];
+- (BOOL)doFieldworkRetrieveContacts {
+    FieldworkStepRetrieveContacts* post = [[FieldworkStepRetrieveContacts alloc] initWithServiceTicket:self.ticket];
     post.delegate = _delegate;
     return [post send];
 }
 
-- (BOOL) poll:(NSString*)mergeStatusId {
+- (BOOL) doMergeStatusRequest:(NSString*)mergeStatusId {
     MergeStatusRequest* request = [[MergeStatusRequest alloc] initWithMergeStatusId:mergeStatusId andServiceTicket:self.ticket];
     return [request poll];
 }

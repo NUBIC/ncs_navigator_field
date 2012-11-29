@@ -264,7 +264,7 @@
     if ([[ApplicationSettings instance] coreSynchronizeConfigured]) {
         [self confirmSync];
     } else {
-        [self showAlertView:@"cas login"];
+        [self showAlertView:@"We were trying to pull your settings."];
     }
 }
 
@@ -360,37 +360,42 @@
 - (void)syncContacts:(CasServiceTicket*)serviceTicket {
 // Bumping the runloop so the UI can update and show the spinner
 // http://stackoverflow.com/questions/5685331/run-mbprogresshud-in-another-thread
-    [[NSRunLoop currentRunLoop] runUntilDate: [NSDate distantPast]];
+    @try {
+        [[NSRunLoop currentRunLoop] runUntilDate: [NSDate distantPast]];
 
-    BOOL bSuccess=YES;
-    FieldworkSynchronizeOperation* sync = [[FieldworkSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
-    sync.delegate=self;
-    bSuccess = [sync perform];
-    
-    if(!bSuccess) {
-        return;
+        BOOL bStepWasSuccessful;
+        //This has many, many substeps that we need to clarify.
+        FieldworkSynchronizeOperation* sync = [[FieldworkSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
+        sync.delegate=self;
+        bStepWasSuccessful = [sync perform];
+        
+        if(!bStepWasSuccessful) //Should we stop right here? If we failed on fieldwork synchronization.
+            return;
+        
+        ProviderSynchronizeOperation* pSync = [[ProviderSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
+        pSync.delegate = self;
+        bStepWasSuccessful = [pSync perform];
+        
+        if(!bStepWasSuccessful) //Should we stop right here? If the provider pull didn't work, stop.
+            return;
+
+        NcsCodeSynchronizeOperation *nSync = [[NcsCodeSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
+        nSync.delegate = self;
+        bStepWasSuccessful = [nSync perform];
+        
+        self.contacts = [self contactsFromDataStore];
     }
-    
-    ProviderSynchronizeOperation* pSync = [[ProviderSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
-    pSync.delegate = self;
-    bSuccess = [pSync perform];
-    
-    if(!bSuccess) //Should we stop right here? If the provider pull didn't work, stop.
-        return;
-
-    NcsCodeSynchronizeOperation *nSync = [[NcsCodeSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
-    nSync.delegate = self;
-    bSuccess = [nSync perform];
-    
-    self.contacts = [self contactsFromDataStore];
+    @catch (NSException *ex) {
+        NSLog(@"%@",[ex name]);
+    }
 }
 
-#pragma mark 
+#pragma mark
 #pragma mark - UserErrorDelegate
 
 -(void)showAlertView:(NSString*)strError {
     //https://github.com/gpambrozio/BlockAlertsAnd-ActionSheets
-    _alertView = [BlockAlertView alertWithTitle:@"Woops!" message:[NSString stringWithFormat:@"Well this is embarrassing! Something has gone wrong with your sync during %@. It could be your settings.",strError]];
+    _alertView = [BlockAlertView alertWithTitle:@"Woops!" message:[NSString stringWithFormat:@"Well this is embarrassing! Something has gone wrong with your sync. %@",strError]];
     
     //Needed to prevent retain cycle.
     __block RootViewController *blocksafeSelf = self;

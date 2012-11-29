@@ -69,7 +69,7 @@
 		007C1F4114FBFACA0020DF30 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 007C1F4014FBFACA0020DF30 /* Podfile */; };
 		00810AB81486D1AE0098C0D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF914112E5E0097A878 /* CoreData.framework */; };
 		00810B5F14896B070098C0D0 /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00810B5E14896B070098C0D0 /* DatePicker.m */; };
-		00816CB2154B3F830054C918 /* FieldworkStepPostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CB1154B3F830054C918 /* FieldworkStepPostRequest.m */; };
+		00816CB2154B3F830054C918 /* FieldworkStepRetrieveContacts.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CB1154B3F830054C918 /* FieldworkStepRetrieveContacts.m */; };
 		00816CB6154B49450054C918 /* FieldworkSynchronizeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CB5154B49450054C918 /* FieldworkSynchronizeOperation.m */; };
 		00816CBC154EF2350054C918 /* ApplicationPersistentStoreBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CBB154EF2350054C918 /* ApplicationPersistentStoreBackup.m */; };
 		00816CBF154F165E0054C918 /* ApplicationPersistentStoreBackupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CBE154F165D0054C918 /* ApplicationPersistentStoreBackupOperation.m */; };
@@ -432,8 +432,8 @@
 		007C1F4014FBFACA0020DF30 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		00810B5D14896B070098C0D0 /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
 		00810B5E14896B070098C0D0 /* DatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePicker.m; sourceTree = "<group>"; };
-		00816CB0154B3F830054C918 /* FieldworkStepPostRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkStepPostRequest.h; sourceTree = "<group>"; };
-		00816CB1154B3F830054C918 /* FieldworkStepPostRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkStepPostRequest.m; sourceTree = "<group>"; };
+		00816CB0154B3F830054C918 /* FieldworkStepRetrieveContacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkStepRetrieveContacts.h; sourceTree = "<group>"; };
+		00816CB1154B3F830054C918 /* FieldworkStepRetrieveContacts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkStepRetrieveContacts.m; sourceTree = "<group>"; };
 		00816CB4154B49450054C918 /* FieldworkSynchronizeOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkSynchronizeOperation.h; sourceTree = "<group>"; };
 		00816CB5154B49450054C918 /* FieldworkSynchronizeOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkSynchronizeOperation.m; sourceTree = "<group>"; };
 		00816CBA154EF2350054C918 /* ApplicationPersistentStoreBackup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationPersistentStoreBackup.h; sourceTree = "<group>"; };
@@ -965,6 +965,7 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				00AB8E9216431CEA0097F7CD /* Categories */,
 				22B8E4A416643B6A00640DE8 /* DispositionCode.h */,
 				22B8E4A516643B6A00640DE8 /* DispositionCode.m */,
 				009A48A9165C48A000601959 /* NcsCodeSynchronizeOperation.h */,
@@ -985,15 +986,14 @@
 				00305A01164AC31C00A086F8 /* Event.m */,
 				001AC578164AC01700E3ECBD /* Provider.h */,
 				001AC579164AC01700E3ECBD /* Provider.m */,
-				00AB8E9216431CEA0097F7CD /* Categories */,
 				4F53118315FA58A1006F5BB2 /* InstrumentPlan.h */,
 				4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */,
 				00DC62181576845B00E5F825 /* MergeStatusRequest.h */,
 				00DC62191576845B00E5F825 /* MergeStatusRequest.m */,
 				00DE998515532F8400C3A0FB /* NSString+Additions.h */,
 				00DE998615532F8400C3A0FB /* NSString+Additions.m */,
-				00816CB0154B3F830054C918 /* FieldworkStepPostRequest.h */,
-				00816CB1154B3F830054C918 /* FieldworkStepPostRequest.m */,
+				00816CB0154B3F830054C918 /* FieldworkStepRetrieveContacts.h */,
+				00816CB1154B3F830054C918 /* FieldworkStepRetrieveContacts.m */,
 				00816CBA154EF2350054C918 /* ApplicationPersistentStoreBackup.h */,
 				00816CBB154EF2350054C918 /* ApplicationPersistentStoreBackup.m */,
 				00816CBD154F165D0054C918 /* ApplicationPersistentStoreBackupOperation.h */,
@@ -1403,7 +1403,7 @@
 				0095430F153E62040018DAC3 /* InstrumentVC.m in Sources */,
 				006C26DB1541EF3200D9B3B1 /* ApplicationPersistentStore.m in Sources */,
 				00D1BAEB154775CB000097E7 /* FieldworkPutRequest.m in Sources */,
-				00816CB2154B3F830054C918 /* FieldworkStepPostRequest.m in Sources */,
+				00816CB2154B3F830054C918 /* FieldworkStepRetrieveContacts.m in Sources */,
 				00816CB6154B49450054C918 /* FieldworkSynchronizeOperation.m in Sources */,
 				00816CBC154EF2350054C918 /* ApplicationPersistentStoreBackup.m in Sources */,
 				00816CBF154F165E0054C918 /* ApplicationPersistentStoreBackupOperation.m in Sources */,

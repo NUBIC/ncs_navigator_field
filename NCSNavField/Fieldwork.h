@@ -24,7 +24,7 @@
 
 @property(nonatomic,strong) NSSet* instrumentTemplates;
 
-+ (Fieldwork*)submission;
++ (Fieldwork*)fieldworkNeededToBeSubmitted;
 
 @end
 

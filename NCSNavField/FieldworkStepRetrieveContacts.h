@@ -10,7 +10,7 @@
 #import "ProviderSynchronizeOperation.h"
 
 @class ProviderSynchronizeOperation;
-@interface FieldworkStepPostRequest : NSObject<RKObjectLoaderDelegate> {
+@interface FieldworkStepRetrieveContacts : NSObject<RKObjectLoaderDelegate> {
     CasServiceTicket* _ticket;
     NSString* _error;
     RKResponse* _response;
@@ -25,15 +25,10 @@
 @property(nonatomic,strong) id<UserErrorDelegate> delegate;
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket;
-
 - (BOOL) send;
-
 - (BOOL) isSuccessful;
-
 - (void)loadDataWithProxyTicket:(CasProxyTicket*)ticket;
-
 - (void)retrieveContacts:(CasServiceTicket*)serviceTicket;
 
-- (void)showErrorMessage:(NSString *)message;
 
 @end

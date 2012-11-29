@@ -27,7 +27,7 @@
     return [NSArray array];
 }
 
-+ (Fieldwork*)submission {
++ (Fieldwork*)fieldworkNeededToBeSubmitted {
     Fieldwork* f = [[Fieldwork findAllSortedBy:@"retrievedDate" ascending:YES] lastObject];
     return [f.contacts count] > 0 ? f : nil;
 }

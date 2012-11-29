@@ -24,7 +24,7 @@
 
 - (NSString*)submit;
 
-- (BOOL)receive;
+- (BOOL)doFieldworkRetrieveContacts;
 
 - (BOOL)poll:(NSString*)mergeStatusId;
 
