@@ -15443,7 +15443,7 @@
                                         ], 
                                         "data_export_identifier": "PBS_ELIG_SCREENER.NAME_PRACTICE", 
                                         "help_text": "ENTER THE DOCTOR'S NAME, CLINIC NAME, OR THE PRACTICE NAME FOR THE NAME OF THE PRACTICE", 
-                                        "reference_identifier": "NAME_PRACTICE", 
+                                        "reference_identifier": "PREPOPULATED_NAME_PRACTICE", 
                                         "text": "FULL NAME OF THE PRENATAL PROVIDER THAT IS ASSOCIATED WITH THE SAMPLED WOMAN", 
                                         "uuid": "27d416f8-ee96-4ca7-b223-0b429656ed2e"
                                     }, 
