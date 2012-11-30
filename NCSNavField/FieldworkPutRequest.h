@@ -28,23 +28,12 @@
 @property(nonatomic,strong) id<UserErrorDelegate> delegate;
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket;
-
 - (BOOL) send;
-
 - (BOOL) isSuccessful;
-
 - (BOOL)send:(CasProxyTicket*)ticket;
-
-- (CasProxyTicket*) obtainProxyTicket:(CasServiceTicket*)st;
-
 - (RKObjectManager *)objectManager:(CasProxyTicket *)proxyTicket;
-
 - (NSString*) mergeStatusId;
-
 - (RKObjectLoader *)objectLoader:(Fieldwork *)submission objectManager:(RKObjectManager *)objectManager;
-
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error;
-
-- (void)showErrorMessage:(NSString *)message;
 
 @end

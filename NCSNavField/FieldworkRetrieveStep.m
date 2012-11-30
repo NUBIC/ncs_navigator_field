@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import "FieldworkStepRetrieveContacts.h"
+#import "FieldworkRetrieveStep.h"
 #import "ApplicationSettings.h"
 #import "Fieldwork.h"
 #import "Participant.h"
@@ -16,15 +16,16 @@
 #import "ApplicationSettings.h"
 #import "NSDate+Additions.h"
 #import "CasServiceTicket+Additions.h"
+#import "FieldworkSynchronizationException.h"
 
-@interface FieldworkStepRetrieveContacts() {
+@interface FieldworkRetrieveStep() {
     BOOL _bRequestWorked;
 }
 @property (nonatomic,assign) BOOL bRequestWorked;
 
 @end
 
-@implementation FieldworkStepRetrieveContacts
+@implementation FieldworkRetrieveStep
 
 @synthesize delegate = _delegate;
 @synthesize ticket = _ticket;
@@ -50,7 +51,7 @@
     CasProxyTicket *pt = [serviceTicket obtainProxyTicket:&err];
     if(err) {
         [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
-        NSException *ex = [[NSException alloc] initWithName:@"retrieving contacts failed because of CAS" reason:nil userInfo:nil];
+        FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"retrieving contacts failed because of CAS" reason:nil userInfo:nil];
         @throw ex;
     }
     else {
@@ -96,14 +97,14 @@
     if (![[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:&error]) {
         NCSLog(@"Error saving fieldwork location");
         [_delegate showAlertView:STORING_CONTACTS];
-        NSException *ex = [[NSException alloc] initWithName:@"Error saving fieldwork location" reason:nil userInfo:nil];
+        FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"Error saving fieldwork location" reason:nil userInfo:nil];
         @throw ex;
     }
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
     [_delegate showAlertView:CONTACT_RETRIEVAL];
-    NSException *ex = [[NSException alloc] initWithName:@"object Loader failure in Retrieving Contacts" reason:nil userInfo:nil];
+    FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"object Loader failure in Retrieving Contacts" reason:nil userInfo:nil];
     @throw ex;
 }
 

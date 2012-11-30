@@ -385,7 +385,11 @@
         
         self.contacts = [self contactsFromDataStore];
     }
-    @catch (NSException *ex) {
+    //In the future, these two catches will diverge. Right now, let's just put a placeholder. 
+    @catch (FieldworkSynchronizationException *ex) {
+        NSLog(@"%@",[ex name]);
+    }
+    @catch(NSException *ex) {
         NSLog(@"%@",[ex name]);
     }
 }

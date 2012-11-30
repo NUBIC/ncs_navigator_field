@@ -20,6 +20,4 @@
 +(void)createMdesCode:(NSString*)t listName:(NSString*)li localCode:(NSNumber*)lc;
 +(NSArray*)retrieveAllObjectsForListName:(NSString*)listName;
 +(NSArray*)all;
-+(NSArray*)breakOff;
-+(NSArray*)privateList;
 @end

@@ -10,12 +10,11 @@
 #import "CasServiceTicket.h"
 #import "ApplicationSettings.h"
 #import "CasServiceTicket+Additions.h"
+#import "FieldworkSynchronizationException.h"
 
 @interface ProviderSynchronizeOperation () {
     
-}
-@property(atomic,assign) BOOL bThrewException;
-@end
+}@end
 
 @implementation ProviderSynchronizeOperation
 
@@ -23,7 +22,6 @@
 @synthesize delegate = _delegate;
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket {
-    _bThrewException=NO;
     self = [super init];
     if (self) {
         _ticket = ticket;
@@ -36,7 +34,7 @@
     CasProxyTicket *pt = [self.ticket obtainProxyTicket:&er];
     if([er length]>0) {
         [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
-        NSException *ex = [[NSException alloc] initWithName:er reason:nil userInfo:nil];
+        FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:er reason:nil userInfo:nil];
         @throw ex;
     }
     else
@@ -63,7 +61,7 @@
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
     [_delegate showAlertView:PROVIDER_RETRIEVAL];
-    NSException *ex = [[NSException alloc] initWithName:@"Retrieving providers" reason:nil userInfo:nil];
+    FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"Retrieving providers" reason:nil userInfo:nil];
     @throw ex;
 
 }

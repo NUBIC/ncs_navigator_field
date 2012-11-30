@@ -12,6 +12,7 @@
 #import "ApplicationSettings.h"
 #import "RKRequest+Additions.h"
 #import "CasServiceTicket+Additions.h"
+#import "FieldworkSynchronizationException.h"
 
 @implementation MergeStatusRequest
 
@@ -43,7 +44,7 @@ const static NSInteger POLL_REPEATS = 3;
     if(error)
     {
         [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
-        NSException *exServerDown = [[NSException alloc] initWithName:@"CAS Server is down" reason:@"Server is down" userInfo:nil];
+        FieldworkSynchronizationException *exServerDown = [[FieldworkSynchronizationException alloc] initWithName:@"CAS Server is down" reason:@"Server is down" userInfo:nil];
         @throw exServerDown;
     }
     if (pt) {
@@ -87,7 +88,7 @@ const static NSInteger POLL_REPEATS = 3;
     }
     if (self.error) {
         [_delegate showAlertView:MERGE_DATA];
-        NSException *ex = [[NSException alloc] initWithName:self.error reason:nil userInfo:nil];
+        FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:self.error reason:nil userInfo:nil];
         @throw ex;
     }
     return TRUE;
@@ -100,13 +101,13 @@ const static NSInteger POLL_REPEATS = 3;
 - (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error {
     NSString* errorMsg = [NSString stringWithFormat:@"Problem checking merge status.\n%@", [error localizedDescription]];
     [_delegate showAlertView:MERGE_DATA];
-    NSException *ex = [[NSException alloc] initWithName:errorMsg reason:nil userInfo:nil];
+    FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:errorMsg reason:nil userInfo:nil];
     @throw ex;
 }
 
 - (void)requestDidTimeout:(RKRequest *)request {
     [_delegate showAlertView:MERGE_DATA];
-    NSException *ex = [[NSException alloc] initWithName:@"Merge status check timed out" reason:nil userInfo:nil];
+    FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"Merge status check timed out" reason:nil userInfo:nil];
     @throw ex;
 }
 

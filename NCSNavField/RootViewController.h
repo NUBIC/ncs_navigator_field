@@ -15,6 +15,7 @@
 #import "BlockUI.h"
 #import "BlockAlertView.h"
 #import "BlockBackground.h"
+#import "FieldworkSynchronizationException.h"
 
 @class ContactDisplayController;
 @class Instrument;
@@ -41,7 +42,6 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 @property(nonatomic,strong) CasServiceTicket* serviceTicket;
 - (void)toggleDeleteButton;
 - (void)purgeDataStore;
-- (void)loadSurveyor:(Instrument*)instrument;
 - (void)didSelectRow:(Row*)row;
 - (void)syncButtonWasPressed;
 - (void)confirmSync;

@@ -10,6 +10,7 @@
 #import "CasServiceTicket.h"
 #import "ApplicationSettings.h"
 #import "CasServiceTicket+Additions.h"
+#import "FieldworkSynchronizationException.h"
 
 @interface NcsCodeSynchronizeOperation ()
 -(void)sendRequestAndLoadDataWithProxyTicket:(CasProxyTicket*)ticket;
@@ -37,7 +38,7 @@
     CasProxyTicket *pt = [self.ticket obtainProxyTicket:&error];
     if([error length]>0) {
         [_delegate showAlertView:NCS_CODE_RETRIEVAL];
-        NSException *exception = [[NSException alloc] initWithName:@"Cas error in NCS Code retrieval" reason:nil userInfo:nil];
+        FieldworkSynchronizationException *exception = [[FieldworkSynchronizationException alloc] initWithName:@"Cas error in NCS Code retrieval" reason:nil userInfo:nil];
         @throw exception;
     }
     else {
@@ -61,7 +62,7 @@
     RKResponse *req = [loader sendSynchronously];
     if(req.failureError) {
         [_delegate showAlertView:NCS_CODE_RETRIEVAL];
-        NSException *exception = [[NSException alloc] initWithName:@"NCS Code Retrieval" reason:nil userInfo:nil];
+        FieldworkSynchronizationException *exception = [[FieldworkSynchronizationException alloc] initWithName:@"NCS Code Retrieval" reason:nil userInfo:nil];
         @throw exception;
     }
 }
@@ -70,7 +71,7 @@
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
     [_delegate showAlertView:NCS_CODE_RETRIEVAL];
-    NSException *exception = [[NSException alloc] initWithName:@"NCS Code Retrieval" reason:nil userInfo:nil];
+    FieldworkSynchronizationException *exception = [[FieldworkSynchronizationException alloc] initWithName:@"NCS Code Retrieval" reason:nil userInfo:nil];
     @throw exception;
 }
 

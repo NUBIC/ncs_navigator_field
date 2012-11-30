@@ -11,6 +11,7 @@
 #import "Fieldwork.h"
 #import "MergeStatus.h"
 #import "CasServiceTicket+Additions.h"
+#import "FieldworkSynchronizationException.h"
 
 @implementation FieldworkPutRequest
 
@@ -36,7 +37,7 @@
     CasProxyTicket *pt = [self.ticket obtainProxyTicket:&str];
     if(self.error) {
         [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
-        NSException *exServerDown = [[NSException alloc] initWithName:@"CAS Server is down" reason:@"Server is down" userInfo:nil];
+        FieldworkSynchronizationException *exServerDown = [[FieldworkSynchronizationException alloc] initWithName:@"CAS Server is down" reason:@"Server is down" userInfo:nil];
         @throw exServerDown;
     }
         
@@ -49,7 +50,7 @@
 
 - (BOOL)send:(CasProxyTicket*)proxyTicket {
     if (proxyTicket) {
-        Fieldwork* submission = [Fieldwork fieldworkToBeSubmitted];
+        Fieldwork* submission = [Fieldwork submission];
         if (submission) {
             RKObjectManager *objectManager = [self objectManager:proxyTicket];
             RKObjectLoader* loader = [self objectLoader:submission objectManager:objectManager];
@@ -100,7 +101,7 @@
         NCSLog(@"Error: Underlying Error: %@", [error.userInfo valueForKey:NSUnderlyingErrorKey]);
         self.error = [NSString stringWithFormat:@"Error while pushing fieldwork.\n%@", [error localizedDescription]];
         [_delegate showAlertView:PUTTING_DATA_ON_SERVER];
-        NSException *exServerDown = [[NSException alloc] initWithName:self.error reason:nil userInfo:nil];
+        FieldworkSynchronizationException *exServerDown = [[FieldworkSynchronizationException alloc] initWithName:self.error reason:nil userInfo:nil];
         @throw exServerDown;
     }
 }

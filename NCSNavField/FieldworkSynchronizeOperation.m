@@ -9,7 +9,7 @@
 #import "FieldworkSynchronizeOperation.h"
 #import "ApplicationPersistentStore.h"
 #import "FieldworkPutRequest.h"
-#import "FieldworkStepRetrieveContacts.h"
+#import "FieldworkRetrieveStep.h"
 #import "Fieldwork.h"
 #import "MergeStatusRequest.h"
 #import "MergeStatus.h"
@@ -36,7 +36,7 @@
 - (BOOL) perform {
     @try {
         //#1 Does Fieldwork Need to be submitted?
-        if ([Fieldwork fieldworkToBeSubmitted]) {
+        if ([Fieldwork submission]) {
             //#2 Let's try to put that on the server.
             NSString* statusPutRequest = [self putFieldwork];
             
@@ -106,7 +106,7 @@
 }
 
 - (BOOL)retrieveContacts {
-    FieldworkStepRetrieveContacts* post = [[FieldworkStepRetrieveContacts alloc] initWithServiceTicket:self.ticket];
+    FieldworkRetrieveStep* post = [[FieldworkRetrieveStep alloc] initWithServiceTicket:self.ticket];
     post.delegate = _delegate;
     return [post send];
 }
