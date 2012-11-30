@@ -24,6 +24,11 @@
 -(BOOL)isEmpty {
     return [self length] == 0;
 }
+-(BOOL)isEmptyOrNil {
+    if(self)
+        return [self isEmpty];
+    return YES;
+}
 
 -(NSDate*)fromYYYYMMDD {
     NSDateFormatter* f = [[NSDateFormatter alloc] init];

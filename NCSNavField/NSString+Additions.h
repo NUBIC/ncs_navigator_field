@@ -14,4 +14,5 @@
 -(NSDate*)fromYYYYMMDD;
 - (BOOL)isBlank;
 - (BOOL)isEmpty;
+-(BOOL)isEmptyOrNil;
 @end
