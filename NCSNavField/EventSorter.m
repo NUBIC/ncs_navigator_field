@@ -29,6 +29,7 @@ static EventSorter *gInstance = NULL;
     return self;
 }
 -(NSDictionary*)sortOrder {
+    //Lookup table is NSString*->NSNumber*
     return _dictionary;
 }
 
@@ -51,14 +52,16 @@ static EventSorter *gInstance = NULL;
     if ((nil == fileString)||(error != nil)) {
         //throw exception, this shouldn't happen.
         NSLog(@"%@",[error description]);
-        [NSException raise:@"File IO issue" format:nil];
+        [NSException raise:@"File IO issue in EventSorter" format:nil];
     }
     //fileString is good, so let's parse it.
     NSArray *rows = [fileString csvRows];
     for(NSArray *innerArray in rows)
     {
-        //Element 1 = value, Element 0=key
-        [_dictionary setObject:[innerArray objectAtIndex:1] forKey:[innerArray objectAtIndex:0]];
+        //NSString*->NSNumber*
+        NSNumber *n = [[[innerArray objectAtIndex:0] stringByTrimmingCharactersInSet:
+                       [NSCharacterSet whitespaceCharacterSet]] toNumber];
+        [_dictionary setObject:n forKey:[innerArray objectAtIndex:1]];
     }
 }
 

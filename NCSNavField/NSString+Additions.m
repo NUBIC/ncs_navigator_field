@@ -38,4 +38,8 @@
     return [f dateFromString:self];
 }
 
+-(NSNumber*)toNumber {
+    return [NSNumber numberWithInt:[self intValue]];
+}
+
 @end

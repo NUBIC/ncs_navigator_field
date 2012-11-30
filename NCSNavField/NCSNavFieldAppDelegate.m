@@ -12,7 +12,6 @@
 #import "RestKitSettings.h"
 #import "ApplicationSettings.h"
 #import "TestFlightSettings.h"
-#import "EventSorter.h"
 
 @implementation NCSNavFieldAppDelegate
 
@@ -53,8 +52,6 @@
     }
     @catch(NSException *ex) {
         NSLog(@"Something went wrong: %@",[ex reason]);
-        /*UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Something went wrong." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];*/
     }
 }
 

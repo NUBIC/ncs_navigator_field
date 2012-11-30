@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NSString+ParsingExtensions.h"
+#import "NSString+Additions.h"
 /*
 
  Event Sort falls the GoF Singleton design pattern. It reads from a file called Event_Type_Sort_Order
