@@ -10,6 +10,11 @@
 #import "CasServiceTicket.h"
 #import "ApplicationSettings.h"
 #import "CasServiceTicket+Additions.h"
+#import "FieldworkSynchronizationException.h"
+
+@interface NcsCodeSynchronizeOperation ()
+-(void)sendRequestAndLoadDataWithProxyTicket:(CasProxyTicket*)ticket;
+@end
 
 @implementation NcsCodeSynchronizeOperation
 
@@ -30,16 +35,19 @@
         [self.ticket present];
     }
     NSString *error = [NSString new];
-    CasProxyTicket *pt = [self.ticket obtainProxyTicket:error];
+    CasProxyTicket *pt = [self.ticket obtainProxyTicket:&error];
     if([error length]>0) {
-        [self showErrorMessage:error];
-        return NO;
+        [_delegate showAlertView:NCS_CODE_RETRIEVAL];
+        FieldworkSynchronizationException *exception = [[FieldworkSynchronizationException alloc] initWithName:@"Cas error in NCS Code retrieval" reason:nil userInfo:nil];
+        @throw exception;
     }
-        else
-            return [self sendRequestAndLoadDataWithProxyTicket:pt];
+    else {
+        [self sendRequestAndLoadDataWithProxyTicket:pt];
+        return YES;
+    }
 }
 
-- (BOOL)sendRequestAndLoadDataWithProxyTicket:(CasProxyTicket*)ticket {
+- (void)sendRequestAndLoadDataWithProxyTicket:(CasProxyTicket*)ticket {
     // Load the object model via RestKit
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
@@ -52,24 +60,24 @@
     loader.method = RKRequestMethodGET;
     
     RKResponse *req = [loader sendSynchronously];
-    if(req.failureError)
-        return NO;
-    else return YES;
-}
-
-- (void)showErrorMessage:(NSString *)message {
-    [_delegate showAlertView:@"NCS retrieval"];
+    if(req.failureError) {
+        [_delegate showAlertView:NCS_CODE_RETRIEVAL];
+        FieldworkSynchronizationException *exception = [[FieldworkSynchronizationException alloc] initWithName:@"NCS Code Retrieval" reason:nil userInfo:nil];
+        @throw exception;
+    }
 }
 
 #pragma mark - RKObjectLoaderDelegate Methods
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
-    [_delegate showAlertView:@"NCS retrieval"];
-    
+    [_delegate showAlertView:NCS_CODE_RETRIEVAL];
+    FieldworkSynchronizationException *exception = [[FieldworkSynchronizationException alloc] initWithName:@"NCS Code Retrieval" reason:nil userInfo:nil];
+    @throw exception;
 }
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects
 {
+    //Diagnostics
     NSLog(@"Number of objects returned %d",[objects count]);
 }
 

@@ -8,9 +8,10 @@
 
 #import "CasServiceTicket+Additions.h"
 #import "ApplicationSettings.h"
+#import "ProviderSynchronizeOperation.h"
 
 @implementation CasServiceTicket (Additions)
-- (CasProxyTicket*) obtainProxyTicket:(NSString*)error {
+- (CasProxyTicket*) obtainProxyTicket:(NSString**)error {
     CasProxyTicket* pt = NULL;
     if (!self.pgt) {
         [self present];
@@ -27,10 +28,10 @@
             NCSLog(@"Proxy ticket successfully obtained: %@", pending.proxyTicket);
             pt = pending;
         } else {
-            error = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", pending.message];
+            *error = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", pending.message];
         }
     } else {
-        error = [NSString stringWithFormat:@"Presenting service ticket failed: %@", [self message]];
+        *error = [NSString stringWithFormat:@"Presenting service ticket failed: %@", [self message]];
     }
     return pt;
 }

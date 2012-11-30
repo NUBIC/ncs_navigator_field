@@ -20,8 +20,6 @@
 @property(nonatomic,strong) NSString *listName;
 
 - (id) initWithText:(NSString*)t value:(NSInteger)v;
--(NSDictionary*)toDict:(NSString*)listName;
--(NSString*)toJSON:(NSString*)listName;
 + (MdesCode*) findWithValue:(NSInteger)value fromOptions:(NSArray*)options;
 -(NSNumber*)value;
 @end

@@ -10,12 +10,11 @@
 #import "CasServiceTicket.h"
 #import "ApplicationSettings.h"
 #import "CasServiceTicket+Additions.h"
+#import "FieldworkSynchronizationException.h"
 
 @interface ProviderSynchronizeOperation () {
-    BOOL _bThrewException;
-}
-@property(atomic,assign) BOOL bThrewException;
-@end
+    
+}@end
 
 @implementation ProviderSynchronizeOperation
 
@@ -23,7 +22,6 @@
 @synthesize delegate = _delegate;
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket {
-    _bThrewException=NO;
     self = [super init];
     if (self) {
         _ticket = ticket;
@@ -32,21 +30,18 @@
 }
 
 - (BOOL)perform {
-    if (!self.ticket.pgt) {
-        NCSLog(@"Presenting service ticket");
-        [self.ticket present];
-    }
-    NSString *error = [NSString new];
-    CasProxyTicket *pt = [self.ticket obtainProxyTicket:error];
-    if([error length]>0) {
-        [self showErrorMessage:error];
-        return NO;
+    NSString *er;
+    CasProxyTicket *pt = [self.ticket obtainProxyTicket:&er];
+    if([er length]>0) {
+        [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
+        FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:er reason:nil userInfo:nil];
+        @throw ex;
     }
     else
-       return [self sendRequestAndLoadDataWithProxyTicket:pt];
+       return [self sendRequestForProviders:pt];
 }
 
-- (BOOL)sendRequestAndLoadDataWithProxyTicket:(CasProxyTicket*)ticket {
+- (BOOL)sendRequestForProviders:(CasProxyTicket*)ticket {
     // Load the object model via RestKit
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
@@ -54,25 +49,20 @@
     
     NSString* path = @"/api/v1/providers";
     
-    
     NCSLog(@"Requesting data from %@", path);
     RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
     loader.method = RKRequestMethodGET;
     
     [loader sendSynchronously];
-    return !_bThrewException;
-}
-
-- (void)showErrorMessage:(NSString *)message {
-    _bThrewException=YES;
-    [_delegate showAlertView:@"the fetch for providers"];
+    return TRUE;
 }
 
 #pragma mark - RKObjectLoaderDelegate Methods
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
-    _bThrewException=YES;
-    [_delegate showAlertView:@"the fetch for providers"];
+    [_delegate showAlertView:PROVIDER_RETRIEVAL];
+    FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"Retrieving providers" reason:nil userInfo:nil];
+    @throw ex;
 
 }
 

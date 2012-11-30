@@ -69,7 +69,7 @@
 		007C1F4114FBFACA0020DF30 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 007C1F4014FBFACA0020DF30 /* Podfile */; };
 		00810AB81486D1AE0098C0D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF914112E5E0097A878 /* CoreData.framework */; };
 		00810B5F14896B070098C0D0 /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00810B5E14896B070098C0D0 /* DatePicker.m */; };
-		00816CB2154B3F830054C918 /* FieldworkStepPostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CB1154B3F830054C918 /* FieldworkStepPostRequest.m */; };
+		00816CB2154B3F830054C918 /* FieldworkRetrieveStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CB1154B3F830054C918 /* FieldworkRetrieveStep.m */; };
 		00816CB6154B49450054C918 /* FieldworkSynchronizeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CB5154B49450054C918 /* FieldworkSynchronizeOperation.m */; };
 		00816CBC154EF2350054C918 /* ApplicationPersistentStoreBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CBB154EF2350054C918 /* ApplicationPersistentStoreBackup.m */; };
 		00816CBF154F165E0054C918 /* ApplicationPersistentStoreBackupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CBE154F165D0054C918 /* ApplicationPersistentStoreBackupOperation.m */; };
@@ -155,6 +155,7 @@
 		22226BED1666ED7D005CCE71 /* button_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 22226BD31666ED7D005CCE71 /* button_red.png */; };
 		22226BEE1666ED7D005CCE71 /* button_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22226BD41666ED7D005CCE71 /* button_red@2x.png */; };
 		2237A32E163B294B009E3A13 /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2237A32D163B294B009E3A13 /* UIView+Additions.m */; };
+		22942CD216692B7300242588 /* FieldworkSynchronizationException.m in Sources */ = {isa = PBXBuildFile; fileRef = 22942CD116692B7300242588 /* FieldworkSynchronizationException.m */; };
 		22B8E4A616643B6A00640DE8 /* DispositionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B8E4A516643B6A00640DE8 /* DispositionCode.m */; };
 		4F53118515FA58A1006F5BB2 /* InstrumentPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */; };
 		D1CACF1A1F944E92AB51AE74 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 493CC93326804A8ABCA31763 /* libPods.a */; };
@@ -432,8 +433,8 @@
 		007C1F4014FBFACA0020DF30 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		00810B5D14896B070098C0D0 /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
 		00810B5E14896B070098C0D0 /* DatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePicker.m; sourceTree = "<group>"; };
-		00816CB0154B3F830054C918 /* FieldworkStepPostRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkStepPostRequest.h; sourceTree = "<group>"; };
-		00816CB1154B3F830054C918 /* FieldworkStepPostRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkStepPostRequest.m; sourceTree = "<group>"; };
+		00816CB0154B3F830054C918 /* FieldworkRetrieveStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkRetrieveStep.h; sourceTree = "<group>"; };
+		00816CB1154B3F830054C918 /* FieldworkRetrieveStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkRetrieveStep.m; sourceTree = "<group>"; };
 		00816CB4154B49450054C918 /* FieldworkSynchronizeOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkSynchronizeOperation.h; sourceTree = "<group>"; };
 		00816CB5154B49450054C918 /* FieldworkSynchronizeOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkSynchronizeOperation.m; sourceTree = "<group>"; };
 		00816CBA154EF2350054C918 /* ApplicationPersistentStoreBackup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationPersistentStoreBackup.h; sourceTree = "<group>"; };
@@ -577,6 +578,8 @@
 		22226BD41666ED7D005CCE71 /* button_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_red@2x.png"; sourceTree = "<group>"; };
 		2237A32C163B294B009E3A13 /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		2237A32D163B294B009E3A13 /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
+		22942CD016692B7300242588 /* FieldworkSynchronizationException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkSynchronizationException.h; sourceTree = "<group>"; };
+		22942CD116692B7300242588 /* FieldworkSynchronizationException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkSynchronizationException.m; sourceTree = "<group>"; };
 		22B8E4A21664337C00640DE8 /* 20121126191731_addMdes_and_dispcode_entities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121126191731_addMdes_and_dispcode_entities.xcdatamodel; sourceTree = "<group>"; };
 		22B8E4A416643B6A00640DE8 /* DispositionCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispositionCode.h; sourceTree = "<group>"; };
 		22B8E4A516643B6A00640DE8 /* DispositionCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispositionCode.m; sourceTree = "<group>"; };
@@ -683,6 +686,7 @@
 		0026E66E140347E700355BCB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				22942CCF16692B3800242588 /* Exceptions */,
 				22226B081666B82E005CCE71 /* FriendlyActionSheet */,
 				00FF37E21417CA320009B1D4 /* Presenters */,
 				006EBEE6141157BA003D69CF /* Models */,
@@ -967,6 +971,7 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				00AB8E9216431CEA0097F7CD /* Categories */,
 				22B8E4A416643B6A00640DE8 /* DispositionCode.h */,
 				22B8E4A516643B6A00640DE8 /* DispositionCode.m */,
 				009A48A9165C48A000601959 /* NcsCodeSynchronizeOperation.h */,
@@ -987,15 +992,14 @@
 				00305A01164AC31C00A086F8 /* Event.m */,
 				001AC578164AC01700E3ECBD /* Provider.h */,
 				001AC579164AC01700E3ECBD /* Provider.m */,
-				00AB8E9216431CEA0097F7CD /* Categories */,
 				4F53118315FA58A1006F5BB2 /* InstrumentPlan.h */,
 				4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */,
 				00DC62181576845B00E5F825 /* MergeStatusRequest.h */,
 				00DC62191576845B00E5F825 /* MergeStatusRequest.m */,
 				00DE998515532F8400C3A0FB /* NSString+Additions.h */,
 				00DE998615532F8400C3A0FB /* NSString+Additions.m */,
-				00816CB0154B3F830054C918 /* FieldworkStepPostRequest.h */,
-				00816CB1154B3F830054C918 /* FieldworkStepPostRequest.m */,
+				00816CB0154B3F830054C918 /* FieldworkRetrieveStep.h */,
+				00816CB1154B3F830054C918 /* FieldworkRetrieveStep.m */,
 				00816CBA154EF2350054C918 /* ApplicationPersistentStoreBackup.h */,
 				00816CBB154EF2350054C918 /* ApplicationPersistentStoreBackup.m */,
 				00816CBD154F165D0054C918 /* ApplicationPersistentStoreBackupOperation.h */,
@@ -1135,6 +1139,7 @@
 			isa = PBXGroup;
 			children = (
 				22226BB81666ED7D005CCE71 /* images */,
+				22226BB31666ED0E005CCE71 /* BlockUI.h */,
 				22226BAB1666ED0B005CCE71 /* BlockActionSheet.h */,
 				22226BAC1666ED0B005CCE71 /* BlockActionSheet.m */,
 				22226BAD1666ED0B005CCE71 /* BlockAlertView.h */,
@@ -1143,7 +1148,6 @@
 				22226BB01666ED0D005CCE71 /* BlockBackground.m */,
 				22226BB11666ED0D005CCE71 /* BlockTextPromptAlertView.h */,
 				22226BB21666ED0E005CCE71 /* BlockTextPromptAlertView.m */,
-				22226BB31666ED0E005CCE71 /* BlockUI.h */,
 			);
 			name = FriendlyActionSheet;
 			path = ..;
@@ -1206,6 +1210,15 @@
 				2237A32D163B294B009E3A13 /* UIView+Additions.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		22942CCF16692B3800242588 /* Exceptions */ = {
+			isa = PBXGroup;
+			children = (
+				22942CD016692B7300242588 /* FieldworkSynchronizationException.h */,
+				22942CD116692B7300242588 /* FieldworkSynchronizationException.m */,
+			);
+			name = Exceptions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1405,7 +1418,7 @@
 				0095430F153E62040018DAC3 /* InstrumentVC.m in Sources */,
 				006C26DB1541EF3200D9B3B1 /* ApplicationPersistentStore.m in Sources */,
 				00D1BAEB154775CB000097E7 /* FieldworkPutRequest.m in Sources */,
-				00816CB2154B3F830054C918 /* FieldworkStepPostRequest.m in Sources */,
+				00816CB2154B3F830054C918 /* FieldworkRetrieveStep.m in Sources */,
 				00816CB6154B49450054C918 /* FieldworkSynchronizeOperation.m in Sources */,
 				00816CBC154EF2350054C918 /* ApplicationPersistentStoreBackup.m in Sources */,
 				00816CBF154F165E0054C918 /* ApplicationPersistentStoreBackupOperation.m in Sources */,
@@ -1442,6 +1455,7 @@
 				22226BB51666ED0F005CCE71 /* BlockAlertView.m in Sources */,
 				22226BB61666ED0F005CCE71 /* BlockBackground.m in Sources */,
 				22226BB71666ED0F005CCE71 /* BlockTextPromptAlertView.m in Sources */,
+				22942CD216692B7300242588 /* FieldworkSynchronizationException.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

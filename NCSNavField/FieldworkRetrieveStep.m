@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import "FieldworkStepPostRequest.h"
+#import "FieldworkRetrieveStep.h"
 #import "ApplicationSettings.h"
 #import "Fieldwork.h"
 #import "Participant.h"
@@ -15,16 +15,25 @@
 #import "SBJsonWriter.h"
 #import "ApplicationSettings.h"
 #import "NSDate+Additions.h"
+#import "CasServiceTicket+Additions.h"
+#import "FieldworkSynchronizationException.h"
 
-@implementation FieldworkStepPostRequest
+@interface FieldworkRetrieveStep() {
+    BOOL _bRequestWorked;
+}
+@property (nonatomic,assign) BOOL bRequestWorked;
+
+@end
+
+@implementation FieldworkRetrieveStep
+
 @synthesize delegate = _delegate;
 @synthesize ticket = _ticket;
-
 @synthesize error = _error;
-
 @synthesize response = _response;
+@synthesize bRequestWorked = _bRequestWorked;
 
-- (id) initWithServiceTicket:(CasServiceTicket*)ticket {
+- (id)initWithServiceTicket:(CasServiceTicket*)ticket {
     self = [super init];
     if (self) {
         _ticket = ticket;
@@ -32,56 +41,23 @@
     return self;
 }
 
-- (BOOL) send {
+- (BOOL)send {
     [self retrieveContacts:self.ticket];
-    return [self isSuccessful];
+    return YES;
 }
-
-- (BOOL) isSuccessful {
-    return [self.response isSuccessful];
-}
-
 
 - (void)retrieveContacts:(CasServiceTicket*)serviceTicket {
-    if (serviceTicket.pgt) {
-        CasConfiguration* conf = [ApplicationSettings casConfiguration];
-        CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
-        NSString* coreURL = [ApplicationSettings instance].coreURL;
-        
-        NCSLog(@"Requesting proxy ticket");
-        CasProxyTicket* t = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:serviceTicket.pgt];
-        [t reify];
-        if (!t.error) {
-            NCSLog(@"Proxy ticket successfully obtained: %@", t.proxyTicket);
-            [self loadDataWithProxyTicket:t];
-        } else {
-            self.error = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", t.message];
-            [self showErrorMessage:self.error];
-
-        }
-    } else {
-        NCSLog(@"Presenting service ticket");
-        [serviceTicket present];
-        if (serviceTicket.ok) {
-            CasConfiguration* conf = [ApplicationSettings casConfiguration];
-            CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
-            NSString* coreURL = [ApplicationSettings instance].coreURL;
-            
-            NCSLog(@"Requesting proxy ticket");
-            CasProxyTicket* t = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:serviceTicket.pgt];
-            [t reify];
-            if (!t.error) {
-                NCSLog(@"Proxy ticket successfully obtained: %@", t.proxyTicket);
-                [self loadDataWithProxyTicket:t];
-            } else {
-                self.error = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", t.message];
-                [self showErrorMessage:self.error];
-            }
-        } else {
-            self.error = [NSString stringWithFormat:@"Presenting service ticket failed: %@", [serviceTicket message]];
-            [self showErrorMessage:self.error];
-        }
+    NSString *err;
+    CasProxyTicket *pt = [serviceTicket obtainProxyTicket:&err];
+    if(err) {
+        [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
+        FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"retrieving contacts failed because of CAS" reason:nil userInfo:nil];
+        @throw ex;
     }
+    else {
+        [self loadDataWithProxyTicket:pt];
+    }
+    
 }
 
 - (void)loadDataWithProxyTicket:(CasProxyTicket*)ticket {
@@ -95,10 +71,8 @@
     NSInteger days = [[ApplicationSettings instance] upcomingDaysToSync];
     NSTimeInterval seconds = 60 * 60 * 24 * days;
     NSDate* inOneWeek = [today dateByAddingTimeInterval:seconds];
-    NSString* clientId = [ApplicationSettings instance].clientId;
     
     NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@", [today toYYYYMMDD], [inOneWeek toYYYYMMDD]];
-    
     
     NCSLog(@"Requesting data from %@", path);
     RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
@@ -119,18 +93,18 @@
     NSError *error = [[NSError alloc] init];
     if (![[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:&error]) {
         NCSLog(@"Error saving fieldwork location");
+        [_delegate showAlertView:STORING_CONTACTS];
+        FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"Error saving fieldwork location" reason:nil userInfo:nil];
+        @throw ex;
     }
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    [_delegate showAlertView:@"fieldwork step"];
+    [_delegate showAlertView:CONTACT_RETRIEVAL];
+    FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"object Loader failure in Retrieving Contacts" reason:nil userInfo:nil];
+    @throw ex;
 }
 
-
-- (void)showErrorMessage:(NSString *)message {
-    NCSLog(@"%@", message);
-     [_delegate showAlertView:@"fieldwork step"];
-}
 
 
 @end

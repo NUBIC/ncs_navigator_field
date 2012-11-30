@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ProviderSynchronizeOperation.h"
 @class MergeStatus;
 @class ServiceTicket;
 
@@ -15,6 +15,7 @@
     NSString* _mergeStatusId;
     NSString* _error;
     CasServiceTicket* _serviceTicket;
+    id<UserErrorDelegate> _delegate;
 }
 
 @property(nonatomic,strong) NSString* mergeStatusId;
@@ -23,12 +24,13 @@
 
 @property(nonatomic,strong) CasServiceTicket* serviceTicket;
 
+@property(nonatomic,strong) id<UserErrorDelegate> delegate;
+
 - (id) initWithMergeStatusId:(NSString*)fieldworkId andServiceTicket:(CasServiceTicket*)serviceTicket;
 
 - (MergeStatus*) send;
 
 - (BOOL) poll;
 
-- (void)showErrorMessage:(NSString *)message;
 
 @end
