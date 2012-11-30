@@ -13,7 +13,6 @@
 #import "ApplicationSettings.h"
 #import "TestFlightSettings.h"
 
-
 @implementation NCSNavFieldAppDelegate
 
 @synthesize window=_window;
@@ -27,7 +26,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     @try {
-        
         TestFlightSettings *tf = [TestFlightSettings instance];
         [TestFlight takeOff:tf.teamToken];
         [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
@@ -54,8 +52,6 @@
     }
     @catch(NSException *ex) {
         NSLog(@"Something went wrong: %@",[ex reason]);
-        /*UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Something went wrong." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];*/
     }
 }
 

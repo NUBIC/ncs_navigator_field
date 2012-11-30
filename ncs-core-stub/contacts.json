@@ -81,7 +81,7 @@
                         {
                             "instrument_id": "190feb29-f60c-4b39-8d2c-586c1a8cd857", 
                             "instrument_plan_id": "85786fe9-2bb9-430c-810a-db2673568e99", 
-                            "name": "Birth Visit", 
+                            "name": "Birth", 
                             "response_sets": [
                                 {
                                     "p_id": "2b0a12e9-eacc-4a89-8429-a978bfb1c870", 
@@ -98,7 +98,7 @@
                             ]
                         }
                     ], 
-                    "name": "Birth Visit"
+                    "name": "Birth"
                 }, 
                 {
                     "event_id": "fed256ac-825e-4d64-bed6-650ad4ef7a18", 
@@ -106,7 +106,7 @@
                         {
                             "instrument_id": "63055f80-dba2-434f-8414-72acf64d4277", 
                             "instrument_plan_id": "56756afc-753f-41c1-b95e-87c283534977", 
-                            "name": "6 Month Visit", 
+                            "name": "6 Month", 
                             "response_sets": [
                                 {
                                     "p_id": "2b0a12e9-eacc-4a89-8429-a978bfb1c870", 
@@ -115,7 +115,7 @@
                             ]
                         }
                     ], 
-                    "name": "6 Month Visit"
+                    "name": "6 Month"
                 }
             ], 
             "person_id": "c2e65f3c-47e0-4816-84ed-c42f4ac428fd"
@@ -10529,7 +10529,7 @@
                                         ], 
                                         "pick": "one", 
                                         "reference_identifier": "MULT_CHILD", 
-                                        "text": "Is there more than one child of this mother eligible for the 6 month visit today?", 
+                                        "text": "Is there more than one child of this mother eligible for the 6 Month today?", 
                                         "uuid": "652f2bd0-4b75-012f-7861-482a143dc94d"
                                     }, 
                                     {
@@ -10552,7 +10552,7 @@
                                             "rule": "A"
                                         }, 
                                         "reference_identifier": "CHILD_NUM", 
-                                        "text": "How many children of this mother are eligible for the 6-month visit today?", 
+                                        "text": "How many children of this mother are eligible for the 6-Month today?", 
                                         "uuid": "652f8690-4b75-012f-7861-482a143dc94d"
                                     }, 
                                     {

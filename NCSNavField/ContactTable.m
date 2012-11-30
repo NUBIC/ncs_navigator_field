@@ -14,6 +14,7 @@
 #import "Event.h"
 #import "Instrument.h"
 #import "NSString+Additions.h"
+#import "EventSorter.h"
 
 @implementation ContactTable
 
@@ -61,11 +62,11 @@
 - (Section*) phones {
     NSMutableArray* phones = [[NSMutableArray alloc] init];
 
-    if (![_contact.person.homePhone isEmpty]) {
+    if (![_contact.person.homePhone isEmptyOrNil]) {
         Row* home = [[Row alloc] initWithText:@"Home" detailText:_contact.person.homePhone];
         [phones addObject:home];
     }
-    if (![_contact.person.cellPhone isEmpty]) {
+    if (![_contact.person.cellPhone isEmptyOrNil]) {
         Row* cell = [[Row alloc] initWithText:@"Cell" detailText:_contact.person.cellPhone];
         [phones addObject:cell];
     }
@@ -76,7 +77,7 @@
 - (Section*) emails {
     NSMutableArray* emails = [NSMutableArray new];
     
-    if (![self.contact.person.email isEmpty]) {
+    if (![self.contact.person.email isEmptyOrNil]) {
         Row* home =[[Row alloc] initWithText:@"Home" detailText:_contact.person.email];
         [emails addObject:home];
     }
@@ -102,10 +103,13 @@
 }
 
 - (NSArray*) sortedEvents {
+    NSDictionary *lookupTable = [[EventSorter instance] sortOrder];
     NSArray* sorted = [[self.contact.events allObjects] sortedArrayUsingComparator:^(id a, id b) {
-        NSDate *first = [(Event*)a startDate];
-        NSDate *second = [(Event*)b startDate];
-        return [first compare:second];
+        NSString *sFirst = [(Event*)a name];
+        NSString *sSecond = [(Event*)b name];
+        NSNumber *nFirst = [lookupTable objectForKey:sFirst];
+        NSNumber *nSecond = [lookupTable objectForKey:sSecond];
+        return [nFirst compare:nSecond];
     }];
     return sorted;
 }
