@@ -156,6 +156,9 @@
 		22226BEE1666ED7D005CCE71 /* button_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22226BD41666ED7D005CCE71 /* button_red@2x.png */; };
 		2237A32E163B294B009E3A13 /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2237A32D163B294B009E3A13 /* UIView+Additions.m */; };
 		22942CD216692B7300242588 /* FieldworkSynchronizationException.m in Sources */ = {isa = PBXBuildFile; fileRef = 22942CD116692B7300242588 /* FieldworkSynchronizationException.m */; };
+		22942CE41669461300242588 /* EventSorter.m in Sources */ = {isa = PBXBuildFile; fileRef = 22942CE31669461300242588 /* EventSorter.m */; };
+		22942CE716694AC200242588 /* NSString+ParsingExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22942CE616694AC200242588 /* NSString+ParsingExtensions.m */; };
+		22942CEA16695AFC00242588 /* Event_Type_Sort_Order.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22942CE916695AFC00242588 /* Event_Type_Sort_Order.txt */; };
 		22B8E4A616643B6A00640DE8 /* DispositionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B8E4A516643B6A00640DE8 /* DispositionCode.m */; };
 		4F53118515FA58A1006F5BB2 /* InstrumentPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */; };
 		D1CACF1A1F944E92AB51AE74 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 493CC93326804A8ABCA31763 /* libPods.a */; };
@@ -578,6 +581,11 @@
 		2237A32D163B294B009E3A13 /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
 		22942CD016692B7300242588 /* FieldworkSynchronizationException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkSynchronizationException.h; sourceTree = "<group>"; };
 		22942CD116692B7300242588 /* FieldworkSynchronizationException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkSynchronizationException.m; sourceTree = "<group>"; };
+		22942CE21669461300242588 /* EventSorter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSorter.h; sourceTree = "<group>"; };
+		22942CE31669461300242588 /* EventSorter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSorter.m; sourceTree = "<group>"; };
+		22942CE516694AC200242588 /* NSString+ParsingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ParsingExtensions.h"; sourceTree = "<group>"; };
+		22942CE616694AC200242588 /* NSString+ParsingExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ParsingExtensions.m"; sourceTree = "<group>"; };
+		22942CE916695AFC00242588 /* Event_Type_Sort_Order.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = Event_Type_Sort_Order.txt; path = NCSNavField/Event_Type_Sort_Order.txt; sourceTree = "<group>"; };
 		22B8E4A21664337C00640DE8 /* 20121126191731_addMdes_and_dispcode_entities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121126191731_addMdes_and_dispcode_entities.xcdatamodel; sourceTree = "<group>"; };
 		22B8E4A416643B6A00640DE8 /* DispositionCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispositionCode.h; sourceTree = "<group>"; };
 		22B8E4A516643B6A00640DE8 /* DispositionCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispositionCode.m; sourceTree = "<group>"; };
@@ -628,6 +636,7 @@
 		0026E659140347E700355BCB = {
 			isa = PBXGroup;
 			children = (
+				22942CE916695AFC00242588 /* Event_Type_Sort_Order.txt */,
 				22226B0216668322005CCE71 /* TestFlight-TeamToken.txt */,
 				00872259156AF6F100CE24ED /* test-background.png */,
 				00C0C8D515655E390047A113 /* icon-test.png */,
@@ -684,6 +693,7 @@
 		0026E66E140347E700355BCB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				22942CE1166945AF00242588 /* Other */,
 				22942CCF16692B3800242588 /* Exceptions */,
 				22226B081666B82E005CCE71 /* FriendlyActionSheet */,
 				00FF37E21417CA320009B1D4 /* Presenters */,
@@ -1219,6 +1229,25 @@
 			name = Exceptions;
 			sourceTree = "<group>";
 		};
+		22942CE1166945AF00242588 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				22942CE816694ACE00242588 /* Categories */,
+				22942CE21669461300242588 /* EventSorter.h */,
+				22942CE31669461300242588 /* EventSorter.m */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		22942CE816694ACE00242588 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				22942CE516694AC200242588 /* NSString+ParsingExtensions.h */,
+				22942CE616694AC200242588 /* NSString+ParsingExtensions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1292,6 +1321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22942CEA16695AFC00242588 /* Event_Type_Sort_Order.txt in Resources */,
 				002B2E4414362E4900410D09 /* nubic-logo.png in Resources */,
 				002B2E4514362E4900410D09 /* nu-logo.png in Resources */,
 				0026E673140347E700355BCB /* InfoPlist.strings in Resources */,
@@ -1454,6 +1484,8 @@
 				22226BB61666ED0F005CCE71 /* BlockBackground.m in Sources */,
 				22226BB71666ED0F005CCE71 /* BlockTextPromptAlertView.m in Sources */,
 				22942CD216692B7300242588 /* FieldworkSynchronizationException.m in Sources */,
+				22942CE41669461300242588 /* EventSorter.m in Sources */,
+				22942CE716694AC200242588 /* NSString+ParsingExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

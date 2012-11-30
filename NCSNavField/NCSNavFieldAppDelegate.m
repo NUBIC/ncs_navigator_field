@@ -12,7 +12,7 @@
 #import "RestKitSettings.h"
 #import "ApplicationSettings.h"
 #import "TestFlightSettings.h"
-
+#import "EventSorter.h"
 
 @implementation NCSNavFieldAppDelegate
 
@@ -27,7 +27,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     @try {
-        
         TestFlightSettings *tf = [TestFlightSettings instance];
         [TestFlight takeOff:tf.teamToken];
         [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
