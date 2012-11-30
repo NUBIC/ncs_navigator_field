@@ -17,7 +17,6 @@
 @property (nonatomic, retain) NSString *listName;
 @property (nonatomic, retain) NSNumber *localCode;
 
-+(void)createMdesCode:(NSString*)t listName:(NSString*)li localCode:(NSNumber*)lc;
 +(NSArray*)retrieveAllObjectsForListName:(NSString*)listName;
-+(NSArray*)all;
+
 @end

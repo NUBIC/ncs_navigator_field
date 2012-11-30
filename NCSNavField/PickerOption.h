@@ -20,6 +20,6 @@
 @property(nonatomic,strong) NSString *listName;
 
 - (id) initWithText:(NSString*)t value:(NSInteger)v;
-+ (MdesCode*) findWithValue:(NSInteger)value fromOptions:(NSArray*)options;
--(NSNumber*)value;
++ (PickerOption*) findWithValue:(NSInteger)value fromOptions:(NSArray*)options;
+
 @end

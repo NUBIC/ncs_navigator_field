@@ -22,21 +22,13 @@
 }
 
 
-+ (MdesCode*) findWithValue:(NSInteger)val fromOptions:(NSArray*)options {
-    for (MdesCode* o in options) {
-        if (o.localCode == [NSNumber numberWithInt:val]) {
++ (PickerOption*) findWithValue:(NSInteger)val fromOptions:(NSArray*)options {
+    for (PickerOption* o in options) {
+        if (o.value == [NSNumber numberWithInt:val]) {
             return o;
         }
     }
     return NULL;
-}
-
-+ (PickerOption*) po:(NSString*)text value:(NSInteger)val {
-    return [[PickerOption alloc] initWithText:text value:val];
-}
-
--(id)localCode {
-    return @"";
 }
 
 @end

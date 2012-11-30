@@ -141,6 +141,11 @@
     
     [b sectionHeader:@""];
     
+    //Fix: add these
+//    [b labelWithText:@"Disposition Code"];
+//    [b labelWithText:@"Disposition Category Code"];
+//    [b sing]
+    
     [b labelWithText:@"Incentive Type"];
     [b singleOptionPickerForProperty:@selector(incentiveTypeId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"INCENTIVE_TYPE_CL1"]];
     

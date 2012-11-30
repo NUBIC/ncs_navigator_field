@@ -15,6 +15,7 @@
 #import "TextField.h"
 #import "SingleOptionPicker.h"
 #import "TextArea.h"
+#import "DispositionCode.h"
 
 @implementation ContactCloseVC
 
@@ -192,7 +193,7 @@
     [b labelWithText:@"Disposition"];
     // FIX: Commented out to fix the build
 //    self.dispositionPicker = 
-//    [b singleOptionPickerForProperty:@selector(dispositionId) WithPickerOptions:[DispositionCode pickerOptionsForContactTypeId:self.contact.typeId] andPopoverSize:NUPickerVCPopoverSizeLarge];
+//    [b singleOptionPickerForProperty:@selector(dispositionId) WithPickerOptions:[DispositionCode :self.contact.typeId] andPopoverSize:NUPickerVCPopoverSizeLarge];
     
     [b labelWithText:@"Language of interview"];
     [b singleOptionPickerForProperty:@selector(languageId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONTACT_LOCATION_CL1"]];

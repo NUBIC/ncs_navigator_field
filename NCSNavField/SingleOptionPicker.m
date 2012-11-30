@@ -51,9 +51,9 @@
         // Set title
         NSString* title = @"Pick One";
         if (value) {
-            MdesCode* o = [PickerOption findWithValue:[value integerValue] fromOptions:options];
+            PickerOption* o = [PickerOption findWithValue:[value integerValue] fromOptions:options];
             if (o) {
-                title = o.displayText;
+                title = o.text;
             }
         }
         [self.button setTitle:title forState:UIControlStateNormal];
@@ -78,9 +78,9 @@
 
     p.contentSizeForViewInPopover = [self CGSizeFromPopoverSize:self.popoverSize];
 
-    MdesCode* title = [PickerOption findWithValue:[self.value integerValue] fromOptions:self.pickerOptions];
+    PickerOption* title = [PickerOption findWithValue:[self.value integerValue] fromOptions:self.pickerOptions];
     if (title) {
-        [self.button setTitle:title.displayText forState:UIControlStateNormal];
+        [self.button setTitle:title.text forState:UIControlStateNormal];
         NSInteger index = [self.pickerOptions indexOfObject:title];
         [p.picker selectRow:index inComponent:0 animated:NO];
     }
@@ -121,16 +121,16 @@
 
 - (void) pickerDone{
     NSUInteger selected = [self.picker.picker selectedRowInComponent:0]; 
-    MdesCode* o = [self.pickerOptions objectAtIndex:selected];
-    NSNumber* new = o.localCode;
+    PickerOption* o = [self.pickerOptions objectAtIndex:selected];
+    NSNumber* new = o.value;
     self.value = new;
     [self.handler updatedValue:new];
-    [self.button setTitle:o.displayText forState:UIControlStateNormal];
+    [self.button setTitle:o.text forState:UIControlStateNormal];
     [self.popover dismissPopoverAnimated:NO];
 }
 - (void) pickerCancel{
     NSInteger old = [self.value integerValue];
-    MdesCode* o = [PickerOption findWithValue:old fromOptions:self.pickerOptions];
+    PickerOption* o = [PickerOption findWithValue:old fromOptions:self.pickerOptions];
     if(o!=nil)
         [self.picker.picker selectRow:[self.pickerOptions indexOfObject:o] inComponent:0 animated:NO];
     [self.popover dismissPopoverAnimated:NO];
@@ -156,8 +156,8 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    MdesCode* p = [self.pickerOptions objectAtIndex:row];
-    return p.displayText;
+    PickerOption* p = [self.pickerOptions objectAtIndex:row];
+    return p.text;
 }
 
 #pragma mark - Accessibility 
