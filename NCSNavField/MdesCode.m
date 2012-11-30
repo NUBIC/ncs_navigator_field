@@ -74,42 +74,6 @@
    return [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
 }
 
-#pragma mark - 
-#pragma Create Yes/No Lists.
-
-
-+ (NSArray*) instrumentSupervisorReviews {
-    [self retrieveAllObjectsForListName:@""];
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"instrumentSupervisorReviews"];
-    if([arr count]==0) {
-        [MdesCode createMdesCode:@"Yes" listName:@"instrumentSupervisorReviews" localCode:[NSNumber numberWithInt:1]];
-        [MdesCode createMdesCode:@"No" listName:@"instrumentSupervisorReviews" localCode:[NSNumber numberWithInt:2]];
-    }
-    return [self instrumentSupervisorReviews];
-}
-
-+ (NSArray*) privateList {
-    [self retrieveAllObjectsForListName:@""];
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"privateList"];
-    if([arr count]==0) {
-        [MdesCode createMdesCode:@"Yes" listName:@"privateList" localCode:[NSNumber numberWithInt:1]];
-        [MdesCode createMdesCode:@"No" listName:@"privateList" localCode:[NSNumber numberWithInt:2]];
-    }
-    else
-        return arr;
-    return [self privateList];
-}
-
-+ (NSArray*) instrumentDataProblems {
-    [self retrieveAllObjectsForListName:@""];
-    NSArray *arr = [MdesCode retrieveAllObjectsForListName:@"instrumentDataProblems"];
-    if([arr count]==0) {
-        [MdesCode createMdesCode:@"Yes" listName:@"instrumentDataProblems" localCode:[NSNumber numberWithInt:1]];
-        [MdesCode createMdesCode:@"No" listName:@"instrumentDataProblems" localCode:[NSNumber numberWithInt:2]];
-    }
-    return [self instrumentDataProblems];
-}
-
 
 
 @end

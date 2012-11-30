@@ -12,6 +12,9 @@
 #import "MBProgressHUD.h"
 #import "CasLoginDelegate.h"
 #import "NcsCodeSynchronizeOperation.h"
+#import "BlockUI.h"
+#import "BlockAlertView.h"
+#import "BlockBackground.h"
 
 @class ContactDisplayController;
 @class Instrument;
@@ -23,11 +26,12 @@
 
 FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 
-@interface RootViewController : SimpleTableController<UINavigationControllerDelegate, SimpleTableRowDelegate, CasLoginDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate> {
+@interface RootViewController : SimpleTableController<UINavigationControllerDelegate, SimpleTableRowDelegate, CasLoginDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate,UserErrorDelegate> {
     Instrument* _administeredInstrument;
     RKReachabilityObserver* _reachability;
     SyncActivityIndicator* _syncIndicator;
     CasServiceTicket* _serviceTicket;
+    BlockAlertView *_alertView;
 }
 
 @property (nonatomic, strong) IBOutlet ContactDisplayController *detailViewController;
@@ -45,7 +49,11 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 - (void)deleteButtonWasPressed;
 - (void)unloadSurveyor:(Instrument*)instrument;
 - (void)syncContacts:(CasServiceTicket*)serviceTicket;
+
+#pragma mark
+#pragma mark - CasLoginDelegate
 - (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket;
+-(void)failure:(NSError *)err;
 
 #pragma mark - TableView
 - (UIView*)tableHeaderView;

@@ -14,6 +14,7 @@
 @implementation NcsCodeSynchronizeOperation
 
 @synthesize ticket = _ticket;
+@synthesize delegate = _delegate;
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket {
     self = [super init];
@@ -23,20 +24,22 @@
     return self;
 }
 
-- (void)perform {
+- (BOOL)perform {
     if (!self.ticket.pgt) {
         NCSLog(@"Presenting service ticket");
         [self.ticket present];
     }
     NSString *error = [NSString new];
     CasProxyTicket *pt = [self.ticket obtainProxyTicket:error];
-    if([error length]>0)
+    if([error length]>0) {
         [self showErrorMessage:error];
-    else
-        [self sendRequestAndLoadDataWithProxyTicket:pt];
+        return NO;
+    }
+        else
+            return [self sendRequestAndLoadDataWithProxyTicket:pt];
 }
 
-- (void)sendRequestAndLoadDataWithProxyTicket:(CasProxyTicket*)ticket {
+- (BOOL)sendRequestAndLoadDataWithProxyTicket:(CasProxyTicket*)ticket {
     // Load the object model via RestKit
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
@@ -48,20 +51,20 @@
     RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
     loader.method = RKRequestMethodGET;
     
-    [loader sendSynchronously];
+    RKResponse *req = [loader sendSynchronously];
+    if(req.failureError)
+        return NO;
+    else return YES;
 }
 
 - (void)showErrorMessage:(NSString *)message {
-    NCSLog(@"%@", message);
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
+    [_delegate showAlertView:@"NCS retrieval"];
 }
 
 #pragma mark - RKObjectLoaderDelegate Methods
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
-    NSString* msg = [NSString stringWithFormat:@"Object loader error while retrieving code_lists.\n%@", [error localizedDescription]];
-    [self showErrorMessage:msg];
+    [_delegate showAlertView:@"NCS retrieval"];
     
 }
 
