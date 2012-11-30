@@ -7,12 +7,15 @@
 //
 
 #import "Fieldwork.h"
+#import "Contact.h"
+#import "Participant.h"
+#import "InstrumentTemplate.h"
 
 @implementation Fieldwork
 
 @synthesize fieldworkId;
 
-@dynamic uri, retrievedDate, participants, contacts, instrumentTemplates;
+@dynamic uri, retrievedDate;
 
 - (NSString*)fieldworkId {
     NSString* ident = NULL;
@@ -31,5 +34,21 @@
     Fieldwork* f = [[Fieldwork findAllSortedBy:@"retrievedDate" ascending:YES] lastObject];
     return [f.contacts count] > 0 ? f : nil;
 }
+
+- (NSArray*)contacts {
+    return [Contact findAll];
+}
+
+- (NSArray*)participants {
+    return [Participant findAll];
+}
+
+- (NSArray*)instrumentTemplate {
+    return [InstrumentTemplate findAll];
+}
+//w.participants = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[Participant entity] name ]]]];
+//w.contacts = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[Contact entity] name ]]]];
+//w.instrumentTemplates = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[InstrumentTemplate entity] name ]]]];
+
 
 @end

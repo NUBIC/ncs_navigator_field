@@ -115,9 +115,6 @@
     Fieldwork* w = [Fieldwork object];
     w.uri = [[objectLoader response] location];
     w.retrievedDate = [NSDate date];
-    w.participants = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[Participant entity] name ]]]];
-    w.contacts = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[Contact entity] name ]]]];    
-    w.instrumentTemplates = [[NSSet alloc] initWithArray:[objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"entity.name like %@", [[InstrumentTemplate entity] name ]]]];
     
     NSError *error = [[NSError alloc] init];
     if (![[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:&error]) {
