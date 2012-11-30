@@ -9,7 +9,7 @@
         {
             "location": "2",
             "name": "Baylor Health Care System", 
-            "practice_num": 1, 
+            "practice_num": null, 
             "recruited": true
         },
         {

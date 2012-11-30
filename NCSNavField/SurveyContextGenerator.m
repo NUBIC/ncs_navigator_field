@@ -22,12 +22,28 @@
 }
 
 - (id)context {
-    return @{
-        @"provider_id": self.provider.location,
-        @"practice_num": self.provider.practiceNum,
-        @"name_practice": self.provider.name,
-        @"mode_of_contact": @"capi"
-    };
+    NSMutableDictionary* ctx = [NSMutableDictionary new];
+    
+    if (self.provider) {
+        if (self.provider.location) {
+            [ctx setObject:self.provider.location
+                    forKey:@"provider_id"];
+        }
+        
+        if (self.provider.practiceNum) {
+            [ctx setObject:self.provider.practiceNum
+                    forKey:@"practice_num"];
+        }
+        
+        if (self.provider.name) {
+            [ctx setObject:self.provider.name
+                    forKey:@"name_practice"];
+        }
+        
+        [ctx setObject:@"capi" forKey:@"mode_of_contact"];
+    }
+    
+    return ctx;
 }
 
 @end
