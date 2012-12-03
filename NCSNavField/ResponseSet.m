@@ -13,7 +13,7 @@
 
 - (NSDictionary*) toDict {
     NSMutableDictionary* d = [NSMutableDictionary dictionaryWithDictionary:[super toDict]];
-    [d setValue:[self valueForKey:@"p_id"] forKey:@"p_id"];
+    [d setValue:[self valueForKey:@"pId"] forKey:@"p_id"];
     return d;
 }
 
