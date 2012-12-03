@@ -52,8 +52,8 @@
 
     left = [self leftContentWithFrame:lRect];
     right = [self rightContentWithFrame:rRect];
-    [left registerForPopoverNotifications];
-    [right registerForPopoverNotifications];
+//    [left registerForPopoverNotifications];
+//    [right registerForPopoverNotifications];
 
     [self.view addSubview:toolbar];
     [self.view addSubview:left];
