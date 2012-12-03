@@ -15,7 +15,7 @@
 
 @implementation Contact
 
-@dynamic contactId, typeId, date, startTime, endTime, personId, person, initiated, events, locationId, locationOther, whoContactedId, whoContactedOther, comments, languageId, languageOther, interpreterId, interpreterOther, privateId, privateDetail, distanceTraveled, dispositionId, version;
+@dynamic contactId, typeId, date, startTime, endTime, personId, person, initiated, events, locationId, locationOther, whoContactedId, whoContactedOther, comments, languageId, languageOther, interpreterId, interpreterOther, privateId, privateDetail, distanceTraveled, dispositionCode, version;
 
 + (Contact*)contact {
     Contact* c = [Contact object];
@@ -26,7 +26,7 @@
 }
 
 - (BOOL) closed {
-    return [self.dispositionId integerValue] != 0;
+    return [self.dispositionCode integerValue] != 0;
 }
 
 - (void) setStartTimeJson:(NSString*)startTime {

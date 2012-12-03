@@ -39,7 +39,7 @@
 
 @property(nonatomic,strong) NSString* incentiveNonCash;
 
-@property(nonatomic,strong) NSNumber* dispositionId;
+@property(nonatomic,strong) NSString* dispositionCode;
 
 @property(nonatomic,strong) NSNumber* dispositionCategoryId;
 

@@ -13,6 +13,7 @@
 #import "PickerOption.h"
 #import "TextField.h"
 #import "TextArea.h"
+#import "DispositionCode.h"
 
 @implementation EventVC
 
@@ -131,6 +132,12 @@
     [b labelWithText:@"End Time"];
     [b timePickerForProperty:@selector(endTime)];
     
+    [b labelWithText:@"Disposition Category"];
+    [b singleOptionPickerForProperty:@selector(dispositionCategoryId) WithPickerOptions:[DispositionCode allPickerOptionsForDispositionCategories] andPopoverSize:NUPickerVCPopoverSizeLarge];
+    
+    [b labelWithText:@"Disposition"];
+    [b singleOptionPickerForProperty:@selector(dispositionCode) WithPickerOptions:[DispositionCode allPickerOptions] andPopoverSize:NUPickerVCPopoverSizeLarge];
+    
     return v;
 }
 
@@ -140,11 +147,6 @@
     FormBuilder* b = [[FormBuilder alloc] initWithView:v object:e];
     
     [b sectionHeader:@""];
-    
-    //Fix: add these
-//    [b labelWithText:@"Disposition Code"];
-//    [b labelWithText:@"Disposition Category Code"];
-//    [b sing]
     
     [b labelWithText:@"Incentive Type"];
     [b singleOptionPickerForProperty:@selector(incentiveTypeId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"INCENTIVE_TYPE_CL1"]];

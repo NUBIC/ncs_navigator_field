@@ -54,7 +54,7 @@
 
 @property(nonatomic,strong) NSNumber* distanceTraveled;
 
-@property(nonatomic,strong) NSNumber* dispositionId;
+@property(nonatomic,strong) NSString* dispositionCode;
 
 @property(nonatomic,strong) NSString* version;
 

@@ -13,7 +13,7 @@
 
 @implementation Event
 
-@dynamic eventId, name, eventTypeCode, eventTypeOther, eventRepeatKey, startDate, endDate, startTime, endTime, incentiveTypeId, incentiveCash, incentiveNonCash, dispositionId, dispositionCategoryId, breakOffId, comments, contact, instruments, version, pId;
+@dynamic eventId, name, eventTypeCode, eventTypeOther, eventRepeatKey, startDate, endDate, startTime, endTime, incentiveTypeId, incentiveCash, incentiveNonCash, dispositionCode, dispositionCategoryId, breakOffId, comments, contact, instruments, version, pId;
 
 + (Event*)event {
     Event* e = [Event object];

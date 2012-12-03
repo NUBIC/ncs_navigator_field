@@ -83,7 +83,6 @@
     
     [self.view registerForPopoverNotifications];
     [self registerForKeyboardNotifications];
-    [self registerContactTypeChangeNotification];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -95,23 +94,6 @@
 - (void) setDefaults:(Contact*)contact {
     if (!contact.languageId || [contact.languageId intValue] == -4) {
         contact.languageId = [NSNumber numberWithInt:1];
-    }
-}
-
-- (void) registerContactTypeChangeNotification {
-    [self.contact addObserver:self forKeyPath:@"typeId" options:NSKeyValueObservingOptionNew context:NULL];
-}
-
-- (void) unregisterContactTypeChangeNotification {
-    [self.contact removeObserver:self forKeyPath:@"typeId"];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (object == self.contact && [keyPath isEqualToString:@"typeId"]) {
-        // FIX: Commented out to fix the build
-//        [self.dispositionPicker updatePickerOptions:[DispositionCode pickerOptionsForContactTypeId:self.contact.typeId]];
-        self.contact.dispositionId = NULL;
-        [self.dispositionPicker clearResponse];
     }
 }
 
@@ -191,9 +173,8 @@
     [b textFieldForProperty:@selector(distanceTraveled) numbersOnly:YES];
     
     [b labelWithText:@"Disposition"];
-    // FIX: Commented out to fix the build
-//    self.dispositionPicker = 
-//    [b singleOptionPickerForProperty:@selector(dispositionId) WithPickerOptions:[DispositionCode :self.contact.typeId] andPopoverSize:NUPickerVCPopoverSizeLarge];
+    self.dispositionPicker =
+    [b singleOptionPickerForProperty:@selector(dispositionCode) WithPickerOptions:[DispositionCode allPickerOptions] andPopoverSize:NUPickerVCPopoverSizeLarge];
     
     [b labelWithText:@"Language of interview"];
     [b singleOptionPickerForProperty:@selector(languageId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONTACT_LOCATION_CL1"]];
@@ -243,13 +224,11 @@
 
 - (void) cancel {
     [self rollbackTransaction];
-    [self unregisterContactTypeChangeNotification];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void) done {
     [self commitTransaction];
-    [self unregisterContactTypeChangeNotification];
     [self.presentingViewController dismissViewControllerAnimated:NO completion:^{
        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactClosed" object:self]; 
     }];
