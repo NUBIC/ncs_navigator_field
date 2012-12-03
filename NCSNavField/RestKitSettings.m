@@ -197,7 +197,7 @@ static RestKitSettings* instance;
      @"event_end_time", @"endTimeJson",
      @"event_incentive_type_code", @"incentiveTypeId",
      @"event_incentive_cash", @"incentiveCash",
-     @"event_disposition", @"dispositionId",
+     @"event_disposition", @"dispositionCode",
      @"event_disposition_category_code", @"dispositionCategoryId",
      @"event_breakoff_code", @"breakOffId",
      @"event_comment", @"comments",
@@ -256,7 +256,7 @@ static RestKitSettings* instance;
      @"contact_private_code", @"privateId",
      @"contact_private_detail", @"privateDetail",
      @"contact_distance", @"distanceTraveled",
-     @"contact_disposition", @"dispositionId", nil];
+     @"contact_disposition", @"dispositionCode", nil];
     [contact mapRelationship:@"person" withMapping:person];
     [contact connectRelationship:@"person" withObjectForPrimaryKeyAttribute:@"personId"];
     [contact mapRelationship:@"events" withMapping:event];
@@ -330,7 +330,7 @@ static RestKitSettings* instance;
      @"endTime.jsonSchemaTime", @"event_end_time",
      @"incentiveTypeId", @"event_incentive_type_code",
      @"incentiveCash", @"event_incentive_cash",
-     @"dispositionId", @"event_disposition",
+     @"dispositionCode", @"event_disposition",
      @"dispositionCategoryId", @"event_disposition_category_code",
      @"breakOffId", @"event_breakoff_code",
      @"comments", @"event_comment",
@@ -359,7 +359,7 @@ static RestKitSettings* instance;
      @"privateId", @"contact_private_code", 
      @"privateDetail", @"contact_private_detail", 
      @"distanceTraveled", @"contact_distance", 
-     @"dispositionId", @"contact_disposition",
+     @"dispositionCode", @"contact_disposition",
      @"version", @"version", nil];
     [contact mapRelationship:@"events" withMapping:event];
     [objectManager.mappingProvider setSerializationMapping:contact forClass:[Contact class]];
