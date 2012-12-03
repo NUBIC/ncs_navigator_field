@@ -103,13 +103,8 @@
 }
 
 - (NSArray*) sortedEvents {
-    NSDictionary *lookupTable = [[EventSorter instance] sortOrder];
     NSArray* sorted = [[self.contact.events allObjects] sortedArrayUsingComparator:^(id a, id b) {
-        NSString *sFirst = [(Event*)a name];
-        NSString *sSecond = [(Event*)b name];
-        NSNumber *nFirst = [lookupTable objectForKey:sFirst];
-        NSNumber *nSecond = [lookupTable objectForKey:sSecond];
-        return [nFirst compare:nSecond];
+        return [EventSorter compareEvent:a toEvent:b];
     }];
     return sorted;
 }
