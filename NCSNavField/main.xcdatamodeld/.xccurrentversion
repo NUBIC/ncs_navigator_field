@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>_XCCurrentVersionName</key>
-	<string>20121129032438_change_merge_status_to_nullable.xcdatamodel</string>
+	<string>20121203033234_fix_disposition.xcdatamodel</string>
 </dict>
 </plist>

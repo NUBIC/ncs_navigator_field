@@ -12,11 +12,15 @@
 
 @interface DispositionCode : NSManagedObject
 
-@property (nonatomic, retain) NSString * categoryCode;
+@property (nonatomic, retain) NSNumber * categoryCode;
 @property (nonatomic, retain) NSString * disposition;
-@property (nonatomic, retain) NSNumber * finalCategory;
+@property (nonatomic, retain) NSString * finalCategory;
 @property (nonatomic, retain) NSString * finalCode;
 @property (nonatomic, retain) NSString * interimCode;
 @property (nonatomic, retain) NSString * subCategory;
+
++ (NSArray*)allPickerOptions;
+
++ (NSArray*)allPickerOptionsForDispositionCategories;
 
 @end
