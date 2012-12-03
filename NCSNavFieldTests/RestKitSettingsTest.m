@@ -53,7 +53,6 @@
     
     Fieldwork* f = [Fieldwork object];
     f.retrievedDate = [Fixtures createDateFromString:@"2012-04-1"];
-    f.contacts = [NSSet setWithObject:c];
     return f;
 }
 
@@ -92,7 +91,6 @@
     
     Participant* p = [Fixtures createParticipantWithId:@"abc" person:[Fixtures createPersonWithId:@"xyz" name:@"Frank"]];
     Fieldwork* f = [Fieldwork object];
-    [f addParticipantsObject:p];
     
     RKObjectMapping* fieldWorkMapping = [[RKObjectManager sharedManager].mappingProvider serializationMappingForClass:[Fieldwork class]];
     RKObjectSerializer* serializer = [RKObjectSerializer serializerWithObject:f mapping:fieldWorkMapping];
