@@ -14,9 +14,9 @@
 // All code under test must be linked into the Unit Test bundle
 - (void)test_shouldBeInitializedProperly
 {
-    PickerOption* o = [[PickerOption alloc] initWithText:@"Red" value:1];
+    PickerOption* o = [[PickerOption alloc] initWithText:@"Red" value:[NSNumber numberWithInt:1]];
     STAssertEquals(@"Red", o.text, @"Wrong text");
-    STAssertEquals(1, o.value, @"Wrong value");
+    STAssertEquals([NSNumber numberWithInt:1], o.value, @"Wrong value");
 }
 
 @end

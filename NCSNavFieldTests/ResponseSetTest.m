@@ -23,7 +23,7 @@
 - (void)testToDictWithPid {
     ResponseSet *r = [ResponseSet object];
     [r setValue:@"1d" forKey:@"pId"];
-    STAssertEqualObjects([[r toDict] objectForKey:@"p_id"], @"1d", @"Wrong p_id");
+    STAssertEqualObjects([[r toDict] valueForKey:@"p_id"], @"1d", @"Wrong p_id");
 }
 
 - (void)testFromJsonWithPid {

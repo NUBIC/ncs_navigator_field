@@ -13,18 +13,18 @@
 
 @synthesize text,value,listName;
 
-- (id) initWithText:(NSString*)t value:(NSInteger)v {
+- (id) initWithText:(NSString*)t value:(NSObject*)v {
     if (self = [self init]) {
         self.text = t;
-        self.value = [NSNumber numberWithInt:v];
+        self.value = v;
     }
     return self;
 }
 
 
-+ (PickerOption*) findWithValue:(NSInteger)val fromOptions:(NSArray*)options {
++ (PickerOption*) findWithValue:(NSObject*)val fromOptions:(NSArray*)options {
     for (PickerOption* o in options) {
-        if (o.value == [NSNumber numberWithInt:val]) {
+        if ([o.value isEqual:val]) {
             return o;
         }
     }

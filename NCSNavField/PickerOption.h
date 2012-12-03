@@ -12,14 +12,14 @@
 
 @interface PickerOption : NSObject {
     NSString *text;
-    NSNumber *value;
+    NSObject *value;
 }
 
 @property(nonatomic,strong) NSString *text;
-@property(nonatomic,strong) NSNumber *value;
+@property(nonatomic,strong) NSObject *value;
 @property(nonatomic,strong) NSString *listName;
 
-- (id) initWithText:(NSString*)t value:(NSInteger)v;
-+ (PickerOption*) findWithValue:(NSInteger)value fromOptions:(NSArray*)options;
+- (id) initWithText:(NSString*)t value:(NSObject*)v;
++ (PickerOption*) findWithValue:(NSObject*)value fromOptions:(NSArray*)options;
 
 @end

@@ -20,7 +20,7 @@ enum {
 };
 
 @interface SingleOptionPicker : UIView<UIPopoverControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
-    NSNumber* _value;
+    NSObject* _value;
     UIButton* _button;
     NUPickerVC* _picker;
     ChangeHandler* _handler;
@@ -29,7 +29,7 @@ enum {
     NUPickerVCPopoverSize _popoverSize;
 }
 
-@property(nonatomic,strong) NSNumber* value;
+@property(nonatomic,strong) NSObject* value;
 
 @property(nonatomic,strong) UIButton* button;
 

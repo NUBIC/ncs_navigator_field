@@ -33,7 +33,7 @@ static const NSInteger MISSING_IN_ERROR = -4;
 + (NSArray*)convertToPickerOptions:(NSArray*)mdesCodes {
     return [mdesCodes collect:^id(id obj) {
         MdesCode* c = obj;
-        return [[PickerOption alloc] initWithText:c.displayText value:[c.localCode integerValue]];
+        return [[PickerOption alloc] initWithText:c.displayText value:c.localCode];
     }];
 }
 
