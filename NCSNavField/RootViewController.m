@@ -438,10 +438,10 @@
     }
     //In the future, these two catches will diverge. Right now, let's just put a placeholder. 
     @catch (FieldworkSynchronizationException *ex) {
-        NSLog(@"%@",[ex name]);
+        NSLog(@"%@\n%@",[ex debugDescription], [ex name]);
     }
     @catch(NSException *ex) {
-        NSLog(@"%@",[ex name]);
+        NSLog(@"%@\n%@",[ex debugDescription], [ex name]);
     }
     @finally {
         //BE CAREFUL: this could hide a bug above. Make sure to look if an exception is printed out!!!
