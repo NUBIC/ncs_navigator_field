@@ -7,7 +7,10 @@
 //
 
 #import "NUPickerVC.h"
+#import "UIFont+Additions.h"
 
 @interface NUPickerVC (Additions)
-
+//Pass in an array of NSString objects and this method will calculate the minimum
+//width necessary to view the values in full with the given font (this will not include padding.)
+-(CGFloat)calculateNecessaryWidth:(NSArray*)arrOfStrings withFont:(UIFont*)f;
 @end

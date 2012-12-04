@@ -10,6 +10,7 @@
 #import "NUPickerVC.h"
 #import "ChangeHandler.h"
 #import "PickerOption.h"
+#import "NUPickerVC+Additions.h"
 
 @implementation SingleOptionPicker
 
@@ -27,12 +28,14 @@
 
 @synthesize popoverSize = _popoverSize;
 
+@synthesize widthOfNUPicker=_widthOfNUPicker;
+
 - (id)initWithFrame:(CGRect)frame value:(NSNumber*)value pickerOptions:(NSArray*)options {
     self.accessibilityLabel = @"Single Option Picker";
     self.isAccessibilityElement=YES;
     return [self initWithFrame:frame value:value pickerOptions:options popoverSize:NUPickerVCPopoverSizeRegular];
 }
-
+//This will always get called.
 - (id)initWithFrame:(CGRect)frame value:(NSNumber*)value pickerOptions:(NSArray*)options popoverSize:(NUPickerVCPopoverSize)popoverSize {
     self = [super initWithFrame:frame];
     if (self) {
@@ -42,7 +45,6 @@
         self.value = value;
         self.pickerOptions = options;
         self.popoverSize = popoverSize;
-        
         
         // Create button
         self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -56,6 +58,7 @@
                 title = o.text;
             }
         }
+        //We want something that gives us an array of text from an array of PickerOptions.
         [self.button setTitle:title forState:UIControlStateNormal];
         
         // Setup button target
@@ -75,10 +78,14 @@
     [p loadView];
     [p viewDidLoad];
     [p setupDelegate:self withTitle:@"Pick One" date:NO];
+    PickerOption* title = [PickerOption findWithValue:self.value fromOptions:self.pickerOptions];
+    
+    //We have the options, lets get the length of the largest string with the given font.
+    _widthOfNUPicker = [p calculateNecessaryWidth:[self textSelections] withFont:[UIFont boldSystemFontOfSize:24]];
 
     p.contentSizeForViewInPopover = [self CGSizeFromPopoverSize:self.popoverSize];
 
-    PickerOption* title = [PickerOption findWithValue:self.value fromOptions:self.pickerOptions];
+    
     if (title) {
         [self.button setTitle:title.text forState:UIControlStateNormal];
         NSInteger index = [self.pickerOptions indexOfObject:title];
@@ -86,7 +93,7 @@
     }
     return p;
 }
-
+//TODO:We may re-think this. 
 - (CGSize) CGSizeFromPopoverSize:(NUPickerVCPopoverSize)size {
     if (size == NUPickerVCPopoverSizeLarge) {
         return CGSizeMake(1000, 260);
@@ -171,6 +178,27 @@
 
 -(void)setPickerOptions:(NSArray *)pickerOptions {
     _pickerOptions = pickerOptions;
+}
+//Override description to tell us about what the options say as well.
+-(NSString*)description {
+    NSMutableString *str = [[NSMutableString alloc] initWithFormat:@"<PickerOption: %p>\n",self];
+    for(PickerOption *o in self.pickerOptions) {
+        [str appendString:[o.value description]];
+        [str appendString:@" ----- "];
+        [str appendString:o.text];
+        [str appendString:@"\n"];
+    }
+    return str;
+}
+
+-(NSArray*)textSelections {
+    NSMutableArray *arr = [NSMutableArray new];
+    
+    for(PickerOption *o in self.pickerOptions) {
+        [arr addObject:o.text];
+    }
+    return arr;
+    
 }
 
 @end

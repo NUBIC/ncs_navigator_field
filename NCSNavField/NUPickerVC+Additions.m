@@ -10,4 +10,13 @@
 
 @implementation NUPickerVC (Additions)
 
+-(CGFloat)calculateNecessaryWidth:(NSArray*)arrOfStrings withFont:(UIFont *)f {
+    CGFloat fMax = 0;
+    CGFloat sTemp = 0;
+    for(NSString *str in arrOfStrings) {
+        sTemp = [f calculateWidth:str].width;
+        fMax = (sTemp>fMax) ? fMax : sTemp;
+    }
+    return fMax;
+}
 @end

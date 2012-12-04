@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIFont (Additions)
-
+//Take a given string, we will return the single lined length/height needed to hold the string.
+//This can be used to calculate the needed width of a UISingleOptionPicker.
+-(CGSize)calculateWidth:(NSString*)str;
 @end

@@ -27,6 +27,7 @@ enum {
     NSArray* _pickerOptions;
     UIPopoverController* _popover;
     NUPickerVCPopoverSize _popoverSize;
+    CGFloat _widthOfNUPicker; //This is set by looking at the length of the strings that represent the options.
 }
 
 @property(nonatomic,strong) NSObject* value;
@@ -43,6 +44,8 @@ enum {
 
 @property(nonatomic) NUPickerVCPopoverSize popoverSize;
 
+@property(nonatomic,readonly) CGFloat widthOfNUPicker;
+
 - (id)initWithFrame:(CGRect)frame value:(NSNumber*)value pickerOptions:(NSArray*)options;
 
 - (id)initWithFrame:(CGRect)frame value:(NSNumber*)value pickerOptions:(NSArray*)options popoverSize:(NUPickerVCPopoverSize)popoverSize;
@@ -54,5 +57,7 @@ enum {
 - (void) updatePickerOptions:(NSArray*)newOptions;
 
 - (void) clearResponse;
+
+-(NSArray*)textSelections;
 
 @end
