@@ -63,15 +63,19 @@
 
 #pragma setter
 
-- (void) setStartTimeJson:(NSString*)startTime;
+- (void)setStartTimeJson:(NSString*)startTime;
 
-- (void) setEndTimeJson:(NSString*)endTime;
+- (void)setEndTimeJson:(NSString*)endTime;
+
 
 #pragma getters
 
-- (NSString*) startTimeJson;
+- (NSString*)startTimeJson;
 
-- (NSString*) endTimeJson;
+- (NSString*)endTimeJson;
+
+- (NSNumber*)dispositionCodeNumber;
+
 
 @end
 

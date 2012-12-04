@@ -49,10 +49,6 @@
     return result;
 }
 
-- (void)setDispositionCodeFromNumber:(NSNumber*)dispNum {
-    self.dispositionCode = dispNum ? [dispNum stringValue] : nil;
-}
-
 // BUG: This is a workaround for a bug when using the generated method
 //      addInstrumentsObject to add an instrument to the ordered set.
 //      https://openradar.appspot.com/10114310

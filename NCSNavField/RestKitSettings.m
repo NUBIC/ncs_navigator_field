@@ -197,7 +197,7 @@ static RestKitSettings* instance;
      @"event_end_time", @"endTimeJson",
      @"event_incentive_type_code", @"incentiveTypeId",
      @"event_incentive_cash", @"incentiveCash",
-     @"event_disposition", @"dispositionCodeFromNumber",
+     @"event_disposition", @"dispositionCode",
      @"event_disposition_category_code", @"dispositionCategoryId",
      @"event_breakoff_code", @"breakOffId",
      @"event_comment", @"comments",
