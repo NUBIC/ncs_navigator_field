@@ -158,6 +158,8 @@
 		22942CD216692B7300242588 /* FieldworkSynchronizationException.m in Sources */ = {isa = PBXBuildFile; fileRef = 22942CD116692B7300242588 /* FieldworkSynchronizationException.m */; };
 		22942CE41669461300242588 /* EventSorter.m in Sources */ = {isa = PBXBuildFile; fileRef = 22942CE31669461300242588 /* EventSorter.m */; };
 		22942CE716694AC200242588 /* NSString+ParsingExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22942CE616694AC200242588 /* NSString+ParsingExtensions.m */; };
+		22A11EED166E5EE6000E1F07 /* UIFont+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A11EEC166E5EE6000E1F07 /* UIFont+Additions.m */; };
+		22A11EF1166E6142000E1F07 /* NUPickerVC+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A11EF0166E6142000E1F07 /* NUPickerVC+Additions.m */; };
 		22B8E4A616643B6A00640DE8 /* DispositionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B8E4A516643B6A00640DE8 /* DispositionCode.m */; };
 		4F53118515FA58A1006F5BB2 /* InstrumentPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */; };
 		D1CACF1A1F944E92AB51AE74 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 493CC93326804A8ABCA31763 /* libPods.a */; };
@@ -588,6 +590,10 @@
 		22942CE31669461300242588 /* EventSorter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSorter.m; sourceTree = "<group>"; };
 		22942CE516694AC200242588 /* NSString+ParsingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ParsingExtensions.h"; sourceTree = "<group>"; };
 		22942CE616694AC200242588 /* NSString+ParsingExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ParsingExtensions.m"; sourceTree = "<group>"; };
+		22A11EEB166E5EE6000E1F07 /* UIFont+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Additions.h"; sourceTree = "<group>"; };
+		22A11EEC166E5EE6000E1F07 /* UIFont+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Additions.m"; sourceTree = "<group>"; };
+		22A11EEF166E6142000E1F07 /* NUPickerVC+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NUPickerVC+Additions.h"; sourceTree = "<group>"; };
+		22A11EF0166E6142000E1F07 /* NUPickerVC+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NUPickerVC+Additions.m"; sourceTree = "<group>"; };
 		22B8E4A21664337C00640DE8 /* 20121126191731_addMdes_and_dispcode_entities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121126191731_addMdes_and_dispcode_entities.xcdatamodel; sourceTree = "<group>"; };
 		22B8E4A416643B6A00640DE8 /* DispositionCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispositionCode.h; sourceTree = "<group>"; };
 		22B8E4A516643B6A00640DE8 /* DispositionCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispositionCode.m; sourceTree = "<group>"; };
@@ -1217,6 +1223,8 @@
 			children = (
 				2237A32C163B294B009E3A13 /* UIView+Additions.h */,
 				2237A32D163B294B009E3A13 /* UIView+Additions.m */,
+				22A11EEF166E6142000E1F07 /* NUPickerVC+Additions.h */,
+				22A11EF0166E6142000E1F07 /* NUPickerVC+Additions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1245,6 +1253,8 @@
 			children = (
 				22942CE516694AC200242588 /* NSString+ParsingExtensions.h */,
 				22942CE616694AC200242588 /* NSString+ParsingExtensions.m */,
+				22A11EEB166E5EE6000E1F07 /* UIFont+Additions.h */,
+				22A11EEC166E5EE6000E1F07 /* UIFont+Additions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1486,6 +1496,8 @@
 				22942CD216692B7300242588 /* FieldworkSynchronizationException.m in Sources */,
 				22942CE41669461300242588 /* EventSorter.m in Sources */,
 				22942CE716694AC200242588 /* NSString+ParsingExtensions.m in Sources */,
+				22A11EED166E5EE6000E1F07 /* UIFont+Additions.m in Sources */,
+				22A11EF1166E6142000E1F07 /* NUPickerVC+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
