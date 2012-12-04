@@ -156,30 +156,11 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    if(_popoverSize == NUPickerVCPopoverSizeRegular) {
-        PickerOption* p = [self.pickerOptions objectAtIndex:row];
-        return p.text;
-    }
-    return nil; //This should never be reached.
+    PickerOption* p = [self.pickerOptions objectAtIndex:row];
+    return p.text; 
 }
 
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
-    
-        UILabel *pickerLabel = (UILabel *)view;
-        CGRect frame = CGRectMake(0,0,_popoverSize,40); //The width may vary depending upon the data we are returning.
-        pickerLabel = [[UILabel alloc] initWithFrame:frame];
-        [pickerLabel setTextAlignment:UITextAlignmentLeft];
-        [pickerLabel setBackgroundColor:[UIColor clearColor]];
-        [pickerLabel setMinimumFontSize:12.0];
-      //[pickerLabel setFont:[UIFont boldSystemFontOfSize:12.0]];
-        [pickerLabel setNumberOfLines:0];
-        [pickerLabel setText:[[self.pickerOptions objectAtIndex:row] text]];
-        return pickerLabel;
-    }
-    return [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 20)];
-}
-
-#pragma mark - Accessibility
+#pragma mark - Acce ssibility
 -(BOOL)isAccessibilityElement {
     return YES;
 }
