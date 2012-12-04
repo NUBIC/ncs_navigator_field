@@ -7,62 +7,60 @@
 //
 
 #import "EventSorter.h"
-
-#define CSV_FILE @"Event_Type_Sort_Order"
-
-@interface EventSorter() {
-    NSMutableDictionary *_dictionary;
-}
--(id)init; //The client should not be calling this method directly so let's hide it.
--(void)dictionaryFromFile; //None of the client's business.
-@end
-
-static EventSorter *gInstance = NULL;
+#import "Event.h"
 
 @implementation EventSorter
 
--(id)init {
-    if ( self = [super init] ) {
-        //We want to read from the file and create the dictionary on init.
-        [self dictionaryFromFile];
-    }
-    return self;
-}
--(NSDictionary*)sortOrder {
-    //Lookup table is NSString*->NSNumber*
-    return _dictionary;
++ (NSComparisonResult)compareEvent:(Event*)a toEvent:(Event*)b {
+    NSArray* eventOrder = [self eventOrderByEventTypeCode];
+    NSNumber* indexA = [NSNumber numberWithInteger:[eventOrder indexOfObject:a.eventTypeCode]];
+    NSNumber* indexB = [NSNumber numberWithInteger:[eventOrder indexOfObject:b.eventTypeCode]];
+    return [indexA compare:indexB];
 }
 
-+(EventSorter*)instance
-{
-    @synchronized(self)
-    {
-        if (gInstance == NULL)
-            gInstance = [[self alloc] init];
-    }
-    return(gInstance);
-}
-
--(void)dictionaryFromFile {
-    _dictionary = [NSMutableDictionary new];
-    NSError *error;
-    NSString *fullPath = [[NSBundle mainBundle] pathForResource:CSV_FILE ofType:@"txt"];
-    NSString *fileString = [NSString stringWithContentsOfFile:fullPath
-                                                    encoding:NSUTF8StringEncoding error:&error];
-    if ((nil == fileString)||(error != nil)) {
-        //throw exception, this shouldn't happen.
-        NSLog(@"%@",[error description]);
-        [NSException raise:@"File IO issue in EventSorter" format:nil];
-    }
-    //fileString is good, so let's parse it.
-    NSArray *rows = [fileString csvRows];
-    for(NSArray *innerArray in rows)
-    {
-        //NSString*->NSNumber*
-        NSNumber *n = [[[innerArray objectAtIndex:0] stringByTrimmingCharactersInSet:
-                       [NSCharacterSet whitespaceCharacterSet]] toNumber];
-        [_dictionary setObject:n forKey:[innerArray objectAtIndex:1]];
-    }
++ (NSArray*) eventOrderByEventTypeCode {
+    return [NSArray arrayWithObjects:
+        @1,  //Household Enumeration
+        @2,  //Two Tier Enumeration
+        @22, //Provider-Based Recruitment
+        @3,  //Ongoing Tracking of Dwelling Units
+        @34, //PBS Participant Eligibility Screening
+        @35, //PBS Frame SAQ
+        @4,  //Pregnancy Screening - Provider Group
+        @5,  //Pregnancy Screening – High Intensity  Group
+        @6,  //Pregnancy Screening – Low Intensity Group
+        @9,  //Pregnancy Screening - Household Enumeration Group
+        @29, //Pregnancy Screener
+        @10, //Informed Consent
+        @33, //Low Intensity Data Collection
+        @32, //Low to High Conversion
+        @7,  //Pregnancy Probability
+        @8,  //PPG Follow-Up by Mailed SAQ
+        @11, //Pre-Pregnancy Visit
+        @12, //Pre-Pregnancy Visit SAQ
+        @13, //Pregnancy Visit  1
+        @14, //Pregnancy Visit #1 SAQ
+        @15, //Pregnancy Visit  2
+        @16, //Pregnancy Visit #2 SAQ
+        @17, //Pregnancy Visit - Low Intensity Group
+        @18, //Birth
+        @19, //Father
+        @20, //Father Visit SAQ
+        @21, //Validation
+        @23, //3 Month
+        @24, //6 Month
+        @25, //6-Month Infant Feeding SAQ
+        @26, //9 Month
+        @27, //12 Month
+        @28, //12 Month Mother Interview SAQ
+        @30, //18 Month
+        @31, //24 Month
+        @36, //30 Month
+        @37, //36 Month
+        @38, //42 Month
+        @-5, //Other
+        @-4, //Missing in Error
+        nil];
 }
 
 @end

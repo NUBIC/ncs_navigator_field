@@ -21,6 +21,4 @@
 
 + (NSArray*)allPickerOptions;
 
-+ (NSArray*)allPickerOptionsForDispositionCategories;
-
 @end

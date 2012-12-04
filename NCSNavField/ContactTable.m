@@ -33,7 +33,7 @@
 
 - (NSArray*) buildSectionsFromContact:(Contact*)contact { 
     NSMutableArray* s = [NSMutableArray arrayWithObjects:
-        [self addresses], [self emails], [self contactDetails], nil];
+        [self addresses], [self phones], [self emails], [self contactDetails], nil];
     if (_contact.initiated) {
         [s addObject:[self scheduledInstruments]];
         [s addObject:[self scheduledEvents]];
@@ -62,11 +62,11 @@
 - (Section*) phones {
     NSMutableArray* phones = [[NSMutableArray alloc] init];
 
-    if (![_contact.person.homePhone isEmptyOrNil]) {
+    if (_contact.person.homePhone && ![_contact.person.homePhone isEmptyOrNil]) {
         Row* home = [[Row alloc] initWithText:@"Home" detailText:_contact.person.homePhone];
         [phones addObject:home];
     }
-    if (![_contact.person.cellPhone isEmptyOrNil]) {
+    if (_contact.person.cellPhone && ![_contact.person.cellPhone isEmptyOrNil]) {
         Row* cell = [[Row alloc] initWithText:@"Cell" detailText:_contact.person.cellPhone];
         [phones addObject:cell];
     }
@@ -77,7 +77,7 @@
 - (Section*) emails {
     NSMutableArray* emails = [NSMutableArray new];
     
-    if (![self.contact.person.email isEmptyOrNil]) {
+    if (self.contact.person.email && ![self.contact.person.email isEmptyOrNil]) {
         Row* home =[[Row alloc] initWithText:@"Home" detailText:_contact.person.email];
         [emails addObject:home];
     }
@@ -103,13 +103,8 @@
 }
 
 - (NSArray*) sortedEvents {
-    NSDictionary *lookupTable = [[EventSorter instance] sortOrder];
     NSArray* sorted = [[self.contact.events allObjects] sortedArrayUsingComparator:^(id a, id b) {
-        NSString *sFirst = [(Event*)a name];
-        NSString *sSecond = [(Event*)b name];
-        NSNumber *nFirst = [lookupTable objectForKey:sFirst];
-        NSNumber *nSecond = [lookupTable objectForKey:sSecond];
-        return [nFirst compare:nSecond];
+        return [EventSorter compareEvent:a toEvent:b];
     }];
     return sorted;
 }

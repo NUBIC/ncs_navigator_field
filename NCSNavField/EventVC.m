@@ -133,7 +133,7 @@
     [b timePickerForProperty:@selector(endTime)];
     
     [b labelWithText:@"Disposition Category"];
-    [b singleOptionPickerForProperty:@selector(dispositionCategoryId) WithPickerOptions:[DispositionCode allPickerOptionsForDispositionCategories] andPopoverSize:NUPickerVCPopoverSizeLarge];
+    [b singleOptionPickerForProperty:@selector(dispositionCategoryId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"EVENT_DSPSTN_CAT_CL1"]];
     
     [b labelWithText:@"Disposition"];
     [b singleOptionPickerForProperty:@selector(dispositionCode) WithPickerOptions:[DispositionCode allPickerOptions] andPopoverSize:NUPickerVCPopoverSizeLarge];

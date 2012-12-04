@@ -7,21 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NSString+ParsingExtensions.h"
-#import "NSString+Additions.h"
+
+@class Event;
+
 /*
 
- Event Sort falls the GoF Singleton design pattern. It reads from a file called Event_Type_Sort_Order
- upon instantiation and then returns all interested parties the sort order through accessor methods.
- @See: Event_Type_Sort_Order in this bundle
- @See: NSString+ParsingExtensions
+ Event Sort is used to determine the order in which events
+ should be performed
  
  Use this something like:
-    NSDictionary *sortOder = [[EventSorter instance] sortOrder];
+    [EventSorter compareEvent:a toEvent:b];
  
  */
 
 @interface EventSorter : NSObject
-+ (EventSorter*)instance;
--(NSDictionary*)sortOrder;
+
++ (NSComparisonResult)compareEvent:(Event*)a toEvent:(Event*)b;
+    
 @end
