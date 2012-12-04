@@ -12,6 +12,8 @@
 #import "PickerOption.h"
 #import "NUPickerVC+Additions.h"
 
+#define SO_PICKER_PADDING 20
+
 @implementation SingleOptionPicker
 
 @synthesize value = _value;
@@ -82,9 +84,11 @@
     
     //We have the options, lets get the length of the largest string with the given font.
     _widthOfNUPicker = [p calculateNecessaryWidth:[self textSelections] withFont:[UIFont boldSystemFontOfSize:24]];
-
-    p.contentSizeForViewInPopover = [self CGSizeFromPopoverSize:self.popoverSize];
-
+    //Let's use the new width to change the popoversize.
+    CGSize s = [self CGSizeFromPopoverSize:self.popoverSize];
+    CGSize t = CGSizeMake(_widthOfNUPicker+(SO_PICKER_PADDING),s.height);
+    
+    p.contentSizeForViewInPopover = t;
     
     if (title) {
         [self.button setTitle:title.text forState:UIControlStateNormal];
