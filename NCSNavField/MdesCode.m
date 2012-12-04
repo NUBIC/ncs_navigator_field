@@ -22,12 +22,12 @@ static const NSInteger MISSING_IN_ERROR = -4;
 
     NSArray* results = [MdesCode findByAttribute:@"listName" withValue:listName andOrderBy:@"localCode" ascending:NO];
 
-    [results reject:^BOOL(id obj) {
+    NSArray* filtered = [results reject:^BOOL(id obj) {
         MdesCode* c = obj;
         return [c.localCode isEqualToNumber:[NSNumber numberWithInt:MISSING_IN_ERROR]];
     }];
     
-    return [self convertToPickerOptions:results];
+    return [self convertToPickerOptions:filtered];
 }
 
 + (NSArray*)convertToPickerOptions:(NSArray*)mdesCodes {
