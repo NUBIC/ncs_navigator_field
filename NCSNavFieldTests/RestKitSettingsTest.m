@@ -43,6 +43,7 @@
     
     Event* e = [Event object];
     e.name = @"Birthday";
+    e.dispositionCode = @"4";
     e.instruments = [NSOrderedSet orderedSetWithObject:i];
     
     Contact* c = [Contact object];
@@ -77,6 +78,7 @@
     
     NSDictionary* ae = [[[ac objectForKey:@"events"] objectEnumerator] nextObject];
     STAssertEqualObjects(@"Birthday", [ae objectForKey:@"name"], @"Wrong value");
+    STAssertEqualObjects(@4, [ae objectForKey:@"event_disposition"], @"Wrong value");
     
     NSDictionary* ai = [[[ae objectForKey:@"instruments"] objectEnumerator] nextObject];
     STAssertEqualObjects(@"INS A", [ai objectForKey:@"name"], @"Wrong value");
@@ -116,6 +118,7 @@
          "      \"events\":[                            "
          "        {                                     "
          "          \"event_id\":\"e1\",                "
+         "          \"event_disposition\":4,            "
          "          \"instruments\":[                   "
          "            {                                 "
          "               \"instrument_id\":\"i1\"       "
@@ -157,6 +160,7 @@
     
     Event* et = [[ct.events objectEnumerator] nextObject];
     STAssertEqualObjects(et.eventId, @"e1", @"Wrong value");
+    STAssertEqualObjects(et.dispositionCode, @"4", @"Wrong value");
     
     Instrument* ins = [[et.instruments objectEnumerator] nextObject];
     STAssertEqualObjects(ins.instrumentId, @"i1", @"Wrong value");
