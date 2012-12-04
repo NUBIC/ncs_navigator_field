@@ -9,7 +9,6 @@
 #import "MBProgressHUD.h"
 
 @interface SyncActivityIndicator : MBProgressHUD
-
-- (id) initWithView:(UIView *)view;
-
+//Message will be set with default text.
+- (id)initWithView:(UIView *)view;
 @end

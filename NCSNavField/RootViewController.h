@@ -33,6 +33,7 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
     SyncActivityIndicator* _syncIndicator;
     CasServiceTicket* _serviceTicket;
     BlockAlertView *_alertView;
+    dispatch_queue_t backgroundQueue;
 }
 
 @property (nonatomic, strong) IBOutlet ContactDisplayController *detailViewController;

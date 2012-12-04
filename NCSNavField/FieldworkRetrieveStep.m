@@ -57,7 +57,6 @@
     else {
         [self loadDataWithProxyTicket:pt];
     }
-    
 }
 
 - (void)loadDataWithProxyTicket:(CasProxyTicket*)ticket {
@@ -65,7 +64,6 @@
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
     [objectManager.client.HTTPHeaders setValue:ApplicationSettings.instance.clientId forKey:@"X-Client-ID"];
-
     
     NSDate* today = [NSDate date];
     NSInteger days = [[ApplicationSettings instance] upcomingDaysToSync];
@@ -100,6 +98,7 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
+    NSLog(@"%@",[error description]);
     [_delegate showAlertView:CONTACT_RETRIEVAL];
     FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"object Loader failure in Retrieving Contacts" reason:nil userInfo:nil];
     @throw ex;

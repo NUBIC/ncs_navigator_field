@@ -26,6 +26,7 @@ const static NSInteger POLL_REPEATS = 3;
 
 - (id) initWithMergeStatusId:(NSString*)mergeStatusId andServiceTicket:(CasServiceTicket*)serviceTicket {
     self = [self init];
+    backgroundQueue = dispatch_queue_create("edu.northwestern.www", NULL);
     if (self) {
         _mergeStatusId = mergeStatusId;
         _serviceTicket = serviceTicket;
@@ -65,9 +66,7 @@ const static NSInteger POLL_REPEATS = 3;
     return nil;
 }
 
-
 - (BOOL) poll {
-    
     for (int i=1; i <= POLL_REPEATS; i++) {
         MergeStatus* status = [self send];
         if (status) {
@@ -75,9 +74,13 @@ const static NSInteger POLL_REPEATS = 3;
                 self.error = NULL;
                 break;
             } else if ([status isPending] || [status isTimeout] || [status isWorking]) {
-                self.error = @"It is taking slightly longer than expected to obtain your next contacts. Please try again a little later";
-            } else { 
-                self.error = @"There was an error preventing you from obtaining your next contacts. Please call the help desk";
+                //dispatch_sync(dispatch_get_main_queue(),^ {
+                    //[_delegate setHUDMessage:MERGE_IS_TAKING_TIME andDetailMessage:TRY_AGAIN_LATER withMajorFontSize:16.0];
+                //} );
+                self.error = MERGE_IS_TAKING_TIME;
+            } else {
+                //[_delegate setHUDMessage:MERGE_IS_TAKING_TIME andDetailMessage:TRY_AGAIN_LATER withMajorFontSize:16.0];
+                self.error = MERGE_ERROR;
             }
             [[MergeStatus currentContext] save:nil];
         }
@@ -87,14 +90,12 @@ const static NSInteger POLL_REPEATS = 3;
         }
     }
     if (self.error) {
-        [_delegate showAlertView:MERGE_DATA];
+        [_delegate showAlertView:self.error];
         FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:self.error reason:nil userInfo:nil];
         @throw ex;
     }
     return TRUE;
 }
-
-
 
 #pragma mark RKRequestDelegate
 

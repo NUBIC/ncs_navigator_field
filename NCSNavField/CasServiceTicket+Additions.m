@@ -16,6 +16,8 @@
     if (!self.pgt) {
         [self present];
     }
+    if(self.message)
+        NSLog(@"%@",self.message);
 
     if (self.ok) {
         CasConfiguration* conf = [ApplicationSettings casConfiguration];

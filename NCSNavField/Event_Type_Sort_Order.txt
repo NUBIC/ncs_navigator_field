@@ -1,4 +1,4 @@
-  1,  Household Enumeration,
+     1,  Household Enumeration,
      2,  Two Tier Enumeration,
     22,  Provider-Based Recruitment,
      3,  Ongoing Tracking of Dwelling Units,

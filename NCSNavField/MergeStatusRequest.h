@@ -16,6 +16,7 @@
     NSString* _error;
     CasServiceTicket* _serviceTicket;
     id<UserErrorDelegate> _delegate;
+    dispatch_queue_t backgroundQueue;
 }
 
 @property(nonatomic,strong) NSString* mergeStatusId;

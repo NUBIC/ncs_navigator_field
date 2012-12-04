@@ -67,9 +67,8 @@
     self.accessibilityLabel = @"RootViewControler";
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instrumentSelected:) name:@"InstrumentSelected" object:NULL];
-        
+        backgroundQueue = dispatch_queue_create("edu.northwestern.www", NULL);
         self.reachability = [[RKReachabilityObserver alloc] initWithHost:@"www.google.com"];
-        
         // Register for notifications
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(reachabilityChanged:)
@@ -212,6 +211,10 @@
         self.administeredInstrument = instrument;
     }
 }
+-(void)failure:(NSError *)err {
+    [self showAlertView:@"The server wouldn't authenticate you."];
+    
+}
 
 #pragma mark - surveyor_ios controller delgate
 - (void)surveyDone {
@@ -346,22 +349,70 @@
 - (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket {
     NCSLog(@"My Successful login: %@", serviceTicket);
     [self dismissViewControllerAnimated:YES completion:^{
-        [self.syncIndicator show:YES];
-        [self syncContacts:serviceTicket];
-        [self.syncIndicator hide:YES];
+        [self setHUDMessage:SYNCING_CONTACTS];
+        //Running on another thread instead of the main runloop
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            self.syncIndicator.labelFont = [UIFont fontWithName:self.syncIndicator.labelFont.fontName size:24.0];
+            [self.syncIndicator show:YES];
+            [self syncContacts:serviceTicket];
+            [self hideHUD];
+       });
     }];
 }
 
--(void)failure:(NSError *)err
-{
-    
+-(void)setHUDMessage:(NSString*)strMessage {
+        self.syncIndicator.labelFont = [UIFont fontWithName:self.syncIndicator.labelFont.fontName size:24.0];
+        [self.syncIndicator show:YES];
+        self.syncIndicator.mode = MBProgressHUDModeIndeterminate;
+        [self.syncIndicator setLabelText:strMessage];
+        [self.syncIndicator setDetailsLabelText:@""];
+}
+
+-(void)setHUDMessage:(NSString*)strMessage andDetailMessage:(NSString *)detailMessage {
+        self.syncIndicator.mode = MBProgressHUDModeIndeterminate;
+        [self.syncIndicator setLabelText:strMessage];
+        [self.syncIndicator setDetailsLabelText:detailMessage];
+}
+
+-(void)setHUDMessage:(NSString*)strMessage withFontSize:(CGFloat)f {
+        self.syncIndicator.mode = MBProgressHUDModeIndeterminate;
+        [self.syncIndicator setLabelText:strMessage];
+        [self.syncIndicator setDetailsLabelText:@""];
+        [self.syncIndicator setLabelFont:[UIFont fontWithName:self.syncIndicator.labelFont.fontName size:f]];
+}
+
+-(void)setHUDMessage:(NSString*)strMessage andDetailMessage:(NSString*)detailMessage withMajorFontSize:(CGFloat)f {
+    //dispatch_async(dispatch_get_main_queue(), ^{
+        self.syncIndicator.mode = MBProgressHUDModeIndeterminate;
+        [self.syncIndicator setLabelText:strMessage];
+        self.syncIndicator.labelText = strMessage;
+        [self.syncIndicator setDetailsLabelText:detailMessage];
+        [self.syncIndicator setLabelFont:[UIFont fontWithName:self.syncIndicator.labelFont.fontName size:f]];
+        [self.syncIndicator setDetailsLabelText:detailMessage];
+        [self.syncIndicator setNeedsLayout];
+        [self.syncIndicator setNeedsDisplay];
+    //});
+}
+-(void)setHUDMessage:(NSString*)strMessage andDetailMessage:(NSString*)detailMessage withMajorFontSize:(CGFloat)f andMinorFontSize:(CGFloat)g {
+        self.syncIndicator.mode = MBProgressHUDModeIndeterminate;
+        [self.syncIndicator setLabelText:strMessage];
+        [self.syncIndicator setDetailsLabelText:detailMessage];
+        [self.syncIndicator setLabelFont:[UIFont fontWithName:self.syncIndicator.labelFont.fontName size:f]];
+        [self.syncIndicator setDetailsLabelText:detailMessage];
+        [self.syncIndicator setDetailsLabelFont:[UIFont fontWithName:self.syncIndicator.labelFont.fontName size:g]];
+}
+
+-(void)hideHUD {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.syncIndicator hide:YES];
+    });
 }
 
 - (void)syncContacts:(CasServiceTicket*)serviceTicket {
 // Bumping the runloop so the UI can update and show the spinner
 // http://stackoverflow.com/questions/5685331/run-mbprogresshud-in-another-thread
     @try {
-        [[NSRunLoop currentRunLoop] runUntilDate: [NSDate distantPast]];
+        //[[NSRunLoop currentRunLoop] runUntilDate: [NSDate distantPast]];
 
         BOOL bStepWasSuccessful;
         //This has many, many substeps that we need to clarify.
@@ -392,12 +443,18 @@
     @catch(NSException *ex) {
         NSLog(@"%@",[ex name]);
     }
+    @finally {
+        //BE CAREFUL: this could hide a bug above. Make sure to look if an exception is printed out!!!
+        [self hideHUD];
+    }
 }
 
 #pragma mark
 #pragma mark - UserErrorDelegate
 
 -(void)showAlertView:(NSString*)strError {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
     //https://github.com/gpambrozio/BlockAlertsAnd-ActionSheets
     _alertView = [BlockAlertView alertWithTitle:@"Whoops!" message:[NSString stringWithFormat:@"Well this is embarrassing! Something has gone wrong with your sync. %@",strError]];
     
@@ -409,6 +466,8 @@
      ];
     [_alertView setDestructiveButtonWithTitle:@"Cancel" block:^(){}];
     [_alertView show];
+    
+    });
 }
 
 #pragma RestKit

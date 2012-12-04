@@ -101,7 +101,6 @@
             statusId = [put mergeStatusId];
         }
     }
-
     return statusId;
 }
 
@@ -113,6 +112,7 @@
 
 - (BOOL) mergeStatusRequest:(NSString*)mergeStatusId {
     MergeStatusRequest* request = [[MergeStatusRequest alloc] initWithMergeStatusId:mergeStatusId andServiceTicket:self.ticket];
+    request.delegate = _delegate;
     return [request poll];
 }
 
