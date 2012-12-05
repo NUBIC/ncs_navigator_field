@@ -18,7 +18,7 @@ static TextField* _activeField = nil;
 
 - (UITextField*)buildTextFieldWithValue:(NSString*)value {
     UITextField* t = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
-    t.borderStyle = UITextBorderStyleBezel;
+    t.borderStyle = UITextBorderStyleRoundedRect;
     t.textColor = [UIColor blackColor]; //text color
     t.font = [UIFont systemFontOfSize:17.0];  //font size
     t.backgroundColor = [UIColor whiteColor]; //background color

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UIView+Additions.h"
+
 #import "SingleOptionPicker.h"
 
 #define DEFAULT_WIDTH 240

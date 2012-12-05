@@ -65,7 +65,7 @@ const static NSInteger POLL_REPEATS = 3;
     }
     return nil;
 }
-//Can we use NSTimers here? 
+
 - (BOOL) poll {
     for (int i=1; i <= POLL_REPEATS; i++) {
         MergeStatus* status = [self send];
@@ -74,11 +74,13 @@ const static NSInteger POLL_REPEATS = 3;
                 self.error = NULL;
                 break;
             } else if ([status isPending] || [status isTimeout] || [status isWorking]) {
-                    [_delegate setHUDMessage:MERGE_IS_TAKING_TIME andDetailMessage:TRY_AGAIN_LATER withMajorFontSize:16.0];
-                    self.error = MERGE_IS_TAKING_TIME;
+                //dispatch_sync(dispatch_get_main_queue(),^ {
+                    //[_delegate setHUDMessage:MERGE_IS_TAKING_TIME andDetailMessage:TRY_AGAIN_LATER withMajorFontSize:16.0];
+                //} );
+                self.error = MERGE_IS_TAKING_TIME;
             } else {
-                    [_delegate setHUDMessage:MERGE_IS_TAKING_TIME andDetailMessage:TRY_AGAIN_LATER withMajorFontSize:16.0];
-                    self.error = MERGE_ERROR;
+                //[_delegate setHUDMessage:MERGE_IS_TAKING_TIME andDetailMessage:TRY_AGAIN_LATER withMajorFontSize:16.0];
+                self.error = MERGE_ERROR;
             }
             [[MergeStatus currentContext] save:nil];
         }

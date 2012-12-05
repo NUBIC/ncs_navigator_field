@@ -16,9 +16,6 @@
 #import "BlockAlertView.h"
 #import "BlockBackground.h"
 #import "FieldworkSynchronizationException.h"
-#import "DetailViewController.h"
-#import "UIView+Additions.h"
-#import "KGModal.h"
 
 @class ContactDisplayController;
 @class Instrument;
@@ -37,7 +34,6 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
     CasServiceTicket* _serviceTicket;
     BlockAlertView *_alertView;
     dispatch_queue_t backgroundQueue;
-    DetailViewController *_errorDetailVC; //The view that pops up when the "Details" button on the UIAlertView is pressed.
 }
 
 @property (nonatomic, strong) IBOutlet ContactDisplayController *detailViewController;
@@ -45,7 +41,6 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 @property(nonatomic,strong) MBProgressHUD* syncIndicator;
 @property(nonatomic,strong) Instrument* administeredInstrument;
 @property(nonatomic,strong) CasServiceTicket* serviceTicket;
-@property(nonatomic,strong) UIView *modalView;
 - (void)toggleDeleteButton;
 - (void)purgeDataStore;
 - (void)didSelectRow:(Row*)row;
