@@ -76,15 +76,13 @@
     [self.cursor addNewLine];
 }
 
-- (SingleOptionPicker*) singleOptionPickerForProperty:(SEL)property WithPickerOptions:(NSArray*)options andPopoverSize:(NUPickerVCPopoverSize)popoverSize {
-    SingleOptionPicker* b = [[SingleOptionPicker alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:(NSNumber*)[self objectValueForKey:property] pickerOptions:options popoverSize:popoverSize];
-    [b addChangeHandler:[[ChangeHandler alloc] initWithObject:self.object field:property]];
-    [self.view addSubview:b];
-    [self.cursor addNewLine];
+- (SingleOptionPicker*) singleOptionPickerForProperty:(SEL)property WithPickerOptions:(NSArray*)options andPopoverSize:(NUPickerVCPopoverSize)popoverSize andTag:(NSUInteger)t {
+    SingleOptionPicker* b = [self singleOptionPickerForProperty:property WithPickerOptions:options andPopoverSize:popoverSize];
+    b.tag = t;
     return b;
 }
 
-- (SingleOptionPicker*) singleOptionPickerForProperty:(SEL)property WithPickerOptions:(NSArray*)options andPopoverSize:(NUPickerVCPopoverSize)popoverSize andTag:(NSUInteger)t {
+- (SingleOptionPicker*) singleOptionPickerForProperty:(SEL)property WithPickerOptions:(NSArray*)options andPopoverSize:(NUPickerVCPopoverSize)popoverSize {
     SingleOptionPicker* b = [[SingleOptionPicker alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:(NSNumber*)[self objectValueForKey:property] pickerOptions:options popoverSize:popoverSize];
     [b addChangeHandler:[[ChangeHandler alloc] initWithObject:self.object field:property]];
     [self.view addSubview:b];
@@ -170,7 +168,6 @@
 }
 
 -(void)animateShowingOfControlWithTags:(NSArray*)arr {
-    //Implementation tomorrow.
     for(int i=0;i<[arr count];i++) {
         [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionTransitionNone
                          animations:^(void) { [[self controlForTag:(NSUInteger)[arr objectAtIndex:i]] setHidden:NO]; } completion:nil];
