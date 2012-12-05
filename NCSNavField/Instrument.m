@@ -72,7 +72,7 @@
             NSString* title = [survey valueForKey:@"title"];
             if (title) {
                 NSRegularExpression *regex =
-                    [NSRegularExpression regularExpressionWithPattern:@"V(\\d+(\\.\\d)?)$" options:NSRegularExpressionCaseInsensitive error:nil];
+                    [NSRegularExpression regularExpressionWithPattern:@"V(\\d+(\\.\\d)?)" options:NSRegularExpressionCaseInsensitive error:nil];
                 
                 NSRange rangeOfFirstMatch = [regex rangeOfFirstMatchInString:title
                                                                      options:0

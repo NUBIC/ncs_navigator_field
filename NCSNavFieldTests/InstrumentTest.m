@@ -49,9 +49,9 @@ static InstrumentTemplate* it;
     STAssertEqualObjects([i determineInstrumentVersionFromSurveyTitle], @"1", nil);
 }
 
-- (void)testDetermineInstrumentVersionFromSurveyTitle {
-    it.representation = @"{ \"title\":\"v1 bad title\"}";
-    STAssertNil([i determineInstrumentVersionFromSurveyTitle], nil);
+- (void)testDetermineInstrumentVersionFromSurveyTitleWhenPartOne {
+    it.representation = @"{ \"title\":\"INS_QUE_ParticipantVerif_DCI_EHPBHILIPBS_M3.0_V1.0_PART_ONE\"}";
+    STAssertEqualObjects([i determineInstrumentVersionFromSurveyTitle], @"1.0", nil);
 }
 
 - (void)testDetermineInstrumentVersion {
