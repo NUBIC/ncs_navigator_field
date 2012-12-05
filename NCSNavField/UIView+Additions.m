@@ -23,4 +23,14 @@
     else
         NSLog(@"Does not respond to selector dismissKeyboard.");
 }
+-(UIView*)subviewWithTag:(NSUInteger)t {
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bind) {
+        return ((UIView*)obj).tag = t;
+    }];
+    NSArray *oneObjArray = [[self subviews] filteredArrayUsingPredicate:predicate];
+    if([oneObjArray count]==1)
+        return [oneObjArray objectAtIndex:0];
+    else
+        return nil;
+}
 @end
