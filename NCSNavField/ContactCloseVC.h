@@ -38,7 +38,7 @@
 - (void) commitTransaction;
 - (void) rollbackTransaction;
 - (void)registerForKeyboardNotifications;
-- (void) registerContactTypeChangeNotification;
+//- (void) registerContactTypeChangeNotification; I'm not sure what we were doing with this before. Not implemented. 12/5/12
 
 - (void) setDefaults:(Contact*)contact;
 

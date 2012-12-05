@@ -49,6 +49,8 @@
     @property(nonatomic,strong) NSArray* contacts;
     @property(nonatomic,strong) ContactNavigationTable* table;
     @property(nonatomic,strong) BlockAlertView *alertView;
+    @property(nonatomic,strong) DetailViewController *errorDetailVC;
+    -(void)showDetails;
 @end
 
 @implementation RootViewController
@@ -61,13 +63,17 @@
 @synthesize administeredInstrument=_administeredInstrument;
 @synthesize serviceTicket=_serviceTicket;
 @synthesize alertView=_alertView;
+@synthesize errorDetailVC = _errorDetailVC;
 
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     self.accessibilityLabel = @"RootViewControler";
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instrumentSelected:) name:@"InstrumentSelected" object:NULL];
+        
         backgroundQueue = dispatch_queue_create("edu.northwestern.www", NULL);
+        _errorDetailVC = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:[NSBundle mainBundle]];
+        //_modalView = detailVC.view;
         self.reachability = [[RKReachabilityObserver alloc] initWithHost:@"www.google.com"];
         // Register for notifications
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -348,16 +354,15 @@
 
 - (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket {
     NCSLog(@"My Successful login: %@", serviceTicket);
-    [self dismissViewControllerAnimated:YES completion:^{
-        [self setHUDMessage:SYNCING_CONTACTS];
-        //Running on another thread instead of the main runloop
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            self.syncIndicator.labelFont = [UIFont fontWithName:self.syncIndicator.labelFont.fontName size:24.0];
-            [self.syncIndicator show:YES];
-            [self syncContacts:serviceTicket];
-            [self hideHUD];
-       });
-    }];
+    [self dismissModalViewControllerAnimated:YES];
+    [self setHUDMessage:SYNCING_CONTACTS];
+    //Running on another thread instead of the main runloop
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        self.syncIndicator.labelFont = [UIFont fontWithName:self.syncIndicator.labelFont.fontName size:24.0];
+        [self.syncIndicator show:YES];
+        [self syncContacts:serviceTicket];
+        [self hideHUD];
+   });
 }
 
 -(void)setHUDMessage:(NSString*)strMessage {
@@ -382,7 +387,6 @@
 }
 
 -(void)setHUDMessage:(NSString*)strMessage andDetailMessage:(NSString*)detailMessage withMajorFontSize:(CGFloat)f {
-    //dispatch_async(dispatch_get_main_queue(), ^{
         self.syncIndicator.mode = MBProgressHUDModeIndeterminate;
         [self.syncIndicator setLabelText:strMessage];
         self.syncIndicator.labelText = strMessage;
@@ -391,7 +395,6 @@
         [self.syncIndicator setDetailsLabelText:detailMessage];
         [self.syncIndicator setNeedsLayout];
         [self.syncIndicator setNeedsDisplay];
-    //});
 }
 -(void)setHUDMessage:(NSString*)strMessage andDetailMessage:(NSString*)detailMessage withMajorFontSize:(CGFloat)f andMinorFontSize:(CGFloat)g {
         self.syncIndicator.mode = MBProgressHUDModeIndeterminate;
@@ -465,6 +468,9 @@
         [blocksafeSelf syncButtonWasPressed];}
      ];
     [_alertView setDestructiveButtonWithTitle:@"Cancel" block:^(){}];
+    [_alertView addButtonWithTitle:@"Details" block:^() {
+        [blocksafeSelf showDetails];
+    }];
     [_alertView show];
     
     });
@@ -539,6 +545,11 @@
     ContactInitiateVC* civc = [[ContactInitiateVC alloc] initWithContact:screening];
     civc.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentViewController:civc animated:YES completion:nil];
+}
+
+-(void)showDetails {
+    UIView *contentView = _errorDetailVC.view;
+    [[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
