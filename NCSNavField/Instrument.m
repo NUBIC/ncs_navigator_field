@@ -12,6 +12,7 @@
 #import "NSString+Additions.h"
 #import "ResponseSet.h"
 #import "InstrumentPlan.h"
+#import "InstrumentTemplate.h"
 
 @implementation Instrument
 
@@ -58,6 +59,37 @@
 
 - (InstrumentPlan*)instrumentPlan {
     return [InstrumentPlan findFirstByAttribute:@"instrumentPlanId" withValue:self.instrumentPlanId];
+}
+
+- (NSString*)determineInstrumentVersionFromSurveyTitle {
+    NSString* version = nil;
+    
+    InstrumentPlan* ip = [self instrumentPlan];
+    if (ip) {
+        InstrumentTemplate* first = [ip.instrumentTemplates firstObject];
+        if (first) {
+            NSDictionary* survey = [first representationDictionary];
+            NSString* title = [survey valueForKey:@"title"];
+            if (title) {
+                NSRegularExpression *regex =
+                    [NSRegularExpression regularExpressionWithPattern:@"V(\\d+(\\.\\d)?)" options:NSRegularExpressionCaseInsensitive error:nil];
+                
+                NSRange rangeOfFirstMatch = [regex rangeOfFirstMatchInString:title
+                                                                     options:0
+                                                                       range:NSMakeRange(0, [title length])];
+                if (!NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0))) {
+                    // Move range up 1 to ignore 'V'
+                    NSRange range = NSMakeRange(rangeOfFirstMatch.location + 1, rangeOfFirstMatch.length - 1);
+                    version = [title substringWithRange:range];
+                }
+            }
+        }
+    }
+    return version;
+}
+
+- (NSString*)determineInstrumentVersion {
+    return self.instrumentVersion ? self.instrumentVersion : self.determineInstrumentVersionFromSurveyTitle;
 }
 
 @end

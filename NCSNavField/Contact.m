@@ -45,6 +45,16 @@
     return [self.endTime jsonSchemaTime];
 }
 
+- (NSNumber*)dispositionCodeNumber {
+    NSNumber* result = nil;
+    if (self.dispositionCode) {
+        NSNumberFormatter* f = [[NSNumberFormatter alloc] init];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        result = [f numberFromString:self.dispositionCode];
+    }
+    return result;
+}
+
 -(BOOL)onSameDay:(Contact*)c {
     
     NSDate *myDate,*yourDate;

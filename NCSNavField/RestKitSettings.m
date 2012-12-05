@@ -299,7 +299,7 @@ static RestKitSettings* instance;
      @"name", @"name", 
      @"instrumentTypeId", @"instrument_type_code", 
      @"instrumentTypeOther", @"instrument_type_other",
-     @"instrumentVersion", @"instrument_version",
+     @"determineInstrumentVersion", @"instrument_version",
      @"repeatKey", @"instrument_repeat_key",
      @"startDate.jsonSchemaDate", @"instrument_start_date",
      @"startTime.jsonSchemaTime", @"instrument_start_time",
@@ -359,7 +359,7 @@ static RestKitSettings* instance;
      @"privateId", @"contact_private_code", 
      @"privateDetail", @"contact_private_detail", 
      @"distanceTraveled", @"contact_distance", 
-     @"dispositionCode", @"contact_disposition",
+     @"dispositionCodeNumber", @"contact_disposition",
      @"version", @"version", nil];
     [contact mapRelationship:@"events" withMapping:event];
     [objectManager.mappingProvider setSerializationMapping:contact forClass:[Contact class]];

@@ -78,6 +78,10 @@
 
 - (InstrumentPlan*)instrumentPlan;
 
+- (NSString*)determineInstrumentVersionFromSurveyTitle ;
+
+- (NSString*)determineInstrumentVersion;
+
 @end
 
 @interface Instrument (GeneratedAccessors)
