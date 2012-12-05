@@ -518,7 +518,9 @@
     Contact* screening = [Contact contact];
     
     Participant* participant = [Participant participant];
-    screening.person = [participant selfPerson];
+    Person* person = [participant selfPerson];
+    screening.person = person;
+    screening.personId = person.personId;
     
     EventTemplate* pregnancyScreeningEventTmpl = [EventTemplate pregnancyScreeningTemplate];
     if (pregnancyScreeningEventTmpl) {
