@@ -18,6 +18,7 @@
 @interface FormBuilder()
 - (id) initWithView:(UIView *)view object:(id)obj cursor:(FormBuilderCursor*)cursor;
 - (id) objectValueForKey:(SEL)key;
+- (id)controlForTag:(NSUInteger)t;
 @end
     
 @implementation FormBuilder
@@ -58,7 +59,7 @@
     
 }
 
-- (void) labelWithText:(NSString*)text {
+- (void)labelWithText:(NSString*)text {
     UILabel* l = [[UILabel alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT)];
     l.text = text;
     l.backgroundColor = [UIColor colorWithRed: 1.0 green: 1.0 blue: 1.0 alpha:0.0];
@@ -66,7 +67,24 @@
     [self.cursor addNewLine];
 }
 
+- (void)labelWithText:(NSString*)text andTag:(NSUInteger)t {
+    UILabel* l = [[UILabel alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT)];
+    l.tag = t;
+    l.text = text;
+    l.backgroundColor = [UIColor colorWithRed: 1.0 green: 1.0 blue: 1.0 alpha:0.0];
+    [self.view addSubview:l];
+    [self.cursor addNewLine];
+}
+
 - (SingleOptionPicker*) singleOptionPickerForProperty:(SEL)property WithPickerOptions:(NSArray*)options andPopoverSize:(NUPickerVCPopoverSize)popoverSize {
+    SingleOptionPicker* b = [[SingleOptionPicker alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:(NSNumber*)[self objectValueForKey:property] pickerOptions:options popoverSize:popoverSize];
+    [b addChangeHandler:[[ChangeHandler alloc] initWithObject:self.object field:property]];
+    [self.view addSubview:b];
+    [self.cursor addNewLine];
+    return b;
+}
+
+- (SingleOptionPicker*) singleOptionPickerForProperty:(SEL)property WithPickerOptions:(NSArray*)options andPopoverSize:(NUPickerVCPopoverSize)popoverSize andTag:(NSUInteger)t {
     SingleOptionPicker* b = [[SingleOptionPicker alloc] initWithFrame:CGRectMake(self.cursor.x, self.cursor.y, DEFAULT_WIDTH, DEFAULT_HEIGHT) value:(NSNumber*)[self objectValueForKey:property] pickerOptions:options popoverSize:popoverSize];
     [b addChangeHandler:[[ChangeHandler alloc] initWithObject:self.object field:property]];
     [self.view addSubview:b];
@@ -128,6 +146,36 @@
     [self.cursor addNewLine];
 }
 
+
+#pragma mark - Hide/Show views and re-populate them dynamically.
+
+- (id)controlForTag:(NSUInteger)t
+{
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bind) {
+        return ((UIView*)obj).tag = t;
+    }];
+    NSArray *oneObjArray = [[self.view subviews] filteredArrayUsingPredicate:predicate];
+    return [oneObjArray objectAtIndex:0];
+}
+
+-(void)hideControlWithTag:(NSUInteger)t {
+    id i = [self controlForTag:t];
+    [i setHidden:YES];
+}
+
+-(void)setOptionsForPicker:(NSArray*)options withTag:(NSUInteger)t
+{
+    SingleOptionPicker *p = [self controlForTag:t];
+    p.pickerOptions = options;
+}
+
+-(void)animateShowingOfControlWithTags:(NSArray*)arr {
+    //Implementation tomorrow.
+    for(int i=0;i<[arr count];i++) {
+        [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionTransitionNone
+                         animations:^(void) { [[self controlForTag:(NSUInteger)[arr objectAtIndex:i]] setHidden:NO]; } completion:nil];
+    }
+}
 
 - (id) objectValueForKey:(SEL)key {
     return [_object respondsToSelector:key] ? [_object performSelector:key] : NULL;
