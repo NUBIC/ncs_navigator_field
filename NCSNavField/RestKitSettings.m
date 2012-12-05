@@ -359,7 +359,7 @@ static RestKitSettings* instance;
      @"privateId", @"contact_private_code", 
      @"privateDetail", @"contact_private_detail", 
      @"distanceTraveled", @"contact_distance", 
-     @"dispositionCode", @"contact_disposition",
+     @"dispositionCodeNumber", @"contact_disposition",
      @"version", @"version", nil];
     [contact mapRelationship:@"events" withMapping:event];
     [objectManager.mappingProvider setSerializationMapping:contact forClass:[Contact class]];
