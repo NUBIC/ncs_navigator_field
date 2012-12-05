@@ -299,7 +299,7 @@ static RestKitSettings* instance;
      @"name", @"name", 
      @"instrumentTypeId", @"instrument_type_code", 
      @"instrumentTypeOther", @"instrument_type_other",
-     @"instrumentVersion", @"instrument_version",
+     @"determineInstrumentVersion", @"instrument_version",
      @"repeatKey", @"instrument_repeat_key",
      @"startDate.jsonSchemaDate", @"instrument_start_date",
      @"startTime.jsonSchemaTime", @"instrument_start_time",

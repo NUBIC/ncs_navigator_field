@@ -14,4 +14,8 @@
 @property(nonatomic,strong) NSString* representation;
 @property(nonatomic,strong) NSString* participantType;
 
+- (void)setRepresentationDictionary:(NSDictionary*)r;
+
+- (NSDictionary*)representationDictionary;
+
 @end
