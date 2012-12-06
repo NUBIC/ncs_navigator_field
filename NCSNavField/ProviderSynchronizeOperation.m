@@ -34,6 +34,8 @@
     NSString *er;
     CasProxyTicket *pt = [self.ticket obtainProxyTicket:&er];
     if([er length]>0) {
+        [_loggingDelegate addHeadline:LOG_AUTH_FAILED];
+        [_loggingDelegate addLineWithEmphasis:LOG_AUTH_FAILED];
         [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
         FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:er reason:nil userInfo:nil];
         @throw ex;
@@ -51,6 +53,8 @@
     NSString* path = @"/api/v1/providers";
     
     NCSLog(@"Requesting data from %@", path);
+    //[_loggingDelegate addLine:LOG_RETRIEVE_PROVIDERS];
+    //[_loggingDelegate addLine:[NSString stringWithFormat:@"Requesting data from %@", path]];
     RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
     loader.method = RKRequestMethodGET;
     
@@ -61,10 +65,17 @@
 #pragma mark - RKObjectLoaderDelegate Methods
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
+    [_loggingDelegate addLineWithEmphasis:LOG_RETRIEVE_PROVIDERS_NO];
+    [_loggingDelegate addHeadline:LOG_RETRIEVE_PROVIDERS_NO];
+    [_loggingDelegate addLine:[error description]];
     [_delegate showAlertView:PROVIDER_RETRIEVAL];
     FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"Retrieving providers" reason:nil userInfo:nil];
     @throw ex;
 
+}
+
+-(void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects {
+    //[_loggingDelegate addLine:LOG_RETRIEVE_PROVIDERS_YES];
 }
 
 

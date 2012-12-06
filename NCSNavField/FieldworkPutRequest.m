@@ -59,9 +59,9 @@
             RKObjectManager *objectManager = [self objectManager:proxyTicket];
             RKObjectLoader* loader = [self objectLoader:submission objectManager:objectManager];
             self.response = [loader sendSynchronously];
-            [_loggingDelegate addLine:[NSString stringWithFormat:@"Put response has location header: %@", self.response.location]];
+           // [_loggingDelegate addLine:[NSString stringWithFormat:@"Put response has location header: %@", self.response.location]];
             NSLog(@"Put response has location header: %@", self.response.location);
-            [_loggingDelegate addLine:[NSString stringWithFormat:@"Response status code: %d", [self.response statusCode]]];
+           // [_loggingDelegate addLine:[NSString stringWithFormat:@"Response status code: %d", [self.response statusCode]]];
             NCSLog(@"Response status code: %d", [self.response statusCode]);
         }
     }
@@ -82,7 +82,7 @@
     NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork/%@", submission.fieldworkId];
     
     NCSLog(@"PUT %@", path);
-     [_loggingDelegate addLine:[NSString stringWithFormat:@"Put: %@", path]];
+     //[_loggingDelegate addLine:[NSString stringWithFormat:@"Put: %@", path]];
     RKObjectLoader* loader = [objectManager objectLoaderForObject:submission method:RKRequestMethodPUT delegate:self];
     loader.resourcePath = path;
     
@@ -103,13 +103,15 @@
     // {"success":true}, which is unmappable and causes RestKit to
     // throw an error.
     if (!objectLoader.response.isSuccessful) {
-        [_loggingDelegate addLine:LOG_FIELDWORK_UPLOAD_NO];
+        
         NCSLog(@"Error: Localized Description: %@", [error localizedDescription]);
         NCSLog(@"Error: Underlying Error: %@", [error.userInfo valueForKey:NSUnderlyingErrorKey]);
         [_loggingDelegate addLine:[NSString stringWithFormat:@"Error: Localized Description: %@", [error localizedDescription]]];
         [_loggingDelegate addLine:[NSString stringWithFormat:@"Error: Underlying Error: %@", [error.userInfo valueForKey:NSUnderlyingErrorKey]]];
         self.error = [NSString stringWithFormat:@"Error while pushing fieldwork.\n%@", [error localizedDescription]];
         [_userAlertDelegate showAlertView:PUTTING_DATA_ON_SERVER];
+        [_loggingDelegate addHeadline:LOG_FIELDWORK_UPLOAD_NO];
+        [_loggingDelegate addLineWithEmphasis:LOG_FIELDWORK_UPLOAD_NO];
         FieldworkSynchronizationException *exServerDown = [[FieldworkSynchronizationException alloc] initWithName:self.error reason:nil userInfo:nil];
         @throw exServerDown;
     }

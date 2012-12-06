@@ -88,7 +88,7 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
 	NCSLog(@"Data loaded successfully [%@]", [[objectLoader response] location]);
-    [_loggingDelegate addLine:[NSString stringWithFormat:@"Data loaded successfully [%@]", [[objectLoader response] location]]];
+   // [_loggingDelegate addLine:[NSString stringWithFormat:@"Data loaded successfully [%@]", [[objectLoader response] location]]];
     Fieldwork* w = [Fieldwork object];
     w.uri = [[objectLoader response] location];
     w.retrievedDate = [NSDate date];
@@ -96,7 +96,7 @@
     NSError *error = [[NSError alloc] init];
     if (![[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:&error]) {
         NCSLog(@"Error saving fieldwork location");
-        [_loggingDelegate addLine:@"Error saving fieldwork location"];
+        //[_loggingDelegate addLine:@"Error saving fieldwork location"];
         [_userAlertDelegate showAlertView:STORING_CONTACTS];
         FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"Error saving fieldwork location" reason:nil userInfo:nil];
         @throw ex;
@@ -104,10 +104,11 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    NSLog(@"%@",[error description]);
-    [_loggingDelegate addLine:[error description]];
+    NSLog(@"%@",[error localizedDescription]);
+    [_loggingDelegate addHeadline:LOG_RETRIEVE_DATA_NO];
+    [_loggingDelegate addLineWithEmphasis:LOG_RETRIEVE_DATA_NO];
+    [_loggingDelegate addLine:[error localizedDescription]];
     [_userAlertDelegate showAlertView:CONTACT_RETRIEVAL];
-    [_loggingDelegate addLine:@"object Loader failure in Retrieving Contacts"];
     FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"object Loader failure in Retrieving Contacts" reason:nil userInfo:nil];
     @throw ex;
 }

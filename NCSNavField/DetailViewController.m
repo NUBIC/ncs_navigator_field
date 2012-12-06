@@ -14,6 +14,7 @@
 
 @implementation DetailViewController
 @synthesize text=_text;
+@synthesize titleLabel;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -25,14 +26,15 @@
 //Set the 'title' of the view. This should be the "take-home" issue that help desk should see.
 -(void)setHeader:(NSString *)str
 {
-    title.text = str;
+    [self.titleLabel setText:str];
 }
-
+-(void)setupBody:(NSString*)strBody {
+    tv.text = strBody;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-     tv.text = _text;
 }
 
 - (void)didReceiveMemoryWarning

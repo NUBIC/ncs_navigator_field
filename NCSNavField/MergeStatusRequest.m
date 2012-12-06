@@ -59,7 +59,6 @@ const static NSInteger POLL_REPEATS = 3;
         RKResponse* resp = [req sendSynchronously];
         if ([resp isSuccessful] && [resp isJSON]) {
             NSLog(@"Response body: %@", resp.bodyAsString);
-            [_loggingDelegate addLine:[NSString stringWithFormat:@"Response body: %@", resp.bodyAsString]];
             MergeStatus* ms = [MergeStatus parseFromJson:resp.bodyAsString];
             ms.mergeStatusId = self.mergeStatusId;
             ms.createdAt = [NSDate date];
@@ -73,19 +72,18 @@ const static NSInteger POLL_REPEATS = 3;
     for (int i=1; i <= POLL_REPEATS; i++) {
         MergeStatus* status = [self send];
         if (status) {
-            NSString *strPrefix = [NSString stringWithFormat:@"Status: "];
+            //NSString *strPrefix = [NSString stringWithFormat:@"Status: "];
             if ([status isMerged] || [status isConflict] || [status isError]) {
-                [_loggingDelegate addManyLines:LOG_MERGING_YES,strPrefix,status.status,nil];
+                //[_loggingDelegate addManyLines:LOG_MERGING_YES,strPrefix,status.status,nil];
                 self.error = NULL;
                 break;
             } else if ([status isPending] || [status isTimeout] || [status isWorking]) {
-                [_loggingDelegate addManyLines:LOG_MERGING_YES,strPrefix,status.status,nil];
+                //[_loggingDelegate addManyLines:LOG_MERGING_NO,strPrefix,status.status,nil];
                 //[_userAlertDelegate setHUDMessage:MERGE_IS_TAKING_TIME andDetailMessage:TRY_AGAIN_LATER withMajorFontSize:16.0];
-                [_loggingDelegate addLine:LOG_MERGING_NO];
                 self.error = MERGE_IS_TAKING_TIME;
             } else {
                 //[_userAlertDelegate setHUDMessage:MERGE_IS_TAKING_TIME andDetailMessage:TRY_AGAIN_LATER withMajorFontSize:16.0];
-                [_loggingDelegate addLine:LOG_MERGING_NO];
+                //[_loggingDelegate addLine:LOG_MERGING_NO];
                 self.error = MERGE_ERROR;
             }
             [[MergeStatus currentContext] save:nil];
@@ -96,7 +94,8 @@ const static NSInteger POLL_REPEATS = 3;
         }
     }
     if (self.error) {
-        [_loggingDelegate addLine:self.error];
+        [_loggingDelegate addHeadline:LOG_MERGING_THREE_FAILURES];
+        [_loggingDelegate addLine:LOG_MERGING_THREE_FAILURES];
         [_userAlertDelegate showAlertView:self.error];
         FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:self.error reason:nil userInfo:nil];
         @throw ex;
@@ -108,12 +107,17 @@ const static NSInteger POLL_REPEATS = 3;
 
 - (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error {
     NSString* errorMsg = [NSString stringWithFormat:@"Problem checking merge status.\n%@", [error localizedDescription]];
+    [_loggingDelegate addLineWithEmphasis:LOG_UNSPECIFIED_DURING_MERGE];
+    [_loggingDelegate addLine:errorMsg];
+    [_loggingDelegate addHeadline:LOG_UNSPECIFIED_DURING_MERGE];
     [_userAlertDelegate showAlertView:MERGE_DATA];
     FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:errorMsg reason:nil userInfo:nil];
     @throw ex;
 }
 
 - (void)requestDidTimeout:(RKRequest *)request {
+    [_loggingDelegate addLineWithEmphasis:LOG_MERGE_TIMEOUT];
+    [_loggingDelegate addHeadline:LOG_MERGE_TIMEOUT];
     [_userAlertDelegate showAlertView:MERGE_DATA];
     FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"Merge status check timed out" reason:nil userInfo:nil];
     @throw ex;

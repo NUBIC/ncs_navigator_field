@@ -11,10 +11,10 @@
 @interface DetailViewController : UIViewController <UITextViewDelegate> {
     IBOutlet UIView *view;
     IBOutlet UITextView *tv;
-    IBOutlet UILabel *title;
     NSString *_text;
 }
 @property(nonatomic,retain) NSString *text;
+@property(nonatomic,retain) IBOutlet UILabel *titleLabel;
 -(void)setHeader:(NSString *)str;
-
+-(void)setupBody:(NSString*)strBody;
 @end

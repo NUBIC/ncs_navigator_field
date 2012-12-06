@@ -49,6 +49,7 @@
     @property(nonatomic,strong) NSArray* contacts;
     @property(nonatomic,strong) ContactNavigationTable* table;
     @property(nonatomic,strong) BlockAlertView *alertView;
+    @property(nonatomic,strong) UIView *errorView;
     @property(nonatomic,strong) DetailViewController *errorDetailVC;
     -(void)showDetails;
 @end
@@ -63,7 +64,7 @@
 @synthesize administeredInstrument=_administeredInstrument;
 @synthesize serviceTicket=_serviceTicket;
 @synthesize alertView=_alertView;
-@synthesize errorDetailVC = _errorDetailVC;
+@synthesize errorView = _errorView;
 
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
@@ -73,6 +74,7 @@
         
         backgroundQueue = dispatch_queue_create("edu.northwestern.www", NULL);
         _errorDetailVC = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:[NSBundle mainBundle]];
+        _errorView = _errorDetailVC.view; //Just to get the view to load.
         _errorString = [[NSMutableString alloc] initWithString:@""];
         self.reachability = [[RKReachabilityObserver alloc] initWithHost:@"www.google.com"];
         // Register for notifications
@@ -594,11 +596,13 @@
 #pragma mark - NCSLoggingDelegate
 
 -(void)addHeadline:(NSString*)str {
-    _detailViewController.title = str;
+    [_errorDetailVC setHeader:str];
 }
 
 -(void)addLineWithEmphasis:(NSString*)str {
-    str = [str stringByAppendingString:@"\n\n"];
+    NSString *start = @"\n\n";
+    str = [start stringByAppendingString:str];
+    str = [str stringByAppendingString:str];
     [self addLine:str];
 }
 
@@ -617,8 +621,8 @@
     [_errorString appendStringAfterNewLine:str];
 }
 -(void)showView {
-    _errorDetailVC.text = [_errorString copy];
     UIView *contentView = _errorDetailVC.view;
+    [_errorDetailVC setupBody:[_errorString copy]];
     [[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
     [self flush];
 }
