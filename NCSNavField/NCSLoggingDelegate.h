@@ -11,7 +11,9 @@
 #import "NSMutableString+Additions.h"
 
 @protocol NCSLoggingDelegate
+-(void)addHeadline:(NSString*)str;
 //Takes a nil terminated list of strings and appends them to the log with line breaks in between.
+-(void)addLineWithEmphasis:(NSString*)str;
 -(void)addManyLines:(NSString *)firstString, ... NS_REQUIRES_NIL_TERMINATION;
 -(void)addLine:(NSString*)str; //add a line to the output that will go to the view.
 -(void)showView; //handle displaying the view.

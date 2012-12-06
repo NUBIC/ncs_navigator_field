@@ -22,6 +22,6 @@
 #define LOG_MERGING_YES @"Merging is done as far as we're concerned."
 #define LOG_MERGING_NO @"Merging failed."
 #define LOG_FIELDWORK_UPLOAD_YES @"Fieldwork upload succeeded."
-#define LOG_FIELDWORK_UPLOAD_NO @"Fieldwork upload failed."
+#define LOG_FIELDWORK_UPLOAD_NO @"Fieldwork upload failed. Possibly because the server is down. See details below."
 
 #endif

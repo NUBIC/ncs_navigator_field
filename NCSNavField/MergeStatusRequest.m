@@ -73,11 +73,13 @@ const static NSInteger POLL_REPEATS = 3;
     for (int i=1; i <= POLL_REPEATS; i++) {
         MergeStatus* status = [self send];
         if (status) {
+            NSString *strPrefix = [NSString stringWithFormat:@"Status: "];
             if ([status isMerged] || [status isConflict] || [status isError]) {
-                [_loggingDelegate addLine:LOG_MERGING_YES];
+                [_loggingDelegate addManyLines:LOG_MERGING_YES,strPrefix,status.status,nil];
                 self.error = NULL;
                 break;
             } else if ([status isPending] || [status isTimeout] || [status isWorking]) {
+                [_loggingDelegate addManyLines:LOG_MERGING_YES,strPrefix,status.status,nil];
                 //[_userAlertDelegate setHUDMessage:MERGE_IS_TAKING_TIME andDetailMessage:TRY_AGAIN_LATER withMajorFontSize:16.0];
                 [_loggingDelegate addLine:LOG_MERGING_NO];
                 self.error = MERGE_IS_TAKING_TIME;

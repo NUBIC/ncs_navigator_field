@@ -244,8 +244,6 @@
             [[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:NULL];
             _administeredInstrument = NULL;
         }
-        
-
     }    
 }
 
@@ -594,6 +592,15 @@
 }
 
 #pragma mark - NCSLoggingDelegate
+
+-(void)addHeadline:(NSString*)str {
+    _detailViewController.title = str;
+}
+
+-(void)addLineWithEmphasis:(NSString*)str {
+    str = [str stringByAppendingString:@"\n\n"];
+    [self addLine:str];
+}
 
 -(void)addManyLines:(NSString *)firstString, ... {
     va_list args;
