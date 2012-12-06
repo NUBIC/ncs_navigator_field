@@ -22,9 +22,10 @@
     }
     return self;
 }
-
--(IBAction)dismiss:(id)sender {
-    
+//Set the 'title' of the view. This should be the "take-home" issue that help desk should see.
+-(void)setHeader:(NSString *)str
+{
+    title.text = str;
 }
 
 - (void)viewDidLoad
