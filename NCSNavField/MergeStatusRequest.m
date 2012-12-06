@@ -63,7 +63,6 @@ const static NSInteger POLL_REPEATS = 3;
             MergeStatus* ms = [MergeStatus parseFromJson:resp.bodyAsString];
             ms.mergeStatusId = self.mergeStatusId;
             ms.createdAt = [NSDate date];
-            ms.status = @"pending";
             return ms;
         }
     }
