@@ -14,6 +14,7 @@
 - (NSDictionary*) toDict {
     NSMutableDictionary* d = [NSMutableDictionary dictionaryWithDictionary:[super toDict]];
     [d setValue:[self valueForKey:@"pId"] forKey:@"p_id"];
+    [d setValue:[self valueForKey:@"personId"] forKey:@"person_id"];
     return d;
 }
 
@@ -21,6 +22,7 @@
     [super fromJson:jsonString];
     NSDictionary *jsonData = [jsonString objectFromJSONString];
     [self setValue:[jsonData valueForKey:@"p_id"] forKey:@"pId"];
+    [self setValue:[jsonData valueForKey:@"person_id"] forKey:@"personId"];
 }
 
 @end

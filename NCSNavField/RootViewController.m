@@ -185,6 +185,10 @@
             if (![found valueForKey:@"pId"]) {
                 [found setValue:instrument.event.pId forKey:@"pId"];
             }
+            
+            if (![found valueForKey:@"personId"]) {
+                [found setValue:instrument.event.contact.personId forKey:@"personId"];
+            }
 
             [assoc setObject:found forKey:s.uuid];
         }
@@ -228,28 +232,26 @@
     Class src = [[self.splitViewController.viewControllers objectAtIndex:1] class];
     Class dst = [viewController class];
     if ( src == [NUSectionTVC class] &&  dst == [RootViewController class]) {
-        NUSectionTVC* sectionVC = (NUSectionTVC*) [self.splitViewController.viewControllers objectAtIndex:1];
         self.splitViewController.viewControllers = [NSArray arrayWithObjects:self.navigationController, _detailViewController, nil];
-        NUResponseSet* rs = sectionVC.responseSet;
-        if (rs != NULL) {
-            [self unloadSurveyor:_administeredInstrument];
-            self.administeredInstrument.endDate = [NSDate date];
-            self.administeredInstrument.endTime = [NSDate date];
-            [[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:NULL];
-            _administeredInstrument = NULL;
-        }
-        
-
-    }    
+        [self unloadSurveyor:self.administeredInstrument];
+    }
 }
 
 - (void) unloadSurveyor:(Instrument*)instrument {
+    if (instrument) {
+        instrument.endDate = [NSDate date];
+        instrument.endTime = [NSDate date];
+        for (ResponseSet* r in instrument.responseSets) {
+            [r setValue:[NSDate date] forKey:@"completedAt"];
+        }
+    }
+
+    [[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:NULL];
+    
+    self.administeredInstrument = NULL;
     Contact* contact = instrument.event.contact;
     NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:contact, @"contact", instrument, @"instrument", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"StoppedAdministeringInstrument" object:self userInfo:dict];
-    
-//    [surveyorMoc 
-    
 }
              
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{

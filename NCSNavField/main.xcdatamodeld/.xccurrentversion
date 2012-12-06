@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>_XCCurrentVersionName</key>
-	<string>20121203033234_fix_disposition.xcdatamodel</string>
+	<string>20121205230124_add_person_id_to_response_set.xcdatamodel</string>
 </dict>
 </plist>

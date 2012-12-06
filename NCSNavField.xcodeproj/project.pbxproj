@@ -500,6 +500,7 @@
 		00AB8E98164358290097F7CD /* NSManagedObjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectTest.m; sourceTree = "<group>"; };
 		00ABB42B166718E200BCA177 /* 20121129023553_change_instrument_plan_to_instrument_template_to_many_to_many.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121129023553_change_instrument_plan_to_instrument_template_to_many_to_many.xcdatamodel; sourceTree = "<group>"; };
 		00ABB4521667289000BCA177 /* 20121129032438_change_merge_status_to_nullable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121129032438_change_merge_status_to_nullable.xcdatamodel; sourceTree = "<group>"; };
+		00B3DC64167009D40066E5AD /* 20121205230124_add_person_id_to_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121205230124_add_person_id_to_response_set.xcdatamodel; sourceTree = "<group>"; };
 		00C0C8D515655E390047A113 /* icon-test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-test.png"; sourceTree = "<group>"; };
 		00C2520B151794EB00F4FE3B /* RestKitSettingsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitSettingsTest.h; sourceTree = "<group>"; };
 		00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitSettingsTest.m; sourceTree = "<group>"; };
@@ -1795,6 +1796,7 @@
 		00C9C6E3146CE66300F6D339 /* main.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				00B3DC64167009D40066E5AD /* 20121205230124_add_person_id_to_response_set.xcdatamodel */,
 				22B8E4A21664337C00640DE8 /* 20121126191731_addMdes_and_dispcode_entities.xcdatamodel */,
 				00ABB42B166718E200BCA177 /* 20121129023553_change_instrument_plan_to_instrument_template_to_many_to_many.xcdatamodel */,
 				00ABB4521667289000BCA177 /* 20121129032438_change_merge_status_to_nullable.xcdatamodel */,
@@ -1821,7 +1823,7 @@
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 001609BF166C54E900F30D9B /* 20121203033234_fix_disposition.xcdatamodel */;
+			currentVersion = 00B3DC64167009D40066E5AD /* 20121205230124_add_person_id_to_response_set.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
