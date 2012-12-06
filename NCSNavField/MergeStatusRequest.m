@@ -74,11 +74,12 @@ const static NSInteger POLL_REPEATS = 3;
         MergeStatus* status = [self send];
         if (status) {
             if ([status isMerged] || [status isConflict] || [status isError]) {
+                [_loggingDelegate addLine:LOG_MERGING_YES];
                 self.error = NULL;
                 break;
             } else if ([status isPending] || [status isTimeout] || [status isWorking]) {
                 //[_userAlertDelegate setHUDMessage:MERGE_IS_TAKING_TIME andDetailMessage:TRY_AGAIN_LATER withMajorFontSize:16.0];
-                [_loggingDelegate addLine:LOG_MERGING_YES];
+                [_loggingDelegate addLine:LOG_MERGING_NO];
                 self.error = MERGE_IS_TAKING_TIME;
             } else {
                 //[_userAlertDelegate setHUDMessage:MERGE_IS_TAKING_TIME andDetailMessage:TRY_AGAIN_LATER withMajorFontSize:16.0];
