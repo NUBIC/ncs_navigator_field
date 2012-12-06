@@ -164,6 +164,7 @@
 		22F40E09166FCC1300905521 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F40E07166FCC1200905521 /* DetailViewController.m */; };
 		22F40E0A166FCC1300905521 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22F40E08166FCC1300905521 /* DetailViewController.xib */; };
 		22F40E14166FE3F400905521 /* KGModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F40E13166FE3F400905521 /* KGModal.m */; };
+		22F40E1F166FFD7600905521 /* NSMutableString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F40E1E166FFD7600905521 /* NSMutableString+Additions.m */; };
 		4F53118515FA58A1006F5BB2 /* InstrumentPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */; };
 		D1CACF1A1F944E92AB51AE74 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 493CC93326804A8ABCA31763 /* libPods.a */; };
 		F75259C3F792403F9EE94A8A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 493CC93326804A8ABCA31763 /* libPods.a */; };
@@ -605,6 +606,13 @@
 		22F40E08166FCC1300905521 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		22F40E12166FE3F400905521 /* KGModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGModal.h; sourceTree = "<group>"; };
 		22F40E13166FE3F400905521 /* KGModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGModal.m; sourceTree = "<group>"; };
+		22F40E1D166FFD7600905521 /* NSMutableString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Additions.h"; sourceTree = "<group>"; };
+		22F40E1E166FFD7600905521 /* NSMutableString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Additions.m"; sourceTree = "<group>"; };
+		22F40E22166FFEE000905521 /* DiagnosticConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiagnosticConstants.h; sourceTree = "<group>"; };
+		22F40E231670032500905521 /* NCSLoggingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSLoggingDelegate.h; sourceTree = "<group>"; };
+		22F40E281670065F00905521 /* UserErrorDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserErrorDelegate.h; sourceTree = "<group>"; };
+		22F40E29167006A700905521 /* UserErrorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserErrorConstants.h; sourceTree = "<group>"; };
+		22F40E2A167006ED00905521 /* Diagnostics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Diagnostics.h; sourceTree = "<group>"; };
 		493CC93326804A8ABCA31763 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F53118015FA5148006F5BB2 /* 20120907155731_add_participant_type_to_instrument_template.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120907155731_add_participant_type_to_instrument_template.xcdatamodel; sourceTree = "<group>"; };
 		4F53118215FA5519006F5BB2 /* 20120907161507_create_instrument_plan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120907161507_create_instrument_plan.xcdatamodel; sourceTree = "<group>"; };
@@ -708,6 +716,7 @@
 		0026E66E140347E700355BCB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				22F40E261670035F00905521 /* Diagnostic */,
 				22942CE1166945AF00242588 /* Other */,
 				22942CCF16692B3800242588 /* Exceptions */,
 				22226B081666B82E005CCE71 /* FriendlyActionSheet */,
@@ -1262,6 +1271,8 @@
 		22942CE816694ACE00242588 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				22F40E1D166FFD7600905521 /* NSMutableString+Additions.h */,
+				22F40E1E166FFD7600905521 /* NSMutableString+Additions.m */,
 				22942CE516694AC200242588 /* NSString+ParsingExtensions.h */,
 				22942CE616694AC200242588 /* NSString+ParsingExtensions.m */,
 				22A11EEB166E5EE6000E1F07 /* UIFont+Additions.h */,
@@ -1278,6 +1289,18 @@
 				22F40E08166FCC1300905521 /* DetailViewController.xib */,
 			);
 			name = ModalViews;
+			sourceTree = "<group>";
+		};
+		22F40E261670035F00905521 /* Diagnostic */ = {
+			isa = PBXGroup;
+			children = (
+				22F40E2A167006ED00905521 /* Diagnostics.h */,
+				22F40E22166FFEE000905521 /* DiagnosticConstants.h */,
+				22F40E231670032500905521 /* NCSLoggingDelegate.h */,
+				22F40E281670065F00905521 /* UserErrorDelegate.h */,
+				22F40E29167006A700905521 /* UserErrorConstants.h */,
+			);
+			name = Diagnostic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1522,6 +1545,7 @@
 				22A11EF1166E6142000E1F07 /* NUPickerVC+Additions.m in Sources */,
 				22F40E09166FCC1300905521 /* DetailViewController.m in Sources */,
 				22F40E14166FE3F400905521 /* KGModal.m in Sources */,
+				22F40E1F166FFD7600905521 /* NSMutableString+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

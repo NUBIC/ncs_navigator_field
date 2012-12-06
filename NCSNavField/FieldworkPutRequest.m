@@ -20,7 +20,8 @@
 @synthesize error = _error;
 
 @synthesize response = _response;
-@synthesize delegate = _delegate;
+@synthesize userAlertDelegate = _userAlertDelegate;
+@synthesize loggingDelegate = _loggingDelegate;
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket {
     self = [super init];
@@ -36,7 +37,10 @@
     NSString *str;
     CasProxyTicket *pt = [self.ticket obtainProxyTicket:&str];
     if(self.error) {
-        [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
+        [_userAlertDelegate showAlertView:CAS_TICKET_RETRIEVAL];
+        [_loggingDelegate addLine:LOG_AUTH_FAILED];
+        [_loggingDelegate addLine:@"With Info:"];
+        [_loggingDelegate addLine:self.error];
         FieldworkSynchronizationException *exServerDown = [[FieldworkSynchronizationException alloc] initWithName:@"CAS Server is down" reason:@"Server is down" userInfo:nil];
         @throw exServerDown;
     }
@@ -55,7 +59,9 @@
             RKObjectManager *objectManager = [self objectManager:proxyTicket];
             RKObjectLoader* loader = [self objectLoader:submission objectManager:objectManager];
             self.response = [loader sendSynchronously];
+            [_loggingDelegate addLine:[NSString stringWithFormat:@"Put response has location header: %@", self.response.location]];
             NSLog(@"Put response has location header: %@", self.response.location);
+            [_loggingDelegate addLine:[NSString stringWithFormat:@"Response status code: %d", [self.response statusCode]]];
             NCSLog(@"Response status code: %d", [self.response statusCode]);
         }
     }
@@ -76,7 +82,7 @@
     NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork/%@", submission.fieldworkId];
     
     NCSLog(@"PUT %@", path);
-    
+     [_loggingDelegate addLine:[NSString stringWithFormat:@"Put: %@", path]];
     RKObjectLoader* loader = [objectManager objectLoaderForObject:submission method:RKRequestMethodPUT delegate:self];
     loader.resourcePath = path;
     
@@ -97,10 +103,13 @@
     // {"success":true}, which is unmappable and causes RestKit to
     // throw an error.
     if (!objectLoader.response.isSuccessful) {
+        [_loggingDelegate addLine:LOG_FIELDWORK_UPLOAD_NO];
         NCSLog(@"Error: Localized Description: %@", [error localizedDescription]);
         NCSLog(@"Error: Underlying Error: %@", [error.userInfo valueForKey:NSUnderlyingErrorKey]);
+        [_loggingDelegate addLine:[NSString stringWithFormat:@"Error: Localized Description: %@", [error localizedDescription]]];
+        [_loggingDelegate addLine:[NSString stringWithFormat:@"Error: Underlying Error: %@", [error.userInfo valueForKey:NSUnderlyingErrorKey]]];
         self.error = [NSString stringWithFormat:@"Error while pushing fieldwork.\n%@", [error localizedDescription]];
-        [_delegate showAlertView:PUTTING_DATA_ON_SERVER];
+        [_userAlertDelegate showAlertView:PUTTING_DATA_ON_SERVER];
         FieldworkSynchronizationException *exServerDown = [[FieldworkSynchronizationException alloc] initWithName:self.error reason:nil userInfo:nil];
         @throw exServerDown;
     }

@@ -38,6 +38,7 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
 @end
 
 @implementation KGModal
+@synthesize text;
 
 + (id)sharedInstance{
     static id sharedInstance;

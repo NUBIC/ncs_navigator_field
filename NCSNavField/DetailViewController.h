@@ -11,7 +11,9 @@
 @interface DetailViewController : UIViewController <UITextViewDelegate> {
     IBOutlet UIView *view;
     IBOutlet UITextView *tv;
+    NSString *_text;
 }
+@property(nonatomic,retain) NSString *text;
 -(IBAction)dismiss:(id)sender;
 
 @end

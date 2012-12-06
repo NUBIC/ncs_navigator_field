@@ -27,7 +27,8 @@
 
 @implementation FieldworkRetrieveStep
 
-@synthesize delegate = _delegate;
+@synthesize userAlertDelegate = _userAlertDelegate;
+@synthesize loggingDelegate = _loggingDelegate;
 @synthesize ticket = _ticket;
 @synthesize error = _error;
 @synthesize response = _response;
@@ -50,7 +51,10 @@
     NSString *err;
     CasProxyTicket *pt = [serviceTicket obtainProxyTicket:&err];
     if(err) {
-        [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
+        [_userAlertDelegate showAlertView:CAS_TICKET_RETRIEVAL];
+        [_loggingDelegate addLine:LOG_AUTH_FAILED];
+        [_loggingDelegate addLine:@"With Details:"];
+        [_loggingDelegate addLine:err];
         FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"retrieving contacts failed because of CAS" reason:nil userInfo:nil];
         @throw ex;
     }
@@ -73,6 +77,7 @@
     NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@", [today toYYYYMMDD], [inOneWeek toYYYYMMDD]];
     
     NCSLog(@"Requesting data from %@", path);
+    [_loggingDelegate addLine:[NSString stringWithFormat:@"Requesting data from %@", path]];
     //We need to do this on the main thread.
         RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
         loader.method = RKRequestMethodPOST;
@@ -83,7 +88,7 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
 	NCSLog(@"Data loaded successfully [%@]", [[objectLoader response] location]);
-    
+    [_loggingDelegate addLine:[NSString stringWithFormat:@"Data loaded successfully [%@]", [[objectLoader response] location]]];
     Fieldwork* w = [Fieldwork object];
     w.uri = [[objectLoader response] location];
     w.retrievedDate = [NSDate date];
@@ -91,7 +96,8 @@
     NSError *error = [[NSError alloc] init];
     if (![[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:&error]) {
         NCSLog(@"Error saving fieldwork location");
-        [_delegate showAlertView:STORING_CONTACTS];
+        [_loggingDelegate addLine:@"Error saving fieldwork location"];
+        [_userAlertDelegate showAlertView:STORING_CONTACTS];
         FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"Error saving fieldwork location" reason:nil userInfo:nil];
         @throw ex;
     }
@@ -99,7 +105,9 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
     NSLog(@"%@",[error description]);
-    [_delegate showAlertView:CONTACT_RETRIEVAL];
+    [_loggingDelegate addLine:[error description]];
+    [_userAlertDelegate showAlertView:CONTACT_RETRIEVAL];
+    [_loggingDelegate addLine:@"object Loader failure in Retrieving Contacts"];
     FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"object Loader failure in Retrieving Contacts" reason:nil userInfo:nil];
     @throw ex;
 }

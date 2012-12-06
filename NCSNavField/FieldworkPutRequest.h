@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ProviderSynchronizeOperation.h"
+#import "Diagnostics.h"
 
 @class CasProxyTicket;
 @class Fieldwork;
@@ -16,7 +17,8 @@
     CasServiceTicket* _ticket;
     NSString* _error;
     RKResponse* _response;
-    id<UserErrorDelegate> _delegate;
+    id<UserErrorDelegate> _userAlertDelegate;
+    id<NCSLoggingDelegate> _loggingDelegate;
 }
 
 @property(nonatomic,strong) CasServiceTicket* ticket;
@@ -25,7 +27,8 @@
 
 @property(nonatomic,strong) RKResponse* response;
 
-@property(nonatomic,strong) id<UserErrorDelegate> delegate;
+@property(nonatomic,strong) id<UserErrorDelegate> userAlertDelegate;
+@property(nonatomic,strong) id<NCSLoggingDelegate> loggingDelegate;
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket;
 - (BOOL) send;

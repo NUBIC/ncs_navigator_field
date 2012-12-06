@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ProviderSynchronizeOperation.h"
+#import "Diagnostics.h"
 @class MergeStatus;
 @class ServiceTicket;
 
@@ -15,7 +16,8 @@
     NSString* _mergeStatusId;
     NSString* _error;
     CasServiceTicket* _serviceTicket;
-    id<UserErrorDelegate> _delegate;
+    id<UserErrorDelegate> _userAlertDelegate;
+    id<NCSLoggingDelegate> _loggingDelegate;
     dispatch_queue_t backgroundQueue;
 }
 
@@ -25,7 +27,8 @@
 
 @property(nonatomic,strong) CasServiceTicket* serviceTicket;
 
-@property(nonatomic,strong) id<UserErrorDelegate> delegate;
+@property(nonatomic,strong) id<UserErrorDelegate> userAlertDelegate;
+@property(nonatomic,strong) id<NCSLoggingDelegate> loggingDelegate;
 
 - (id) initWithMergeStatusId:(NSString*)fieldworkId andServiceTicket:(CasServiceTicket*)serviceTicket;
 

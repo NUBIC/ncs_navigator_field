@@ -13,8 +13,10 @@ NS_ENUM(NSUInteger, KGModalBackgroundDisplayStyle){
     KGModalBackgroundDisplayStyleSolid
 };
 
-@interface KGModal : NSObject
-
+@interface KGModal : NSObject {
+    NSString *_text;
+}
+@property (nonatomic,assign) NSString *text;
 // Determines if the modal should dismiss if the user taps outside of the modal view
 // Defaults to YES
 @property (nonatomic) BOOL tapOutsideToDismiss;

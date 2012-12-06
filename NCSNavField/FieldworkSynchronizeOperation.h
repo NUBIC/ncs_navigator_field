@@ -8,14 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "ProviderSynchronizeOperation.h"
+#import "FieldworkSynchronizationException.h"
+#import "NSMutableString+Additions.h"
+#import "NCSLoggingDelegate.h"
+
 @class ProviderSynchronizeOperation;
 
 @interface FieldworkSynchronizeOperation : NSObject {
     CasServiceTicket* _ticket;
-    id<UserErrorDelegate> delegate;
+    id<UserErrorDelegate> _userAlertDelegate;
+    id<NCSLoggingDelegate> _loggingDelegate;
 }
-
-@property(nonatomic,strong) id<UserErrorDelegate> delegate;
+@property(nonatomic,strong) id<NCSLoggingDelegate> loggingDelegate;
+@property(nonatomic,strong) id<UserErrorDelegate> userAlertDelegate;
 @property(nonatomic,strong) CasServiceTicket* ticket;
 
 - (id)initWithServiceTicket:(CasServiceTicket*)ticket;

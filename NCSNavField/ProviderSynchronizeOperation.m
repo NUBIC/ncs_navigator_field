@@ -20,6 +20,7 @@
 
 @synthesize ticket = _ticket;
 @synthesize delegate = _delegate;
+@synthesize loggingDelegate = _loggingDelegate;
 
 - (id) initWithServiceTicket:(CasServiceTicket*)ticket {
     self = [super init];

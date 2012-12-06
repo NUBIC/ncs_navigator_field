@@ -73,7 +73,7 @@
         
         backgroundQueue = dispatch_queue_create("edu.northwestern.www", NULL);
         _errorDetailVC = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:[NSBundle mainBundle]];
-        //_modalView = detailVC.view;
+        _errorString = [[NSMutableString alloc] initWithString:@""];
         self.reachability = [[RKReachabilityObserver alloc] initWithHost:@"www.google.com"];
         // Register for notifications
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -337,11 +337,8 @@
     _contacts = contacts;
     
     self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:contacts];
-    
 	[self.tableView reloadData];
-    
     self.tableView.tableHeaderView = [self tableHeaderView];
-    
     self.detailViewController.detailItem = NULL;
 }
 
@@ -420,7 +417,8 @@
         BOOL bStepWasSuccessful;
         //This has many, many substeps that we need to clarify.
         FieldworkSynchronizeOperation* sync = [[FieldworkSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
-        sync.delegate=self;
+        sync.userAlertDelegate=self;
+        sync.loggingDelegate=self;
         bStepWasSuccessful = [sync perform];
         
         if(!bStepWasSuccessful) //Should we stop right here? If we failed on fieldwork synchronization.
@@ -428,6 +426,7 @@
         
         ProviderSynchronizeOperation* pSync = [[ProviderSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
         pSync.delegate = self;
+        pSync.loggingDelegate = self;
         bStepWasSuccessful = [pSync perform];
         
         if(!bStepWasSuccessful) //Should we stop right here? If the provider pull didn't work, stop.
@@ -435,6 +434,7 @@
 
         NcsCodeSynchronizeOperation *nSync = [[NcsCodeSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
         nSync.delegate = self;
+        nSync.loggingDelegate = self;
         bStepWasSuccessful = [nSync perform];
         
         self.contacts = [self contactsFromDataStore];
@@ -442,9 +442,17 @@
     //In the future, these two catches will diverge. Right now, let's just put a placeholder. 
     @catch (FieldworkSynchronizationException *ex) {
         NSLog(@"%@\n%@",[ex debugDescription], [ex name]);
+        [self addLine:@""];
+        [self addLine:@""];
+        [self addLine:@"NERDY STUFF."];
+        [self addLine:[[NSThread callStackSymbols] description]];
     }
     @catch(NSException *ex) {
         NSLog(@"%@\n%@",[ex debugDescription], [ex name]);
+        [self addLine:@""];
+        [self addLine:@""];
+        [self addLine:@"NERDY STUFF:"];
+        [self addLine:[[NSThread callStackSymbols] description]];
     }
     @finally {
         //BE CAREFUL: this could hide a bug above. Make sure to look if an exception is printed out!!!
@@ -469,7 +477,7 @@
      ];
     [_alertView setDestructiveButtonWithTitle:@"Cancel" block:^(){}];
     [_alertView addButtonWithTitle:@"Details" block:^() {
-        [blocksafeSelf showDetails];
+        [blocksafeSelf showView];
     }];
     [_alertView show];
     
@@ -548,8 +556,7 @@
 }
 
 -(void)showDetails {
-    UIView *contentView = _errorDetailVC.view;
-    [[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -584,6 +591,23 @@
 {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+}
+
+#pragma mark - NCSLoggingDelegate
+
+-(void)addLine:(NSString*)str
+{
+    [_errorString appendStringAfterNewLine:str];
+}
+-(void)showView {
+    _errorDetailVC.text = [_errorString copy];
+    UIView *contentView = _errorDetailVC.view;
+    [[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
+    [self flush];
+}
+-(void)flush {
+    _errorString = nil;
+    _errorString = [[NSMutableString alloc] initWithString:@""];
 }
 
 @end

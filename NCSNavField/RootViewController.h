@@ -19,6 +19,7 @@
 #import "DetailViewController.h"
 #import "UIView+Additions.h"
 #import "KGModal.h"
+#import "Diagnostics.h"
 
 @class ContactDisplayController;
 @class Instrument;
@@ -30,7 +31,8 @@
 
 FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 
-@interface RootViewController : SimpleTableController<UINavigationControllerDelegate, SimpleTableRowDelegate, CasLoginDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate,UserErrorDelegate> {
+@interface RootViewController : SimpleTableController<UINavigationControllerDelegate, SimpleTableRowDelegate, CasLoginDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate,
+                                                                UserErrorDelegate,NCSLoggingDelegate> {
     Instrument* _administeredInstrument;
     RKReachabilityObserver* _reachability;
     SyncActivityIndicator* _syncIndicator;
@@ -38,6 +40,7 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
     BlockAlertView *_alertView;
     dispatch_queue_t backgroundQueue;
     DetailViewController *_errorDetailVC; //The view that pops up when the "Details" button on the UIAlertView is pressed.
+    NSMutableString *_errorString;
 }
 
 @property (nonatomic, strong) IBOutlet ContactDisplayController *detailViewController;
@@ -46,6 +49,7 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 @property(nonatomic,strong) Instrument* administeredInstrument;
 @property(nonatomic,strong) CasServiceTicket* serviceTicket;
 @property(nonatomic,strong) UIView *modalView;
+
 - (void)toggleDeleteButton;
 - (void)purgeDataStore;
 - (void)didSelectRow:(Row*)row;
@@ -63,5 +67,10 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 
 #pragma mark - TableView
 - (UIView*)tableHeaderView;
+
+#pragma mark - NCSLoggingDelegate 
+-(void)addLine:(NSString*)str;
+-(void)showView;
+-(void)flush;
 
 @end
