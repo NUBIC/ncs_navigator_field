@@ -595,6 +595,16 @@
 
 #pragma mark - NCSLoggingDelegate
 
+-(void)addManyLines:(NSString *)firstString, ... {
+    va_list args;
+    va_start(args, firstString);
+    for (NSString *arg = firstString; arg != nil; arg = va_arg(args, NSString*))
+    {
+        [self addLine:arg];
+    }
+    va_end(args);
+} 
+
 -(void)addLine:(NSString*)str
 {
     [_errorString appendStringAfterNewLine:str];
