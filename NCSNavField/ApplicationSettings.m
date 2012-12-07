@@ -123,8 +123,24 @@ static ApplicationSettings* instance;
     return [[CasConfiguration alloc] initWithCasURL:s.casServerURL receiveURL:s.pgtReceiveURL retrieveURL:s.pgtRetrieveURL];
 }
 
-- (BOOL) coreSynchronizeConfigured {
-    return !([self.coreURL isEmpty] || [self.casServerURL isEmpty] || [self.pgtReceiveURL isEmpty] || [self.pgtRetrieveURL isEmpty]);
+- (BOOL) coreSynchronizeConfigured:(NSString**)strResults {
+    if([_coreURL length]==0) {
+        *strResults = @"NCS Navigator Core URL";
+        return NO;
+    }
+    if([_casServerURL length]==0) {
+        *strResults = @"CAS Server URL";
+        return NO;
+    }
+    if([_pgtReceiveURL length]==0) {
+        *strResults = @"Receive PGT URL";
+        return NO;
+    }
+    if([_pgtRetrieveURL length]==0) {
+        *strResults = @"Retrieve PGT URL";
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark Register User Defaults from Settings Bundle

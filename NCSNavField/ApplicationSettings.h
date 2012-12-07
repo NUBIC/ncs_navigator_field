@@ -65,4 +65,6 @@ extern NSString *const SettingsDidChangeNotification;
 
 - (void)registerDefaultsFromSettingsBundle;
 
+- (BOOL) coreSynchronizeConfigured:(NSString**)strResults;
+
 @end

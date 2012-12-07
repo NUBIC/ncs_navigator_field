@@ -266,10 +266,11 @@
 #pragma Actions
 - (void)syncButtonWasPressed {
     NCSLog(@"Sync Pressed!!!");
-    if ([[ApplicationSettings instance] coreSynchronizeConfigured]) {
+    NSString *emptyUrl;
+    if ([[ApplicationSettings instance] coreSynchronizeConfigured:&emptyUrl]) {
         [self confirmSync];
     } else {
-        [self showAlertView:@"We were trying to pull your settings."];
+        [self showAlertView:[NSString stringWithFormat:@"\"%@\" is empty in your settings. We need that info!",emptyUrl]];
     }
 }
 
@@ -458,7 +459,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
     //https://github.com/gpambrozio/BlockAlertsAnd-ActionSheets
-    _alertView = [BlockAlertView alertWithTitle:@"Whoops!" message:[NSString stringWithFormat:@"Well this is embarrassing! Something has gone wrong with your sync. %@",strError]];
+    _alertView = [BlockAlertView alertWithTitle:@"Whoops!" message:[NSString stringWithFormat:@"Something has gone wrong with your sync. %@",strError]];
     
     //Needed to prevent retain cycle.
     __block RootViewController *blocksafeSelf = self;
