@@ -193,6 +193,10 @@
             if (![found valueForKey:@"pId"]) {
                 [found setValue:instrument.event.pId forKey:@"pId"];
             }
+            
+            if (![found valueForKey:@"personId"]) {
+                [found setValue:instrument.event.contact.personId forKey:@"personId"];
+            }
 
             [assoc setObject:found forKey:s.uuid];
         }
@@ -236,26 +240,26 @@
     Class src = [[self.splitViewController.viewControllers objectAtIndex:1] class];
     Class dst = [viewController class];
     if ( src == [NUSectionTVC class] &&  dst == [RootViewController class]) {
-        NUSectionTVC* sectionVC = (NUSectionTVC*) [self.splitViewController.viewControllers objectAtIndex:1];
         self.splitViewController.viewControllers = [NSArray arrayWithObjects:self.navigationController, _detailViewController, nil];
-        NUResponseSet* rs = sectionVC.responseSet;
-        if (rs != NULL) {
-            [self unloadSurveyor:_administeredInstrument];
-            self.administeredInstrument.endDate = [NSDate date];
-            self.administeredInstrument.endTime = [NSDate date];
-            [[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:NULL];
-            _administeredInstrument = NULL;
-        }
-    }    
+        [self unloadSurveyor:self.administeredInstrument];
+    }
 }
 
 - (void) unloadSurveyor:(Instrument*)instrument {
+    if (instrument) {
+        instrument.endDate = [NSDate date];
+        instrument.endTime = [NSDate date];
+        for (ResponseSet* r in instrument.responseSets) {
+            [r setValue:[NSDate date] forKey:@"completedAt"];
+        }
+    }
+
+    [[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:NULL];
+    
+    self.administeredInstrument = NULL;
     Contact* contact = instrument.event.contact;
     NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:contact, @"contact", instrument, @"instrument", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"StoppedAdministeringInstrument" object:self userInfo:dict];
-    
-//    [surveyorMoc 
-    
 }
              
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
@@ -270,10 +274,11 @@
 #pragma Actions
 - (void)syncButtonWasPressed {
     NCSLog(@"Sync Pressed!!!");
-    if ([[ApplicationSettings instance] coreSynchronizeConfigured]) {
+    NSString *emptyUrl;
+    if ([[ApplicationSettings instance] coreSynchronizeConfigured:&emptyUrl]) {
         [self confirmSync];
     } else {
-        [self showAlertView:@"We were trying to pull your settings."];
+        [self showAlertView:[NSString stringWithFormat:@"\"%@\" is empty in your settings. We need that info!",emptyUrl]];
     }
 }
 
@@ -436,8 +441,6 @@
         nSync.delegate = self;
         nSync.loggingDelegate = self;
         bStepWasSuccessful = [nSync perform];
-        
-        self.contacts = [self contactsFromDataStore];
     }
     //In the future, these two catches will diverge. Right now, let's just put a placeholder. 
     @catch (FieldworkSynchronizationException *ex) {
@@ -458,6 +461,8 @@
         //BE CAREFUL: this could hide a bug above. Make sure to look if an exception is printed out!!!
         [self hideHUD];
     }
+    
+    self.contacts = [self contactsFromDataStore];
 }
 
 #pragma mark
@@ -467,7 +472,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
     //https://github.com/gpambrozio/BlockAlertsAnd-ActionSheets
-    _alertView = [BlockAlertView alertWithTitle:@"Whoops!" message:[NSString stringWithFormat:@"Well this is embarrassing! Something has gone wrong with your sync. %@",strError]];
+    _alertView = [BlockAlertView alertWithTitle:@"Whoops!" message:[NSString stringWithFormat:@"Something has gone wrong with your sync. %@",strError]];
     
     //Needed to prevent retain cycle.
     __block RootViewController *blocksafeSelf = self;

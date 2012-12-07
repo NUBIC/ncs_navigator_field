@@ -11,6 +11,9 @@
 #ifndef NCSNavField_DiagnosticConstants_h
 #define NCSNavField_DiagnosticConstants_h
 
+//Set this parameter if we want extra information in our error trace.
+
+#define VERBOSE YES
 
 
 #pragma mark - CAS Authentication error.
