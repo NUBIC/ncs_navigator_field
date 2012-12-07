@@ -16,8 +16,8 @@
 
 @implementation MergeStatusRequest
 
-
-const static NSInteger POLL_REPEATS = 3;
+const static NSInteger LENGTH_TIME_BETWEEN_POLLS = 10;
+const static NSInteger POLL_REPEATS = 6;
 
 @synthesize mergeStatusId = _mergeStatusId;
 @synthesize error = _error;
@@ -73,7 +73,7 @@ const static NSInteger POLL_REPEATS = 3;
             if ([status isMerged] || [status isConflict] || [status isError]) {
                 self.error = NULL;
                 break;
-            } else if ([status isPending] || [status isTimeout] || [status isWorking]) {
+            } else if ([status isPending] || [status isTimeout] || [status isWorking] || [status isSyncing]) {
                 //dispatch_sync(dispatch_get_main_queue(),^ {
                     //[_delegate setHUDMessage:MERGE_IS_TAKING_TIME andDetailMessage:TRY_AGAIN_LATER withMajorFontSize:16.0];
                 //} );
@@ -84,9 +84,12 @@ const static NSInteger POLL_REPEATS = 3;
             }
             [[MergeStatus currentContext] save:nil];
         }
-        
+        else { //Merge timed out on the client side.
+        self.error = MERGE_ERROR;
+        }
+    
         if (i != POLL_REPEATS) {
-            [NSThread sleepForTimeInterval:15];
+                [NSThread sleepForTimeInterval:LENGTH_TIME_BETWEEN_POLLS];
         }
     }
     if (self.error) {

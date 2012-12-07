@@ -22,6 +22,10 @@
     return ms;
 }
 
+-(BOOL)isSyncing {
+    return [self isStatus:@"syncing"];
+}
+
 - (BOOL)isMerged {
     return [self isStatus:@"merged"];
 }

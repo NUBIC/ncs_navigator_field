@@ -28,7 +28,8 @@
 
 - (BOOL) isConflict;
 
-- (BOOL) isError;
+-(BOOL) isError;
+-(BOOL) isSyncing;
 
 - (BOOL)isStatus:(NSString*)status;
 
