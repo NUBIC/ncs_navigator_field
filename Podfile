@@ -1,4 +1,4 @@
-platform :ios, :deployment_target => "6.0"
+platform :ios, :deployment_target => "5.0"
 
 pod 'SBJson', '2.2.3'
 pod 'MBProgressHUD', '0.5'
