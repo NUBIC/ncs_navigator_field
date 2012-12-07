@@ -435,8 +435,6 @@
         NcsCodeSynchronizeOperation *nSync = [[NcsCodeSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
         nSync.delegate = self;
         bStepWasSuccessful = [nSync perform];
-        
-        self.contacts = [self contactsFromDataStore];
     }
     //In the future, these two catches will diverge. Right now, let's just put a placeholder. 
     @catch (FieldworkSynchronizationException *ex) {
@@ -449,6 +447,8 @@
         //BE CAREFUL: this could hide a bug above. Make sure to look if an exception is printed out!!!
         [self hideHUD];
     }
+    
+    self.contacts = [self contactsFromDataStore];
 }
 
 #pragma mark
