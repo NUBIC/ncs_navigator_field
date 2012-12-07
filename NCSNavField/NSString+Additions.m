@@ -24,11 +24,6 @@
 -(BOOL)isEmpty {
     return [self length] == 0;
 }
-//nil will return false also:
-//http://stackoverflow.com/questions/899209/how-do-i-test-if-a-string-is-empty-in-objective-c
--(BOOL)isEmptyOrNil {
-    return [self length] == 0;
-}
 
 -(NSDate*)fromYYYYMMDD {
     NSDateFormatter* f = [[NSDateFormatter alloc] init];

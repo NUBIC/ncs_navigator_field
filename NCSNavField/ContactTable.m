@@ -62,11 +62,11 @@
 - (Section*) phones {
     NSMutableArray* phones = [[NSMutableArray alloc] init];
 
-    if (_contact.person.homePhone && ![_contact.person.homePhone isEmptyOrNil]) {
+    if (!([_contact.person.homePhone length]==0)) {
         Row* home = [[Row alloc] initWithText:@"Home" detailText:_contact.person.homePhone];
         [phones addObject:home];
     }
-    if (_contact.person.cellPhone && ![_contact.person.cellPhone isEmptyOrNil]) {
+    if (!([_contact.person.cellPhone length]==0)) {
         Row* cell = [[Row alloc] initWithText:@"Cell" detailText:_contact.person.cellPhone];
         [phones addObject:cell];
     }
@@ -77,7 +77,7 @@
 - (Section*) emails {
     NSMutableArray* emails = [NSMutableArray new];
     
-    if (self.contact.person.email && ![self.contact.person.email isEmptyOrNil]) {
+    if (!([self.contact.person.email length]==0)) {
         Row* home =[[Row alloc] initWithText:@"Home" detailText:_contact.person.email];
         [emails addObject:home];
     }
