@@ -86,7 +86,7 @@ const static NSInteger POLL_REPEATS = 3;
         }
         
         if (i != POLL_REPEATS) {
-            [NSThread sleepForTimeInterval:5];
+            [NSThread sleepForTimeInterval:15];
         }
     }
     if (self.error) {
