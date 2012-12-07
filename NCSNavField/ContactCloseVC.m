@@ -177,7 +177,7 @@
     [b singleOptionPickerForProperty:@selector(dispositionCode) WithPickerOptions:[DispositionCode allPickerOptions] andPopoverSize:NUPickerVCPopoverSizeLarge];
     
     [b labelWithText:@"Language of interview"];
-    [b singleOptionPickerForProperty:@selector(languageId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONTACT_LOCATION_CL1"]];
+    [b singleOptionPickerForProperty:@selector(languageId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"LANGUAGE_CL2"]];
     
     [b labelWithText:@"Language of interview (Other)"];
     [b textFieldForProperty:@selector(languageOther)];
