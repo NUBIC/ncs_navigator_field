@@ -38,8 +38,6 @@
 - (void) commitTransaction;
 - (void) rollbackTransaction;
 - (void)registerForKeyboardNotifications;
-- (void) registerContactTypeChangeNotification;
-
 - (void) setDefaults:(Contact*)contact;
 
 @end

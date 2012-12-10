@@ -351,8 +351,10 @@
 
 - (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket {
     NCSLog(@"My Successful login: %@", serviceTicket);
-    [self dismissViewControllerAnimated:YES completion:^{
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
         [self setHUDMessage:SYNCING_CONTACTS];
+    });
+    [self dismissViewControllerAnimated:YES completion:^{
         //Running on another thread instead of the main runloop
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             self.syncIndicator.labelFont = [UIFont fontWithName:self.syncIndicator.labelFont.fontName size:24.0];
