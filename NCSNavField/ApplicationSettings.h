@@ -59,8 +59,6 @@ extern NSString *const SettingsDidChangeNotification;
 
 - (BOOL) isPurgeFieldworkButton;
 
-- (BOOL) coreSynchronizeConfigured;
-
 - (NSInteger) upcomingDaysToSync;
 
 - (void)registerDefaultsFromSettingsBundle;
