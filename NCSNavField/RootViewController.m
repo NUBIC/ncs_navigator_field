@@ -44,6 +44,7 @@
 #import "ResponseGenerator.h"
 #import "SurveyContextGenerator.h"
 #import <NUSurveyor/NUResponse.h>
+#import "MdesCode.h"
 
 @interface RootViewController () 
     @property(nonatomic,strong) NSArray* contacts;
@@ -428,16 +429,25 @@
         if(!bStepWasSuccessful) //Should we stop right here? If we failed on fieldwork synchronization.
             return;
         
-        ProviderSynchronizeOperation* pSync = [[ProviderSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
-        pSync.delegate = self;
-        bStepWasSuccessful = [pSync perform];
-        
-        if(!bStepWasSuccessful) //Should we stop right here? If the provider pull didn't work, stop.
-            return;
-
-        NcsCodeSynchronizeOperation *nSync = [[NcsCodeSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
-        nSync.delegate = self;
-        bStepWasSuccessful = [nSync perform];
+        //Let's check to see how many, if any, providers exist in Core Data.
+        NSPredicate* p = [NSPredicate predicateWithFormat:@"recruited = %d", TRUE];
+        NSArray *providers = [Provider findAllSortedBy:@"name" ascending:YES withPredicate:p];
+        if([providers count]==0)
+        {
+            ProviderSynchronizeOperation* pSync = [[ProviderSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
+            pSync.delegate = self;
+            bStepWasSuccessful = [pSync perform];
+            
+            if(!bStepWasSuccessful) //Should we stop right here? If the provider pull didn't work, stop.
+                return;
+        }
+        NSArray *codes = [MdesCode findAllSortedBy:@"displayText" ascending:YES];
+        if([codes count]==0)
+        {
+            NcsCodeSynchronizeOperation *nSync = [[NcsCodeSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
+            nSync.delegate = self;
+            bStepWasSuccessful = [nSync perform];
+        }
     }
     //In the future, these two catches will diverge. Right now, let's just put a placeholder. 
     @catch (FieldworkSynchronizationException *ex) {
