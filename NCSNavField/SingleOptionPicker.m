@@ -52,6 +52,13 @@
         self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         self.button.frame = CGRectMake(0, 0, 200, 30);
         
+        /*
+        _doubleTapRecognizer = [[UITapGestureRecognizer alloc]
+                                                              initWithTarget:self action:@selector(handleDoubleTap:)];
+        _doubleTapRecognizer.numberOfTapsRequired = 2;
+        [_button addGestureRecognizer:_doubleTapRecognizer];
+         */
+        
         // Set title
         NSString* title = @"Pick One";
         if (value) {
@@ -203,6 +210,28 @@
     }
     return arr;
     
+}
+
+-(void)handleDoubleTap:(UIGestureRecognizer*)recognizer {
+    //Calculate the expected size based on the font and linebreak mode of your label
+    /*CGSize maximumLabelSize = CGSizeMake(296,9999);
+    _lblPopover.text = _button.titleLabel.text;
+    _lblPopover = [[UILabel alloc] initWithFrame:CGRectMake(_button.frame.origin.x, _button.frame.origin.y,296,44)];
+    
+    CGSize expectedLabelSize = [_button.titleLabel.text sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14.0f] constrainedToSize:maximumLabelSize lineBreakMode:NSLineBreakByWordWrapping];
+    
+    //adjust the label the the new height.
+    CGRect newFrame = _lblPopover.frame;
+    newFrame.size.height = expectedLabelSize.height;
+    _lblPopover.frame = newFrame;
+    _lblPopover.backgroundColor = [UIColor grayColor];
+    [self.superview addSubview:_lblPopover];
+    
+    [self performSelector:@selector(hide) withObject:self afterDelay:2];*/
+}
+
+- (void)hide {
+    [_lblPopover removeFromSuperview];
 }
 
 @end

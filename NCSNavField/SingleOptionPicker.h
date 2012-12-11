@@ -28,6 +28,8 @@ enum {
     UIPopoverController* _popover;
     NUPickerVCPopoverSize _popoverSize;
     CGFloat _widthOfNUPicker; //This is set by looking at the length of the strings that represent the options.
+    UITapGestureRecognizer *_doubleTapRecognizer;
+    UILabel *_lblPopover;
 }
 
 @property(nonatomic,strong) NSObject* value;
