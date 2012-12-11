@@ -156,6 +156,12 @@ static NUSurvey* survey;
     STAssertEquals([[g responses] count], 0U, nil);
 }
 
+- (void)testGenerateResponsesWithNilContext {
+    NSDictionary* context = nil;
+    ResponseGenerator* g = [[ResponseGenerator alloc] initWithSurvey:survey context:context];
+    STAssertEquals([[g responses] count], 0U, nil);
+}
+
 - (void)testGenerateResponsesWithCapitalizedQuestionReferenceIdentifiers {
     NSDictionary* context = @{ @"sex": @"male" };
     ResponseGenerator* g = [[ResponseGenerator alloc] initWithSurvey:survey context:context];

@@ -44,6 +44,7 @@
 #import "ResponseGenerator.h"
 #import "SurveyContextGenerator.h"
 #import <NUSurveyor/NUResponse.h>
+#import "MdesCode.h"
 
 @interface RootViewController () 
     @property(nonatomic,strong) NSArray* contacts;
@@ -418,7 +419,7 @@
 // http://stackoverflow.com/questions/5685331/run-mbprogresshud-in-another-thread
     @try {
         //[[NSRunLoop currentRunLoop] runUntilDate: [NSDate distantPast]];
-
+        NSManagedObjectContext *moc = [NSManagedObjectContext contextForCurrentThread];
         BOOL bStepWasSuccessful;
         //This has many, many substeps that we need to clarify.
         FieldworkSynchronizeOperation* sync = [[FieldworkSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
@@ -429,14 +430,17 @@
         if(!bStepWasSuccessful) //Should we stop right here? If we failed on fieldwork synchronization.
             return;
         
+        //Let's take the MOC and get rid of duplicates.
+        [Provider truncateAllInContext:moc];
         ProviderSynchronizeOperation* pSync = [[ProviderSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
         pSync.delegate = self;
         pSync.loggingDelegate = self;
         bStepWasSuccessful = [pSync perform];
-        
+            
         if(!bStepWasSuccessful) //Should we stop right here? If the provider pull didn't work, stop.
             return;
-
+        
+        [MdesCode truncateAllInContext:moc];
         NcsCodeSynchronizeOperation *nSync = [[NcsCodeSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
         nSync.delegate = self;
         nSync.loggingDelegate = self;

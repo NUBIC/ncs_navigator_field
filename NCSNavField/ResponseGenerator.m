@@ -22,7 +22,7 @@
 - (id)initWithSurvey:(NUSurvey*)survey context:(NSDictionary*)context {
     if (self = [self init]) {
         self.survey = survey;
-        self.context = context;
+        self.context = context ? context : [NSDictionary dictionary];
     }
     return self;
 }
@@ -56,7 +56,7 @@
         NSDictionary* question = obj;
         NSString* refId = [self referenceIdentifierOfQuestion:question];
         NSString* parsed = [self parsePrepopulatedPostTextForReferenceIdentifier:refId];
-        BOOL inContext = [[self.context allKeys] indexOfObject:parsed] != NSNotFound;
+        BOOL inContext = self.context && [[self.context allKeys] indexOfObject:parsed] != NSNotFound;
         return parsed && inContext;
     }];
 }

@@ -16,6 +16,7 @@
 #import "SingleOptionPicker.h"
 #import "TextArea.h"
 #import "DispositionCode.h"
+#import "NSManagedObject+ActiveRecord.h"
 
 @implementation ContactCloseVC
 

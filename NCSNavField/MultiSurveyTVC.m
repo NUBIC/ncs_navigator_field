@@ -116,8 +116,7 @@
         [self setSurveyNSD_Forced:[self.survey.jsonString objectFromJSONString]];
         
         ResponseSet* rs = [self.surveyResponseSetAssociations objectForKey:self.survey.uuid];
-        Participant* p = [Participant findFirstByAttribute:@"pId" withValue:[rs valueForKey:@"pId"]];
-        [ss populateResponseSet:rs forSurveyId:self.survey.uuid forParticipant:p];
+
         self.sectionTVC.responseSet = rs;
         self.sectionTVC.delegate = self;
         // TODO: Fix render context

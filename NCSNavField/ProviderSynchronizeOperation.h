@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Diagnostics.h"
+#import <RestKit/RestKit.h>
 
 @interface ProviderSynchronizeOperation : NSObject<RKObjectLoaderDelegate> {
     CasServiceTicket* _ticket;
