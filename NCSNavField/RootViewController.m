@@ -419,7 +419,7 @@
 // http://stackoverflow.com/questions/5685331/run-mbprogresshud-in-another-thread
     @try {
         //[[NSRunLoop currentRunLoop] runUntilDate: [NSDate distantPast]];
-
+        NSManagedObjectContext *moc = [NSManagedObjectContext contextForCurrentThread];
         BOOL bStepWasSuccessful;
         //This has many, many substeps that we need to clarify.
         FieldworkSynchronizeOperation* sync = [[FieldworkSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
@@ -429,25 +429,19 @@
         if(!bStepWasSuccessful) //Should we stop right here? If we failed on fieldwork synchronization.
             return;
         
-        //Let's check to see how many, if any, providers exist in Core Data.
-        NSPredicate* p = [NSPredicate predicateWithFormat:@"recruited = %d", TRUE];
-        NSArray *providers = [Provider findAllSortedBy:@"name" ascending:YES withPredicate:p];
-        if([providers count]==0)
-        {
-            ProviderSynchronizeOperation* pSync = [[ProviderSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
-            pSync.delegate = self;
-            bStepWasSuccessful = [pSync perform];
+        //Let's take the MOC and get rid of duplicates.
+        [Provider truncateAllInContext:moc];
+        ProviderSynchronizeOperation* pSync = [[ProviderSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
+        pSync.delegate = self;
+        bStepWasSuccessful = [pSync perform];
             
-            if(!bStepWasSuccessful) //Should we stop right here? If the provider pull didn't work, stop.
-                return;
-        }
-        NSArray *codes = [MdesCode findAllSortedBy:@"displayText" ascending:YES];
-        if([codes count]==0)
-        {
-            NcsCodeSynchronizeOperation *nSync = [[NcsCodeSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
-            nSync.delegate = self;
-            bStepWasSuccessful = [nSync perform];
-        }
+        if(!bStepWasSuccessful) //Should we stop right here? If the provider pull didn't work, stop.
+            return;
+        
+        [MdesCode truncateAllInContext:moc];
+        NcsCodeSynchronizeOperation *nSync = [[NcsCodeSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
+        nSync.delegate = self;
+        bStepWasSuccessful = [nSync perform];
     }
     //In the future, these two catches will diverge. Right now, let's just put a placeholder. 
     @catch (FieldworkSynchronizationException *ex) {

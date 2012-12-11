@@ -17,7 +17,7 @@
 @implementation MergeStatusRequest
 
 const static NSInteger LENGTH_TIME_BETWEEN_POLLS = 10;
-const static NSInteger POLL_REPEATS = 6;
+const static NSInteger POLL_REPEATS = 12;
 
 @synthesize mergeStatusId = _mergeStatusId;
 @synthesize error = _error;
