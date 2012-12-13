@@ -14,7 +14,7 @@
 #import "InstrumentPlan.h"
 #import "InstrumentTemplate.h"
 
-NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_SCRENER = 44;
+NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER = 44;
 
 @implementation Instrument
 
@@ -95,7 +95,7 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_SCRENER = 44;
 }
 
 - (BOOL)isProviderBasedSamplingScreener {
-    return INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_SCRENER == self.instrumentTypeId.integerValue;
+    return INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER == self.instrumentTypeId.integerValue;
 }
 
 @end
