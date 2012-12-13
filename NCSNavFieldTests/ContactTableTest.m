@@ -100,22 +100,6 @@ Person *tom;
 //    STAssertEqualObjects(s4r1.text, @"Birth Event Activity Details", @"Wrong value");
 }
 
-- (void)testPregnancyAndBirthInstrumentsOrder {
-    [c addEventsObject:[self buildEvent:@"Pregnancy" withDate:@"2010-10-17"]];
-    c.initiated = YES;
-    NSArray* sections = [self generateSections];
-    Section* s3 = [sections objectAtIndex:3];
-    Row* s3r0 = [s3.rows objectAtIndex:0];
-    Row* s3r1 = [s3.rows objectAtIndex:1];
-    STAssertEquals([sections count], 5U, @"Wrong number of sections");
-    STAssertEqualObjects(s3.name, @"Scheduled Instruments", @"Wrong value");
-    STAssertEqualObjects(s3r0.text, @"Pregnancy Instrument", @"Wrong value");
-    STAssertEqualObjects(s3r1.text, @"Birth Instrument", @"Wrong value");
-
-}
-
-
-
 #pragma mark helper methods
 
 - (NSArray*) generateSections {
