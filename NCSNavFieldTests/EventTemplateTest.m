@@ -38,7 +38,7 @@
 - (void)testPregnancyScreeningTemplate {
     EventTemplate* t = [EventTemplate object];
     t.name = @"Pregnancy Screener";
-    t.eventTypeCode = [NSNumber numberWithInt:PREGNANCY_SCREENING_EVENT_TYPE_CODE];
+    t.eventTypeCode = [NSNumber numberWithInt:EVENT_TYPE_CODE_PBS_PARTICIPANT_ELIGIBILITY_SCREENING];
     STAssertEqualObjects([EventTemplate pregnancyScreeningTemplate], t, nil);
 }
 
