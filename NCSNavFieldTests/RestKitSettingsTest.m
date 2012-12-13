@@ -28,10 +28,6 @@
 
 @implementation RestKitSettingsTest
 
-
-- (void)setUp {
-}
-
 - (Fieldwork *)fieldworkTestData {
     ResponseSet *rs = [ResponseSet object];
     [rs setValue:@"RS A" forKey:@"uuid"];
