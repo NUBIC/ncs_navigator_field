@@ -14,6 +14,8 @@
 #import "InstrumentPlan.h"
 #import "InstrumentTemplate.h"
 
+NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_SCRENER = 44;
+
 @implementation Instrument
 
 @dynamic instrumentId, name, event, instrumentTypeId, instrumentTypeOther,
@@ -90,6 +92,10 @@
 
 - (NSString*)determineInstrumentVersion {
     return self.instrumentVersion ? self.instrumentVersion : self.determineInstrumentVersionFromSurveyTitle;
+}
+
+- (BOOL)isProviderBasedSamplingScreener {
+    return INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_SCRENER == self.instrumentTypeId.integerValue;
 }
 
 @end

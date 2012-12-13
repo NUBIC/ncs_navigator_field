@@ -12,6 +12,8 @@
 @class InstrumentPlan;
 @class ResponseSet;
 
+FOUNDATION_EXPORT NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_SCRENER;
+
 @interface Instrument : NSManagedObject 
 
 @property(nonatomic,strong) NSString* instrumentId;
@@ -81,6 +83,8 @@
 - (NSString*)determineInstrumentVersionFromSurveyTitle ;
 
 - (NSString*)determineInstrumentVersion;
+
+- (BOOL)isProviderBasedSamplingScreener;
 
 @end
 

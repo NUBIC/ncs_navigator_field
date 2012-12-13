@@ -110,9 +110,7 @@
 
 - (void) instrumentSelected:(NSNotification*)notification {
     Instrument* selected = [[notification userInfo] objectForKey:@"instrument"];
-    Instrument* screener = [EventTemplate pregnancyScreeningInstrument];
-    BOOL isPbsScreener = [selected.instrumentPlanId isEqual:screener.instrumentPlanId];
-    if (isPbsScreener) {
+    if ([selected isProviderBasedSamplingScreener]) {
         ProviderListViewController* plvc = [[ProviderListViewController alloc] initWithNibName:@"ProviderListViewController" bundle:nil];
         plvc.modalPresentationStyle = UIModalPresentationFormSheet;
         plvc.additionalNotificationContext = @{ @"instrument": selected };
