@@ -40,6 +40,9 @@
 		0037D2BF14B60AAA00B7D05A /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0037D2BE14B60AAA00B7D05A /* libiconv.dylib */; };
 		0037D8BF15F685F200C6B7EB /* ResponseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0037D8BE15F685F200C6B7EB /* ResponseSet.m */; };
 		00393C92148E54C000671899 /* SingleOptionPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00393C91148E54C000671899 /* SingleOptionPicker.m */; };
+		0039F78C167BA7BE00CE32B3 /* NUSurveyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0039F78B167BA7BE00CE32B3 /* NUSurveyTest.m */; };
+		0039F7A6167BB3F200CE32B3 /* NUSectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7A5167BB3F200CE32B3 /* NUSectionTest.m */; };
+		0039F7A9167BB5B100CE32B3 /* NUQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7A8167BB5B100CE32B3 /* NUQuestion.m */; };
 		003DEFD4164ACC9100E89C25 /* EventTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003DEFD3164ACC9100E89C25 /* EventTemplate.m */; };
 		003DEFFC164B4EF500E89C25 /* ProviderSynchronizeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 003DEFFB164B4EF500E89C25 /* ProviderSynchronizeOperation.m */; };
 		003DF008164C294700E89C25 /* SurveyContextGeneratorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 003DF007164C294700E89C25 /* SurveyContextGeneratorTest.m */; };
@@ -100,6 +103,7 @@
 		00AB8E99164358290097F7CD /* NSManagedObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AB8E98164358290097F7CD /* NSManagedObjectTest.m */; };
 		00AE800A167A7A24007FF178 /* ResponseTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AE8009167A7A24007FF178 /* ResponseTemplate.m */; };
 		00AE800D167A934F007FF178 /* ResponseTemplateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AE800C167A934F007FF178 /* ResponseTemplateTest.m */; };
+		00AE8013167B8101007FF178 /* NUSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AE8012167B8101007FF178 /* NUSection.m */; };
 		00C0C8D615655E390047A113 /* icon-test.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C0C8D515655E390047A113 /* icon-test.png */; };
 		00C2520D151794EB00F4FE3B /* RestKitSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */; };
 		00C25211151A63B500F4FE3B /* FieldworkTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C25210151A63B500F4FE3B /* FieldworkTest.m */; };
@@ -246,6 +250,12 @@
 		0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120904190344_change_response_set_entity.xcdatamodel; sourceTree = "<group>"; };
 		00393C90148E54C000671899 /* SingleOptionPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleOptionPicker.h; sourceTree = "<group>"; };
 		00393C91148E54C000671899 /* SingleOptionPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleOptionPicker.m; sourceTree = "<group>"; };
+		0039F78A167BA7BE00CE32B3 /* NUSurveyTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSurveyTest.h; sourceTree = "<group>"; };
+		0039F78B167BA7BE00CE32B3 /* NUSurveyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSurveyTest.m; sourceTree = "<group>"; };
+		0039F7A4167BB3F200CE32B3 /* NUSectionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSectionTest.h; sourceTree = "<group>"; };
+		0039F7A5167BB3F200CE32B3 /* NUSectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSectionTest.m; sourceTree = "<group>"; };
+		0039F7A7167BB5B100CE32B3 /* NUQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUQuestion.h; sourceTree = "<group>"; };
+		0039F7A8167BB5B100CE32B3 /* NUQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUQuestion.m; sourceTree = "<group>"; };
 		003DEFD1164ACC6900E89C25 /* 20121107170535_order_instruments_on_event_template.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121107170535_order_instruments_on_event_template.xcdatamodel; sourceTree = "<group>"; };
 		003DEFD2164ACC9100E89C25 /* EventTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTemplate.h; sourceTree = "<group>"; };
 		003DEFD3164ACC9100E89C25 /* EventTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTemplate.m; sourceTree = "<group>"; };
@@ -502,11 +512,13 @@
 		00AB8E98164358290097F7CD /* NSManagedObjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectTest.m; sourceTree = "<group>"; };
 		00ABB42B166718E200BCA177 /* 20121129023553_change_instrument_plan_to_instrument_template_to_many_to_many.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121129023553_change_instrument_plan_to_instrument_template_to_many_to_many.xcdatamodel; sourceTree = "<group>"; };
 		00ABB4521667289000BCA177 /* 20121129032438_change_merge_status_to_nullable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121129032438_change_merge_status_to_nullable.xcdatamodel; sourceTree = "<group>"; };
-		00AE8003167A78CE007FF178 /* 20121213205710_create_response_templates.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121213205710_create_response_templates.xcdatamodel; sourceTree = "<group>"; };
+		00AE8003167A78CE007FF178 /* 20121213205710_create_response_templates.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121213205710_create_response_templates.xcdatamodel; sourceTree = "<group>"; };
 		00AE8008167A7A24007FF178 /* ResponseTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseTemplate.h; sourceTree = "<group>"; };
 		00AE8009167A7A24007FF178 /* ResponseTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseTemplate.m; sourceTree = "<group>"; };
 		00AE800B167A934F007FF178 /* ResponseTemplateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseTemplateTest.h; sourceTree = "<group>"; };
 		00AE800C167A934F007FF178 /* ResponseTemplateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseTemplateTest.m; sourceTree = "<group>"; };
+		00AE8011167B8101007FF178 /* NUSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSection.h; sourceTree = "<group>"; };
+		00AE8012167B8101007FF178 /* NUSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSection.m; sourceTree = "<group>"; };
 		00B3DC64167009D40066E5AD /* 20121205230124_add_person_id_to_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121205230124_add_person_id_to_response_set.xcdatamodel; sourceTree = "<group>"; };
 		00C0C8D515655E390047A113 /* icon-test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-test.png"; sourceTree = "<group>"; };
 		00C2520B151794EB00F4FE3B /* RestKitSettingsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitSettingsTest.h; sourceTree = "<group>"; };
@@ -708,6 +720,7 @@
 		0026E66E140347E700355BCB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				00AE800F167B7FE5007FF178 /* Framework Extensions */,
 				22942CE1166945AF00242588 /* Other */,
 				22942CCF16692B3800242588 /* Exceptions */,
 				22226B081666B82E005CCE71 /* FriendlyActionSheet */,
@@ -723,6 +736,10 @@
 		0026E691140347E700355BCB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				0039F7A4167BB3F200CE32B3 /* NUSectionTest.h */,
+				0039F7A5167BB3F200CE32B3 /* NUSectionTest.m */,
+				0039F78A167BA7BE00CE32B3 /* NUSurveyTest.h */,
+				0039F78B167BA7BE00CE32B3 /* NUSurveyTest.m */,
 				00AE800B167A934F007FF178 /* ResponseTemplateTest.h */,
 				00AE800C167A934F007FF178 /* ResponseTemplateTest.m */,
 				003DF03A1651832600E89C25 /* HumanReadablePublicIdGeneratorTest.h */,
@@ -1069,12 +1086,8 @@
 				00DC621C15768D3300E5F825 /* NSURL+Extensions.m */,
 				0037D8BD15F685F200C6B7EB /* ResponseSet.h */,
 				0037D8BE15F685F200C6B7EB /* ResponseSet.m */,
-				0087A556160A6610005CB008 /* NUSurvey+Additions.h */,
-				0087A557160A6610005CB008 /* NUSurvey+Additions.m */,
 				001FEDD11619FA4F00DE8A3A /* SurveySet.h */,
 				001FEDD21619FA4F00DE8A3A /* SurveySet.m */,
-				00010410161B73AA00952C3C /* NUResponse+Additions.h */,
-				00010411161B73AA00952C3C /* NUResponse+Additions.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1119,6 +1132,29 @@
 				00AB8E9516431D150097F7CD /* NSManagedObject+Additions.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		00AE800F167B7FE5007FF178 /* Framework Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				00AE8010167B8026007FF178 /* NUSurveyor */,
+			);
+			name = "Framework Extensions";
+			sourceTree = "<group>";
+		};
+		00AE8010167B8026007FF178 /* NUSurveyor */ = {
+			isa = PBXGroup;
+			children = (
+				0039F7A7167BB5B100CE32B3 /* NUQuestion.h */,
+				0039F7A8167BB5B100CE32B3 /* NUQuestion.m */,
+				0087A556160A6610005CB008 /* NUSurvey+Additions.h */,
+				0087A557160A6610005CB008 /* NUSurvey+Additions.m */,
+				00010410161B73AA00952C3C /* NUResponse+Additions.h */,
+				00010411161B73AA00952C3C /* NUResponse+Additions.m */,
+				00AE8011167B8101007FF178 /* NUSection.h */,
+				00AE8012167B8101007FF178 /* NUSection.m */,
+			);
+			name = NUSurveyor;
 			sourceTree = "<group>";
 		};
 		00F10AAD14DB040800387762 /* MBProgressHUD */ = {
@@ -1511,6 +1547,8 @@
 				22A11EED166E5EE6000E1F07 /* UIFont+Additions.m in Sources */,
 				22A11EF1166E6142000E1F07 /* NUPickerVC+Additions.m in Sources */,
 				00AE800A167A7A24007FF178 /* ResponseTemplate.m in Sources */,
+				00AE8013167B8101007FF178 /* NUSection.m in Sources */,
+				0039F7A9167BB5B100CE32B3 /* NUQuestion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1539,6 +1577,8 @@
 				003DF017164C30F600E89C25 /* ResponseGeneratorTest.m in Sources */,
 				003DF03C1651832600E89C25 /* HumanReadablePublicIdGeneratorTest.m in Sources */,
 				00AE800D167A934F007FF178 /* ResponseTemplateTest.m in Sources */,
+				0039F78C167BA7BE00CE32B3 /* NUSurveyTest.m in Sources */,
+				0039F7A6167BB3F200CE32B3 /* NUSectionTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

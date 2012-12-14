@@ -16,4 +16,6 @@
 
 - (NSDictionary*)deserialized;
 
+- (NSArray*)sections;
+
 @end
