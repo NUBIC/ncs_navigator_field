@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class NUSurvey;
 
 @interface ResponseTemplate : NSManagedObject
 
@@ -16,5 +17,7 @@
 @property (nonatomic, retain) NSString * aref;
 @property (nonatomic, retain) NSString * value;
 @property (nonatomic, retain) NSString * surveyId;
+
+- (NUSurvey*)survey;
 
 @end

@@ -14,11 +14,11 @@
 @implementation NUSurvey (Additions)
 
 - (NSString*)title {
-    return [[self.jsonString objectFromJSONString] objectForKey:@"title"];
+    return [[self deserialized] objectForKey:@"title"];
 }
 
 - (NSString*)uuid {
-    return [[self.jsonString objectFromJSONString] objectForKey:@"uuid"];
+    return [[self deserialized] objectForKey:@"uuid"];
 }
 
 - (NSDictionary*)deserialized {

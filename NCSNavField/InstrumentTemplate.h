@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class NUSurvey;
+
 @interface InstrumentTemplate : NSManagedObject
 
 @property(nonatomic,strong) NSString* instrumentTemplateId;
@@ -17,5 +19,7 @@
 - (void)setRepresentationDictionary:(NSDictionary*)r;
 
 - (NSDictionary*)representationDictionary;
+
+- (NUSurvey*)survey;
 
 @end

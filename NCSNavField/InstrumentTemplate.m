@@ -7,6 +7,7 @@
 //
 
 #import "InstrumentTemplate.h"
+#import <NUSurveyor/NUSurvey.h>
 #import <SBJSON.h>
 
 @implementation InstrumentTemplate
@@ -18,6 +19,12 @@
 
 - (NSDictionary*)representationDictionary {
     return [[[SBJSON alloc] init] objectWithString:self.representation];
+}
+
+- (NUSurvey*)survey {
+    NUSurvey* s = [NUSurvey new];
+    s.jsonString = self.representation;
+    return s;
 }
 
 @end
