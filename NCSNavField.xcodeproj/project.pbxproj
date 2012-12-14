@@ -99,6 +99,7 @@
 		00AB8E9616431D150097F7CD /* NSManagedObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AB8E9516431D150097F7CD /* NSManagedObject+Additions.m */; };
 		00AB8E99164358290097F7CD /* NSManagedObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AB8E98164358290097F7CD /* NSManagedObjectTest.m */; };
 		00AE800A167A7A24007FF178 /* ResponseTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AE8009167A7A24007FF178 /* ResponseTemplate.m */; };
+		00AE800D167A934F007FF178 /* ResponseTemplateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AE800C167A934F007FF178 /* ResponseTemplateTest.m */; };
 		00C0C8D615655E390047A113 /* icon-test.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C0C8D515655E390047A113 /* icon-test.png */; };
 		00C2520D151794EB00F4FE3B /* RestKitSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */; };
 		00C25211151A63B500F4FE3B /* FieldworkTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C25210151A63B500F4FE3B /* FieldworkTest.m */; };
@@ -504,6 +505,8 @@
 		00AE8003167A78CE007FF178 /* 20121213205710_create_response_templates.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121213205710_create_response_templates.xcdatamodel; sourceTree = "<group>"; };
 		00AE8008167A7A24007FF178 /* ResponseTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseTemplate.h; sourceTree = "<group>"; };
 		00AE8009167A7A24007FF178 /* ResponseTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseTemplate.m; sourceTree = "<group>"; };
+		00AE800B167A934F007FF178 /* ResponseTemplateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseTemplateTest.h; sourceTree = "<group>"; };
+		00AE800C167A934F007FF178 /* ResponseTemplateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseTemplateTest.m; sourceTree = "<group>"; };
 		00B3DC64167009D40066E5AD /* 20121205230124_add_person_id_to_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121205230124_add_person_id_to_response_set.xcdatamodel; sourceTree = "<group>"; };
 		00C0C8D515655E390047A113 /* icon-test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-test.png"; sourceTree = "<group>"; };
 		00C2520B151794EB00F4FE3B /* RestKitSettingsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitSettingsTest.h; sourceTree = "<group>"; };
@@ -720,6 +723,8 @@
 		0026E691140347E700355BCB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				00AE800B167A934F007FF178 /* ResponseTemplateTest.h */,
+				00AE800C167A934F007FF178 /* ResponseTemplateTest.m */,
 				003DF03A1651832600E89C25 /* HumanReadablePublicIdGeneratorTest.h */,
 				003DF03B1651832600E89C25 /* HumanReadablePublicIdGeneratorTest.m */,
 				003DF015164C30F600E89C25 /* ResponseGeneratorTest.h */,
@@ -1533,6 +1538,7 @@
 				003DF008164C294700E89C25 /* SurveyContextGeneratorTest.m in Sources */,
 				003DF017164C30F600E89C25 /* ResponseGeneratorTest.m in Sources */,
 				003DF03C1651832600E89C25 /* HumanReadablePublicIdGeneratorTest.m in Sources */,
+				00AE800D167A934F007FF178 /* ResponseTemplateTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
