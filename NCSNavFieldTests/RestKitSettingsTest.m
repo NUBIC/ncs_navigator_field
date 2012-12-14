@@ -24,6 +24,7 @@
 #import "EventTemplate.h"
 #import "Provider.h"
 #import "Participant.h"
+#import "ResponseTemplate.h"
 #import <MRCEnumerable/MRCEnumerable.h>
 
 @implementation RestKitSettingsTest
@@ -189,7 +190,7 @@
     STAssertEqualObjects(p.pId, @"abc", @"Wrong value");
 }
 
-- (void)testInstrumentTemplateDeserialization {
+- (void)testEventTemplateDeserialization {
     NSString* json =
         @"{ "
          "   \"event_templates\": [{             "
@@ -197,7 +198,10 @@
          "     \"event_repeat_key\": 0,          "
          "     \"event_type_code\": 34,          "
          "     \"instruments\":[{                "
-         "          \"name\": \"Preg Scr Ins\"   "
+         "          \"name\": \"Preg Scr Ins\",  "
+         "          \"response_templates\": [    "
+         "            { \"qref\": \"one\" }      "
+         "          ]                            "
          "      }]                               "
          "   }]                                  "
          "}                                      ";
@@ -211,6 +215,8 @@
     STAssertEqualObjects(et.eventTypeCode, [NSNumber numberWithInt:34], @"Wrong type code");
     Instrument* ins = [[[et instruments] objectEnumerator] nextObject];
     STAssertEqualObjects(ins.name, @"Preg Scr Ins", @"Wrong name");
+    ResponseTemplate* rt = [[[ins responseTemplates] objectEnumerator] nextObject];
+    STAssertEqualObjects(rt.qref, @"one", nil);
 }
 
 - (void)testProviderDeserialization {

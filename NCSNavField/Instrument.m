@@ -21,7 +21,7 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
 @dynamic instrumentId, name, event, instrumentTypeId, instrumentTypeOther,
     instrumentVersion, repeatKey, startDate, startTime, endDate, endTime,
     statusId, breakOffId, instrumentModeId, instrumentModeOther,
-    instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSets, instrumentPlanId;
+    instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSets, instrumentPlanId, responseTemplates;
 
 - (NSArray*) responseSetDicts {
     NSMutableArray* all = [[NSMutableArray alloc] init];

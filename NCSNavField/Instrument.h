@@ -61,6 +61,7 @@ FOUNDATION_EXPORT NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELI
 
 @property(nonatomic,strong) NSSet* responseSets;
 
+@property(nonatomic,strong) NSSet* responseTemplates;
 
 #pragma setter
 
