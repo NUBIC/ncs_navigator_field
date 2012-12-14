@@ -93,7 +93,7 @@
         <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="instruments" inverseEntity="Event" syncable="YES"/>
         <relationship name="instrumentPlan" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="InstrumentPlan" inverseName="instrument" inverseEntity="InstrumentPlan" syncable="YES"/>
         <relationship name="responseSets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ResponseSet" inverseName="instrument" inverseEntity="ResponseSet" syncable="YES"/>
-        <relationship name="responseTemplates" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ResponseTemplate" syncable="YES"/>
+        <relationship name="responseTemplates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ResponseTemplate" syncable="YES"/>
     </entity>
     <entity name="InstrumentPlan" representedClassName="InstrumentPlan" syncable="YES">
         <attribute name="instrumentPlanId" optional="YES" attributeType="String" syncable="YES"/>
