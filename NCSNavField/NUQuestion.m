@@ -11,10 +11,6 @@
 
 @implementation NUQuestion
 
-@synthesize text = _text;
-@synthesize referenceIdentifier = _referenceIdentifier;
-@synthesize answers = _answers;
-
 - (id)initWithDictionary:(NSDictionary*)dict {
     self = [self init];
     if (self) {

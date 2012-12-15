@@ -10,8 +10,6 @@
 
 @implementation NUAnswer
 
-@synthesize referenceIdentifier = _referenceIdentifier;
-
 - (id)initWithDictionary:(NSDictionary*)dict {
     self = [self init];
     if (self) {

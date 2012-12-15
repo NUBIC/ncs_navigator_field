@@ -8,11 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NUQuestion : NSObject {
-    NSString* _text;
-    NSString* _referenceIdentifier;
-    NSArray* _answers;
-}
+@interface NUQuestion : NSObject
 
 @property(nonatomic,retain) NSString* text;
 

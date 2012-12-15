@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NUAnswer : NSObject {
-    NSString* _referenceIdentifier;
-}
+@interface NUAnswer : NSObject
 
 @property(nonatomic,retain) NSString* referenceIdentifier;
 

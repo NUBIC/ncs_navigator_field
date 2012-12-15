@@ -8,10 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NUSection : NSObject {
-    NSString* _title;
-    NSArray* _questions;
-}
+@interface NUSection : NSObject
 
 @property(nonatomic,retain) NSString* title;
 

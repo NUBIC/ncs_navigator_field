@@ -11,9 +11,6 @@
 
 @implementation NUSection
 
-@synthesize title = _title;
-@synthesize questions = _questions;
-
 - (id)initWithDictionary:(NSDictionary*)dict {
     self = [self init];
     if (self) {
