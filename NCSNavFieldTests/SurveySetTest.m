@@ -85,7 +85,7 @@ static NUSurvey* surveyB;
     participant = [self createParticipant:@"yak423"];
     responseSetB = [self createResponseSetWithSurveyId:@"survey-b" participantId:participant.pId];
     
-    surveySet = [[SurveySet alloc] initWithSurveys:[NSArray arrayWithObjects:surveyA,surveyB,nil] andResponseSets:[NSArray arrayWithObject:responseSetA]];
+    surveySet = [[SurveySet alloc] initWithSurveys:[NSArray arrayWithObjects:surveyA,surveyB,nil]];
 }
 
 #pragma mark - SurveySet#SectionforSurveyIndex:SectionIndex

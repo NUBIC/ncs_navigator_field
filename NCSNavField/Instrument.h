@@ -87,6 +87,8 @@ FOUNDATION_EXPORT NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELI
 
 - (BOOL)isProviderBasedSamplingScreener;
 
+- (NSArray*)surveyResponseSetRelationshipsWithSurveyContext:(NSDictionary*)ctx;
+
 @end
 
 @interface Instrument (GeneratedAccessors)

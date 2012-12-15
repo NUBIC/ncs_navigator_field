@@ -150,58 +150,11 @@
 #pragma surveyor
 - (void) loadSurveyor:(Instrument*)instrument context:(NSDictionary*)context {
     if (instrument != NULL) {
-        NSArray* surveys = [[instrument.instrumentPlan.instrumentTemplates array] collect:^id(InstrumentTemplate* tmpl){
-            NUSurvey* s = [NUSurvey new];
-            s.jsonString = tmpl.representation;
-            return s;
-        }];
-        
-        NSMutableDictionary* assoc = [NSMutableDictionary new];
-        for (NUSurvey* s in surveys) {
-            ResponseSet* found = [instrument.responseSets detect:^BOOL(ResponseSet* rs) {
-                NSString* rsSurveyId = [rs valueForKey:@"survey"];
-                return [rsSurveyId isEqualToString:s.uuid];
-            }];
-            
-            if (!found) {
-                NCSLog(@"No response set found for survey: %@", s.uuid);
-                NSDictionary* surveyDict = [[SBJSON new] objectWithString:s.jsonString];
-                found = [ResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread];
-                [instrument addResponseSetsObject:found];
-
-                NCSLog(@"Creating new response set: %@", found.uuid);
-            }
-            
-            ResponseGenerator* g = [[ResponseGenerator alloc] initWithSurvey:s context:context];
-            for (NUResponse* resp in [g responses]) {
-                NSArray* existing = [found responsesForQuestion:[resp valueForKey:@"question"]];
-                for (NUResponse* e in existing) {
-                    [e deleteEntity];
-                }
-                [found newResponseForQuestion:[resp valueForKey:@"question"] Answer:[resp valueForKey:@"answer"] responseGroup:nil Value:[resp valueForKey:@"value"]];
-            }
-            
-            if (![found valueForKey:@"pId"]) {
-                [found setValue:instrument.event.pId forKey:@"pId"];
-            }
-            
-            if (![found valueForKey:@"personId"]) {
-                [found setValue:instrument.event.contact.personId forKey:@"personId"];
-            }
-
-            [assoc setObject:found forKey:s.uuid];
-        }
-        
-        NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
-        NSError *error = nil;
-        
-        if (![moc save:&error]) {
-            NCSLog(@"Error saving response sets");
-        }
+        NSArray* rels = [instrument surveyResponseSetRelationshipsWithSurveyContext:context];
         
         NCSLog(@"Loading surveyor with instrument plan: %@", instrument.instrumentPlan.instrumentPlanId);
         
-        MultiSurveyTVC *masterViewController = [[MultiSurveyTVC alloc] initWithSurveys:surveys surveyResponseSetAssociations:assoc];
+        MultiSurveyTVC *masterViewController = [[MultiSurveyTVC alloc] initWithSurveyResponseSetRelationships:rels];
         
         masterViewController.delegate = self;
         

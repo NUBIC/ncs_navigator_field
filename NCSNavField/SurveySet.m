@@ -19,12 +19,10 @@
 @implementation SurveySet
 
 @synthesize surveys = _surveys;
-@synthesize responseSets = _responseSets;
 
-- (id)initWithSurveys:(NSArray*)s andResponseSets:(NSArray*)rs {
+- (id)initWithSurveys:(NSArray*)s {
     if (self = [self init]) {
         _surveys = s;
-        _responseSets = rs;        
     }
     return self;
 }
