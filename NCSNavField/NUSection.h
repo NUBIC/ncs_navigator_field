@@ -9,15 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface NUSection : NSObject {
-    NSDictionary* _sectionDictionary;
+    NSString* _title;
+    NSArray* _questions;
 }
 
-@property(nonatomic,retain) NSDictionary* sectionDictionary;
+@property(nonatomic,retain) NSString* title;
 
-- (id)initWithSectionDictionary:(NSDictionary*)sectionDict;
+@property(nonatomic,retain) NSArray* questions;
 
-- (NSString*)title;
-
-- (NSArray*)questions;
+- (id)initWithDictionary:(NSDictionary*)sectionDict;
 
 @end

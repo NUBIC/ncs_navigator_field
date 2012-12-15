@@ -25,7 +25,7 @@
     
     STAssertNotNil(dSection, @"JSON is not valid");
     
-    NUSection* s = [[NUSection alloc] initWithSectionDictionary:dSection];
+    NUSection* s = [[NUSection alloc] initWithDictionary:dSection];
     
     NSArray* actual = [s questions];
     STAssertEqualObjects([[actual objectAtIndex:0] text], @"hello", nil);

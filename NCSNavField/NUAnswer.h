@@ -1,5 +1,5 @@
 //
-//  NUQuestion.h
+//  NUAnswer.h
 //  NCSNavField
 //
 //  Created by John Dzak on 12/14/12.
@@ -8,18 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NUQuestion : NSObject {
-    NSString* _text;
+@interface NUAnswer : NSObject {
     NSString* _referenceIdentifier;
-    NSArray* _answers;
 }
-
-@property(nonatomic,retain) NSString* text;
 
 @property(nonatomic,retain) NSString* referenceIdentifier;
 
-@property(nonatomic,retain) NSArray* answers;
-
-- (id)initWithDictionary:dict;
+- (id)initWithDictionary:(NSDictionary*)dict;
 
 @end

@@ -7,19 +7,27 @@
 //
 
 #import "NUQuestion.h"
+#import "NUAnswer.h"
 
 @implementation NUQuestion
 
-- (id)initWithQuestionDictionary:(NSDictionary*)dQuestion {
+@synthesize text = _text;
+@synthesize referenceIdentifier = _referenceIdentifier;
+@synthesize answers = _answers;
+
+- (id)initWithDictionary:(NSDictionary*)dict {
     self = [self init];
     if (self) {
-        self.questionDictionary = dQuestion;
+        self.text = [dict valueForKey:@"text"];
+        self.referenceIdentifier = [dict valueForKey:@"reference_identifier"];
+        NSMutableArray* answers = [NSMutableArray new];
+        for (NSDictionary* aDict in [dict objectForKey:@"answers"]) {
+            NUAnswer* a = [[NUAnswer alloc] initWithDictionary:aDict];
+            [answers addObject:a];
+        }
+        self.answers = answers;
     }
     return self;
-}
-
-- (NSString*)text {
-    return [_questionDictionary valueForKey:@"text"];
 }
 
 @end

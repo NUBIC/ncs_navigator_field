@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 
 @class NUSurvey;
+@class NUQuestion;
+@class NUAnswer;
 
 @interface ResponseTemplate : NSManagedObject
 
@@ -19,5 +21,9 @@
 @property (nonatomic, retain) NSString * surveyId;
 
 - (NUSurvey*)survey;
+
+- (NUQuestion*)question;
+
+- (NUAnswer*)answer;
 
 @end

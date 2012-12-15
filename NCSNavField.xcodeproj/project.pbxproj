@@ -43,6 +43,7 @@
 		0039F78C167BA7BE00CE32B3 /* NUSurveyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0039F78B167BA7BE00CE32B3 /* NUSurveyTest.m */; };
 		0039F7A6167BB3F200CE32B3 /* NUSectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7A5167BB3F200CE32B3 /* NUSectionTest.m */; };
 		0039F7A9167BB5B100CE32B3 /* NUQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7A8167BB5B100CE32B3 /* NUQuestion.m */; };
+		0039F7B4167BD61700CE32B3 /* NUAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7B3167BD61700CE32B3 /* NUAnswer.m */; };
 		003DEFD4164ACC9100E89C25 /* EventTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003DEFD3164ACC9100E89C25 /* EventTemplate.m */; };
 		003DEFFC164B4EF500E89C25 /* ProviderSynchronizeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 003DEFFB164B4EF500E89C25 /* ProviderSynchronizeOperation.m */; };
 		003DF008164C294700E89C25 /* SurveyContextGeneratorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 003DF007164C294700E89C25 /* SurveyContextGeneratorTest.m */; };
@@ -256,6 +257,8 @@
 		0039F7A5167BB3F200CE32B3 /* NUSectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSectionTest.m; sourceTree = "<group>"; };
 		0039F7A7167BB5B100CE32B3 /* NUQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUQuestion.h; sourceTree = "<group>"; };
 		0039F7A8167BB5B100CE32B3 /* NUQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUQuestion.m; sourceTree = "<group>"; };
+		0039F7B2167BD61700CE32B3 /* NUAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUAnswer.h; sourceTree = "<group>"; };
+		0039F7B3167BD61700CE32B3 /* NUAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUAnswer.m; sourceTree = "<group>"; };
 		003DEFD1164ACC6900E89C25 /* 20121107170535_order_instruments_on_event_template.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121107170535_order_instruments_on_event_template.xcdatamodel; sourceTree = "<group>"; };
 		003DEFD2164ACC9100E89C25 /* EventTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTemplate.h; sourceTree = "<group>"; };
 		003DEFD3164ACC9100E89C25 /* EventTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTemplate.m; sourceTree = "<group>"; };
@@ -1145,6 +1148,8 @@
 		00AE8010167B8026007FF178 /* NUSurveyor */ = {
 			isa = PBXGroup;
 			children = (
+				0039F7B2167BD61700CE32B3 /* NUAnswer.h */,
+				0039F7B3167BD61700CE32B3 /* NUAnswer.m */,
 				0039F7A7167BB5B100CE32B3 /* NUQuestion.h */,
 				0039F7A8167BB5B100CE32B3 /* NUQuestion.m */,
 				0087A556160A6610005CB008 /* NUSurvey+Additions.h */,
@@ -1549,6 +1554,7 @@
 				00AE800A167A7A24007FF178 /* ResponseTemplate.m in Sources */,
 				00AE8013167B8101007FF178 /* NUSection.m in Sources */,
 				0039F7A9167BB5B100CE32B3 /* NUQuestion.m in Sources */,
+				0039F7B4167BD61700CE32B3 /* NUAnswer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

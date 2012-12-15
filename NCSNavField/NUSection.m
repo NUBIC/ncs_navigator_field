@@ -11,27 +11,21 @@
 
 @implementation NUSection
 
-@synthesize sectionDictionary = _sectionDictionary;
+@synthesize title = _title;
+@synthesize questions = _questions;
 
-- (id)initWithSectionDictionary:(NSDictionary*)sectionDict {
+- (id)initWithDictionary:(NSDictionary*)dict {
     self = [self init];
     if (self) {
-        self.sectionDictionary = sectionDict;
+        self.title = [dict valueForKey:@"title"];
+        
+        NSMutableArray* questions = [NSMutableArray new];
+        for (NSDictionary* qDict in [dict objectForKey:@"questions_and_groups"]) {
+            [questions addObject:[[NUQuestion alloc] initWithDictionary:qDict]];
+        }
+        self.questions = questions;
     }
     return self;
-}
-
-- (NSString*)title {
-    return [self.sectionDictionary valueForKey:@"title"];
-}
-
-- (NSArray*)questions {
-    NSMutableArray* questions = [NSMutableArray new];
-    for (NSDictionary* dQuestion in [self.sectionDictionary objectForKey:@"questions_and_groups"]) {
-        NUQuestion* q = [[NUQuestion alloc] initWithQuestionDictionary:dQuestion];
-        [questions addObject:q];
-    }
-    return questions;
 }
 
 @end
