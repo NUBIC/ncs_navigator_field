@@ -23,4 +23,27 @@
     else
         NSLog(@"Does not respond to selector dismissKeyboard.");
 }
+
+-(void)dumpViews:(NSString*)text indent:(NSString*)indent {
+    Class cl = [self class];
+    NSString *classDescription = [cl description];
+    while ([cl superclass])
+    {
+        cl = [cl superclass];
+        classDescription = [classDescription stringByAppendingFormat:@":%@", [cl description]];
+    }
+    
+    if ([text compare:@""] == NSOrderedSame)
+        NSLog(@"%@ %@", classDescription, NSStringFromCGRect(self.frame));
+    else
+        NSLog(@"%@ %@ %@", text, classDescription, NSStringFromCGRect(self.frame));
+    
+    for (NSUInteger i = 0; i < [self.subviews count]; i++)
+    {
+        UIView *subView = [self.subviews objectAtIndex:i];
+        NSString *newIndent = [[NSString alloc] initWithFormat:@"  %@", indent];
+        NSString *msg = [[NSString alloc] initWithFormat:@"%@%d:", newIndent, i];
+        [subView dumpViews:msg indent:newIndent];
+    }
+}
 @end

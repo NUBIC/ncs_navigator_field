@@ -12,4 +12,5 @@
 -(void)postPopoverNotification;
 -(void)registerForPopoverNotifications;
 -(void)dismissKeyboard;
+-(void)dumpViews:(NSString*)text indent:(NSString*)indent;
 @end
