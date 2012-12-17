@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>_XCCurrentVersionName</key>
-	<string>20121213205710_create_response_templates.xcdatamodel</string>
+	<string>20121217031937_move_response_templates_relationship_to_event_templates.xcdatamodel</string>
 </dict>
 </plist>

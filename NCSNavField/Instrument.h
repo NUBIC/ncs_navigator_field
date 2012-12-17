@@ -11,7 +11,6 @@
 @class Event;
 @class InstrumentPlan;
 @class ResponseSet;
-@class ResponseTemplate;
 
 FOUNDATION_EXPORT NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER;
 
@@ -62,8 +61,6 @@ FOUNDATION_EXPORT NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELI
 
 @property(nonatomic,strong) NSSet* responseSets;
 
-@property(nonatomic,strong) NSSet* responseTemplates;
-
 #pragma setter
 
 - (void) setResponseSetDicts:(NSDictionary *)responseSetDict;
@@ -90,7 +87,7 @@ FOUNDATION_EXPORT NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELI
 
 - (NSArray*)surveyResponseSetRelationshipsWithSurveyContext:(NSDictionary*)ctx;
 
-- (void)createAndPopulateResponseSetsFromResponseTemplates;
+- (void)createAndPopulateResponseSetsFromResponseTemplates:(NSSet*)responseTemplates;
 
 @end
 
@@ -99,9 +96,5 @@ FOUNDATION_EXPORT NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELI
 - (void)addResponseSetsObject:(ResponseSet*)rs;
 
 - (void)removeResponseSetsObject:(ResponseSet*)rs;
-
-- (void)addResponseTemplatesObject:(ResponseTemplate*)rt;
-
-- (void)removeResponseTemplatesObject:(ResponseTemplate*)rt;
 
 @end

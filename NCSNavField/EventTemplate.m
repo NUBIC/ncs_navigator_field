@@ -19,6 +19,7 @@
 @dynamic eventRepeatKey;
 @dynamic eventTypeCode;
 @dynamic instruments;
+@dynamic responseTemplates;
 
 + (EventTemplate*)pregnancyScreeningTemplate {
     return [EventTemplate findFirstByAttribute:@"eventTypeCode" withValue:[NSNumber numberWithInt:EVENT_TYPE_CODE_PBS_PARTICIPANT_ELIGIBILITY_SCREENING]];
@@ -48,7 +49,7 @@
     for (Instrument* i in self.instruments) {
         Instrument* cloned = (Instrument*)[i clone];
         cloned.instrumentId = [UUID generateUuidString];
-        [cloned createAndPopulateResponseSetsFromResponseTemplates];
+        [cloned createAndPopulateResponseSetsFromResponseTemplates:self.responseTemplates];
         [e addInstrumentsObject:cloned];
     }
     

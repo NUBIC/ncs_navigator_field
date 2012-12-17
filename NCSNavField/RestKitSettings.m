@@ -189,7 +189,6 @@ static RestKitSettings* instance;
      @"instrument_comment", @"comment", nil];
     [instrument mapRelationship:@"instrumentPlan" withMapping:instrumentPlan];
     [instrument connectRelationship:@"instrumentPlan" withObjectForPrimaryKeyAttribute:@"instrumentPlanId"];
-    [instrument mapKeyPath:@"response_templates" toRelationship:@"responseTemplates" withMapping:responseTemplate];
     
     // Event Mapping
     RKManagedObjectMapping* event = [RKManagedObjectMapping mappingForClass:[Event class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
@@ -278,6 +277,7 @@ static RestKitSettings* instance;
      @"event_repeat_key", @"eventRepeatKey",
      @"event_type_code", @"eventTypeCode", nil];
     [eventTemplate mapRelationship:@"instruments" withMapping:instrument];
+    [eventTemplate mapKeyPath:@"response_templates" toRelationship:@"responseTemplates" withMapping:responseTemplate];
     [objectManager.mappingProvider setMapping:eventTemplate forKeyPath:@"event_templates"];
     
     RKManagedObjectMapping* fieldWork = [RKManagedObjectMapping mappingForClass:[Fieldwork class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];

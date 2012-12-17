@@ -526,6 +526,7 @@
 		00AE8011167B8101007FF178 /* NUSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSection.h; sourceTree = "<group>"; };
 		00AE8012167B8101007FF178 /* NUSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSection.m; sourceTree = "<group>"; };
 		00B3DC64167009D40066E5AD /* 20121205230124_add_person_id_to_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121205230124_add_person_id_to_response_set.xcdatamodel; sourceTree = "<group>"; };
+		00BB5C4A167EC70D00EAE043 /* 20121217031937_move_response_templates_relationship_to_event_templates.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121217031937_move_response_templates_relationship_to_event_templates.xcdatamodel; sourceTree = "<group>"; };
 		00C0C8D515655E390047A113 /* icon-test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-test.png"; sourceTree = "<group>"; };
 		00C2520B151794EB00F4FE3B /* RestKitSettingsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitSettingsTest.h; sourceTree = "<group>"; };
 		00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitSettingsTest.m; sourceTree = "<group>"; };
@@ -1861,6 +1862,7 @@
 		00C9C6E3146CE66300F6D339 /* main.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				00BB5C4A167EC70D00EAE043 /* 20121217031937_move_response_templates_relationship_to_event_templates.xcdatamodel */,
 				00AE8003167A78CE007FF178 /* 20121213205710_create_response_templates.xcdatamodel */,
 				00B3DC64167009D40066E5AD /* 20121205230124_add_person_id_to_response_set.xcdatamodel */,
 				22B8E4A21664337C00640DE8 /* 20121126191731_addMdes_and_dispcode_entities.xcdatamodel */,
@@ -1889,7 +1891,7 @@
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 00AE8003167A78CE007FF178 /* 20121213205710_create_response_templates.xcdatamodel */;
+			currentVersion = 00BB5C4A167EC70D00EAE043 /* 20121217031937_move_response_templates_relationship_to_event_templates.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";

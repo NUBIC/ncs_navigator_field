@@ -102,16 +102,16 @@ static InstrumentTemplate* it;
     rt0.qref = @"foo";
     rt0.aref = @"yes";
     rt0.surveyId = @"survey-a";
-    [i addResponseTemplatesObject:rt0];
     
     ResponseTemplate* rt1 = [ResponseTemplate object];
     rt1.qref = @"moo";
     rt1.aref = @"no";
     rt1.surveyId = @"survey-a";
-    [i addResponseTemplatesObject:rt1];
+
+    NSSet* rts = [NSSet setWithObjects:rt0, rt1, nil];
     
     STAssertEquals([[i responseSets] count], 0U, nil);
-    [i createAndPopulateResponseSetsFromResponseTemplates];
+    [i createAndPopulateResponseSetsFromResponseTemplates:rts];
     STAssertEquals([[i responseSets] count], 1U, nil);
     
     ResponseSet* actual = [[[i responseSets] objectEnumerator] nextObject];

@@ -35,7 +35,7 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
 @dynamic instrumentId, name, event, instrumentTypeId, instrumentTypeOther,
     instrumentVersion, repeatKey, startDate, startTime, endDate, endTime,
     statusId, breakOffId, instrumentModeId, instrumentModeOther,
-    instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSets, instrumentPlanId, responseTemplates;
+    instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSets, instrumentPlanId;
 
 - (NSArray*) responseSetDicts {
     NSMutableArray* all = [[NSMutableArray alloc] init];
@@ -159,8 +159,8 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
     return assoc;
 }
 
-- (void)createAndPopulateResponseSetsFromResponseTemplates {
-    for (ResponseTemplate* tmpl in self.responseTemplates) {
+- (void)createAndPopulateResponseSetsFromResponseTemplates:(NSSet*)responseTemplates {
+    for (ResponseTemplate* tmpl in responseTemplates) {
         ResponseSet* rs = [self findResponseSetWithSurveyId:tmpl.surveyId];
         
         if (!rs) {
