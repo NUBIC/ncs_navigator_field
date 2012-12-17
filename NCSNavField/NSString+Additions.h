@@ -15,4 +15,6 @@
 - (BOOL)isBlank;
 - (BOOL)isEmpty;
 -(NSNumber*)toNumber;
+- (BOOL)isEqualIgnoreCaseToString:(NSString *)aString;
+
 @end

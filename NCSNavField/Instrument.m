@@ -178,7 +178,7 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
 
 - (ResponseSet*)findResponseSetWithSurveyId:(NSString*)uuid {
     return [self.responseSets detect:^BOOL(ResponseSet* rs){
-        return [uuid isEqualToString:[rs valueForKey:@"survey"]];
+        return [uuid isEqualIgnoreCaseToString:[rs valueForKey:@"survey"]];
     }];
     
 }

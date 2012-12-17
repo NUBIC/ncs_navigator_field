@@ -12,6 +12,7 @@
 #import "NUSurvey+Additions.h"
 #import "NUQuestion.h"
 #import "NUAnswer.h"
+#import "NSString+Additions.h"
 #import <MRCEnumerable/MRCEnumerable.h>
 
 @implementation ResponseTemplate
@@ -25,7 +26,7 @@
     NSArray* templates = [InstrumentTemplate allObjects];
     return [[[templates select:^BOOL(id obj){
         InstrumentTemplate* t = obj;
-        return [self.surveyId isEqualToString:[[t survey] uuid]];
+        return [self.surveyId isEqualIgnoreCaseToString:[[t survey] uuid]];
     }] lastObject] survey];
 }
 
@@ -34,7 +35,7 @@
     if ([self survey]) {
         NSArray* questions = [[self survey] questionsForAllSections];
         for (NUQuestion* oth in questions) {
-            if ([self.qref isEqualToString:[oth referenceIdentifier] ]) {
+            if ([self.qref isEqualIgnoreCaseToString:[oth referenceIdentifier] ]) {
                 found = oth;
                 break;
             }
@@ -47,7 +48,7 @@
     NUAnswer* found = nil;
     if ([self question]) {
         for (NUAnswer* oth in [[self question] answers]) {
-            if ([self.aref isEqualToString:[oth referenceIdentifier]]) {
+            if ([self.aref isEqualIgnoreCaseToString:[oth referenceIdentifier]]) {
                 found = oth;
                 break;
             }
