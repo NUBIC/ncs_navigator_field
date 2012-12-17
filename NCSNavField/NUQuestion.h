@@ -10,6 +10,8 @@
 
 @interface NUQuestion : NSObject
 
+@property(nonatomic,retain) NSString* uuid;
+
 @property(nonatomic,retain) NSString* text;
 
 @property(nonatomic,retain) NSString* referenceIdentifier;

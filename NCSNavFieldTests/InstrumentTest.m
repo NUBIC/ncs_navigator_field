@@ -11,6 +11,8 @@
 #import "ResponseSet.h"
 #import "InstrumentPlan.h"
 #import "InstrumentTemplate.h"
+#import "ResponseTemplate.h"
+#import <OCMock/OCMock.h>
 
 @implementation InstrumentTest
 
@@ -59,6 +61,63 @@ static InstrumentTemplate* it;
     STAssertEqualObjects([i determineInstrumentVersion], @"2.5", nil);
     i.instrumentVersion = @"abc";
     STAssertEqualObjects([i determineInstrumentVersion], @"abc", nil);
+}
+
+- (void)testPopulateResponseSetsFromResponseTemplates {
+    it.representation =
+        @"{"
+         "  \"uuid\":\"survey-a\",                                                  "
+         "  \"sections\":[{                                                         "
+         "    \"questions_and_groups\":[                                            "
+         "      {                                                                   "
+         "         \"reference_identifier\":\"foo\",                                "
+         "         \"uuid\":\"f\",                                                   "
+         "         \"answers\":[                                                    "
+         "           {\"reference_identifier\":\"yes\", \"uuid\": \"foo_yes\" },    "
+         "           {\"reference_identifier\":\"no\",  \"uuid\": \"foo_no\" }      "
+         "         ]                                                                "
+         "      },                                                                  "
+         "      {                                                                   "
+         "         \"reference_identifier\":\"bar\",                                "
+         "         \"uuid\":\"b\",                                                  "
+         "         \"answers\":[                                                    "
+         "           {\"reference_identifier\":\"yes\", \"uuid\": \"bar_yes\" },    "
+         "           {\"reference_identifier\":\"no\",  \"uuid\": \"bar_no\" }      "
+         "         ]                                                                "
+         "      },                                                                  "
+         "      {                                                                   "
+         "         \"reference_identifier\":\"moo\",                                "
+         "         \"uuid\":\"m\",                                                  "
+         "         \"answers\":[                                                    "
+         "           {\"reference_identifier\":\"yes\", \"uuid\": \"moo_yes\" },    "
+         "           {\"reference_identifier\":\"no\",  \"uuid\": \"moo_no\" }      "
+         "         ]                                        "
+         "      }                                           "
+         "    ]                                             "
+         "  }]                                              "
+         "}                                                 ";
+    STAssertNotNil(it.representationDictionary, nil);
+    
+    ResponseTemplate* rt0 = [ResponseTemplate object];
+    rt0.qref = @"foo";
+    rt0.aref = @"yes";
+    rt0.surveyId = @"survey-a";
+    [i addResponseTemplatesObject:rt0];
+    
+    ResponseTemplate* rt1 = [ResponseTemplate object];
+    rt1.qref = @"moo";
+    rt1.aref = @"no";
+    rt1.surveyId = @"survey-a";
+    [i addResponseTemplatesObject:rt1];
+    
+    STAssertEquals([[i responseSets] count], 0U, nil);
+    [i createAndPopulateResponseSetsFromResponseTemplates];
+    STAssertEquals([[i responseSets] count], 1U, nil);
+    
+    ResponseSet* actual = [[[i responseSets] objectEnumerator] nextObject];
+    STAssertEquals([[actual responses] count], 2U, nil);
+    STAssertNotNil([actual responsesForQuestion:@"f" Answer:@"foo_yes"], nil);
+    STAssertNotNil([actual responsesForQuestion:@"m" Answer:@"moo_no"], nil);
 }
 
 @end

@@ -10,6 +10,8 @@
 
 @interface NUAnswer : NSObject
 
+@property(nonatomic,retain) NSString* uuid;
+
 @property(nonatomic,retain) NSString* referenceIdentifier;
 
 - (id)initWithDictionary:(NSDictionary*)dict;

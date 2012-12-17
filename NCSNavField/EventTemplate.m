@@ -48,6 +48,7 @@
     for (Instrument* i in self.instruments) {
         Instrument* cloned = (Instrument*)[i clone];
         cloned.instrumentId = [UUID generateUuidString];
+        [cloned createAndPopulateResponseSetsFromResponseTemplates];
         [e addInstrumentsObject:cloned];
     }
     

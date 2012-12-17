@@ -13,6 +13,7 @@
 - (id)initWithDictionary:(NSDictionary*)dict {
     self = [self init];
     if (self) {
+        self.uuid = [dict valueForKey:@"uuid"];
         self.referenceIdentifier = [dict valueForKey:@"reference_identifier"];
     }
     return self;

@@ -21,6 +21,12 @@
 #import "Event.h"
 #import "Contact.h"
 #import "SurveyResponseSetRelationship.h"
+#import "ResponseTemplate.h"
+#import "NUResponse+Additions.h"
+#import "NUQuestion.h"
+#import "NUAnswer.h"
+#import "ResponseSet.h"
+#import "NUSurvey+Additions.h"
 
 NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER = 44;
 
@@ -151,6 +157,30 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
     [[ResponseSet currentContext] save:nil];
 
     return assoc;
+}
+
+- (void)createAndPopulateResponseSetsFromResponseTemplates {
+    for (ResponseTemplate* tmpl in self.responseTemplates) {
+        ResponseSet* rs = [self findResponseSetWithSurveyId:tmpl.surveyId];
+        
+        if (!rs) {
+            rs = [ResponseSet createResponseSetWithSurvey:tmpl.survey pId:self.event.pId personId:self.event.contact.personId];
+            [self addResponseSetsObject:rs];
+        }
+    
+        [[rs responsesForQuestion:tmpl.question.uuid] each:^(NUResponse* r) {
+            [r deleteEntity];
+        }];
+        
+        [rs newResponseForQuestion:tmpl.question.uuid Answer:tmpl.answer.uuid Value:nil];
+    }
+}
+
+- (ResponseSet*)findResponseSetWithSurveyId:(NSString*)uuid {
+    return [self.responseSets detect:^BOOL(ResponseSet* rs){
+        return [uuid isEqualToString:[rs valueForKey:@"survey"]];
+    }];
+    
 }
 
 @end
