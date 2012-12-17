@@ -8,6 +8,10 @@
 
 #import "NUResponseSet.h"
 
+@class NUSurvey;
+
 @interface ResponseSet : NUResponseSet
+
++ (ResponseSet*)createResponseSetWithSurvey:(NUSurvey*)survey pId:(NSString*)pId personId:(NSString*)personId;
 
 @end

@@ -9,19 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Instrument;
-@class Event;
-@class Participant;
-
-FOUNDATION_EXPORT NSInteger const PREGNANCY_SCREENING_EVENT_TYPE_CODE;
-FOUNDATION_EXPORT NSInteger const PREGNANCY_VISIT_ONE_EVENT_TYPE_CODE;
+@class Instrument, Event, Participant, ResponseTemplate;
 
 @interface EventTemplate : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSNumber * eventRepeatKey;
-@property (nonatomic, retain) NSNumber * eventTypeCode;
-@property (nonatomic, retain) NSOrderedSet *instruments;
+@property(nonatomic, retain) NSString * name;
+@property(nonatomic, retain) NSNumber * eventRepeatKey;
+@property(nonatomic, retain) NSNumber * eventTypeCode;
+@property(nonatomic, retain) NSOrderedSet *instruments;
+@property(nonatomic,strong) NSSet* responseTemplates;
+
 
 #pragma mark - Methods
 
@@ -48,5 +45,10 @@ FOUNDATION_EXPORT NSInteger const PREGNANCY_VISIT_ONE_EVENT_TYPE_CODE;
 
 - (void)addInstruments:(NSOrderedSet *)values;
 - (void)removeInstruments:(NSOrderedSet *)values;
+
+- (void)addResponseTemplatesObject:(ResponseTemplate*)rt;
+
+- (void)removeResponseTemplatesObject:(ResponseTemplate*)rt;
+
 
 @end

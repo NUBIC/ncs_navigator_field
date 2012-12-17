@@ -13,18 +13,16 @@
 #import "Participant.h"
 #import <NUSurveyor/UUID.h>
 
-NSInteger const PREGNANCY_SCREENING_EVENT_TYPE_CODE = 34;
-NSInteger const PREGNANCY_VISIT_ONE_EVENT_TYPE_CODE = 13;
-
 @implementation EventTemplate
 
 @dynamic name;
 @dynamic eventRepeatKey;
 @dynamic eventTypeCode;
 @dynamic instruments;
+@dynamic responseTemplates;
 
 + (EventTemplate*)pregnancyScreeningTemplate {
-    return [EventTemplate findFirstByAttribute:@"eventTypeCode" withValue:[NSNumber numberWithInt:PREGNANCY_SCREENING_EVENT_TYPE_CODE]];
+    return [EventTemplate findFirstByAttribute:@"eventTypeCode" withValue:[NSNumber numberWithInt:EVENT_TYPE_CODE_PBS_PARTICIPANT_ELIGIBILITY_SCREENING]];
 }
 
 + (Instrument*)pregnancyScreeningInstrument {
@@ -32,7 +30,7 @@ NSInteger const PREGNANCY_VISIT_ONE_EVENT_TYPE_CODE = 13;
 }
 
 + (EventTemplate*)pregnancyVisitOneTemplate {
-    return [EventTemplate findFirstByAttribute:@"eventTypeCode" withValue:[NSNumber numberWithInt:PREGNANCY_VISIT_ONE_EVENT_TYPE_CODE]];
+    return [EventTemplate findFirstByAttribute:@"eventTypeCode" withValue:[NSNumber numberWithInt:EVENT_TYPE_CODE_PREGNANCY_VISIT_ONE]];
 }
 
 - (Event*)buildEventForParticipant:(Participant*)participant {
@@ -51,6 +49,7 @@ NSInteger const PREGNANCY_VISIT_ONE_EVENT_TYPE_CODE = 13;
     for (Instrument* i in self.instruments) {
         Instrument* cloned = (Instrument*)[i clone];
         cloned.instrumentId = [UUID generateUuidString];
+        [cloned createAndPopulateResponseSetsFromResponseTemplates:self.responseTemplates];
         [e addInstrumentsObject:cloned];
     }
     

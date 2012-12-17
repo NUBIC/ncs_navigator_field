@@ -40,13 +40,13 @@ Person *tom;
 
 - (void)testSections {
     NSArray* sections = [self generateSections];
-    STAssertEquals([sections count], 3U, @"Wrong number of sections");
+    STAssertEquals([sections count], 4U, @"Wrong number of sections");
 }
 
 - (void)testSectionsWithContactStarted {
     c.initiated = TRUE;
     NSArray* sections = [self generateSections];
-    STAssertEquals([sections count], 5U, @"Wrong number of sections");
+    STAssertEquals([sections count], 6U, @"Wrong number of sections");
 }
 
 
@@ -68,53 +68,37 @@ Person *tom;
 
 - (void) testContactSection {
     NSArray* sections = [self generateSections];
-    Section* s2 = [sections objectAtIndex:2];
-    STAssertEqualObjects(s2.name, @"Contact", @"Wrong value");
-    STAssertEquals([s2.rows count], 1U, @"Wrong number of rows");
+    Section* s3 = [sections objectAtIndex:3];
+    STAssertEqualObjects(s3.name, @"Contact", @"Wrong value");
+    STAssertEquals([s3.rows count], 1U, @"Wrong number of rows");
 }
 
 - (void) testStartContactRow {
     NSArray* sections = [self generateSections];
-    Section* s2 = [sections objectAtIndex:2];
-    Row* s2r0 = [s2.rows objectAtIndex:0];
-    STAssertEqualObjects(s2r0.text, @"Start Contact for Birth", @"Wrong value");    
+    Section* s3 = [sections objectAtIndex:3];
+    Row* s3r0 = [s3.rows objectAtIndex:0];
+    STAssertEqualObjects(s3r0.text, @"Start Contact for Birth", @"Wrong value");
 }
 
 - (void) testContinueContactRow {
     c.initiated = YES;
     NSArray* sections = [self generateSections];
-    Section* s2 = [sections objectAtIndex:2];
-    Row* s2r0 = [s2.rows objectAtIndex:0];
-    STAssertEqualObjects(s2r0.text, @"Continue Contact for Birth", @"Wrong value");
+    Section* s3 = [sections objectAtIndex:3];
+    Row* s3r0 = [s3.rows objectAtIndex:0];
+    STAssertEqualObjects(s3r0.text, @"Continue Contact for Birth", @"Wrong value");
 }
 
 - (void)testBirthInstrument {
     c.initiated = YES;
     NSArray* sections = [self generateSections];
-    Section* s3 = [sections objectAtIndex:3];
-    Row* s3r0 = [s3.rows objectAtIndex:0];
+    Section* s4 = [sections objectAtIndex:4];
+    Row* s4r0 = [s4.rows objectAtIndex:0];
 //    Row* s4r1 = [s4.rows objectAtIndex:1];
-    STAssertEquals([sections count], 5U, @"Wrong number of sections");
-    STAssertEqualObjects(s3.name, @"Scheduled Instruments", @"Wrong value");
-    STAssertEqualObjects(s3r0.text, @"Birth Instrument", @"Wrong value");
+    STAssertEquals([sections count], 6U, @"Wrong number of sections");
+    STAssertEqualObjects(s4.name, @"Scheduled Instruments", @"Wrong value");
+    STAssertEqualObjects(s4r0.text, @"Birth Instrument", @"Wrong value");
 //    STAssertEqualObjects(s4r1.text, @"Birth Event Activity Details", @"Wrong value");
 }
-
-- (void)testPregnancyAndBirthInstrumentsOrder {
-    [c addEventsObject:[self buildEvent:@"Pregnancy" withDate:@"2010-10-17"]];
-    c.initiated = YES;
-    NSArray* sections = [self generateSections];
-    Section* s3 = [sections objectAtIndex:3];
-    Row* s3r0 = [s3.rows objectAtIndex:0];
-    Row* s3r1 = [s3.rows objectAtIndex:1];
-    STAssertEquals([sections count], 5U, @"Wrong number of sections");
-    STAssertEqualObjects(s3.name, @"Scheduled Instruments", @"Wrong value");
-    STAssertEqualObjects(s3r0.text, @"Pregnancy Instrument", @"Wrong value");
-    STAssertEqualObjects(s3r1.text, @"Birth Instrument", @"Wrong value");
-
-}
-
-
 
 #pragma mark helper methods
 

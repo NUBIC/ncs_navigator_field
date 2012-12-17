@@ -37,4 +37,8 @@
     return [NSNumber numberWithInt:[self intValue]];
 }
 
+- (BOOL)isEqualIgnoreCaseToString:(NSString *)aString {
+    return [self caseInsensitiveCompare:aString] == NSOrderedSame;
+}
+
 @end

@@ -14,17 +14,13 @@
 
 @interface SurveySet : NSObject {
     NSArray* _surveys;
-    NSArray* _responseSets;
 }
 
 @property(nonatomic,strong) NSArray* surveys;
 
-@property(nonatomic,strong) NSArray* responseSets;
-
 #pragma mark - Instance Methods
 
-- (id)initWithSurveys:(NSArray*)s andResponseSets:(NSArray*)rs;
-
+- (id)initWithSurveys:(NSArray*)s;
 
 - (NSDictionary*)sectionforSurveyIndex:(NSInteger)sui sectionIndex:(NSInteger)sei;
 

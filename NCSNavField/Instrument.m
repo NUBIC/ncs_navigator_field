@@ -13,6 +13,22 @@
 #import "ResponseSet.h"
 #import "InstrumentPlan.h"
 #import "InstrumentTemplate.h"
+#import <MRCEnumerable/MRCEnumerable.h>
+#import "NUSurvey+Additions.h"
+#import <RestKit/RestKit.h>
+#import "ResponseGenerator.h"
+#import "NUResponse+Additions.h"
+#import "Event.h"
+#import "Contact.h"
+#import "SurveyResponseSetRelationship.h"
+#import "ResponseTemplate.h"
+#import "NUResponse+Additions.h"
+#import "NUQuestion.h"
+#import "NUAnswer.h"
+#import "ResponseSet.h"
+#import "NUSurvey+Additions.h"
+
+NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER = 44;
 
 @implementation Instrument
 
@@ -90,6 +106,81 @@
 
 - (NSString*)determineInstrumentVersion {
     return self.instrumentVersion ? self.instrumentVersion : self.determineInstrumentVersionFromSurveyTitle;
+}
+
+- (BOOL)isProviderBasedSamplingScreener {
+    return INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER == self.instrumentTypeId.integerValue;
+}
+
+- (NSArray*)surveyResponseSetRelationshipsWithSurveyContext:(NSDictionary*)ctx {
+    NSArray* surveys = [[self.instrumentPlan.instrumentTemplates array] collect:^id(InstrumentTemplate* tmpl){
+        return tmpl.survey;
+    }];
+    
+    NSMutableArray* assoc = [NSMutableArray new];
+    for (NUSurvey* s in surveys) {
+        ResponseSet* found = [self.responseSets detect:^BOOL(ResponseSet* rs) {
+            NSString* rsSurveyId = [rs valueForKey:@"survey"];
+            return [rsSurveyId isEqualToString:s.uuid];
+        }];
+        
+        if (!found) {
+            NCSLog(@"No response set found for survey: %@", s.uuid);
+            NSDictionary* surveyDict = [[SBJSON new] objectWithString:s.jsonString];
+            found = [ResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread];
+            [self addResponseSetsObject:found];
+            
+            NCSLog(@"Creating new response set: %@", found.uuid);
+        }
+        
+        ResponseGenerator* g = [[ResponseGenerator alloc] initWithSurvey:s context:ctx];
+        for (NUResponse* resp in [g responses]) {
+            NSArray* existing = [found responsesForQuestion:[resp valueForKey:@"question"]];
+            for (NUResponse* e in existing) {
+                [e deleteEntity];
+            }
+            [found newResponseForQuestion:[resp valueForKey:@"question"] Answer:[resp valueForKey:@"answer"] responseGroup:nil Value:[resp valueForKey:@"value"]];
+        }
+        
+        if (![found valueForKey:@"pId"]) {
+            [found setValue:self.event.pId forKey:@"pId"];
+        }
+        
+        if (![found valueForKey:@"personId"]) {
+            [found setValue:self.event.contact.personId forKey:@"personId"];
+        }
+        
+        SurveyResponseSetRelationship* srsr = [[SurveyResponseSetRelationship alloc] initWithSurvey:s responseSet:found];
+        [assoc addObject:srsr];
+    }
+
+    [[ResponseSet currentContext] save:nil];
+
+    return assoc;
+}
+
+- (void)createAndPopulateResponseSetsFromResponseTemplates:(NSSet*)responseTemplates {
+    for (ResponseTemplate* tmpl in responseTemplates) {
+        ResponseSet* rs = [self findResponseSetWithSurveyId:tmpl.surveyId];
+        
+        if (!rs) {
+            rs = [ResponseSet createResponseSetWithSurvey:tmpl.survey pId:self.event.pId personId:self.event.contact.personId];
+            [self addResponseSetsObject:rs];
+        }
+    
+        [[rs responsesForQuestion:tmpl.question.uuid] each:^(NUResponse* r) {
+            [r deleteEntity];
+        }];
+        
+        [rs newResponseForQuestion:tmpl.question.uuid Answer:tmpl.answer.uuid Value:nil];
+    }
+}
+
+- (ResponseSet*)findResponseSetWithSurveyId:(NSString*)uuid {
+    return [self.responseSets detect:^BOOL(ResponseSet* rs){
+        return [uuid isEqualIgnoreCaseToString:[rs valueForKey:@"survey"]];
+    }];
+    
 }
 
 @end

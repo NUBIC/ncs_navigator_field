@@ -13,26 +13,31 @@
 #import "Participant.h"
 #import "ResponseSet.h"
 #import "SurveySet.h"
+#import "SurveyResponseSetRelationship.h"
+#import <MRCEnumerable/MRCEnumerable.h>
 
 @interface NUSurveyTVC()
 - (void) showSection:(NSUInteger) index;
 @end
 
 @implementation MultiSurveyTVC
-@synthesize surveys=_surveys, surveyResponseSetAssociations=_surveyResponseSetAssociations, activeSurveyIndex=_activeSurveyIndex;
+@synthesize surveyResponseSetAssociations=_surveyResponseSetAssociations, activeSurveyIndex=_activeSurveyIndex;
 
-- (id)initWithSurveys:(NSArray*)surveys surveyResponseSetAssociations:(NSDictionary *)surveyResponseSetAssociations {
+- (id)initWithSurveyResponseSetRelationships:(NSArray*)rels {
+    SurveyResponseSetRelationship* srsr = [rels count] > 0 ? [rels objectAtIndex:0] : nil;
     
-    NUSurvey* s = [surveys count] > 0 ? [surveys objectAtIndex:0] : nil;
-    NUResponseSet* rs = [surveyResponseSetAssociations objectForKey:[s uuid]];
-    
-    self = [self initWithSurvey:s responseSet:rs renderContext:[NSDictionary dictionary]];
+    self = [self initWithSurvey:srsr.survey responseSet:srsr.responseSet renderContext:[NSDictionary dictionary]];
     
     if (self) {
-        self.surveys = surveys;
-        self.surveyResponseSetAssociations = surveyResponseSetAssociations;
+        self.surveyResponseSetAssociations = rels;
     }
     return self;
+}
+
+- (NSArray*)surveys {
+    return [self.surveyResponseSetAssociations collect:^id(SurveyResponseSetRelationship* s) {
+        return s.survey;
+    }];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -109,13 +114,12 @@
 }
 
 - (void)setActiveSurveyWithSurveyIndex:(NSInteger)sui activeSectionWithSectionIndex:(NSInteger)sei {
-    SurveySet* ss = [[SurveySet alloc] initWithSurveys:self.surveys andResponseSets:[self.surveyResponseSetAssociations  allValues]];
-    
     if ([self activeSurveyIndex] != sui) {
-        self.survey = [self.surveys objectAtIndex:sui];
+        SurveyResponseSetRelationship* srsa = [self.surveyResponseSetAssociations objectAtIndex:sui];
+        self.survey = srsa.survey;
         [self setSurveyNSD_Forced:[self.survey.jsonString objectFromJSONString]];
         
-        ResponseSet* rs = [self.surveyResponseSetAssociations objectForKey:self.survey.uuid];
+        ResponseSet* rs = srsa.responseSet;
 
         self.sectionTVC.responseSet = rs;
         self.sectionTVC.delegate = self;
@@ -127,6 +131,7 @@
         [NUResponseSet saveContext:self.sectionTVC.responseSet.managedObjectContext withMessage:@"NUSurveyTVC initWithSurvey"];
     }
     
+    SurveySet* ss = [[SurveySet alloc] initWithSurveys:self.surveys];
     // REFACTOR: Logic should be moved into sectionTVC?
     NSDictionary* previous = [ss previousSectionfromSurveyIndex:sui sectionIndex:sei];
     self.sectionTVC.prevSectionTitle = previous ? [previous objectForKey:@"title"] : nil;

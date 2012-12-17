@@ -11,6 +11,9 @@
 #import "NSDate+Additions.h"
 #import <NUSurveyor/UUID.h>
 
+NSInteger const EVENT_TYPE_CODE_PBS_PARTICIPANT_ELIGIBILITY_SCREENING = 34;
+NSInteger const EVENT_TYPE_CODE_PREGNANCY_VISIT_ONE = 13;
+
 @implementation Event
 
 @dynamic eventId, name, eventTypeCode, eventTypeOther, eventRepeatKey, startDate, endDate, startTime, endTime, incentiveTypeId, incentiveCash, incentiveNonCash, dispositionCode, dispositionCategoryId, breakOffId, comments, contact, instruments, version, pId;

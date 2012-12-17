@@ -24,13 +24,10 @@
 #import "EventTemplate.h"
 #import "Provider.h"
 #import "Participant.h"
+#import "ResponseTemplate.h"
 #import <MRCEnumerable/MRCEnumerable.h>
 
 @implementation RestKitSettingsTest
-
-
-- (void)setUp {
-}
 
 - (Fieldwork *)fieldworkTestData {
     ResponseSet *rs = [ResponseSet object];
@@ -193,13 +190,16 @@
     STAssertEqualObjects(p.pId, @"abc", @"Wrong value");
 }
 
-- (void)testInstrumentTemplateDeserialization {
+- (void)testEventTemplateDeserialization {
     NSString* json =
         @"{ "
          "   \"event_templates\": [{             "
          "     \"name\": \"Pregnancy Screener\", "
          "     \"event_repeat_key\": 0,          "
          "     \"event_type_code\": 34,          "
+         "     \"response_templates\": [         "
+         "       { \"qref\": \"one\" }           "
+         "     ],                                "
          "     \"instruments\":[{                "
          "          \"name\": \"Preg Scr Ins\"   "
          "      }]                               "
@@ -213,6 +213,8 @@
     STAssertEqualObjects(et.name, @"Pregnancy Screener", @"Wrong name");
     STAssertEqualObjects(et.eventRepeatKey, [NSNumber numberWithInt:0], @"Wrong repeat key");
     STAssertEqualObjects(et.eventTypeCode, [NSNumber numberWithInt:34], @"Wrong type code");
+    ResponseTemplate* rt = [[[et responseTemplates] objectEnumerator] nextObject];
+    STAssertEqualObjects(rt.qref, @"one", nil);
     Instrument* ins = [[[et instruments] objectEnumerator] nextObject];
     STAssertEqualObjects(ins.name, @"Preg Scr Ins", @"Wrong name");
 }

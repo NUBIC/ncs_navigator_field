@@ -10,17 +10,14 @@
 #import "UIView+Additions.h"
 
 @interface MultiSurveyTVC : NUSurveyTVC {
-    NSArray* _surveys;
-    NSDictionary* _surveyResponseSetAssociations;
+    NSArray* _surveyResponseSetAssociations;
     NSInteger _activeSurveyIndex;
 }
 
-@property(nonatomic,strong) NSArray* surveys;
-
-@property(nonatomic,strong) NSDictionary* surveyResponseSetAssociations;
+@property(nonatomic,strong) NSArray* surveyResponseSetAssociations;
 
 @property(nonatomic) NSInteger activeSurveyIndex;
 
-- (id)initWithSurveys:(NSArray*)surveys surveyResponseSetAssociations:(NSDictionary *)surveyResponseSetAssociations;
+- (id)initWithSurveyResponseSetRelationships:(NSArray*)rels;
 
 @end

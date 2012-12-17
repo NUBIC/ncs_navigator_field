@@ -9,19 +9,38 @@
 #import <NUSurvey.h>
 #import "NUSurvey+Additions.h"
 #import <JSONKit.h>
+#import "NUSection.h"
+#import <MRCEnumerable/MRCEnumerable.h>
 
 // TODO: We should move this to surveyor
 @implementation NUSurvey (Additions)
 
 - (NSString*)title {
-    return [[self.jsonString objectFromJSONString] objectForKey:@"title"];
+    return [[self deserialized] objectForKey:@"title"];
 }
 
 - (NSString*)uuid {
-    return [[self.jsonString objectFromJSONString] objectForKey:@"uuid"];
+    return [[self deserialized] objectForKey:@"uuid"];
 }
 
 - (NSDictionary*)deserialized {
     return [self.jsonString objectFromJSONString];
 }
+
+- (NSArray*)sections {
+    NSMutableArray* sections = [NSMutableArray new];
+    for (NSDictionary* dSection in [[self deserialized] objectForKey:@"sections"]) {
+        [sections addObject:[[NUSection alloc] initWithDictionary:dSection]];
+    }
+    return sections;
+}
+
+- (NSArray*)questionsForAllSections {
+    NSMutableArray* questions = [NSMutableArray new];
+    for (NUSection* s in [self sections]) {
+        [questions addObjectsFromArray:s.questions];
+    }
+    return questions;
+}
+
 @end

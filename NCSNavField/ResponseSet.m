@@ -8,6 +8,8 @@
 
 #import "ResponseSet.h"
 #import "JSONKit.h"
+#import "NUSurvey+Additions.h"
+#import <RestKit/RestKit.h>
 
 @implementation ResponseSet
 
@@ -23,6 +25,14 @@
     NSDictionary *jsonData = [jsonString objectFromJSONString];
     [self setValue:[jsonData valueForKey:@"p_id"] forKey:@"pId"];
     [self setValue:[jsonData valueForKey:@"person_id"] forKey:@"personId"];
+}
+
++ (ResponseSet*)createResponseSetWithSurvey:(NUSurvey*)survey pId:(NSString*)pId personId:(NSString*)personId {
+    ResponseSet* rs = [ResponseSet newResponseSetForSurvey:survey.deserialized withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread];
+    [rs setValue:pId forKey:@"pId"];
+    [rs setValue:personId forKey:@"personId"];
+    [rs setValue:survey.uuid forKey:@"survey"];
+    return rs;
 }
 
 @end

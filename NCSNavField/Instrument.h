@@ -12,6 +12,8 @@
 @class InstrumentPlan;
 @class ResponseSet;
 
+FOUNDATION_EXPORT NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER;
+
 @interface Instrument : NSManagedObject 
 
 @property(nonatomic,strong) NSString* instrumentId;
@@ -59,7 +61,6 @@
 
 @property(nonatomic,strong) NSSet* responseSets;
 
-
 #pragma setter
 
 - (void) setResponseSetDicts:(NSDictionary *)responseSetDict;
@@ -81,6 +82,12 @@
 - (NSString*)determineInstrumentVersionFromSurveyTitle ;
 
 - (NSString*)determineInstrumentVersion;
+
+- (BOOL)isProviderBasedSamplingScreener;
+
+- (NSArray*)surveyResponseSetRelationshipsWithSurveyContext:(NSDictionary*)ctx;
+
+- (void)createAndPopulateResponseSetsFromResponseTemplates:(NSSet*)responseTemplates;
 
 @end
 

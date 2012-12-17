@@ -25,6 +25,7 @@
 #import "Provider.h"
 #import "MdesCode.h"
 #import "DispositionCode.h"
+#import "ResponseTemplate.h"
 
 NSString* STORE_NAME = @"main.sqlite";
 
@@ -154,6 +155,14 @@ static RestKitSettings* instance;
     [objectManager.mappingProvider setMapping:instrumentPlan forKeyPath:@"instrument_plans"];
     [instrumentPlan mapKeyPath:@"instrument_templates" toRelationship:@"instrumentTemplates" withMapping:instrumentTemplate];
     
+    // Response Templates
+    RKManagedObjectMapping* responseTemplate = [RKManagedObjectMapping mappingForClass:[ResponseTemplate class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
+    [responseTemplate mapKeyPathsToAttributes:
+     @"survey_id", @"surveyId",
+     @"qref", @"qref",
+     @"aref", @"aref",
+     @"value", @"value", nil];
+    
     // Instrument Mapping
     RKManagedObjectMapping* instrument = [RKManagedObjectMapping mappingForClass:[Instrument class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
     [instrument setPrimaryKeyAttribute:@"instrumentId"];
@@ -268,6 +277,7 @@ static RestKitSettings* instance;
      @"event_repeat_key", @"eventRepeatKey",
      @"event_type_code", @"eventTypeCode", nil];
     [eventTemplate mapRelationship:@"instruments" withMapping:instrument];
+    [eventTemplate mapKeyPath:@"response_templates" toRelationship:@"responseTemplates" withMapping:responseTemplate];
     [objectManager.mappingProvider setMapping:eventTemplate forKeyPath:@"event_templates"];
     
     RKManagedObjectMapping* fieldWork = [RKManagedObjectMapping mappingForClass:[Fieldwork class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
