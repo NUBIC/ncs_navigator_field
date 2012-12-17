@@ -14,6 +14,8 @@
 
 #define SO_PICKER_PADDING 20
 
+#define NO_SELECTION_BUTTON_TEXT @"Pick One"
+
 @implementation SingleOptionPicker
 
 @synthesize value = _value;
@@ -31,6 +33,8 @@
 @synthesize popoverSize = _popoverSize;
 
 @synthesize widthOfNUPicker=_widthOfNUPicker;
+
+@synthesize singleOptionPickerDelegate = _singleOptionPickerDelegate;
 
 - (id)initWithFrame:(CGRect)frame value:(NSNumber*)value pickerOptions:(NSArray*)options {
     self.accessibilityLabel = @"Single Option Picker";
@@ -60,7 +64,7 @@
          */
         
         // Set title
-        NSString* title = @"Pick One";
+        NSString* title = NO_SELECTION_BUTTON_TEXT;
         if (value) {
             PickerOption* o = [PickerOption findWithValue:value fromOptions:options];
             if (o) {
@@ -86,7 +90,7 @@
     NUPickerVC* p= [[NUPickerVC alloc] init];
     [p loadView];
     [p viewDidLoad];
-    [p setupDelegate:self withTitle:@"Pick One" date:NO];
+    [p setupDelegate:self withTitle:NO_SELECTION_BUTTON_TEXT date:NO];
     PickerOption* title = [PickerOption findWithValue:self.value fromOptions:self.pickerOptions];
     
     //We have the options, lets get the length of the largest string with the given font.
@@ -137,16 +141,18 @@
     
 }
 
-- (void) pickerDone{
+- (void) pickerDone {
     NSUInteger selected = [self.picker.picker selectedRowInComponent:0]; 
     PickerOption* o = [self.pickerOptions objectAtIndex:selected];
     NSObject* new = o.value;
     self.value = new;
+    [_singleOptionPickerDelegate selectionWasMade:o.text withValue:(int)self.value];
     [self.handler updatedValue:new];
     [self.button setTitle:o.text forState:UIControlStateNormal];
     [self.popover dismissPopoverAnimated:NO];
 }
-- (void) pickerCancel{
+
+- (void) pickerCancel {
     NSObject* old = self.value;
     PickerOption* o = [PickerOption findWithValue:old fromOptions:self.pickerOptions];
     if(o!=nil)
@@ -155,8 +161,7 @@
 }
 
 - (void) clearResponse {
-    [self.button setTitle:@"Pick One" forState:UIControlStateNormal];
-
+    [self.button setTitle:NO_SELECTION_BUTTON_TEXT forState:UIControlStateNormal];
 }
 
 #pragma mark -
@@ -190,6 +195,7 @@
 -(void)setPickerOptions:(NSArray *)pickerOptions {
     _pickerOptions = pickerOptions;
 }
+
 //Override description to tell us about what the options say as well.
 -(NSString*)description {
     NSMutableString *str = [[NSMutableString alloc] initWithFormat:@"<PickerOption: %p>\n",self];
@@ -209,7 +215,6 @@
         [arr addObject:o.text];
     }
     return arr;
-    
 }
 
 -(void)handleDoubleTap:(UIGestureRecognizer*)recognizer {
@@ -230,8 +235,33 @@
     [self performSelector:@selector(hide) withObject:self afterDelay:2];*/
 }
 
-- (void)hide {
-    [_lblPopover removeFromSuperview];
+-(NSString*)text {
+    return _button.titleLabel.text;
+}
+
+-(BOOL)hasValue {
+    if(![self isVisible])
+        return NO;
+    else {
+        return (![_button.titleLabel.text isEqualToString:NO_SELECTION_BUTTON_TEXT]);
+    }
+}
+
+-(BOOL)isVisible {
+    if([_button isHidden]||([_button alpha]==0.0f))
+        return NO;
+    else
+        return YES;
+}
+
+- (void)setHidden:(BOOL)hidden {
+    [_button setHidden:hidden];
+    [_lblPopover setHidden:hidden];
+}
+
+-(void)setAlpha:(CGFloat)alpha {
+    [_button setAlpha:alpha];
+    [_lblPopover setAlpha:alpha];
 }
 
 @end

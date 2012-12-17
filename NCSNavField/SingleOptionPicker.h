@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "UIView+Additions.h"
 #import "MdesCode.h"
+#import "SingleOptionPickerDelegate.h"
 
 @class NUPickerVC;
 @class ChangeHandler;
@@ -30,6 +31,7 @@ enum {
     CGFloat _widthOfNUPicker; //This is set by looking at the length of the strings that represent the options.
     UITapGestureRecognizer *_doubleTapRecognizer;
     UILabel *_lblPopover;
+    id<SingleOptionPickerDelegate> _singleOptionPickerDelegate;
 }
 
 @property(nonatomic,strong) NSObject* value;
@@ -48,6 +50,8 @@ enum {
 
 @property(nonatomic,readonly) CGFloat widthOfNUPicker;
 
+@property(nonatomic,strong) id<SingleOptionPickerDelegate> singleOptionPickerDelegate;
+
 - (id)initWithFrame:(CGRect)frame value:(NSNumber*)value pickerOptions:(NSArray*)options;
 
 - (id)initWithFrame:(CGRect)frame value:(NSNumber*)value pickerOptions:(NSArray*)options popoverSize:(NUPickerVCPopoverSize)popoverSize;
@@ -61,5 +65,15 @@ enum {
 - (void) clearResponse;
 
 -(NSArray*)textSelections;
+
+-(BOOL)hasValue;
+
+-(BOOL)isVisible;
+
+- (void)setHidden:(BOOL)hidden;
+
+-(void)setAlpha:(CGFloat)alpha;
+
+-(NSString*)text;
 
 @end

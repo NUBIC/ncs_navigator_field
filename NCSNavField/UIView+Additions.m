@@ -13,6 +13,7 @@
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center postNotificationName:@"EndEditingNotification" object:nil];
 }
+
 -(void)registerForPopoverNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissKeyboard) name:@"EndEditingNotification" object:nil];
 }
@@ -34,15 +35,15 @@
     }
     
     if ([text compare:@""] == NSOrderedSame)
-        NSLog(@"%@ %@", classDescription, NSStringFromCGRect(self.frame));
+        NSLog(@"%@ %@ tag:%d", classDescription, NSStringFromCGRect(self.frame),self.tag);
     else
-        NSLog(@"%@ %@ %@", text, classDescription, NSStringFromCGRect(self.frame));
+        NSLog(@"%@ %@ %@ tag:%d", text, classDescription, NSStringFromCGRect(self.frame),self.tag);
     
     for (NSUInteger i = 0; i < [self.subviews count]; i++)
     {
         UIView *subView = [self.subviews objectAtIndex:i];
         NSString *newIndent = [[NSString alloc] initWithFormat:@"  %@", indent];
-        NSString *msg = [[NSString alloc] initWithFormat:@"%@%d:", newIndent, i];
+        NSString *msg = [[NSString alloc] initWithFormat:@"%@%d: ", newIndent, i];
         [subView dumpViews:msg indent:newIndent];
     }
 }

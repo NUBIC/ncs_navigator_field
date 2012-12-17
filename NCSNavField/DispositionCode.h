@@ -20,5 +20,5 @@
 @property (nonatomic, retain) NSString * subCategory;
 
 + (NSArray*)allPickerOptions;
-
++(NSArray*)pickerOptionsByCategoryCode:(NSString*)categoryCode;
 @end

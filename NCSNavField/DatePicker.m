@@ -88,7 +88,7 @@
     [self.popover presentPopoverFromRect:self.frame inView:self.superview permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
 }
 
-- (void) nowPressed{
+- (void) nowPressed {
     [self.picker.datePicker setDate:[NSDate date] animated:YES];
     [self performSelector:@selector(pickerDone) withObject:nil afterDelay:0.4];
 	//  [self  pickerDone];  

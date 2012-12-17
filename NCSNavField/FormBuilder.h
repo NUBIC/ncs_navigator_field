@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "UIView+Additions.h"
 #import "SingleOptionPicker.h"
 
 #define DEFAULT_WIDTH 240
@@ -45,7 +45,9 @@
 -(void)setOptionsForPicker:(NSArray*)options withTag:(NSUInteger)t; //If we need to reset the options that a picker is going to have based on a previous decision, we can call this.
 #pragma mark 
 #pragma Show and hide controls
--(void)hideControlWithTag:(NSUInteger)t; //Nothing happens when the tag doesn't exist in the subview of self.view. Throw an exception, maybe? Otherwise, the control is immediately hidden with no lag. 
--(void)animateShowingOfControlWithTags:(NSArray*)arr; //animates the showing of a variable number of hidden controls. The array must contain NSUIntegers.
-
+- (id)controlForTag:(NSUInteger)t;
+-(void)hideControlWithTag:(NSUInteger)t; //Nothing happens when the tag doesn't exist in the subview of self.view. Throw an exception, maybe? Otherwise, the control is immediately hidden with no lag.
+-(void)hideControlWithTags:(NSUInteger)s,...; //Must end with a NSNotFound.
+-(void)animateShowingOfControlWithTags:(NSUInteger)s,...; //animates the showing of a variable number of hidden controls. The array must contain NSUIntegers.
+-(void)showSubviewHierarchy;
 @end

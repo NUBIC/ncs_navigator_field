@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @protocol SingleOptionPickerDelegate <NSObject>
-
+-(void)selectionWasMade:(NSString*)str withValue:(NSUInteger)val;
 @end

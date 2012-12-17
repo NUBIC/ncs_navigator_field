@@ -9,7 +9,7 @@
 #import "EventVC.h"
 #import "NUScrollView.h"
 #import "Event.h"
-#import "FormBuilder.h"
+
 #import "PickerOption.h"
 #import "TextField.h"
 #import "TextArea.h"
@@ -20,6 +20,11 @@
 @synthesize event=_event;
 @synthesize scrollView=_scrollView;
 @synthesize left,right;
+@synthesize leftFormBuilder=_leftFormBuilder,rightFormBuilder=_rightFormBuilder;
+
+NSUInteger const DISPOSITION_CODE_TAG_LABEL = 110;
+NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
+
 - (id)initWithEvent:event {
     if (self = [super init]) {
         _event = event;
@@ -119,24 +124,32 @@
 - (UIView*) leftEventContentWithFrame:(CGRect)frame event:(Event*)e {
     UIView* v = [[UIView alloc] initWithFrame:frame];
     
-    FormBuilder* b = [[FormBuilder alloc] initWithView:v object:e];
+    _leftFormBuilder = [[FormBuilder alloc] initWithView:v object:e];
     
-    [b sectionHeader:[NSString stringWithFormat:@"%@ %@", e.name, @"Event"]];
+    [_leftFormBuilder sectionHeader:[NSString stringWithFormat:@"%@ %@", e.name, @"Event"]];
     
-    [b labelWithText:@"Breakoff"];
-    [b singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONFIRM_TYPE_CL2"]];
+    [_leftFormBuilder labelWithText:@"Breakoff"];
+    [_leftFormBuilder singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONFIRM_TYPE_CL2"]];
         
-    [b labelWithText:@"End Date"];
-    [b datePickerForProperty:@selector(endDate)];
+    [_leftFormBuilder labelWithText:@"End Date"];
+    [_leftFormBuilder datePickerForProperty:@selector(endDate)];
     
-    [b labelWithText:@"End Time"];
-    [b timePickerForProperty:@selector(endTime)];
+    [_leftFormBuilder labelWithText:@"End Time"];
+    [_leftFormBuilder timePickerForProperty:@selector(endTime)];
     
-    [b labelWithText:@"Disposition Category"];
-    [b singleOptionPickerForProperty:@selector(dispositionCategoryId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"EVENT_DSPSTN_CAT_CL1"]];
+    [_leftFormBuilder labelWithText:@"Disposition Category"];
+    SingleOptionPicker *picker = [_leftFormBuilder singleOptionPickerForProperty:@selector(dispositionCategoryId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"EVENT_DSPSTN_CAT_CL1"]];
+    picker.singleOptionPickerDelegate = self;
+    NSString *strPickedCategory = (picker.hasValue) ? picker.text : nil;
     
-    [b labelWithText:@"Disposition"];
-    [b singleOptionPickerForProperty:@selector(dispositionCode) WithPickerOptions:[DispositionCode allPickerOptions] andPopoverSize:NUPickerVCPopoverSizeLarge];
+    NSArray *arrDispositionOptions = ([strPickedCategory length]>0) ?
+        [DispositionCode pickerOptionsByCategoryCode:strPickedCategory] :
+        [NSArray array];
+    [_leftFormBuilder labelWithText:@"Disposition" andTag:DISPOSITION_CODE_TAG_LABEL];
+    [_leftFormBuilder singleOptionPickerForProperty:@selector(dispositionCode) WithPickerOptions:arrDispositionOptions andPopoverSize:NUPickerVCPopoverSizeLarge andTag:DISPOSITION_CODE_TAG_PICKER];
+    
+    if(![[_leftFormBuilder controlForTag:DISPOSITION_CODE_TAG_PICKER] hasValue])
+        [_leftFormBuilder hideControlWithTags:DISPOSITION_CODE_TAG_LABEL,DISPOSITION_CODE_TAG_PICKER,NSNotFound];
     
     return v;
 }
@@ -144,21 +157,21 @@
 - (UIView*) rightEventContentWithFrame:(CGRect)frame event:(Event*)e {
     UIView* v = [[UIView alloc] initWithFrame:frame];
     
-    FormBuilder* b = [[FormBuilder alloc] initWithView:v object:e];
+    _rightFormBuilder = [[FormBuilder alloc] initWithView:v object:e];
     
-    [b sectionHeader:@""];
+    [_rightFormBuilder sectionHeader:@""];
     
-    [b labelWithText:@"Incentive Type"];
-    [b singleOptionPickerForProperty:@selector(incentiveTypeId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"INCENTIVE_TYPE_CL1"]];
+    [_rightFormBuilder labelWithText:@"Incentive Type"];
+    [_rightFormBuilder singleOptionPickerForProperty:@selector(incentiveTypeId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"INCENTIVE_TYPE_CL1"]];
     
-    [b labelWithText:@"Cash Incentive (xx.xx)"];
-    [b textFieldForProperty:@selector(incentiveCash) currency:YES];
+    [_rightFormBuilder labelWithText:@"Cash Incentive (xx.xx)"];
+    [_rightFormBuilder textFieldForProperty:@selector(incentiveCash) currency:YES];
     
-    [b labelWithText:@"Non-Cash Incentive"];
-    [b textFieldForProperty:@selector(incentiveNonCash)];
+    [_rightFormBuilder labelWithText:@"Non-Cash Incentive"];
+    [_rightFormBuilder textFieldForProperty:@selector(incentiveNonCash)];
     
-    [b labelWithText:@"Comments"];
-    [b textAreaForProperty:@selector(comments)];
+    [_rightFormBuilder labelWithText:@"Comments"];
+    [_rightFormBuilder textAreaForProperty:@selector(comments)];
     
     return v;
 }
@@ -266,9 +279,20 @@
         CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
         CGPoint newPoint = CGPointMake(0.0,(active.frame.origin.y + active.superview.frame.origin.y + height)-kbSize.width);
         [self.scrollView setContentOffset:newPoint animated:YES];
-    }    
+    }
 }
 
+#pragma mark SingleOptionPickerDelegate
+-(void)selectionWasMade:(NSString *)str withValue:(NSUInteger)val {
+    //This is being called when the disposition category is selected.
+    [_leftFormBuilder hideControlWithTags:DISPOSITION_CODE_TAG_LABEL,DISPOSITION_CODE_TAG_PICKER,NSNotFound];
+    SingleOptionPicker *optionPicker = (SingleOptionPicker*)[_leftFormBuilder.view viewWithTag:DISPOSITION_CODE_TAG_PICKER];
+    NSArray *arr = [DispositionCode pickerOptionsByCategoryCode:str];
+    [optionPicker clearResponse];
+    [optionPicker updatePickerOptions:arr];
+    [_leftFormBuilder animateShowingOfControlWithTags:DISPOSITION_CODE_TAG_LABEL,DISPOSITION_CODE_TAG_PICKER,NSNotFound];
+
+}
 
 // Called when the UIKeyboardWillHideNotification is sent
 
