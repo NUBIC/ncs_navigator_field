@@ -160,19 +160,29 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
 }
 
 - (void)createAndPopulateResponseSetsFromResponseTemplates:(NSSet*)responseTemplates {
-    for (ResponseTemplate* tmpl in responseTemplates) {
-        ResponseSet* rs = [self findResponseSetWithSurveyId:tmpl.surveyId];
-        
-        if (!rs) {
-            rs = [ResponseSet createResponseSetWithSurvey:tmpl.survey pId:self.event.pId personId:self.event.contact.personId];
-            [self addResponseSetsObject:rs];
-        }
+    NSSet* surveyIds = [[self.instrumentPlan.instrumentTemplates set] collect:^id(InstrumentTemplate* it) {
+        return it.survey.uuid;
+    }];
     
-        [[rs responsesForQuestion:tmpl.question.uuid] each:^(NUResponse* r) {
-            [r deleteEntity];
-        }];
-        
-        [rs newResponseForQuestion:tmpl.question.uuid Answer:tmpl.answer.uuid Value:nil];
+    for (ResponseTemplate* tmpl in responseTemplates) {
+        if ([surveyIds containsObject:tmpl.surveyId]) {
+            ResponseSet* rs = [self findResponseSetWithSurveyId:tmpl.surveyId];
+            NSLog(@"name: %@", self.name);
+            NSLog(@"qref: %@", tmpl.qref);
+            NSLog(@"aref: %@", tmpl.aref);
+            NSLog(@"quetsion: %@", tmpl.answer);
+            
+            if (!rs) {
+                rs = [ResponseSet createResponseSetWithSurvey:tmpl.survey pId:self.event.pId personId:self.event.contact.personId];
+                [self addResponseSetsObject:rs];
+            }
+            
+            [[rs responsesForQuestion:tmpl.question.uuid] each:^(NUResponse* r) {
+                [r deleteEntity];
+            }];
+            
+            [rs newResponseForQuestion:tmpl.question.uuid Answer:tmpl.answer.uuid Value:nil];
+        }
     }
 }
 
