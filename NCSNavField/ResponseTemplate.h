@@ -19,6 +19,9 @@
 @property (nonatomic, retain) NSString * aref;
 @property (nonatomic, retain) NSString * value;
 @property (nonatomic, retain) NSString * surveyId;
+@property (nonatomic, retain) NUSurvey * cachedSurvey;
+@property (nonatomic, retain) NUQuestion * cachedQuestion;
+@property (nonatomic, retain) NUAnswer * cachedAnswer;
 
 - (NUSurvey*)survey;
 

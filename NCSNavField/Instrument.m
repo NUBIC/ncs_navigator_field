@@ -167,10 +167,6 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
     for (ResponseTemplate* tmpl in responseTemplates) {
         if ([surveyIds containsObject:tmpl.surveyId]) {
             ResponseSet* rs = [self findResponseSetWithSurveyId:tmpl.surveyId];
-            NSLog(@"name: %@", self.name);
-            NSLog(@"qref: %@", tmpl.qref);
-            NSLog(@"aref: %@", tmpl.aref);
-            NSLog(@"quetsion: %@", tmpl.answer);
             
             if (!rs) {
                 rs = [ResponseSet createResponseSetWithSurvey:tmpl.survey pId:self.event.pId personId:self.event.contact.personId];
