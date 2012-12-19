@@ -12,7 +12,9 @@
 @class Person;
 
 
-@interface Contact : NSManagedObject
+@interface Contact : NSManagedObject {
+    NSNumber *_selectedValueForCategory;
+}
 
 #pragma mark properties
 
@@ -58,6 +60,7 @@
 
 @property(nonatomic,strong) NSString* version;
 
+@property(nonatomic,strong) NSNumber *selectedValueForCategory;
 
 #pragma mark relations
 
@@ -66,8 +69,8 @@
 @property(nonatomic,strong) Person* person;
 
 #pragma mark Helper methods
--(NSNumber*)findDispositionCode:(NSString*)str;
-
++(NSNumber*)findDispositionCode:(NSString*)str;
++(NSNumber*)dispositionCodeFromContactTypeId:(NSNumber*)typeId;
 #pragma mark methods
 
 + (Contact*)contact;

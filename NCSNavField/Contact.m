@@ -16,6 +16,7 @@
 @implementation Contact
 
 @dynamic contactId, typeId, date, startTime, endTime, personId, person, initiated, events, locationId, locationOther, whoContactedId, whoContactedOther, comments, languageId, languageOther, interpreterId, interpreterOther, privateId, privateDetail, distanceTraveled, dispositionCode, version;
+@synthesize selectedValueForCategory = _selectedValueForCategory;
 
 + (Contact*)contact {
     Contact* c = [Contact object];
@@ -25,7 +26,19 @@
     return c;
 }
 
--(NSNumber*)findDispositionCode:(NSString*)str {
++(NSNumber*)dispositionCodeFromContactTypeId:(NSNumber*)typeId {
+    if([typeId isEqualToNumber:[NSNumber numberWithInt:1]]) {
+        return [NSNumber numberWithInt:3];
+    }
+    else if([typeId isEqualToNumber:[NSNumber numberWithInt:2]]) {
+        return [NSNumber numberWithInt:4];
+    }
+    else {
+        return [NSNumber numberWithInt:5];
+    }
+}
+
++(NSNumber*)findDispositionCode:(NSString*)str {
     
     if(([str isEqualToString:@"Text Message"])||([str isEqualToString:@"Telephone"]))
     {
@@ -43,7 +56,7 @@
     {
         return [NSNumber numberWithInt:3];
     }
-
+    return nil;
 }
 
 - (BOOL) closed {

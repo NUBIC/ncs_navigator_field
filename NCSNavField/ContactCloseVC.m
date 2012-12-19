@@ -104,8 +104,8 @@ NSUInteger const CONTACT_METHOD_TAG = 10;
     if (!contact.languageId || [contact.languageId intValue] == -4) {
         contact.languageId = [NSNumber numberWithInt:1];
     }
-    _selectedValueForCategory = [contact findDispositionCode:@"In person"];
-
+    contact.selectedValueForCategory = [Contact dispositionCodeFromContactTypeId:contact.typeId];
+    
     if([contact whichSpecialCase]) {
         _isDispositionCategoryLocked=YES;
         _whereToGetDispositionCategory = @selector(whichSpecialCase);
@@ -312,52 +312,36 @@ NSUInteger const CONTACT_METHOD_TAG = 10;
 
 -(void)selectionWasMade:(NSString*)str onPicker:(SingleOptionPicker*)pick withValue:(NSUInteger)val {
     
-    SingleOptionPicker *dispCategoryPicker = (SingleOptionPicker*)[_rightFormBuilder.view viewWithTag:DISPOSITION_CATEGORY_TAG];
+    SingleOptionPicker *dCategoryPicker = (SingleOptionPicker*)[_rightFormBuilder.view viewWithTag:DISPOSITION_CATEGORY_TAG];
+    SingleOptionPicker *dCodePicker = (SingleOptionPicker*)[_rightFormBuilder.view viewWithTag:DISPOSITION_CODE_TAG_PICKER_2];
     
     if(pick.tag == CONTACT_METHOD_TAG) {
         //See change #2958
         //based on the selection, we need to lock down the disposition category and populate
         //the disposition code single option picker.
-            
-        if(([str isEqualToString:@"Text Message"])||([str isEqualToString:@"Telephone"])) 
-        {
-            str = @"Telephone Interview Events";
-            _selectedValueForCategory = [NSNumber numberWithInt:5];
-            _whereToGetDispositionCategory = @selector(selectedValueForCategory);
-            [dispCategoryPicker setUserInteractionEnabled:NO];
-        }
-        else if([str isEqualToString:@"Website"]||([str isEqualToString:@"Email"]))
-        {
-            str = @"Internet Survey Events";
-            _selectedValueForCategory = [NSNumber numberWithInt:6];
-            _whereToGetDispositionCategory = @selector(selectedValueForCategory);
-            [dispCategoryPicker setUserInteractionEnabled:NO];
-        }
-        else if([str isEqualToString:@"Mail"])
-        {
-            str = @"Mailed Back Self Administered Questionnaires";
-            _selectedValueForCategory = [NSNumber numberWithInt:4];
-            _whereToGetDispositionCategory = @selector(selectedValueForCategory);
-            [dispCategoryPicker setUserInteractionEnabled:NO];
-        }
-        else if([str isEqualToString:@"In person"]||([str isEqualToString:@"Other"]))
-        {
-            str = @"General Study Visits (including CASI SAQs)";
-            _selectedValueForCategory = [NSNumber numberWithInt:3];
-            _whereToGetDispositionCategory = @selector(selectedValueForCategory);
-            [dispCategoryPicker setUserInteractionEnabled:NO];
-        }
-        [_rightFormBuilder animateShowingOfControlWithTags:DISPOSITION_CODE_TAG_LABEL_2,DISPOSITION_CODE_TAG_PICKER_2,NSNotFound];
-        [dispCategoryPicker setValue:_selectedValueForCategory forKey:@"value"];
-        [dispCategoryPicker updatePicker];
+        _contact.selectedValueForCategory = [Contact findDispositionCode:str];
+        
+        if([_contact whichSpecialCase])
+            return;
+        
+        if([_contact.selectedValueForCategory isEqualToNumber:[NSNumber numberWithInt:5]])
+            str = @"Telephone Interview Events"; 
+        else if([_contact.selectedValueForCategory isEqualToNumber:[NSNumber numberWithInt:6]])
+            str = @"Internet Survey Events"; 
+        else if([_contact.selectedValueForCategory isEqualToNumber:[NSNumber numberWithInt:4]])
+            str = @"Mailed Back Self Administered Questionnaires"; 
+        else if([_contact.selectedValueForCategory isEqualToNumber:[NSNumber numberWithInt:3]])
+            str = @"General Study Visits (including CASI SAQs)"; 
+        
+        _whereToGetDispositionCategory = @selector(selectedValueForCategory);
+        [dCategoryPicker setUserInteractionEnabled:NO];
+        [dCategoryPicker setValue:_contact.selectedValueForCategory forKey:@"value"];
+        [dCategoryPicker updatePicker];
     }
     //This is being called when the disposition category is selected.
     NSAssert([str length]>0,@"We should have a category disposition name to get the codes in Contact");
-    [_rightFormBuilder hideControlWithTags:DISPOSITION_CODE_TAG_LABEL_2,DISPOSITION_CODE_TAG_PICKER_2,NSNotFound];
-    SingleOptionPicker *optionPicker = (SingleOptionPicker*)[_rightFormBuilder.view viewWithTag:DISPOSITION_CODE_TAG_PICKER_2];
-    NSArray *arr = [DispositionCode pickerOptionsByCategoryCode:str];
-    [optionPicker clearResponse];
-    [optionPicker updatePickerOptions:arr];
+    [dCodePicker clearResponse];
+    [dCodePicker updatePickerOptions:[DispositionCode pickerOptionsByCategoryCode:str]];
     [_rightFormBuilder animateShowingOfControlWithTags:DISPOSITION_CODE_TAG_LABEL_2,DISPOSITION_CODE_TAG_PICKER_2,NSNotFound];
 }
 

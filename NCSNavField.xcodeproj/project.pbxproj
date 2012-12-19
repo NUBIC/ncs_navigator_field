@@ -1030,9 +1030,9 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				00AB8E9216431CEA0097F7CD /* Categories */,
 				00AE8008167A7A24007FF178 /* ResponseTemplate.h */,
 				00AE8009167A7A24007FF178 /* ResponseTemplate.m */,
-				00AB8E9216431CEA0097F7CD /* Categories */,
 				22B8E4A416643B6A00640DE8 /* DispositionCode.h */,
 				22B8E4A516643B6A00640DE8 /* DispositionCode.m */,
 				009A48A9165C48A000601959 /* NcsCodeSynchronizeOperation.h */,
