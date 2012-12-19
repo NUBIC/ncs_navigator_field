@@ -55,16 +55,29 @@
     [objectManager.client.HTTPHeaders setValue:@"application/json" forKey: @"Content-Type"];
     NSString* path = @"/api/v1/code_lists";
     
+    NSString *strLastModified = [[ApplicationSettings instance] lastModifiedSinceForCodes];
+    if([strLastModified length]>0) {
+        [objectManager.client.HTTPHeaders setValue:strLastModified forKey:@"If-Modified-Since"];
+    }
+    
     NCSLog(@"Requesting data from %@", path);
     RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
     loader.method = RKRequestMethodGET;
     
-    RKResponse *req = [loader sendSynchronously];
-    if(req.failureError) {
+    RKResponse *response = [loader sendSynchronously];
+    if(response.failureError) {
         [_delegate showAlertView:NCS_CODE_RETRIEVAL];
         FieldworkSynchronizationException *exception = [[FieldworkSynchronizationException alloc] initWithName:@"NCS Code Retrieval" reason:nil userInfo:nil];
         @throw exception;
     }
+    if([response statusCode]!=304) {
+        NSString *strDate = [[NSDate date] lastModifiedFormat];
+        [[ApplicationSettings instance] setLastModifiedSinceForCodes:strDate];
+    }
+    else {
+        NSLog(@"Pulling codes from cache!");
+    }
+    
 }
 
 #pragma mark - RKObjectLoaderDelegate Methods

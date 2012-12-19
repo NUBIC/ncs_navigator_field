@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSDate+Additions.h"
 
 #define CONTACT_RETRIEVAL @"We were trying to retrieve your data."
 #define PUTTING_DATA_ON_SERVER @"We were trying to put your data on the server."

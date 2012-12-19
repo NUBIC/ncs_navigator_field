@@ -191,4 +191,20 @@ static ApplicationSettings* instance;
     [defs synchronize];
 }
 
+-(NSString*)lastModifiedSinceForProviders {
+    return [[NSUserDefaults standardUserDefaults] valueForKey:@"lastModifiedProviders"];
+}
+
+-(void)setLastModifiedSinceForProviders:(NSString*)str {
+    [[NSUserDefaults standardUserDefaults] setValue:str forKey:@"lastModifiedProviders"];
+}
+
+-(NSString*)lastModifiedSinceForCodes {
+    return [[NSUserDefaults standardUserDefaults] valueForKey:@"lastModifiedCodes"];
+}
+
+-(void)setLastModifiedSinceForCodes:(NSString*)str {
+    [[NSUserDefaults standardUserDefaults] setValue:str forKey:@"lastModifiedCodes"];
+}
+
 @end

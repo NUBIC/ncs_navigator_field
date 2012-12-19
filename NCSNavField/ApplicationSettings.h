@@ -17,6 +17,8 @@ extern NSString *const SettingsDidChangeNotification;
     NSString* _casServerURL;
     NSString* _pgtReceiveURL;
     NSString* _pgtRetrieveURL;
+    NSString* _lastModifiedSinceForProviders;
+    NSString* _lastModifiedSinceForCodes;
     BOOL _purgeFieldworkButton;
     NSInteger _upcomingDaysToSync;
 }
@@ -65,4 +67,11 @@ extern NSString *const SettingsDidChangeNotification;
 
 - (BOOL) coreSynchronizeConfigured:(NSString**)strResults;
 
+-(NSString*)lastModifiedSinceForProviders;
+
+-(void)setLastModifiedSinceForProviders:(NSString*)str;
+
+-(NSString*)lastModifiedSinceForCodes;
+
+-(void)setLastModifiedSinceForCodes:(NSString*)str;
 @end

@@ -40,6 +40,15 @@
      return [f stringFromDate:self];
 }
 
+-(NSString*)lastModifiedFormat {
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss 'GMT'";
+    df.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    
+    return [df stringFromDate:self];
+}
+
 
 
 @end
