@@ -17,8 +17,6 @@ extern NSString *const SettingsDidChangeNotification;
     NSString* _casServerURL;
     NSString* _pgtReceiveURL;
     NSString* _pgtRetrieveURL;
-    NSString* _lastModifiedSinceForProviders;
-    NSString* _lastModifiedSinceForCodes;
     BOOL _purgeFieldworkButton;
     NSInteger _upcomingDaysToSync;
 }
