@@ -88,11 +88,6 @@
     @throw exception;
 }
 
-- (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects
-{
-    //Diagnostics
-    NSLog(@"Number of objects returned %d",[objects count]);
-}
 
 
 

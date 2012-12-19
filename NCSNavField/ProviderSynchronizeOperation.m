@@ -48,10 +48,10 @@
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
     [objectManager.client.HTTPHeaders setValue:ApplicationSettings.instance.clientId forKey:@"X-Client-ID"];
     
-    /*NSString *strLastModified = [[ApplicationSettings instance] lastModifiedSinceForProviders];
+    NSString *strLastModified = [[ApplicationSettings instance] lastModifiedSinceForProviders];
     if([strLastModified length]>0) {
         [objectManager.client.HTTPHeaders setValue:strLastModified forKey:@"If-Modified-Since"];
-    }*/
+    }
     
     NSString* path = @"/api/v1/providers";
     
