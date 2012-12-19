@@ -199,6 +199,11 @@ static ApplicationSettings* instance;
     [[NSUserDefaults standardUserDefaults] setValue:str forKey:@"lastModifiedProviders"];
 }
 
+-(void)deleteLastModifiedSinceDates {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastModifiedProviders"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastModifiedCodes"];
+}
+
 -(NSString*)lastModifiedSinceForCodes {
     return [[NSUserDefaults standardUserDefaults] valueForKey:@"lastModifiedCodes"];
 }

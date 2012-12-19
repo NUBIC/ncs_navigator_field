@@ -60,11 +60,11 @@
     loader.method = RKRequestMethodGET;
     
     RKResponse *response = [loader sendSynchronously];
-    if([response statusCode]!=304) {
+    if([response statusCode]==200) {
         NSString *strDate = [[NSDate date] lastModifiedFormat];
         [[ApplicationSettings instance] setLastModifiedSinceForProviders:strDate];
     }
-    else {
+    else if([response statusCode]==304) { //304
         NSLog(@"Pulling providers from cache!");
     }
     return TRUE;

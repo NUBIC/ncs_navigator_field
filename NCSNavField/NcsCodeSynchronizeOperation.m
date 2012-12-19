@@ -70,11 +70,11 @@
         FieldworkSynchronizationException *exception = [[FieldworkSynchronizationException alloc] initWithName:@"NCS Code Retrieval" reason:nil userInfo:nil];
         @throw exception;
     }
-    if([response statusCode]!=304) {
+    if([response statusCode]==200) {
         NSString *strDate = [[NSDate date] lastModifiedFormat];
         [[ApplicationSettings instance] setLastModifiedSinceForCodes:strDate];
     }
-    else {
+    else if([response statusCode]==304) {
         NSLog(@"Pulling codes from cache!");
     }
     

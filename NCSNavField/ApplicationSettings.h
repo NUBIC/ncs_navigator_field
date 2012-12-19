@@ -74,4 +74,6 @@ extern NSString *const SettingsDidChangeNotification;
 -(NSString*)lastModifiedSinceForCodes;
 
 -(void)setLastModifiedSinceForCodes:(NSString*)str;
+
+-(void)deleteLastModifiedSinceDates;
 @end
