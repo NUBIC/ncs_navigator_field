@@ -8,22 +8,29 @@
 
 #import <UIKit/UIKit.h>
 #import "UIView+Additions.h"
+#import "SingleOptionPickerDelegate.h"
 
 @class FormBuilder;
 @class Contact;
 @class Event;
 @class SingleOptionPicker;
 
-@interface ContactCloseVC : UIViewController {
+@interface ContactCloseVC : UIViewController <SingleOptionPickerDelegate> {
     Contact* _contact;
     UIScrollView* _scrollView;
-    SingleOptionPicker* _dispositionPicker;
+    FormBuilder *_leftFormBuilder,*_rightFormBuilder;
+    SEL _whereToGetDispositionCategory;
+    NSNumber *_dispCategory;
+    BOOL _isDispositionCategoryLocked;
 }
+
 @property(nonatomic,strong) UIView *left;
 @property(nonatomic,strong) UIView *right;
 @property(nonatomic,strong) Contact* contact;
 @property(nonatomic,strong) UIScrollView* scrollView;
 @property(nonatomic,strong) SingleOptionPicker* dispositionPicker;
+@property(nonatomic,strong) FormBuilder *leftFormBuilder,*rightFormBuilder;
+@property(nonatomic,strong) NSNumber *selectedValueForCategory;
 
 - (id)initWithContact:(Contact*)contact;
 - (UIView*) toolbarWithFrame:(CGRect)frame;

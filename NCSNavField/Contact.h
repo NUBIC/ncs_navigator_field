@@ -65,6 +65,8 @@
 
 @property(nonatomic,strong) Person* person;
 
+#pragma mark Helper methods
+-(NSNumber*)findDispositionCode:(NSString*)str;
 
 #pragma mark methods
 
@@ -85,7 +87,7 @@
 - (NSString*) startTimeJson;
 
 - (NSString*) endTimeJson;
-
+-(NSNumber*)whichSpecialCase;
 @end
 
 @interface Contact (GeneratedAccessors)

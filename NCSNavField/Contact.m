@@ -25,6 +25,27 @@
     return c;
 }
 
+-(NSNumber*)findDispositionCode:(NSString*)str {
+    
+    if(([str isEqualToString:@"Text Message"])||([str isEqualToString:@"Telephone"]))
+    {
+        return [NSNumber numberWithInt:5];
+    }
+    else if([str isEqualToString:@"Website"]||([str isEqualToString:@"Email"]))
+    {
+        return [NSNumber numberWithInt:6];
+    }
+    else if([str isEqualToString:@"Mail"])
+    {
+        return [NSNumber numberWithInt:4];
+    }
+    else if([str isEqualToString:@"In person"]||([str isEqualToString:@"Other"]))
+    {
+        return [NSNumber numberWithInt:3];
+    }
+
+}
+
 - (BOOL) closed {
     return [self.dispositionCode integerValue] != 0;
 }
@@ -53,6 +74,25 @@
         result = [f numberFromString:self.dispositionCode];
     }
     return result;
+}
+//Returns nil if a special event type is not found.
+-(NSNumber*)whichSpecialCase {
+    NSSet *eventSet = 
+        [self.events objectsPassingTest:^BOOL(id obj, BOOL *stop) {
+            Event *e = (Event*)obj;
+            return ([e.eventTypeCode isEqualToNumber:[NSNumber numberWithInt:22]]||
+             [e.eventTypeCode isEqualToNumber:[NSNumber numberWithInt:34]]);
+        }];
+    NSAssert([eventSet count]<2, @"Two (or more) events should not be special events (inside Contact.)");
+    if([eventSet count]==1) {
+        Event *e = [[eventSet allObjects] objectAtIndex:0];
+        if([e.eventTypeCode isEqualToNumber:[NSNumber numberWithInt:34]])
+            return [NSNumber numberWithInt:8];
+        if([e.eventTypeCode isEqualToNumber:[NSNumber numberWithInt:22]])
+            return [NSNumber numberWithInt:7];
+
+    }
+    return nil;
 }
 
 -(BOOL)onSameDay:(Contact*)c {

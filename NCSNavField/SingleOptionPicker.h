@@ -76,4 +76,6 @@ enum {
 
 -(NSString*)text;
 
+-(void)updatePicker;
+
 @end

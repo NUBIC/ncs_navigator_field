@@ -164,6 +164,7 @@
 		22226BED1666ED7D005CCE71 /* button_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 22226BD31666ED7D005CCE71 /* button_red.png */; };
 		22226BEE1666ED7D005CCE71 /* button_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22226BD41666ED7D005CCE71 /* button_red@2x.png */; };
 		2237A32E163B294B009E3A13 /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2237A32D163B294B009E3A13 /* UIView+Additions.m */; };
+		227177B21680F121000C67DD /* lock-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 227177B11680F121000C67DD /* lock-icon.png */; };
 		22942CD216692B7300242588 /* FieldworkSynchronizationException.m in Sources */ = {isa = PBXBuildFile; fileRef = 22942CD116692B7300242588 /* FieldworkSynchronizationException.m */; };
 		22942CE41669461300242588 /* EventSorter.m in Sources */ = {isa = PBXBuildFile; fileRef = 22942CE31669461300242588 /* EventSorter.m */; };
 		22942CE716694AC200242588 /* NSString+ParsingExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22942CE616694AC200242588 /* NSString+ParsingExtensions.m */; };
@@ -614,6 +615,7 @@
 		22226BD41666ED7D005CCE71 /* button_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_red@2x.png"; sourceTree = "<group>"; };
 		2237A32C163B294B009E3A13 /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		2237A32D163B294B009E3A13 /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
+		227177B11680F121000C67DD /* lock-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock-icon.png"; sourceTree = "<group>"; };
 		22942CD016692B7300242588 /* FieldworkSynchronizationException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkSynchronizationException.h; sourceTree = "<group>"; };
 		22942CD116692B7300242588 /* FieldworkSynchronizationException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkSynchronizationException.m; sourceTree = "<group>"; };
 		22942CE21669461300242588 /* EventSorter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSorter.h; sourceTree = "<group>"; };
@@ -731,6 +733,7 @@
 		0026E66E140347E700355BCB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				227177AF1680F117000C67DD /* Images */,
 				00AE800F167B7FE5007FF178 /* Framework Extensions */,
 				22942CE1166945AF00242588 /* Other */,
 				22942CCF16692B3800242588 /* Exceptions */,
@@ -1295,6 +1298,14 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		227177AF1680F117000C67DD /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				227177B11680F121000C67DD /* lock-icon.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		22942CCF16692B3800242588 /* Exceptions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1438,6 +1449,7 @@
 				22226BEC1666ED7D005CCE71 /* button_grey@2x.png in Resources */,
 				22226BED1666ED7D005CCE71 /* button_red.png in Resources */,
 				22226BEE1666ED7D005CCE71 /* button_red@2x.png in Resources */,
+				227177B21680F121000C67DD /* lock-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

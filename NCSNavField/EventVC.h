@@ -18,6 +18,7 @@
     Event* _event;
     UIScrollView* _scrollView;
     FormBuilder* _leftFormBuilder,*_rightFormBuilder;
+    BOOL _isDispositionCategoryLocked;
 }
 
 @property(nonatomic,strong) Event* event;
@@ -41,11 +42,9 @@
 - (void) endTransction;
 - (void) commitTransaction;
 - (void) rollbackTransaction;
-
 - (void)registerForKeyboardNotifications;
 
 #pragma mark - SingleOptionPickerDelegate
-
--(void)selectionWasMade:(NSString*)str;
+-(void)selectionWasMade:(NSString*)str onPicker:(SingleOptionPicker*)p withValue:(NSUInteger)val;
 
 @end

@@ -56,6 +56,8 @@
         self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         self.button.frame = CGRectMake(0, 0, 200, 30);
         
+        [_button setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+        
         /*
         _doubleTapRecognizer = [[UITapGestureRecognizer alloc]
                                                               initWithTarget:self action:@selector(handleDoubleTap:)];
@@ -124,8 +126,19 @@
     return popoverVC;
 }
 
+-(void)updatePicker {
+    PickerOption* title = [PickerOption findWithValue:self.value fromOptions:self.pickerOptions];
+    if (title) {
+        [self.button setTitle:title.text forState:UIControlStateNormal];
+        NSInteger index = [self.pickerOptions indexOfObject:title];
+        [self.picker.picker selectRow:index inComponent:0 animated:NO];
+    }
+    [self.picker.picker reloadAllComponents];
+}
+
 - (void) updatePickerOptions:(NSArray*)newOptions {
     self.pickerOptions = newOptions;
+    
     [self.picker.picker reloadAllComponents];
 }
 
@@ -146,7 +159,7 @@
     PickerOption* o = [self.pickerOptions objectAtIndex:selected];
     NSObject* new = o.value;
     self.value = new;
-    [_singleOptionPickerDelegate selectionWasMade:o.text withValue:(int)self.value];
+    [_singleOptionPickerDelegate selectionWasMade:o.text onPicker:self withValue:(int)self.value];
     [self.handler updatedValue:new];
     [self.button setTitle:o.text forState:UIControlStateNormal];
     [self.popover dismissPopoverAnimated:NO];
@@ -262,6 +275,12 @@
 -(void)setAlpha:(CGFloat)alpha {
     [_button setAlpha:alpha];
     [_lblPopover setAlpha:alpha];
+}
+
+-(void)setUserInteractionEnabled:(BOOL)userInteractionEnabled {
+    [super setUserInteractionEnabled:userInteractionEnabled];
+    [_button setUserInteractionEnabled:userInteractionEnabled];
+    [_button setEnabled:userInteractionEnabled];
 }
 
 @end

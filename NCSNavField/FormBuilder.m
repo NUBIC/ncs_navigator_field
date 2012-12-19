@@ -90,6 +90,12 @@
     return b;
 }
 
+- (SingleOptionPicker*) singleOptionPickerForProperty:(SEL)property WithPickerOptions:(NSArray*)options andTag:(NSUInteger)t {
+    SingleOptionPicker* b = [self singleOptionPickerForProperty:property WithPickerOptions:options];
+    b.tag = t;
+    return b;
+}
+
 - (SingleOptionPicker*) singleOptionPickerForProperty:(SEL)property WithPickerOptions:(NSArray*)options {
     return [self singleOptionPickerForProperty:property WithPickerOptions:options andPopoverSize:NUPickerVCPopoverSizeRegular];
 }

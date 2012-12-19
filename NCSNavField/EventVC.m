@@ -117,6 +117,14 @@ NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
 
 
 - (void) setDefaults:(Event*)event {
+        if([event.eventTypeCode isEqualToNumber:[NSNumber numberWithInt:34]]) {
+            event.dispositionCategoryId = [NSNumber numberWithInt:8];
+            _isDispositionCategoryLocked = YES;
+        }
+        if([event.eventTypeCode isEqualToNumber:[NSNumber numberWithInt:22]]) {
+            event.dispositionCategoryId = [NSNumber numberWithInt:7];
+            _isDispositionCategoryLocked = YES;
+        }
 }
 
 # pragma mark - Form
@@ -140,7 +148,13 @@ NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
     [_leftFormBuilder labelWithText:@"Disposition Category"];
     SingleOptionPicker *picker = [_leftFormBuilder singleOptionPickerForProperty:@selector(dispositionCategoryId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"EVENT_DSPSTN_CAT_CL1"]];
     picker.singleOptionPickerDelegate = self;
+    
     NSString *strPickedCategory = (picker.hasValue) ? picker.text : nil;
+    if(_isDispositionCategoryLocked) {
+        NSAssert(picker.hasValue,@"Picker does not have value despite disposition category locked.");
+        NSAssert(strPickedCategory,@"Picked category does not have a value despite disposition category locked.");
+        picker.userInteractionEnabled = NO;
+    }
     
     NSArray *arrDispositionOptions = ([strPickedCategory length]>0) ?
         [DispositionCode pickerOptionsByCategoryCode:strPickedCategory] :
@@ -148,7 +162,7 @@ NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
     [_leftFormBuilder labelWithText:@"Disposition" andTag:DISPOSITION_CODE_TAG_LABEL];
     [_leftFormBuilder singleOptionPickerForProperty:@selector(dispositionCode) WithPickerOptions:arrDispositionOptions andPopoverSize:NUPickerVCPopoverSizeLarge andTag:DISPOSITION_CODE_TAG_PICKER];
     
-    if(![[_leftFormBuilder controlForTag:DISPOSITION_CODE_TAG_PICKER] hasValue])
+    if((![[_leftFormBuilder controlForTag:DISPOSITION_CODE_TAG_PICKER] hasValue])&&(picker.userInteractionEnabled))
         [_leftFormBuilder hideControlWithTags:DISPOSITION_CODE_TAG_LABEL,DISPOSITION_CODE_TAG_PICKER,NSNotFound];
     
     return v;
@@ -283,7 +297,7 @@ NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
 }
 
 #pragma mark SingleOptionPickerDelegate
--(void)selectionWasMade:(NSString *)str withValue:(NSUInteger)val {
+-(void)selectionWasMade:(NSString *)str onPicker:(SingleOptionPicker *)p withValue:(NSUInteger)val {
     //This is being called when the disposition category is selected.
     [_leftFormBuilder hideControlWithTags:DISPOSITION_CODE_TAG_LABEL,DISPOSITION_CODE_TAG_PICKER,NSNotFound];
     SingleOptionPicker *optionPicker = (SingleOptionPicker*)[_leftFormBuilder.view viewWithTag:DISPOSITION_CODE_TAG_PICKER];

@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+@class SingleOptionPicker;
 
 @protocol SingleOptionPickerDelegate <NSObject>
--(void)selectionWasMade:(NSString*)str withValue:(NSUInteger)val;
+-(void)selectionWasMade:(NSString*)str onPicker:(SingleOptionPicker*)p withValue:(NSUInteger)val;
 @end
