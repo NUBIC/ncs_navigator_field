@@ -14,7 +14,8 @@
 
 @interface ProviderSynchronizeOperation () {
     
-}@end
+}
+@end
 
 @implementation ProviderSynchronizeOperation
 
@@ -47,13 +48,25 @@
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
     [objectManager.client.HTTPHeaders setValue:ApplicationSettings.instance.clientId forKey:@"X-Client-ID"];
     
+    NSString *strLastModified = [[ApplicationSettings instance] lastModifiedSinceForProviders];
+    if([strLastModified length]>0) {
+        [objectManager.client.HTTPHeaders setValue:strLastModified forKey:@"If-Modified-Since"];
+    }
+    
     NSString* path = @"/api/v1/providers";
     
     NCSLog(@"Requesting data from %@", path);
     RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
     loader.method = RKRequestMethodGET;
     
-    [loader sendSynchronously];
+    RKResponse *response = [loader sendSynchronously];
+    if([response statusCode]==200) {
+        NSString *strDate = [[NSDate date] lastModifiedFormat];
+        [[ApplicationSettings instance] setLastModifiedSinceForProviders:strDate];
+    }
+    else if([response statusCode]==304) { //304
+        NSLog(@"Pulling providers from cache!");
+    }
     return TRUE;
 }
 
@@ -63,7 +76,6 @@
     [_delegate showAlertView:PROVIDER_RETRIEVAL];
     FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"Retrieving providers" reason:nil userInfo:nil];
     @throw ex;
-
 }
 
 

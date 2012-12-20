@@ -65,4 +65,13 @@ extern NSString *const SettingsDidChangeNotification;
 
 - (BOOL) coreSynchronizeConfigured:(NSString**)strResults;
 
+-(NSString*)lastModifiedSinceForProviders;
+
+-(void)setLastModifiedSinceForProviders:(NSString*)str;
+
+-(NSString*)lastModifiedSinceForCodes;
+
+-(void)setLastModifiedSinceForCodes:(NSString*)str;
+
+-(void)deleteLastModifiedSinceDates;
 @end

@@ -9,6 +9,7 @@
 #import "ApplicationPersistentStore.h"
 #import "ApplicationPersistentStoreBackup.h"
 #import "ApplicationPersistentStoreBackupOperation.h"
+#import "ApplicationSettings.h"
 /*
  Singleton utilized to handle the backup of the sqlite db instance. Any time we want to take the current
  sqlite db instance and copy it in the file system for safe keeping, we will call 'backup' on this singleton.
@@ -44,6 +45,9 @@ static ApplicationPersistentStore* instance;
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     RKManagedObjectStore* objectStore = objectManager.objectStore;
     [objectStore deletePersistentStore];
+    //Let's also delete the dates so the conditional gets
+    //will get everything freshly.
+    [[ApplicationSettings instance] deleteLastModifiedSinceDates];
 }
 
 - (NSString*)path {

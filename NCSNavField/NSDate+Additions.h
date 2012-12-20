@@ -13,4 +13,5 @@
 - (NSString*)jsonSchemaTime;
 - (NSString*)toRFC3339;
 -(NSString*)toYYYYMMDD;
+-(NSString*)lastModifiedFormat;
 @end
