@@ -487,11 +487,6 @@
         [screening addEventsObject:[pregnancyScreeningEventTmpl buildEventForParticipant:participant]];
     }
     
-    EventTemplate* pregnancyVisitOneEventTmpl = [EventTemplate pregnancyVisitOneTemplate];
-    if (pregnancyVisitOneEventTmpl) {
-        [screening addEventsObject:[pregnancyVisitOneEventTmpl buildEventForParticipant:participant]];
-    }
-    
     [[Contact currentContext] save:nil];
     
     self.contacts = [self contactsFromDataStore];
