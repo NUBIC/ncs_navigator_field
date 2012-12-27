@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NSDate+Additions.h"
+#import "UserErrorDelegate.h"
 
 #define CONTACT_RETRIEVAL @"We were trying to retrieve your data."
 #define PUTTING_DATA_ON_SERVER @"We were trying to put your data on the server."
@@ -20,20 +21,6 @@
 #define TRY_AGAIN_LATER @"Please try again later."
 #define MERGE_ERROR @"There was an error preventing you from obtaining your data. Please call the help desk."
 #define SYNCING_CONTACTS @"Syncing Contacts"
-
-@protocol UserErrorDelegate <NSObject>
-@required
--(void)showAlertView:(NSString*)strError;
--(void)setHUDMessage:(NSString*)strMessage;
--(void)setHUDMessage:(NSString*)strMessage andDetailMessage:(NSString*)detailMessage;
--(void)setHUDMessage:(NSString*)strMessage withFontSize:(CGFloat)f;
--(void)hideHUD;
-@optional
--(void)setHUDMessage:(NSString*)strMessage andDetailMessage:(NSString*)detailMessage withMajorFontSize:(CGFloat)f;
--(void)setHUDMessage:(NSString*)strMessage andDetailMessage:(NSString*)detailMessage withMajorFontSize:(CGFloat)f andMinorFontSize:(CGFloat)g;
-//We should include more options to show the user additional stuff. This
-//will suffice for now.
-@end
 
 @interface ProviderSynchronizeOperation : NSObject<RKObjectLoaderDelegate> {
     CasServiceTicket* _ticket;

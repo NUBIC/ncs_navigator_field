@@ -33,7 +33,7 @@
             //return [[PickerOption alloc] initWithText:[NSString stringWithFormat:@"%@ - %@",c.finalCategory,c.disposition] value:c.finalCode];
     }];
     for(DispositionCode *c in arr) {
-        [mutOptions addObject:[[PickerOption alloc] initWithText:[NSString stringWithFormat:@"%@ - %@",c.finalCategory,c.disposition] value:c.finalCode]];
+        [mutOptions addObject:[[PickerOption alloc] initWithText:[NSString stringWithFormat:@"%@ - %@",c.finalCategory,c.disposition] value:c.interimCode]];
     }
     return [mutOptions sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             PickerOption* o1 = obj1;
@@ -52,7 +52,7 @@
     }];
     return [[[DispositionCode allObjects] collect:^id(id obj) {
         DispositionCode* c = obj;
-        return [[PickerOption alloc] initWithText:[NSString stringWithFormat:@"%@ - %@ - %@", [categoriesByCode objectForKey:c.categoryCode], c.finalCategory, c.disposition] value:c.finalCode];
+        return [[PickerOption alloc] initWithText:[NSString stringWithFormat:@"%@ - %@ - %@", [categoriesByCode objectForKey:c.categoryCode], c.finalCategory, c.disposition] value:c.interimCode];
     }] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         PickerOption* o1 = obj1;
         PickerOption* o2 = obj2;

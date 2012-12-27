@@ -16,6 +16,7 @@
 #import "BlockAlertView.h"
 #import "BlockBackground.h"
 #import "FieldworkSynchronizationException.h"
+#import "UserErrorDelegate.h"
 
 @class ContactDisplayController;
 @class Instrument;

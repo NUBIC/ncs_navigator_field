@@ -622,6 +622,7 @@
 		22942CE31669461300242588 /* EventSorter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSorter.m; sourceTree = "<group>"; };
 		22942CE516694AC200242588 /* NSString+ParsingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ParsingExtensions.h"; sourceTree = "<group>"; };
 		22942CE616694AC200242588 /* NSString+ParsingExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ParsingExtensions.m"; sourceTree = "<group>"; };
+		229E2E871683B7A90030C277 /* UserErrorDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserErrorDelegate.h; sourceTree = "<group>"; };
 		22A11EEB166E5EE6000E1F07 /* UIFont+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Additions.h"; sourceTree = "<group>"; };
 		22A11EEC166E5EE6000E1F07 /* UIFont+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Additions.m"; sourceTree = "<group>"; };
 		22A11EEF166E6142000E1F07 /* NUPickerVC+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NUPickerVC+Additions.h"; sourceTree = "<group>"; };
@@ -996,6 +997,7 @@
 				009AD2E61430D9BF0038650B /* SimpleTableRowDelegate.h */,
 				009AD2E71430DA180038650B /* ISimpleTable.h */,
 				22C2F560167BAEDC00F10BCC /* SingleOptionPickerDelegate.h */,
+				229E2E871683B7A90030C277 /* UserErrorDelegate.h */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";

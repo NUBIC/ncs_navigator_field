@@ -316,7 +316,6 @@ NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
     //Lets animate it back to (0,0) and allow scrolling.
-#warning This is moving the UIPopoverViewController aware from the button that it is supposed to use to make the selection.
     [self.scrollView setContentOffset:CGPointMake(0.0, 0.0) animated:YES];
     
 }

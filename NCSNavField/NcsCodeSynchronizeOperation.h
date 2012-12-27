@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "ProviderSynchronizeOperation.h" //Fix this later
 #import "NSDate+Additions.h"
+#import "UserErrorDelegate.h"
+
 @class ProviderSynchronizeOperation;
 
 @interface NcsCodeSynchronizeOperation : NSObject <RKObjectLoaderDelegate> {

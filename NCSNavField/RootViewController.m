@@ -244,8 +244,6 @@
                           delegate: self
                           cancelButtonTitle: @"Cancel"
                           otherButtonTitles: @"Sync", nil];
-
-    
     [alert show];
 }
 
