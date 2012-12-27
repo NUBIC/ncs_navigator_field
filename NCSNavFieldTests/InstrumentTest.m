@@ -12,7 +12,6 @@
 #import "InstrumentPlan.h"
 #import "InstrumentTemplate.h"
 #import "ResponseTemplate.h"
-#import <OCMock/OCMock.h>
 
 @implementation InstrumentTest
 

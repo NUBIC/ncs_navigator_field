@@ -76,7 +76,7 @@
                                                      name:RKReachabilityDidChangeNotification
                                                    object:self.reachability];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleDeleteButton) name:SettingsDidChangeNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contactInitiated:) name:@"ContactInitiated" object:NULL];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contactInitiateScreenDismissed:) name:ContactInitiateScreenDismissedNotification object:NULL];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(providerSelected:) name:PROVIDER_SELECTED_NOTIFICATION_KEY object:NULL];
 
     }
@@ -134,17 +134,15 @@
     [self loadSurveyor:instrument context:[g context]];
 }
 
-- (void)contactInitiated:(NSNotification*)notification {
-    self.contacts = [Contact allObjects];
-    ContactNavigationTable* table = [[ContactNavigationTable alloc] initWithContacts:self.contacts];
-    self.simpleTable = table;
-
-	[self.tableView reloadData];
-    
+- (void)contactInitiateScreenDismissed:(NSNotification*)notification {
+    self.contacts = [self contactsFromDataStore];
+  
     Contact* current = [[notification userInfo] objectForKey:@"contact"];
-    NSIndexPath* indexPath = [table findIndexPathForContact:current];
-    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-    self.detailViewController.detailItem = current;
+    if (current) {
+        NSIndexPath* indexPath = [self.table findIndexPathForContact:current];
+        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        self.detailViewController.detailItem = current;
+    }
 }
 
 #pragma surveyor
@@ -485,16 +483,19 @@
         [screening addEventsObject:[pregnancyScreeningEventTmpl buildEventForParticipant:participant]];
     }
     
-    EventTemplate* pregnancyVisitOneEventTmpl = [EventTemplate pregnancyVisitOneTemplate];
-    if (pregnancyVisitOneEventTmpl) {
-        [screening addEventsObject:[pregnancyVisitOneEventTmpl buildEventForParticipant:participant]];
-    }
-    
-    [[Contact currentContext] save:nil];
-    
-    self.contacts = [self contactsFromDataStore];
-    
     ContactInitiateVC* civc = [[ContactInitiateVC alloc] initWithContact:screening];
+    civc.afterCancel = ^(Contact* screening){
+        NSArray* participants = [[screening.events collect:^id(Event* e){
+            return [e participant];
+        }] allObjects];
+        
+        [screening deleteEntity];
+        for (Participant* part in participants) {
+            [part deleteEntity];
+        }
+        [[Contact currentContext] save:nil];
+    };
+    
     civc.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentViewController:civc animated:YES completion:nil];
 }

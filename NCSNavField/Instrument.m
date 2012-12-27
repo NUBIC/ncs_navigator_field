@@ -166,18 +166,20 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
     
     for (ResponseTemplate* tmpl in responseTemplates) {
         if ([surveyIds containsObject:tmpl.surveyId]) {
-            ResponseSet* rs = [self findResponseSetWithSurveyId:tmpl.surveyId];
-            
-            if (!rs) {
-                rs = [ResponseSet createResponseSetWithSurvey:tmpl.survey pId:self.event.pId personId:self.event.contact.personId];
-                [self addResponseSetsObject:rs];
+            if (tmpl.question.uuid && tmpl.question.uuid) {
+                ResponseSet* rs = [self findResponseSetWithSurveyId:tmpl.surveyId];
+                
+                if (!rs) {
+                    rs = [ResponseSet createResponseSetWithSurvey:tmpl.survey pId:self.event.pId personId:self.event.contact.personId];
+                    [self addResponseSetsObject:rs];
+                }
+                
+                [[rs responsesForQuestion:tmpl.question.uuid] each:^(NUResponse* r) {
+                    [r deleteEntity];
+                }];
+                
+                [rs newResponseForQuestion:tmpl.question.uuid Answer:tmpl.answer.uuid Value:nil];
             }
-            
-            [[rs responsesForQuestion:tmpl.question.uuid] each:^(NUResponse* r) {
-                [r deleteEntity];
-            }];
-            
-            [rs newResponseForQuestion:tmpl.question.uuid Answer:tmpl.answer.uuid Value:nil];
         }
     }
 }
