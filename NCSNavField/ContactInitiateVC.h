@@ -12,13 +12,17 @@
 @class FormBuilder;
 @class Contact;
 
+FOUNDATION_EXPORT NSString *const ContactInitiateScreenDismissedNotification;
+
 @interface ContactInitiateVC : UIViewController {
     Contact* _contact;
 }
 
 @property(nonatomic,strong) Contact* contact;
 @property(nonatomic,strong) UIView *left,*right;
-- (id)initWithContact:(Contact*)contact;
+@property (nonatomic, copy) void (^afterCancel)(Contact* c);
+
+- (id)initWithContact:(Contact *)contact;
 - (void) setDefaults:(Contact*) contact;
 - (UIView*) toolbarWithFrame:(CGRect)frame;
 - (UIView*) leftContentWithFrame:(CGRect)frame;

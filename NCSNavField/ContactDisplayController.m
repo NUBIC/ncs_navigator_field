@@ -45,15 +45,10 @@
 - (id) initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contactInitiated) name:@"ContactInitiated" object:NULL];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stoppedAdministeringInstrument:) name:@"StoppedAdministeringInstrument" object:NULL];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshView) name:@"ContactClosed" object:nil];
     }
     return self;
-}
-
-- (void) contactInitiated {
-    [self refreshView];
 }
 
 - (void) stoppedAdministeringInstrument:(NSNotification*)notification {

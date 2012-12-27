@@ -11,15 +11,19 @@
 #import "FormBuilder.h"
 #import "NUScrollView.h"
 #import "Contact.h"
+#import "Event.h"
+#import <MRCEnumerable/MRCEnumerable.h>
+
+NSString *const ContactInitiateScreenDismissedNotification = @"ContactInitiateScreenDismissedNotification";
 
 @implementation ContactInitiateVC
 
 @synthesize contact=_contact;
 @synthesize left,right;
-- (id)initWithContact:contact {
+
+- (id)initWithContact:(Contact *)contact {
     if (self = [super init]) {
         self.contact = contact;
-
     }
     return self;
 }
@@ -182,14 +186,19 @@
 
 - (void) cancel {
     [self rollbackTransaction];
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    if (self.afterCancel) {
+        self.afterCancel(self.contact);
+    }
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:ContactInitiateScreenDismissedNotification object:self userInfo:@{}];
+    }];
 }
 
 - (void) done {
     [self commitTransaction];
     [self dismissViewControllerAnimated:YES completion:^{
         NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.contact, @"contact", nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactInitiated" object:self userInfo:dict];
+        [[NSNotificationCenter defaultCenter] postNotificationName:ContactInitiateScreenDismissedNotification object:self userInfo:dict];
     }];
 }
 

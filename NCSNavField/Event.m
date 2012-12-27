@@ -10,6 +10,7 @@
 #import "NSString+Additions.h"
 #import "NSDate+Additions.h"
 #import <NUSurveyor/UUID.h>
+#import "Participant.h"
 
 NSInteger const EVENT_TYPE_CODE_PBS_PARTICIPANT_ELIGIBILITY_SCREENING = 34;
 NSInteger const EVENT_TYPE_CODE_PREGNANCY_VISIT_ONE = 13;
@@ -50,6 +51,10 @@ NSInteger const EVENT_TYPE_CODE_PREGNANCY_VISIT_ONE = 13;
         result = [f numberFromString:self.dispositionCode];
     }
     return result;
+}
+
+- (Participant*)participant {
+    return [Participant findFirstByAttribute:@"pId" withValue:self.pId];
 }
 
 // BUG: This is a workaround for a bug when using the generated method
