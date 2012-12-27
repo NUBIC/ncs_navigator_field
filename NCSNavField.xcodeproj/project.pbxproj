@@ -238,6 +238,7 @@
 		0026E697140347E700355BCB /* NCS NavFieldTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NCS NavFieldTests-Prefix.pch"; sourceTree = "<group>"; };
 		002B2E4214362E4900410D09 /* nubic-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nubic-logo.png"; path = "NCSNavField/nubic-logo.png"; sourceTree = "<group>"; };
 		002B2E4314362E4900410D09 /* nu-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nu-logo.png"; path = "NCSNavField/nu-logo.png"; sourceTree = "<group>"; };
+		002D5A02168CDE2900CE313B /* 20121227195027_add_delete_cascade_rules.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121227195027_add_delete_cascade_rules.xcdatamodel; sourceTree = "<group>"; };
 		003059FE164AC2DB00A086F8 /* 20121107162417_order_instruments_on_event.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121107162417_order_instruments_on_event.xcdatamodel; sourceTree = "<group>"; };
 		00305A00164AC31C00A086F8 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		00305A01164AC31C00A086F8 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
@@ -1883,6 +1884,7 @@
 			isa = XCVersionGroup;
 			children = (
 				00BB5C4A167EC70D00EAE043 /* 20121217031937_move_response_templates_relationship_to_event_templates.xcdatamodel */,
+				002D5A02168CDE2900CE313B /* 20121227195027_add_delete_cascade_rules.xcdatamodel */,
 				00AE8003167A78CE007FF178 /* 20121213205710_create_response_templates.xcdatamodel */,
 				00B3DC64167009D40066E5AD /* 20121205230124_add_person_id_to_response_set.xcdatamodel */,
 				22B8E4A21664337C00640DE8 /* 20121126191731_addMdes_and_dispcode_entities.xcdatamodel */,
@@ -1911,7 +1913,7 @@
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 00BB5C4A167EC70D00EAE043 /* 20121217031937_move_response_templates_relationship_to_event_templates.xcdatamodel */;
+			currentVersion = 002D5A02168CDE2900CE313B /* 20121227195027_add_delete_cascade_rules.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
