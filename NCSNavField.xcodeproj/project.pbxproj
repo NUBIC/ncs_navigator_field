@@ -238,7 +238,7 @@
 		0026E697140347E700355BCB /* NCS NavFieldTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NCS NavFieldTests-Prefix.pch"; sourceTree = "<group>"; };
 		002B2E4214362E4900410D09 /* nubic-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nubic-logo.png"; path = "NCSNavField/nubic-logo.png"; sourceTree = "<group>"; };
 		002B2E4314362E4900410D09 /* nu-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nu-logo.png"; path = "NCSNavField/nu-logo.png"; sourceTree = "<group>"; };
-		002D5A02168CDE2900CE313B /* 20121227195027_add_delete_cascade_rules.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20121227195027_add_delete_cascade_rules.xcdatamodel; sourceTree = "<group>"; };
+		002D5A02168CDE2900CE313B /* 20121227195027_add_delete_cascade_rules.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121227195027_add_delete_cascade_rules.xcdatamodel; sourceTree = "<group>"; };
 		003059FE164AC2DB00A086F8 /* 20121107162417_order_instruments_on_event.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121107162417_order_instruments_on_event.xcdatamodel; sourceTree = "<group>"; };
 		00305A00164AC31C00A086F8 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		00305A01164AC31C00A086F8 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
