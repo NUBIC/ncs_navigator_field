@@ -85,6 +85,8 @@
     @catch(NSException *ex) {
         @throw ex;
     }
+    
+    return TRUE;
 }
 
 - (NSString*) putFieldwork {

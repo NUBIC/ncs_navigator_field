@@ -372,6 +372,7 @@
         FieldworkSynchronizeOperation* sync = [[FieldworkSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
         sync.delegate=self;
         bStepWasSuccessful = [sync perform];
+        NSLog(@"Fieldwork sync: %@", bStepWasSuccessful ? @"Success" : @"Fail");
         
         if(!bStepWasSuccessful) //Should we stop right here? If we failed on fieldwork synchronization.
             return;
@@ -381,7 +382,9 @@
         ProviderSynchronizeOperation* pSync = [[ProviderSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
         pSync.delegate = self;
         bStepWasSuccessful = [pSync perform];
-            
+        NSLog(@"Provider sync: %@", bStepWasSuccessful ? @"Success" : @"Fail");
+
+        
         if(!bStepWasSuccessful) //Should we stop right here? If the provider pull didn't work, stop.
             return;
         
@@ -389,6 +392,7 @@
         NcsCodeSynchronizeOperation *nSync = [[NcsCodeSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
         nSync.delegate = self;
         bStepWasSuccessful = [nSync perform];
+        NSLog(@"NCS Code sync: %@", bStepWasSuccessful ? @"Success" : @"Fail");
     }
     //In the future, these two catches will diverge. Right now, let's just put a placeholder. 
     @catch (FieldworkSynchronizationException *ex) {
