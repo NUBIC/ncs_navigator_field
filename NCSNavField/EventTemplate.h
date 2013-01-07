@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Instrument, Event, Participant, ResponseTemplate;
+@class Instrument, Event, Participant, Person, ResponseTemplate;
 
 @interface EventTemplate : NSManagedObject
 
@@ -28,7 +28,7 @@
 
 + (EventTemplate*)pregnancyVisitOneTemplate;
 
-- (Event*)buildEventForParticipant:(Participant*)participant;
+- (Event*)buildEventForParticipant:(Participant*)participant person:(Person*)person;
 
 @end
 

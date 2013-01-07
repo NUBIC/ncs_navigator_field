@@ -17,7 +17,7 @@
     EventTemplate* tmpl = [EventTemplate object];
     tmpl.name = @"Cookie Cutter";
     tmpl.eventRepeatKey = [NSNumber numberWithInt:5];
-    Event* actual = [tmpl buildEventForParticipant:nil];
+    Event* actual = [tmpl buildEventForParticipant:nil person:nil];
     STAssertEqualObjects(actual.name, @"Cookie Cutter", @"Wrong name");
     STAssertEqualObjects(actual.eventRepeatKey, [NSNumber numberWithInt:5], @"Wrong repeat key");
 }
@@ -29,7 +29,7 @@
     instrument.name = @"Trumpet";
     [tmpl addInstrumentsObject:instrument];
     
-    Event* actual = [tmpl buildEventForParticipant:nil];
+    Event* actual = [tmpl buildEventForParticipant:nil person:nil];
     Instrument* actualInstrument = [[actual.instruments objectEnumerator] nextObject];
     STAssertEqualObjects(actualInstrument.name, @"Trumpet", @"Wrong name");
     STAssertTrue(actualInstrument.objectID != instrument.objectID, @"Instrument should be duplicated");    

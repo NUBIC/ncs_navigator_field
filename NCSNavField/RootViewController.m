@@ -484,7 +484,7 @@
     
     EventTemplate* pregnancyScreeningEventTmpl = [EventTemplate pregnancyScreeningTemplate];
     if (pregnancyScreeningEventTmpl) {
-        [screening addEventsObject:[pregnancyScreeningEventTmpl buildEventForParticipant:participant]];
+        [screening addEventsObject:[pregnancyScreeningEventTmpl buildEventForParticipant:participant person:person]];
     }
     
     ContactInitiateVC* civc = [[ContactInitiateVC alloc] initWithContact:screening];

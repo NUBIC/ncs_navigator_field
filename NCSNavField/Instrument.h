@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Event;
-@class InstrumentPlan;
-@class ResponseSet;
+@class Event, InstrumentPlan, Participant, Person, ResponseSet;
 
 FOUNDATION_EXPORT NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER;
 
@@ -87,7 +85,7 @@ FOUNDATION_EXPORT NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELI
 
 - (NSArray*)surveyResponseSetRelationshipsWithSurveyContext:(NSDictionary*)ctx;
 
-- (void)createAndPopulateResponseSetsFromResponseTemplates:(NSSet*)responseTemplates;
+- (void)createAndPopulateResponseSetsFromResponseTemplates:(NSSet*)responseTemplates participant:(Participant*)participant person:(Person*)person;
 
 @end
 

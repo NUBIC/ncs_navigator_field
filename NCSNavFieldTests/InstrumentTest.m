@@ -12,6 +12,8 @@
 #import "InstrumentPlan.h"
 #import "InstrumentTemplate.h"
 #import "ResponseTemplate.h"
+#import "Person.h"
+#import "Participant.h"
 
 @implementation InstrumentTest
 
@@ -110,8 +112,11 @@ static InstrumentTemplate* it;
     NSSet* rts = [NSSet setWithObjects:rt0, rt1, nil];
     
     STAssertEquals([[i responseSets] count], 0U, nil);
-    [i createAndPopulateResponseSetsFromResponseTemplates:rts];
+    [i createAndPopulateResponseSetsFromResponseTemplates:rts participant:[Participant participant] person:[Person person]];
     STAssertEquals([[i responseSets] count], 1U, nil);
+    ResponseSet* rs = [[[i responseSets] objectEnumerator] nextObject];
+    STAssertNotNil([rs valueForKey:@"pId"], nil);
+    STAssertNotNil([rs valueForKey:@"personId"], nil);
     
     ResponseSet* actual = [[[i responseSets] objectEnumerator] nextObject];
     STAssertEquals([[actual responses] count], 2U, nil);

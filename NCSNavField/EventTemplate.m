@@ -33,7 +33,7 @@
     return [EventTemplate findFirstByAttribute:@"eventTypeCode" withValue:[NSNumber numberWithInt:EVENT_TYPE_CODE_PREGNANCY_VISIT_ONE]];
 }
 
-- (Event*)buildEventForParticipant:(Participant*)participant {
+- (Event*)buildEventForParticipant:(Participant*)participant person:(Person *)person {
     Event* e = [Event event];
     NSArray* eventAttrs = [[[EventTemplate entityDescription] attributesByName] allKeys];
     for (NSString* attr in eventAttrs) {
@@ -49,7 +49,7 @@
     for (Instrument* i in self.instruments) {
         Instrument* cloned = (Instrument*)[i clone];
         cloned.instrumentId = [UUID generateUuidString];
-        [cloned createAndPopulateResponseSetsFromResponseTemplates:self.responseTemplates];
+        [cloned createAndPopulateResponseSetsFromResponseTemplates:self.responseTemplates participant:participant person:person];
         [e addInstrumentsObject:cloned];
     }
     

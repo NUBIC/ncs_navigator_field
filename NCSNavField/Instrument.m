@@ -27,6 +27,8 @@
 #import "NUAnswer.h"
 #import "ResponseSet.h"
 #import "NUSurvey+Additions.h"
+#import "Participant.h"
+#import "Person.h"
 
 NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER = 44;
 
@@ -159,7 +161,7 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
     return assoc;
 }
 
-- (void)createAndPopulateResponseSetsFromResponseTemplates:(NSSet*)responseTemplates {
+- (void)createAndPopulateResponseSetsFromResponseTemplates:(NSSet*)responseTemplates participant:(Participant*)participant person:(Person*)person {
     NSSet* surveyIds = [[self.instrumentPlan.instrumentTemplates set] collect:^id(InstrumentTemplate* it) {
         return it.survey.uuid;
     }];
@@ -170,7 +172,7 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
                 ResponseSet* rs = [self findResponseSetWithSurveyId:tmpl.surveyId];
                 
                 if (!rs) {
-                    rs = [ResponseSet createResponseSetWithSurvey:tmpl.survey pId:self.event.pId personId:self.event.contact.personId];
+                    rs = [ResponseSet createResponseSetWithSurvey:tmpl.survey pId:participant.pId personId:person.personId];
                     [self addResponseSetsObject:rs];
                 }
                 
