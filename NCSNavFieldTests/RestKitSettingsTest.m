@@ -25,6 +25,8 @@
 #import "Provider.h"
 #import "Participant.h"
 #import "ResponseTemplate.h"
+#import "MdesCode.h"
+#import "DispositionCode.h"
 #import <MRCEnumerable/MRCEnumerable.h>
 
 @implementation RestKitSettingsTest
@@ -189,7 +191,6 @@
     Participant* p = [[actual objectForKey:@"participants"] objectAtIndex:0];
     STAssertEqualObjects(p.pId, @"abc", @"Wrong value");
 }
-
 - (void)testEventTemplateDeserialization {
     NSString* json =
         @"{ "
@@ -232,6 +233,47 @@
     STAssertEquals([actual count], 2U, @"Should have 2 providers");
     STAssertEqualObjects(((Provider*)[actual objectAtIndex:0]).name, @"One", nil);
     STAssertEqualObjects(((Provider*)[actual objectAtIndex:1]).name, @"Two", nil);
+}
+
+-(void)testNcsCodeDeserialization {
+    NSString *js =
+    @"{ \"ncs_codes\": [ "
+        "{ \"listName\" : \"ACCESS_ATTEMPT_CL1\", "
+        "\"displayText\" : \"Not applicable\", "
+        "\"localCode\" : -7 }, "
+        " { \"listName\" : \"ACCESS_ATTEMPT_CL1\","
+        "\"displayText\" : \"Other\","
+        "    \"localCode\" : -5"
+        " } ] }";
+    
+    NSArray *d1 = [[self deserializeJson:js] objectForKey:@"ncs_codes"];
+    STAssertEquals([d1 count], 2U, @"Should have 2 ncs codes");
+    STAssertEqualObjects(((MdesCode*)[d1 objectAtIndex:0]).displayText, @"Not applicable", nil);
+    STAssertEqualObjects(((MdesCode*)[d1 objectAtIndex:1]).displayText, @"Other", nil);
+}
+
+-(void)testDispositionCodeDeserialization {
+    NSString *j =
+    @"{ \"disposition_codes\": [ "
+    " {   \"finalCategory\" : Complete Screener,"
+    "    \"categoryCode\" : 8,"
+    "    \"finalCode\" : \"591\",   "
+    "    \"interimCode\" : \"091\", "
+    "    \"subCategory\" : \"Partial- Unable to Determine Eligibility - Other Language\","
+    "    \"disposition\" : \"Partial with sufficient information in Other Language, but cannot determine eligibility\""
+    " }, "
+    " {   \"finalCategory\" : Complete Second Screen,"
+    "    \"categoryCode\" : 8,"
+    "    \"finalCode\" : \"590\","
+    "    \"interimCode\" : \"090\","
+    "    \"subCategory\" : \"Partial- Eligible - Other Language\","
+    "    \"disposition\" : \"Partial with sufficient information in Other Language to determine eligible\""
+    " } ] } ";
+
+    NSArray *d1 = [[self deserializeJson:j] objectForKey:@"disposition_codes"];
+    STAssertEquals([d1 count], 2U, @"Should have 2 disposition codes");
+    STAssertEqualObjects(((DispositionCode*)[d1 objectAtIndex:0]).finalCategory, @"Complete Screener", nil);
+    STAssertEqualObjects(((DispositionCode*)[d1 objectAtIndex:1]).finalCategory, @"Complete Second Screen", nil);
 }
 
 #pragma mark - Helper Methods
