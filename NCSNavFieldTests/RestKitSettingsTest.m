@@ -192,6 +192,7 @@
     STAssertEqualObjects(p.pId, @"abc", @"Wrong value");
 }
 - (void)testEventTemplateDeserialization {
+    [RestKitSettings instance];
     NSString* json =
         @"{ "
          "   \"event_templates\": [{             "
@@ -221,6 +222,7 @@
 }
 
 - (void)testProviderDeserialization {
+    [RestKitSettings instance];
     NSString* json =
         @"{ "
          "  \"providers\": [       "
@@ -236,41 +238,47 @@
 }
 
 -(void)testNcsCodeDeserialization {
+    [RestKitSettings instance];
     NSString *js =
     @"{ \"ncs_codes\": [ "
-        "{ \"listName\" : \"ACCESS_ATTEMPT_CL1\", "
-        "\"displayText\" : \"Not applicable\", "
-        "\"localCode\" : -7 }, "
-        " { \"listName\" : \"ACCESS_ATTEMPT_CL1\","
-        "\"displayText\" : \"Other\","
-        "    \"localCode\" : -5"
+        "{ \"list_name\" : \"ACCESS_ATTEMPT_CL1\", "
+        "\"display_text\" : \"Not applicable\", "
+        "\"local_code\" : -7 }, "
+        " { \"list_name\" : \"ACCESS_ATTEMPT_CL1\","
+        "\"display_text\" : \"Other\","
+        "    \"local_code\" : -5"
         " } ] }";
     
-    NSArray *d1 = [[self deserializeJson:js] objectForKey:@"ncs_codes"];
+    NSDictionary *dict = [self deserializeJson:js];
+    NSArray *d1 = [dict objectForKey:@"ncs_codes"];
     STAssertEquals([d1 count], 2U, @"Should have 2 ncs codes");
     STAssertEqualObjects(((MdesCode*)[d1 objectAtIndex:0]).displayText, @"Not applicable", nil);
     STAssertEqualObjects(((MdesCode*)[d1 objectAtIndex:1]).displayText, @"Other", nil);
 }
 
 -(void)testDispositionCodeDeserialization {
+    [RestKitSettings instance];
+    
     NSString *j =
-    @"{ \"disposition_codes\": [ "
-    " {   \"finalCategory\" : Complete Screener,"
-    "    \"categoryCode\" : 8,"
-    "    \"finalCode\" : \"591\",   "
-    "    \"interimCode\" : \"091\", "
-    "    \"subCategory\" : \"Partial- Unable to Determine Eligibility - Other Language\","
+    @"{ "
+    " \"disposition_codes\": [ "
+    " {   \"final_category\" : \"Complete Screener\", "
+    "    \"category_code\" : 8,"
+    "    \"final_code\" : \"591\",   "
+    "    \"interim_code\" : \"091\", "
+    "    \"sub_category\" : \"Partial- Unable to Determine Eligibility - Other Language\","
     "    \"disposition\" : \"Partial with sufficient information in Other Language, but cannot determine eligibility\""
     " }, "
-    " {   \"finalCategory\" : Complete Second Screen,"
-    "    \"categoryCode\" : 8,"
-    "    \"finalCode\" : \"590\","
-    "    \"interimCode\" : \"090\","
-    "    \"subCategory\" : \"Partial- Eligible - Other Language\","
+    " {   \"final_category\" : \"Complete Second Screen\", "
+    "    \"category_code\" : 8,"
+    "    \"final_code\" : \"590\","
+    "    \"interim_code\" : \"090\","
+    "    \"sub_category\" : \"Partial- Eligible - Other Language\","
     "    \"disposition\" : \"Partial with sufficient information in Other Language to determine eligible\""
     " } ] } ";
-
-    NSArray *d1 = [[self deserializeJson:j] objectForKey:@"disposition_codes"];
+    
+    NSDictionary *dict = [self deserializeJson:j];
+    NSArray *d1 = [dict objectForKey:@"disposition_codes"];
     STAssertEquals([d1 count], 2U, @"Should have 2 disposition codes");
     STAssertEqualObjects(((DispositionCode*)[d1 objectAtIndex:0]).finalCategory, @"Complete Screener", nil);
     STAssertEqualObjects(((DispositionCode*)[d1 objectAtIndex:1]).finalCategory, @"Complete Second Screen", nil);

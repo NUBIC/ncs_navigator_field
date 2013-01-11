@@ -81,6 +81,7 @@ static RestKitSettings* instance;
 }
 
 - (void)introduce {
+    //TODO: This should only be called once. Twice will throw an exception. We should enforce non-idempotence somehow.
     RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:[NSURL URLWithString:self.baseServiceURL]];
 
     // Initialize store
