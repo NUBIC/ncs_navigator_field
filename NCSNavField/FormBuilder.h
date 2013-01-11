@@ -43,7 +43,6 @@
 -(void)textFieldForProperty:(SEL)property currency:(BOOL)bCurrencyOnly;
 - (void) textFieldForProperty:(SEL)property;
 - (void) textAreaForProperty:(SEL)property;
--(void)setOptionsForPicker:(NSArray*)options withTag:(NSUInteger)t; //If we need to reset the options that a picker is going to have based on a previous decision, we can call this.
 #pragma mark 
 #pragma Show and hide controls
 - (id)controlForTag:(NSUInteger)t;
