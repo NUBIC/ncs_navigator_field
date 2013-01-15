@@ -12,7 +12,7 @@
 #import <MRCEnumerable/MRCEnumerable.h>
 #import <NUSurveyor/NUResponse.h>
 #import "NUResponse+Additions.h"
-#import <NUSurveyor/UUID.h>
+#import <NUSurveyor/NUUUID.h>
 
 @implementation ResponseGenerator
 
@@ -73,7 +73,7 @@
         }
         NSString* aUUID = [answer valueForKey:@"uuid"];
         NUResponse* response = [NUResponse transient];
-        [response setValue:[UUID generateUuidString] forKey:@"uuid"];
+        [response setValue:[NUUUID generateUuidString] forKey:@"uuid"];
         [response setValue:qUUID forKey:@"question"];
         [response setValue:aUUID forKey:@"answer"];
         [response setValue:value forKey:@"value"];

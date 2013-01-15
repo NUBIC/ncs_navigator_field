@@ -9,7 +9,7 @@
 #import "Event.h"
 #import "NSString+Additions.h"
 #import "NSDate+Additions.h"
-#import <NUSurveyor/UUID.h>
+#import <NUSurveyor/NUUUID.h>
 #import "Participant.h"
 
 NSInteger const EVENT_TYPE_CODE_PBS_PARTICIPANT_ELIGIBILITY_SCREENING = 34;
@@ -21,7 +21,7 @@ NSInteger const EVENT_TYPE_CODE_PREGNANCY_VISIT_ONE = 13;
 
 + (Event*)event {
     Event* e = [Event object];
-    e.eventId = [UUID generateUuidString];
+    e.eventId = [NUUUID generateUuidString];
     e.startDate = [NSDate date];
     e.startTime = [NSDate date];
     return e;

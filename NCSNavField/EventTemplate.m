@@ -11,7 +11,7 @@
 #import "Event.h"
 #import "NSManagedObject+Additions.h"
 #import "Participant.h"
-#import <NUSurveyor/UUID.h>
+#import <NUSurveyor/NUUUID.h>
 
 @implementation EventTemplate
 
@@ -48,7 +48,7 @@
 
     for (Instrument* i in self.instruments) {
         Instrument* cloned = (Instrument*)[i clone];
-        cloned.instrumentId = [UUID generateUuidString];
+        cloned.instrumentId = [NUUUID generateUuidString];
         [cloned createAndPopulateResponseSetsFromResponseTemplates:self.responseTemplates participant:participant person:person];
         [e addInstrumentsObject:cloned];
     }

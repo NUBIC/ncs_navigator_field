@@ -9,7 +9,7 @@
 #import "Person.h"
 #import "NSString+Additions.h"
 #import <MRCEnumerable/MRCEnumerable.h>
-#import <NUSurveyor/UUID.h>
+#import <NUSurveyor/NUUUID.h>
 
 NSInteger const PERSON_RELATIONSHIP_CODE_SELF = 1;
 
@@ -22,7 +22,7 @@ static const NSString* NEW_PERSON_NAME = @"New Person";
 + (Person*)person {
     Person* p = [Person object];
     p.firstName = [self buildNewPersonName];
-    p.personId = [UUID generateUuidString];
+    p.personId = [NUUUID generateUuidString];
     p.relationshipCode = [NSNumber numberWithInt:PERSON_RELATIONSHIP_CODE_SELF];
     return p;
 }

@@ -27,7 +27,7 @@
 #import "ApplicationSettings.h"
 #import "SyncActivityIndicator.h"
 #import "NUSurvey.h"
-#import "UUID.h"
+#import "NUUUID.h"
 #import "Fieldwork.h"
 #import "SBJSON.h"
 #import "FieldworkSynchronizeOperation.h"

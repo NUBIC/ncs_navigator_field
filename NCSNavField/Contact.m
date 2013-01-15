@@ -11,7 +11,7 @@
 #import "Person.h"
 #import "NSString+Additions.h"
 #import "NSDate+Additions.h"
-#import <NUSurveyor/UUID.h>
+#import <NUSurveyor/NUUUID.h>
 
 @implementation Contact
 
@@ -20,7 +20,7 @@
 
 + (Contact*)contact {
     Contact* c = [Contact object];
-    c.contactId = [UUID generateUuidString];
+    c.contactId = [NUUUID generateUuidString];
     c.date = [NSDate date];
     c.startTime = [NSDate date];
     return c;
