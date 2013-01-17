@@ -12,6 +12,7 @@
 		000D8E77152CAC5B006EE224 /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8E76152CAC5B006EE224 /* TimePicker.m */; };
 		000D8E8B152E9EE7006EE224 /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8E8A152E9EE7006EE224 /* NSDate+Additions.m */; };
 		000E64B3150EB2BF0006B31E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 000E64B2150EB2BF0006B31E /* Settings.bundle */; };
+		0013084716A8A6A600A5D948 /* NUQuestionGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 0013084616A8A6A600A5D948 /* NUQuestionGroup.m */; };
 		00145BA8149A7BEF00D3C1B5 /* ContactCloseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00145BA7149A7BEF00D3C1B5 /* ContactCloseVC.m */; };
 		0018F03314C4BD160058D8F2 /* ApplicationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0018F03214C4BD160058D8F2 /* ApplicationSettings.m */; };
 		001AC57A164AC01700E3ECBD /* Provider.m in Sources */ = {isa = PBXBuildFile; fileRef = 001AC579164AC01700E3ECBD /* Provider.m */; };
@@ -198,6 +199,8 @@
 		000D8E89152E9EE7006EE224 /* NSDate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Additions.h"; sourceTree = "<group>"; };
 		000D8E8A152E9EE7006EE224 /* NSDate+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Additions.m"; sourceTree = "<group>"; };
 		000E64B2150EB2BF0006B31E /* Settings.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.application; name = Settings.bundle; path = NCSNavField/Settings.bundle; sourceTree = "<group>"; };
+		0013084516A8A6A600A5D948 /* NUQuestionGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUQuestionGroup.h; sourceTree = "<group>"; };
+		0013084616A8A6A600A5D948 /* NUQuestionGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUQuestionGroup.m; sourceTree = "<group>"; };
 		00145BA6149A7BEF00D3C1B5 /* ContactCloseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCloseVC.h; sourceTree = "<group>"; };
 		00145BA7149A7BEF00D3C1B5 /* ContactCloseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCloseVC.m; sourceTree = "<group>"; };
 		001609BD166C4F3000F30D9B /* 20121203030805_change_contact_and_event_disposition_ids_to_strings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121203030805_change_contact_and_event_disposition_ids_to_strings.xcdatamodel; sourceTree = "<group>"; };
@@ -1177,6 +1180,8 @@
 				00010411161B73AA00952C3C /* NUResponse+Additions.m */,
 				00AE8011167B8101007FF178 /* NUSection.h */,
 				00AE8012167B8101007FF178 /* NUSection.m */,
+				0013084516A8A6A600A5D948 /* NUQuestionGroup.h */,
+				0013084616A8A6A600A5D948 /* NUQuestionGroup.m */,
 			);
 			name = NUSurveyor;
 			sourceTree = "<group>";
@@ -1584,6 +1589,7 @@
 				0039F7A9167BB5B100CE32B3 /* NUQuestion.m in Sources */,
 				0039F7B4167BD61700CE32B3 /* NUAnswer.m in Sources */,
 				0039F7B8167C274E00CE32B3 /* SurveyResponseSetRelationship.m in Sources */,
+				0013084716A8A6A600A5D948 /* NUQuestionGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 #import "NUSection.h"
 #import "NUQuestion.h"
+#import "NUQuestionGroup.h"
 
 @implementation NUSection
 
@@ -18,7 +19,12 @@
         
         NSMutableArray* questions = [NSMutableArray new];
         for (NSDictionary* qDict in [dict objectForKey:@"questions_and_groups"]) {
-            [questions addObject:[[NUQuestion alloc] initWithDictionary:qDict]];
+            if ([NUQuestionGroup isQuestionGroupDict:qDict]) {
+                NUQuestionGroup* g = [[NUQuestionGroup alloc] initWithDictionary:qDict];
+                [questions addObjectsFromArray:g.questions];
+            } else {
+                [questions addObject:[[NUQuestion alloc] initWithDictionary:qDict]];
+            }
         }
         self.questions = questions;
     }

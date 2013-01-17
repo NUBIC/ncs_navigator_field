@@ -28,8 +28,31 @@
     NUSection* s = [[NUSection alloc] initWithDictionary:dSection];
     
     NSArray* actual = [s questions];
+    STAssertEquals([actual count], 2U, nil);
     STAssertEqualObjects([[actual objectAtIndex:0] text], @"hello", nil);
     STAssertEqualObjects([[actual objectAtIndex:1] text], @"world", nil);
 }
 
+- (void)testQuestionsInGroup {
+    NSString* sectionJson =
+    @"{                            "
+    "  \"questions_and_groups\":[  "
+    "    {                         "
+    "      \"questions\" : [       "
+    "        { \"text\": \"fred\"} "
+    "      ]                       "
+    "    }                         "
+    "  ]                           "
+    "}                             ";
+    
+    NSDictionary* dSection = [sectionJson objectFromJSONString];
+    
+    STAssertNotNil(dSection, @"JSON is not valid");
+    
+    NUSection* s = [[NUSection alloc] initWithDictionary:dSection];
+    
+    NSArray* actual = [s questions];
+    STAssertEquals([actual count], 1U, nil);
+    STAssertEqualObjects([[actual objectAtIndex:0] text], @"fred", nil);
+}
 @end
