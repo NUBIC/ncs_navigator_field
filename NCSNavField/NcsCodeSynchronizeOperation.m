@@ -36,7 +36,7 @@
     }
     NSString *error = [NSString new];
     CasProxyTicket *pt = [self.ticket obtainProxyTicket:&error];
-    if([error length]>0) {
+    if(error && [error length]>0) {
         [_delegate showAlertView:NCS_CODE_RETRIEVAL];
         FieldworkSynchronizationException *exception = [[FieldworkSynchronizationException alloc] initWithName:@"Cas error in NCS Code retrieval" reason:nil userInfo:nil];
         @throw exception;

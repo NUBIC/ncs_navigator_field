@@ -49,7 +49,7 @@
 - (void)retrieveContacts:(CasServiceTicket*)serviceTicket {
     NSString *err;
     CasProxyTicket *pt = [serviceTicket obtainProxyTicket:&err];
-    if(err) {
+    if(err && [err length] > 0) {
         [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
         FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"retrieving contacts failed because of CAS" reason:nil userInfo:nil];
         @throw ex;

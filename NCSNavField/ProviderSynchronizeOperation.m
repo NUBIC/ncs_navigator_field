@@ -33,7 +33,7 @@
 - (BOOL)perform {
     NSString *er;
     CasProxyTicket *pt = [self.ticket obtainProxyTicket:&er];
-    if([er length]>0) {
+    if(er && [er length] > 0) {
         [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
         FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:er reason:nil userInfo:nil];
         @throw ex;

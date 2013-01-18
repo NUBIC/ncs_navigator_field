@@ -33,9 +33,9 @@
 - (BOOL) send {
     //We can also use this. I'm not 100% sure that this is the best solution, but it would be nice to save coding and have a single point
     //where this functionality is handled (easier when we want to make changes.) (See the one line directly below.)
-    NSString *str;
-    CasProxyTicket *pt = [self.ticket obtainProxyTicket:&str];
-    if(self.error) {
+    NSString *ptError;
+    CasProxyTicket *pt = [self.ticket obtainProxyTicket:&ptError];
+    if(ptError && [ptError length] > 0) {
         [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
         FieldworkSynchronizationException *exServerDown = [[FieldworkSynchronizationException alloc] initWithName:@"CAS Server is down" reason:@"Server is down" userInfo:nil];
         @throw exServerDown;
@@ -49,6 +49,7 @@
 }
 
 - (BOOL)send:(CasProxyTicket*)proxyTicket {
+    BOOL success = false;
     if (proxyTicket) {
         Fieldwork* submission = [Fieldwork submission];
         if (submission) {
@@ -57,9 +58,10 @@
             self.response = [loader sendSynchronously];
             NSLog(@"Put response has location header: %@", self.response.location);
             NCSLog(@"Response status code: %d", [self.response statusCode]);
+            success = [self isSuccessful];
         }
     }
-    return [self isSuccessful];
+    return success;
 }
 
 - (RKObjectManager *)objectManager:(CasProxyTicket *)proxyTicket {
