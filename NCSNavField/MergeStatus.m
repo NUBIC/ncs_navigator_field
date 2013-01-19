@@ -7,15 +7,14 @@
 //
 
 #import "MergeStatus.h"
-#import <SBJson/SBJSON.h>
+#import <JSONKit/JSONKit.h>
 
 @implementation MergeStatus
 
 @dynamic status, mergeStatusId, createdAt;
 
 + (id) parseFromJson:(NSString*)json {
-    SBJSON* sb = [[SBJSON alloc] init];
-    NSDictionary* dict = [sb objectWithString:json];
+    NSDictionary* dict = [json objectFromJSONString];
     MergeStatus* ms = [MergeStatus object];
     id s = [dict objectForKey:@"status"];
     ms.status = (s == [NSNull null]) ? nil : s ;

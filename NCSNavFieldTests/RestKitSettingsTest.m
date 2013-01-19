@@ -16,7 +16,6 @@
 #import "MRCEnumerable.h"
 #import "RestKitSettings.h"
 #import "Fixtures.h"
-#import "SBJSON.h"
 #import "ResponseSet.h"
 #import "NSDate+Additions.h"
 #import "InstrumentPlan.h"
@@ -28,6 +27,7 @@
 #import "MdesCode.h"
 #import "DispositionCode.h"
 #import <MRCEnumerable/MRCEnumerable.h>
+#import <JSONKit/JSONKit.h>
 
 @implementation RestKitSettingsTest
 
@@ -120,11 +120,11 @@
          "          \"event_disposition\":4,            "
          "          \"instruments\":[                   "
          "            {                                 "
-         "               \"instrument_id\":\"i1\"       "
+         "               \"instrument_id\":\"i1\",       "
          "               \"response_sets\":[{           "
          "                 \"uuid\":\"rs1\",            "
          "                 \"responses\":[              "
-         "                   {\"uuid\":\"r1\"}          "
+         "                   {\"uuid\":\"r1\"},          "
          "                   {\"uuid\":\"r2\"}          "
          "                 ]                            "
          "               }],                            "
@@ -287,7 +287,7 @@
 #pragma mark - Helper Methods
  
  - (NSDictionary *)deserializeJson:(NSString *)fieldworkJson {
-     NSDictionary* fieldwork = [[SBJSON new] objectWithString:fieldworkJson];
+     NSDictionary* fieldwork = [fieldworkJson objectFromJSONString];
      NSAssert(fieldwork != nil, @"Problem parsing fieldwork JSON");
      RKObjectMapper* mapper = [RKObjectMapper mapperWithObject:fieldwork mappingProvider:[RKObjectManager sharedManager].mappingProvider];
      RKObjectMappingResult* result = [mapper performMapping];

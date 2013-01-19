@@ -8,17 +8,17 @@
 
 #import "InstrumentTemplate.h"
 #import <NUSurveyor/NUSurvey.h>
-#import <SBJSON.h>
+#import <JSONKit/JSONKit.h>
 
 @implementation InstrumentTemplate
 @dynamic instrumentTemplateId,representation,participantType;
 
 - (void)setRepresentationDictionary:(NSDictionary*)r {
-    self.representation = [[[SBJSON alloc] init] stringWithObject:r];
+    self.representation = [r JSONString];
 }
 
 - (NSDictionary*)representationDictionary {
-    return [[[SBJSON alloc] init] objectWithString:self.representation];
+    return [self.representation objectFromJSONString];
 }
 
 - (NUSurvey*)survey {

@@ -7,7 +7,6 @@
 //
 
 #import "Instrument.h"
-#import "SBJSON.h"
 #import "NSDate+Additions.h"
 #import "NSString+Additions.h"
 #import "ResponseSet.h"
@@ -29,6 +28,7 @@
 #import "NUSurvey+Additions.h"
 #import "Participant.h"
 #import "Person.h"
+#import <JSONKit/JSONKit.h>
 
 NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER = 44;
 
@@ -52,7 +52,7 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
     NSMutableSet* all = [[NSMutableSet alloc] init];
     for (NSDictionary* rsDict in responseSetDicts) {
         ResponseSet* rs = [ResponseSet object];
-        [rs fromJson:[[[SBJSON alloc] init] stringWithObject:rsDict]];
+        [rs fromJson:[rsDict JSONString]];
         [all addObject:rs];
     }
     self.responseSets = all;
@@ -128,7 +128,7 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
         
         if (!found) {
             NSLog(@"No response set found for survey: %@", s.uuid);
-            NSDictionary* surveyDict = [[SBJSON new] objectWithString:s.jsonString];
+            NSDictionary* surveyDict = [s.jsonString objectFromJSONString];
             found = [ResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread];
             [self addResponseSetsObject:found];
             

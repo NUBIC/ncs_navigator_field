@@ -12,7 +12,6 @@
 #import "Participant.h"
 #import "Contact.h"
 #import "InstrumentTemplate.h"
-#import "SBJsonWriter.h"
 #import "ApplicationSettings.h"
 #import "NSDate+Additions.h"
 #import "CasServiceTicket+Additions.h"
