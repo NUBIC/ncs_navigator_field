@@ -173,8 +173,8 @@
 		22A11EF1166E6142000E1F07 /* NUPickerVC+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A11EF0166E6142000E1F07 /* NUPickerVC+Additions.m */; };
 		22B8E4A616643B6A00640DE8 /* DispositionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B8E4A516643B6A00640DE8 /* DispositionCode.m */; };
 		4F53118515FA58A1006F5BB2 /* InstrumentPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */; };
+		CBDE67D6A08C4C058C5A2697 /* libPods-NCSNavFieldTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F13715761CC546A89E735D30 /* libPods-NCSNavFieldTests.a */; };
 		D1CACF1A1F944E92AB51AE74 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 493CC93326804A8ABCA31763 /* libPods.a */; };
-		F75259C3F792403F9EE94A8A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 493CC93326804A8ABCA31763 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -641,6 +641,8 @@
 		4F53118315FA58A1006F5BB2 /* InstrumentPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentPlan.h; sourceTree = "<group>"; };
 		4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentPlan.m; sourceTree = "<group>"; };
 		C2CA3FB4FE8942AD94694D46 /* Pods.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		DEA6E5A24F9942628C51EFA8 /* Pods-NCSNavFieldTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NCSNavFieldTests.xcconfig"; path = "Pods/Pods-NCSNavFieldTests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		F13715761CC546A89E735D30 /* libPods-NCSNavFieldTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NCSNavFieldTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -672,7 +674,7 @@
 				0026E68C140347E700355BCB /* UIKit.framework in Frameworks */,
 				0026E68D140347E700355BCB /* Foundation.framework in Frameworks */,
 				0026E68E140347E700355BCB /* CoreGraphics.framework in Frameworks */,
-				F75259C3F792403F9EE94A8A /* libPods.a in Frameworks */,
+				CBDE67D6A08C4C058C5A2697 /* libPods-NCSNavFieldTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,6 +701,7 @@
 				0026E667140347E700355BCB /* Frameworks */,
 				0026E665140347E700355BCB /* Products */,
 				C2CA3FB4FE8942AD94694D46 /* Pods.xcconfig */,
+				DEA6E5A24F9942628C51EFA8 /* Pods-NCSNavFieldTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -731,6 +734,7 @@
 				0026E66A140347E700355BCB /* Foundation.framework */,
 				0026E66C140347E700355BCB /* CoreGraphics.framework */,
 				493CC93326804A8ABCA31763 /* libPods.a */,
+				F13715761CC546A89E735D30 /* libPods-NCSNavFieldTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1374,6 +1378,7 @@
 				0026E688140347E700355BCB /* Resources */,
 				0026E689140347E700355BCB /* ShellScript */,
 				1E442B0B4825433D918E36BD /* Copy Pods Resources */,
+				FC881525276C4EDBBBA32263 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1498,6 +1503,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+		FC881525276C4EDBBBA32263 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-NCSNavFieldTests-resources.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1733,11 +1752,7 @@
 					"\"$(SRCROOT)\"",
 					"$(inherited)",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-					"$(inherited)",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = NCSNavField;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -1768,11 +1783,7 @@
 					"\"$(SRCROOT)\"",
 					"$(inherited)",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-					"$(inherited)",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = NCSNavField;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1786,9 +1797,9 @@
 		};
 		0026E6A2140347E700355BCB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2CA3FB4FE8942AD94694D46 /* Pods.xcconfig */;
+			baseConfigurationReference = DEA6E5A24F9942628C51EFA8 /* Pods-NCSNavFieldTests.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/NCSNavField.app/NCSNavField";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1803,6 +1814,7 @@
 				INFOPLIST_FILE = "NCSNavFieldTests/NCSNavFieldTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-framework",
 					SenTestingKit,
 				);
@@ -1815,9 +1827,9 @@
 		};
 		0026E6A3140347E700355BCB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2CA3FB4FE8942AD94694D46 /* Pods.xcconfig */;
+			baseConfigurationReference = DEA6E5A24F9942628C51EFA8 /* Pods-NCSNavFieldTests.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/NCSNavField.app/NCSNavField";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1832,6 +1844,7 @@
 				INFOPLIST_FILE = "NCSNavFieldTests/NCSNavFieldTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-framework",
 					SenTestingKit,
 				);

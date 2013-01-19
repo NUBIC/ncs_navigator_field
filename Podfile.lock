@@ -10,6 +10,7 @@ PODS:
 - MRCEnumerable (0.1)
 - NSData+Base64 (1.0.0)
 - NUSurveyor (1.1.dev12)
+- OCMock (2.0.1)
 - RestKit (0.10.2):
   - RestKit/JSON (= 0.10.2)
 - RestKit/JSON (0.10.2):
@@ -40,6 +41,7 @@ DEPENDENCIES:
 - MBProgressHUD (= 0.5)
 - MRCEnumerable (from `MRCEnumerable.podspec')
 - NUSurveyor (from `NUSurveyor.podspec')
+- OCMock (= 2.0.1)
 - RestKit (= 0.10.2)
 - SBJson (= 2.2.3)
 - TestFlightSDK (= 1.1)
@@ -70,5 +72,6 @@ SPEC CHECKSUMS:
   SOCKit: 179515c1a621dd5652a60e9be02ea4adcd25bc9b
   TestFlightSDK: 2a2cdb82967c7f05655683c61854c92d36e9104d
   cocoa-oauth: 8f4c8b77c77ac660de37f8125557c4ec09b0118a
+  OCMock: 77a9c4c57af6bf258a537d34cf09abf422affede
 
-COCOAPODS: 0.16.0
+COCOAPODS: 0.16.1
