@@ -3,7 +3,6 @@ platform :ios, :deployment_target => "5.0"
 pod 'SBJson', '2.2.3'
 pod 'MBProgressHUD', '0.5'
 pod 'RestKit', '0.10.2'
-pod 'TestFlightSDK', '1.1'
 
 # TODO: Replace with BlocksKit or underscore?
 pod 'MRCEnumerable', :podspec => 'MRCEnumerable.podspec'

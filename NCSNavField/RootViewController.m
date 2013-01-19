@@ -150,7 +150,7 @@
     if (instrument != NULL) {
         NSArray* rels = [instrument surveyResponseSetRelationshipsWithSurveyContext:context];
         
-        NCSLog(@"Loading surveyor with instrument plan: %@", instrument.instrumentPlan.instrumentPlanId);
+        NSLog(@"Loading surveyor with instrument plan: %@", instrument.instrumentPlan.instrumentPlanId);
         
         MultiSurveyTVC *masterViewController = [[MultiSurveyTVC alloc] initWithSurveyResponseSetRelationships:rels];
         
@@ -205,7 +205,7 @@
 }
              
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
-//    NCSLog(@"DELEGATE: switched views: message from the nav controller delegate");
+//    NSLog(@"DELEGATE: switched views: message from the nav controller delegate");
 }
 
 #pragma Simple Table
@@ -215,7 +215,7 @@
 
 #pragma Actions
 - (void)syncButtonWasPressed {
-    NCSLog(@"Sync Pressed!!!");
+    NSLog(@"Sync Pressed!!!");
     NSString *emptyUrl;
     if ([[ApplicationSettings instance] coreSynchronizeConfigured:&emptyUrl]) {
         [self confirmSync];
@@ -250,13 +250,13 @@
     switch (buttonIndex) {
         case 0: 
         {       
-            NCSLog(@"No was selected by the user");
+            NSLog(@"No was selected by the user");
         }
         break;
             
         case 1: 
         {
-            NCSLog(@"Yes was selected by the user");
+            NSLog(@"Yes was selected by the user");
             [self startCasLogin];
         }
         break;
@@ -271,7 +271,7 @@
 }
 
 - (void) deleteButtonWasPressed {
-    NCSLog(@"Delete button pressed");
+    NSLog(@"Delete button pressed");
 
     [self purgeDataStore];
     
@@ -298,7 +298,7 @@
 #pragma mark - Cas Login Delegate
 
 - (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket {
-    NCSLog(@"My Successful login: %@", serviceTicket);
+    NSLog(@"My Successful login: %@", serviceTicket);
     dispatch_async(dispatch_get_main_queue(), ^(void) {
         [self setHUDMessage:SYNCING_CONTACTS];
     });

@@ -27,7 +27,7 @@
         CasProxyTicket* pending = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:self.pgt];
         [pending reify];
         if (!pending.error) {
-            NCSLog(@"Proxy ticket successfully obtained: %@", pending.proxyTicket);
+            NSLog(@"Proxy ticket successfully obtained: %@", pending.proxyTicket);
             pt = pending;
         } else {
             *error = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", pending.message];

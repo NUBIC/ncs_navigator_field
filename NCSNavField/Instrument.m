@@ -127,12 +127,12 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
         }];
         
         if (!found) {
-            NCSLog(@"No response set found for survey: %@", s.uuid);
+            NSLog(@"No response set found for survey: %@", s.uuid);
             NSDictionary* surveyDict = [[SBJSON new] objectWithString:s.jsonString];
             found = [ResponseSet newResponseSetForSurvey:surveyDict withModel:[RKObjectManager sharedManager].objectStore.managedObjectModel inContext:[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread];
             [self addResponseSetsObject:found];
             
-            NCSLog(@"Creating new response set: %@", found.uuid);
+            NSLog(@"Creating new response set: %@", found.uuid);
         }
         
         ResponseGenerator* g = [[ResponseGenerator alloc] initWithSurvey:s context:ctx];

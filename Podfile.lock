@@ -33,7 +33,6 @@ PODS:
 - RestKit/UI (0.10.2)
 - SBJson (2.2.3)
 - SOCKit (1.1)
-- TestFlightSDK (1.1)
 - cocoa-oauth (0.0.1):
   - NSData+Base64 (~> 1.0)
 
@@ -44,7 +43,6 @@ DEPENDENCIES:
 - OCMock (= 2.0.1)
 - RestKit (= 0.10.2)
 - SBJson (= 2.2.3)
-- TestFlightSDK (= 1.1)
 
 EXTERNAL SOURCES:
   MRCEnumerable:
@@ -70,7 +68,6 @@ SPEC CHECKSUMS:
   RestKit/UI: a9f24f857c792183bcc656f891abe93d38e342ee
   SBJson: cc373c9eed9314a45715e4fb77a1415c45fa056e
   SOCKit: 179515c1a621dd5652a60e9be02ea4adcd25bc9b
-  TestFlightSDK: 2a2cdb82967c7f05655683c61854c92d36e9104d
   cocoa-oauth: 8f4c8b77c77ac660de37f8125557c4ec09b0118a
   OCMock: 77a9c4c57af6bf258a537d34cf09abf422affede
 

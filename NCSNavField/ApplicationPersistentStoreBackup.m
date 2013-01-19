@@ -59,7 +59,7 @@
             res = [fm removeItemAtPath:[path stringByAppendingPathComponent:file] error:&err];
         }
         if (!res && err) {
-            NCSLog(@"Could not remove backup: %@", err);
+            NSLog(@"Could not remove backup: %@", err);
         }
     }
 }

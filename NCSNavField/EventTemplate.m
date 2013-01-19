@@ -42,7 +42,7 @@
         if (eventHasAttribute) {
             [e setValue:value forKey:attr];
         } else {
-            NCSLog(@"Error: Attribute '%@' does not exist on event", attr);
+            NSLog(@"Error: Attribute '%@' does not exist on event", attr);
         }
     }
 

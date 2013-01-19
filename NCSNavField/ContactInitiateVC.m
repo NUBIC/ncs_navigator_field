@@ -39,7 +39,7 @@ NSString *const ContactInitiateScreenDismissedNotification = @"ContactInitiateSc
 #pragma mark - View lifecycle
 
 - (void)viewDidAppear:(BOOL)animated {
-    NCSLog(@"Contact Initiative VC");
+    NSLog(@"Contact Initiative VC");
     UIView* toolbar = [self toolbarWithFrame:CGRectMake(0, -2, self.view.frame.size.width, 50)];
 
     /* Left and Right Pane */
@@ -226,9 +226,9 @@ NSString *const ContactInitiateScreenDismissedNotification = @"ContactInitiateSc
     NSError *error = nil;
     
     if (![moc save:&error]) {
-        NCSLog(@"Error saving initiated contact");
+        NSLog(@"Error saving initiated contact");
     }
-    NCSLog(@"Initialiated contact: %@", self.contact.contactId);
+    NSLog(@"Initialiated contact: %@", self.contact.contactId);
 }
 
 - (void) rollbackTransaction {
@@ -236,7 +236,7 @@ NSString *const ContactInitiateScreenDismissedNotification = @"ContactInitiateSc
     NSManagedObjectContext* moc = [self.contact managedObjectContext];
     NSUndoManager* undoManager = [moc undoManager];
     [undoManager undo];
-    NCSLog(@"Rolledback contact: %@", self.contact.contactId);
+    NSLog(@"Rolledback contact: %@", self.contact.contactId);
 }
 
 

@@ -55,7 +55,7 @@
     
     NSString* path = @"/api/v1/providers";
     
-    NCSLog(@"Requesting data from %@", path);
+    NSLog(@"Requesting data from %@", path);
     RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
     loader.method = RKRequestMethodGET;
     

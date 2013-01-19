@@ -94,7 +94,7 @@ static RestKitSettings* instance;
     if([self RSRunningOnOS4OrBetter]) {
         NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:NSFileProtectionComplete forKey:NSFileProtectionKey];
         if(![[NSFileManager defaultManager] setAttributes:fileAttributes ofItemAtPath:objectStore.pathToStoreFile error:&error]){
-            NCSLog(@"Data protection is not enabled for %@", objectStore.pathToStoreFile);
+            NSLog(@"Data protection is not enabled for %@", objectStore.pathToStoreFile);
         }
     }
     

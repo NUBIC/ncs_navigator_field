@@ -52,7 +52,7 @@ NSUInteger const CONTACT_METHOD_TAG = 10;
 #pragma mark - View lifecycle
 
 - (void)viewDidAppear:(BOOL)animated {
-    NCSLog(@"Close contact screen");
+    NSLog(@"Close contact screen");
 
     CGFloat contactFrameHeight = 850;
     CGPoint o = self.view.frame.origin;
@@ -295,9 +295,9 @@ NSUInteger const CONTACT_METHOD_TAG = 10;
     NSError *error = nil;
     
     if (![moc save:&error]) {
-        NCSLog(@"Error saving initiated contact");
+        NSLog(@"Error saving initiated contact");
     }
-    NCSLog(@"Saved contact: %@", self.contact.contactId);
+    NSLog(@"Saved contact: %@", self.contact.contactId);
 }
 
 - (void) rollbackTransaction {
@@ -305,7 +305,7 @@ NSUInteger const CONTACT_METHOD_TAG = 10;
     NSManagedObjectContext* moc = [self.contact managedObjectContext];
     NSUndoManager* undoManager = [moc undoManager];
     [undoManager undo];
-    NCSLog(@"Rolledback contact: %@", self.contact.contactId);
+    NSLog(@"Rolledback contact: %@", self.contact.contactId);
 }
 
 #pragma mark - SingleOptionPickerDelegate

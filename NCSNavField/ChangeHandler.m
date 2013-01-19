@@ -34,7 +34,7 @@
             [self.object setValue:value forKey:NSStringFromSelector(self.field)];
         }
     } else {
-        NCSLog(@"Failed to update '%@' on the class %@", NSStringFromSelector(self.field), NSStringFromClass([self.object class]));
+        NSLog(@"Failed to update '%@' on the class %@", NSStringFromSelector(self.field), NSStringFromClass([self.object class]));
     }
 }
 

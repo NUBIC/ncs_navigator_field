@@ -31,7 +31,7 @@
 
 - (BOOL)perform {
     if (!self.ticket.pgt) {
-        NCSLog(@"Presenting service ticket");
+        NSLog(@"Presenting service ticket");
         [self.ticket present];
     }
     NSString *error = [NSString new];
@@ -60,7 +60,7 @@
         [objectManager.client.HTTPHeaders setValue:strLastModified forKey:@"If-Modified-Since"];
     }
     
-    NCSLog(@"Requesting data from %@", path);
+    NSLog(@"Requesting data from %@", path);
     RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
     loader.method = RKRequestMethodGET;
     

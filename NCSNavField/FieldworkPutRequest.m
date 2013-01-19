@@ -57,7 +57,7 @@
             RKObjectLoader* loader = [self objectLoader:submission objectManager:objectManager];
             self.response = [loader sendSynchronously];
             NSLog(@"Put response has location header: %@", self.response.location);
-            NCSLog(@"Response status code: %d", [self.response statusCode]);
+            NSLog(@"Response status code: %d", [self.response statusCode]);
             success = [self isSuccessful];
         }
     }
@@ -77,7 +77,7 @@
     
     NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork/%@", submission.fieldworkId];
     
-    NCSLog(@"PUT %@", path);
+    NSLog(@"PUT %@", path);
     
     RKObjectLoader* loader = [objectManager objectLoaderForObject:submission method:RKRequestMethodPUT delegate:self];
     loader.resourcePath = path;
@@ -99,8 +99,8 @@
     // {"success":true}, which is unmappable and causes RestKit to
     // throw an error.
     if (!objectLoader.response.isSuccessful) {
-        NCSLog(@"Error: Localized Description: %@", [error localizedDescription]);
-        NCSLog(@"Error: Underlying Error: %@", [error.userInfo valueForKey:NSUnderlyingErrorKey]);
+        NSLog(@"Error: Localized Description: %@", [error localizedDescription]);
+        NSLog(@"Error: Underlying Error: %@", [error.userInfo valueForKey:NSUnderlyingErrorKey]);
         self.error = [NSString stringWithFormat:@"Error while pushing fieldwork.\n%@", [error localizedDescription]];
         [_delegate showAlertView:PUTTING_DATA_ON_SERVER];
         FieldworkSynchronizationException *exServerDown = [[FieldworkSynchronizationException alloc] initWithName:self.error reason:nil userInfo:nil];

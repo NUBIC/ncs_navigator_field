@@ -43,7 +43,7 @@ NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
 #pragma mark - View lifecycle
 
 - (void)viewDidAppear:(BOOL)animated {
-    NCSLog(@"Event Screen");
+    NSLog(@"Event Screen");
     
     CGFloat contactFrameHeight = 580;
     CGPoint o = self.view.frame.origin;
@@ -252,9 +252,9 @@ NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
     NSError *error = nil;
     
     if (![moc save:&error]) {
-        NCSLog(@"Error saving initiated contact");
+        NSLog(@"Error saving initiated contact");
     }
-    NCSLog(@"Saved Event");
+    NSLog(@"Saved Event");
 }
 
 - (void) rollbackTransaction {
@@ -262,7 +262,7 @@ NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
     NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
     NSUndoManager* undoManager = [moc undoManager];
     [undoManager undo];
-    NCSLog(@"Rolledback event");
+    NSLog(@"Rolledback event");
 }
 
 #pragma mark - Managing Keyboard

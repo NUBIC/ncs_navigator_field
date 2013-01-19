@@ -79,7 +79,6 @@
 		00816CB6154B49450054C918 /* FieldworkSynchronizeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CB5154B49450054C918 /* FieldworkSynchronizeOperation.m */; };
 		00816CBC154EF2350054C918 /* ApplicationPersistentStoreBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CBB154EF2350054C918 /* ApplicationPersistentStoreBackup.m */; };
 		00816CBF154F165E0054C918 /* ApplicationPersistentStoreBackupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00816CBE154F165D0054C918 /* ApplicationPersistentStoreBackupOperation.m */; };
-		00860D271520EF3000FCCFCB /* TestFlightSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 00860D261520EF3000FCCFCB /* TestFlightSettings.m */; };
 		0087225A156AF6F100CE24ED /* test-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 00872259156AF6F100CE24ED /* test-background.png */; };
 		0087225D156B0F4300CE24ED /* ApplicationInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087225C156B0F4300CE24ED /* ApplicationInformation.m */; };
 		0087A554160A5EFF005CB008 /* MultiSurveyTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087A553160A5EFF005CB008 /* MultiSurveyTVC.m */; };
@@ -133,7 +132,6 @@
 		00F940841642E08100176840 /* EventTemplateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F940831642E08100176840 /* EventTemplateTest.m */; };
 		00FF37DE1417C50D0009B1D4 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37DD1417C50D0009B1D4 /* Instrument.m */; };
 		00FF37E71417D2380009B1D4 /* ContactNavigationTableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */; };
-		22226B0316668322005CCE71 /* TestFlight-TeamToken.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22226B0216668322005CCE71 /* TestFlight-TeamToken.txt */; };
 		22226BB41666ED0F005CCE71 /* BlockActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 22226BAC1666ED0B005CCE71 /* BlockActionSheet.m */; };
 		22226BB51666ED0F005CCE71 /* BlockAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22226BAE1666ED0C005CCE71 /* BlockAlertView.m */; };
 		22226BB61666ED0F005CCE71 /* BlockBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 22226BB01666ED0D005CCE71 /* BlockBackground.m */; };
@@ -471,8 +469,6 @@
 		00816CBB154EF2350054C918 /* ApplicationPersistentStoreBackup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationPersistentStoreBackup.m; sourceTree = "<group>"; };
 		00816CBD154F165D0054C918 /* ApplicationPersistentStoreBackupOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationPersistentStoreBackupOperation.h; sourceTree = "<group>"; };
 		00816CBE154F165D0054C918 /* ApplicationPersistentStoreBackupOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationPersistentStoreBackupOperation.m; sourceTree = "<group>"; };
-		00860D251520EF3000FCCFCB /* TestFlightSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlightSettings.h; sourceTree = "<group>"; };
-		00860D261520EF3000FCCFCB /* TestFlightSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFlightSettings.m; sourceTree = "<group>"; };
 		00872259156AF6F100CE24ED /* test-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-background.png"; sourceTree = "<group>"; };
 		0087225B156B0F4300CE24ED /* ApplicationInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationInformation.h; sourceTree = "<group>"; };
 		0087225C156B0F4300CE24ED /* ApplicationInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationInformation.m; sourceTree = "<group>"; };
@@ -581,7 +577,6 @@
 		00FF37DD1417C50D0009B1D4 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
 		00FF37E31417CFA30009B1D4 /* ContactNavigationTableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNavigationTableTest.h; sourceTree = "<group>"; };
 		00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactNavigationTableTest.m; sourceTree = "<group>"; };
-		22226B0216668322005CCE71 /* TestFlight-TeamToken.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "TestFlight-TeamToken.txt"; path = "NCSNavField/TestFlight-TeamToken.txt"; sourceTree = "<group>"; };
 		22226BAB1666ED0B005CCE71 /* BlockActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlockActionSheet.h; path = NCSNavField/BlockActionSheet.h; sourceTree = "<group>"; };
 		22226BAC1666ED0B005CCE71 /* BlockActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlockActionSheet.m; path = NCSNavField/BlockActionSheet.m; sourceTree = "<group>"; };
 		22226BAD1666ED0B005CCE71 /* BlockAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlockAlertView.h; path = NCSNavField/BlockAlertView.h; sourceTree = "<group>"; };
@@ -684,7 +679,6 @@
 		0026E659140347E700355BCB = {
 			isa = PBXGroup;
 			children = (
-				22226B0216668322005CCE71 /* TestFlight-TeamToken.txt */,
 				00872259156AF6F100CE24ED /* test-background.png */,
 				00C0C8D515655E390047A113 /* icon-test.png */,
 				000E64B2150EB2BF0006B31E /* Settings.bundle */,
@@ -1095,8 +1089,6 @@
 				00D93A431507CC19009CFDE9 /* Participant.m */,
 				0073B3661511277000543DA4 /* Fieldwork.h */,
 				0073B3671511277000543DA4 /* Fieldwork.m */,
-				00860D251520EF3000FCCFCB /* TestFlightSettings.h */,
-				00860D261520EF3000FCCFCB /* TestFlightSettings.m */,
 				000D8E89152E9EE7006EE224 /* NSDate+Additions.h */,
 				000D8E8A152E9EE7006EE224 /* NSDate+Additions.m */,
 				006C26D91541EF3200D9B3B1 /* ApplicationPersistentStore.h */,
@@ -1435,7 +1427,6 @@
 				00C0C8D615655E390047A113 /* icon-test.png in Resources */,
 				0087225A156AF6F100CE24ED /* test-background.png in Resources */,
 				009EEF1D164870AC00EB98D1 /* ProviderListViewController.xib in Resources */,
-				22226B0316668322005CCE71 /* TestFlight-TeamToken.txt in Resources */,
 				22226BD51666ED7D005CCE71 /* action-black-button-selected.png in Resources */,
 				22226BD61666ED7D005CCE71 /* action-black-button-selected@2x.png in Resources */,
 				22226BD71666ED7D005CCE71 /* action-black-button.png in Resources */,
@@ -1555,7 +1546,6 @@
 				00D93A3A1506B2CF009CFDE9 /* RestKitSettings.m in Sources */,
 				00D93A441507CC19009CFDE9 /* Participant.m in Sources */,
 				0073B3681511277000543DA4 /* Fieldwork.m in Sources */,
-				00860D271520EF3000FCCFCB /* TestFlightSettings.m in Sources */,
 				000D8E77152CAC5B006EE224 /* TimePicker.m in Sources */,
 				000D8E8B152E9EE7006EE224 /* NSDate+Additions.m in Sources */,
 				0095430F153E62040018DAC3 /* InstrumentVC.m in Sources */,

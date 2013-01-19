@@ -34,7 +34,7 @@
         NSError* error = nil;
         success = [fm copyItemAtPath:self.main toPath:self.backup error:&error];
         if (error) {
-            NCSLog(@"Backup failed: %@", error);
+            NSLog(@"Backup failed: %@", error);
         }
     }
     return success;

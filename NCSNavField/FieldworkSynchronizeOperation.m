@@ -93,7 +93,7 @@
     NSString* statusId = NULL;
     ApplicationPersistentStore* store = [ApplicationPersistentStore instance];
     ApplicationPersistentStoreBackup* backup = [store backup];
-    NCSLog(@"Backup path: %@", [backup path]);
+    NSLog(@"Backup path: %@", [backup path]);
     if (backup) {
         FieldworkPutRequest* put = [[FieldworkPutRequest alloc] initWithServiceTicket:self.ticket];
         put.delegate=_delegate;

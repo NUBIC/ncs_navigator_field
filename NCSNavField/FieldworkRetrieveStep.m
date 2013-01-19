@@ -72,7 +72,7 @@
     
     NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@", [today toYYYYMMDD], [inOneWeek toYYYYMMDD]];
     
-    NCSLog(@"Requesting data from %@", path);
+    NSLog(@"Requesting data from %@", path);
     RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
     loader.method = RKRequestMethodPOST;
     
@@ -82,7 +82,7 @@
 #pragma mark RKObjectLoaderDelegate
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-	NCSLog(@"Data loaded successfully [%@]", [[objectLoader response] location]);
+	NSLog(@"Data loaded successfully [%@]", [[objectLoader response] location]);
     
     Fieldwork* w = [Fieldwork object];
     w.uri = [[objectLoader response] location];
@@ -90,7 +90,7 @@
     
     NSError *error = [[NSError alloc] init];
     if (![[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:&error]) {
-        NCSLog(@"Error saving fieldwork location");
+        NSLog(@"Error saving fieldwork location");
         [_delegate showAlertView:STORING_CONTACTS];
         FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"Error saving fieldwork location" reason:nil userInfo:nil];
         @throw ex;
