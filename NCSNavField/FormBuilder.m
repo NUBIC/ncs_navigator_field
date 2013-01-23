@@ -204,7 +204,10 @@
 }
 
 - (id) objectValueForKey:(SEL)key {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks" //http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
     return [_object respondsToSelector:key] ? [_object performSelector:key] : NULL;
+#pragma clang diagnostic pop
 }
 
 

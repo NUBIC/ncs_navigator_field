@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C3006" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C3012" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Contact" representedClassName="Contact" syncable="YES">
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contactId" optional="YES" attributeType="String" syncable="YES"/>
@@ -151,18 +151,18 @@
         <relationship name="responses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Response" inverseName="responseSet" inverseEntity="Response" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="0" positionY="0" width="128" height="405"/>
-        <element name="Event" positionX="0" positionY="0" width="128" height="345"/>
-        <element name="EventTemplate" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="Fieldwork" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="Instrument" positionX="0" positionY="0" width="128" height="375"/>
-        <element name="InstrumentPlan" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="InstrumentTemplate" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="MergeStatus" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="Participant" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="Person" positionX="0" positionY="0" width="128" height="285"/>
-        <element name="Provider" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="Response" positionX="0" positionY="0" width="128" height="165"/>
-        <element name="ResponseSet" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="Contact" positionX="369" positionY="-81" width="128" height="405"/>
+        <element name="Event" positionX="115" positionY="465" width="128" height="345"/>
+        <element name="EventTemplate" positionX="-317" positionY="675" width="128" height="105"/>
+        <element name="Fieldwork" positionX="144" positionY="-234" width="128" height="120"/>
+        <element name="Instrument" positionX="-117" positionY="486" width="128" height="375"/>
+        <element name="InstrumentPlan" positionX="99" positionY="324" width="128" height="90"/>
+        <element name="InstrumentTemplate" positionX="-180" positionY="315" width="128" height="120"/>
+        <element name="MergeStatus" positionX="-99" positionY="108" width="128" height="90"/>
+        <element name="Participant" positionX="-99" positionY="-36" width="128" height="90"/>
+        <element name="Person" positionX="-263" positionY="-36" width="128" height="285"/>
+        <element name="Provider" positionX="-191" positionY="-171" width="128" height="105"/>
+        <element name="Response" positionX="-488" positionY="474" width="128" height="165"/>
+        <element name="ResponseSet" positionX="-297" positionY="486" width="128" height="150"/>
     </elements>
 </model>
