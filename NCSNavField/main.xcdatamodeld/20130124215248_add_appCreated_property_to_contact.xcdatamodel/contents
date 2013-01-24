@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C3012" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Contact" representedClassName="Contact" syncable="YES">
+        <attribute name="appCreated" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contactId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -173,7 +174,7 @@
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="-101" positionY="63" width="128" height="403"/>
+        <element name="Contact" positionX="-101" positionY="63" width="128" height="420"/>
         <element name="DispositionCode" positionX="160" positionY="192" width="128" height="135"/>
         <element name="Event" positionX="-767" positionY="231" width="128" height="345"/>
         <element name="EventTemplate" positionX="322" positionY="63" width="128" height="120"/>

@@ -11,6 +11,7 @@
 #import "Contact.h"
 #import "Event.h"
 #import "Person.h"
+#import "Participant.h"
 #import "NSDate+Additions.h"
 
 @implementation ContactTest
@@ -37,4 +38,30 @@ Contact* c;
 - (void)testContactStartTimeString {
     STAssertEqualObjects([[c startTime] jsonSchemaTime], @"10:45", @"Wrong value");
 }
+
+- (void) testContactDeleteFromManagedObjectContext {
+    
+    Participant *newParticipant = [Participant participant];
+    Person *newPerson = [Person person];
+    [newParticipant addPersonsObject:newPerson];
+    
+    Contact *newContact = [Contact contact];
+    newContact.person = newPerson;
+    Event *newEvent = [Event event];
+    [newContact addEventsObject:newEvent];
+    
+    NSError *saveError = nil;
+    [newContact.managedObjectContext save:&saveError];
+    
+    STAssertNil(saveError, [NSString stringWithFormat:@"Didn't save… %@", saveError]);
+    
+    NSManagedObjectContext *currentContext = newContact.managedObjectContext;
+    NSManagedObjectID *contactID = newContact.objectID;
+    STAssertFalse(contactID.isTemporaryID, @"ID ");
+    [newContact deleteFromManagedObjectContext:currentContext];
+    
+    STAssertNil([Contact findByPrimaryKey:contactID], @"Contact was found");
+    
+}
+
 @end

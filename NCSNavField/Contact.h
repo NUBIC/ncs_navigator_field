@@ -62,6 +62,8 @@
 
 @property(nonatomic,strong) NSNumber *selectedValueForCategory;
 
+@property (nonatomic, strong) NSNumber *appCreated;
+
 #pragma mark relations
 
 @property(nonatomic,strong) NSSet* events;
@@ -78,6 +80,8 @@
 - (BOOL) closed;
 
 -(BOOL)onSameDay:(Contact*)c;
+
+- (BOOL) deleteFromManagedObjectContext:(NSManagedObjectContext *)context;
 
 #pragma setter
 

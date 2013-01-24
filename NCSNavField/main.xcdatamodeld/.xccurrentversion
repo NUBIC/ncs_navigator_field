@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>_XCCurrentVersionName</key>
-	<string>20130124192217_add_instrument_relation_to_eventTemplate.xcdatamodel</string>
+	<string>20130124215248_add_appCreated_property_to_contact.xcdatamodel</string>
 </dict>
 </plist>

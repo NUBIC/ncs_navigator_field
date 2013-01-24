@@ -61,8 +61,9 @@ NSInteger const EVENT_TYPE_CODE_PREGNANCY_VISIT_ONE = 13;
 //      addInstrumentsObject to add an instrument to the ordered set.
 //      https://openradar.appspot.com/10114310
 - (void)addInstrumentsObject:(Instrument *)value {
-    NSMutableOrderedSet *instruments = [[NSMutableOrderedSet alloc] initWithOrderedSet:self.instruments];
-    [instruments addObject:value];
-    self.instruments = instruments;
+    NSMutableOrderedSet *temporaryInstruments = [self.instruments mutableCopy];
+    [temporaryInstruments addObject:value];
+    self.instruments = [NSOrderedSet orderedSetWithOrderedSet:temporaryInstruments];
 }
+
 @end

@@ -6,8 +6,9 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import "DatabaseTest.h"
 
-@interface ContactTest : SenTestCase
+@interface ContactTest : DatabaseTest
+
 
 @end

@@ -51,6 +51,10 @@
     return cell;
 }
 
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
 - (UITableViewCell*)cellForRowClass:(NSString*)rowClass {
     return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier:rowClass];
 }
@@ -69,11 +73,6 @@
         [self didSelectRow:r];
     }
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {    
-    return YES;  
 }
 
 - (void) didSelectRow:(Row*)row {}

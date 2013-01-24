@@ -211,6 +211,35 @@
     self.detailViewController.detailItem = row.entity;
 }
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Contact *contactToRemove = [self.contacts objectAtIndex:indexPath.row];
+        
+        if ([self.detailViewController.detailItem isEqual:contactToRemove] == YES) {
+            self.detailViewController.detailItem = nil;
+        }
+        
+        if ([contactToRemove deleteFromManagedObjectContext:[NSManagedObjectContext contextForCurrentThread]] == YES) {
+            self.contacts = [self contactsFromDataStore];
+        }
+        else {
+            
+        }
+    }
+}
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row > self.contacts.count - 1) { 
+        return NO;
+    }
+    Contact *contact = [self.contacts objectAtIndex:indexPath.row];
+    return [contact.appCreated boolValue];
+}
+
 #pragma Actions
 - (void)syncButtonWasPressed {
     NSLog(@"Sync Pressed!!!");
@@ -474,6 +503,7 @@
 
 - (IBAction)screenParticipant:(UIButton *)button {
     Contact* screening = [Contact contact];
+    screening.appCreated = @(YES);
     
     Participant* participant = [Participant participant];
     Person* person = [participant selfPerson];
@@ -520,7 +550,6 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeLeft;
 }
-
 
 - (void)didReceiveMemoryWarning
 {

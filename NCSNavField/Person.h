@@ -10,6 +10,8 @@
 
 FOUNDATION_EXPORT NSInteger const PERSON_RELATIONSHIP_CODE_SELF;
 
+@class Participant;
+
 @interface Person : NSManagedObject
 
 @property(nonatomic,strong) NSString* cellPhone;
@@ -26,6 +28,7 @@ FOUNDATION_EXPORT NSInteger const PERSON_RELATIONSHIP_CODE_SELF;
 @property(nonatomic,strong) NSString* street;
 @property(nonatomic,strong) NSNumber* suffixCode;
 @property(nonatomic,strong) NSString* zipCode;
+@property (nonatomic, strong) Participant *participant;
 
 #pragma mark - Methods
 

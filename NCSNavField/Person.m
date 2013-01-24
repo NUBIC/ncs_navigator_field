@@ -17,7 +17,7 @@ NSInteger const PERSON_RELATIONSHIP_CODE_SELF = 1;
 
 static const NSString* NEW_PERSON_NAME = @"New Person";
 
-@dynamic cellPhone, city, email, firstName, homePhone, lastName, middleName, personId, prefixCode, relationshipCode, state, street, suffixCode, zipCode;
+@dynamic cellPhone, city, email, firstName, homePhone, lastName, middleName, personId, prefixCode, relationshipCode, state, street, suffixCode, zipCode, participant;
 
 + (Person*)person {
     Person* p = [Person object];

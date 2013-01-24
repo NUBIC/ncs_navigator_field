@@ -58,4 +58,9 @@
     return e;
 }
 
+-(void)addInstrumentsObject:(Instrument *)value {
+    NSMutableOrderedSet *temporarySet = [self.instruments mutableCopy];
+    [temporarySet addObject:value];
+    self.instruments = [NSOrderedSet orderedSetWithOrderedSet:temporarySet];
+}
 @end

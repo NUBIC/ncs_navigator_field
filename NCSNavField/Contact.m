@@ -9,13 +9,14 @@
 #import "Contact.h"
 #import "Event.h"
 #import "Person.h"
+#import "Participant.h"
 #import "NSString+Additions.h"
 #import "NSDate+Additions.h"
 #import <NUSurveyor/NUUUID.h>
 
 @implementation Contact
 
-@dynamic contactId, typeId, date, startTime, endTime, personId, person, initiated, events, locationId, locationOther, whoContactedId, whoContactedOther, comments, languageId, languageOther, interpreterId, interpreterOther, privateId, privateDetail, distanceTraveled, dispositionCode, version;
+@dynamic contactId, typeId, date, startTime, endTime, personId, person, initiated, events, locationId, locationOther, whoContactedId, whoContactedOther, comments, languageId, languageOther, interpreterId, interpreterOther, privateId, privateDetail, distanceTraveled, dispositionCode, version, appCreated;
 @synthesize selectedValueForCategory = _selectedValueForCategory;
 
 + (Contact*)contact {
@@ -127,5 +128,18 @@
     return FALSE;
 }
 
+-(BOOL)deleteFromManagedObjectContext:(NSManagedObjectContext *)context {
+    Person *selectedPerson = self.person;
+    Participant *selectedParticipant = selectedPerson.participant;
+    [context deleteObject:selectedParticipant];
+    [context deleteObject:self];
+    NSError *saveError = nil;
+    if ([context save:&saveError] == YES)
+        return YES;
+    else {
+        NSLog(@"There was a problem deleting contact: %@ with error: %@", self, saveError);
+        return NO;
+    }
+}
 
 @end
