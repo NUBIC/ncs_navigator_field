@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>_XCCurrentVersionName</key>
-	<string>20121227195027_add_delete_cascade_rules.xcdatamodel</string>
+	<string>20130124192217_add_instrument_relation_to_eventTemplate.xcdatamodel</string>
 </dict>
 </plist>
