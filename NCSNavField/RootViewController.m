@@ -233,9 +233,10 @@
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row > self.contacts.count - 1) { 
-        return NO;
-    }
+    
+    if (!tableView.isEditing)
+        return YES;
+
     Contact *contact = [self.contacts objectAtIndex:indexPath.row];
     return [contact.appCreated boolValue];
 }

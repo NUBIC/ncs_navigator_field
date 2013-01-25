@@ -38,10 +38,11 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 }
 
 @property (nonatomic, strong) IBOutlet ContactDisplayController *detailViewController;
-@property(nonatomic,strong) RKReachabilityObserver* reachability;
-@property(nonatomic,strong) MBProgressHUD* syncIndicator;
-@property(nonatomic,strong) Instrument* administeredInstrument;
-@property(nonatomic,strong) CasServiceTicket* serviceTicket;
+@property (nonatomic,strong) RKReachabilityObserver* reachability;
+@property (nonatomic,strong) MBProgressHUD* syncIndicator;
+@property (nonatomic,strong) Instrument* administeredInstrument;
+@property (nonatomic,strong) CasServiceTicket* serviceTicket;
+ 
 - (void)toggleDeleteButton;
 - (void)purgeDataStore;
 - (void)didSelectRow:(Row*)row;
@@ -55,7 +56,7 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 #pragma mark
 #pragma mark - CasLoginDelegate
 - (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket;
--(void)failure:(NSError *)err;
+- (void)failure:(NSError *)err;
 
 #pragma mark - TableView
 - (UIView*)tableHeaderView;
