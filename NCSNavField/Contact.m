@@ -129,6 +129,7 @@
 }
 
 -(BOOL)deleteFromManagedObjectContext:(NSManagedObjectContext *)context {
+    
     Person *selectedPerson = self.person;
     Participant *selectedParticipant = selectedPerson.participant;
     [context deleteObject:selectedParticipant];

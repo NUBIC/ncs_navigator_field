@@ -64,12 +64,12 @@
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
     [objectManager.client.HTTPHeaders setValue:ApplicationSettings.instance.clientId forKey:@"X-Client-ID"];
     
-    NSDate* today = [NSDate date];
-    NSInteger days = [[ApplicationSettings instance] upcomingDaysToSync];
-    NSTimeInterval seconds = 60 * 60 * 24 * days;
-    NSDate* inOneWeek = [today dateByAddingTimeInterval:seconds];
-    
-    NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@", [today toYYYYMMDD], [inOneWeek toYYYYMMDD]];
+    NSDateComponents *daysComponent = [[NSDateComponents alloc] init];
+    daysComponent.day = [[ApplicationSettings instance] upcomingDaysToSync];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate* inOneWeek = [calendar dateByAddingComponents:daysComponent toDate:[NSDate date] options:0];
+
+    NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@", [[NSDate date] toYYYYMMDD], [inOneWeek toYYYYMMDD]];
     
     NSLog(@"Requesting data from %@", path);
     RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
