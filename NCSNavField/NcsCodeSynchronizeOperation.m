@@ -61,7 +61,8 @@
     }
     
     NSLog(@"Requesting data from %@", path);
-    RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
+    RKObjectLoader* loader = [objectManager loaderWithResourcePath:path];
+    loader.delegate = self;
     loader.method = RKRequestMethodGET;
     
     RKResponse *response = [loader sendSynchronously];

@@ -79,7 +79,8 @@
     
     NSLog(@"PUT %@", path);
     
-    RKObjectLoader* loader = [objectManager objectLoaderForObject:submission method:RKRequestMethodPUT delegate:self];
+    RKObjectLoader* loader = [objectManager loaderForObject:submission method:RKRequestMethodPUT];
+    loader.delegate = self;
     loader.resourcePath = path;
     
     return loader;

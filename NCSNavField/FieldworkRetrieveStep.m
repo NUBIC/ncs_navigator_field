@@ -72,7 +72,8 @@
     NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@", [[NSDate date] toYYYYMMDD], [inOneWeek toYYYYMMDD]];
     
     NSLog(@"Requesting data from %@", path);
-    RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:path delegate:self];
+    RKObjectLoader* loader = [objectManager loaderWithResourcePath:path];
+    loader.delegate = self;
     loader.method = RKRequestMethodPOST;
     
     [loader sendSynchronously];
