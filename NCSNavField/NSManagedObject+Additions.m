@@ -86,4 +86,10 @@
     return [NSMutableDictionary new];
 }
 
++ (id)transient {
+    NSEntityDescription *entity = [self entity];
+    id object = [[self alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
+    return object;
+}
+
 @end

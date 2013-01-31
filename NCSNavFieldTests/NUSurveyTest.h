@@ -7,7 +7,8 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "DatabaseTest.h"
 
-@interface NUSurveyTest : SenTestCase
+@interface NUSurveyTest : DatabaseTest
 
 @end

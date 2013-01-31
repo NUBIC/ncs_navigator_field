@@ -16,7 +16,7 @@
     
     NSMutableArray* questions = [NSMutableArray new];
     for (NSDictionary* qDict in [questionGroupDict objectForKey:@"questions"]) {
-        [questions addObject:[[NUQuestion alloc] initWithDictionary:qDict]];
+        [questions addObject:[NUQuestion transientWithDictionary:qDict]];
     }
     self.questions = questions;
     

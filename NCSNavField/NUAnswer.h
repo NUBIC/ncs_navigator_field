@@ -2,18 +2,24 @@
 //  NUAnswer.h
 //  NCSNavField
 //
-//  Created by John Dzak on 12/14/12.
-//  Copyright (c) 2012 Northwestern University. All rights reserved.
+//  Created by John Dzak on 1/31/13.
+//  Copyright (c) 2013 Northwestern University. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface NUAnswer : NSObject
+@class NUQuestion;
 
-@property(nonatomic,retain) NSString* uuid;
+@interface NUAnswer : NSManagedObject
 
-@property(nonatomic,retain) NSString* referenceIdentifier;
+@property (nonatomic, retain) NSString * uuid;
+@property (nonatomic, retain) NSString * referenceIdentifier;
+@property (nonatomic, retain) NSString * type;
+@property (nonatomic, retain) NUQuestion *question;
 
-- (id)initWithDictionary:(NSDictionary*)dict;
+#pragma mark - Class Methods
+
++ (NUAnswer*)transientWithDictionary:(NSDictionary*)dict;
 
 @end

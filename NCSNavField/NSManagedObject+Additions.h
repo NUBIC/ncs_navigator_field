@@ -12,4 +12,6 @@
 
 - (NSManagedObject *)clone;
 
++ (id)transient;
+
 @end

@@ -118,17 +118,17 @@
         <attribute name="mergeStatusId" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="NUAnswer" syncable="YES">
+    <entity name="NUAnswer" representedClassName="NUAnswer" syncable="YES">
         <attribute name="referenceIdentifier" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="question" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="NUQuestion" inverseName="answers" inverseEntity="NUQuestion" syncable="YES"/>
     </entity>
-    <entity name="NUQuestion" syncable="YES">
+    <entity name="NUQuestion" representedClassName="NUQuestion" syncable="YES">
         <attribute name="referenceIdentifier" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
-        <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NUAnswer" inverseName="question" inverseEntity="NUAnswer" syncable="YES"/>
+        <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="NUAnswer" inverseName="question" inverseEntity="NUAnswer" syncable="YES"/>
     </entity>
     <entity name="Participant" representedClassName="Participant" syncable="YES">
         <attribute name="pId" optional="YES" attributeType="String" syncable="YES"/>
