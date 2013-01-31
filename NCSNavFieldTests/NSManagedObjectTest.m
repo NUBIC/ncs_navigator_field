@@ -71,4 +71,8 @@
     STAssertNil([[NUQuestion transient] managedObjectContext], nil);
 }
 
+- (void)testIsTransient {
+    STAssertTrue([[NUQuestion transient] isTransient], nil);
+}
+
 @end

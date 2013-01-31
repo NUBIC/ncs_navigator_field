@@ -95,7 +95,7 @@
 }
 
 - (BOOL)isTransient {
-    return [self.managedObjectContext isEqual:nil];
+    return self.managedObjectContext == nil;
 }
 
 @end

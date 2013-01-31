@@ -23,6 +23,10 @@
     [questions each:^(NUQuestion* q){ [q persist];}];
 }
 
+- (void)questionsAnswersAndRepresentationDictionary {
+    [self representationDictionary];
+}
+
 - (NSDictionary*)representationDictionary {
     return [self.representation objectFromJSONString];
 }

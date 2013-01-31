@@ -33,7 +33,7 @@
 
 - (void)persist {
     if (self.isTransient) {
-        [self cloneIntoManagedObjectContext:[[self class] contextForCurrentThread]];
+        [self cloneIntoManagedObjectContext:[NSManagedObjectContext contextForCurrentThread]];
     }
 }
 
