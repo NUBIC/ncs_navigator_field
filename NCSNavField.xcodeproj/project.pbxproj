@@ -290,6 +290,7 @@
 		00439FFB14112E670097A878 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		00439FFD14112E6F0097A878 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		00453D6916BAE2FB0010214C /* 20130131173544_create_nuquestion.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20130131173544_create_nuquestion.xcdatamodel; sourceTree = "<group>"; };
+		00453D6A16BAE3950010214C /* 20130131173815_create_nuanswer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20130131173815_create_nuanswer.xcdatamodel; sourceTree = "<group>"; };
 		0045BDAA14191FB1007BB8AA /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		0045BDAB14191FB1007BB8AA /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		0045BDAD141921CD007BB8AA /* ContactTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTest.h; sourceTree = "<group>"; };
@@ -1906,6 +1907,7 @@
 				162812F616B1C19200652CA2 /* 20130124192217_add_instrument_relation_to_eventTemplate.xcdatamodel */,
 				16F868AE16B1E4D100F8EE32 /* 20130124215248_add_appCreated_property_to_contact.xcdatamodel */,
 				00453D6916BAE2FB0010214C /* 20130131173544_create_nuquestion.xcdatamodel */,
+				00453D6A16BAE3950010214C /* 20130131173815_create_nuanswer.xcdatamodel */,
 				00AE8003167A78CE007FF178 /* 20121213205710_create_response_templates.xcdatamodel */,
 				00B3DC64167009D40066E5AD /* 20121205230124_add_person_id_to_response_set.xcdatamodel */,
 				22B8E4A21664337C00640DE8 /* 20121126191731_addMdes_and_dispcode_entities.xcdatamodel */,
@@ -1934,7 +1936,7 @@
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 16F868AE16B1E4D100F8EE32 /* 20130124215248_add_appCreated_property_to_contact.xcdatamodel */;
+			currentVersion = 00453D6A16BAE3950010214C /* 20130131173815_create_nuanswer.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
