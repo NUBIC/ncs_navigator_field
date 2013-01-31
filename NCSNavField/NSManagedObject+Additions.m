@@ -12,12 +12,14 @@
 @implementation NSManagedObject (Additions)
 
 - (NSManagedObject *)clone {
-    return [self copyObject:self withCopiedCache:[NSMutableDictionary new]];
+    return [self copyObject:self withCopiedCache:[NSMutableDictionary new] andManagedObjectContext:self.managedObjectContext];
 }
 
-- (NSManagedObject*)copyObject:(NSManagedObject*)object withCopiedCache:(NSMutableDictionary*)cache {
-    NSManagedObjectContext* moc = self.managedObjectContext;
-    
+- (NSManagedObject *)cloneIntoManagedObjectContext:(NSManagedObjectContext*)moc {
+    return [self copyObject:self withCopiedCache:[NSMutableDictionary new] andManagedObjectContext:moc];
+}
+
+- (NSManagedObject*)copyObject:(NSManagedObject*)object withCopiedCache:(NSMutableDictionary*)cache andManagedObjectContext:(NSManagedObjectContext*)moc {   
     NSString *entityName = [[object entity] name];
     
     NSManagedObject *newObject = [NSEntityDescription
@@ -44,7 +46,7 @@
                 for (oldDestObject in [object valueForKey:key]) {
                     temp = [cache objectForKey:[oldDestObject objectID]];
                     if (!temp) {
-                        temp = [self copyObject:oldDestObject withCopiedCache:cache];
+                        temp = [self copyObject:oldDestObject withCopiedCache:cache andManagedObjectContext:moc];
                     }
                     [newDestSet addObject:temp];
                 }
@@ -57,7 +59,7 @@
                 for (oldDestObject in [object valueForKey:key]) {
                     temp = [cache objectForKey:[oldDestObject objectID]];
                     if (!temp) {
-                        temp = [self copyObject:oldDestObject withCopiedCache:cache];
+                        temp = [self copyObject:oldDestObject withCopiedCache:cache andManagedObjectContext:moc];
                     }
                     [newDestSet addObject:temp];
                 }
@@ -72,7 +74,7 @@
             
             temp = [cache objectForKey:[oldDestObject objectID]];
             if (!temp) {
-                temp = [self copyObject:oldDestObject withCopiedCache:cache];
+                temp = [self copyObject:oldDestObject withCopiedCache:cache andManagedObjectContext:moc];
             }
             
             [newObject setValue:temp forKey:key];
@@ -90,6 +92,10 @@
     NSEntityDescription *entity = [self entity];
     id object = [[self alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
     return object;
+}
+
+- (BOOL)isTransient {
+    return [self.managedObjectContext isEqual:nil];
 }
 
 @end

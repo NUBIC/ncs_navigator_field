@@ -8,13 +8,19 @@
 
 #import "InstrumentTemplate.h"
 #import <NUSurveyor/NUSurvey.h>
+#import "NUSurvey+Additions.h"
 #import <JSONKit/JSONKit.h>
+#import <MRCEnumerable/MRCEnumerable.h>
+#import "NUQuestion.h"
 
 @implementation InstrumentTemplate
 @dynamic instrumentTemplateId,representation,participantType;
 
-- (void)setRepresentationDictionary:(NSDictionary*)r {
+- (void)setQuestionsAnswersAndRepresentationDictionary:(NSDictionary*)r {
     self.representation = [r JSONString];
+    
+    NSArray* questions = [self.survey questionsForAllSections];
+    [questions each:^(NUQuestion* q){ [q persist];}];
 }
 
 - (NSDictionary*)representationDictionary {

@@ -15,7 +15,7 @@
     ResponseSet *r = [ResponseSet object];
     [r setValue:@"1d" forKey:@"pId"];
     NSError* error = nil;
-    [self.ctx save:&error];
+    [[self managedObjectContext] save:&error];
     STAssertNil(error, @"Should save successfully");
     STAssertEqualObjects([r valueForKey:@"pId"], @"1d", @"Wrong pId");    
 }

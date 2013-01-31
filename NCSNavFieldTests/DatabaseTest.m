@@ -10,14 +10,16 @@
 
 @implementation DatabaseTest
 
-@synthesize bundle = _bundle, coord = _coord, ctx = _ctx, model = _model, surveyorModel = _surveyorModel, store = _store;
-
 - (void)setUp
 {
     [super setUp];
     
     [[RKObjectManager sharedManager].objectStore deletePersistentStore];
     [[NSManagedObjectContext contextForCurrentThread] reset];
+}
+
+- (NSManagedObjectContext*)managedObjectContext {
+    return [NSManagedObjectContext contextForCurrentThread];
 }
 
 - (void)tearDown

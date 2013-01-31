@@ -90,7 +90,7 @@
 - (void)testParticipantSerializationMapping {
     [RestKitSettings instance];
     
-    Participant* p = [Fixtures createParticipantWithId:@"abc" person:[Fixtures createPersonWithId:@"xyz" name:@"Frank"]];
+    [Fixtures createParticipantWithId:@"abc" person:[Fixtures createPersonWithId:@"xyz" name:@"Frank"]];
     Fieldwork* f = [Fieldwork object];
     
     RKObjectMapping* fieldWorkMapping = [[RKObjectManager sharedManager].mappingProvider serializationMappingForClass:[Fieldwork class]];

@@ -12,6 +12,10 @@
 
 - (NSManagedObject *)clone;
 
+- (NSManagedObject *)cloneIntoManagedObjectContext:(NSManagedObjectContext*)moc;
+
 + (id)transient;
+
+- (BOOL)isTransient;
 
 @end

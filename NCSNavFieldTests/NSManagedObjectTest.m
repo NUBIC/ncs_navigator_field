@@ -13,6 +13,7 @@
 #import "InstrumentPlan.h"
 #import "InstrumentTemplate.h"
 #import "Person.h"
+#import "NUQuestion.h"
 
 @implementation NSManagedObjectTest
 
@@ -56,6 +57,18 @@
     Contact* cloned = (Contact*) [base clone];
     STAssertTrue(basePerson.objectID != cloned.person.objectID, nil);
     STAssertEqualObjects(cloned.person.name, @"Fred", nil);
+}
+
+- (void)testCloneIntoManagedObjectContext {
+    NUQuestion* base = [NUQuestion transient];
+    base.uuid = @"Zebra";
+    NUQuestion* cloned = (NUQuestion*)[base cloneIntoManagedObjectContext:[self managedObjectContext]];
+    STAssertEqualObjects(cloned.uuid, @"Zebra", nil);
+    STAssertEqualObjects([self managedObjectContext], cloned.managedObjectContext, nil);
+}
+
+- (void)testTransient {
+    STAssertNil([[NUQuestion transient] managedObjectContext], nil);
 }
 
 @end

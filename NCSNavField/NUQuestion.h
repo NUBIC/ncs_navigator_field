@@ -22,6 +22,10 @@
 
 + (NUQuestion*)transientWithDictionary:(NSDictionary*)dict;
 
+#pragma mark - Instance Methods
+
+- (void)persist;
+
 @end
 
 @interface NUQuestion (CoreDataGeneratedAccessors)

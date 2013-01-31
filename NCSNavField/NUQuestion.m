@@ -10,7 +10,6 @@
 #import "NUAnswer.h"
 #import "NSManagedObject+Additions.h"
 
-
 @implementation NUQuestion
 
 @dynamic referenceIdentifier;
@@ -30,6 +29,12 @@
         }
     }
     return created;
+}
+
+- (void)persist {
+    if (self.isTransient) {
+        [self cloneIntoManagedObjectContext:[[self class] contextForCurrentThread]];
+    }
 }
 
 @end

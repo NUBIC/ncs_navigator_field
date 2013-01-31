@@ -7,7 +7,8 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "DatabaseTest.h"
 
-@interface NSManagedObjectTest : SenTestCase
+@interface NSManagedObjectTest : DatabaseTest
 
 @end
