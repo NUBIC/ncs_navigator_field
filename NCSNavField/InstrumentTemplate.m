@@ -14,17 +14,10 @@
 #import "NUQuestion.h"
 
 @implementation InstrumentTemplate
-@dynamic instrumentTemplateId,representation,participantType;
+@dynamic instrumentTemplateId,representation,participantType, questions;
 
-- (void)setQuestionsAnswersAndRepresentationDictionary:(NSDictionary*)r {
-    self.representation = [r JSONString];
-    
-    NSArray* questions = [self.survey questionsForAllSections];
-    [questions each:^(NUQuestion* q){ [q persist];}];
-}
-
-- (void)questionsAnswersAndRepresentationDictionary {
-    [self representationDictionary];
+- (void)setRepresentationDictionary:(NSDictionary*)dict {
+    self.representation = [dict JSONString];
 }
 
 - (NSDictionary*)representationDictionary {
@@ -35,6 +28,20 @@
     NUSurvey* s = [NUSurvey new];
     s.jsonString = self.representation;
     return s;
+}
+
+- (void)refreshQuestions {
+    if (self.survey) {
+        [self deleteAllQuestions];
+        NSArray* questions = [self.survey questionsForAllSections];
+        [questions each:^(NUQuestion* q){ [q persist];}];
+    }
+}
+
+- (void)deleteAllQuestions {
+    for (NUQuestion* question in self.questions) {
+        [question deleteEntity];
+    }
 }
 
 @end

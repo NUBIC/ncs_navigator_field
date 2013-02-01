@@ -146,7 +146,7 @@ static RestKitSettings* instance;
     [instrumentTemplate mapKeyPathsToAttributes:
      @"instrument_template_id", @"instrumentTemplateId",
      @"participant_type", @"participantType",
-     @"survey", @"questionsAnswersAndRepresentationDictionary", nil];
+     @"survey", @"representationDictionary", nil];
     
     // Instrument Plan
     RKManagedObjectMapping* instrumentPlan = [RKManagedObjectMapping mappingForClass:[InstrumentPlan class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];

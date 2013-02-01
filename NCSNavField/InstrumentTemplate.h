@@ -15,8 +15,9 @@
 @property(nonatomic,strong) NSString* instrumentTemplateId;
 @property(nonatomic,strong) NSString* representation;
 @property(nonatomic,strong) NSString* participantType;
+@property(nonatomic,strong) NSOrderedSet *questions;
 
-- (void)setQuestionsAnswersAndRepresentationDictionary:(NSDictionary*)r;
+- (void)setRepresentationDictionary:(NSDictionary*)dict;
 
 - (NSDictionary*)representationDictionary;
 
