@@ -23,7 +23,7 @@
 
 #pragma mark - Instance Methods
 
-- (void)persist;
+- (NUQuestion*)persist;
 
 @end
 

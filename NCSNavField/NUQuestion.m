@@ -31,10 +31,11 @@
     return created;
 }
 
-- (void)persist {
+- (NUQuestion*)persist {
     if (self.isTransient) {
-        [self cloneIntoManagedObjectContext:[NSManagedObjectContext contextForCurrentThread]];
+        return (NUQuestion*)[self cloneIntoManagedObjectContext:[NSManagedObjectContext contextForCurrentThread]];
     }
+    return self;
 }
 
 @end

@@ -503,6 +503,12 @@
 }
 
 - (IBAction)screenParticipant:(UIButton *)button {
+    NSPredicate* missingQuestions = [NSPredicate predicateWithFormat:@"questions.@count == 0"];
+    NSArray* instrumentTemplates = [InstrumentTemplate findAllWithPredicate:missingQuestions];
+    for (InstrumentTemplate* it in instrumentTemplates) {
+        [it refreshQuestionsFromSurvey];
+    }
+
     Contact* screening = [Contact contact];
     screening.appCreated = @(YES);
     

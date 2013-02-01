@@ -238,6 +238,8 @@
 		0026E695140347E700355BCB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0026E697140347E700355BCB /* NCS NavFieldTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NCS NavFieldTests-Prefix.pch"; sourceTree = "<group>"; };
 		0029689916BC33A400524EEC /* 20130201173150_add_questions_to_instrument_template.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20130201173150_add_questions_to_instrument_template.xcdatamodel; sourceTree = "<group>"; };
+		0029689A16BC61A300524EEC /* InstrumentTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstrumentTemplate.h; path = NCSNavField/InstrumentTemplate.h; sourceTree = "<group>"; };
+		0029689B16BC61A300524EEC /* InstrumentTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstrumentTemplate.m; path = NCSNavField/InstrumentTemplate.m; sourceTree = "<group>"; };
 		002B2E4214362E4900410D09 /* nubic-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nubic-logo.png"; path = "NCSNavField/nubic-logo.png"; sourceTree = "<group>"; };
 		002B2E4314362E4900410D09 /* nu-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nu-logo.png"; path = "NCSNavField/nu-logo.png"; sourceTree = "<group>"; };
 		002D5A02168CDE2900CE313B /* 20121227195027_add_delete_cascade_rules.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121227195027_add_delete_cascade_rules.xcdatamodel; sourceTree = "<group>"; };
@@ -830,6 +832,8 @@
 				006EBEE8141673A1003D69CF /* Other */,
 				006EBEE714115870003D69CF /* NIBs */,
 				00C9C6E3146CE66300F6D339 /* main.xcdatamodeld */,
+				0029689A16BC61A300524EEC /* InstrumentTemplate.h */,
+				0029689B16BC61A300524EEC /* InstrumentTemplate.m */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

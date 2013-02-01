@@ -12,6 +12,7 @@
 @class NUSurvey;
 @class NUQuestion;
 @class NUAnswer;
+@class InstrumentTemplate;
 
 @interface ResponseTemplate : NSManagedObject
 
@@ -19,7 +20,7 @@
 @property (nonatomic, retain) NSString * aref;
 @property (nonatomic, retain) NSString * value;
 @property (nonatomic, retain) NSString * surveyId;
-@property (nonatomic, retain) NUSurvey * cachedSurvey;
+@property (nonatomic, retain) InstrumentTemplate * cachedInstrumentTemplate;
 @property (nonatomic, retain) NUQuestion * cachedQuestion;
 @property (nonatomic, retain) NUAnswer * cachedAnswer;
 
