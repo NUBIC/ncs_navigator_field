@@ -38,4 +38,13 @@
     return self;
 }
 
+// BUG: This is a workaround for a bug when using the generated method
+//      addInstrumentsObject to add an instrument to the ordered set.
+//      https://openradar.appspot.com/10114310
+- (void)addAnswersObject:(NUAnswer *)value {
+    NSMutableOrderedSet *temporaryAnswers = [self.answers mutableCopy];
+    [temporaryAnswers addObject:value];
+    self.answers = [NSOrderedSet orderedSetWithOrderedSet:temporaryAnswers];
+}
+
 @end

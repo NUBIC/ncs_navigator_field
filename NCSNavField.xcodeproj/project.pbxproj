@@ -33,6 +33,8 @@
 		0026E68D140347E700355BCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0026E66A140347E700355BCB /* Foundation.framework */; };
 		0026E68E140347E700355BCB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0026E66C140347E700355BCB /* CoreGraphics.framework */; };
 		0026E696140347E700355BCB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0026E694140347E700355BCB /* InfoPlist.strings */; };
+		0029689F16BC675000524EEC /* Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 0029689E16BC675000524EEC /* Response.m */; };
+		002968A216BC67D800524EEC /* ResponseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 002968A116BC67D800524EEC /* ResponseTest.m */; };
 		002B2E4414362E4900410D09 /* nubic-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 002B2E4214362E4900410D09 /* nubic-logo.png */; };
 		002B2E4514362E4900410D09 /* nu-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 002B2E4314362E4900410D09 /* nu-logo.png */; };
 		00305A02164AC31C00A086F8 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 00305A01164AC31C00A086F8 /* Event.m */; };
@@ -238,8 +240,13 @@
 		0026E695140347E700355BCB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0026E697140347E700355BCB /* NCS NavFieldTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NCS NavFieldTests-Prefix.pch"; sourceTree = "<group>"; };
 		0029689916BC33A400524EEC /* 20130201173150_add_questions_to_instrument_template.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20130201173150_add_questions_to_instrument_template.xcdatamodel; sourceTree = "<group>"; };
-		0029689A16BC61A300524EEC /* InstrumentTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstrumentTemplate.h; path = NCSNavField/InstrumentTemplate.h; sourceTree = "<group>"; };
-		0029689B16BC61A300524EEC /* InstrumentTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstrumentTemplate.m; path = NCSNavField/InstrumentTemplate.m; sourceTree = "<group>"; };
+		0029689A16BC61A300524EEC /* InstrumentTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentTemplate.h; sourceTree = "<group>"; };
+		0029689B16BC61A300524EEC /* InstrumentTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentTemplate.m; sourceTree = "<group>"; };
+		0029689D16BC675000524EEC /* Response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Response.h; sourceTree = "<group>"; };
+		0029689E16BC675000524EEC /* Response.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Response.m; sourceTree = "<group>"; };
+		002968A016BC67D800524EEC /* ResponseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseTest.h; sourceTree = "<group>"; };
+		002968A116BC67D800524EEC /* ResponseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseTest.m; sourceTree = "<group>"; };
+		002968A316BC7D3E00524EEC /* 20130201224552_change_response_entity_name.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20130201224552_change_response_entity_name.xcdatamodel; sourceTree = "<group>"; };
 		002B2E4214362E4900410D09 /* nubic-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nubic-logo.png"; path = "NCSNavField/nubic-logo.png"; sourceTree = "<group>"; };
 		002B2E4314362E4900410D09 /* nu-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nu-logo.png"; path = "NCSNavField/nu-logo.png"; sourceTree = "<group>"; };
 		002D5A02168CDE2900CE313B /* 20121227195027_add_delete_cascade_rules.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121227195027_add_delete_cascade_rules.xcdatamodel; sourceTree = "<group>"; };
@@ -752,6 +759,8 @@
 				006EBEE6141157BA003D69CF /* Models */,
 				006EBEE5141157B6003D69CF /* Controllers */,
 				006EBEE414115783003D69CF /* Delegates */,
+				0029689D16BC675000524EEC /* Response.h */,
+				0029689E16BC675000524EEC /* Response.m */,
 			);
 			name = Classes;
 			path = NCSNavField;
@@ -760,6 +769,8 @@
 		0026E691140347E700355BCB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				002968A016BC67D800524EEC /* ResponseTest.h */,
+				002968A116BC67D800524EEC /* ResponseTest.m */,
 				00BB5C60167ED40E00EAE043 /* NSStringTest.h */,
 				00BB5C61167ED40E00EAE043 /* NSStringTest.m */,
 				0039F7A4167BB3F200CE32B3 /* NUSectionTest.h */,
@@ -832,8 +843,6 @@
 				006EBEE8141673A1003D69CF /* Other */,
 				006EBEE714115870003D69CF /* NIBs */,
 				00C9C6E3146CE66300F6D339 /* main.xcdatamodeld */,
-				0029689A16BC61A300524EEC /* InstrumentTemplate.h */,
-				0029689B16BC61A300524EEC /* InstrumentTemplate.m */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1043,6 +1052,8 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0029689A16BC61A300524EEC /* InstrumentTemplate.h */,
+				0029689B16BC61A300524EEC /* InstrumentTemplate.m */,
 				00AB8E9216431CEA0097F7CD /* Categories */,
 				00AE8008167A7A24007FF178 /* ResponseTemplate.h */,
 				00AE8009167A7A24007FF178 /* ResponseTemplate.m */,
@@ -1608,6 +1619,7 @@
 				0013084716A8A6A600A5D948 /* NUQuestionGroup.m in Sources */,
 				00453D7616BAEA7D0010214C /* NUAnswer.m in Sources */,
 				00453D7916BAEAD90010214C /* NUQuestion.m in Sources */,
+				0029689F16BC675000524EEC /* Response.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1639,6 +1651,7 @@
 				0039F78C167BA7BE00CE32B3 /* NUSurveyTest.m in Sources */,
 				0039F7A6167BB3F200CE32B3 /* NUSectionTest.m in Sources */,
 				00BB5C62167ED40E00EAE043 /* NSStringTest.m in Sources */,
+				002968A216BC67D800524EEC /* ResponseTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1907,6 +1920,7 @@
 		00C9C6E3146CE66300F6D339 /* main.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				002968A316BC7D3E00524EEC /* 20130201224552_change_response_entity_name.xcdatamodel */,
 				00BB5C4A167EC70D00EAE043 /* 20121217031937_move_response_templates_relationship_to_event_templates.xcdatamodel */,
 				002D5A02168CDE2900CE313B /* 20121227195027_add_delete_cascade_rules.xcdatamodel */,
 				162812F616B1C19200652CA2 /* 20130124192217_add_instrument_relation_to_eventTemplate.xcdatamodel */,
@@ -1942,7 +1956,7 @@
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 0029689916BC33A400524EEC /* 20130201173150_add_questions_to_instrument_template.xcdatamodel */;
+			currentVersion = 002968A316BC7D3E00524EEC /* 20130201224552_change_response_entity_name.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";

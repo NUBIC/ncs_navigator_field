@@ -53,9 +53,9 @@
 //      addInstrumentsObject to add an instrument to the ordered set.
 //      https://openradar.appspot.com/10114310
 - (void)addQuestionsObject:(NUQuestion *)value {
-    NSMutableOrderedSet *temporaryInstruments = [self.questions mutableCopy];
-    [temporaryInstruments addObject:value];
-    self.questions = [NSOrderedSet orderedSetWithOrderedSet:temporaryInstruments];
+    NSMutableOrderedSet *temporaryQuestions = [self.questions mutableCopy];
+    [temporaryQuestions addObject:value];
+    self.questions = [NSOrderedSet orderedSetWithOrderedSet:temporaryQuestions];
 }
 
 @end

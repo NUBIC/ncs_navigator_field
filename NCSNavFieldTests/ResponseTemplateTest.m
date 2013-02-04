@@ -12,6 +12,7 @@
 #import "NUQuestion.h"
 #import <NUSurveyor/NUSurvey.h>
 #import "NUSurvey+Additions.h"
+#import <JSONKit/JSONKit.h>
 
 @implementation ResponseTemplateTest
 
@@ -44,7 +45,8 @@
         "}                                                ";
     
     InstrumentTemplate* it = [InstrumentTemplate object];
-    it.representation = surveyJson;
+    it.representationDictionary = [surveyJson objectFromJSONString]
+    ;
     
     STAssertNotNil(it.representationDictionary, nil);
     
