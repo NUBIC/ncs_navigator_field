@@ -13,23 +13,60 @@
 
 @implementation ResponseTest
 
-- (void)testToDictForIntegerAnswers {
-    NUAnswer* a = [NUAnswer object];
-    a.uuid = @"ruff";
-    a.type = @"integer";
+static NUAnswer* ans;
+static Response* res;
+
+- (void)setUp {
+    [super setUp];
     
-    NUQuestion* q = [NUQuestion object];
-    q.uuid = @"woof";
-    q.text = @"How many dogs?";
-    [q addAnswersObject:a];
+    ans = [NUAnswer object];
+    ans.uuid = @"ruff";
+    ans.type = @"<unknown>";
+    
+    NUQuestion* qst = [NUQuestion object];
+    qst.uuid = @"woof";
+    qst.text = @"How many dogs?";
+    [qst addAnswersObject:ans];
     
     
-    Response* r = [Response object];
-    [r setValue:@"woof" forKey:@"question"];
-    [r setValue:@"ruff" forKey:@"answer"];
-    [r setValue:@"4" forKey:@"value"];
+    res = [Response object];
+    [res setValue:@"woof" forKey:@"question"];
+    [res setValue:@"ruff" forKey:@"answer"];
+}
+
+- (void)testToDictForIntegerAnswer {
+    ans.type = @"integer";
+    [res setValue:@"4" forKey:@"value"];
     
-    STAssertEqualObjects([r toDict][@"value"], @4, nil);
+    STAssertEqualObjects([res toDict][@"value"], @4, nil);
+}
+
+- (void)testToDictForIntegerAnswerWithNil {
+    ans.type = @"integer";
+    [res setValue:nil forKey:@"value"];
+    
+    STAssertEqualObjects([res toDict][@"value"], nil, nil);
+}
+
+- (void)testToDictForFloatAnswer {
+    ans.type = @"float";
+    [res setValue:@"3.14" forKey:@"value"];
+    
+    STAssertEqualObjects([res toDict][@"value"], @3.14, nil);
+}
+
+- (void)testToDictForStringAnswer {
+    ans.type = @"string";
+    [res setValue:@"bob" forKey:@"value"];
+    
+    STAssertEqualObjects([res toDict][@"value"], @"bob", nil);
+}
+
+- (void)testToDictForTextAnswer {
+    ans.type = @"text";
+    [res setValue:@"bob" forKey:@"value"];
+    
+    STAssertEqualObjects([res toDict][@"value"], @"bob", nil);
 }
 
 @end

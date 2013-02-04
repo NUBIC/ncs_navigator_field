@@ -21,9 +21,13 @@
 
 - (NSObject*)coercedValue {
     NSObject* coerced = self.value;
-    NUAnswer* a = [NUAnswer findFirstByAttribute:@"uuid" withValue:[self valueForKey:@"answer"]];
-    if ([a.type isEqualToString:@"integer"]) {
-        coerced = [NSNumber numberWithInteger:[self.value integerValue]];
+    if (coerced) {
+        NUAnswer* a = [NUAnswer findFirstByAttribute:@"uuid" withValue:[self valueForKey:@"answer"]];
+        if ([a.type isEqualToString:@"integer"]) {
+            coerced = [NSNumber numberWithInteger:[self.value integerValue]];
+        } else if ([a.type isEqualToString:@"float"]) {
+            coerced = [NSNumber numberWithDouble:[self.value doubleValue]];
+        }
     }
     return coerced;
 
