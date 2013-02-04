@@ -188,8 +188,6 @@ static RestKitSettings* instance;
      @"supervisor_review_code", @"supervisorReviewId",
      @"data_problem_code", @"dataProblemId",
      @"instrument_comment", @"comment", nil];
-    [instrument mapRelationship:@"instrumentPlan" withMapping:instrumentPlan];
-    [instrument connectRelationship:@"instrumentPlan" withObjectForPrimaryKeyAttribute:@"instrumentPlanId"];
     
     // Event Mapping
     RKManagedObjectMapping* event = [RKManagedObjectMapping mappingForClass:[Event class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
