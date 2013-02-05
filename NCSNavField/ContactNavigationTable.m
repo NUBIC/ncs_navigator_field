@@ -68,7 +68,7 @@
     for (Contact *c in contacts) {
         Row *r = [Row new];
         r.text = c.person.name ? c.person.name : @"(Person name missing)";
-        r.detailText = [NSString stringWithFormat:@"%@ instruments", [NSNumber numberWithInt:[c.events count]]];
+        r.detailText = [NSString stringWithFormat:@"%@ %@", [NSNumber numberWithInt:[c.events count]], ([c.events count] > 1 || [c.events count] == 0) ? @"events" : @"event"];
         r.entity = c;
         [rows addObject:r];
     }
