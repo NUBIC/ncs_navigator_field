@@ -14,6 +14,7 @@
 #import "ResponseTemplate.h"
 #import "Person.h"
 #import "Participant.h"
+#import <JSONKit/JSONKit.h>
 
 @implementation InstrumentTest
 
@@ -65,8 +66,8 @@ static InstrumentTemplate* it;
 }
 
 - (void)testPopulateResponseSetsFromResponseTemplates {
-    it.representation =
-        @"{"
+    it.representationDictionary =
+        [@"{"
          "  \"uuid\":\"survey-a\",                                                  "
          "  \"sections\":[{                                                         "
          "    \"questions_and_groups\":[                                            "
@@ -96,7 +97,7 @@ static InstrumentTemplate* it;
          "      }                                           "
          "    ]                                             "
          "  }]                                              "
-         "}                                                 ";
+         "}                                                 " objectFromJSONString];
     STAssertNotNil(it.representationDictionary, nil);
     
     ResponseTemplate* rt0 = [ResponseTemplate object];

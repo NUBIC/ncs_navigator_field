@@ -2,29 +2,49 @@
 //  NUQuestion.m
 //  NCSNavField
 //
-//  Created by John Dzak on 12/14/12.
-//  Copyright (c) 2012 Northwestern University. All rights reserved.
+//  Created by John Dzak on 1/31/13.
+//  Copyright (c) 2013 Northwestern University. All rights reserved.
 //
 
 #import "NUQuestion.h"
 #import "NUAnswer.h"
+#import "NSManagedObject+Additions.h"
 
 @implementation NUQuestion
 
-- (id)initWithDictionary:(NSDictionary*)dict {
-    self = [self init];
-    if (self) {
-        self.uuid = [dict valueForKey:@"uuid"];
-        self.text = [dict valueForKey:@"text"];
-        self.referenceIdentifier = [dict valueForKey:@"reference_identifier"];
-        NSMutableArray* answers = [NSMutableArray new];
+@dynamic referenceIdentifier;
+@dynamic text;
+@dynamic uuid;
+@dynamic answers;
+
++ (NUQuestion*)transientWithDictionary:(NSDictionary*)dict {
+    NUQuestion* created = [self transient];
+    if (created) {
+        created.uuid = [dict valueForKey:@"uuid"];
+        created.text = [dict valueForKey:@"text"];
+        created.referenceIdentifier = [dict valueForKey:@"reference_identifier"];
         for (NSDictionary* aDict in [dict objectForKey:@"answers"]) {
-            NUAnswer* a = [[NUAnswer alloc] initWithDictionary:aDict];
-            [answers addObject:a];
+            NUAnswer* a = [NUAnswer transientWithDictionary:aDict];
+            [created addAnswersObject:a];
         }
-        self.answers = answers;
+    }
+    return created;
+}
+
+- (NUQuestion*)persist {
+    if (self.isTransient) {
+        return (NUQuestion*)[self cloneIntoManagedObjectContext:[NSManagedObjectContext contextForCurrentThread]];
     }
     return self;
+}
+
+// BUG: This is a workaround for a bug when using the generated method
+//      addInstrumentsObject to add an instrument to the ordered set.
+//      https://openradar.appspot.com/10114310
+- (void)addAnswersObject:(NUAnswer *)value {
+    NSMutableOrderedSet *temporaryAnswers = [self.answers mutableCopy];
+    [temporaryAnswers addObject:value];
+    self.answers = [NSOrderedSet orderedSetWithOrderedSet:temporaryAnswers];
 }
 
 @end

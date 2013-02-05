@@ -23,7 +23,7 @@
                 NUQuestionGroup* g = [[NUQuestionGroup alloc] initWithDictionary:qDict];
                 [questions addObjectsFromArray:g.questions];
             } else {
-                [questions addObject:[[NUQuestion alloc] initWithDictionary:qDict]];
+                [questions addObject:[NUQuestion transientWithDictionary:qDict]];
             }
         }
         self.questions = questions;

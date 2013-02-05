@@ -2,21 +2,29 @@
 //  NUAnswer.m
 //  NCSNavField
 //
-//  Created by John Dzak on 12/14/12.
-//  Copyright (c) 2012 Northwestern University. All rights reserved.
+//  Created by John Dzak on 1/31/13.
+//  Copyright (c) 2013 Northwestern University. All rights reserved.
 //
 
 #import "NUAnswer.h"
+#import "NUQuestion.h"
+#import "NSManagedObject+Additions.h"
 
 @implementation NUAnswer
 
-- (id)initWithDictionary:(NSDictionary*)dict {
-    self = [self init];
-    if (self) {
-        self.uuid = [dict valueForKey:@"uuid"];
-        self.referenceIdentifier = [dict valueForKey:@"reference_identifier"];
+@dynamic uuid;
+@dynamic referenceIdentifier;
+@dynamic type;
+@dynamic question;
+
++ (NUAnswer*)transientWithDictionary:(NSDictionary*)dict {
+    NUAnswer* created = [[self class] transient];
+    if (created) {
+        created.uuid = [dict valueForKey:@"uuid"];
+        created.referenceIdentifier = [dict valueForKey:@"reference_identifier"];
+        created.type = [dict valueForKey:@"type"];
     }
-    return self;
+    return created;
 }
 
 @end

@@ -18,29 +18,25 @@
 @implementation ResponseTemplate
 
 @dynamic qref, aref, value, surveyId;
-@synthesize cachedSurvey, cachedQuestion, cachedAnswer;
+@synthesize cachedInstrumentTemplate, cachedQuestion, cachedAnswer;
+
+- (InstrumentTemplate*)instrumentTemplate {
+    if (!self.cachedInstrumentTemplate) {
+        NSArray* templates = [InstrumentTemplate allObjects];
+        self.cachedInstrumentTemplate = [[templates select:^BOOL(InstrumentTemplate* t){
+            return [self.surveyId isEqualIgnoreCaseToString:[[t survey] uuid]];
+        }] lastObject];
+    }
+    return self.cachedInstrumentTemplate;
+}
 
 - (NUSurvey*)survey {
-    if (!self.cachedSurvey) {
-        NSArray* templates = [InstrumentTemplate allObjects];
-        self.cachedSurvey = [[[templates select:^BOOL(InstrumentTemplate* t){
-            return [self.surveyId isEqualIgnoreCaseToString:[[t survey] uuid]];
-        }] lastObject] survey];
-    }
-    return self.cachedSurvey;
+    return [[self instrumentTemplate] survey];
 }
 
 - (NUQuestion*)question {
     if (!self.cachedQuestion) {
-        if ([self survey]) {
-            NSArray* questions = [[self survey] questionsForAllSections];
-            for (NUQuestion* oth in questions) {
-                if ([self.qref isEqualIgnoreCaseToString:[oth referenceIdentifier] ]) {
-                    self.cachedQuestion = oth;
-                    break;
-                }
-            }
-        }
+        self.cachedQuestion = [NUQuestion findFirstByAttribute:@"referenceIdentifier" withValue:self.qref];
     }
     return self.cachedQuestion;
 }
