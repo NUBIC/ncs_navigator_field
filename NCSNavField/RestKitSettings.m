@@ -26,7 +26,7 @@
 #import "MdesCode.h"
 #import "DispositionCode.h"
 #import "ResponseTemplate.h"
-
+#import "JSONParserNSJSONSerialization.h"
 NSString* STORE_NAME = @"main.sqlite";
 
 @interface RestKitSettings ()
@@ -60,6 +60,7 @@ static RestKitSettings* instance;
         } else {
             _objectStoreFileName = STORE_NAME;
         }
+        [[RKParserRegistry sharedRegistry] setParserClass:[JSONParserNSJSONSerialization class] forMIMEType:RKMIMETypeJSON];
     }
     return self;
 }

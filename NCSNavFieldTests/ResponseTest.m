@@ -10,7 +10,9 @@
 #import "NUAnswer.h"
 #import "NUQuestion.h"
 #import "Response.h"
+#import "ResponseSet.h"
 
+#import <JSONKit/JSONKit.h>
 @implementation ResponseTest
 
 static NUAnswer* ans;
@@ -52,7 +54,7 @@ static Response* res;
     ans.type = @"float";
     [res setValue:@"3.14" forKey:@"value"];
     
-    STAssertEqualObjects([res toDict][@"value"], @3.14, nil);
+    STAssertEqualObjects([res toDict][@"value"], [NSDecimalNumber decimalNumberWithString:@"3.14"], nil);
 }
 
 - (void)testToDictForStringAnswer {

@@ -26,7 +26,7 @@
         if ([a.type isEqualToString:@"integer"]) {
             coerced = [NSNumber numberWithInteger:[self.value integerValue]];
         } else if ([a.type isEqualToString:@"float"]) {
-            coerced = [NSNumber numberWithDouble:[self.value doubleValue]];
+            coerced = [NSDecimalNumber decimalNumberWithString:self.value];
         }
     }
     return coerced;

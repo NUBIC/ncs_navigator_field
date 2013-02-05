@@ -28,6 +28,9 @@
 #import "DispositionCode.h"
 #import <MRCEnumerable/MRCEnumerable.h>
 #import <JSONKit/JSONKit.h>
+#import "NUAnswer.h"
+#import "NUQuestion.h"
+#import "Response.h"
 
 @implementation RestKitSettingsTest
 
@@ -282,6 +285,45 @@
     STAssertEquals([d1 count], 2U, @"Should have 2 disposition codes");
     STAssertEqualObjects(((DispositionCode*)[d1 objectAtIndex:0]).finalCategory, @"Complete Screener", nil);
     STAssertEqualObjects(((DispositionCode*)[d1 objectAtIndex:1]).finalCategory, @"Complete Second Screen", nil);
+}
+
+- (void)testResponseValueFloatSerialization {
+    [RestKitSettings instance];
+    
+    NUAnswer* ans = [NUAnswer object];
+    ans.uuid = @"ruff";
+    ans.type = @"float";
+    
+    NUQuestion* qst = [NUQuestion object];
+    qst.uuid = @"woof";
+    qst.text = @"How many dogs?";
+    [qst addAnswersObject:ans];
+    
+    
+    Response* res = [Response object];
+    [res setValue:@"woof" forKey:@"question"];
+    [res setValue:@"ruff" forKey:@"answer"];
+    [res setValue:@"3.13" forKey:@"value"];
+    
+    Instrument* i = [Instrument object];
+    ResponseSet* rs = [ResponseSet object];
+    rs.responses = [NSSet setWithObject:res];
+    i.responseSets = [NSSet setWithObject:rs];
+    
+    
+    RKObjectMapping* instrumentMapping = [[RKObjectManager sharedManager].mappingProvider serializationMappingForClass:[Instrument class]];
+    RKObjectSerializer* serializer = [RKObjectSerializer serializerWithObject:i mapping:instrumentMapping];
+    NSMutableDictionary* actual = [serializer serializedObject:nil];
+    NSString* json = [serializer serializedObjectForMIMEType:RKMIMETypeJSON error:nil];
+    NSLog(@"JSON: %@", json);
+    
+    // Response#value is being serialized to a number because we work around RestKit's implementation.
+    // RKObjectSerializer normally serializes decimal attributes to strings, but because ResponseSet
+    // is serialized outside of RestKit, RKObjectSerializer never checks the type for value Response#value
+    // and it will remain a decimal. Also, the JSON serializer had to be changed to the one built into iOS
+    // because JSONKit (RestKit's default JSON serializer) doesn't support decimal serialization.
+    STAssertEqualObjects(actual[@"response_sets"][0][@"responses"][0][@"value"], @3.13, nil);
+    STAssertTrue([json rangeOfString:@"\"value\" : 3.13"].location != NSNotFound, [NSString stringWithFormat:@"'\"value\" : 3.13' not found in json"]);
 }
 
 #pragma mark - Helper Methods
