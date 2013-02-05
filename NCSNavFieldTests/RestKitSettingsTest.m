@@ -323,7 +323,7 @@
     // and it will remain a decimal. Also, the JSON serializer had to be changed to the one built into iOS
     // because JSONKit (RestKit's default JSON serializer) doesn't support decimal serialization.
     STAssertEqualObjects(actual[@"response_sets"][0][@"responses"][0][@"value"], @3.13, nil);
-    STAssertTrue([json rangeOfString:@"\"value\" : 3.13"].location != NSNotFound, [NSString stringWithFormat:@"'\"value\" : 3.13' not found in json"]);
+    STAssertTrue([json rangeOfString:@"\"value\" : 3.13,"].location != NSNotFound, [NSString stringWithFormat:@"'\"value\" : 3.13' not found in json"]);
 }
 
 #pragma mark - Helper Methods
