@@ -107,7 +107,7 @@
     }
     
     if (!instrument.instrumentMethodId || [instrument.instrumentMethodId intValue] == -4) {
-        instrument.instrumentMethodId = [NSNumber numberWithInt:1];
+        instrument.instrumentMethodId = [NSNumber numberWithInt:4];
     }
     
     if (!instrument.supervisorReviewId || [instrument.supervisorReviewId intValue] == -4) {
