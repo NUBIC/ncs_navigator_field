@@ -106,8 +106,12 @@
         instrument.breakOffId = [NSNumber numberWithInt:2];
     }
     
+    if (!instrument.instrumentModeId || [instrument.instrumentModeId intValue] == -4) {
+        instrument.instrumentModeId = [NSNumber numberWithInt:1]; 
+    }
+    
     if (!instrument.instrumentMethodId || [instrument.instrumentMethodId intValue] == -4) {
-        instrument.instrumentMethodId = [NSNumber numberWithInt:4];
+        instrument.instrumentMethodId = [NSNumber numberWithInt:2];
     }
     
     if (!instrument.supervisorReviewId || [instrument.supervisorReviewId intValue] == -4) {
