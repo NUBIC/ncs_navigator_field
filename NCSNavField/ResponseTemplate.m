@@ -36,7 +36,10 @@
 
 - (NUQuestion*)question {
     if (!self.cachedQuestion) {
-        self.cachedQuestion = [NUQuestion findFirstByAttribute:@"referenceIdentifier" withValue:self.qref];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                                  @"(referenceIdentifier == %@) AND (instrumentTemplate == %@)",
+                                  self.qref, [self instrumentTemplate]];
+        self.cachedQuestion = [NUQuestion findFirstWithPredicate:predicate];
     }
     return self.cachedQuestion;
 }
