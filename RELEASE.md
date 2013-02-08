@@ -13,7 +13,6 @@ Test
 1. Create a tag for the release
 1. g push && g push --tags
 1. Upload ipa to download.nubic.northwestern.edu/ncs_navigator_field_test
-1. Upload ipa and dSYM to TestFlight
 1. Email NCS-NU-TECHNICAL@LISTSERV.IT.NORTHWESTERN.EDU about new release
 
 Production
