@@ -47,7 +47,7 @@
     }
 
     for (Instrument* i in self.instruments) {
-        Instrument* cloned = (Instrument*)[i clone];
+        Instrument* cloned = [i clone];
         cloned.instrumentId = [NUUUID generateUuidString];
         [cloned createAndPopulateResponseSetsFromResponseTemplates:self.responseTemplates participant:participant person:person];
         [e addInstrumentsObject:cloned];

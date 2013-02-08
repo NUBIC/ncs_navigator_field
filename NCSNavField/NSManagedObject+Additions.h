@@ -10,7 +10,7 @@
 
 @interface NSManagedObject (Additions)
 
-- (NSManagedObject *)clone;
+- (NSManagedObject *)cloneAndignoreRelations:(NSArray*)ignoreRelations;
 
 - (NSManagedObject *)cloneIntoManagedObjectContext:(NSManagedObjectContext*)moc;
 

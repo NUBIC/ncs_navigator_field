@@ -87,6 +87,8 @@ FOUNDATION_EXPORT NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELI
 
 - (void)createAndPopulateResponseSetsFromResponseTemplates:(NSSet*)responseTemplates participant:(Participant*)participant person:(Person*)person;
 
+- (Instrument*)clone;
+
 @end
 
 @interface Instrument (GeneratedAccessors)

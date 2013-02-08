@@ -29,6 +29,7 @@
 #import "Participant.h"
 #import "Person.h"
 #import <JSONKit/JSONKit.h>
+#import "NSManagedObject+Additions.h"
 
 NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER = 44;
 
@@ -191,6 +192,10 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
         return [uuid isEqualIgnoreCaseToString:[rs valueForKey:@"survey"]];
     }];
     
+}
+
+- (Instrument*)clone {
+    return (Instrument*)[self cloneAndignoreRelations:@[@"event", @"eventTemplate"]];
 }
 
 @end

@@ -11,15 +11,15 @@
 
 @implementation NSManagedObject (Additions)
 
-- (NSManagedObject *)clone {
-    return [self copyObject:self withCopiedCache:[NSMutableDictionary new] andManagedObjectContext:self.managedObjectContext];
+- (NSManagedObject *)cloneAndignoreRelations:(NSArray*)ignoreRelations {
+    return [self copyObject:self withCopiedCache:[NSMutableDictionary new] andManagedObjectContext:self.managedObjectContext ignoreRelations:ignoreRelations];
 }
 
 - (NSManagedObject *)cloneIntoManagedObjectContext:(NSManagedObjectContext*)moc {
-    return [self copyObject:self withCopiedCache:[NSMutableDictionary new] andManagedObjectContext:moc];
+    return [self copyObject:self withCopiedCache:[NSMutableDictionary new] andManagedObjectContext:moc ignoreRelations:NULL];
 }
 
-- (NSManagedObject*)copyObject:(NSManagedObject*)object withCopiedCache:(NSMutableDictionary*)cache andManagedObjectContext:(NSManagedObjectContext*)moc {   
+- (NSManagedObject*)copyObject:(NSManagedObject*)object withCopiedCache:(NSMutableDictionary*)cache andManagedObjectContext:(NSManagedObjectContext*)moc ignoreRelations:(NSArray*)ignoreRelations{
     NSString *entityName = [[object entity] name];
     
     NSManagedObject *newObject = [NSEntityDescription
@@ -36,7 +36,9 @@
     id temp = nil;
     NSDictionary *relationships = [[object entity] relationshipsByName];
     for (NSString *key in [relationships allKeys]) {
-        
+        if ([ignoreRelations containsObject:key]) {
+            continue;
+        }
         NSRelationshipDescription *desc = [relationships valueForKey:key];
         
         if ([desc isToMany]) {
@@ -46,7 +48,7 @@
                 for (oldDestObject in [object valueForKey:key]) {
                     temp = [cache objectForKey:[oldDestObject objectID]];
                     if (!temp) {
-                        temp = [self copyObject:oldDestObject withCopiedCache:cache andManagedObjectContext:moc];
+                        temp = [self copyObject:oldDestObject withCopiedCache:cache andManagedObjectContext:moc ignoreRelations:NULL];
                     }
                     [newDestSet addObject:temp];
                 }
@@ -59,7 +61,7 @@
                 for (oldDestObject in [object valueForKey:key]) {
                     temp = [cache objectForKey:[oldDestObject objectID]];
                     if (!temp) {
-                        temp = [self copyObject:oldDestObject withCopiedCache:cache andManagedObjectContext:moc];
+                        temp = [self copyObject:oldDestObject withCopiedCache:cache andManagedObjectContext:moc ignoreRelations:NULL];
                     }
                     [newDestSet addObject:temp];
                 }
@@ -74,7 +76,7 @@
             
             temp = [cache objectForKey:[oldDestObject objectID]];
             if (!temp) {
-                temp = [self copyObject:oldDestObject withCopiedCache:cache andManagedObjectContext:moc];
+                temp = [self copyObject:oldDestObject withCopiedCache:cache andManagedObjectContext:moc ignoreRelations:NULL];
             }
             
             [newObject setValue:temp forKey:key];
