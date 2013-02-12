@@ -117,7 +117,7 @@
         selected.startDate = [NSDate date];
         selected.startTime = [NSDate date];
         [[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:NULL];
-        [self loadSurveyor:selected context:nil];
+        [self loadSurveyor:selected responseGeneratorContext:nil];
     }
 }
 
@@ -129,7 +129,7 @@
     instrument.startTime = [NSDate date];
     [[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:NULL];
     SurveyContextGenerator* g = [[SurveyContextGenerator alloc] initWithProvider:provider];
-    [self loadSurveyor:instrument context:[g context]];
+    [self loadSurveyor:instrument responseGeneratorContext:[g context]];
 }
 
 - (void)contactInitiateScreenDismissed:(NSNotification*)notification {
@@ -144,9 +144,9 @@
 }
 
 #pragma surveyor
-- (void) loadSurveyor:(Instrument*)instrument context:(NSDictionary*)context {
+- (void) loadSurveyor:(Instrument*)instrument responseGeneratorContext:(NSDictionary*)context {
     if (instrument != NULL) {
-        NSArray* rels = [instrument surveyResponseSetRelationshipsWithSurveyContext:context];
+        NSArray* rels = [instrument surveyResponseSetRelationshipsWithResponseGeneratorContext:context];
         
         NSLog(@"Loading surveyor with instrument plan: %@", instrument.instrumentPlan.instrumentPlanId);
         

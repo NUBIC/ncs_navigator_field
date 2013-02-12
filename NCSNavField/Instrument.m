@@ -115,7 +115,7 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
     return INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER == self.instrumentTypeId.integerValue;
 }
 
-- (NSArray*)surveyResponseSetRelationshipsWithSurveyContext:(NSDictionary*)ctx {
+- (NSArray*)surveyResponseSetRelationshipsWithResponseGeneratorContext:(NSDictionary*)ctx {
     NSArray* surveys = [[self.instrumentPlan.instrumentTemplates array] collect:^id(InstrumentTemplate* tmpl){
         return tmpl.survey;
     }];

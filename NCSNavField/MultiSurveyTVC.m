@@ -26,7 +26,7 @@
 - (id)initWithSurveyResponseSetRelationships:(NSArray*)rels {
     SurveyResponseSetRelationship* srsr = [rels count] > 0 ? [rels objectAtIndex:0] : nil;
     
-    self = [self initWithSurvey:srsr.survey responseSet:srsr.responseSet renderContext:[NSDictionary dictionary]];
+    self = [self initWithSurvey:srsr.survey responseSet:srsr.responseSet renderContext:srsr.responseSet.instrumentContext];
     
     if (self) {
         self.surveyResponseSetAssociations = rels;

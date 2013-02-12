@@ -83,7 +83,7 @@ FOUNDATION_EXPORT NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELI
 
 - (BOOL)isProviderBasedSamplingScreener;
 
-- (NSArray*)surveyResponseSetRelationshipsWithSurveyContext:(NSDictionary*)ctx;
+- (NSArray*)surveyResponseSetRelationshipsWithResponseGeneratorContext:(NSDictionary*)ctx;
 
 - (void)createAndPopulateResponseSetsFromResponseTemplates:(NSSet*)responseTemplates participant:(Participant*)participant person:(Person*)person;
 
