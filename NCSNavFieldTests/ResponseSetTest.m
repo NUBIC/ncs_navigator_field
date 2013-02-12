@@ -32,4 +32,35 @@
     STAssertEqualObjects([r valueForKey:@"pId"], @"1d", @"Wrong pId");
 }
 
+- (void)testFromJsonWithInstrumentContext {
+    ResponseSet *r = [ResponseSet object];
+    [r fromJson:@"{\"instrument_context\": {\"moo\": \"cow\"}}"];
+    STAssertEqualObjects(r.instrumentContext[@"moo"], @"cow", nil);
+}
+
+- (void)testInstrumentContextWhenNil {
+    STAssertEqualObjects(((ResponseSet*)[ResponseSet object]).instrumentContext, @{}, nil);
+}
+
+- (void)testSaveInstrumentContextWhenNil {
+    ResponseSet *pending = [ResponseSet object];
+    [pending setValue:@"im-unique" forKey:@"uuid"];
+    [[self managedObjectContext] save:nil];
+    
+    ResponseSet* actual = [ResponseSet findFirstByAttribute:@"uuid" withValue:@"im-unique"];
+    STAssertEqualObjects(actual.instrumentContext, @{}, nil);
+}
+
+- (void)testSaveInstrumentContext {
+    ResponseSet *pending = [ResponseSet object];
+    [pending setValue:@"im-unique" forKey:@"uuid"];
+    pending.instrumentContext = @{@"foo": @"bar"};
+    NSError* error = nil;
+    [[self managedObjectContext] save:&error];
+    
+    STAssertNil(error, @"Save error: %@", [error description]);
+    ResponseSet* actual = [ResponseSet findFirstByAttribute:@"uuid" withValue:@"im-unique"];
+    STAssertEqualObjects(actual.instrumentContext[@"foo"], @"bar", nil);
+}
+
 @end
