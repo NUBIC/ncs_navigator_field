@@ -20,7 +20,7 @@
 - (void)testClone {
     Contact* base = [Contact object];
     base.comments = @"Up and atom";
-    Contact* cloned = (Contact*) [base clone];
+    Contact* cloned = (Contact*) [base cloneAndignoreRelations:nil];
     STAssertTrue(base.objectID != cloned.objectID, nil);
     STAssertEqualObjects(cloned.comments, @"Up and atom", nil);
 }
@@ -30,7 +30,7 @@
     Event* baseEvent = [Event object];
     baseEvent.name = @"The goggles";
     [base addEventsObject:baseEvent];
-    Contact* cloned = (Contact*) [base clone];
+    Contact* cloned = (Contact*) [base cloneAndignoreRelations:nil];
     STAssertEquals([cloned.events count], 1U, nil);
     Event* clonedEvent = [cloned.events anyObject];
     STAssertTrue(baseEvent.objectID != clonedEvent.objectID, nil);
@@ -42,7 +42,7 @@
     InstrumentTemplate* baseIT = [InstrumentTemplate object];
     baseIT.participantType = @"Quack";
     [base setInstrumentTemplates:[NSOrderedSet orderedSetWithObject:baseIT]];  //addInstrumentTemplatesObject fails with sigtrap
-    InstrumentPlan* cloned = (InstrumentPlan*) [base clone];
+    InstrumentPlan* cloned = (InstrumentPlan*) [base cloneAndignoreRelations:nil];
     STAssertEquals([cloned.instrumentTemplates count], 1U, nil);
     InstrumentTemplate* clonedIT = [cloned.instrumentTemplates firstObject];
     STAssertTrue(baseIT.objectID != clonedIT.objectID, nil);
@@ -54,7 +54,7 @@
     Person* basePerson = [Person object];
     basePerson.firstName = @"Fred";
     base.person = basePerson;
-    Contact* cloned = (Contact*) [base clone];
+    Contact* cloned = (Contact*) [base cloneAndignoreRelations:nil];
     STAssertTrue(basePerson.objectID != cloned.person.objectID, nil);
     STAssertEqualObjects(cloned.person.name, @"Fred", nil);
 }
