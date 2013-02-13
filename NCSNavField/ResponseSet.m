@@ -39,7 +39,6 @@
 }
 
 - (NSDictionary*)instrumentContext {
-    
     [self willAccessValueForKey:@"instrumentContext"];
     NSDictionary *ctx = [self primitiveValueForKey:@"instrumentContext"];
     [self didAccessValueForKey:@"instrumentContext"];
