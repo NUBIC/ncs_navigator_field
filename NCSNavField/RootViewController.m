@@ -44,10 +44,18 @@
 #import <NUSurveyor/NUResponse.h>
 #import "MdesCode.h"
 
-@interface RootViewController () 
+#import "NUEndpointCollectionViewController.h"
+#import "NUEndpointBar.h"
+#import "NUEndpoint.h"
+
+@interface RootViewController () <NUEndpointCollectionViewDelegate>
     @property(nonatomic,strong) NSArray* contacts;
     @property(nonatomic,strong) ContactNavigationTable* table;
     @property(nonatomic,strong) BlockAlertView *alertView;
+
+@property (nonatomic, strong) NUEndpointBar *endpointBar;
+
+-(void)startEndpointSelection;
 @end
 
 @implementation RootViewController
@@ -173,6 +181,82 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - endpoint collection view delegate
+
+-(void)endpointCollectionViewControllerDidPressCancel:(NUEndpointCollectionViewController *)collectionView {
+    [[NUEndpointService service] stopNetworkRequest];
+    if ([[NUEndpointService service] userEndpointOnDisk] == nil) {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
+    if (self.modalViewController) {
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }
+}
+
+-(void)endpointCollectionViewController:(NUEndpointCollectionViewController *)collectionView didChooseEndpoint:(NUEndpoint *)chosenEndpoint {
+    BOOL isSaved = [[NUEndpointService service] userDidChooseEndpoint:chosenEndpoint];
+    [[ApplicationSettings instance] updateWithEndpoint:chosenEndpoint];
+    if (isSaved == YES) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+            NSString *labelString = [NSString stringWithFormat:@"Your current location is:\n%@", chosenEndpoint.name];
+            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+            paragraphStyle.lineSpacing = -3.0f;
+            NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
+            [labelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:chosenEndpoint.name]];
+            self.endpointBar.endpointBarLabel.attributedText = labelText;
+            [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
+        }];
+    }
+}
+
+#pragma mark - endpoint bar 
+
+-(void)setUpEndpointBar {
+    if (!self.endpointBar) {
+        self.endpointBar = [[NUEndpointBar alloc] initWithFrame:CGRectMake(0.0f, self.view.frame.size.height - 15.0f, self.view.frame.size.width, 59.0f)];
+        [self.navigationController.view addSubview:self.endpointBar];
+        [self.endpointBar.endpointBarButton addTarget:self action:@selector(endpointBarButtonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:MANUAL_MODE] == NO) {
+        NUEndpoint *endpoint = [[NUEndpointService service] userEndpointOnDisk];
+        if (endpoint) {
+            NSString *labelString = [NSString stringWithFormat:@"Your current location is:\n%@", endpoint.name];
+            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+            paragraphStyle.lineSpacing = -3.0f;
+            NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
+            [labelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:endpoint.name]];
+            self.endpointBar.endpointBarLabel.attributedText = labelText;
+            [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
+        }
+        else {
+            self.navigationItem.rightBarButtonItem.enabled = NO;
+            self.endpointBar.endpointBarLabel.text = @"No location chosen";
+            [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
+        }
+        self.endpointBar.endpointBarButton.alpha = 1.0f;
+    }
+    else {
+        self.endpointBar.endpointBarLabel.attributedText = [[NSAttributedString alloc] initWithString:@"You are using\nmanual mode" attributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:13]}];
+        self.endpointBar.endpointBarButton.alpha = 0.0f;
+    }
+}
+
+-(void)endpointBarButtonWasTapped:(UIButton *)endpointBarButton {
+    NUEndpoint *endpoint = [[NUEndpointService service] userEndpointOnDisk];
+    if (endpoint) {
+        [[NUEndpointService service] deleteUserEndpoint];
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+        self.endpointBar.endpointBarLabel.text = @"No location chosen";
+        [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
+        [self startEndpointSelection];
+    }
+    else {
+        [self startEndpointSelection];
+    }
+}
+
 #pragma mark -
 #pragma mark navigation controller delegate
 
@@ -243,7 +327,7 @@
 
 #pragma Actions
 - (void)syncButtonWasPressed {
-    NSLog(@"Sync Pressed!!!");
+    //    NSLog(@"Sync Pressed!!!");
     NSString *emptyUrl;
     if ([[ApplicationSettings instance] coreSynchronizeConfigured:&emptyUrl]) {
         [self confirmSync];
@@ -299,8 +383,8 @@
 }
 
 - (void) deleteButtonWasPressed {
-    NSLog(@"Delete button pressed");
-
+//    NSLog(@"Delete button pressed");
+    [[NUEndpointService service] deleteUserEndpoint];
     [self purgeDataStore];
     
     self.contacts = [NSArray array];
@@ -321,6 +405,15 @@
 - (void)purgeDataStore {
     ApplicationPersistentStore* s = [ApplicationPersistentStore instance];
     [s remove];
+}
+
+-(void)startEndpointSelection {
+    NUEndpointCollectionViewController *endpointCollectionViewController = [[NUEndpointCollectionViewController alloc] initWithNibName:nil bundle:nil];
+    endpointCollectionViewController.delegate = self;
+    endpointCollectionViewController.modalPresentationStyle = UIModalPresentationPageSheet;
+    [self presentViewController:endpointCollectionViewController animated:YES completion:^{
+        [endpointCollectionViewController getEndpointsFromService:nil];
+    }];
 }
 
 #pragma mark - Cas Login Delegate
@@ -482,9 +575,11 @@
         self.contacts = [self contactsFromDataStore];
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tableView.tableHeaderView = [self tableHeaderView];
+    [self setUpEndpointBar];
 }
 
 - (UIView*)tableHeaderView {
@@ -543,6 +638,11 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    NUEndpoint *endpoint = [[NUEndpointService service] userEndpointOnDisk];
+    if (!endpoint) {
+        [self startEndpointSelection];
+    }
+    
     [super viewDidAppear:animated];
 }
 

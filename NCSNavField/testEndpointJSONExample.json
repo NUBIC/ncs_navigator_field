@@ -1,0 +1,64 @@
+{
+    "locations": [
+                  {
+                  "name": "Northwestern",
+                  "logo_url": "https://dl.dropbox.com/u/688911/images/harris_county.jpg",
+                  "environments": [
+                                   {
+                                   "name": "staging",
+                                   "cases_url": "https://training-navcases.nubic.northwestern.edu",
+                                   "cas_base_url": "https://ncscas-staging.nubic.northwestern.edu/cas",
+                                   "cas_proxy_retrieve_url": "https://ncscas-staging.nubic.northwestern.edu/cas-proxy-callback/retrieve_pgt",
+                                   "cas_proxy_receive_url": "https://ncscas-staging.nubic.northwestern.edu/cas-proxy-callback/receive_pgt"
+                                   },
+                                   {
+                                   "name": "production",
+                                   "cases_url": "https://bcm-navcases-staging.nubic.northwestern.edu",
+                                   "cas_base_url": "https://bcm-ncscas-staging.nubic.northwestern.edu/cas",
+                                   "cas_proxy_retrieve_url": "https://ncscas-staging.nubic.northwestern.edu/cas-proxy-callback/retrieve_pgt",
+                                   "cas_proxy_receive_url": "https://ncscas-staging.nubic.northwestern.edu/cas-proxy-callback/receive_pgt"
+                                   }
+                                   ]
+                  },
+                  {
+                  "name": "UMass",
+                  "logo_url": "https://dl.dropbox.com/u/688911/images/umass.jpg",
+                  "environments": [
+                                   {
+                                   "name": "staging",
+                                   "cases_url": "https://training-navcases.nubic.northwestern.edu",
+                                   "cas_base_url": "https://ncscas-staging.nubic.northwestern.edu/cas",
+                                   "cas_proxy_retrieve_url": "https://ncscas-staging.nubic.northwestern.edu/cas-proxy-callback/retrieve_pgt",
+                                   "cas_proxy_receive_url": "https://ncscas-staging.nubic.northwestern.edu/cas-proxy-callback/receive_pgt"
+                                   },
+                                   {
+                                   "name": "production",
+                                   "cases_url": "https://umass-navcases-staging.nubic.northwestern.edu",
+                                   "cas_base_url": "https://umass-ncscas-staging.nubic.northwestern.edu/cas",
+                                   "cas_proxy_retrieve_url": "https://umass-ncscas-staging.nubic.northwestern.edu/cas-proxy-callback/receive_pgt",
+                                   "cas_proxy_receive_url": "https://umass-ncscas-staging.nubic.northwestern.edu/cas-proxy-callback/retrieve_pgt"
+                                   }
+                                   ]
+                  },
+                  {
+                  "name": "Jefferson County",
+                  "logo_url": "https://dl.dropbox.com/u/688911/images/jefferson_county.jpg",
+                  "environments": [
+                                   {
+                                   "name": "staging",
+                                   "cases_url": "https://training-navcases.nubic.northwestern.edu",
+                                   "cas_base_url": "https://ncscas-staging.nubic.northwestern.edu/cas",
+                                   "cas_proxy_retrieve_url": "https://ncscas-staging.nubic.northwestern.edu/cas-proxy-callback/retrieve_pgt",
+                                   "cas_proxy_receive_url": "https://ncscas-staging.nubic.northwestern.edu/cas-proxy-callback/receive_pgt"
+                                   },
+                                   {
+                                   "name": "production",
+                                   "cases_url": "https://uofl-navcases-staging.nubic.northwestern.edu",
+                                   "cas_base_url": "https://uofl-ncscas-staging.nubic.northwestern.edu/cas",
+                                   "cas_proxy_retrieve_url": "https://uofl-ncscas-staging.nubic.northwestern.edu/cas-proxy-callback/receive_pgt",
+                                   "cas_proxy_receive_url": "https://uofl-ncscas-staging.nubic.northwestern.edu/cas-proxy-callback/retrieve_pgt"
+                                   }
+                                   ]
+                  }
+                  ]
+}

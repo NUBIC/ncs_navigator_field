@@ -8,58 +8,27 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const SettingsDidChangeNotification;
+@class NUEndpoint;
 
-@interface ApplicationSettings : NSObject {
-    @private
-    NSString* _coreURL;
-    NSString* _clientId;
-    NSString* _casServerURL;
-    NSString* _pgtReceiveURL;
-    NSString* _pgtRetrieveURL;
-    BOOL _purgeFieldworkButton;
-    NSInteger _upcomingDaysToSync;
-}
+@interface ApplicationSettings : NSObject
 
 #pragma mark properties
 
 @property(nonatomic,strong) NSString* coreURL;
-
 @property(nonatomic,strong) NSString* clientId;
-
 @property(nonatomic,strong) NSString* casServerURL;
-
 @property(nonatomic,strong) NSString* pgtReceiveURL;
-
 @property(nonatomic,strong) NSString* pgtRetrieveURL;
-
 @property(nonatomic) BOOL purgeFieldworkButton;
-
 @property(nonatomic) NSInteger upcomingDaysToSync;
 
 #pragma Methods
 
 + (ApplicationSettings*) instance;
 
-+ (void) reload;
-
-- (void) reload;
-
-- (NSString*) retreiveClientId;
-
-- (NSString*) retreiveCoreURL;
-
-- (NSString*) casServerURL;
-
-- (NSString*) pgtReceiveURL;
-
-- (NSString*) pgtRetrieveURL;
-
 + (CasConfiguration*) casConfiguration;
 
 - (BOOL) isPurgeFieldworkButton;
-
-- (NSInteger) upcomingDaysToSync;
 
 - (void)registerDefaultsFromSettingsBundle;
 
@@ -74,4 +43,7 @@ extern NSString *const SettingsDidChangeNotification;
 -(void)setLastModifiedSinceForCodes:(NSString*)str;
 
 -(void)deleteLastModifiedSinceDates;
+
+-(void)updateWithEndpoint:(NUEndpoint *)endpoint;
+
 @end

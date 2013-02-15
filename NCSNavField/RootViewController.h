@@ -47,6 +47,7 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 - (void)purgeDataStore;
 - (void)didSelectRow:(Row*)row;
 - (void)syncButtonWasPressed;
+-(void)setUpEndpointBar;
 - (void)confirmSync;
 - (void)startCasLogin;
 - (void)deleteButtonWasPressed;
