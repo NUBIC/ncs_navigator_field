@@ -40,22 +40,13 @@
         // Add the split view controller's view to the window and display.
         self.window.rootViewController = self.splitViewController;
         [self.window makeKeyAndVisible];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
-
+                
         return YES;
     }
     @catch(NSException *ex) {
         NSLog(@"Something went wrong: %@",[ex reason]);
     }
 }
-
-- (void)settingsChanged:(NSNotification *)notif
-{
-    [ApplicationSettings reload];
-    [RestKitSettings reload];
-}
-
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -75,6 +66,8 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    [self.rootViewController setUpEndpointBar];
+    [RestKitSettings reload];
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */

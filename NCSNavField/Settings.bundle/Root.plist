@@ -24,19 +24,29 @@
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>NCS Navigator Core URL</string>
-			<key>Key</key>
-			<string>navigator.core.url</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
 			<string>Upcoming days to sync</string>
 			<key>Key</key>
 			<string>upcoming.days.to.sync</string>
 			<key>DefaultValue</key>
 			<string>7</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Manual Mode</string>
+			<key>Key</key>
+			<string>navigator.core.manualMode</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>NCS Navigator Core URL</string>
+			<key>Key</key>
+			<string>navigator.core.url</string>
 		</dict>
 		<dict>
 			<key>Type</key>
