@@ -507,7 +507,7 @@
 		0092BA5614E32C3500134165 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		0095430D153E62040018DAC3 /* InstrumentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentVC.h; sourceTree = "<group>"; };
 		0095430E153E62040018DAC3 /* InstrumentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentVC.m; sourceTree = "<group>"; };
-		0097198016CA8E0A001925A8 /* 20130212144148_add_instrument_context_to_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20130212144148_add_instrument_context_to_response_set.xcdatamodel; sourceTree = "<group>"; };
+		0097198016CA8E0A001925A8 /* 20130212144148_add_instrument_context_to_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130212144148_add_instrument_context_to_response_set.xcdatamodel; sourceTree = "<group>"; };
 		009A4892165C173E00601959 /* 20121120195321_add_new_person_attributes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121120195321_add_new_person_attributes.xcdatamodel; sourceTree = "<group>"; };
 		009A489E165C45B300601959 /* MdesCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MdesCode.h; sourceTree = "<group>"; };
 		009A489F165C45B300601959 /* MdesCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MdesCode.m; sourceTree = "<group>"; };
@@ -545,6 +545,7 @@
 		00AE8011167B8101007FF178 /* NUSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSection.h; sourceTree = "<group>"; };
 		00AE8012167B8101007FF178 /* NUSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSection.m; sourceTree = "<group>"; };
 		00B3DC64167009D40066E5AD /* 20121205230124_add_person_id_to_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121205230124_add_person_id_to_response_set.xcdatamodel; sourceTree = "<group>"; };
+		00B8756416D5640D00CED547 /* 20130220200434_remove_instrument_context_from_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130220200434_remove_instrument_context_from_response_set.xcdatamodel; sourceTree = "<group>"; };
 		00BB5C4A167EC70D00EAE043 /* 20121217031937_move_response_templates_relationship_to_event_templates.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121217031937_move_response_templates_relationship_to_event_templates.xcdatamodel; sourceTree = "<group>"; };
 		00BB5C60167ED40E00EAE043 /* NSStringTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringTest.h; sourceTree = "<group>"; };
 		00BB5C61167ED40E00EAE043 /* NSStringTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringTest.m; sourceTree = "<group>"; };
@@ -1937,6 +1938,7 @@
 			isa = XCVersionGroup;
 			children = (
 				0097198016CA8E0A001925A8 /* 20130212144148_add_instrument_context_to_response_set.xcdatamodel */,
+				00B8756416D5640D00CED547 /* 20130220200434_remove_instrument_context_from_response_set.xcdatamodel */,
 				00140E2816C0267E0074AB6B /* 20130204172431_remove_instrument_plan_relationship_from_instrument.xcdatamodel */,
 				002968A316BC7D3E00524EEC /* 20130201224552_change_response_entity_name.xcdatamodel */,
 				00BB5C4A167EC70D00EAE043 /* 20121217031937_move_response_templates_relationship_to_event_templates.xcdatamodel */,
@@ -1974,7 +1976,7 @@
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 0097198016CA8E0A001925A8 /* 20130212144148_add_instrument_context_to_response_set.xcdatamodel */;
+			currentVersion = 00B8756416D5640D00CED547 /* 20130220200434_remove_instrument_context_from_response_set.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";
