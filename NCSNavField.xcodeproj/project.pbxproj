@@ -109,6 +109,8 @@
 		00AE800A167A7A24007FF178 /* ResponseTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AE8009167A7A24007FF178 /* ResponseTemplate.m */; };
 		00AE800D167A934F007FF178 /* ResponseTemplateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AE800C167A934F007FF178 /* ResponseTemplateTest.m */; };
 		00AE8013167B8101007FF178 /* NUSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AE8012167B8101007FF178 /* NUSection.m */; };
+		00B8756716D56A5300CED547 /* ResponseSetMustacheContextTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B8756616D56A5300CED547 /* ResponseSetMustacheContextTest.m */; };
+		00B8756B16D56C5000CED547 /* ResponseSetMustacheContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B8756A16D56C5000CED547 /* ResponseSetMustacheContext.m */; };
 		00BB5C62167ED40E00EAE043 /* NSStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BB5C61167ED40E00EAE043 /* NSStringTest.m */; };
 		00C0C8D615655E390047A113 /* icon-test.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C0C8D515655E390047A113 /* icon-test.png */; };
 		00C2520D151794EB00F4FE3B /* RestKitSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2520C151794EB00F4FE3B /* RestKitSettingsTest.m */; };
@@ -546,6 +548,10 @@
 		00AE8012167B8101007FF178 /* NUSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSection.m; sourceTree = "<group>"; };
 		00B3DC64167009D40066E5AD /* 20121205230124_add_person_id_to_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121205230124_add_person_id_to_response_set.xcdatamodel; sourceTree = "<group>"; };
 		00B8756416D5640D00CED547 /* 20130220200434_remove_instrument_context_from_response_set.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130220200434_remove_instrument_context_from_response_set.xcdatamodel; sourceTree = "<group>"; };
+		00B8756516D56A5300CED547 /* ResponseSetMustacheContextTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseSetMustacheContextTest.h; sourceTree = "<group>"; };
+		00B8756616D56A5300CED547 /* ResponseSetMustacheContextTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseSetMustacheContextTest.m; sourceTree = "<group>"; };
+		00B8756816D56BAA00CED547 /* ResponseSetMustacheContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseSetMustacheContext.h; sourceTree = "<group>"; };
+		00B8756A16D56C5000CED547 /* ResponseSetMustacheContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseSetMustacheContext.m; sourceTree = "<group>"; };
 		00BB5C4A167EC70D00EAE043 /* 20121217031937_move_response_templates_relationship_to_event_templates.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121217031937_move_response_templates_relationship_to_event_templates.xcdatamodel; sourceTree = "<group>"; };
 		00BB5C60167ED40E00EAE043 /* NSStringTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringTest.h; sourceTree = "<group>"; };
 		00BB5C61167ED40E00EAE043 /* NSStringTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringTest.m; sourceTree = "<group>"; };
@@ -775,6 +781,8 @@
 		0026E691140347E700355BCB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				00B8756516D56A5300CED547 /* ResponseSetMustacheContextTest.h */,
+				00B8756616D56A5300CED547 /* ResponseSetMustacheContextTest.m */,
 				002968A016BC67D800524EEC /* ResponseTest.h */,
 				002968A116BC67D800524EEC /* ResponseTest.m */,
 				00BB5C60167ED40E00EAE043 /* NSStringTest.h */,
@@ -1200,6 +1208,8 @@
 		00AE8010167B8026007FF178 /* NUSurveyor */ = {
 			isa = PBXGroup;
 			children = (
+				00B8756816D56BAA00CED547 /* ResponseSetMustacheContext.h */,
+				00B8756A16D56C5000CED547 /* ResponseSetMustacheContext.m */,
 				00453D7716BAEAD90010214C /* NUQuestion.h */,
 				00453D7816BAEAD90010214C /* NUQuestion.m */,
 				00453D7416BAEA7D0010214C /* NUAnswer.h */,
@@ -1637,6 +1647,7 @@
 				00453D7916BAEAD90010214C /* NUQuestion.m in Sources */,
 				0029689F16BC675000524EEC /* Response.m in Sources */,
 				004E20BD16C0485B006E68DC /* JSONParserNSJSONSerialization.m in Sources */,
+				00B8756B16D56C5000CED547 /* ResponseSetMustacheContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1669,6 +1680,7 @@
 				0039F7A6167BB3F200CE32B3 /* NUSectionTest.m in Sources */,
 				00BB5C62167ED40E00EAE043 /* NSStringTest.m in Sources */,
 				002968A216BC67D800524EEC /* ResponseTest.m in Sources */,
+				00B8756716D56A5300CED547 /* ResponseSetMustacheContextTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
