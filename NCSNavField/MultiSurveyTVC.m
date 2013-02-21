@@ -18,6 +18,8 @@
 
 @interface NUSurveyTVC()
 - (void) showSection:(NSUInteger) index;
+- (void) nextSection;
+- (void) prevSection;
 @end
 
 @implementation MultiSurveyTVC
@@ -140,6 +142,49 @@
     [self.sectionTVC setDetailItem:[ss sectionforSurveyIndex:sui sectionIndex:sei]];
     [self.sectionTVC.tableView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
     self.sectionTVC.pageControl.currentPage = sei;
+}
+
+- (void) nextSection {
+    NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    if ((selectedIndexPath.row + 1) < [[self.surveyNSD objectForKey:@"sections"] count]) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([self.tableView indexPathForSelectedRow].row + 1) inSection:selectedIndexPath.section];
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        [self setActiveSurveyWithSurveyIndex:indexPath.section activeSectionWithSectionIndex:indexPath.row];
+        
+    }
+    else {
+        NSIndexPath *nextSectionFirstRowPath = [NSIndexPath indexPathForRow:0 inSection:selectedIndexPath.section + 1];
+        if ([self.tableView cellForRowAtIndexPath:nextSectionFirstRowPath]) {
+            [self.tableView selectRowAtIndexPath:nextSectionFirstRowPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self setActiveSurveyWithSurveyIndex:nextSectionFirstRowPath.section activeSectionWithSectionIndex:nextSectionFirstRowPath.row];
+        }
+    }
+}
+- (void) prevSection{
+    NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    if ((selectedIndexPath.row) > 0) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([self.tableView indexPathForSelectedRow].row - 1) inSection:selectedIndexPath.section];
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        [self setActiveSurveyWithSurveyIndex:indexPath.section activeSectionWithSectionIndex:indexPath.row];
+    }
+    else {
+        NSUInteger rowNumber = [self.tableView.dataSource tableView:self.tableView numberOfRowsInSection:selectedIndexPath.section - 1] - 1;
+        NSIndexPath *previousSectionLastRowPath =  [NSIndexPath indexPathForRow:rowNumber inSection:selectedIndexPath.section - 1];
+        if ([self.tableView cellForRowAtIndexPath:previousSectionLastRowPath]) {
+            [self.tableView selectRowAtIndexPath:previousSectionLastRowPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self setActiveSurveyWithSurveyIndex:previousSectionLastRowPath.section activeSectionWithSectionIndex:previousSectionLastRowPath.row];
+        }
+    }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	
+    if ([[self.surveyNSD objectForKey:@"sections"] objectAtIndex:0]) {
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:   NO scrollPosition:UITableViewScrollPositionNone];
+        [self setActiveSurveyWithSurveyIndex:0 activeSectionWithSectionIndex:0];
+    }
 }
 
 
