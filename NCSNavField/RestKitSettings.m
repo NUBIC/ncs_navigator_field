@@ -266,8 +266,6 @@ static RestKitSettings* instance;
      @"contact_private_detail", @"privateDetail",
      @"contact_distance", @"distanceTraveled",
      @"contact_disposition", @"dispositionCode", nil];
-    [contact mapRelationship:@"person" withMapping:person];
-    [contact connectRelationship:@"person" withObjectForPrimaryKeyAttribute:@"personId"];
     [contact mapRelationship:@"events" withMapping:event];
     [objectManager.mappingProvider setMapping:contact forKeyPath:@"contacts"];
     

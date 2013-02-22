@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>_XCCurrentVersionName</key>
-	<string>20130220200434_remove_instrument_context_from_response_set.xcdatamodel</string>
+	<string>20130222220953_removed_person_relation_from_contact.xcdatamodel</string>
 </dict>
 </plist>
