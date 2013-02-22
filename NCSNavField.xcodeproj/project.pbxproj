@@ -92,6 +92,7 @@
 		008F7DA7148C64AC009BCF1D /* FormBuilderCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F7DA6148C64AC009BCF1D /* FormBuilderCursor.m */; };
 		00910BCF1535F13E00BC2820 /* InstrumentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00910BCE1535F13E00BC2820 /* InstrumentTest.m */; };
 		00910BD21535F18900BC2820 /* DatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00910BD11535F18900BC2820 /* DatabaseTest.m */; };
+		00917E5216D80634008E1088 /* NUQuestionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00917E5116D80634008E1088 /* NUQuestionTest.m */; };
 		0092BA5714E32C3500134165 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0092BA5614E32C3500134165 /* icon.png */; };
 		0095430F153E62040018DAC3 /* InstrumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095430E153E62040018DAC3 /* InstrumentVC.m */; };
 		009A48A0165C45B300601959 /* MdesCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 009A489F165C45B300601959 /* MdesCode.m */; };
@@ -506,6 +507,8 @@
 		00910BCE1535F13E00BC2820 /* InstrumentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentTest.m; sourceTree = "<group>"; };
 		00910BD01535F18900BC2820 /* DatabaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseTest.h; sourceTree = "<group>"; };
 		00910BD11535F18900BC2820 /* DatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseTest.m; sourceTree = "<group>"; };
+		00917E5016D80634008E1088 /* NUQuestionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUQuestionTest.h; path = NCSNavFieldTests/NUQuestionTest.h; sourceTree = "<group>"; };
+		00917E5116D80634008E1088 /* NUQuestionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUQuestionTest.m; path = NCSNavFieldTests/NUQuestionTest.m; sourceTree = "<group>"; };
 		0092BA5614E32C3500134165 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		0095430D153E62040018DAC3 /* InstrumentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentVC.h; sourceTree = "<group>"; };
 		0095430E153E62040018DAC3 /* InstrumentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentVC.m; sourceTree = "<group>"; };
@@ -705,6 +708,8 @@
 		0026E659140347E700355BCB = {
 			isa = PBXGroup;
 			children = (
+				00917E5016D80634008E1088 /* NUQuestionTest.h */,
+				00917E5116D80634008E1088 /* NUQuestionTest.m */,
 				00872259156AF6F100CE24ED /* test-background.png */,
 				00C0C8D515655E390047A113 /* icon-test.png */,
 				000E64B2150EB2BF0006B31E /* Settings.bundle */,
@@ -1681,6 +1686,7 @@
 				00BB5C62167ED40E00EAE043 /* NSStringTest.m in Sources */,
 				002968A216BC67D800524EEC /* ResponseTest.m in Sources */,
 				00B8756716D56A5300CED547 /* ResponseSetMustacheContextTest.m in Sources */,
+				00917E5216D80634008E1088 /* NUQuestionTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
