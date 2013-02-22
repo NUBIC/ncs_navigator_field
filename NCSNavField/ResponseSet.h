@@ -12,7 +12,7 @@
 
 @interface ResponseSet : NUResponseSet
 
-@property(nonatomic,strong) NSDictionary* instrumentContext;
+@property(nonatomic,strong) NSString* survey;
 
 + (ResponseSet*)createResponseSetWithSurvey:(NUSurvey*)survey pId:(NSString*)pId personId:(NSString*)personId;
 

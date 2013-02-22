@@ -11,9 +11,19 @@
 #import <JSONKit.h>
 #import "NUSection.h"
 #import <MRCEnumerable/MRCEnumerable.h>
+#import "InstrumentTemplate.h"
+#import <RestKit/RestKit.h>
 
 // TODO: We should move this to surveyor
 @implementation NUSurvey (Additions)
+
+- (id)initWithJson:(NSString*)json {
+    self = [self init];
+    if (self) {
+        self.jsonString = json;
+    }
+    return self;
+}
 
 - (NSString*)title {
     return [[self deserialized] objectForKey:@"title"];
@@ -41,6 +51,15 @@
         [questions addObjectsFromArray:s.questions];
     }
     return questions;
+}
+
+- (InstrumentTemplate*)instrumentTemplate {
+    return [InstrumentTemplate findFirstByAttribute:@"instrumentTemplateId" withValue:[self uuid]];
+}
+
++ (NUSurvey*)findByUUUID:(NSString*)uuid {
+    InstrumentTemplate* t = [InstrumentTemplate findFirstByAttribute:@"instrumentTemplateId" withValue:uuid];
+    return t ? [[NUSurvey alloc] initWithJson:t.representation] : nil;
 }
 
 @end

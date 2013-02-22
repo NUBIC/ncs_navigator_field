@@ -9,13 +9,13 @@
 #import "NUQuestion.h"
 #import "NUAnswer.h"
 #import "NSManagedObject+Additions.h"
+#import "InstrumentTemplate.h"
 
 @implementation NUQuestion
 
-@dynamic referenceIdentifier;
-@dynamic text;
-@dynamic uuid;
-@dynamic answers;
+@dynamic answers, instrumentTemplate, referenceIdentifier, uuid, text;
+
+static NSString *HELPER_QUESTION_REFERENCE_IDENTIFIER_PREFIX = @"helper_";
 
 + (NUQuestion*)transientWithDictionary:(NSDictionary*)dict {
     NUQuestion* created = [self transient];
@@ -33,9 +33,17 @@
 
 - (NUQuestion*)persist {
     if (self.isTransient) {
-        return (NUQuestion*)[self cloneIntoManagedObjectContext:[NSManagedObjectContext contextForCurrentThread]];
+        return (NUQuestion*)[self cloneIntoManagedObjectContext:[NSManagedObjectContext contextForCurrentThread] ignoreRelations:@[@"instrumentTemplate"]];
     }
     return self;
+}
+
+- (NSString*)referenceIdentifierWithoutHelperPrefix {
+    return [self.referenceIdentifier stringByReplacingOccurrencesOfString:HELPER_QUESTION_REFERENCE_IDENTIFIER_PREFIX withString:@"" options:NSCaseInsensitiveSearch | NSAnchoredSearch range:NSMakeRange(0, [self.referenceIdentifier length])];
+}
+
+- (BOOL)isHelperQuestion {
+    return [self.referenceIdentifier rangeOfString:HELPER_QUESTION_REFERENCE_IDENTIFIER_PREFIX options:NSCaseInsensitiveSearch | NSAnchoredSearch].location != NSNotFound;
 }
 
 // BUG: This is a workaround for a bug when using the generated method

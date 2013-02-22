@@ -11,7 +11,7 @@
 
 @implementation Response
 
-@dynamic value;
+@dynamic answer, question, uuid, value;
 
 - (NSDictionary*) toDict {
     NSDictionary* dict = [super toDict];

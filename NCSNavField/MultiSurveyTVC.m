@@ -14,6 +14,7 @@
 #import "ResponseSet.h"
 #import "SurveySet.h"
 #import "SurveyResponseSetRelationship.h"
+#import "ResponseSetMustacheContext.h"
 #import <MRCEnumerable/MRCEnumerable.h>
 
 @interface NUSurveyTVC()
@@ -28,7 +29,9 @@
 - (id)initWithSurveyResponseSetRelationships:(NSArray*)rels {
     SurveyResponseSetRelationship* srsr = [rels count] > 0 ? [rels objectAtIndex:0] : nil;
     
-    self = [self initWithSurvey:srsr.survey responseSet:srsr.responseSet renderContext:srsr.responseSet.instrumentContext];
+    ResponseSetMustacheContext* mc = [[ResponseSetMustacheContext alloc] initWithResponseSet:srsr.responseSet];
+    
+    self = [self initWithSurvey:srsr.survey responseSet:srsr.responseSet renderContext:[mc toDictionary]];
     
     if (self) {
         self.surveyResponseSetAssociations = rels;

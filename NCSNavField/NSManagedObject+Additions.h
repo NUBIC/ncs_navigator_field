@@ -14,6 +14,8 @@
 
 - (NSManagedObject *)cloneIntoManagedObjectContext:(NSManagedObjectContext*)moc;
 
+- (NSManagedObject *)cloneIntoManagedObjectContext:(NSManagedObjectContext*)moc ignoreRelations:(NSArray*)ignoreRelations;
+
 + (id)transient;
 
 - (BOOL)isTransient;
