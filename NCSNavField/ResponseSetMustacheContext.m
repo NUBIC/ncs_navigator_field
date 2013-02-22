@@ -17,7 +17,7 @@
 
 @implementation ResponseSetMustacheContext
 
-- (id)initWithResponseSet:(ResponseSet*)rs {
+- (ResponseSetMustacheContext*)initWithResponseSet:(ResponseSet*)rs {
     self = [self init];
     if (self) {
         self.responseSet = rs;

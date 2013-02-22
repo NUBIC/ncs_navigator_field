@@ -14,7 +14,7 @@
 
 @property(nonatomic,strong) ResponseSet* responseSet;
 
-- (id)initWithResponseSet:(ResponseSet*)rs;
+- (ResponseSetMustacheContext*)initWithResponseSet:(ResponseSet*)rs;
 
 - (NSDictionary*)toDictionary;
 
