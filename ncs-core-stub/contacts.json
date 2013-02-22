@@ -28,11 +28,14 @@
                                             "answer_id": "2aada950-4b75-012f-785f-482a143dc94d", 
                                             "question_id": "2aad88c0-4b75-012f-785f-482a143dc94d", 
                                             "uuid": "31acf240-7842-44b1-88dc-21d1b7e956d7"
+                                        },
+                                        {
+                                            "answer_id": "ed016919-8611-4258-94ce-5a59a5004847",
+                                            "question_id": "99c7b9bb-e07e-49ea-aaea-8b5fac693fcc",
+                                            "uuid": "d0a676c1-8f7c-4fab-9573-d0ae510efd6a",
+                                            "value": "baby"
                                         }
                                     ],
-                                    "instrument_context": {
-                                        "babys_babies": "baby"
-                                    },
                                     "survey_id": "ded83f10-e5f8-012e-9f18-00254bc472f4", 
                                     "uuid": "c952b403-952b-4b8c-801d-dcfe8d754cfc"
                                 }
@@ -5080,6 +5083,18 @@
                             {
                                 "display_order": 1, 
                                 "questions_and_groups": [
+                                    {
+                                        "uuid": "99c7b9bb-e07e-49ea-aaea-8b5fac693fcc",
+                                        "reference_identifier": "helper_babys_babies",
+                                        "type": "hidden",
+                                        "answers": [
+                                            {
+                                                "text": "text",
+                                                "type": "string",
+                                                "uuid": "ed016919-8611-4258-94ce-5a59a5004847"
+                                            }
+                                        ]
+                                    },
                                     {
                                         "answers": [
                                             {
