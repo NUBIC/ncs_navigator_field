@@ -11,7 +11,10 @@
 
 @interface Response : NUResponse
 
-@property (nonatomic, retain) NSString * value;
+@property(nonatomic,retain) NSString* answer;
+@property(nonatomic,retain) NSString* question;
+@property(nonatomic,retain) NSString* uuid;
+@property(nonatomic,retain) NSString* value;
 
 - (NSDictionary*) toDict;
 

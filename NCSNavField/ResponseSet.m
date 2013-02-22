@@ -13,6 +13,8 @@
 
 @implementation ResponseSet
 
+@dynamic survey;
+
 - (NSDictionary*) toDict {
     NSMutableDictionary* d = [NSMutableDictionary dictionaryWithDictionary:[super toDict]];
     [d setValue:[self valueForKey:@"pId"] forKey:@"p_id"];

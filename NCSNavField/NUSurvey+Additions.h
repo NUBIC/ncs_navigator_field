@@ -8,6 +8,8 @@
 
 #import "NUSurvey.h"
 
+@class InstrumentTemplate;
+
 @interface NUSurvey (Additions)
 
 - (NSString*)title;
@@ -19,5 +21,9 @@
 - (NSArray*)sections;
 
 - (NSArray*)questionsForAllSections;
+
+- (InstrumentTemplate*)instrumentTemplate;
+
++ (NUSurvey*)findByUUUID:(NSString*)uuid;
 
 @end

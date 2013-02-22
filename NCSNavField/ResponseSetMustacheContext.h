@@ -12,6 +12,8 @@
 
 @interface ResponseSetMustacheContext : NSObject
 
+@property(nonatomic,strong) ResponseSet* responseSet;
+
 - (id)initWithResponseSet:(ResponseSet*)rs;
 
 - (NSDictionary*)toDictionary;

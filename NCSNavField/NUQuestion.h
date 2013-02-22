@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class NUAnswer;
+@class NUAnswer, InstrumentTemplate;
 
 @interface NUQuestion : NSManagedObject
 
 @property (nonatomic, retain) NSString * referenceIdentifier;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSString * uuid;
+@property (nonatomic, retain) InstrumentTemplate * instrumentTemplate;
 @property (nonatomic, retain) NSOrderedSet *answers;
 
 #pragma mark - Class Methods
@@ -24,6 +25,10 @@
 #pragma mark - Instance Methods
 
 - (NUQuestion*)persist;
+
+- (NSString*)referenceIdentifierWithoutHelperPrefix;
+
+- (BOOL)isHelperQuestion;
 
 @end
 
