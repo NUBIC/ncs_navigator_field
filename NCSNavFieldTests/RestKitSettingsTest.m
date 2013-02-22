@@ -126,9 +126,6 @@
          "               \"instrument_id\":\"i1\",      "
          "               \"response_sets\":[{           "
          "                 \"uuid\":\"rs1\",            "
-         "                 \"instrument_context\":{     "
-         "                   \"hello\":\"world\"        "
-         "                 },                           "
          "                 \"responses\":[              "
          "                   {\"uuid\":\"r1\"},         "
          "                   {\"uuid\":\"r2\"}          "
@@ -172,7 +169,6 @@
     
     ResponseSet* rs = [[ins.responseSets objectEnumerator] nextObject];
     STAssertEqualObjects([rs valueForKey:@"uuid"], @"rs1", @"Wrong value");
-    STAssertEqualObjects(rs.instrumentContext[@"hello"], @"world", nil);
     
     InstrumentPlan* ip = ins.instrumentPlan;
     STAssertEqualObjects([ip valueForKey:@"instrumentPlanId"], @"ip1", @"Wrong value");

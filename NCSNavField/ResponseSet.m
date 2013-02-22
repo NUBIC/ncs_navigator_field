@@ -13,7 +13,7 @@
 
 @implementation ResponseSet
 
-@dynamic instrumentContext;
+@dynamic survey;
 
 - (NSDictionary*) toDict {
     NSMutableDictionary* d = [NSMutableDictionary dictionaryWithDictionary:[super toDict]];
@@ -27,7 +27,6 @@
     NSDictionary *jsonData = [jsonString objectFromJSONString];
     [self setValue:[jsonData valueForKey:@"p_id"] forKey:@"pId"];
     [self setValue:[jsonData valueForKey:@"person_id"] forKey:@"personId"];
-    self.instrumentContext = [jsonData valueForKey:@"instrument_context"];
 }
 
 + (ResponseSet*)createResponseSetWithSurvey:(NUSurvey*)survey pId:(NSString*)pId personId:(NSString*)personId {
@@ -36,13 +35,6 @@
     [rs setValue:personId forKey:@"personId"];
     [rs setValue:survey.uuid forKey:@"survey"];
     return rs;
-}
-
-- (NSDictionary*)instrumentContext {
-    [self willAccessValueForKey:@"instrumentContext"];
-    NSDictionary *ctx = [self primitiveValueForKey:@"instrumentContext"];
-    [self didAccessValueForKey:@"instrumentContext"];
-    return ctx == nil ? @{} : ctx;
 }
 
 @end

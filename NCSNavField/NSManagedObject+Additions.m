@@ -19,6 +19,10 @@
     return [self copyObject:self withCopiedCache:[NSMutableDictionary new] andManagedObjectContext:moc ignoreRelations:NULL];
 }
 
+- (NSManagedObject *)cloneIntoManagedObjectContext:(NSManagedObjectContext*)moc ignoreRelations:(NSArray*)ignoreRelations {
+    return [self copyObject:self withCopiedCache:[NSMutableDictionary new] andManagedObjectContext:moc ignoreRelations:ignoreRelations];
+}
+
 - (NSManagedObject*)copyObject:(NSManagedObject*)object withCopiedCache:(NSMutableDictionary*)cache andManagedObjectContext:(NSManagedObjectContext*)moc ignoreRelations:(NSArray*)ignoreRelations{
     NSString *entityName = [[object entity] name];
     
