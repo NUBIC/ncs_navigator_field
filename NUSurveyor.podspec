@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name = 'NUSurveyor'
-  s.version = '1.1.dev16'
+  s.version = '1.1.dev17'
   s.platform = :ios
   s.requires_arc = true
-  s.source = { :git => 'https://github.com/NUBIC/nu_surveyor.git', :commit => '8cb21720316e8b025a96e7b0cbc348ea333830b6' }
+  s.source = { :git => 'https://github.com/NUBIC/nu_surveyor.git', :commit => '4285c3b2246c149eddcfe38351b51297ef286d5f' }
   s.source_files = 'NUSurveyor/NUSurveyor-Prefix.pch', 'NUSurveyor/**/*.{h,m}', 'GR*.{h,m}'
   s.frameworks = 'QuartzCore', 'CoreGraphics'
   s.preserve_paths = 'libGRMustache5-iOS.a'
