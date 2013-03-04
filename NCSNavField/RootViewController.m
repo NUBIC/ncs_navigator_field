@@ -386,6 +386,7 @@
 //    NSLog(@"Delete button pressed");
     [[NUEndpointService service] deleteUserEndpoint];
     [self purgeDataStore];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     
     self.contacts = [NSArray array];
 }
