@@ -27,6 +27,19 @@
     return c;
 }
 
+- (Person *)person {
+    return [Person findFirstByAttribute:@"personId" withValue:self.personId];
+}
+
+-(void)setPerson:(Person *)person {
+    NSManagedObjectContext *moc = [person managedObjectContext];
+    NSError *saveError = nil;
+    BOOL didSave = [moc save:&saveError];
+    if (didSave == NO) {
+        NSLog(@"didn't save: %@", person);
+    }
+}
+
 +(NSNumber*)dispositionCodeFromContactTypeId:(NSNumber*)typeId {
     if([typeId isEqualToNumber:[NSNumber numberWithInt:1]]) {
         return [NSNumber numberWithInt:3];
