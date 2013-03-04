@@ -5,6 +5,6 @@
 	<key>environment</key>
 	<string>staging</string>
 	<key>locationServiceURL</key>
-	<string>https://dl.dropbox.com/u/688911/testEndpointJSONExample.json</string>
+	<string>http://download.nubic.northwestern.edu/ncs_navigator_locations/testEndpointJSONExample.json </string>
 </dict>
 </plist>
