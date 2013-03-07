@@ -9,7 +9,7 @@ PODS:
 - MBProgressHUD (0.5)
 - MRCEnumerable (0.1)
 - NSData+Base64 (1.0.0)
-- NUSurveyor (1.1.dev17)
+- NUSurveyor (1.1.dev18)
 - OCMock (2.0.1)
 - RestKit (0.10.2):
   - RestKit/JSON (= 0.10.2)
@@ -58,7 +58,7 @@ SPEC CHECKSUMS:
   MBProgressHUD: b23ee11c42253d6d804e8e0bfabdc334e8b2571f
   MRCEnumerable: 4d76635c2a723ea6c648e7496969b639d128f6c1
   NSData+Base64: 8b910cb8a64f45daec6fb15936c36a9a911c57ca
-  NUSurveyor: c2ad324cd3e163c7748f6befdb36b8220f26289b
+  NUSurveyor: 14e49f4257a2b5d61533778c5a0ac7c5381f6849
   RestKit: a9f24f857c792183bcc656f891abe93d38e342ee
   RestKit/JSON: a9f24f857c792183bcc656f891abe93d38e342ee
   RestKit/Network: a9f24f857c792183bcc656f891abe93d38e342ee
