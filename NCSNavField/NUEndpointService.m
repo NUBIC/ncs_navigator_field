@@ -8,7 +8,6 @@
 
 #import "NUEndpointService.h"
 #import "NUEndpointLiveService.h"
-#import "NUEndpointMockService.h"
 
 @implementation NUEndpointService
 
@@ -16,7 +15,6 @@
     static dispatch_once_t onceToken;
     static id <NUEndpointProtocol> service;
     dispatch_once(&onceToken, ^{ service = [NUEndpointLiveService new]; });
-//    dispatch_once(&onceToken, ^{ service = [NUEndpointMockService new]; });
     return service;
 }
 

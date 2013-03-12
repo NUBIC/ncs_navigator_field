@@ -23,7 +23,7 @@ class NCSCoreStub < Sinatra::Base
           headers 'location' => 'http://localhost:4567/api/v1/fieldwork/92c37ba9-7297-4763-9c7f-80ac6ad16727'
           content_type :json
           status 201
-          IO.read("contacts.json")
+          IO.read("fw199.json")
         else
           status 400
           "Missing X-Client-ID header"

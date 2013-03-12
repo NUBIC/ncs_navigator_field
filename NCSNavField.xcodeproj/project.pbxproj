@@ -150,8 +150,6 @@
 		1646CD3216CD860800CDCCEC /* NUEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD3116CD860800CDCCEC /* NUEndpoint.m */; };
 		1646CD3616CD892F00CDCCEC /* NUEndpointService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD3516CD892F00CDCCEC /* NUEndpointService.m */; };
 		1646CD3A16CD8A7600CDCCEC /* NUEndpointLiveService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD3916CD8A7600CDCCEC /* NUEndpointLiveService.m */; };
-		1646CD3D16CD8B9A00CDCCEC /* NUEndpointMockService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD3C16CD8B9A00CDCCEC /* NUEndpointMockService.m */; };
-		1646CD4016CD8FA800CDCCEC /* testEndpointJSONExample.json in Resources */ = {isa = PBXBuildFile; fileRef = 1646CD3F16CD8FA800CDCCEC /* testEndpointJSONExample.json */; };
 		1646CD4416CD9AF200CDCCEC /* NUEndpointCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD4216CD9AF200CDCCEC /* NUEndpointCollectionViewController.m */; };
 		1646CD4516CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1646CD4316CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib */; };
 		1646CD4816CDA43300CDCCEC /* NUEndpointCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD4716CDA43300CDCCEC /* NUEndpointCollectionViewCell.m */; };
@@ -645,20 +643,17 @@
 		1646CD3716CD89B800CDCCEC /* NUEndpointProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NUEndpointProtocol.h; sourceTree = "<group>"; };
 		1646CD3816CD8A7600CDCCEC /* NUEndpointLiveService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointLiveService.h; sourceTree = "<group>"; };
 		1646CD3916CD8A7600CDCCEC /* NUEndpointLiveService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointLiveService.m; sourceTree = "<group>"; };
-		1646CD3B16CD8B9A00CDCCEC /* NUEndpointMockService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointMockService.h; sourceTree = "<group>"; };
-		1646CD3C16CD8B9A00CDCCEC /* NUEndpointMockService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointMockService.m; sourceTree = "<group>"; };
-		1646CD3F16CD8FA800CDCCEC /* testEndpointJSONExample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testEndpointJSONExample.json; sourceTree = "<group>"; };
 		1646CD4116CD9AF200CDCCEC /* NUEndpointCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointCollectionViewController.h; sourceTree = "<group>"; };
 		1646CD4216CD9AF200CDCCEC /* NUEndpointCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointCollectionViewController.m; sourceTree = "<group>"; };
 		1646CD4316CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NUEndpointCollectionViewController.xib; sourceTree = "<group>"; };
 		1646CD4616CDA43300CDCCEC /* NUEndpointCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointCollectionViewCell.h; sourceTree = "<group>"; };
 		1646CD4716CDA43300CDCCEC /* NUEndpointCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointCollectionViewCell.m; sourceTree = "<group>"; };
 		1646CD4916CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NUEndpointCollectionViewCell.xib; sourceTree = "<group>"; };
+		16E839C116D8244800ED8A3C /* 20130222220953_removed_person_relation_from_contact.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130222220953_removed_person_relation_from_contact.xcdatamodel; sourceTree = "<group>"; };
 		16F0DA5616D56BE800290837 /* NCSFieldConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSFieldConstants.h; sourceTree = "<group>"; };
 		16F0DA5716D56BE800290837 /* NCSFieldConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSFieldConstants.m; sourceTree = "<group>"; };
 		16F0DA5916D5719400290837 /* NoImageAvailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoImageAvailable.png; sourceTree = "<group>"; };
 		16F0DA5A16D5719400290837 /* NoImageAvailable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NoImageAvailable@2x.png"; sourceTree = "<group>"; };
-		16E839C116D8244800ED8A3C /* 20130222220953_removed_person_relation_from_contact.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130222220953_removed_person_relation_from_contact.xcdatamodel; sourceTree = "<group>"; };
 		16F4FB8316D566AC0001253F /* NCSNavField-environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NCSNavField-environment.plist"; sourceTree = "<group>"; };
 		16F868AE16B1E4D100F8EE32 /* 20130124215248_add_appCreated_property_to_contact.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130124215248_add_appCreated_property_to_contact.xcdatamodel; sourceTree = "<group>"; };
 		22226BAB1666ED0B005CCE71 /* BlockActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlockActionSheet.h; path = NCSNavField/BlockActionSheet.h; sourceTree = "<group>"; };
@@ -1344,24 +1339,13 @@
 		1646CD3316CD892300CDCCEC /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				1646CD3E16CD8F9E00CDCCEC /* mock data */,
 				1646CD3416CD892F00CDCCEC /* NUEndpointService.h */,
 				1646CD3516CD892F00CDCCEC /* NUEndpointService.m */,
 				1646CD3716CD89B800CDCCEC /* NUEndpointProtocol.h */,
 				1646CD3816CD8A7600CDCCEC /* NUEndpointLiveService.h */,
 				1646CD3916CD8A7600CDCCEC /* NUEndpointLiveService.m */,
-				1646CD3B16CD8B9A00CDCCEC /* NUEndpointMockService.h */,
-				1646CD3C16CD8B9A00CDCCEC /* NUEndpointMockService.m */,
 			);
 			name = Services;
-			sourceTree = "<group>";
-		};
-		1646CD3E16CD8F9E00CDCCEC /* mock data */ = {
-			isa = PBXGroup;
-			children = (
-				1646CD3F16CD8FA800CDCCEC /* testEndpointJSONExample.json */,
-			);
-			name = "mock data";
 			sourceTree = "<group>";
 		};
 		16932B2116CED562001D3D02 /* Views */ = {
@@ -1616,7 +1600,6 @@
 				22226BED1666ED7D005CCE71 /* button_red.png in Resources */,
 				22226BEE1666ED7D005CCE71 /* button_red@2x.png in Resources */,
 				227177B21680F121000C67DD /* lock-icon.png in Resources */,
-				1646CD4016CD8FA800CDCCEC /* testEndpointJSONExample.json in Resources */,
 				1646CD4516CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib in Resources */,
 				1646CD4A16CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib in Resources */,
 				1613E7BA16D2DEAC0002FA0F /* endPointBarBackground.png in Resources */,
@@ -1779,7 +1762,6 @@
 				1646CD3216CD860800CDCCEC /* NUEndpoint.m in Sources */,
 				1646CD3616CD892F00CDCCEC /* NUEndpointService.m in Sources */,
 				1646CD3A16CD8A7600CDCCEC /* NUEndpointLiveService.m in Sources */,
-				1646CD3D16CD8B9A00CDCCEC /* NUEndpointMockService.m in Sources */,
 				1646CD4416CD9AF200CDCCEC /* NUEndpointCollectionViewController.m in Sources */,
 				00B8756B16D56C5000CED547 /* ResponseSetMustacheContext.m in Sources */,
 				1646CD4816CDA43300CDCCEC /* NUEndpointCollectionViewCell.m in Sources */,

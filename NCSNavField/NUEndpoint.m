@@ -9,6 +9,8 @@
 #import "NUEndpoint.h"
 #import "NUEndpointEnvironment.h"
 
+#import "ApplicationInformation.h"
+
 @implementation NUEndpoint
 
 #pragma mark delegate methods
@@ -38,8 +40,7 @@
 
 -(NUEndpointEnvironment *)enviromentBasedOnPlistFromArray:(NSArray *)enviromentArray {
     
-    NSDictionary *environmentDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"NCSNavField-environment" ofType:@"plist"]];
-    NSString __block *chosenEnvironmentName = environmentDictionary[@"environment"];
+    NSString *chosenEnvironmentName = ([ApplicationInformation isTestEnvironment] == YES) ? @"staging" : @"production";
     NSArray *filteredEnvironmentArray = [enviromentArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NUEndpointEnvironment *environment, NSDictionary *bindings) {
         return [environment.name isEqualToString:chosenEnvironmentName];
     }]];
