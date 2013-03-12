@@ -13,11 +13,11 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
-        self.name = [aDecoder decodeObjectForKey:@"name"];
-        self.coreURL = [aDecoder decodeObjectForKey:@"coreURL"];
-        self.casServerURL = [aDecoder decodeObjectForKey:@"casServerURL"];
-        self.pgtReceiveURL = [aDecoder decodeObjectForKey:@"pgtReceiveURL"];
-        self.pgtRetrieveURL = [aDecoder decodeObjectForKey:@"pgtRetrieveURL"];
+        _name = [aDecoder decodeObjectForKey:@"name"];
+        _coreURL = [aDecoder decodeObjectForKey:@"coreURL"];
+        _casServerURL = [aDecoder decodeObjectForKey:@"casServerURL"];
+        _pgtReceiveURL = [aDecoder decodeObjectForKey:@"pgtReceiveURL"];
+        _pgtRetrieveURL = [aDecoder decodeObjectForKey:@"pgtRetrieveURL"];
     }
     return self;
 }
@@ -34,11 +34,11 @@
     
     self = [super init];
     if (self) {
-        self.name = environmentDictionary[@"name"];
-        self.coreURL = [NSURL URLWithString:environmentDictionary[@"cases_url"]];
-        self.casServerURL = [NSURL URLWithString:environmentDictionary[@"cas_base_url"]];
-        self.pgtReceiveURL = [NSURL URLWithString:environmentDictionary[@"cas_proxy_receive_url"]];
-        self.pgtRetrieveURL = [NSURL URLWithString:environmentDictionary[@"cas_proxy_retrieve_url"]];
+        _name = environmentDictionary[@"name"];
+        _coreURL = [NSURL URLWithString:environmentDictionary[@"cases_url"]];
+        _casServerURL = [NSURL URLWithString:environmentDictionary[@"cas_base_url"]];
+        _pgtReceiveURL = [NSURL URLWithString:environmentDictionary[@"cas_proxy_receive_url"]];
+        _pgtRetrieveURL = [NSURL URLWithString:environmentDictionary[@"cas_proxy_retrieve_url"]];
     }
     return self;
 }

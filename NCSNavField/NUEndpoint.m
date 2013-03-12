@@ -52,10 +52,10 @@
 -(id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
-        self.name = [aDecoder decodeObjectForKey:@"name"];
-        self.imageURL = [aDecoder decodeObjectForKey:@"imageURL"];
-        self.environmentArray = [aDecoder decodeObjectForKey:@"environmentArray"];
-        self.enviroment = [self enviromentBasedOnPlistFromArray:self.environmentArray];
+        _name = [aDecoder decodeObjectForKey:@"name"];
+        _imageURL = [aDecoder decodeObjectForKey:@"imageURL"];
+        _environmentArray = [aDecoder decodeObjectForKey:@"environmentArray"];
+        _enviroment = [self enviromentBasedOnPlistFromArray:_environmentArray];
     }
     return self;
 }
@@ -69,14 +69,14 @@
 -(instancetype)initWithDataDictionary:(NSDictionary *)dataDictionary {
     self = [super init];
     if (self) {
-        self.name = dataDictionary[@"name"];
-        self.imageURL = [NSURL URLWithString:dataDictionary[@"logo_url"]];
-        self.environmentArray = @[];
+        _name = dataDictionary[@"name"];
+        _imageURL = [NSURL URLWithString:dataDictionary[@"logo_url"]];
+        _environmentArray = @[];
         for (NSDictionary *environmentDictionary in dataDictionary[@"environments"]) {
             NUEndpointEnvironment *environment = [[NUEndpointEnvironment alloc] initWithEnviromentDictionary:environmentDictionary];
-            self.environmentArray = [self.environmentArray arrayByAddingObject:environment];
+            _environmentArray = [_environmentArray arrayByAddingObject:environment];
         }
-        self.enviroment = [self enviromentBasedOnPlistFromArray:self.environmentArray];
+        _enviroment = [self enviromentBasedOnPlistFromArray:_environmentArray];
     }
     return self;
 }
