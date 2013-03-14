@@ -115,6 +115,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:MASTER_VC_DID_SELECT_ROW object:nil];
     [self setActiveSurveyWithSurveyIndex:indexPath.section activeSectionWithSectionIndex:indexPath.row];
 }
 
