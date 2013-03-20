@@ -138,6 +138,7 @@
 		00F940841642E08100176840 /* EventTemplateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F940831642E08100176840 /* EventTemplateTest.m */; };
 		00FF37DE1417C50D0009B1D4 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37DD1417C50D0009B1D4 /* Instrument.m */; };
 		00FF37E71417D2380009B1D4 /* ContactNavigationTableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */; };
+		16D3DE4316FA0DE90043FC69 /* NCSFieldConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D3DE4216FA0DE90043FC69 /* NCSFieldConstants.m */; };
 		22226BB41666ED0F005CCE71 /* BlockActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 22226BAC1666ED0B005CCE71 /* BlockActionSheet.m */; };
 		22226BB51666ED0F005CCE71 /* BlockAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22226BAE1666ED0C005CCE71 /* BlockAlertView.m */; };
 		22226BB61666ED0F005CCE71 /* BlockBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 22226BB01666ED0D005CCE71 /* BlockBackground.m */; };
@@ -605,6 +606,8 @@
 		00FF37E31417CFA30009B1D4 /* ContactNavigationTableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNavigationTableTest.h; sourceTree = "<group>"; };
 		00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactNavigationTableTest.m; sourceTree = "<group>"; };
 		162812F616B1C19200652CA2 /* 20130124192217_add_instrument_relation_to_eventTemplate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130124192217_add_instrument_relation_to_eventTemplate.xcdatamodel; sourceTree = "<group>"; };
+		16D3DE4116FA0DE90043FC69 /* NCSFieldConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSFieldConstants.h; sourceTree = "<group>"; };
+		16D3DE4216FA0DE90043FC69 /* NCSFieldConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSFieldConstants.m; sourceTree = "<group>"; };
 		16E839C116D8244800ED8A3C /* 20130222220953_removed_person_relation_from_contact.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130222220953_removed_person_relation_from_contact.xcdatamodel; sourceTree = "<group>"; };
 		16F868AE16B1E4D100F8EE32 /* 20130124215248_add_appCreated_property_to_contact.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130124215248_add_appCreated_property_to_contact.xcdatamodel; sourceTree = "<group>"; };
 		22226BAB1666ED0B005CCE71 /* BlockActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlockActionSheet.h; path = NCSNavField/BlockActionSheet.h; sourceTree = "<group>"; };
@@ -1173,6 +1176,8 @@
 		006EBEE8141673A1003D69CF /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				16D3DE4116FA0DE90043FC69 /* NCSFieldConstants.h */,
+				16D3DE4216FA0DE90043FC69 /* NCSFieldConstants.m */,
 				0026E670140347E700355BCB /* NCSNavField-Info.plist */,
 				0026E671140347E700355BCB /* InfoPlist.strings */,
 			);
@@ -1654,6 +1659,7 @@
 				0029689F16BC675000524EEC /* Response.m in Sources */,
 				004E20BD16C0485B006E68DC /* JSONParserNSJSONSerialization.m in Sources */,
 				00B8756B16D56C5000CED547 /* ResponseSetMustacheContext.m in Sources */,
+				16D3DE4316FA0DE90043FC69 /* NCSFieldConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
