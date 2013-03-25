@@ -66,6 +66,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [self.rootViewController setUpEndpointBar];
     [RestKitSettings reload];
     /*

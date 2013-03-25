@@ -71,7 +71,7 @@
         self.endpoint = [[NUEndpointService service] userEndpointOnDisk];
     }
     NSString *returnString = self.endpoint.enviroment.coreURL.absoluteString;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:MANUAL_MODE] == YES) {
+    if ([self isInManualMode] == YES) {
         returnString = [[NSUserDefaults standardUserDefaults] stringForKey:CORE_URL];
     }
     return returnString;
@@ -85,7 +85,7 @@
         self.endpoint = [[NUEndpointService service] userEndpointOnDisk];
     }
     NSString *returnString = self.endpoint.enviroment.casServerURL.absoluteString;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:MANUAL_MODE] == YES) {
+    if ([self isInManualMode] == YES) {
         returnString = [[NSUserDefaults standardUserDefaults] stringForKey:CAS_SERVER_URL];
     }
     return returnString;
@@ -99,7 +99,7 @@
         self.endpoint = [[NUEndpointService service] userEndpointOnDisk];
     }
     NSString *returnString = self.endpoint.enviroment.pgtReceiveURL.absoluteString;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:MANUAL_MODE] == YES) {
+    if ([self isInManualMode] == YES) {
         returnString = [[NSUserDefaults standardUserDefaults] stringForKey:PGT_RECEIVE_URL];
     }
     return returnString;
@@ -113,7 +113,7 @@
         self.endpoint = [[NUEndpointService service] userEndpointOnDisk];
     }
     NSString *returnString = self.endpoint.enviroment.pgtRetrieveURL.absoluteString;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:MANUAL_MODE] == YES) {
+    if ([self isInManualMode] == YES) {
         returnString = [[NSUserDefaults standardUserDefaults] stringForKey:PGT_RETRIEVE_URL];
     }
     return returnString;
@@ -218,6 +218,10 @@
 
 -(void)setLastModifiedSinceForCodes:(NSString*)str {
     [[NSUserDefaults standardUserDefaults] setValue:str forKey:@"lastModifiedCodes"];
+}
+
+-(BOOL)isInManualMode {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:MANUAL_MODE];
 }
 
 -(void)updateWithEndpoint:(NUEndpoint *)endpoint {
