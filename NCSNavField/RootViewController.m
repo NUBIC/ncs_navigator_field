@@ -185,7 +185,7 @@
 
 -(void)endpointCollectionViewControllerDidPressCancel:(NUEndpointCollectionViewController *)collectionView {
     [[NUEndpointService service] stopNetworkRequest];
-    if ([[NUEndpointService service] userEndpointOnDisk] == nil) {
+    if ([NUEndpoint userEndpointOnDisk] == nil) {
         self.navigationItem.rightBarButtonItem.enabled = NO;
     }
     if (self.modalViewController) {
@@ -220,7 +220,7 @@
         [self.endpointBar.endpointBarButton addTarget:self action:@selector(endpointBarButtonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
     if ([[NSUserDefaults standardUserDefaults] boolForKey:MANUAL_MODE] == NO) {
-        NUEndpoint *endpoint = [[NUEndpointService service] userEndpointOnDisk];
+        NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
         if (endpoint) {
             NSString *labelString = [NSString stringWithFormat:@"Your current location is:\n%@", endpoint.name];
             NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
@@ -244,9 +244,9 @@
 }
 
 -(void)endpointBarButtonWasTapped:(UIButton *)endpointBarButton {
-    NUEndpoint *endpoint = [[NUEndpointService service] userEndpointOnDisk];
+    NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
     if (endpoint) {
-        [[NUEndpointService service] deleteUserEndpoint];
+        [NUEndpoint deleteUserEndpoint];
         self.navigationItem.rightBarButtonItem.enabled = NO;
         self.endpointBar.endpointBarLabel.text = @"No location chosen";
         [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
@@ -384,7 +384,7 @@
 
 - (void) deleteButtonWasPressed {
 //    NSLog(@"Delete button pressed");
-    [[NUEndpointService service] deleteUserEndpoint];
+    [NUEndpoint deleteUserEndpoint];
     [self purgeDataStore];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
@@ -639,7 +639,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NUEndpoint *endpoint = [[NUEndpointService service] userEndpointOnDisk];
+    NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
     if (!endpoint) {
         [self startEndpointSelection];
     }

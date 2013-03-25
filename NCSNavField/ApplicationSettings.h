@@ -21,6 +21,7 @@
 @property(nonatomic,strong) NSString* pgtRetrieveURL;
 @property(nonatomic) BOOL purgeFieldworkButton;
 @property(nonatomic) NSInteger upcomingDaysToSync;
+@property (nonatomic, assign, readonly) BOOL isInManualMode;
 
 #pragma Methods
 

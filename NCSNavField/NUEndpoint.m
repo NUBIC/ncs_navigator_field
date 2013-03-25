@@ -11,11 +11,38 @@
 
 #import "ApplicationInformation.h"
 
+@interface NUEndpoint ()
+
+-(NUEndpointEnvironment *)enviromentBasedOnDataFromArray:(NSArray *)enviromentArray;
+
+@end
+
 @implementation NUEndpoint
 
 #pragma mark delegate methods
 
 #pragma mark customization
+
++(BOOL)deleteUserEndpoint {
+    NSString *libraryDirectory = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
+    NSString *path = [libraryDirectory stringByAppendingString:@"/userEndpoint.plist"];
+    return [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+}
+
++(NUEndpoint *)userEndpointOnDisk {
+    NSString *libraryDirectory = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
+    NSString *path = [libraryDirectory stringByAppendingString:@"/userEndpoint.plist"];
+    NUEndpoint *endpoint = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    return endpoint;
+}
+
+-(void) writeToDisk {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:self.enviroment.coreURL.absoluteString forKey:CORE_URL];
+    [defaults setObject:self.enviroment.pgtReceiveURL.absoluteString forKey:PGT_RECEIVE_URL];
+    [defaults setObject:self.enviroment.pgtRetrieveURL.absoluteString forKey:PGT_RETRIEVE_URL];
+    [defaults setObject:self.enviroment.casServerURL.absoluteString forKey:CAS_SERVER_URL];
+}
 
 -(UIImage *)endpointImage {
     if (_endpointImage) {
@@ -38,7 +65,7 @@
 
 #pragma mark prototyping
 
--(NUEndpointEnvironment *)enviromentBasedOnPlistFromArray:(NSArray *)enviromentArray {
+-(NUEndpointEnvironment *)enviromentBasedOnDataFromArray:(NSArray *)enviromentArray {
     
     NSString *chosenEnvironmentName = ([ApplicationInformation isTestEnvironment] == YES) ? @"staging" : @"production";
     NSArray *filteredEnvironmentArray = [enviromentArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NUEndpointEnvironment *environment, NSDictionary *bindings) {
@@ -56,7 +83,7 @@
         _name = [aDecoder decodeObjectForKey:@"name"];
         _imageURL = [aDecoder decodeObjectForKey:@"imageURL"];
         _environmentArray = [aDecoder decodeObjectForKey:@"environmentArray"];
-        _enviroment = [self enviromentBasedOnPlistFromArray:_environmentArray];
+        _enviroment = [self enviromentBasedOnDataFromArray:_environmentArray];
     }
     return self;
 }
@@ -77,7 +104,7 @@
             NUEndpointEnvironment *environment = [[NUEndpointEnvironment alloc] initWithEnviromentDictionary:environmentDictionary];
             _environmentArray = [_environmentArray arrayByAddingObject:environment];
         }
-        _enviroment = [self enviromentBasedOnPlistFromArray:_environmentArray];
+        _enviroment = [self enviromentBasedOnDataFromArray:_environmentArray];
     }
     return self;
 }

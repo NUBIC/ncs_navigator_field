@@ -19,5 +19,8 @@
 @property (nonatomic, strong) NUEndpointEnvironment *enviroment;
 
 -(instancetype)initWithDataDictionary:(NSDictionary *)dataDictionary;
++(BOOL)deleteUserEndpoint;
++(NUEndpoint *)userEndpointOnDisk;
+-(void) writeToDisk;
 
 @end

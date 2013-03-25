@@ -13,8 +13,6 @@
 
 -(void)getEndpointArrayWithCallback:(void (^)(NSArray *endpointArray, NSError *error))endpointBlock;
 -(BOOL)userDidChooseEndpoint:(NUEndpoint *)chosenEndpoint;
--(BOOL)deleteUserEndpoint;
--(NUEndpoint *)userEndpointOnDisk;
 -(void)stopNetworkRequest;
 
 @optional

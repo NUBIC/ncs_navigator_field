@@ -67,22 +67,9 @@
     NSString *libraryDirectory = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
     libraryDirectory = [libraryDirectory stringByAppendingFormat:@"/userEndpoint.plist"];
     BOOL wasSuccessful = [NSKeyedArchiver archiveRootObject:chosenEndpoint toFile:libraryDirectory];
-    [self writeEndpointToDefaults:chosenEndpoint];
+    [chosenEndpoint writeToDisk];
     [RestKitSettings reload];
     return wasSuccessful;
-}
-
--(BOOL)deleteUserEndpoint {
-    NSString *libraryDirectory = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
-    NSString *path = [libraryDirectory stringByAppendingString:@"/userEndpoint.plist"];
-    return [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
-}
-
--(NUEndpoint *)userEndpointOnDisk {
-    NSString *libraryDirectory = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
-    NSString *path = [libraryDirectory stringByAppendingString:@"/userEndpoint.plist"];
-    NUEndpoint *endpoint = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-    return endpoint;
 }
 
 -(void)stopNetworkRequest {
@@ -91,17 +78,9 @@
 
 #pragma mark prototyping
 
--(void) writeEndpointToDefaults:(NUEndpoint *)endpoint {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:endpoint.enviroment.coreURL.absoluteString forKey:CORE_URL];
-    [defaults setObject:endpoint.enviroment.pgtReceiveURL.absoluteString forKey:PGT_RECEIVE_URL];
-    [defaults setObject:endpoint.enviroment.pgtRetrieveURL.absoluteString forKey:PGT_RETRIEVE_URL];
-    [defaults setObject:endpoint.enviroment.casServerURL.absoluteString forKey:CAS_SERVER_URL];
-}
-
 - (void)settingsChanged:(NSNotification *)notif
 {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:MANUAL_MODE] == YES) {
+    if ([[ApplicationSettings instance] isInManualMode] == YES) {
         [[ApplicationSettings instance] updateWithEndpoint:nil];
         [RestKitSettings reload];
     }

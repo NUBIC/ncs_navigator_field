@@ -154,6 +154,7 @@
 		1646CD4516CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1646CD4316CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib */; };
 		1646CD4816CDA43300CDCCEC /* NUEndpointCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD4716CDA43300CDCCEC /* NUEndpointCollectionViewCell.m */; };
 		1646CD4A16CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1646CD4916CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib */; };
+		167292DD170097B20046B194 /* NUEndpointTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 167292DC170097B20046B194 /* NUEndpointTest.m */; };
 		16F0DA5816D56BE800290837 /* NCSFieldConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F0DA5716D56BE800290837 /* NCSFieldConstants.m */; };
 		16F0DA5B16D5719400290837 /* NoImageAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 16F0DA5916D5719400290837 /* NoImageAvailable.png */; };
 		16F0DA5C16D5719400290837 /* NoImageAvailable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16F0DA5A16D5719400290837 /* NoImageAvailable@2x.png */; };
@@ -649,6 +650,8 @@
 		1646CD4616CDA43300CDCCEC /* NUEndpointCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointCollectionViewCell.h; sourceTree = "<group>"; };
 		1646CD4716CDA43300CDCCEC /* NUEndpointCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointCollectionViewCell.m; sourceTree = "<group>"; };
 		1646CD4916CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NUEndpointCollectionViewCell.xib; sourceTree = "<group>"; };
+		167292DB170097B20046B194 /* NUEndpointTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointTest.h; sourceTree = "<group>"; };
+		167292DC170097B20046B194 /* NUEndpointTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointTest.m; sourceTree = "<group>"; };
 		16E839C116D8244800ED8A3C /* 20130222220953_removed_person_relation_from_contact.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130222220953_removed_person_relation_from_contact.xcdatamodel; sourceTree = "<group>"; };
 		16F0DA5616D56BE800290837 /* NCSFieldConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSFieldConstants.h; sourceTree = "<group>"; };
 		16F0DA5716D56BE800290837 /* NCSFieldConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSFieldConstants.m; sourceTree = "<group>"; };
@@ -891,6 +894,8 @@
 				001FEDD61619FC4000DE8A3A /* SurveySetTest.m */,
 				00AB8E97164358290097F7CD /* NSManagedObjectTest.h */,
 				00AB8E98164358290097F7CD /* NSManagedObjectTest.m */,
+				167292DB170097B20046B194 /* NUEndpointTest.h */,
+				167292DC170097B20046B194 /* NUEndpointTest.m */,
 			);
 			name = Tests;
 			path = NCSNavFieldTests;
@@ -1802,6 +1807,7 @@
 				002968A216BC67D800524EEC /* ResponseTest.m in Sources */,
 				00B8756716D56A5300CED547 /* ResponseSetMustacheContextTest.m in Sources */,
 				00917E5216D80634008E1088 /* NUQuestionTest.m in Sources */,
+				167292DD170097B20046B194 /* NUEndpointTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

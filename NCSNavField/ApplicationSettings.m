@@ -34,7 +34,7 @@
             _purgeFieldworkButton = [self isPurgeFieldworkButton];
             _upcomingDaysToSync = [self upcomingDaysToSync];
             [self registerDefaultsFromSettingsBundle];
-            self.endpoint = [[NUEndpointService service] userEndpointOnDisk];
+            self.endpoint = [NUEndpoint userEndpointOnDisk];
         }
         return self;
 }
@@ -68,7 +68,7 @@
         return _coreURL;
     }
     if (self.endpoint == nil) {
-        self.endpoint = [[NUEndpointService service] userEndpointOnDisk];
+        self.endpoint = [NUEndpoint userEndpointOnDisk];
     }
     NSString *returnString = self.endpoint.enviroment.coreURL.absoluteString;
     if ([self isInManualMode] == YES) {
@@ -82,7 +82,7 @@
         return _casServerURL;
     }
     if (self.endpoint == nil) {
-        self.endpoint = [[NUEndpointService service] userEndpointOnDisk];
+        self.endpoint = [NUEndpoint userEndpointOnDisk];
     }
     NSString *returnString = self.endpoint.enviroment.casServerURL.absoluteString;
     if ([self isInManualMode] == YES) {
@@ -96,7 +96,7 @@
         return _pgtReceiveURL;
     }
     if (self.endpoint == nil) {
-        self.endpoint = [[NUEndpointService service] userEndpointOnDisk];
+        self.endpoint = [NUEndpoint userEndpointOnDisk];
     }
     NSString *returnString = self.endpoint.enviroment.pgtReceiveURL.absoluteString;
     if ([self isInManualMode] == YES) {
@@ -110,7 +110,7 @@
         return _pgtRetrieveURL;
     }
     if (self.endpoint == nil) {
-        self.endpoint = [[NUEndpointService service] userEndpointOnDisk];
+        self.endpoint = [NUEndpoint userEndpointOnDisk];
     }
     NSString *returnString = self.endpoint.enviroment.pgtRetrieveURL.absoluteString;
     if ([self isInManualMode] == YES) {
