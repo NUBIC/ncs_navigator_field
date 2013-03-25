@@ -134,6 +134,7 @@
 
 - (void)contactInitiateScreenDismissed:(NSNotification*)notification {
     self.contacts = [self contactsFromDataStore];
+    [self.tableView reloadData];
   
     Contact* current = [[notification userInfo] objectForKey:@"contact"];
     if (current) {
@@ -213,17 +214,27 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Contact *contactToRemove = [self.contacts objectAtIndex:indexPath.row];
-        
-        if ([self.detailViewController.detailItem isEqual:contactToRemove] == YES) {
-            self.detailViewController.detailItem = nil;
-        }
-        
-        if ([contactToRemove deleteFromManagedObjectContext:[NSManagedObjectContext contextForCurrentThread]] == YES) {
-            self.contacts = [self contactsFromDataStore];
-        }
-        else {
+        Section *s = [self.simpleTable.sections objectAtIndex:indexPath.section];
+        Row *r = [s.rows objectAtIndex:indexPath.row];
+        if ([[r entity] isKindOfClass:[Contact class]]) {
+            Contact *contactToRemove = [r entity];
             
+            if ([self.detailViewController.detailItem isEqual:contactToRemove] == YES) {
+                self.detailViewController.detailItem = nil;
+            }
+            
+            if ([contactToRemove deleteFromManagedObjectContext:[NSManagedObjectContext contextForCurrentThread]] == YES) {
+                self.contacts = [self contactsFromDataStore];
+                [tableView beginUpdates];
+                if ([s.rows count] == 1)
+                    [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+                else
+                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [tableView endUpdates];
+            }
+            else {
+                
+            }
         }
     }
 }
@@ -233,12 +244,14 @@
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (!tableView.isEditing)
-        return YES;
-
-    Contact *contact = [self.contacts objectAtIndex:indexPath.row];
-    return [contact.appCreated boolValue];
+    Section *s = [self.simpleTable.sections objectAtIndex:indexPath.section];
+    Row *r = [s.rows objectAtIndex:indexPath.row];
+    if ([[r entity] isKindOfClass:[Contact class]]) {
+        Contact *contact = [r entity];
+        return [contact.appCreated boolValue];
+    }
+    else
+        return NO;
 }
 
 #pragma Actions
@@ -304,14 +317,13 @@
     [self purgeDataStore];
     
     self.contacts = [NSArray array];
+    [self.tableView reloadData];
 }
 
 - (void)setContacts:(NSArray *)contacts {
     _contacts = contacts;
     
     self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:contacts];
-    
-	[self.tableView reloadData];
     
     self.tableView.tableHeaderView = [self tableHeaderView];
     
@@ -435,6 +447,7 @@
     }
     
     self.contacts = [self contactsFromDataStore];
+    [self.tableView reloadData];
 }
 
 #pragma mark
@@ -480,6 +493,7 @@
         [self.splitViewController.view addSubview:self.syncIndicator];
 
         self.contacts = [self contactsFromDataStore];
+    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

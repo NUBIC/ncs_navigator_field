@@ -12,15 +12,6 @@
 #import "ApplicationSettings.h"
 #import "NSString+Additions.h"
 
-NSString* const SettingsDidChangeNotification = @"ApplicationSettingsChanged";
-NSString* const CLIENT_ID = @"client.id";
-NSString* const CORE_URL = @"navigator.core.url";
-NSString* const CAS_SERVER_URL = @"cas.server.url";
-NSString* const PGT_RECEIVE_URL = @"pgt.receive.url";
-NSString* const PGT_RETRIEVE_URL = @"pgt.retrieve.url";
-NSString* const PURGE_FIELDWORK_BUTTON = @"purge.fieldwork.button";
-NSString* const UPCOMING_DAYS_TO_SYNC = @"upcoming.days.to.sync";
-
 //This makes the method declaration private. This is a singleton
 //and we don't want any consumers of this class to call the init method.
 //We want them to call the instance class method. That enforces its
