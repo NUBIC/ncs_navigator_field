@@ -213,17 +213,18 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Contact *contactToRemove = [self.contacts objectAtIndex:indexPath.row];
-        
-        if ([self.detailViewController.detailItem isEqual:contactToRemove] == YES) {
-            self.detailViewController.detailItem = nil;
-        }
-        
-        if ([contactToRemove deleteFromManagedObjectContext:[NSManagedObjectContext contextForCurrentThread]] == YES) {
-            self.contacts = [self contactsFromDataStore];
-        }
-        else {
+        Section *s = [self.simpleTable.sections objectAtIndex:indexPath.section];
+        Row *r = [s.rows objectAtIndex:indexPath.row];
+        if ([[r entity] isKindOfClass:[Contact class]]) {
+            Contact *contactToRemove = [r entity];
             
+            if ([self.detailViewController.detailItem isEqual:contactToRemove] == YES) {
+                self.detailViewController.detailItem = nil;
+            }
+            
+            if ([contactToRemove deleteFromManagedObjectContext:[NSManagedObjectContext contextForCurrentThread]] == YES) {
+                [self removeContactFromTableView:tableView atIndex:indexPath withRemaingContactsInSection:[s.rows count]];
+            }
         }
     }
 }
@@ -233,12 +234,15 @@
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (!tableView.isEditing)
-        return YES;
-
-    Contact *contact = [self.contacts objectAtIndex:indexPath.row];
-    return [contact.appCreated boolValue];
+    Section *s = [self.simpleTable.sections objectAtIndex:indexPath.section];
+    Row *r = [s.rows objectAtIndex:indexPath.row];
+    if ([[r entity] isKindOfClass:[Contact class]]) {
+        Contact *contact = [r entity];
+        return [contact.appCreated boolValue];
+    }
+    else {
+        return NO;
+    }
 }
 
 #pragma Actions
@@ -312,6 +316,26 @@
     self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:contacts];
     
 	[self.tableView reloadData];
+    
+    self.tableView.tableHeaderView = [self tableHeaderView];
+    
+    self.detailViewController.detailItem = NULL;
+}
+
+-(void)removeContactFromTableView:(UITableView *)tableView atIndex:(NSIndexPath *)indexPath withRemaingContactsInSection:(NSUInteger)remainingContacts {
+       
+    _contacts = [self contactsFromDataStore];
+    
+    self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
+    
+    [tableView beginUpdates];
+    if (remainingContacts == 1) {
+        [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else {
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    [tableView endUpdates];
     
     self.tableView.tableHeaderView = [self tableHeaderView];
     
