@@ -292,6 +292,8 @@ static RestKitSettings* instance;
      @"name", @"name",
      @"location", @"location",
      @"practice_num", @"practiceNum",
+     @"address_one", @"addressOne",
+     @"unit", @"unit",
      @"recruited", @"recruited", nil];
     [objectManager.mappingProvider setMapping:provider forKeyPath:@"providers"];
 }

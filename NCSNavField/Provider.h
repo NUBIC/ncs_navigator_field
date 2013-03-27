@@ -13,6 +13,8 @@
 @property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * practiceNum;
+@property (nonatomic, strong) NSString * addressOne;
+@property (nonatomic, strong) NSString * unit;
 @property (nonatomic, retain) NSNumber * recruited;
 
 @end

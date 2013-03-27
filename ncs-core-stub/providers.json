@@ -1,15 +1,24 @@
 {
     "providers": [
         {
+            "address_one": "21 Jump St",
             "location": "1",
             "name": "Northwestern Memorial Hospital", 
             "practice_num": 1, 
-            "recruited": true
+            "recruited": true,
+            "unit": "Suite 3456"
         },
         {
+            "address_one": "123 Sesame St",
             "location": "2",
             "name": "Baylor Health Care System", 
             "practice_num": null, 
+            "recruited": true
+        },
+        {
+            "location": "3",
+            "name": "Lady M", 
+            "practice_num": 2, 
             "recruited": true
         },
         {
