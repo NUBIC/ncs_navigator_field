@@ -134,7 +134,6 @@
 
 - (void)contactInitiateScreenDismissed:(NSNotification*)notification {
     self.contacts = [self contactsFromDataStore];
-    [self.tableView reloadData];
   
     Contact* current = [[notification userInfo] objectForKey:@"contact"];
     if (current) {
@@ -224,16 +223,7 @@
             }
             
             if ([contactToRemove deleteFromManagedObjectContext:[NSManagedObjectContext contextForCurrentThread]] == YES) {
-                self.contacts = [self contactsFromDataStore];
-                [tableView beginUpdates];
-                if ([s.rows count] == 1)
-                    [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
-                else
-                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                [tableView endUpdates];
-            }
-            else {
-                
+                [self removeContactFromTableView:tableView atIndex:indexPath withRemaingContactsInSection:[s.rows count]];
             }
         }
     }
@@ -250,8 +240,9 @@
         Contact *contact = [r entity];
         return [contact.appCreated boolValue];
     }
-    else
+    else {
         return NO;
+    }
 }
 
 #pragma Actions
@@ -317,13 +308,34 @@
     [self purgeDataStore];
     
     self.contacts = [NSArray array];
-    [self.tableView reloadData];
 }
 
 - (void)setContacts:(NSArray *)contacts {
     _contacts = contacts;
     
     self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:contacts];
+    
+	[self.tableView reloadData];
+    
+    self.tableView.tableHeaderView = [self tableHeaderView];
+    
+    self.detailViewController.detailItem = NULL;
+}
+
+-(void)removeContactFromTableView:(UITableView *)tableView atIndex:(NSIndexPath *)indexPath withRemaingContactsInSection:(NSUInteger)remainingContacts {
+       
+    _contacts = [self contactsFromDataStore];
+    
+    self.simpleTable = [[ContactNavigationTable alloc] initWithContacts:_contacts];
+    
+    [tableView beginUpdates];
+    if (remainingContacts == 1) {
+        [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else {
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    [tableView endUpdates];
     
     self.tableView.tableHeaderView = [self tableHeaderView];
     
@@ -447,7 +459,6 @@
     }
     
     self.contacts = [self contactsFromDataStore];
-    [self.tableView reloadData];
 }
 
 #pragma mark
@@ -493,7 +504,6 @@
         [self.splitViewController.view addSubview:self.syncIndicator];
 
         self.contacts = [self contactsFromDataStore];
-    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
