@@ -39,8 +39,6 @@
             [ctx setObject:self.provider.name
                     forKey:@"name_practice"];
         }
-        
-        [ctx setObject:@"capi" forKey:@"mode_of_contact"];
     }
     
     return ctx;
