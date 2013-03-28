@@ -14,6 +14,8 @@
 @dynamic location;
 @dynamic name;
 @dynamic practiceNum;
+@dynamic addressOne;
+@dynamic unit;
 @dynamic recruited;
 
 @end
