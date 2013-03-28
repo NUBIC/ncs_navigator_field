@@ -32,7 +32,17 @@
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Upcoming days to sync</string>
+			<string>Find events this many days in the past:</string>
+			<key>Key</key>
+			<string>past.days.to.sync</string>
+			<key>DefaultValue</key>
+			<string>0</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Find events this many days in the future:</string>
 			<key>Key</key>
 			<string>upcoming.days.to.sync</string>
 			<key>DefaultValue</key>
