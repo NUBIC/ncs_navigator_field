@@ -37,6 +37,8 @@ extern NSString *const SettingsDidChangeNotification;
 
 @property(nonatomic) NSInteger upcomingDaysToSync;
 
+@property (nonatomic, assign) NSInteger pastDaysToSync;
+
 #pragma Methods
 
 + (ApplicationSettings*) instance;

@@ -65,11 +65,14 @@
     [objectManager.client.HTTPHeaders setValue:ApplicationSettings.instance.clientId forKey:@"X-Client-ID"];
     
     NSDateComponents *daysComponent = [[NSDateComponents alloc] init];
-    daysComponent.day = [[ApplicationSettings instance] upcomingDaysToSync];
+    daysComponent.day = (0 - [[ApplicationSettings instance] pastDaysToSync]);
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDate* inOneWeek = [calendar dateByAddingComponents:daysComponent toDate:[NSDate date] options:0];
+    NSDate* pastDate = [calendar dateByAddingComponents:daysComponent toDate:[NSDate date] options:0];
+    
+    daysComponent.day = [[ApplicationSettings instance] upcomingDaysToSync];
+    NSDate* futureDate = [calendar dateByAddingComponents:daysComponent toDate:[NSDate date] options:0];
 
-    NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@", [[NSDate date] toYYYYMMDD], [inOneWeek toYYYYMMDD]];
+    NSString* path = [NSString stringWithFormat:@"/api/v1/fieldwork?start_date=%@&end_date=%@", [pastDate toYYYYMMDD], [futureDate toYYYYMMDD]];
     
     NSLog(@"Requesting data from %@", path);
     RKObjectLoader* loader = [objectManager loaderWithResourcePath:path];
