@@ -50,11 +50,20 @@ NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY = @"ProviderSelected";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     Provider* provider = [self.providers objectAtIndex:indexPath.row];
     cell.textLabel.text = provider.name;
+    if (provider.addressOne && provider.unit) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@)", provider.addressOne, provider.unit];
+    }
+    else if (provider.addressOne) {
+        cell.detailTextLabel.text = provider.addressOne;
+    }
+    else {
+        cell.detailTextLabel.text = @"No address provided.";
+    }
     
     return cell;
 }

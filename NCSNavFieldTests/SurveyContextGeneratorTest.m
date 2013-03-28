@@ -20,6 +20,8 @@ static Provider* provider;
     provider = [Provider object];
     provider.name = @"Northwestern";
     provider.location = @"XYZ123";
+    provider.addressOne = @"123 Anystreet";
+    provider.unit = @"A";
     provider.practiceNum = [NSNumber numberWithInt:4];
 }
 

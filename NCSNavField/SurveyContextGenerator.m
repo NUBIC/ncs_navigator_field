@@ -35,6 +35,16 @@
                     forKey:@"practice_num"];
         }
         
+        if (self.provider.addressOne) {
+            [ctx setObject:self.provider.addressOne
+                    forKey:@"address_one"];
+        }
+        
+        if (self.provider.unit) {
+            [ctx setObject:self.provider.unit
+                    forKey:@"unit"];
+        }
+        
         if (self.provider.name) {
             [ctx setObject:self.provider.name
                     forKey:@"name_practice"];
