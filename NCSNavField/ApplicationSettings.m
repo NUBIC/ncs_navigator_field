@@ -20,6 +20,7 @@ NSString* const PGT_RECEIVE_URL = @"pgt.receive.url";
 NSString* const PGT_RETRIEVE_URL = @"pgt.retrieve.url";
 NSString* const PURGE_FIELDWORK_BUTTON = @"purge.fieldwork.button";
 NSString* const UPCOMING_DAYS_TO_SYNC = @"upcoming.days.to.sync";
+NSString* const PAST_DAYS_TO_SYNC = @"past.days.to.sync";
 
 //This makes the method declaration private. This is a singleton
 //and we don't want any consumers of this class to call the init method.
@@ -51,6 +52,7 @@ static ApplicationSettings* instance;
             _pgtRetrieveURL = [self pgtRetrieveURL];
             _purgeFieldworkButton = [self isPurgeFieldworkButton];
             _upcomingDaysToSync = [self upcomingDaysToSync];
+            _pastDaysToSync = [self pastDaysToSync];
             //[[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:self];
             [self registerDefaultsFromSettingsBundle];
 
@@ -77,6 +79,7 @@ static ApplicationSettings* instance;
     self.pgtRetrieveURL = [self pgtRetrieveURL];
     self.purgeFieldworkButton = [self purgeFieldworkButton];
     self.upcomingDaysToSync = [self upcomingDaysToSync];
+    self.pastDaysToSync = [self pastDaysToSync];
     //We need this. 
     [[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:self];
 }
@@ -116,6 +119,10 @@ static ApplicationSettings* instance;
 
 - (NSInteger) upcomingDaysToSync {
     return [[NSUserDefaults standardUserDefaults] integerForKey:UPCOMING_DAYS_TO_SYNC];
+}
+
+- (NSInteger) pastDaysToSync {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:PAST_DAYS_TO_SYNC];
 }
 
 + (CasConfiguration*) casConfiguration {
