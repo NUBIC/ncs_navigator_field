@@ -19,11 +19,11 @@ Test
 
 Production
 ----------
+1. `git co v<x.x.x>`
 1. Change Bundle Name to 'NavField' (long and short) in NCSNavField-Info.plist
 1. Change Bundle Version with format 'x.x' or 'x.x.x' (long and short) in NCSNavField-Info.plist
 1. Change Bundle Identifier to 'edu.northwestern.nubic.NCS-NavField'
 1. Change icon to icon.png
-1. `git co v<x.x.x>`
 1. `rm -rf Pods && pod install`
 1. Archive
 1. Create the ipa and save in /dist with NavField-x.x.ipa or NavField-x.x.x.ipa
