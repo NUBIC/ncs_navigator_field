@@ -28,7 +28,7 @@
     NSDateFormatter* f = [[NSDateFormatter alloc] init];
     [f setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     [f setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
-    [f setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [f setTimeZone:[NSTimeZone localTimeZone]];
     return [f stringFromDate:self];
 }
 
@@ -36,8 +36,8 @@
      NSDateFormatter* f = [[NSDateFormatter alloc] init];
      [f setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
      [f setDateFormat:@"yyyy'-'MM'-'dd"];
-     [f setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-     return [f stringFromDate:self];
+    [f setTimeZone:[NSTimeZone localTimeZone]];
+    return [f stringFromDate:self];
 }
 
 -(NSString*)lastModifiedFormat {

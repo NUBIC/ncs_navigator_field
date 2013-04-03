@@ -296,7 +296,7 @@
 }
 - (void) startCasLogin {
     CasLoginVC *login = [[CasLoginVC alloc] initWithCasConfiguration:[ApplicationSettings casConfiguration]];
-    login.delegate = self;
+    login.casLoginDelegate = self;
     
     [self presentViewController:login animated:YES completion:NULL];
 
@@ -348,8 +348,7 @@
 }
 
 #pragma mark - Cas Login Delegate
-
-- (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket {
+-(void)casLoginVC:(CasLoginVC *)casLoginVC didSuccessfullyObtainedServiceTicket:(CasServiceTicket *)serviceTicket {
     NSLog(@"My Successful login: %@", serviceTicket);
     dispatch_async(dispatch_get_main_queue(), ^(void) {
         [self setHUDMessage:SYNCING_CONTACTS];
@@ -363,6 +362,10 @@
             [self hideHUD];
        });
     }];
+}
+
+-(void)casLoginVCDidCancel:(CasLoginVC *)casLoginVC {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)setHUDMessage:(NSString*)strMessage {
