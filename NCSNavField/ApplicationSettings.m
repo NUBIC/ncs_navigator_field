@@ -35,6 +35,8 @@
             _clientId = [self clientId];
             _purgeFieldworkButton = [self isPurgeFieldworkButton];
             _upcomingDaysToSync = [self upcomingDaysToSync];
+            _pastDaysToSync = [self pastDaysToSync];
+            //[[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:self];
             [self registerDefaultsFromSettingsBundle];
             _endpoint = [NUEndpoint userEndpointOnDisk];
         }
@@ -134,6 +136,10 @@
 
 - (NSInteger) upcomingDaysToSync {
     return [[NSUserDefaults standardUserDefaults] integerForKey:UPCOMING_DAYS_TO_SYNC];
+}
+
+- (NSInteger) pastDaysToSync {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:PAST_DAYS_TO_SYNC];
 }
 
 + (CasConfiguration*) casConfiguration {
