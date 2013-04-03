@@ -28,7 +28,7 @@
 
 FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 
-@interface RootViewController : SimpleTableController<UINavigationControllerDelegate, SimpleTableRowDelegate, CasLoginDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate,UserErrorDelegate> {
+@interface RootViewController : SimpleTableController<UINavigationControllerDelegate, SimpleTableRowDelegate, CasLoginVCDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate,UserErrorDelegate> {
     Instrument* _administeredInstrument;
     RKReachabilityObserver* _reachability;
     SyncActivityIndicator* _syncIndicator;
@@ -55,7 +55,7 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 
 #pragma mark
 #pragma mark - CasLoginDelegate
-- (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket;
+-(void)casLoginVC:(CasLoginVC *)casLoginVC didSuccessfullyObtainedServiceTicket:(CasServiceTicket *)serviceTicket;
 - (void)failure:(NSError *)err;
 
 #pragma mark - TableView
