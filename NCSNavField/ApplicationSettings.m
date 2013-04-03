@@ -13,6 +13,7 @@
 #import "NSString+Additions.h"
 #import "NUEndpoint.h"
 #import "NUEndpointEnvironment.h"
+#import "RestKitSettings.h"
 
 //This makes the method declaration private. This is a singleton
 //and we don't want any consumers of this class to call the init method.
@@ -31,10 +32,11 @@
 - (id)init {
         self = [super init];
         if (self) {
+            _clientId = [self clientId];
             _purgeFieldworkButton = [self isPurgeFieldworkButton];
             _upcomingDaysToSync = [self upcomingDaysToSync];
             [self registerDefaultsFromSettingsBundle];
-            self.endpoint = [NUEndpoint userEndpointOnDisk];
+            _endpoint = [NUEndpoint userEndpointOnDisk];
         }
         return self;
 }
@@ -48,11 +50,18 @@
 }
 
 - (NSString*) clientId {
-    if (_clientId)
-        return _clientId;
+    
+    NSString *settingsBundle = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
+    NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"Root.plist"]];
+    NSArray *preferences = [settings objectForKey:@"PreferenceSpecifiers"];
+    NSDictionary *clientIdDictionary = [[preferences filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"Key == %@", CLIENT_ID]] lastObject];
+    NSString *defaultClientId = nil;
+    if (clientIdDictionary != nil) {
+        defaultClientId = clientIdDictionary[@"DefaultValue"];
+    }
 
     _clientId = [[NSUserDefaults standardUserDefaults] stringForKey:CLIENT_ID];
-    if (_clientId == nil)
+    if (_clientId == nil || [_clientId isEqual:defaultClientId] == YES)
     {
         CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
         _clientId = (NSString *)CFBridgingRelease(CFUUIDCreateString(NULL,uuidRef));
@@ -233,6 +242,7 @@
     self.purgeFieldworkButton = [self purgeFieldworkButton];
     self.upcomingDaysToSync = [self upcomingDaysToSync];
     [[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:self];
+    [RestKitSettings reload];
 }
 
 @end

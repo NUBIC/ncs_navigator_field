@@ -5,6 +5,6 @@
 	<key>environment</key>
 	<string>staging</string>
 	<key>locationServiceURL</key>
-	<string>http://field.ncsnavigator.org/locations/testEndpointJSONExample.json</string>
+	<string>https://navfield.nubic.northwestern.edu/locations/index.json</string>
 </dict>
 </plist>

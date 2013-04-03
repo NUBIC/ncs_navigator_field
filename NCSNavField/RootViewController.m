@@ -48,14 +48,22 @@
 #import "NUEndpointBar.h"
 #import "NUEndpoint.h"
 
-@interface RootViewController () <NUEndpointCollectionViewDelegate>
+@interface RootViewController () <NUEndpointCollectionViewDelegate, CasLoginVCDelegate>
     @property(nonatomic,strong) NSArray* contacts;
     @property(nonatomic,strong) ContactNavigationTable* table;
     @property(nonatomic,strong) BlockAlertView *alertView;
+    @property (nonatomic, strong) UIAlertView *syncAlert;
+    @property (nonatomic, strong) UIAlertView *locationAlert;
 
-@property (nonatomic, strong) NUEndpointBar *endpointBar;
+    @property (nonatomic, strong) NUEndpointBar *endpointBar;
+
+@property (nonatomic, strong) SendOnlyDelegateObject *sendOnlyObject;
 
 -(void)startEndpointSelection;
+-(void)switchEndpoint;
+
+-(void)startSyncWithServiceTicket:(CasServiceTicket*)serviceTicket withRetrieval:(BOOL)shouldRetrieve;
+
 @end
 
 @implementation RootViewController
@@ -244,16 +252,16 @@
 }
 
 -(void)endpointBarButtonWasTapped:(UIButton *)endpointBarButton {
-    NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
-    if (endpoint) {
-        [NUEndpoint deleteUserEndpoint];
-        self.navigationItem.rightBarButtonItem.enabled = NO;
-        self.endpointBar.endpointBarLabel.text = @"No location chosen";
-        [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
-        [self startEndpointSelection];
+    if ([self.contacts count] > 0) {
+        NSInteger closed = 0;
+        for (Contact* c in self.contacts) {
+            closed = ([c closed] == YES)? closed++ : closed;
+        }
+        self.locationAlert = [[UIAlertView alloc] initWithTitle:@"Switch Location" message:[NSString stringWithFormat:@"You have %i contacts and %i events finished, would you like to sync?", [self.contacts count], closed] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Sync", nil];
+        [self.locationAlert show];
     }
     else {
-        [self startEndpointSelection];
+        [self switchEndpoint];
     }
 }
 
@@ -352,35 +360,60 @@
     NSString* msg = [NSString stringWithFormat:
                      @"\nThis sync will:\n\n1. Save %d contacts on the server\n2. Retrieve new server contacts\n3. Remove %d completed contacts\n\nWould you like to continue?", [self.contacts count], closed];
     
-    UIAlertView *alert = [[UIAlertView alloc] 
+    self.syncAlert = [[UIAlertView alloc]
                           initWithTitle: @"Synchronize Contacts"
                           message: msg
                           delegate: self
                           cancelButtonTitle: @"Cancel"
                           otherButtonTitles: @"Sync", nil];
-    [alert show];
+    [self.syncAlert show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
-    switch (buttonIndex) {
-        case 0: 
-        {       
-            NSLog(@"No was selected by the user");
+    if ([alertView isEqual:self.locationAlert]) {
+        switch (buttonIndex) {
+            case 0:
+            {
+                NSLog(@"No was selected by the user");
+            }
+                break;
+                
+            case 1:
+            {
+                NSLog(@"Yes was selected by the user");
+                [self startCasLoginWithRetrieval:NO];
+            }
+                break;
         }
-        break;
-            
-        case 1: 
-        {
-            NSLog(@"Yes was selected by the user");
-            [self startCasLogin];
+    }
+    else {
+        switch (buttonIndex) {
+            case 0:
+            {
+                NSLog(@"No was selected by the user");
+            }
+                break;
+                
+            case 1:
+            {
+                NSLog(@"Yes was selected by the user");
+                [self startCasLoginWithRetrieval:YES];
+            }
+                break;
         }
-        break;
     }
 }
-- (void) startCasLogin {
+- (void)startCasLoginWithRetrieval:(BOOL)shouldRetrieve {
     CasLoginVC *login = [[CasLoginVC alloc] initWithCasConfiguration:[ApplicationSettings casConfiguration]];
-    login.delegate = self;
+    if (shouldRetrieve == YES) {
+        login.casLoginDelegate = self;
+    }
+    else {
+        self.sendOnlyObject = [SendOnlyDelegateObject new];
+        self.sendOnlyObject.delegate = self;
+        login.casLoginDelegate = self.sendOnlyObject;
+    }
     
     [self presentViewController:login animated:YES completion:NULL];
 
@@ -391,6 +424,8 @@
     [NUEndpoint deleteUserEndpoint];
     [self purgeDataStore];
     self.navigationItem.rightBarButtonItem.enabled = NO;
+    [[ApplicationSettings instance] updateWithEndpoint:nil];
+    [self setUpEndpointBar];
     
     self.contacts = [NSArray array];
 }
@@ -441,23 +476,30 @@
     }];
 }
 
+-(void)switchEndpoint {
+    NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
+    if (endpoint) {
+        [NUEndpoint deleteUserEndpoint];
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+        self.endpointBar.endpointBarLabel.text = @"No location chosen";
+        [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
+        [self startEndpointSelection];
+    }
+    else {
+        [self startEndpointSelection];
+    }
+}
+
 #pragma mark - Cas Login Delegate
 
-- (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket {
-    NSLog(@"My Successful login: %@", serviceTicket);
-    dispatch_async(dispatch_get_main_queue(), ^(void) {
-        [self setHUDMessage:SYNCING_CONTACTS];
-    });
-    [self dismissViewControllerAnimated:YES completion:^{
-        //Running on another thread instead of the main runloop
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            self.syncIndicator.labelFont = [UIFont fontWithName:self.syncIndicator.labelFont.fontName size:24.0];
-            [self.syncIndicator show:YES];
-            [self syncContacts:serviceTicket];
-            [self hideHUD];
-       });
-    }];
+- (void)casLoginVC:(CasLoginVC *)casLoginVC didSuccessfullyObtainedServiceTicket:(CasServiceTicket *)serviceTicket {
+    [self startSyncWithServiceTicket:serviceTicket withRetrieval:YES];
 }
+
+-(void)casLoginVCDidCancel:(CasLoginVC *)casLoginVC {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 -(void)setHUDMessage:(NSString*)strMessage {
         self.syncIndicator.labelFont = [UIFont fontWithName:self.syncIndicator.labelFont.fontName size:24.0];
@@ -507,7 +549,7 @@
     });
 }
 
-- (void)syncContacts:(CasServiceTicket*)serviceTicket {
+- (void)syncContacts:(CasServiceTicket*)serviceTicket withRetrieval:(BOOL)shouldRetrieve {
 // Bumping the runloop so the UI can update and show the spinner
 // http://stackoverflow.com/questions/5685331/run-mbprogresshud-in-another-thread
     @try {
@@ -517,11 +559,17 @@
         //This has many, many substeps that we need to clarify.
         FieldworkSynchronizeOperation* sync = [[FieldworkSynchronizeOperation alloc] initWithServiceTicket:serviceTicket];
         sync.delegate=self;
-        bStepWasSuccessful = [sync perform];
+        bStepWasSuccessful = [sync performWithRetrieval:shouldRetrieve];
         NSLog(@"Fieldwork sync: %@", bStepWasSuccessful ? @"Success" : @"Fail");
         
         if(!bStepWasSuccessful) //Should we stop right here? If we failed on fieldwork synchronization.
             return;
+        
+        if (shouldRetrieve == NO) {
+            [self deleteButtonWasPressed];
+            [self startEndpointSelection];
+            return;
+        }
         
         //Let's take the MOC and get rid of duplicates.
         [Provider truncateAllInContext:moc];
@@ -553,6 +601,33 @@
     }
     
     self.contacts = [self contactsFromDataStore];
+}
+
+-(void)startSyncWithServiceTicket:(CasServiceTicket*)serviceTicket withRetrieval:(BOOL)shouldRetrieve {
+    NSLog(@"My Successful login: %@", serviceTicket);
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [self setHUDMessage:SYNCING_CONTACTS];
+    });
+    [self dismissViewControllerAnimated:YES completion:^{
+        //Running on another thread instead of the main runloop
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            self.syncIndicator.labelFont = [UIFont fontWithName:self.syncIndicator.labelFont.fontName size:24.0];
+            [self.syncIndicator show:YES];
+            [self syncContacts:serviceTicket withRetrieval:shouldRetrieve];
+            [self hideHUD];
+        });
+    }];
+}
+
+#pragma mark
+#pragma mark - Send Only Delegate
+
+-(void)sendOnlyDelegate:(SendOnlyDelegateObject *)retrieveDelegateObject didSuccessfullyObtainedServiceTicket:(CasServiceTicket *)serviceTicket {
+    [self startSyncWithServiceTicket:serviceTicket withRetrieval:NO];
+}
+
+-(void)sendOnlyDelegateDidCancel:(SendOnlyDelegateObject *)retrieveDelegateObject {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark

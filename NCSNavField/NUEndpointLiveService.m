@@ -68,7 +68,6 @@
     libraryDirectory = [libraryDirectory stringByAppendingFormat:@"/userEndpoint.plist"];
     BOOL wasSuccessful = [NSKeyedArchiver archiveRootObject:chosenEndpoint toFile:libraryDirectory];
     [chosenEndpoint writeToDisk];
-    [RestKitSettings reload];
     return wasSuccessful;
 }
 

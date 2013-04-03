@@ -33,53 +33,58 @@
     return self;
 }
 
-- (BOOL) perform {
+- (BOOL) performWithRetrieval:(BOOL)shouldRetrieve {
     @try {
-        //#1 Does Fieldwork Need to be submitted?
-        if ([Fieldwork submission]) {
-            //#2 Let's try to put that on the server.
-            NSString* statusPutRequest = [self putFieldwork];
-            
-            if (statusPutRequest) { 
-                BOOL requestSucceeded = [self mergeStatusRequest:statusPutRequest];
-                if (requestSucceeded) {
-                    BOOL retrievedContacts = [self retrieveContacts];
-                    if(!retrievedContacts)
-                    {
-                        [_delegate showAlertView:CONTACT_RETRIEVAL];
+        if (shouldRetrieve == NO) {
+            return ([self putFieldwork] != nil);
+        }
+        else {
+            //#1 Does Fieldwork Need to be submitted?
+            if ([Fieldwork submission]) {
+                //#2 Let's try to put that on the server.
+                NSString* statusPutRequest = [self putFieldwork];
+                
+                if (statusPutRequest) {
+                    BOOL requestSucceeded = [self mergeStatusRequest:statusPutRequest];
+                    if (requestSucceeded) {
+                        BOOL retrievedContacts = [self retrieveContacts];
+                        if(!retrievedContacts)
+                        {
+                            [_delegate showAlertView:CONTACT_RETRIEVAL];
+                            return FALSE;
+                        }
+                    }
+                    else {
+                        [_delegate showAlertView:MERGE_DATA];
                         return false;
                     }
                 }
                 else {
-                    [_delegate showAlertView:MERGE_DATA];
+                    [_delegate showAlertView:PUTTING_DATA_ON_SERVER];
                     return false;
                 }
             }
+            //Fieldwork does not need to be submitted, let's look at the latest merge status and see if it exists.
+            else if ([MergeStatus latest]) {
+                MergeStatus* ms = [MergeStatus latest];
+                BOOL mergeWorked = [self mergeStatusRequest:ms.mergeStatusId];
+                if (mergeWorked) {
+                    BOOL receivedContacts = [self retrieveContacts];
+                    if(!receivedContacts) {
+                        [_delegate showAlertView:CONTACT_RETRIEVAL];
+                        return false;
+                    }
+                    
+                    return receivedContacts;
+                }
+            }
+            //There is no merge status to attempt.
             else {
-                [_delegate showAlertView:PUTTING_DATA_ON_SERVER];
-                return false;
-            }
-        }
-        //Fieldwork does not need to be submitted, let's look at the latest merge status and see if it exists.
-        else if ([MergeStatus latest]) {
-            MergeStatus* ms = [MergeStatus latest];
-            BOOL mergeWorked = [self mergeStatusRequest:ms.mergeStatusId];
-            if (mergeWorked) {
                 BOOL receivedContacts = [self retrieveContacts];
-                if(!receivedContacts) {
+                if(!receivedContacts)
                     [_delegate showAlertView:CONTACT_RETRIEVAL];
-                    return false;
-                }
-                   
                 return receivedContacts;
             }
-        }
-        //There is no merge status to attempt. 
-        else {
-            BOOL receivedContacts = [self retrieveContacts];
-            if(!receivedContacts)
-                [_delegate showAlertView:CONTACT_RETRIEVAL];
-            return receivedContacts;
         }
     }
     @catch(NSException *ex) {
