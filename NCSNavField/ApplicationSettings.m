@@ -61,7 +61,6 @@
     if (clientIdDictionary != nil) {
         defaultClientId = clientIdDictionary[@"DefaultValue"];
     }
-
     _clientId = [[NSUserDefaults standardUserDefaults] stringForKey:CLIENT_ID];
     if (_clientId == nil || [_clientId isEqual:defaultClientId] == YES)
     {
