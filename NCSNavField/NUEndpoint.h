@@ -17,10 +17,12 @@
 @property (nonatomic, strong) UIImage *endpointImage;
 @property (nonatomic, strong) NSArray *environmentArray;
 @property (nonatomic, strong) NUEndpointEnvironment *enviroment;
+@property (nonatomic, strong) NSNumber *isManualEndpoint;
 
 -(instancetype)initWithDataDictionary:(NSDictionary *)dataDictionary;
 +(BOOL)deleteUserEndpoint;
 +(NUEndpoint *)userEndpointOnDisk;
 -(void) writeToDisk;
-
+-(NUEndpointEnvironment *)environmentBasedOnCurrentBuildFromArray:(NSArray *)environmentsArray;
++(void) migrateUserToAutoLocationWithCallback:(void (^)(NUEndpoint *newEndpoint))migrateBlock;
 @end

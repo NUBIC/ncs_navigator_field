@@ -24,14 +24,6 @@
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>NCS Navigator Core URL</string>
-			<key>Key</key>
-			<string>navigator.core.url</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
 			<string>Find events this many days in the past:</string>
 			<key>Key</key>
 			<string>past.days.to.sync</string>
@@ -47,54 +39,6 @@
 			<string>upcoming.days.to.sync</string>
 			<key>DefaultValue</key>
 			<string>7</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Manual Mode</string>
-			<key>Key</key>
-			<string>navigator.core.manualMode</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>NCS Navigator Core URL</string>
-			<key>Key</key>
-			<string>navigator.core.url</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string>CAS</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>CAS Server URL</string>
-			<key>Key</key>
-			<string>cas.server.url</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Receive PGT URL</string>
-			<key>Key</key>
-			<string>pgt.receive.url</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Retrieve PGT URL</string>
-			<key>Key</key>
-			<string>pgt.retrieve.url</string>
 		</dict>
 		<dict>
 			<key>Type</key>

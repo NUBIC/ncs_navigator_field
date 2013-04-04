@@ -234,10 +234,6 @@
     [[NSUserDefaults standardUserDefaults] setValue:str forKey:@"lastModifiedCodes"];
 }
 
--(BOOL)isInManualMode {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:MANUAL_MODE];
-}
-
 -(void)updateWithEndpoint:(NUEndpoint *)endpoint {
     self.endpoint = endpoint;
     self.coreURL = [endpoint.enviroment.coreURL absoluteString];

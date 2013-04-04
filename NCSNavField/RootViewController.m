@@ -48,7 +48,9 @@
 #import "NUEndpointBar.h"
 #import "NUEndpoint.h"
 
-@interface RootViewController () <NUEndpointCollectionViewDelegate, CasLoginVCDelegate>
+#import "NUManualEndpointEditViewController.h"
+
+@interface RootViewController () <NUEndpointCollectionViewDelegate, NUManualEndpointDelegate, CasLoginVCDelegate>
     @property(nonatomic,strong) NSArray* contacts;
     @property(nonatomic,strong) ContactNavigationTable* table;
     @property(nonatomic,strong) BlockAlertView *alertView;
@@ -56,6 +58,8 @@
     @property (nonatomic, strong) UIAlertView *locationAlert;
 
     @property (nonatomic, strong) NUEndpointBar *endpointBar;
+
+@property (nonatomic, strong) NUManualEndpointEditViewController *manualEndpointEditViewController;
 
 @property (nonatomic, strong) SendOnlyDelegateObject *sendOnlyObject;
 
@@ -195,26 +199,62 @@
     [[NUEndpointService service] stopNetworkRequest];
     if (self.modalViewController) {
         [self dismissViewControllerAnimated:YES completion:^{
+            [NUEndpoint deleteUserEndpoint];
+            self.endpointBar.endpointBarLabel.text = @"No location chosen";
+            [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
         }];
     }
 }
 
 -(void)endpointCollectionViewController:(NUEndpointCollectionViewController *)collectionView didChooseEndpoint:(NUEndpoint *)chosenEndpoint {
-    BOOL isSaved = [[NUEndpointService service] userDidChooseEndpoint:chosenEndpoint];
-    [[ApplicationSettings instance] updateWithEndpoint:chosenEndpoint];
-    if (isSaved == YES) {
+    if ([chosenEndpoint.isManualEndpoint isEqualToNumber:@YES]) {
+        RootViewController __weak *weakSelf = self;
         [self dismissViewControllerAnimated:YES completion:^{
-            self.navigationItem.rightBarButtonItem.enabled = YES;
-            NSString *labelString = [NSString stringWithFormat:@"Your current location is:\n%@", chosenEndpoint.name];
-            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-            paragraphStyle.lineSpacing = -3.0f;
-            NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
-            [labelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:chosenEndpoint.name]];
-            self.endpointBar.endpointBarLabel.attributedText = labelText;
-            [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
+            RootViewController __strong *strongSelf = weakSelf;
+            strongSelf.manualEndpointEditViewController = [[NUManualEndpointEditViewController alloc] initWithNibName:nil bundle:nil];
+            strongSelf.manualEndpointEditViewController.alteredEndpoint = chosenEndpoint;
+            strongSelf.manualEndpointEditViewController.delegate = self;
+            strongSelf.modalPresentationStyle = UIModalPresentationPageSheet;
+            [strongSelf presentViewController:strongSelf.manualEndpointEditViewController animated:YES completion:nil];
         }];
     }
+    else {
+        BOOL isSaved = [[NUEndpointService service] userDidChooseEndpoint:chosenEndpoint];
+        [[ApplicationSettings instance] updateWithEndpoint:chosenEndpoint];
+        if (isSaved == YES) {
+            [self dismissViewControllerAnimated:YES completion:^{
+                self.navigationItem.rightBarButtonItem.enabled = YES;
+                NSString *labelString = [NSString stringWithFormat:@"Your current location is:\n%@", chosenEndpoint.name];
+                NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+                paragraphStyle.lineSpacing = -3.0f;
+                NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
+                [labelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:chosenEndpoint.name]];
+                self.endpointBar.endpointBarLabel.attributedText = labelText;
+                [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
+            }];
+        }
+    }
 }
+
+#pragma mark - manual endpoint edit delegate
+
+
+-(void) manualEndpointViewController:(NUManualEndpointEditViewController *)manualEditVC didFinishWithEndpoint:(NUEndpoint *)alteredEndpoint {
+    
+    BOOL isSaved = [[NUEndpointService service] userDidChooseEndpoint:alteredEndpoint];
+    [[ApplicationSettings instance] updateWithEndpoint:alteredEndpoint];
+    if (isSaved) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+-(void) manualEndpointViewControllerDidCancel:(NUManualEndpointEditViewController *)manualEditVC {
+    RootViewController __weak *weakSelf = self;
+    [self dismissViewControllerAnimated:YES completion:^{
+        [weakSelf switchEndpoint];
+    }];
+}
+
 
 #pragma mark - endpoint bar 
 
@@ -224,27 +264,26 @@
         [self.navigationController.view addSubview:self.endpointBar];
         [self.endpointBar.endpointBarButton addTarget:self action:@selector(endpointBarButtonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:MANUAL_MODE] == NO) {
-        NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
-        if (endpoint) {
-            NSString *labelString = [NSString stringWithFormat:@"Your current location is:\n%@", endpoint.name];
-            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-            paragraphStyle.lineSpacing = -3.0f;
-            NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
-            [labelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:endpoint.name]];
-            self.endpointBar.endpointBarLabel.attributedText = labelText;
-            [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
-        }
-        else {
-            self.endpointBar.endpointBarLabel.text = @"No location chosen";
-            [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
-        }
+    NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
+    if (endpoint) {
+        NSString *labelString = [NSString stringWithFormat:@"Your current location is:\n%@", endpoint.name];
+        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.lineSpacing = -3.0f;
+        NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
+        [labelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:endpoint.name]];
+        self.endpointBar.endpointBarLabel.attributedText = labelText;
+        [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
         self.endpointBar.endpointBarButton.alpha = 1.0f;
     }
-    else {
+    else if ([endpoint.isManualEndpoint boolValue] == YES) {
         [NUEndpoint deleteUserEndpoint];
         self.endpointBar.endpointBarLabel.attributedText = [[NSAttributedString alloc] initWithString:@"You are using\nmanual mode" attributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:13]}];
         self.endpointBar.endpointBarButton.alpha = 0.0f;
+    }
+    else {
+        self.endpointBar.endpointBarLabel.text = @"No location chosen";
+        [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
+        self.endpointBar.endpointBarButton.alpha = 1.0f;
     }
 }
 
@@ -336,16 +375,19 @@
 
 #pragma Actions
 - (void)syncButtonWasPressed {
-    NSString *emptyUrl = nil;
-    [[ApplicationSettings instance] coreSynchronizeConfigured:&emptyUrl];
-    if ([[ApplicationSettings instance] isInManualMode] == YES && emptyUrl != nil) {
-        [self showAlertView:[NSString stringWithFormat:@"\"%@\" is empty in your settings. We need that info!",emptyUrl]];
-    }
-    else if ([[ApplicationSettings instance] isInManualMode] == NO && [NUEndpoint userEndpointOnDisk] == nil) {
-        [self showAlertView:[NSString stringWithFormat:@"Please pick a location."]];
+    
+    if ([NUEndpoint userEndpointOnDisk] != nil) {
+        NSString *emptyUrl = nil;
+        [[ApplicationSettings instance] coreSynchronizeConfigured:&emptyUrl];
+        if (emptyUrl != nil) {
+            [self showAlertView:[NSString stringWithFormat:@"\"%@\" is empty in your settings. We need that info!",emptyUrl]];
+        }
+        else {
+            [self confirmSync];
+        }
     }
     else {
-        [self confirmSync];
+        [self showAlertView:[NSString stringWithFormat:@"Please pick a location."]];
     }
 }
 
@@ -477,16 +519,7 @@
 }
 
 -(void)switchEndpoint {
-    NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
-    if (endpoint) {
-        [NUEndpoint deleteUserEndpoint];
-        self.endpointBar.endpointBarLabel.text = @"No location chosen";
-        [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
-        [self startEndpointSelection];
-    }
-    else {
-        [self startEndpointSelection];
-    }
+    [self startEndpointSelection];
 }
 
 #pragma mark - Cas Login Delegate
@@ -737,13 +770,21 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
-    if (!endpoint) {
-        if ([[ApplicationSettings instance] isInManualMode] == NO && [ApplicationSettings casConfiguration] == nil) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:HAS_MIGRATED_TO_AUTO_LOCATION] == YES) {
+        NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
+        if (!endpoint) {
             [self startEndpointSelection];
         }
     }
-    
+    else {
+        RootViewController __weak *weakSelf = self;
+        [NUEndpoint migrateUserToAutoLocationWithCallback:^(NUEndpoint *newEndpoint) {
+            if (newEndpoint) {
+                [weakSelf endpointCollectionViewController:nil didChooseEndpoint:newEndpoint];
+            }
+        }];
+    }
+
     [super viewDidAppear:animated];
 }
 

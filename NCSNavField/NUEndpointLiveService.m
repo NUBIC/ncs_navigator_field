@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSURLConnection *endpointConnection;
 @property (nonatomic, strong) NSMutableData *receivedData;
 
-- (void)settingsChanged:(NSNotification *)notif;
+-(NUEndpoint *)generateManualEndpoint;
 
 @end
 
@@ -41,8 +41,10 @@
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:self.receivedData options:0 error:&jsonError];
     for (NSDictionary *endpointDictionary in dataDictionary[@"locations"]) {
         NUEndpoint *newEndpoint = [[NUEndpoint alloc] initWithDataDictionary:endpointDictionary];
+        newEndpoint.isManualEndpoint = @NO;
         endpointArray = [endpointArray arrayByAddingObject:newEndpoint];
     }
+    endpointArray = [endpointArray arrayByAddingObject:[self generateManualEndpoint]];
     if (self.endpointBlock) {
         self.endpointBlock (endpointArray, jsonError);
     }
@@ -77,11 +79,29 @@
 
 #pragma mark prototyping
 
-- (void)settingsChanged:(NSNotification *)notif
-{
-    if ([[ApplicationSettings instance] isInManualMode] == YES) {
-        [[ApplicationSettings instance] updateWithEndpoint:nil];
-        [RestKitSettings reload];
+-(NUEndpoint *)generateManualEndpoint {
+    NUEndpoint *endpointOnDisk = [NUEndpoint userEndpointOnDisk];
+    if ([endpointOnDisk.isManualEndpoint isEqualToNumber:@YES]) {
+        return endpointOnDisk;
+    }
+    else {
+        NSURL *imageUrl = [[NSBundle mainBundle] URLForResource:@"ManualImage" withExtension:@".png"];
+        NSDictionary *manualEndpointDictionary = @{@"name": @"Manual Mode",
+                                                   @"logo_url" : [imageUrl absoluteString],
+                                                   @"environments" : @[@{@"cas_base_url" : @"",
+                                                                         @"cas_proxy_receive_url" : @"",
+                                                                         @"cas_proxy_retrieve_url" : @"",
+                                                                         @"cases_url" : @"",
+                                                                         @"name" : @"staging"},
+                                                                       @{@"cas_base_url" : @"",
+                                                                         @"cas_proxy_receive_url" : @"",
+                                                                         @"cas_proxy_retrieve_url" : @"",
+                                                                         @"cases_url" : @"",
+                                                                         @"name" : @"staging"}]};
+        NUEndpoint *newEndpoint = [[NUEndpoint alloc] initWithDataDictionary:manualEndpointDictionary];
+        newEndpoint.enviroment = [newEndpoint environmentBasedOnCurrentBuildFromArray:newEndpoint.environmentArray];
+        newEndpoint.isManualEndpoint = @YES;
+        return newEndpoint;
     }
 }
 
@@ -91,7 +111,6 @@
     
     self = [super init];
     if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     }
     return self;
 }

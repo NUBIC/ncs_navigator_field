@@ -155,6 +155,10 @@
 		1646CD4516CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1646CD4316CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib */; };
 		1646CD4816CDA43300CDCCEC /* NUEndpointCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD4716CDA43300CDCCEC /* NUEndpointCollectionViewCell.m */; };
 		1646CD4A16CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1646CD4916CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib */; };
+		164959D4170E063200EEF552 /* ManualImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 164959D2170E063200EEF552 /* ManualImage.png */; };
+		164959D5170E063200EEF552 /* ManualImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 164959D3170E063200EEF552 /* ManualImage@2x.png */; };
+		164959DC170E0ECF00EEF552 /* NUManualEndpointEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164959DA170E0ECF00EEF552 /* NUManualEndpointEditViewController.m */; };
+		164959DD170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164959DB170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib */; };
 		167292DD170097B20046B194 /* NUEndpointTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 167292DC170097B20046B194 /* NUEndpointTest.m */; };
 		16F0DA5816D56BE800290837 /* NCSFieldConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F0DA5716D56BE800290837 /* NCSFieldConstants.m */; };
 		16F0DA5B16D5719400290837 /* NoImageAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 16F0DA5916D5719400290837 /* NoImageAvailable.png */; };
@@ -640,7 +644,6 @@
 		1613E7D816D4301E0002FA0F /* NUEndpointEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointEnvironment.h; sourceTree = "<group>"; };
 		1613E7D916D4301E0002FA0F /* NUEndpointEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointEnvironment.m; sourceTree = "<group>"; };
 		162812F616B1C19200652CA2 /* 20130124192217_add_instrument_relation_to_eventTemplate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130124192217_add_instrument_relation_to_eventTemplate.xcdatamodel; sourceTree = "<group>"; };
-		16821E80170393AF003613A1 /* 20130327205234_added_address_unit_to_practice.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130327205234_added_address_unit_to_practice.xcdatamodel; sourceTree = "<group>"; };
 		1646CD3016CD860800CDCCEC /* NUEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpoint.h; sourceTree = "<group>"; };
 		1646CD3116CD860800CDCCEC /* NUEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpoint.m; sourceTree = "<group>"; usesTabs = 0; };
 		1646CD3416CD892F00CDCCEC /* NUEndpointService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointService.h; sourceTree = "<group>"; };
@@ -654,8 +657,14 @@
 		1646CD4616CDA43300CDCCEC /* NUEndpointCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointCollectionViewCell.h; sourceTree = "<group>"; };
 		1646CD4716CDA43300CDCCEC /* NUEndpointCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointCollectionViewCell.m; sourceTree = "<group>"; };
 		1646CD4916CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NUEndpointCollectionViewCell.xib; sourceTree = "<group>"; };
+		164959D2170E063200EEF552 /* ManualImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ManualImage.png; sourceTree = "<group>"; };
+		164959D3170E063200EEF552 /* ManualImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ManualImage@2x.png"; sourceTree = "<group>"; };
+		164959D9170E0ECF00EEF552 /* NUManualEndpointEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUManualEndpointEditViewController.h; sourceTree = "<group>"; };
+		164959DA170E0ECF00EEF552 /* NUManualEndpointEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUManualEndpointEditViewController.m; sourceTree = "<group>"; };
+		164959DB170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NUManualEndpointEditViewController.xib; sourceTree = "<group>"; };
 		167292DB170097B20046B194 /* NUEndpointTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointTest.h; sourceTree = "<group>"; };
 		167292DC170097B20046B194 /* NUEndpointTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointTest.m; sourceTree = "<group>"; };
+		16821E80170393AF003613A1 /* 20130327205234_added_address_unit_to_practice.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130327205234_added_address_unit_to_practice.xcdatamodel; sourceTree = "<group>"; };
 		16E839C116D8244800ED8A3C /* 20130222220953_removed_person_relation_from_contact.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130222220953_removed_person_relation_from_contact.xcdatamodel; sourceTree = "<group>"; };
 		16F0DA5616D56BE800290837 /* NCSFieldConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSFieldConstants.h; sourceTree = "<group>"; };
 		16F0DA5716D56BE800290837 /* NCSFieldConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSFieldConstants.m; sourceTree = "<group>"; };
@@ -1117,6 +1126,9 @@
 				1646CD4116CD9AF200CDCCEC /* NUEndpointCollectionViewController.h */,
 				1646CD4216CD9AF200CDCCEC /* NUEndpointCollectionViewController.m */,
 				1646CD4316CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib */,
+				164959D9170E0ECF00EEF552 /* NUManualEndpointEditViewController.h */,
+				164959DA170E0ECF00EEF552 /* NUManualEndpointEditViewController.m */,
+				164959DB170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib */,
 				009EEF19164870AC00EB98D1 /* ProviderListViewController.h */,
 				009EEF1A164870AC00EB98D1 /* ProviderListViewController.m */,
 				00145BA6149A7BEF00D3C1B5 /* ContactCloseVC.h */,
@@ -1454,6 +1466,8 @@
 		227177AF1680F117000C67DD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				164959D2170E063200EEF552 /* ManualImage.png */,
+				164959D3170E063200EEF552 /* ManualImage@2x.png */,
 				16F0DA5916D5719400290837 /* NoImageAvailable.png */,
 				16F0DA5A16D5719400290837 /* NoImageAvailable@2x.png */,
 				1613E7B816D2DEAC0002FA0F /* endPointBarBackground.png */,
@@ -1623,6 +1637,9 @@
 				16F4FB8416D566AC0001253F /* NCSNavField-environment.plist in Resources */,
 				16F0DA5B16D5719400290837 /* NoImageAvailable.png in Resources */,
 				16F0DA5C16D5719400290837 /* NoImageAvailable@2x.png in Resources */,
+				164959D4170E063200EEF552 /* ManualImage.png in Resources */,
+				164959D5170E063200EEF552 /* ManualImage@2x.png in Resources */,
+				164959DD170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1780,6 +1797,7 @@
 				1613E7DA16D4301E0002FA0F /* NUEndpointEnvironment.m in Sources */,
 				16F0DA5816D56BE800290837 /* NCSFieldConstants.m in Sources */,
 				1605000A170B8BFD00F854E7 /* SendOnlyDelegateObject.m in Sources */,
+				164959DC170E0ECF00EEF552 /* NUManualEndpointEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

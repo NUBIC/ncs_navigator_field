@@ -132,7 +132,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.delegate endpointCollectionViewController:self didChooseEndpoint:self.mainEndpointArray[indexPath.row]];
+    NUEndpoint *chosenEndpoint = self.mainEndpointArray[indexPath.row];
+    [self.delegate endpointCollectionViewController:self didChooseEndpoint:chosenEndpoint];
 }
 
 - (void)viewDidUnload {
