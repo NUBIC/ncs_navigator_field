@@ -242,6 +242,7 @@
         self.endpointBar.endpointBarButton.alpha = 1.0f;
     }
     else {
+        [NUEndpoint deleteUserEndpoint];
         self.endpointBar.endpointBarLabel.attributedText = [[NSAttributedString alloc] initWithString:@"You are using\nmanual mode" attributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:13]}];
         self.endpointBar.endpointBarButton.alpha = 0.0f;
     }
@@ -335,11 +336,12 @@
 
 #pragma Actions
 - (void)syncButtonWasPressed {
-    NSString *emptyUrl;
-    if ([[ApplicationSettings instance] isInManualMode] == YES && [[ApplicationSettings instance] coreSynchronizeConfigured:&emptyUrl] == NO) {
+    NSString *emptyUrl = nil;
+    [[ApplicationSettings instance] coreSynchronizeConfigured:&emptyUrl];
+    if ([[ApplicationSettings instance] isInManualMode] == YES && emptyUrl != nil) {
         [self showAlertView:[NSString stringWithFormat:@"\"%@\" is empty in your settings. We need that info!",emptyUrl]];
     }
-    else if ([NUEndpoint userEndpointOnDisk] == nil) {
+    else if ([[ApplicationSettings instance] isInManualMode] == NO && [NUEndpoint userEndpointOnDisk] == nil) {
         [self showAlertView:[NSString stringWithFormat:@"Please pick a location."]];
     }
     else {
@@ -736,8 +738,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
-    if (!endpoint && [[ApplicationSettings instance] isInManualMode] == NO) {
-        [self startEndpointSelection];
+    if (!endpoint) {
+        if ([[ApplicationSettings instance] isInManualMode] == NO && [ApplicationSettings casConfiguration] == nil) {
+            [self startEndpointSelection];
+        }
     }
     
     [super viewDidAppear:animated];

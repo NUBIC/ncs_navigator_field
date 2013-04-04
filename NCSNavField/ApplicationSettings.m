@@ -81,7 +81,7 @@
         self.endpoint = [NUEndpoint userEndpointOnDisk];
     }
     NSString *returnString = self.endpoint.enviroment.coreURL.absoluteString;
-    if ([self isInManualMode] == YES) {
+    if (returnString == nil) {
         returnString = [[NSUserDefaults standardUserDefaults] stringForKey:CORE_URL];
     }
     return returnString;
@@ -95,7 +95,7 @@
         self.endpoint = [NUEndpoint userEndpointOnDisk];
     }
     NSString *returnString = self.endpoint.enviroment.casServerURL.absoluteString;
-    if ([self isInManualMode] == YES) {
+    if (returnString == nil) {
         returnString = [[NSUserDefaults standardUserDefaults] stringForKey:CAS_SERVER_URL];
     }
     return returnString;
@@ -109,7 +109,7 @@
         self.endpoint = [NUEndpoint userEndpointOnDisk];
     }
     NSString *returnString = self.endpoint.enviroment.pgtReceiveURL.absoluteString;
-    if ([self isInManualMode] == YES) {
+    if (returnString == nil) {
         returnString = [[NSUserDefaults standardUserDefaults] stringForKey:PGT_RECEIVE_URL];
     }
     return returnString;
@@ -123,7 +123,7 @@
         self.endpoint = [NUEndpoint userEndpointOnDisk];
     }
     NSString *returnString = self.endpoint.enviroment.pgtRetrieveURL.absoluteString;
-    if ([self isInManualMode] == YES) {
+    if (returnString == nil) {
         returnString = [[NSUserDefaults standardUserDefaults] stringForKey:PGT_RETRIEVE_URL];
     }
     return returnString;
