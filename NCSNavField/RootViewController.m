@@ -194,7 +194,9 @@
 -(void)endpointCollectionViewControllerDidPressCancel:(NUEndpointCollectionViewController *)collectionView {
     [[NUEndpointService service] stopNetworkRequest];
     if ([NUEndpoint userEndpointOnDisk] == nil) {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
+        if ([[ApplicationSettings instance] isInManualMode] == NO) {
+            self.navigationItem.rightBarButtonItem.enabled = NO;
+        }
     }
     if (self.modalViewController) {
         [self dismissViewControllerAnimated:YES completion:^{
@@ -239,7 +241,9 @@
             [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
         }
         else {
-            self.navigationItem.rightBarButtonItem.enabled = NO;
+            if ([[ApplicationSettings instance] isInManualMode] == NO) {
+                self.navigationItem.rightBarButtonItem.enabled = NO;
+            }
             self.endpointBar.endpointBarLabel.text = @"No location chosen";
             [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
         }
@@ -423,7 +427,9 @@
 //    NSLog(@"Delete button pressed");
     [NUEndpoint deleteUserEndpoint];
     [self purgeDataStore];
-    self.navigationItem.rightBarButtonItem.enabled = NO;
+    if ([[ApplicationSettings instance] isInManualMode] == NO) {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
     [[ApplicationSettings instance] updateWithEndpoint:nil];
     [self setUpEndpointBar];
     
@@ -480,7 +486,9 @@
     NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
     if (endpoint) {
         [NUEndpoint deleteUserEndpoint];
-        self.navigationItem.rightBarButtonItem.enabled = NO;
+        if ([[ApplicationSettings instance] isInManualMode] == NO) {
+            self.navigationItem.rightBarButtonItem.enabled = NO;
+        }
         self.endpointBar.endpointBarLabel.text = @"No location chosen";
         [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
         [self startEndpointSelection];
@@ -739,7 +747,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
-    if (!endpoint) {
+    if (!endpoint && [[ApplicationSettings instance] isInManualMode] == NO) {
         [self startEndpointSelection];
     }
     
