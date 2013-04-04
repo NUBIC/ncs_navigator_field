@@ -193,11 +193,6 @@
 
 -(void)endpointCollectionViewControllerDidPressCancel:(NUEndpointCollectionViewController *)collectionView {
     [[NUEndpointService service] stopNetworkRequest];
-    if ([NUEndpoint userEndpointOnDisk] == nil) {
-        if ([[ApplicationSettings instance] isInManualMode] == NO) {
-            self.navigationItem.rightBarButtonItem.enabled = NO;
-        }
-    }
     if (self.modalViewController) {
         [self dismissViewControllerAnimated:YES completion:^{
         }];
@@ -241,9 +236,6 @@
             [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
         }
         else {
-            if ([[ApplicationSettings instance] isInManualMode] == NO) {
-                self.navigationItem.rightBarButtonItem.enabled = NO;
-            }
             self.endpointBar.endpointBarLabel.text = @"No location chosen";
             [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
         }
@@ -343,12 +335,15 @@
 
 #pragma Actions
 - (void)syncButtonWasPressed {
-    //    NSLog(@"Sync Pressed!!!");
     NSString *emptyUrl;
-    if ([[ApplicationSettings instance] coreSynchronizeConfigured:&emptyUrl]) {
-        [self confirmSync];
-    } else {
+    if ([[ApplicationSettings instance] isInManualMode] == YES && [[ApplicationSettings instance] coreSynchronizeConfigured:&emptyUrl] == NO) {
         [self showAlertView:[NSString stringWithFormat:@"\"%@\" is empty in your settings. We need that info!",emptyUrl]];
+    }
+    else if ([NUEndpoint userEndpointOnDisk] == nil) {
+        [self showAlertView:[NSString stringWithFormat:@"Please pick a location."]];
+    }
+    else {
+        [self confirmSync];
     }
 }
 
@@ -427,9 +422,6 @@
 //    NSLog(@"Delete button pressed");
     [NUEndpoint deleteUserEndpoint];
     [self purgeDataStore];
-    if ([[ApplicationSettings instance] isInManualMode] == NO) {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
-    }
     [[ApplicationSettings instance] updateWithEndpoint:nil];
     [self setUpEndpointBar];
     
@@ -486,9 +478,6 @@
     NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
     if (endpoint) {
         [NUEndpoint deleteUserEndpoint];
-        if ([[ApplicationSettings instance] isInManualMode] == NO) {
-            self.navigationItem.rightBarButtonItem.enabled = NO;
-        }
         self.endpointBar.endpointBarLabel.text = @"No location chosen";
         [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
         [self startEndpointSelection];
