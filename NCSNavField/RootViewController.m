@@ -207,7 +207,7 @@
 }
 
 -(void)endpointCollectionViewController:(NUEndpointCollectionViewController *)collectionView didChooseEndpoint:(NUEndpoint *)chosenEndpoint {
-    if ([chosenEndpoint.isManualEndpoint isEqualToNumber:@YES]) {
+    if ([chosenEndpoint.isManualEndpoint isEqualToNumber:@YES] && collectionView != nil) {
         RootViewController __weak *weakSelf = self;
         [self dismissViewControllerAnimated:YES completion:^{
             RootViewController __strong *strongSelf = weakSelf;
@@ -222,16 +222,24 @@
         BOOL isSaved = [[NUEndpointService service] userDidChooseEndpoint:chosenEndpoint];
         [[ApplicationSettings instance] updateWithEndpoint:chosenEndpoint];
         if (isSaved == YES) {
-            [self dismissViewControllerAnimated:YES completion:^{
-                self.navigationItem.rightBarButtonItem.enabled = YES;
+            RootViewController __weak *weakSelf = self;
+            void (^ completionBlock)() = ^ {
+                RootViewController __strong *strongSelf = weakSelf;
+                strongSelf.navigationItem.rightBarButtonItem.enabled = YES;
                 NSString *labelString = [NSString stringWithFormat:@"Your current location is:\n%@", chosenEndpoint.name];
                 NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
                 paragraphStyle.lineSpacing = -3.0f;
                 NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
                 [labelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:chosenEndpoint.name]];
-                self.endpointBar.endpointBarLabel.attributedText = labelText;
-                [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
-            }];
+                strongSelf.endpointBar.endpointBarLabel.attributedText = labelText;
+                [strongSelf.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
+            };
+            if (self.modalViewController) {
+                [self dismissViewControllerAnimated:YES completion:completionBlock];
+            }
+            else {
+                completionBlock();
+            }
         }
     }
 }
@@ -265,7 +273,7 @@
         [self.endpointBar.endpointBarButton addTarget:self action:@selector(endpointBarButtonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
     NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
-    if (endpoint) {
+    if ([endpoint.isManualEndpoint isEqualToNumber:@NO]) {
         NSString *labelString = [NSString stringWithFormat:@"Your current location is:\n%@", endpoint.name];
         NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
         paragraphStyle.lineSpacing = -3.0f;
@@ -273,17 +281,14 @@
         [labelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:endpoint.name]];
         self.endpointBar.endpointBarLabel.attributedText = labelText;
         [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
-        self.endpointBar.endpointBarButton.alpha = 1.0f;
     }
-    else if ([endpoint.isManualEndpoint boolValue] == YES) {
-        [NUEndpoint deleteUserEndpoint];
+    else if ([endpoint.isManualEndpoint isEqualToNumber:@YES]) {
         self.endpointBar.endpointBarLabel.attributedText = [[NSAttributedString alloc] initWithString:@"You are using\nmanual mode" attributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:13]}];
-        self.endpointBar.endpointBarButton.alpha = 0.0f;
+        [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
     }
     else {
         self.endpointBar.endpointBarLabel.text = @"No location chosen";
         [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
-        self.endpointBar.endpointBarButton.alpha = 1.0f;
     }
 }
 
@@ -777,12 +782,8 @@
         }
     }
     else {
-        RootViewController __weak *weakSelf = self;
-        [NUEndpoint migrateUserToAutoLocationWithCallback:^(NUEndpoint *newEndpoint) {
-            if (newEndpoint) {
-                [weakSelf endpointCollectionViewController:nil didChooseEndpoint:newEndpoint];
-            }
-        }];
+        NUEndpoint *migratedEndpoint = [NUEndpoint migrateUserToAutoLocation];
+        [self endpointCollectionViewController:nil didChooseEndpoint:migratedEndpoint];
     }
 
     [super viewDidAppear:animated];

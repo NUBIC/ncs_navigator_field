@@ -24,5 +24,5 @@
 +(NUEndpoint *)userEndpointOnDisk;
 -(void) writeToDisk;
 -(NUEndpointEnvironment *)environmentBasedOnCurrentBuildFromArray:(NSArray *)environmentsArray;
-+(void) migrateUserToAutoLocationWithCallback:(void (^)(NUEndpoint *newEndpoint))migrateBlock;
++(NUEndpoint *) migrateUserToAutoLocation;
 @end

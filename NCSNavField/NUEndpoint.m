@@ -79,8 +79,10 @@
     return [self enviromentBasedOnDataFromArray:environmentsArray];
 }
 
-+(void)migrateUserToAutoLocationWithCallback:(void (^)(NUEndpoint *))migrateBlock {
++(NUEndpoint *)migrateUserToAutoLocation {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:HAS_MIGRATED_TO_AUTO_LOCATION];
+
     BOOL validURLSettings = ([defaults objectForKey:CAS_SERVER_URL] &&
                              [defaults objectForKey:CORE_URL] &&
                              [defaults objectForKey:PGT_RETRIEVE_URL] &&
@@ -90,10 +92,10 @@
         NSArray *newEnvironmentsArray = @[];
         for (NSString *environmentName in environmentsArray) {
             NUEndpointEnvironment *newEnvironment = [NUEndpointEnvironment new];
-            newEnvironment.casServerURL = [defaults objectForKey:CAS_SERVER_URL];
-            newEnvironment.coreURL = [defaults objectForKey:CORE_URL];
-            newEnvironment.pgtReceiveURL = [defaults objectForKey:PGT_RECEIVE_URL];
-            newEnvironment.pgtRetrieveURL = [defaults objectForKey:PGT_RETRIEVE_URL];
+            newEnvironment.casServerURL = [NSURL URLWithString:[defaults objectForKey:CAS_SERVER_URL]];
+            newEnvironment.coreURL = [NSURL URLWithString:[defaults objectForKey:CORE_URL]];
+            newEnvironment.pgtReceiveURL = [NSURL URLWithString:[defaults objectForKey:PGT_RECEIVE_URL]];
+            newEnvironment.pgtRetrieveURL = [NSURL URLWithString:[defaults objectForKey:PGT_RETRIEVE_URL]];
             newEnvironment.name = environmentName;
             newEnvironmentsArray = [newEnvironmentsArray arrayByAddingObject:newEnvironment];
         }
@@ -103,12 +105,11 @@
         newEndpoint.environmentArray = newEnvironmentsArray;
         newEndpoint.enviroment = [newEndpoint environmentBasedOnCurrentBuildFromArray:newEndpoint.environmentArray];
         newEndpoint.isManualEndpoint = @YES;
-        migrateBlock(newEndpoint);
+        return newEndpoint;
     }
     else {
-        migrateBlock(nil);
+        return nil;
     }
-    [defaults setBool:YES forKey:HAS_MIGRATED_TO_AUTO_LOCATION];
 }
 
 #pragma mark stock code
