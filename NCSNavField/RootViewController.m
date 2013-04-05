@@ -223,14 +223,7 @@
         RootViewController __weak *weakSelf = self;
         void (^ completionBlock)() = ^ {
             RootViewController __strong *strongSelf = weakSelf;
-            strongSelf.navigationItem.rightBarButtonItem.enabled = YES;
-            NSString *labelString = [NSString stringWithFormat:@"Your current location is:\n%@", chosenEndpoint.name];
-            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-            paragraphStyle.lineSpacing = -3.0f;
-            NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
-            [labelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:chosenEndpoint.name]];
-            strongSelf.endpointBar.endpointBarLabel.attributedText = labelText;
-            [strongSelf.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
+            [strongSelf setUpEndpointBar];
         };
         if (self.modalViewController) {
             [self dismissViewControllerAnimated:YES completion:completionBlock];
@@ -776,7 +769,12 @@
     }
     else {
         NUEndpoint *migratedEndpoint = [NUEndpoint migrateUserToAutoLocation];
-        [self endpointCollectionViewController:nil didChooseEndpoint:migratedEndpoint];
+        if (migratedEndpoint != nil) {
+            [self endpointCollectionViewController:nil didChooseEndpoint:migratedEndpoint];
+        }
+        else {
+            [self startEndpointSelection];
+        }
     }
 
     [super viewDidAppear:animated];
