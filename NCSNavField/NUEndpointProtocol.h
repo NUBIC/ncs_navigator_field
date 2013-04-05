@@ -12,7 +12,6 @@
 @protocol NUEndpointProtocol <NSObject>
 
 -(void)getEndpointArrayWithCallback:(void (^)(NSArray *endpointArray, NSError *error))endpointBlock;
--(BOOL)userDidChooseEndpoint:(NUEndpoint *)chosenEndpoint;
 -(void)stopNetworkRequest;
 
 @optional

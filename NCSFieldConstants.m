@@ -20,7 +20,4 @@ NSString * PURGE_FIELDWORK_BUTTON = @"purge.fieldwork.button";
 NSString * UPCOMING_DAYS_TO_SYNC = @"upcoming.days.to.sync";
 NSString * PAST_DAYS_TO_SYNC = @"past.days.to.sync";
 
-NSString * PRODUCTION_ENV = @"production";
-NSString * STAGING_ENV = @"staging";
-
 NSString * HAS_MIGRATED_TO_AUTO_LOCATION = @"hasMigratedToAutoLocation";

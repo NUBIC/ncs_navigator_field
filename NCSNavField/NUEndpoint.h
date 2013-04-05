@@ -20,9 +20,14 @@
 @property (nonatomic, strong) NSNumber *isManualEndpoint;
 
 -(instancetype)initWithDataDictionary:(NSDictionary *)dataDictionary;
-+(BOOL)deleteUserEndpoint;
+
 +(NUEndpoint *)userEndpointOnDisk;
+
++(BOOL)deleteUserEndpoint;
 -(void) writeToDisk;
--(NUEndpointEnvironment *)environmentBasedOnCurrentBuildFromArray:(NSArray *)environmentsArray;
+
 +(NUEndpoint *) migrateUserToAutoLocation;
+
+- (id) objectForKeyedSubscript:(NSString *)keyString;
+
 @end

@@ -242,6 +242,8 @@
     self.pgtRetrieveURL = [endpoint.enviroment.pgtRetrieveURL absoluteString];
     self.purgeFieldworkButton = [self purgeFieldworkButton];
     self.upcomingDaysToSync = [self upcomingDaysToSync];
+    self.pastDaysToSync = [self pastDaysToSync];
+    [endpoint writeToDisk];
     [[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:self];
     [RestKitSettings reload];
 }

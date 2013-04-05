@@ -39,20 +39,15 @@
 
 - (IBAction)saveButtonWasTapped:(id)sender {
     
-    NSArray *environmentsArray = @[PRODUCTION_ENV, STAGING_ENV];
-    NSArray *newEnvironmentsArray = @[];
-    for (NSString *environmentName in environmentsArray) {
-        NUEndpointEnvironment *newEnvironment = [NUEndpointEnvironment new];
-        newEnvironment.casServerURL = [NSURL URLWithString:self.baseCasUrlTextField.text];
-        newEnvironment.coreURL = [NSURL URLWithString:self.casesUrlTextField.text];
-        newEnvironment.pgtReceiveURL = [NSURL URLWithString:self.casReceiveUrlTextField.text];
-        newEnvironment.pgtRetrieveURL = [NSURL URLWithString:self.casRetrieveUrlTextField.text];
-        newEnvironment.name = environmentName;
-        newEnvironmentsArray = [newEnvironmentsArray arrayByAddingObject:newEnvironment];
-    }
+    NUEndpointEnvironment *newEnvironment = [NUEndpointEnvironment new];
+    newEnvironment.casServerURL = [NSURL URLWithString:self.baseCasUrlTextField.text];
+    newEnvironment.coreURL = [NSURL URLWithString:self.casesUrlTextField.text];
+    newEnvironment.pgtReceiveURL = [NSURL URLWithString:self.casReceiveUrlTextField.text];
+    newEnvironment.pgtRetrieveURL = [NSURL URLWithString:self.casRetrieveUrlTextField.text];
+    newEnvironment.name = @"manual";
     
-    self.alteredEndpoint.environmentArray = newEnvironmentsArray;
-    self.alteredEndpoint.enviroment = [self.alteredEndpoint environmentBasedOnCurrentBuildFromArray:newEnvironmentsArray];
+    self.alteredEndpoint.environmentArray = @[newEnvironment];
+    self.alteredEndpoint.enviroment = newEnvironment;
     
     [self.delegate manualEndpointViewController:self didFinishWithEndpoint:self.alteredEndpoint];
 }

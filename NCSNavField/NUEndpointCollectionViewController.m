@@ -13,12 +13,15 @@
 #import "NUEndpoint.h"
 #import "NUEndpointCollectionViewCell.h"
 
-@interface NUEndpointCollectionViewController ()
+@interface NUEndpointCollectionViewController () <UIAlertViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *mainEndpointArray;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *reloadButton;
+
+@property (nonatomic, strong) UIAlertView *environmentAlert;
+@property (nonatomic, strong) NUEndpoint *chosenEndpoint;
 
 -(void)loadEndpointArray:(NSArray *)endpointArray;
 - (IBAction)cancelButtonTapped:(id)sender;
@@ -29,6 +32,14 @@
 @implementation NUEndpointCollectionViewController
 
 #pragma mark delegate methods
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != 0) {
+        self.chosenEndpoint.enviroment = self.chosenEndpoint[[alertView buttonTitleAtIndex:buttonIndex]];
+        [self.delegate endpointCollectionViewController:self didChooseEndpoint:self.chosenEndpoint];
+    }
+    self.environmentAlert = nil;
+}
 
 #pragma mark customization
 
@@ -132,8 +143,18 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NUEndpoint *chosenEndpoint = self.mainEndpointArray[indexPath.row];
-    [self.delegate endpointCollectionViewController:self didChooseEndpoint:chosenEndpoint];
+    NUEndpoint *endpoint = self.mainEndpointArray[indexPath.row];
+    if ([endpoint.isManualEndpoint isEqualToNumber:@YES]) {
+        [self.delegate endpointCollectionViewController:self didChooseEndpoint:endpoint];
+    }
+    else {
+        self.chosenEndpoint = endpoint;
+        self.environmentAlert = [[UIAlertView alloc] initWithTitle:@"Which environment?" message:@"Please choose which endpoint environment you'd like to connect to." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: nil];
+        for (NSString *environmentTitle in [self.chosenEndpoint.environmentArray valueForKeyPath:@"name"]) {
+            [self.environmentAlert addButtonWithTitle:environmentTitle];
+        }
+        [self.environmentAlert show];
+    }
 }
 
 - (void)viewDidUnload {

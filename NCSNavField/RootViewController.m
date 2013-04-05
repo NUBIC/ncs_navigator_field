@@ -219,27 +219,24 @@
         }];
     }
     else {
-        BOOL isSaved = [[NUEndpointService service] userDidChooseEndpoint:chosenEndpoint];
         [[ApplicationSettings instance] updateWithEndpoint:chosenEndpoint];
-        if (isSaved == YES) {
-            RootViewController __weak *weakSelf = self;
-            void (^ completionBlock)() = ^ {
-                RootViewController __strong *strongSelf = weakSelf;
-                strongSelf.navigationItem.rightBarButtonItem.enabled = YES;
-                NSString *labelString = [NSString stringWithFormat:@"Your current location is:\n%@", chosenEndpoint.name];
-                NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-                paragraphStyle.lineSpacing = -3.0f;
-                NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
-                [labelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:chosenEndpoint.name]];
-                strongSelf.endpointBar.endpointBarLabel.attributedText = labelText;
-                [strongSelf.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
-            };
-            if (self.modalViewController) {
-                [self dismissViewControllerAnimated:YES completion:completionBlock];
-            }
-            else {
-                completionBlock();
-            }
+        RootViewController __weak *weakSelf = self;
+        void (^ completionBlock)() = ^ {
+            RootViewController __strong *strongSelf = weakSelf;
+            strongSelf.navigationItem.rightBarButtonItem.enabled = YES;
+            NSString *labelString = [NSString stringWithFormat:@"Your current location is:\n%@", chosenEndpoint.name];
+            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+            paragraphStyle.lineSpacing = -3.0f;
+            NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
+            [labelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:chosenEndpoint.name]];
+            strongSelf.endpointBar.endpointBarLabel.attributedText = labelText;
+            [strongSelf.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
+        };
+        if (self.modalViewController) {
+            [self dismissViewControllerAnimated:YES completion:completionBlock];
+        }
+        else {
+            completionBlock();
         }
     }
 }
@@ -248,12 +245,8 @@
 
 
 -(void) manualEndpointViewController:(NUManualEndpointEditViewController *)manualEditVC didFinishWithEndpoint:(NUEndpoint *)alteredEndpoint {
-    
-    BOOL isSaved = [[NUEndpointService service] userDidChooseEndpoint:alteredEndpoint];
     [[ApplicationSettings instance] updateWithEndpoint:alteredEndpoint];
-    if (isSaved) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void) manualEndpointViewControllerDidCancel:(NUManualEndpointEditViewController *)manualEditVC {

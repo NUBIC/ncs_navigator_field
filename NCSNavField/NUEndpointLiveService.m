@@ -65,14 +65,6 @@
         [self.endpointConnection start];
 }
 
--(BOOL)userDidChooseEndpoint:(NUEndpoint *)chosenEndpoint {
-    NSString *libraryDirectory = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
-    libraryDirectory = [libraryDirectory stringByAppendingFormat:@"/userEndpoint.plist"];
-    BOOL wasSuccessful = [NSKeyedArchiver archiveRootObject:chosenEndpoint toFile:libraryDirectory];
-    [chosenEndpoint writeToDisk];
-    return wasSuccessful;
-}
-
 -(void)stopNetworkRequest {
     [self.endpointConnection cancel];
 }
@@ -92,14 +84,9 @@
                                                                          @"cas_proxy_receive_url" : @"",
                                                                          @"cas_proxy_retrieve_url" : @"",
                                                                          @"cases_url" : @"",
-                                                                         @"name" : @"staging"},
-                                                                       @{@"cas_base_url" : @"",
-                                                                         @"cas_proxy_receive_url" : @"",
-                                                                         @"cas_proxy_retrieve_url" : @"",
-                                                                         @"cases_url" : @"",
-                                                                         @"name" : @"staging"}]};
+                                                                         @"name" : @"manual"}]};
         NUEndpoint *newEndpoint = [[NUEndpoint alloc] initWithDataDictionary:manualEndpointDictionary];
-        newEndpoint.enviroment = [newEndpoint environmentBasedOnCurrentBuildFromArray:newEndpoint.environmentArray];
+        newEndpoint.enviroment = [newEndpoint.environmentArray lastObject];
         newEndpoint.isManualEndpoint = @YES;
         return newEndpoint;
     }
