@@ -10,6 +10,8 @@
 
 #import "MBProgressHUD.h"
 
+#import "ApplicationInformation.h"
+
 #import "NUEndpoint.h"
 #import "NUEndpointCollectionViewCell.h"
 
@@ -148,12 +150,18 @@
         [self.delegate endpointCollectionViewController:self didChooseEndpoint:endpoint];
     }
     else {
-        self.chosenEndpoint = endpoint;
-        self.environmentAlert = [[UIAlertView alloc] initWithTitle:@"Which environment?" message:@"Please choose which endpoint environment you'd like to connect to." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: nil];
-        for (NSString *environmentTitle in [self.chosenEndpoint.environmentArray valueForKeyPath:@"name"]) {
-            [self.environmentAlert addButtonWithTitle:environmentTitle];
+        if ([ApplicationInformation isTestEnvironment]) {
+            self.chosenEndpoint = endpoint;
+            self.environmentAlert = [[UIAlertView alloc] initWithTitle:@"Which environment?" message:@"Please choose which endpoint environment you'd like to connect to." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: nil];
+            for (NSString *environmentTitle in [self.chosenEndpoint.environmentArray valueForKeyPath:@"name"]) {
+                [self.environmentAlert addButtonWithTitle:environmentTitle];
+            }
+            [self.environmentAlert show];
         }
-        [self.environmentAlert show];
+        else {
+            endpoint.enviroment = endpoint[PRODUCTION_ENVIRONMENT];
+            [self.delegate endpointCollectionViewController:self didChooseEndpoint:endpoint];
+        }
     }
 }
 

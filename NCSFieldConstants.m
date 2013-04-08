@@ -21,3 +21,6 @@ NSString * UPCOMING_DAYS_TO_SYNC = @"upcoming.days.to.sync";
 NSString * PAST_DAYS_TO_SYNC = @"past.days.to.sync";
 
 NSString * HAS_MIGRATED_TO_AUTO_LOCATION = @"hasMigratedToAutoLocation";
+
+NSString * PRODUCTION_ENVIRONMENT = @"production";
+NSString * STAGING_ENVIRONMENT = @"staging";
