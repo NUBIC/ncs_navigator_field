@@ -23,6 +23,7 @@
 
 @interface ContactDisplayController ()
 @property (nonatomic, strong) UIPopoverController *popoverController;
+@property (nonatomic, strong) UILabel *versionLabel;
 - (void)configureView;
 @end
 
@@ -116,6 +117,9 @@
         }
         self.tableView = myTable;
     }
+    
+    [self.versionLabel removeFromSuperview];
+    [((UITableView*)self.view).backgroundView insertSubview:self.versionLabel belowSubview:self.tableView];
 }
 
 #pragma mark - View lifecycle
@@ -129,11 +133,13 @@
 {
     [super viewDidAppear:animated];
     CGRect r = CGRectMake(self.view.frame.size.width-155, self.view.frame.size.height-25, 150, 25);
-    UILabel* l = [[UILabel alloc] initWithFrame:r];
-    l.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    l.textAlignment = UITextAlignmentRight;
-    l.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:l];
+        
+    self.versionLabel = [[UILabel alloc] initWithFrame:r];
+    self.versionLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    self.versionLabel.textAlignment = UITextAlignmentRight;
+    self.versionLabel.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.versionLabel];
+
     
     if ([ApplicationInformation isTestEnvironment]) {
         ((UITableView*)self.view).backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"test-background.png"]];
