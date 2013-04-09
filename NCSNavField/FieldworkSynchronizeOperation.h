@@ -19,6 +19,6 @@
 @property(nonatomic,strong) CasServiceTicket* ticket;
 
 - (id)initWithServiceTicket:(CasServiceTicket*)ticket;
-- (BOOL)perform;
+- (BOOL)performWithRetrieval:(BOOL)shouldRetrieve;
 
 @end

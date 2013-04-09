@@ -515,8 +515,28 @@
 
 #pragma mark - Cas Login Delegate
 
+<<<<<<< HEAD
 - (void)casLoginVC:(CasLoginVC *)casLoginVC didSuccessfullyObtainedServiceTicket:(CasServiceTicket *)serviceTicket {
     [self startSyncWithServiceTicket:serviceTicket withRetrieval:YES];
+=======
+- (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket {
+    NSLog(@"My Successful login: %@", serviceTicket);
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [self setHUDMessage:SYNCING_CONTACTS];
+    });
+    [self dismissViewControllerAnimated:YES completion:^{
+        //Running on another thread instead of the main runloop
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            self.syncIndicator.labelFont = [UIFont fontWithName:self.syncIndicator.labelFont.fontName size:24.0];
+            [self.syncIndicator removeFromSuperview];
+            UIView *topView = [[[(NCSNavFieldAppDelegate *)[[UIApplication sharedApplication] delegate] window] subviews] objectAtIndex:0];          
+            [topView addSubview:self.syncIndicator];
+            [self.syncIndicator show:YES];
+            [self syncContacts:serviceTicket];
+            [self hideHUD];
+       });
+    }];
+>>>>>>> origin
 }
 
 -(void)casLoginVCDidCancel:(CasLoginVC *)casLoginVC {

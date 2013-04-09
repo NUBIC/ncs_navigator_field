@@ -19,7 +19,10 @@
 #endif
 
 #import "NCSNavFieldAppDelegate.h"
+#import "NUEndpointService.h"
 #define UIAppDelegate ((NCSNavFieldAppDelegate *)[UIApplication sharedApplication].delegate)
+
+#import "NCSFieldConstants.h"
 
 //#if __cplusplus
 //}

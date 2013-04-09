@@ -18,6 +18,8 @@
 #import "FieldworkSynchronizationException.h"
 #import "UserErrorDelegate.h"
 
+#import "SendOnlyDelegateObject.h"
+
 @class ContactDisplayController;
 @class Instrument;
 @class CasProxyTicket;
@@ -28,7 +30,7 @@
 
 FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 
-@interface RootViewController : SimpleTableController<UINavigationControllerDelegate, SimpleTableRowDelegate, CasLoginDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate,UserErrorDelegate> {
+@interface RootViewController : SimpleTableController<UINavigationControllerDelegate, SimpleTableRowDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate,UserErrorDelegate, SendOnlyDelegate> {
     Instrument* _administeredInstrument;
     RKReachabilityObserver* _reachability;
     SyncActivityIndicator* _syncIndicator;
@@ -47,15 +49,16 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 - (void)purgeDataStore;
 - (void)didSelectRow:(Row*)row;
 - (void)syncButtonWasPressed;
+-(void)setUpEndpointBar;
 - (void)confirmSync;
-- (void)startCasLogin;
+- (void)startCasLoginWithRetrieval:(BOOL)shouldRetrieve;
 - (void)deleteButtonWasPressed;
 - (void)unloadSurveyor:(Instrument*)instrument;
-- (void)syncContacts:(CasServiceTicket*)serviceTicket;
+- (void)syncContacts:(CasServiceTicket*)serviceTicket withRetrieval:(BOOL)shouldRetrieve;
 
 #pragma mark
 #pragma mark - CasLoginDelegate
-- (void)successfullyObtainedServiceTicket:(CasServiceTicket*)serviceTicket;
+- (void)casLoginVC:(id)casLoginVC didSuccessfullyObtainedServiceTicket:(CasServiceTicket *)serviceTicket;
 - (void)failure:(NSError *)err;
 
 #pragma mark - TableView
