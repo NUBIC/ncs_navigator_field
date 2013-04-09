@@ -688,7 +688,7 @@
         
         // Init Sync Indicators
  //        UIView *topView = [[[(NCSNavFieldAppDelegate *)[[UIApplication sharedApplication] delegate] window] subviews] objectAtIndex:0];
-        UIView *topView = [[[(NCSNavFieldAppDelegate *)[[UIApplication sharedApplication] delegate] window] subviews] objectAtIndex:0];
+        UIView *topView = [(NCSNavFieldAppDelegate *)[[UIApplication sharedApplication] delegate] window];
         self.syncIndicator = [[SyncActivityIndicator alloc] initWithView:topView];
         self.syncIndicator.delegate = self;
 
