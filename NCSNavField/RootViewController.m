@@ -358,6 +358,9 @@
         //Running on another thread instead of the main runloop
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             self.syncIndicator.labelFont = [UIFont fontWithName:self.syncIndicator.labelFont.fontName size:24.0];
+            [self.syncIndicator removeFromSuperview];
+            UIView *topView = [[[(NCSNavFieldAppDelegate *)[[UIApplication sharedApplication] delegate] window] subviews] objectAtIndex:0];          
+            [topView addSubview:self.syncIndicator];
             [self.syncIndicator show:YES];
             [self syncContacts:serviceTicket];
             [self hideHUD];
@@ -498,10 +501,12 @@
         [self toggleDeleteButton];
         
         // Init Sync Indicators
-        self.syncIndicator = [[SyncActivityIndicator alloc] initWithView:self.splitViewController.view];
+ //        UIView *topView = [[[(NCSNavFieldAppDelegate *)[[UIApplication sharedApplication] delegate] window] subviews] objectAtIndex:0];
+        UIView *topView = [[[(NCSNavFieldAppDelegate *)[[UIApplication sharedApplication] delegate] window] subviews] objectAtIndex:0];
+        self.syncIndicator = [[SyncActivityIndicator alloc] initWithView:topView];
         self.syncIndicator.delegate = self;
 
-        [self.splitViewController.view addSubview:self.syncIndicator];
+        [topView addSubview:self.syncIndicator];
 
         self.contacts = [self contactsFromDataStore];
 }
