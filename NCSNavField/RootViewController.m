@@ -451,11 +451,11 @@
 }
 
 - (void) deleteButtonWasPressed {
-//    NSLog(@"Delete button pressed");
-    [NUEndpoint deleteUserEndpoint];
     [self purgeDataStore];
-    [[ApplicationSettings instance] updateWithEndpoint:nil];
-    [self setUpEndpointBar];
+
+//    [NUEndpoint deleteUserEndpoint];
+//    [[ApplicationSettings instance] updateWithEndpoint:nil];
+//    [self setUpEndpointBar];
     
     self.contacts = [NSArray array];
 }
