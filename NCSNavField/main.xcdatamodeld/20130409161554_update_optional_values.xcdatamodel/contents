@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Contact" representedClassName="Contact" syncable="YES">
+        <attribute name="appCreated" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contactId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dispositionCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="distanceTraveled" optional="YES" attributeType="Decimal" syncable="YES"/>
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="initiated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="interpreterId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="interpreterOther" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="languageId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="languageOther" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locationId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="locationOther" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="personId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="privateDetail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="privateId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="typeId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="whoContactedId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="whoContactedOther" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Event" inverseName="contact" inverseEntity="Event" syncable="YES"/>
+        <relationship name="fieldWork" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Fieldwork" inverseName="contacts" inverseEntity="Fieldwork" syncable="YES"/>
+    </entity>
+    <entity name="DispositionCode" representedClassName="DispositionCode" syncable="YES">
+        <attribute name="categoryCode" optional="YES" attributeType="Integer 16" defaultValueString="-1" syncable="YES"/>
+        <attribute name="disposition" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="finalCategory" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="finalCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="interimCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subCategory" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Event" representedClassName="Event" syncable="YES">
+        <attribute name="breakOffId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dispositionCategoryId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="dispositionCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventRepeatKey" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="eventTypeCode" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="eventTypeOther" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="incentiveCash" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="incentiveNonCash" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="incentiveTypeId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="events" inverseEntity="Contact" syncable="YES"/>
+        <relationship name="instruments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Instrument" inverseName="event" inverseEntity="Instrument" syncable="YES"/>
+    </entity>
+    <entity name="EventTemplate" representedClassName="EventTemplate" syncable="YES">
+        <attribute name="eventRepeatKey" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="eventTypeCode" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="instruments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Instrument" inverseName="eventTemplate" inverseEntity="Instrument" syncable="YES"/>
+        <relationship name="responseTemplates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ResponseTemplate" syncable="YES"/>
+    </entity>
+    <entity name="Fieldwork" representedClassName="Fieldwork" syncable="YES">
+        <attribute name="retrievedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="uri" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Contact" inverseName="fieldWork" inverseEntity="Contact" syncable="YES"/>
+        <relationship name="instrumentTemplates" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="InstrumentTemplate" inverseName="fieldWork" inverseEntity="InstrumentTemplate" syncable="YES"/>
+        <relationship name="participants" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Participant" inverseName="fieldWork" inverseEntity="Participant" syncable="YES"/>
+    </entity>
+    <entity name="Instrument" representedClassName="Instrument" syncable="YES">
+        <attribute name="breakOffId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dataProblemId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="instrumentId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="instrumentMethodId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="instrumentModeId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="instrumentModeOther" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="instrumentPlanId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="instrumentTypeId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="instrumentTypeOther" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="instrumentVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="repeatKey" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="statusId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="supervisorReviewId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="instruments" inverseEntity="Event" syncable="YES"/>
+        <relationship name="eventTemplate" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EventTemplate" inverseName="instruments" inverseEntity="EventTemplate" syncable="YES"/>
+        <relationship name="responseSets" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ResponseSet" inverseName="instrument" inverseEntity="ResponseSet" syncable="YES"/>
+    </entity>
+    <entity name="InstrumentPlan" representedClassName="InstrumentPlan" syncable="YES">
+        <attribute name="instrumentPlanId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="instrumentTemplates" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="InstrumentTemplate" inverseName="instrumentPlan" inverseEntity="InstrumentTemplate" syncable="YES"/>
+    </entity>
+    <entity name="InstrumentTemplate" representedClassName="InstrumentTemplate" syncable="YES">
+        <attribute name="instrumentTemplateId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="participantType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="representation" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fieldWork" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Fieldwork" inverseName="instrumentTemplates" inverseEntity="Fieldwork" syncable="YES"/>
+        <relationship name="instrumentPlan" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InstrumentPlan" inverseName="instrumentTemplates" inverseEntity="InstrumentPlan" syncable="YES"/>
+        <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="NUQuestion" inverseName="instrumentTemplate" inverseEntity="NUQuestion" syncable="YES"/>
+    </entity>
+    <entity name="MdesCode" syncable="YES">
+        <attribute name="displayText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="listName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="localCode" optional="YES" attributeType="Integer 32" syncable="YES"/>
+    </entity>
+    <entity name="MergeStatus" representedClassName="MergeStatus" syncable="YES">
+        <attribute name="createdAt" attributeType="Date" syncable="YES"/>
+        <attribute name="mergeStatusId" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="NUAnswer" representedClassName="NUAnswer" syncable="YES">
+        <attribute name="referenceIdentifier" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="question" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="NUQuestion" inverseName="answers" inverseEntity="NUQuestion" syncable="YES"/>
+    </entity>
+    <entity name="NUQuestion" representedClassName="NUQuestion" syncable="YES">
+        <attribute name="referenceIdentifier" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="NUAnswer" inverseName="question" inverseEntity="NUAnswer" syncable="YES"/>
+        <relationship name="instrumentTemplate" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="InstrumentTemplate" inverseName="questions" inverseEntity="InstrumentTemplate" syncable="YES"/>
+    </entity>
+    <entity name="Participant" representedClassName="Participant" syncable="YES">
+        <attribute name="pId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fieldWork" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Fieldwork" inverseName="participants" inverseEntity="Fieldwork" syncable="YES"/>
+        <relationship name="persons" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Person" inverseName="participant" inverseEntity="Person" syncable="YES"/>
+    </entity>
+    <entity name="Person" representedClassName="Person" syncable="YES">
+        <attribute name="cellPhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="homePhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="middleName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="personId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="prefixCode" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="relationshipCode" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="suffixCode" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="participant" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Participant" inverseName="persons" inverseEntity="Participant" syncable="YES"/>
+    </entity>
+    <entity name="Provider" representedClassName="Provider" syncable="YES">
+        <attribute name="addressOne" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="practiceNum" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="recruited" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="unit" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Response" representedClassName="Response" syncable="YES">
+        <attribute name="answer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modifiedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="responseGroup" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="responseSet" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ResponseSet" inverseName="responses" inverseEntity="ResponseSet" syncable="YES"/>
+    </entity>
+    <entity name="ResponseSet" representedClassName="ResponseSet" syncable="YES">
+        <attribute name="completedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="personId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="survey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="instrument" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Instrument" inverseName="responseSets" inverseEntity="Instrument" syncable="YES"/>
+        <relationship name="responses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Response" inverseName="responseSet" inverseEntity="Response" syncable="YES"/>
+    </entity>
+    <entity name="ResponseTemplate" representedClassName="ResponseTemplate" syncable="YES">
+        <attribute name="aref" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="qref" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="surveyId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Contact" positionX="0" positionY="0" width="128" height="405"/>
+        <element name="DispositionCode" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Event" positionX="0" positionY="0" width="128" height="345"/>
+        <element name="EventTemplate" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Fieldwork" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Instrument" positionX="0" positionY="0" width="128" height="375"/>
+        <element name="InstrumentPlan" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="InstrumentTemplate" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="MdesCode" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="MergeStatus" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="NUAnswer" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="NUQuestion" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Participant" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Person" positionX="0" positionY="0" width="128" height="270"/>
+        <element name="Provider" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Response" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="ResponseSet" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="ResponseTemplate" positionX="0" positionY="0" width="128" height="105"/>
+    </elements>
+</model>
