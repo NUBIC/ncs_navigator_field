@@ -199,9 +199,6 @@
     [[NUEndpointService service] stopNetworkRequest];
     if (self.modalViewController) {
         [self dismissViewControllerAnimated:YES completion:^{
-            [NUEndpoint deleteUserEndpoint];
-            self.endpointBar.endpointBarLabel.text = @"No location chosen";
-            [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
         }];
     }
 }
