@@ -138,6 +138,32 @@
 		00F940841642E08100176840 /* EventTemplateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F940831642E08100176840 /* EventTemplateTest.m */; };
 		00FF37DE1417C50D0009B1D4 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37DD1417C50D0009B1D4 /* Instrument.m */; };
 		00FF37E71417D2380009B1D4 /* ContactNavigationTableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */; };
+		1605000A170B8BFD00F854E7 /* SendOnlyDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 16050009170B8BFC00F854E7 /* SendOnlyDelegateObject.m */; };
+		1613E7BA16D2DEAC0002FA0F /* endPointBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7B816D2DEAC0002FA0F /* endPointBarBackground.png */; };
+		1613E7BB16D2DEAC0002FA0F /* endPointBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7B916D2DEAC0002FA0F /* endPointBarBackground@2x.png */; };
+		1613E7BE16D2DEC90002FA0F /* NUEndpointBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1613E7BD16D2DEC90002FA0F /* NUEndpointBar.m */; };
+		1613E7C016D2DED80002FA0F /* NUEndpointBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7BF16D2DED80002FA0F /* NUEndpointBar.xib */; };
+		1613E7C316D3DC940002FA0F /* buttonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7C116D3DC940002FA0F /* buttonBackground.png */; };
+		1613E7C416D3DC940002FA0F /* buttonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7C216D3DC940002FA0F /* buttonBackground@2x.png */; };
+		1613E7D616D408390002FA0F /* buttonBackgroundDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7D416D408390002FA0F /* buttonBackgroundDown.png */; };
+		1613E7D716D408390002FA0F /* buttonBackgroundDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7D516D408390002FA0F /* buttonBackgroundDown@2x.png */; };
+		1613E7DA16D4301E0002FA0F /* NUEndpointEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1613E7D916D4301E0002FA0F /* NUEndpointEnvironment.m */; };
+		1646CD3216CD860800CDCCEC /* NUEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD3116CD860800CDCCEC /* NUEndpoint.m */; };
+		1646CD3616CD892F00CDCCEC /* NUEndpointService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD3516CD892F00CDCCEC /* NUEndpointService.m */; };
+		1646CD3A16CD8A7600CDCCEC /* NUEndpointLiveService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD3916CD8A7600CDCCEC /* NUEndpointLiveService.m */; };
+		1646CD4416CD9AF200CDCCEC /* NUEndpointCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD4216CD9AF200CDCCEC /* NUEndpointCollectionViewController.m */; };
+		1646CD4516CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1646CD4316CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib */; };
+		1646CD4816CDA43300CDCCEC /* NUEndpointCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD4716CDA43300CDCCEC /* NUEndpointCollectionViewCell.m */; };
+		1646CD4A16CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1646CD4916CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib */; };
+		164959D4170E063200EEF552 /* ManualImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 164959D2170E063200EEF552 /* ManualImage.png */; };
+		164959D5170E063200EEF552 /* ManualImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 164959D3170E063200EEF552 /* ManualImage@2x.png */; };
+		164959DC170E0ECF00EEF552 /* NUManualEndpointEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164959DA170E0ECF00EEF552 /* NUManualEndpointEditViewController.m */; };
+		164959DD170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164959DB170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib */; };
+		167292DD170097B20046B194 /* NUEndpointTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 167292DC170097B20046B194 /* NUEndpointTest.m */; };
+		16F0DA5816D56BE800290837 /* NCSFieldConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F0DA5716D56BE800290837 /* NCSFieldConstants.m */; };
+		16F0DA5B16D5719400290837 /* NoImageAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 16F0DA5916D5719400290837 /* NoImageAvailable.png */; };
+		16F0DA5C16D5719400290837 /* NoImageAvailable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16F0DA5A16D5719400290837 /* NoImageAvailable@2x.png */; };
+		16F4FB8416D566AC0001253F /* NCSNavField-environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16F4FB8316D566AC0001253F /* NCSNavField-environment.plist */; };
 		22226BB41666ED0F005CCE71 /* BlockActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 22226BAC1666ED0B005CCE71 /* BlockActionSheet.m */; };
 		22226BB51666ED0F005CCE71 /* BlockAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22226BAE1666ED0C005CCE71 /* BlockAlertView.m */; };
 		22226BB61666ED0F005CCE71 /* BlockBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 22226BB01666ED0D005CCE71 /* BlockBackground.m */; };
@@ -604,12 +630,50 @@
 		00FF37DD1417C50D0009B1D4 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
 		00FF37E31417CFA30009B1D4 /* ContactNavigationTableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNavigationTableTest.h; sourceTree = "<group>"; };
 		00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactNavigationTableTest.m; sourceTree = "<group>"; };
+		16050008170B8BFC00F854E7 /* SendOnlyDelegateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendOnlyDelegateObject.h; sourceTree = "<group>"; };
+		16050009170B8BFC00F854E7 /* SendOnlyDelegateObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendOnlyDelegateObject.m; sourceTree = "<group>"; };
+		1613E7B816D2DEAC0002FA0F /* endPointBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endPointBarBackground.png; sourceTree = "<group>"; };
+		1613E7B916D2DEAC0002FA0F /* endPointBarBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "endPointBarBackground@2x.png"; sourceTree = "<group>"; };
+		1613E7BC16D2DEC90002FA0F /* NUEndpointBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointBar.h; sourceTree = "<group>"; };
+		1613E7BD16D2DEC90002FA0F /* NUEndpointBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointBar.m; sourceTree = "<group>"; };
+		1613E7BF16D2DED80002FA0F /* NUEndpointBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NUEndpointBar.xib; sourceTree = "<group>"; };
+		1613E7C116D3DC940002FA0F /* buttonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBackground.png; sourceTree = "<group>"; };
+		1613E7C216D3DC940002FA0F /* buttonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonBackground@2x.png"; sourceTree = "<group>"; };
+		1613E7D416D408390002FA0F /* buttonBackgroundDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBackgroundDown.png; sourceTree = "<group>"; };
+		1613E7D516D408390002FA0F /* buttonBackgroundDown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonBackgroundDown@2x.png"; sourceTree = "<group>"; };
+		1613E7D816D4301E0002FA0F /* NUEndpointEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointEnvironment.h; sourceTree = "<group>"; };
+		1613E7D916D4301E0002FA0F /* NUEndpointEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointEnvironment.m; sourceTree = "<group>"; };
 		162812F616B1C19200652CA2 /* 20130124192217_add_instrument_relation_to_eventTemplate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130124192217_add_instrument_relation_to_eventTemplate.xcdatamodel; sourceTree = "<group>"; };
+		1646CD3016CD860800CDCCEC /* NUEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpoint.h; sourceTree = "<group>"; };
+		1646CD3116CD860800CDCCEC /* NUEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpoint.m; sourceTree = "<group>"; usesTabs = 0; };
+		1646CD3416CD892F00CDCCEC /* NUEndpointService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointService.h; sourceTree = "<group>"; };
+		1646CD3516CD892F00CDCCEC /* NUEndpointService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointService.m; sourceTree = "<group>"; };
+		1646CD3716CD89B800CDCCEC /* NUEndpointProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NUEndpointProtocol.h; sourceTree = "<group>"; };
+		1646CD3816CD8A7600CDCCEC /* NUEndpointLiveService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointLiveService.h; sourceTree = "<group>"; };
+		1646CD3916CD8A7600CDCCEC /* NUEndpointLiveService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointLiveService.m; sourceTree = "<group>"; };
+		1646CD4116CD9AF200CDCCEC /* NUEndpointCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointCollectionViewController.h; sourceTree = "<group>"; };
+		1646CD4216CD9AF200CDCCEC /* NUEndpointCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointCollectionViewController.m; sourceTree = "<group>"; };
+		1646CD4316CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NUEndpointCollectionViewController.xib; sourceTree = "<group>"; };
+		1646CD4616CDA43300CDCCEC /* NUEndpointCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointCollectionViewCell.h; sourceTree = "<group>"; };
+		1646CD4716CDA43300CDCCEC /* NUEndpointCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointCollectionViewCell.m; sourceTree = "<group>"; };
+		1646CD4916CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NUEndpointCollectionViewCell.xib; sourceTree = "<group>"; };
+		164959D2170E063200EEF552 /* ManualImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ManualImage.png; sourceTree = "<group>"; };
+		164959D3170E063200EEF552 /* ManualImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ManualImage@2x.png"; sourceTree = "<group>"; };
+		164959D9170E0ECF00EEF552 /* NUManualEndpointEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUManualEndpointEditViewController.h; sourceTree = "<group>"; };
+		164959DA170E0ECF00EEF552 /* NUManualEndpointEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUManualEndpointEditViewController.m; sourceTree = "<group>"; };
+		164959DB170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NUManualEndpointEditViewController.xib; sourceTree = "<group>"; };
+		167292DB170097B20046B194 /* NUEndpointTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointTest.h; sourceTree = "<group>"; };
+		167292DC170097B20046B194 /* NUEndpointTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointTest.m; sourceTree = "<group>"; };
 		16821E80170393AF003613A1 /* 20130327205234_added_address_unit_to_practice.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130327205234_added_address_unit_to_practice.xcdatamodel; sourceTree = "<group>"; };
 		1694D17E17134F6800D19E32 /* 20130408191419_no_default_values.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130408191419_no_default_values.xcdatamodel; sourceTree = "<group>"; };
 		16A118001714706D00FC2C03 /* 20130409155046_optional_values_set_correctly.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130409155046_optional_values_set_correctly.xcdatamodel; sourceTree = "<group>"; };
 		16A118011714765600FC2C03 /* 20130409161554_update_optional_values.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20130409161554_update_optional_values.xcdatamodel; sourceTree = "<group>"; };
 		16E839C116D8244800ED8A3C /* 20130222220953_removed_person_relation_from_contact.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130222220953_removed_person_relation_from_contact.xcdatamodel; sourceTree = "<group>"; };
+		16F0DA5616D56BE800290837 /* NCSFieldConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSFieldConstants.h; sourceTree = "<group>"; };
+		16F0DA5716D56BE800290837 /* NCSFieldConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSFieldConstants.m; sourceTree = "<group>"; };
+		16F0DA5916D5719400290837 /* NoImageAvailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoImageAvailable.png; sourceTree = "<group>"; };
+		16F0DA5A16D5719400290837 /* NoImageAvailable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NoImageAvailable@2x.png"; sourceTree = "<group>"; };
+		16F4FB8316D566AC0001253F /* NCSNavField-environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NCSNavField-environment.plist"; sourceTree = "<group>"; };
 		16F868AE16B1E4D100F8EE32 /* 20130124215248_add_appCreated_property_to_contact.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130124215248_add_appCreated_property_to_contact.xcdatamodel; sourceTree = "<group>"; };
 		22226BAB1666ED0B005CCE71 /* BlockActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlockActionSheet.h; path = NCSNavField/BlockActionSheet.h; sourceTree = "<group>"; };
 		22226BAC1666ED0B005CCE71 /* BlockActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlockActionSheet.m; path = NCSNavField/BlockActionSheet.m; sourceTree = "<group>"; };
@@ -770,12 +834,14 @@
 		0026E66E140347E700355BCB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1646CD3316CD892300CDCCEC /* Services */,
 				227177AF1680F117000C67DD /* Images */,
 				00AE800F167B7FE5007FF178 /* Framework Extensions */,
 				22942CE1166945AF00242588 /* Other */,
 				22942CCF16692B3800242588 /* Exceptions */,
 				22226B081666B82E005CCE71 /* FriendlyActionSheet */,
 				00FF37E21417CA320009B1D4 /* Presenters */,
+				16932B2116CED562001D3D02 /* Views */,
 				006EBEE6141157BA003D69CF /* Models */,
 				006EBEE5141157B6003D69CF /* Controllers */,
 				006EBEE414115783003D69CF /* Delegates */,
@@ -844,6 +910,8 @@
 				001FEDD61619FC4000DE8A3A /* SurveySetTest.m */,
 				00AB8E97164358290097F7CD /* NSManagedObjectTest.h */,
 				00AB8E98164358290097F7CD /* NSManagedObjectTest.m */,
+				167292DB170097B20046B194 /* NUEndpointTest.h */,
+				167292DC170097B20046B194 /* NUEndpointTest.m */,
 			);
 			name = Tests;
 			path = NCSNavFieldTests;
@@ -1058,6 +1126,12 @@
 		006EBEE5141157B6003D69CF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1646CD4116CD9AF200CDCCEC /* NUEndpointCollectionViewController.h */,
+				1646CD4216CD9AF200CDCCEC /* NUEndpointCollectionViewController.m */,
+				1646CD4316CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib */,
+				164959D9170E0ECF00EEF552 /* NUManualEndpointEditViewController.h */,
+				164959DA170E0ECF00EEF552 /* NUManualEndpointEditViewController.m */,
+				164959DB170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib */,
 				009EEF19164870AC00EB98D1 /* ProviderListViewController.h */,
 				009EEF1A164870AC00EB98D1 /* ProviderListViewController.m */,
 				00145BA6149A7BEF00D3C1B5 /* ContactCloseVC.h */,
@@ -1068,6 +1142,8 @@
 				0087A553160A5EFF005CB008 /* MultiSurveyTVC.m */,
 				008F7D9F148BB3DD009BCF1D /* ContactInitiateVC.h */,
 				008F7DA0148BB3DD009BCF1D /* ContactInitiateVC.m */,
+				16050008170B8BFC00F854E7 /* SendOnlyDelegateObject.h */,
+				16050009170B8BFC00F854E7 /* SendOnlyDelegateObject.m */,
 				0026E683140347E700355BCB /* RootViewController.h */,
 				0026E684140347E700355BCB /* RootViewController.m */,
 				009AD2E2142D391A0038650B /* SimpleTableController.h */,
@@ -1085,6 +1161,10 @@
 		006EBEE6141157BA003D69CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1646CD3016CD860800CDCCEC /* NUEndpoint.h */,
+				1646CD3116CD860800CDCCEC /* NUEndpoint.m */,
+				1613E7D816D4301E0002FA0F /* NUEndpointEnvironment.h */,
+				1613E7D916D4301E0002FA0F /* NUEndpointEnvironment.m */,
 				0029689A16BC61A300524EEC /* InstrumentTemplate.h */,
 				0029689B16BC61A300524EEC /* InstrumentTemplate.m */,
 				00AB8E9216431CEA0097F7CD /* Categories */,
@@ -1179,6 +1259,9 @@
 			children = (
 				0026E670140347E700355BCB /* NCSNavField-Info.plist */,
 				0026E671140347E700355BCB /* InfoPlist.strings */,
+				16F4FB8316D566AC0001253F /* NCSNavField-environment.plist */,
+				16F0DA5616D56BE800290837 /* NCSFieldConstants.h */,
+				16F0DA5716D56BE800290837 /* NCSFieldConstants.m */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -1279,6 +1362,31 @@
 			name = Presenters;
 			sourceTree = "<group>";
 		};
+		1646CD3316CD892300CDCCEC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1646CD3416CD892F00CDCCEC /* NUEndpointService.h */,
+				1646CD3516CD892F00CDCCEC /* NUEndpointService.m */,
+				1646CD3716CD89B800CDCCEC /* NUEndpointProtocol.h */,
+				1646CD3816CD8A7600CDCCEC /* NUEndpointLiveService.h */,
+				1646CD3916CD8A7600CDCCEC /* NUEndpointLiveService.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		16932B2116CED562001D3D02 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1646CD4616CDA43300CDCCEC /* NUEndpointCollectionViewCell.h */,
+				1646CD4716CDA43300CDCCEC /* NUEndpointCollectionViewCell.m */,
+				1646CD4916CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib */,
+				1613E7BC16D2DEC90002FA0F /* NUEndpointBar.h */,
+				1613E7BD16D2DEC90002FA0F /* NUEndpointBar.m */,
+				1613E7BF16D2DED80002FA0F /* NUEndpointBar.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		22226B081666B82E005CCE71 /* FriendlyActionSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -1361,6 +1469,16 @@
 		227177AF1680F117000C67DD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				164959D2170E063200EEF552 /* ManualImage.png */,
+				164959D3170E063200EEF552 /* ManualImage@2x.png */,
+				16F0DA5916D5719400290837 /* NoImageAvailable.png */,
+				16F0DA5A16D5719400290837 /* NoImageAvailable@2x.png */,
+				1613E7B816D2DEAC0002FA0F /* endPointBarBackground.png */,
+				1613E7B916D2DEAC0002FA0F /* endPointBarBackground@2x.png */,
+				1613E7C116D3DC940002FA0F /* buttonBackground.png */,
+				1613E7C216D3DC940002FA0F /* buttonBackground@2x.png */,
+				1613E7D416D408390002FA0F /* buttonBackgroundDown.png */,
+				1613E7D516D408390002FA0F /* buttonBackgroundDown@2x.png */,
 				227177B11680F121000C67DD /* lock-icon.png */,
 			);
 			name = Images;
@@ -1510,6 +1628,21 @@
 				22226BED1666ED7D005CCE71 /* button_red.png in Resources */,
 				22226BEE1666ED7D005CCE71 /* button_red@2x.png in Resources */,
 				227177B21680F121000C67DD /* lock-icon.png in Resources */,
+				1646CD4516CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib in Resources */,
+				1646CD4A16CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib in Resources */,
+				1613E7BA16D2DEAC0002FA0F /* endPointBarBackground.png in Resources */,
+				1613E7BB16D2DEAC0002FA0F /* endPointBarBackground@2x.png in Resources */,
+				1613E7C016D2DED80002FA0F /* NUEndpointBar.xib in Resources */,
+				1613E7C316D3DC940002FA0F /* buttonBackground.png in Resources */,
+				1613E7C416D3DC940002FA0F /* buttonBackground@2x.png in Resources */,
+				1613E7D616D408390002FA0F /* buttonBackgroundDown.png in Resources */,
+				1613E7D716D408390002FA0F /* buttonBackgroundDown@2x.png in Resources */,
+				16F4FB8416D566AC0001253F /* NCSNavField-environment.plist in Resources */,
+				16F0DA5B16D5719400290837 /* NoImageAvailable.png in Resources */,
+				16F0DA5C16D5719400290837 /* NoImageAvailable@2x.png in Resources */,
+				164959D4170E063200EEF552 /* ManualImage.png in Resources */,
+				164959D5170E063200EEF552 /* ManualImage@2x.png in Resources */,
+				164959DD170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1657,7 +1790,17 @@
 				00453D7916BAEAD90010214C /* NUQuestion.m in Sources */,
 				0029689F16BC675000524EEC /* Response.m in Sources */,
 				004E20BD16C0485B006E68DC /* JSONParserNSJSONSerialization.m in Sources */,
+				1646CD3216CD860800CDCCEC /* NUEndpoint.m in Sources */,
+				1646CD3616CD892F00CDCCEC /* NUEndpointService.m in Sources */,
+				1646CD3A16CD8A7600CDCCEC /* NUEndpointLiveService.m in Sources */,
+				1646CD4416CD9AF200CDCCEC /* NUEndpointCollectionViewController.m in Sources */,
 				00B8756B16D56C5000CED547 /* ResponseSetMustacheContext.m in Sources */,
+				1646CD4816CDA43300CDCCEC /* NUEndpointCollectionViewCell.m in Sources */,
+				1613E7BE16D2DEC90002FA0F /* NUEndpointBar.m in Sources */,
+				1613E7DA16D4301E0002FA0F /* NUEndpointEnvironment.m in Sources */,
+				16F0DA5816D56BE800290837 /* NCSFieldConstants.m in Sources */,
+				1605000A170B8BFD00F854E7 /* SendOnlyDelegateObject.m in Sources */,
+				164959DC170E0ECF00EEF552 /* NUManualEndpointEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1692,6 +1835,7 @@
 				002968A216BC67D800524EEC /* ResponseTest.m in Sources */,
 				00B8756716D56A5300CED547 /* ResponseSetMustacheContextTest.m in Sources */,
 				00917E5216D80634008E1088 /* NUQuestionTest.m in Sources */,
+				167292DD170097B20046B194 /* NUEndpointTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
