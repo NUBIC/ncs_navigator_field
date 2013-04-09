@@ -154,7 +154,7 @@
             self.chosenEndpoint = endpoint;
             self.environmentAlert = [[UIAlertView alloc] initWithTitle:@"Which environment?" message:@"Please choose which endpoint environment you'd like to connect to." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: nil];
             for (NSString *environmentTitle in [self.chosenEndpoint.environmentArray valueForKeyPath:@"name"]) {
-                [self.environmentAlert addButtonWithTitle:environmentTitle];
+                    [self.environmentAlert addButtonWithTitle:environmentTitle];
             }
             [self.environmentAlert show];
         }
