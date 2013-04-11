@@ -86,8 +86,8 @@
                                                            cancelButtonTitle:@"Okay"
                                                            otherButtonTitles: nil];
             [issueAlertView show];
-            [weakSelf enableRefresh];
         }
+        [weakSelf enableRefresh];
     }];
 }
 
