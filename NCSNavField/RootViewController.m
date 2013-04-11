@@ -34,6 +34,7 @@
 #import "MultiSurveyTVC.h"
 #import "NUSurvey+Additions.h"
 #import "ContactInitiateVC.h"
+#import "ScreenerTypeChooserViewController.h"
 #import "EventTemplate.h"
 #import "Person.h"
 #import "ProviderListViewController.h"
@@ -50,7 +51,7 @@
 
 #import "NUManualEndpointEditViewController.h"
 
-@interface RootViewController () <NUEndpointCollectionViewDelegate, NUManualEndpointDelegate, CasLoginVCDelegate>
+@interface RootViewController () <NUEndpointCollectionViewDelegate, NUManualEndpointDelegate, CasLoginVCDelegate, ContactInitiateDelegate, ScreenerTypeChooserDelegate>
     @property(nonatomic,strong) NSArray* contacts;
     @property(nonatomic,strong) ContactNavigationTable* table;
     @property(nonatomic,strong) BlockAlertView *alertView;
@@ -67,6 +68,8 @@
 -(void)switchEndpoint;
 
 -(void)startSyncWithServiceTicket:(CasServiceTicket*)serviceTicket withRetrieval:(BOOL)shouldRetrieve;
+
+-(ContactInitiateVC *)startPBSScreenWithEventTemplateName:(NSString *)eventTemplateName;
 
 @end
 
@@ -94,7 +97,6 @@
                                                      name:RKReachabilityDidChangeNotification
                                                    object:self.reachability];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleDeleteButton) name:SettingsDidChangeNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contactInitiateScreenDismissed:) name:ContactInitiateScreenDismissedNotification object:NULL];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(providerSelected:) name:PROVIDER_SELECTED_NOTIFICATION_KEY object:NULL];
 
     }
@@ -150,17 +152,6 @@
     [[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:NULL];
     SurveyContextGenerator* g = [[SurveyContextGenerator alloc] initWithProvider:provider];
     [self loadSurveyor:instrument responseGeneratorContext:[g context]];
-}
-
-- (void)contactInitiateScreenDismissed:(NSNotification*)notification {
-    self.contacts = [self contactsFromDataStore];
-  
-    Contact* current = [[notification userInfo] objectForKey:@"contact"];
-    if (current) {
-        NSIndexPath* indexPath = [self.table findIndexPathForContact:current];
-        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-        self.detailViewController.detailItem = current;
-    }
 }
 
 #pragma surveyor
@@ -671,7 +662,49 @@
     });
 }
 
-#pragma RestKit
+#pragma mark
+#pragma mark Screener Type Chooser
+
+-(void)screenerTypeChooserDidCancel:(ScreenerTypeChooserViewController *)screenerTypeChooserViewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)screenerTypeChooser:(ScreenerTypeChooserViewController *)screenerTypeChooserViewController didChooseScreenerType:(NSString *)screenerType {
+    ContactInitiateVC *newContactInitiateVC = [self startPBSScreenWithEventTemplateName:screenerType];
+    newContactInitiateVC.delegate = self;
+    [screenerTypeChooserViewController.navigationController pushViewController:newContactInitiateVC animated:YES];
+}
+
+#pragma mark 
+#pragma mark Contact Initiation
+
+-(void)contactInitiateVCDidCancel:(ContactInitiateVC *)contactInitiateVC {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    [self contactInitiateScreenDismissedWithContact:nil];
+}
+
+-(void)contactInitiateVC:(ContactInitiateVC *)contactInitiateVC didContinueWithContact:(Contact *)chosenContact {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    [self contactInitiateScreenDismissedWithContact:chosenContact];
+}
+
+- (void)contactInitiateScreenDismissedWithContact:(Contact *)chosenContact {
+    //TODO: JVO check this out.
+    self.contacts = [self contactsFromDataStore];
+    
+    if (chosenContact) {
+        NSIndexPath* indexPath = [self.table findIndexPathForContact:chosenContact];
+        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        self.detailViewController.detailItem = chosenContact;
+    }
+}
+
+#pragma mark
+#pragma mark RestKit
 
 - (NSArray*)contactsFromDataStore {
     return [Contact findAllSortedBy:@"date" ascending:YES];
@@ -706,7 +739,7 @@
 
 - (UIView*)tableHeaderView {
     UIView* header = nil;
-    if ([EventTemplate pregnancyScreeningTemplate]) {
+    if ([EventTemplate pregnancyScreeningTemplate] || [EventTemplate birthCohortTemplate]) {
         header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
         UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         button.frame = CGRectMake(0, 5, 150, 40);
@@ -719,7 +752,24 @@
     return header;
 }
 
-- (IBAction)screenParticipant:(UIButton *)button {
+- (IBAction)screenParticipant:(UIButton *)button { //TODO: JVO split point
+    if ([EventTemplate birthCohortTemplate] && [EventTemplate pregnancyScreeningTemplate]) {
+        ScreenerTypeChooserViewController *screenerTypeChooserViewController = [[ScreenerTypeChooserViewController alloc] initWithNibName:nil bundle:nil];
+        screenerTypeChooserViewController.delegate = self;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:screenerTypeChooserViewController];
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:navigationController animated:YES completion:nil];
+    }
+    else if ([EventTemplate pregnancyScreeningTemplate]) {
+        ContactInitiateVC *contactInitiateVC = [self startPBSScreenWithEventTemplateName:EVENT_TEMPLATE_PBS_ELIGIBILITY_LEGACY];
+        contactInitiateVC.delegate = self;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contactInitiateVC];
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:navigationController animated:YES completion:nil];
+    }
+}
+
+-(ContactInitiateVC *)startPBSScreenWithEventTemplateName:(NSString *)eventTemplateName {
     // Existing InstrumentTemplates may not have their questions
     // loaded into Core Data since that happens during sync
     NSPredicate* missingQuestions = [NSPredicate predicateWithFormat:@"questions.@count == 0"];
@@ -727,35 +777,11 @@
     for (InstrumentTemplate* it in instrumentTemplates) {
         [it refreshQuestionsFromSurvey];
     }
-
-    Contact* screening = [Contact contact];
-    screening.appCreated = @(YES);
-    
-    Participant* participant = [Participant participant];
-    Person* person = [participant selfPerson];
-    screening.person = person;
-    screening.personId = person.personId;
-    
-    EventTemplate* pregnancyScreeningEventTmpl = [EventTemplate pregnancyScreeningTemplate];
-    if (pregnancyScreeningEventTmpl) {
-        [screening addEventsObject:[pregnancyScreeningEventTmpl buildEventForParticipant:participant person:person]];
-    }
-    
-    ContactInitiateVC* civc = [[ContactInitiateVC alloc] initWithContact:screening];
-    civc.afterCancel = ^(Contact* screening){
-        NSArray* participants = [[screening.events collect:^id(Event* e){
-            return [e participant];
-        }] allObjects];
-        
-        [screening deleteEntity];
-        for (Participant* part in participants) {
-            [part deleteEntity];
-        }
-        [[Contact currentContext] save:nil];
-    };
-    
-    civc.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self presentViewController:civc animated:YES completion:nil];
+       
+    ContactInitiateVC* contactInitiateVC = [[ContactInitiateVC alloc] initWithContact:nil];
+    [contactInitiateVC.contact generateEventWithName:eventTemplateName];
+    contactInitiateVC.shouldDeleteContactOnCancel = YES;
+    return contactInitiateVC;
 }
 
 - (void)viewDidAppear:(BOOL)animated

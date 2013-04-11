@@ -12,28 +12,32 @@
 @class FormBuilder;
 @class Contact;
 
-FOUNDATION_EXPORT NSString *const ContactInitiateScreenDismissedNotification;
+@protocol ContactInitiateDelegate;
 
 @interface ContactInitiateVC : UIViewController {
     Contact* _contact;
 }
 
+@property (nonatomic, weak) id<ContactInitiateDelegate>delegate;
+
 @property(nonatomic,strong) Contact* contact;
 @property(nonatomic,strong) UIView *left,*right;
-@property (nonatomic, copy) void (^afterCancel)(Contact* c);
+@property (nonatomic, assign) BOOL shouldDeleteContactOnCancel;
+@property (nonatomic, copy) void (^optionalCancelBlock)(Contact* c);
 
 - (id)initWithContact:(Contact *)contact;
 - (void) setDefaults:(Contact*) contact;
-- (UIView*) toolbarWithFrame:(CGRect)frame;
 - (UIView*) leftContentWithFrame:(CGRect)frame;
 - (UIView*) rightContentWithFrame:(CGRect)frame;
 
 - (void) cancel;
 - (void) done;
 
-- (void) startTransaction;
-- (void) endTransction;
-- (void) commitTransaction;
-- (void) rollbackTransaction;
+@end
+
+@protocol ContactInitiateDelegate <NSObject>
+
+-(void)contactInitiateVCDidCancel:(ContactInitiateVC *)contactInitiateVC;
+-(void)contactInitiateVC:(ContactInitiateVC *)contactInitiateVC didContinueWithContact:(Contact *)chosenContact;
 
 @end

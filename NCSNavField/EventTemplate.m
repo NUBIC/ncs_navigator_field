@@ -22,7 +22,14 @@
 @dynamic responseTemplates;
 
 + (EventTemplate*)pregnancyScreeningTemplate {
-    return [EventTemplate findFirstByAttribute:@"eventTypeCode" withValue:[NSNumber numberWithInt:EVENT_TYPE_CODE_PBS_PARTICIPANT_ELIGIBILITY_SCREENING]];
+    EventTemplate *returnTemplate = nil;
+    if ((returnTemplate = [EventTemplate findFirstByAttribute:@"name" withValue:EVENT_TEMPLATE_PBS_ELIGIBILITY])) { //check new
+        return returnTemplate;
+    }
+    else {
+        returnTemplate = [EventTemplate findFirstByAttribute:@"name" withValue:EVENT_TEMPLATE_PBS_ELIGIBILITY_LEGACY]; //check legacy
+        return returnTemplate;
+    }
 }
 
 + (Instrument*)pregnancyScreeningInstrument {
@@ -30,7 +37,19 @@
 }
 
 + (EventTemplate*)pregnancyVisitOneTemplate {
-    return [EventTemplate findFirstByAttribute:@"eventTypeCode" withValue:[NSNumber numberWithInt:EVENT_TYPE_CODE_PREGNANCY_VISIT_ONE]];
+    EventTemplate *returnTemplate = nil;
+    if ((returnTemplate = [EventTemplate findFirstByAttribute:@"name" withValue:EVENT_TEMPLATE_PREG_VISIT_ONE])) { //check new
+        return returnTemplate;
+    }
+    else {
+        returnTemplate = [EventTemplate findFirstByAttribute:@"name" withValue:EVENT_TEMPLATE_PREG_VISIT_ONE_LEGACY]; //check legacy
+        return returnTemplate;
+    }
+}
+
++(EventTemplate *)birthCohortTemplate {
+    EventTemplate *returnTemplate = [EventTemplate findFirstByAttribute:@"name" withValue:EVENT_TEMPLATE_BIRTH_COHORT];
+    return returnTemplate;
 }
 
 - (Event*)buildEventForParticipant:(Participant*)participant person:(Person *)person {
