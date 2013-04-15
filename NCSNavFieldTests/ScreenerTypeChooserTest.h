@@ -7,6 +7,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "DatabaseTest.h"
 
 @interface ScreenerTypeChooserTest : SenTestCase
 

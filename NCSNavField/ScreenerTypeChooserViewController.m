@@ -13,7 +13,9 @@
 @interface ScreenerTypeChooserViewController ()
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
+@property (nonatomic, strong) NSArray *screenerTypeButtons;
 
+-(void)screenerTypeButtonWasTapped:(UIButton *)screenerTypeButton;
 - (IBAction)cancelButtonWasTapped:(id)sender;
 
 @end
@@ -25,6 +27,9 @@
 #pragma mark customization
 
 -(void)setUpScreenerTypeButtons {
+    
+    self.screenerTypeButtons = @[];
+    
     NSArray *screenerTypeEventTemplateArray = [EventTemplate findByAttribute:@"eventTypeCode" withValue:@34];
     NSArray *screenerTypeNamesArray = [screenerTypeEventTemplateArray valueForKeyPath:@"name"];
     
@@ -35,6 +40,7 @@
         [screenerButton addTarget:self action:@selector(screenerTypeButtonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
         [screenerButton setTitle:screenerTypeName forState:UIControlStateNormal];
         [self.view addSubview:screenerButton];
+        self.screenerTypeButtons = [self.screenerTypeButtons arrayByAddingObject:screenerButton];
     }
 }
 
@@ -49,6 +55,15 @@
 }
 
 #pragma mark stock code
+
+-(id) objectForKeyedSubscript:(NSString *)keyString {
+    for (UIButton *screenerButton in self.screenerTypeButtons) {
+        if ([screenerButton.titleLabel.text isEqualToString:keyString]) {
+            return screenerButton;
+        }
+    }
+    return nil;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

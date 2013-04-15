@@ -138,7 +138,6 @@
 		00F940841642E08100176840 /* EventTemplateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F940831642E08100176840 /* EventTemplateTest.m */; };
 		00FF37DE1417C50D0009B1D4 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37DD1417C50D0009B1D4 /* Instrument.m */; };
 		00FF37E71417D2380009B1D4 /* ContactNavigationTableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */; };
-		1605000A170B8BFD00F854E7 /* SendOnlyDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 16050009170B8BFC00F854E7 /* SendOnlyDelegateObject.m */; };
 		1613E7BA16D2DEAC0002FA0F /* endPointBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7B816D2DEAC0002FA0F /* endPointBarBackground.png */; };
 		1613E7BB16D2DEAC0002FA0F /* endPointBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7B916D2DEAC0002FA0F /* endPointBarBackground@2x.png */; };
 		1613E7BE16D2DEC90002FA0F /* NUEndpointBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1613E7BD16D2DEC90002FA0F /* NUEndpointBar.m */; };
@@ -158,6 +157,7 @@
 		1647BB9817188F53005A925A /* ScreenerTypeChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1647BB9617188F52005A925A /* ScreenerTypeChooserViewController.m */; };
 		1647BB9917188F53005A925A /* ScreenerTypeChooserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1647BB9717188F53005A925A /* ScreenerTypeChooserViewController.xib */; };
 		1647BB9C171C7B56005A925A /* ScreenerTypeChooserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1647BB9B171C7B56005A925A /* ScreenerTypeChooserTest.m */; };
+		1647BBA0171C9440005A925A /* SendOnlyDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 16050009170B8BFC00F854E7 /* SendOnlyDelegateObject.m */; };
 		164959D4170E063200EEF552 /* ManualImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 164959D2170E063200EEF552 /* ManualImage.png */; };
 		164959D5170E063200EEF552 /* ManualImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 164959D3170E063200EEF552 /* ManualImage@2x.png */; };
 		164959DC170E0ECF00EEF552 /* NUManualEndpointEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164959DA170E0ECF00EEF552 /* NUManualEndpointEditViewController.m */; };
@@ -1813,9 +1813,9 @@
 				1613E7BE16D2DEC90002FA0F /* NUEndpointBar.m in Sources */,
 				1613E7DA16D4301E0002FA0F /* NUEndpointEnvironment.m in Sources */,
 				16F0DA5816D56BE800290837 /* NCSFieldConstants.m in Sources */,
-				1605000A170B8BFD00F854E7 /* SendOnlyDelegateObject.m in Sources */,
 				164959DC170E0ECF00EEF552 /* NUManualEndpointEditViewController.m in Sources */,
 				1647BB9817188F53005A925A /* ScreenerTypeChooserViewController.m in Sources */,
+				1647BBA0171C9440005A925A /* SendOnlyDelegateObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -34,7 +34,6 @@
 #import "MultiSurveyTVC.h"
 #import "NUSurvey+Additions.h"
 #import "ContactInitiateVC.h"
-#import "ScreenerTypeChooserViewController.h"
 #import "EventTemplate.h"
 #import "Person.h"
 #import "ProviderListViewController.h"
@@ -51,7 +50,7 @@
 
 #import "NUManualEndpointEditViewController.h"
 
-@interface RootViewController () <NUEndpointCollectionViewDelegate, NUManualEndpointDelegate, CasLoginVCDelegate, ContactInitiateDelegate, ScreenerTypeChooserDelegate>
+@interface RootViewController () <NUEndpointCollectionViewDelegate, NUManualEndpointDelegate, CasLoginVCDelegate, ContactInitiateDelegate>
     @property(nonatomic,strong) NSArray* contacts;
     @property(nonatomic,strong) ContactNavigationTable* table;
     @property(nonatomic,strong) BlockAlertView *alertView;
@@ -754,9 +753,9 @@
 
 - (IBAction)screenParticipant:(UIButton *)button { //TODO: JVO split point
     if ([EventTemplate birthCohortTemplate] && [EventTemplate pregnancyScreeningTemplate]) {
-        ScreenerTypeChooserViewController *screenerTypeChooserViewController = [[ScreenerTypeChooserViewController alloc] initWithNibName:nil bundle:nil];
-        screenerTypeChooserViewController.delegate = self;
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:screenerTypeChooserViewController];
+        self.screenerTypeChooserViewController = [[ScreenerTypeChooserViewController alloc] initWithNibName:nil bundle:nil];
+        self.screenerTypeChooserViewController.delegate = self;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.screenerTypeChooserViewController];
         navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
         [self presentViewController:navigationController animated:YES completion:nil];
     }
@@ -817,6 +816,10 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeLeft;
+}
+
+-(void)dealloc {
+    self.screenerTypeChooserViewController = nil;
 }
 
 - (void)didReceiveMemoryWarning
