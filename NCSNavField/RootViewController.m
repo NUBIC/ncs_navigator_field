@@ -63,6 +63,8 @@
 
 @property (nonatomic, strong) SendOnlyDelegateObject *sendOnlyObject;
 
+-(void)settingsDidChange:(NSNotification *)note;
+
 -(void)presentEndpointSelectionController;
 
 -(void)startSyncWithServiceTicket:(CasServiceTicket*)serviceTicket withRetrieval:(BOOL)shouldRetrieve;
@@ -92,7 +94,7 @@
                                                  selector:@selector(reachabilityChanged:)
                                                      name:RKReachabilityDidChangeNotification
                                                    object:self.reachability];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsDidChange:) name:SettingsDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contactInitiateScreenDismissed:) name:ContactInitiateScreenDismissedNotification object:NULL];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(providerSelected:) name:PROVIDER_SELECTED_NOTIFICATION_KEY object:NULL];
 
@@ -184,11 +186,6 @@
 }
 -(void)failure:(NSError *)err {
     [self showAlertView:@"The server wouldn't authenticate you."];
-}
-
--(void)applicationDidBecomeActive:(NSNotification *)note {
-    [self toggleDeleteButton];
-    [self setUpEndpointBar];
 }
 
 #pragma mark - surveyor_ios controller delgate
@@ -676,6 +673,13 @@
     return [Contact findAllSortedBy:@"date" ascending:YES];
 }
 
+#pragma mark settings
+
+-(void)settingsDidChange:(NSNotification *)note {
+    [self toggleDeleteButton];
+    [self setUpEndpointBar];
+}
+
 #pragma lifecycle
 - (void) loadView {
         [super loadView];
@@ -685,7 +689,6 @@
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStylePlain target:self action:@selector(syncButtonWasPressed)];
     
         // Init Sync Indicators
- //        UIView *topView = [[[(NCSNavFieldAppDelegate *)[[UIApplication sharedApplication] delegate] window] subviews] objectAtIndex:0];
         UIView *topView = [(NCSNavFieldAppDelegate *)[[UIApplication sharedApplication] delegate] window];
         self.syncIndicator = [[SyncActivityIndicator alloc] initWithView:topView];
         self.syncIndicator.delegate = self;
@@ -693,6 +696,7 @@
         [topView addSubview:self.syncIndicator];
 
         self.contacts = [self contactsFromDataStore];
+    [self toggleDeleteButton];
 }
 
 
@@ -801,6 +805,13 @@
 {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:RKReachabilityDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SettingsDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ContactInitiateScreenDismissedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:PROVIDER_SELECTED_NOTIFICATION_KEY object:nil];
 }
 
 @end

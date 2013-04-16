@@ -36,9 +36,10 @@
             _purgeFieldworkButton = [self isPurgeFieldworkButton];
             _upcomingDaysToSync = [self upcomingDaysToSync];
             _pastDaysToSync = [self pastDaysToSync];
-            //[[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:self];
             [self registerDefaultsFromSettingsBundle];
             _endpoint = [NUEndpoint userEndpointOnDisk];
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:nil];
         }
         return self;
 }
@@ -71,6 +72,15 @@
     }
     return _clientId;
 }
+
+-(void)defaultsDidChange:(NSNotification *)note {
+    [[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:nil];
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSUserDefaultsDidChangeNotification object:nil];
+}
+
 #pragma mark - Accessor methods for User Settings
 
 - (NSString *) coreURL {
@@ -244,7 +254,7 @@
     self.upcomingDaysToSync = [self upcomingDaysToSync];
     self.pastDaysToSync = [self pastDaysToSync];
     [endpoint writeToDisk];
-    [[NSNotificationCenter defaultCenter] postNotificationName:SettingsDidChangeNotification object:self];
+    [self defaultsDidChange:nil];
     [RestKitSettings reload];
 }
 
