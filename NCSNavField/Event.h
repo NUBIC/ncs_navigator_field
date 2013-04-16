@@ -11,9 +11,6 @@
 @class Contact;
 @class Instrument;
 @class Participant;
-//
-//FOUNDATION_EXPORT NSInteger const EVENT_TYPE_CODE_PBS_PARTICIPANT_ELIGIBILITY_SCREENING;
-//FOUNDATION_EXPORT NSInteger const EVENT_TYPE_CODE_PREGNANCY_VISIT_ONE;
 
 @interface Event : NSManagedObject
 

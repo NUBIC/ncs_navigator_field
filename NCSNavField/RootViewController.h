@@ -47,7 +47,6 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 @property (nonatomic,strong) MBProgressHUD* syncIndicator;
 @property (nonatomic,strong) Instrument* administeredInstrument;
 @property (nonatomic,strong) CasServiceTicket* serviceTicket;
-@property (nonatomic, strong) ScreenerTypeChooserViewController *screenerTypeChooserViewController;
  
 - (void)toggleDeleteButton;
 - (void)purgeDataStore;

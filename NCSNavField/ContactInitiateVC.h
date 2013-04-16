@@ -23,7 +23,6 @@
 @property(nonatomic,strong) Contact* contact;
 @property(nonatomic,strong) UIView *left,*right;
 @property (nonatomic, assign) BOOL shouldDeleteContactOnCancel;
-@property (nonatomic, copy) void (^optionalCancelBlock)(Contact* c);
 
 - (id)initWithContact:(Contact *)contact;
 - (void) setDefaults:(Contact*) contact;

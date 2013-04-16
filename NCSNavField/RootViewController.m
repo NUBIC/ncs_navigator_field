@@ -692,7 +692,6 @@
 }
 
 - (void)contactInitiateScreenDismissedWithContact:(Contact *)chosenContact {
-    //TODO: JVO check this out.
     self.contacts = [self contactsFromDataStore];
     
     if (chosenContact) {
@@ -751,11 +750,11 @@
     return header;
 }
 
-- (IBAction)screenParticipant:(UIButton *)button { //TODO: JVO split point
+- (IBAction)screenParticipant:(UIButton *)button {
     if ([EventTemplate birthCohortTemplate] && [EventTemplate pregnancyScreeningTemplate]) {
-        self.screenerTypeChooserViewController = [[ScreenerTypeChooserViewController alloc] initWithNibName:nil bundle:nil];
-        self.screenerTypeChooserViewController.delegate = self;
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.screenerTypeChooserViewController];
+        ScreenerTypeChooserViewController *screenerTypeChooserViewController = [[ScreenerTypeChooserViewController alloc] initWithNibName:nil bundle:nil];
+        screenerTypeChooserViewController.delegate = self;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:screenerTypeChooserViewController];
         navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
         [self presentViewController:navigationController animated:YES completion:nil];
     }
@@ -816,10 +815,6 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeLeft;
-}
-
--(void)dealloc {
-    self.screenerTypeChooserViewController = nil;
 }
 
 - (void)didReceiveMemoryWarning
