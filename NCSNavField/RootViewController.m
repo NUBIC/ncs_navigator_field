@@ -92,7 +92,7 @@
                                                  selector:@selector(reachabilityChanged:)
                                                      name:RKReachabilityDidChangeNotification
                                                    object:self.reachability];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleDeleteButton) name:SettingsDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contactInitiateScreenDismissed:) name:ContactInitiateScreenDismissedNotification object:NULL];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(providerSelected:) name:PROVIDER_SELECTED_NOTIFICATION_KEY object:NULL];
 
@@ -184,7 +184,11 @@
 }
 -(void)failure:(NSError *)err {
     [self showAlertView:@"The server wouldn't authenticate you."];
-    
+}
+
+-(void)applicationDidBecomeActive:(NSNotification *)note {
+    [self toggleDeleteButton];
+    [self setUpEndpointBar];
 }
 
 #pragma mark - surveyor_ios controller delgate
@@ -679,8 +683,7 @@
         self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
         self.title = @"Contacts";
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStylePlain target:self action:@selector(syncButtonWasPressed)];
-        [self toggleDeleteButton];
-        
+    
         // Init Sync Indicators
  //        UIView *topView = [[[(NCSNavFieldAppDelegate *)[[UIApplication sharedApplication] delegate] window] subviews] objectAtIndex:0];
         UIView *topView = [(NCSNavFieldAppDelegate *)[[UIApplication sharedApplication] delegate] window];
@@ -696,7 +699,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tableView.tableHeaderView = [self tableHeaderView];
-    [self setUpEndpointBar];
 }
 
 - (UIView*)tableHeaderView {
@@ -755,6 +757,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     if ([[NSUserDefaults standardUserDefaults] boolForKey:HAS_MIGRATED_TO_AUTO_LOCATION] == YES) {
         NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
         if (!endpoint) {
@@ -770,8 +773,6 @@
             [self presentEndpointSelectionController];
         }
     }
-
-    [super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
