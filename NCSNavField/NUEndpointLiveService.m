@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSURLConnection *endpointConnection;
 @property (nonatomic, strong) NSMutableData *receivedData;
 
+-(void)createEndpointsWithDataDictionary:(NSDictionary *)dataDictionary andError:(NSError *)error;
 -(NUEndpoint *)generateManualEndpoint;
 
 @end
@@ -36,22 +37,18 @@
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSArray *endpointArray = @[];
     NSError *jsonError = nil;
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:self.receivedData options:0 error:&jsonError];
-    for (NSDictionary *endpointDictionary in dataDictionary[@"locations"]) {
-        NUEndpoint *newEndpoint = [[NUEndpoint alloc] initWithDataDictionary:endpointDictionary];
-        newEndpoint.isManualEndpoint = @NO;
-        endpointArray = [endpointArray arrayByAddingObject:newEndpoint];
+    if (jsonError) {
+        [self createEndpointsWithDataDictionary:nil andError:jsonError];
     }
-    endpointArray = [endpointArray arrayByAddingObject:[self generateManualEndpoint]];
-    if (self.endpointBlock) {
-        self.endpointBlock (endpointArray, jsonError);
+    else {
+        [self createEndpointsWithDataDictionary:dataDictionary andError:nil];
     }
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    self.endpointBlock(nil, error);
+    [self createEndpointsWithDataDictionary:nil andError:error];
 }
 
 #pragma mark customization
@@ -60,7 +57,7 @@
         self.endpointBlock = endpointBlock;
         NSDictionary *endpointPrefDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"NCSNavField-environment" ofType:@"plist"]];
         NSURL *locationServiceURL = [NSURL URLWithString:endpointPrefDictionary[@"locationServiceURL"]];
-        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:locationServiceURL cachePolicy:NSURLCacheStorageAllowed timeoutInterval:30.0f];
+        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:locationServiceURL cachePolicy:NSURLCacheStorageAllowed timeoutInterval:20.0f];
         self.endpointConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
         [self.endpointConnection start];
 }
@@ -69,7 +66,18 @@
     [self.endpointConnection cancel];
 }
 
-#pragma mark prototyping
+-(void)createEndpointsWithDataDictionary:(NSDictionary *)dataDictionary andError:(NSError *)error {
+    NSArray *endpointArray = @[];
+    for (NSDictionary *endpointDictionary in dataDictionary[@"locations"]) {
+        NUEndpoint *newEndpoint = [[NUEndpoint alloc] initWithDataDictionary:endpointDictionary];
+        newEndpoint.isManualEndpoint = @NO;
+        endpointArray = [endpointArray arrayByAddingObject:newEndpoint];
+    }
+    endpointArray = [endpointArray arrayByAddingObject:[self generateManualEndpoint]];
+    if (self.endpointBlock) {
+        self.endpointBlock (endpointArray, error);
+    }
+}
 
 -(NUEndpoint *)generateManualEndpoint {
     NUEndpoint *endpointOnDisk = [NUEndpoint userEndpointOnDisk];
@@ -91,6 +99,8 @@
         return newEndpoint;
     }
 }
+
+#pragma mark prototyping
 
 #pragma mark stock code
 
