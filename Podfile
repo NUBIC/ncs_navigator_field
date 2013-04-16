@@ -2,6 +2,7 @@ platform :ios, :deployment_target => "5.0"
 
 pod 'MBProgressHUD', '0.5'
 pod 'RestKit', '0.10.2'
+pod 'RestKit/ObjectMapping', '0.10.2'
 pod 'JSONKit', '>= 1.5pre'
 
 # TODO: Replace with BlocksKit or underscore?
