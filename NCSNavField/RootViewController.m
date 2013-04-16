@@ -63,8 +63,7 @@
 
 @property (nonatomic, strong) SendOnlyDelegateObject *sendOnlyObject;
 
--(void)startEndpointSelection;
--(void)switchEndpoint;
+-(void)presentEndpointSelectionController;
 
 -(void)startSyncWithServiceTicket:(CasServiceTicket*)serviceTicket withRetrieval:(BOOL)shouldRetrieve;
 
@@ -242,7 +241,7 @@
 -(void) manualEndpointViewControllerDidCancel:(NUManualEndpointEditViewController *)manualEditVC {
     RootViewController __weak *weakSelf = self;
     [self dismissViewControllerAnimated:YES completion:^{
-        [weakSelf switchEndpoint];
+        [weakSelf presentEndpointSelectionController];
     }];
 }
 
@@ -285,7 +284,7 @@
         [self.locationAlert show];
     }
     else {
-        [self switchEndpoint];
+        [self presentEndpointSelectionController];
     }
 }
 
@@ -497,17 +496,13 @@
     [s remove];
 }
 
--(void)startEndpointSelection {
+-(void)presentEndpointSelectionController {
     NUEndpointCollectionViewController *endpointCollectionViewController = [[NUEndpointCollectionViewController alloc] initWithNibName:nil bundle:nil];
     endpointCollectionViewController.delegate = self;
     endpointCollectionViewController.modalPresentationStyle = UIModalPresentationPageSheet;
     [self presentViewController:endpointCollectionViewController animated:YES completion:^{
         [endpointCollectionViewController getEndpointsFromService:nil];
     }];
-}
-
--(void)switchEndpoint {
-    [self startEndpointSelection];
 }
 
 #pragma mark - Cas Login Delegate
@@ -587,7 +582,7 @@
         
         if (shouldRetrieve == NO) {
             [self deleteButtonWasPressed];
-            [self startEndpointSelection];
+            [self presentEndpointSelectionController];
             return;
         }
         
@@ -763,7 +758,7 @@
     if ([[NSUserDefaults standardUserDefaults] boolForKey:HAS_MIGRATED_TO_AUTO_LOCATION] == YES) {
         NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
         if (!endpoint) {
-            [self startEndpointSelection];
+            [self presentEndpointSelectionController];
         }
     }
     else {
@@ -772,7 +767,7 @@
             [self endpointCollectionViewController:nil didChooseEndpoint:migratedEndpoint];
         }
         else {
-            [self startEndpointSelection];
+            [self presentEndpointSelectionController];
         }
     }
 
