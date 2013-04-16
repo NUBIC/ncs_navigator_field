@@ -74,12 +74,7 @@
     self.isLoading = @(YES);
     NUEndpointCollectionViewController __weak *weakSelf = self;
     [[NUEndpointService service] getEndpointArrayWithCallback:^(NSArray *endpointArray, NSError *error) {
-        if (endpointArray.count > 0) {
-            weakSelf.isLoading = @(NO);
-            [weakSelf loadEndpointArray:endpointArray];
-        }
-        else {
-            weakSelf.isLoading = @(NO);
+        if (endpointArray.count == 1 && [[endpointArray.lastObject isManualEndpoint] isEqualToNumber:@YES]) {
             UIAlertView *issueAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
                                                                      message:[NSString stringWithFormat:@"There was an network error: %i", error.code]
                                                                     delegate:nil
@@ -87,6 +82,8 @@
                                                            otherButtonTitles: nil];
             [issueAlertView show];
         }
+        weakSelf.isLoading = @(NO);
+        [weakSelf loadEndpointArray:endpointArray];
         [weakSelf enableRefresh];
     }];
 }
