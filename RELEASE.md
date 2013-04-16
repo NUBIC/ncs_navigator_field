@@ -9,6 +9,7 @@ Test
 1. Change icon to icon-test.png
 1. `git pull`
 1. `rm -rf Pods && pod install`
+1. `cp RKRequest.0.9.3.fixed.m Pods/RestKit/Code/Network/RKRequest.m`
 1. Archive
 1. Create the ipa and save in /dist with NavFieldTest-x.x.ipa or NavFieldTest-x.x.x.ipa
 1. Commit the project file with the new version and the ipa file
@@ -25,6 +26,7 @@ Production
 1. Change Bundle Identifier to 'edu.northwestern.nubic.NCS-NavField'
 1. Change icon to icon.png
 1. `rm -rf Pods && pod install`
+1. `cp RKRequest.0.9.3.fixed.m Pods/RestKit/Code/Network/RKRequest.m`
 1. Archive
 1. Create the ipa and save in /dist with NavField-x.x.ipa or NavField-x.x.x.ipa
 1. Checkout master
