@@ -703,6 +703,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tableView.tableHeaderView = [self tableHeaderView];
+    [self setUpEndpointBar];
 }
 
 - (UIView*)tableHeaderView {
