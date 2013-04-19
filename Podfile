@@ -19,4 +19,5 @@ pod 'NUSurveyor', :podspec => 'NUSurveyor.podspec'
 
 target :NCSNavFieldTests, :exclusive => true do
   pod 'OCMock', '2.0.1'
+  pod 'Nocilla', '0.4'
 end

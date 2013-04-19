@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00010412161B73AA00952C3C /* NUResponse+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00010411161B73AA00952C3C /* NUResponse+Additions.m */; };
+		0007E984172194B300F1E7C5 /* CasServiceTicket+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 009A48A1165C476500601959 /* CasServiceTicket+Additions.m */; };
 		000922B415F654A0005EBA3D /* ResponseSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 000922B015F652F6005EBA3D /* ResponseSetTest.m */; };
 		000D8E77152CAC5B006EE224 /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8E76152CAC5B006EE224 /* TimePicker.m */; };
 		000D8E8B152E9EE7006EE224 /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8E8A152E9EE7006EE224 /* NSDate+Additions.m */; };
@@ -73,6 +74,7 @@
 		006C600B1434DF0D00F52CD8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 006C600A1434DF0D00F52CD8 /* README.md */; };
 		006D47FC148D94970035DC01 /* ChangeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D47FB148D94970035DC01 /* ChangeHandler.m */; };
 		006FDD8A148FD2E80001BADE /* TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 006FDD89148FD2E80001BADE /* TextField.m */; };
+		007135D1171EDC40007D38C3 /* RetrieveFieldworkStepTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 007135D0171EDC40007D38C3 /* RetrieveFieldworkStepTest.m */; };
 		0073B3681511277000543DA4 /* Fieldwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073B3671511277000543DA4 /* Fieldwork.m */; };
 		0078A9AE159E414400B9FBD6 /* EventVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0078A9AD159E414400B9FBD6 /* EventVC.m */; };
 		007C1F4114FBFACA0020DF30 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 007C1F4014FBFACA0020DF30 /* Podfile */; };
@@ -136,8 +138,10 @@
 		00E3235D1422EB6A00D3AEED /* ContactTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E3235C1422EB6A00D3AEED /* ContactTable.m */; };
 		00EDE59914B4048900B8A643 /* libNUCas.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EDE59814B4048900B8A643 /* libNUCas.a */; };
 		00F940841642E08100176840 /* EventTemplateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F940831642E08100176840 /* EventTemplateTest.m */; };
+		00FA00691720505B006A96A4 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = 00FA00681720505B006A96A4 /* Podfile.lock */; };
 		00FF37DE1417C50D0009B1D4 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37DD1417C50D0009B1D4 /* Instrument.m */; };
 		00FF37E71417D2380009B1D4 /* ContactNavigationTableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */; };
+		0BBDE9B03B374D4D8B9842AC /* libPods-NCSNavFieldTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8BDD3DF4624B1CA7F40979 /* libPods-NCSNavFieldTests.a */; };
 		1605000A170B8BFD00F854E7 /* SendOnlyDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 16050009170B8BFC00F854E7 /* SendOnlyDelegateObject.m */; };
 		1613E7DA16D4301E0002FA0F /* NUEndpointEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1613E7D916D4301E0002FA0F /* NUEndpointEnvironment.m */; };
 		1646CD3216CD860800CDCCEC /* NUEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD3116CD860800CDCCEC /* NUEndpoint.m */; };
@@ -195,7 +199,6 @@
 		22A11EF1166E6142000E1F07 /* NUPickerVC+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A11EF0166E6142000E1F07 /* NUPickerVC+Additions.m */; };
 		22B8E4A616643B6A00640DE8 /* DispositionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B8E4A516643B6A00640DE8 /* DispositionCode.m */; };
 		4F53118515FA58A1006F5BB2 /* InstrumentPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */; };
-		CBDE67D6A08C4C058C5A2697 /* libPods-NCSNavFieldTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F13715761CC546A89E735D30 /* libPods-NCSNavFieldTests.a */; };
 		D1CACF1A1F944E92AB51AE74 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 493CC93326804A8ABCA31763 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -491,6 +494,8 @@
 		006D47FB148D94970035DC01 /* ChangeHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeHandler.m; sourceTree = "<group>"; };
 		006FDD88148FD2E80001BADE /* TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextField.h; sourceTree = "<group>"; };
 		006FDD89148FD2E80001BADE /* TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextField.m; sourceTree = "<group>"; };
+		007135CF171EDC40007D38C3 /* RetrieveFieldworkStepTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetrieveFieldworkStepTest.h; sourceTree = "<group>"; };
+		007135D0171EDC40007D38C3 /* RetrieveFieldworkStepTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetrieveFieldworkStepTest.m; sourceTree = "<group>"; };
 		0073B3661511277000543DA4 /* Fieldwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fieldwork.h; sourceTree = "<group>"; };
 		0073B3671511277000543DA4 /* Fieldwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fieldwork.m; sourceTree = "<group>"; };
 		0078A9AC159E414400B9FBD6 /* EventVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventVC.h; sourceTree = "<group>"; };
@@ -610,6 +615,17 @@
 		00E323591422B08200D3AEED /* Row.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Row.m; sourceTree = "<group>"; };
 		00E3235B1422EB6A00D3AEED /* ContactTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTable.h; sourceTree = "<group>"; };
 		00E3235C1422EB6A00D3AEED /* ContactTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTable.m; sourceTree = "<group>"; };
+		00E8FD451720D82300412186 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		00E8FD4B1720D82300412186 /* NCSNavFieldLogTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NCSNavFieldLogTests-Info.plist"; sourceTree = "<group>"; };
+		00E8FD4D1720D82300412186 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		00E8FD4F1720D82300412186 /* NCSNavFieldLogTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NCSNavFieldLogTests.h; sourceTree = "<group>"; };
+		00E8FD501720D82300412186 /* NCSNavFieldLogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NCSNavFieldLogTests.m; sourceTree = "<group>"; };
+		00E8FD521720D82300412186 /* NCSNavFieldLogTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NCSNavFieldLogTests-Prefix.pch"; sourceTree = "<group>"; };
+		00E8FD611720D85300412186 /* NCSNavFieldLogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NCSNavFieldLogicTests-Info.plist"; sourceTree = "<group>"; };
+		00E8FD631720D85300412186 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		00E8FD651720D85300412186 /* NCSNavFieldLogicTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NCSNavFieldLogicTests.h; sourceTree = "<group>"; };
+		00E8FD661720D85300412186 /* NCSNavFieldLogicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NCSNavFieldLogicTests.m; sourceTree = "<group>"; };
+		00E8FD681720D85300412186 /* NCSNavFieldLogicTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NCSNavFieldLogicTests-Prefix.pch"; sourceTree = "<group>"; };
 		00EAB7DD15FE6D1C00B5B685 /* 20120910184606_remove_instrument_template_from_instrument.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120910184606_remove_instrument_template_from_instrument.xcdatamodel; sourceTree = "<group>"; };
 		00EAB7DF15FE6F0000B5B685 /* 20120910185414_association_instrument_to_instrument_plan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120910185414_association_instrument_to_instrument_plan.xcdatamodel; sourceTree = "<group>"; };
 		00EDE59814B4048900B8A643 /* libNUCas.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNUCas.a; path = "../NUCas/build/Release-iphoneos/libNUCas.a"; sourceTree = "<group>"; };
@@ -618,6 +634,8 @@
 		00F940821642E08100176840 /* EventTemplateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTemplateTest.h; sourceTree = "<group>"; };
 		00F940831642E08100176840 /* EventTemplateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTemplateTest.m; sourceTree = "<group>"; };
 		00F9408A1643119C00176840 /* 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel; sourceTree = "<group>"; };
+		00FA00681720505B006A96A4 /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
+		00FA006A17205416006A96A4 /* libPods-NCSNavFieldTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-NCSNavFieldTests.a"; path = "Pods/build/Release-iphoneos/libPods-NCSNavFieldTests.a"; sourceTree = "<group>"; };
 		00FF37DC1417C50D0009B1D4 /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
 		00FF37DD1417C50D0009B1D4 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
 		00FF37E31417CFA30009B1D4 /* ContactNavigationTableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNavigationTableTest.h; sourceTree = "<group>"; };
@@ -716,8 +734,12 @@
 		4F53118215FA5519006F5BB2 /* 20120907161507_create_instrument_plan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120907161507_create_instrument_plan.xcdatamodel; sourceTree = "<group>"; };
 		4F53118315FA58A1006F5BB2 /* InstrumentPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentPlan.h; sourceTree = "<group>"; };
 		4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentPlan.m; sourceTree = "<group>"; };
+		5322CB873651468FB55DA4AE /* Pods-NCSNavFieldTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NCSNavFieldTests.xcconfig"; path = "Pods/Pods-NCSNavFieldTests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		9B8BDD3DF4624B1CA7F40979 /* libPods-NCSNavFieldTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NCSNavFieldTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E3B7F2BCEE54989A5828E05 /* libPods-NCSNavFieldTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NCSNavFieldTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F3CEF4620C54EC0874C4202 /* libPods-NCSNavFieldTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NCSNavFieldTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2CA3FB4FE8942AD94694D46 /* Pods.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		DEA6E5A24F9942628C51EFA8 /* Pods-NCSNavFieldTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NCSNavFieldTests.xcconfig"; path = "Pods/Pods-NCSNavFieldTests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		E02ABB7B031A403788F12259 /* Pods-NCSNavFieldTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NCSNavFieldTests.xcconfig"; path = "Pods/Pods-NCSNavFieldTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		F13715761CC546A89E735D30 /* libPods-NCSNavFieldTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NCSNavFieldTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -750,7 +772,7 @@
 				0026E68C140347E700355BCB /* UIKit.framework in Frameworks */,
 				0026E68D140347E700355BCB /* Foundation.framework in Frameworks */,
 				0026E68E140347E700355BCB /* CoreGraphics.framework in Frameworks */,
-				CBDE67D6A08C4C058C5A2697 /* libPods-NCSNavFieldTests.a in Frameworks */,
+				0BBDE9B03B374D4D8B9842AC /* libPods-NCSNavFieldTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,6 +782,8 @@
 		0026E659140347E700355BCB = {
 			isa = PBXGroup;
 			children = (
+				00FA006A17205416006A96A4 /* libPods-NCSNavFieldTests.a */,
+				00FA00681720505B006A96A4 /* Podfile.lock */,
 				00872259156AF6F100CE24ED /* test-background.png */,
 				00C0C8D515655E390047A113 /* icon-test.png */,
 				000E64B2150EB2BF0006B31E /* Settings.bundle */,
@@ -773,10 +797,13 @@
 				00439FFF141132B70097A878 /* Resources */,
 				0026E66E140347E700355BCB /* Classes */,
 				0026E691140347E700355BCB /* Tests */,
+				00E8FD491720D82300412186 /* NCSNavFieldLogTests */,
+				00E8FD5F1720D85300412186 /* NCSNavFieldLogicTests */,
 				0026E667140347E700355BCB /* Frameworks */,
 				0026E665140347E700355BCB /* Products */,
 				C2CA3FB4FE8942AD94694D46 /* Pods.xcconfig */,
-				DEA6E5A24F9942628C51EFA8 /* Pods-NCSNavFieldTests.xcconfig */,
+				E02ABB7B031A403788F12259 /* Pods-NCSNavFieldTests.xcconfig */,
+				5322CB873651468FB55DA4AE /* Pods-NCSNavFieldTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -810,6 +837,10 @@
 				0026E66C140347E700355BCB /* CoreGraphics.framework */,
 				493CC93326804A8ABCA31763 /* libPods.a */,
 				F13715761CC546A89E735D30 /* libPods-NCSNavFieldTests.a */,
+				9E3B7F2BCEE54989A5828E05 /* libPods-NCSNavFieldTests.a */,
+				9F3CEF4620C54EC0874C4202 /* libPods-NCSNavFieldTests.a */,
+				9B8BDD3DF4624B1CA7F40979 /* libPods-NCSNavFieldTests.a */,
+				00E8FD451720D82300412186 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -895,6 +926,8 @@
 				00AB8E98164358290097F7CD /* NSManagedObjectTest.m */,
 				167292DB170097B20046B194 /* NUEndpointTest.h */,
 				167292DC170097B20046B194 /* NUEndpointTest.m */,
+				007135CF171EDC40007D38C3 /* RetrieveFieldworkStepTest.h */,
+				007135D0171EDC40007D38C3 /* RetrieveFieldworkStepTest.m */,
 			);
 			name = Tests;
 			path = NCSNavFieldTests;
@@ -1304,6 +1337,46 @@
 			name = NUSurveyor;
 			sourceTree = "<group>";
 		};
+		00E8FD491720D82300412186 /* NCSNavFieldLogTests */ = {
+			isa = PBXGroup;
+			children = (
+				00E8FD4F1720D82300412186 /* NCSNavFieldLogTests.h */,
+				00E8FD501720D82300412186 /* NCSNavFieldLogTests.m */,
+				00E8FD4A1720D82300412186 /* Supporting Files */,
+			);
+			path = NCSNavFieldLogTests;
+			sourceTree = "<group>";
+		};
+		00E8FD4A1720D82300412186 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00E8FD4B1720D82300412186 /* NCSNavFieldLogTests-Info.plist */,
+				00E8FD4C1720D82300412186 /* InfoPlist.strings */,
+				00E8FD521720D82300412186 /* NCSNavFieldLogTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		00E8FD5F1720D85300412186 /* NCSNavFieldLogicTests */ = {
+			isa = PBXGroup;
+			children = (
+				00E8FD651720D85300412186 /* NCSNavFieldLogicTests.h */,
+				00E8FD661720D85300412186 /* NCSNavFieldLogicTests.m */,
+				00E8FD601720D85300412186 /* Supporting Files */,
+			);
+			path = NCSNavFieldLogicTests;
+			sourceTree = "<group>";
+		};
+		00E8FD601720D85300412186 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00E8FD611720D85300412186 /* NCSNavFieldLogicTests-Info.plist */,
+				00E8FD621720D85300412186 /* InfoPlist.strings */,
+				00E8FD681720D85300412186 /* NCSNavFieldLogicTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		00F10AAD14DB040800387762 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -1513,12 +1586,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0026E6A1140347E700355BCB /* Build configuration list for PBXNativeTarget "NCSNavFieldTests" */;
 			buildPhases = (
+				5A571A89927345978180C53E /* Check Pods Manifest.lock */,
 				0026E686140347E700355BCB /* Sources */,
 				0026E687140347E700355BCB /* Frameworks */,
 				0026E688140347E700355BCB /* Resources */,
 				0026E689140347E700355BCB /* ShellScript */,
-				1E442B0B4825433D918E36BD /* Copy Pods Resources */,
-				FC881525276C4EDBBBA32263 /* Copy Pods Resources */,
+				A2A66BE57782436AB6D691F0 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1610,6 +1683,7 @@
 				164959D4170E063200EEF552 /* ManualImage.png in Resources */,
 				164959D5170E063200EEF552 /* ManualImage@2x.png in Resources */,
 				164959DD170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib in Resources */,
+				00FA00691720505B006A96A4 /* Podfile.lock in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1651,7 +1725,21 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 		};
-		FC881525276C4EDBBBA32263 /* Copy Pods Resources */ = {
+		5A571A89927345978180C53E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sanbox is not in sync with the Podfile.lock. Run 'pod install'.\nEOM\n    exit 1\nfi\n";
+		};
+		A2A66BE57782436AB6D691F0 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1774,6 +1862,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0007E984172194B300F1E7C5 /* CasServiceTicket+Additions.m in Sources */,
 				000922B415F654A0005EBA3D /* ResponseSetTest.m in Sources */,
 				004FC7131486BF8300A378DC /* PickerOptionTest.m in Sources */,
 				00FF37E71417D2380009B1D4 /* ContactNavigationTableTest.m in Sources */,
@@ -1802,6 +1891,7 @@
 				00B8756716D56A5300CED547 /* ResponseSetMustacheContextTest.m in Sources */,
 				00917E5216D80634008E1088 /* NUQuestionTest.m in Sources */,
 				167292DD170097B20046B194 /* NUEndpointTest.m in Sources */,
+				007135D1171EDC40007D38C3 /* RetrieveFieldworkStepTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1847,6 +1937,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				0026E695140347E700355BCB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		00E8FD4C1720D82300412186 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00E8FD4D1720D82300412186 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		00E8FD621720D85300412186 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00E8FD631720D85300412186 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1965,9 +2071,9 @@
 		};
 		0026E6A2140347E700355BCB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEA6E5A24F9942628C51EFA8 /* Pods-NCSNavFieldTests.xcconfig */;
+			baseConfigurationReference = 5322CB873651468FB55DA4AE /* Pods-NCSNavFieldTests.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/NCSNavField.app/NCSNavField";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1989,15 +2095,16 @@
 				PRODUCT_NAME = NCSNavFieldTests;
 				SKIP_INSTALL = YES;
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
 		0026E6A3140347E700355BCB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEA6E5A24F9942628C51EFA8 /* Pods-NCSNavFieldTests.xcconfig */;
+			baseConfigurationReference = 5322CB873651468FB55DA4AE /* Pods-NCSNavFieldTests.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/NCSNavField.app/NCSNavField";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -2019,6 +2126,7 @@
 				PRODUCT_NAME = NCSNavFieldTests;
 				SKIP_INSTALL = YES;
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
