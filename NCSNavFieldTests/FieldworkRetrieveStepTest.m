@@ -118,12 +118,12 @@ static FieldworkRetrieveStep* step;
     [serviceTicket verify];
     [proxyTicket verify];
     
-    STAssertThrowsSpecificNamed([step send], FieldworkSynchronizationException, @"object Loader failure in Retrieving Contacts", nil);
+    STAssertThrowsSpecific([step send], FieldworkSynchronizationException, nil);
 }
 
 - (void)testFailedRetrieveWhenNilServiceTicket {
     FieldworkRetrieveStep* step = [[FieldworkRetrieveStep alloc] initWithServiceTicket:nil];
-    STAssertThrowsSpecificNamed([step send], FieldworkSynchronizationException, @"Failed to retrieve contacts (missing service ticket)", nil);
+    STAssertThrowsSpecific([step send], FieldworkSynchronizationException, nil);
 }
 
 - (void)testFailedRetrieveWhenNilProxyTicket {
@@ -131,7 +131,7 @@ static FieldworkRetrieveStep* step;
 
     [serviceTicket verify];
     
-    STAssertThrowsSpecificNamed([step send], FieldworkSynchronizationException, @"retrieving contacts failed because of CAS", nil);
+    STAssertThrowsSpecific([step send], FieldworkSynchronizationException, nil);
 }
 
 @end

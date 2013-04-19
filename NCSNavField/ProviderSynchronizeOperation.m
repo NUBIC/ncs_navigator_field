@@ -34,12 +34,11 @@
     NSString *er;
     CasProxyTicket *pt = [self.ticket obtainProxyTicket:&er];
     if(er && [er length] > 0) {
-        [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
-        FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:er reason:nil userInfo:nil];
-        @throw ex;
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to retrieve proxy ticket: %@", er]];
     }
-    else
+    else {
        return [self sendRequestForProviders:pt];
+    }
 }
 
 - (BOOL)sendRequestForProviders:(CasProxyTicket*)ticket {
@@ -74,9 +73,7 @@
 #pragma mark - RKObjectLoaderDelegate Methods
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
-    [_delegate showAlertView:PROVIDER_RETRIEVAL];
-    FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"Retrieving providers" reason:nil userInfo:nil];
-    @throw ex;
+    @throw [[FieldworkSynchronizationException alloc] initWithReason:PROVIDER_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to retrieve providers: %@", [error localizedDescription]]];
 }
 
 

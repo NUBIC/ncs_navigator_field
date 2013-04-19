@@ -9,8 +9,13 @@
 #import "FieldworkSynchronizationException.h"
 
 @implementation FieldworkSynchronizationException
-/*
- There is no implementation now, *it will use what it inherits from NSException,* 
- but this is an excellent and frequently unused pattern in OOP. It opens up a lot of good style choices, IMHO.
- */
+
+- (id)initWithReason:(NSString*)reason explanation:(NSString*)explanation {
+    self = [self initWithName:@"FieldworkSynchronizationException" reason:reason userInfo:nil];
+    if (self) {
+        _explanation = [NSString stringWithString:explanation];
+    }
+    return self;
+}
+
 @end

@@ -44,9 +44,7 @@ const static NSInteger POLL_REPEATS = 12;
     CasProxyTicket *pt = [self.serviceTicket obtainProxyTicket:&error];
     if(error)
     {
-        [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
-        FieldworkSynchronizationException *exServerDown = [[FieldworkSynchronizationException alloc] initWithName:@"CAS Server is down" reason:@"Server is down" userInfo:nil];
-        @throw exServerDown;
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to retrieve proxy ticket: %@", error]];
     }
     if (pt) {
         RKRequest* req = [[RKRequest alloc] initWithURL:[self resourceURL]];
@@ -93,9 +91,7 @@ const static NSInteger POLL_REPEATS = 12;
         }
     }
     if (self.error) {
-        [_delegate showAlertView:self.error];
-        FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:self.error reason:nil userInfo:nil];
-        @throw ex;
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:self.error explanation:self.error];
     }
     return TRUE;
 }
@@ -103,16 +99,11 @@ const static NSInteger POLL_REPEATS = 12;
 #pragma mark RKRequestDelegate
 
 - (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error {
-    NSString* errorMsg = [NSString stringWithFormat:@"Problem checking merge status.\n%@", [error localizedDescription]];
-    [_delegate showAlertView:MERGE_DATA];
-    FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:errorMsg reason:nil userInfo:nil];
-    @throw ex;
+    @throw [[FieldworkSynchronizationException alloc] initWithReason:MERGE_DATA explanation:[NSString stringWithFormat:@"Failed to check merge status: %@", [error localizedDescription]]];
 }
 
 - (void)requestDidTimeout:(RKRequest *)request {
-    [_delegate showAlertView:MERGE_DATA];
-    FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"Merge status check timed out" reason:nil userInfo:nil];
-    @throw ex;
+    @throw [[FieldworkSynchronizationException alloc] initWithReason:MERGE_DATA explanation:[NSString stringWithFormat:@"Merge status check timed out"]];
 }
 
 

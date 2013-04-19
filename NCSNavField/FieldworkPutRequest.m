@@ -36,9 +36,7 @@
     NSString *ptError;
     CasProxyTicket *pt = [self.ticket obtainProxyTicket:&ptError];
     if(ptError && [ptError length] > 0) {
-        [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
-        FieldworkSynchronizationException *exServerDown = [[FieldworkSynchronizationException alloc] initWithName:@"CAS Server is down" reason:@"Server is down" userInfo:nil];
-        @throw exServerDown;
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to retrieve proxy ticket: %@", ptError]];
     }
         
     return [self send:pt];
@@ -100,12 +98,7 @@
     // {"success":true}, which is unmappable and causes RestKit to
     // throw an error.
     if (!objectLoader.response.isSuccessful) {
-        NSLog(@"Error: Localized Description: %@", [error localizedDescription]);
-        NSLog(@"Error: Underlying Error: %@", [error.userInfo valueForKey:NSUnderlyingErrorKey]);
-        self.error = [NSString stringWithFormat:@"Error while pushing fieldwork.\n%@", [error localizedDescription]];
-        [_delegate showAlertView:PUTTING_DATA_ON_SERVER];
-        FieldworkSynchronizationException *exServerDown = [[FieldworkSynchronizationException alloc] initWithName:self.error reason:nil userInfo:nil];
-        @throw exServerDown;
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:PUTTING_DATA_ON_SERVER explanation:[NSString stringWithFormat:@"Failed to push fieldwork:.\n%@", [error localizedDescription]]];
     }
 }
 

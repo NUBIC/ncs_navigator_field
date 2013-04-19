@@ -10,4 +10,8 @@
 
 @interface FieldworkSynchronizationException : NSException
 
+@property (strong,nonatomic) NSString* explanation;
+
+- (id)initWithReason:(NSString*)reason explanation:(NSString*)explanation;
+
 @end

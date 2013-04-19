@@ -37,9 +37,7 @@
     NSString *error = [NSString new];
     CasProxyTicket *pt = [self.ticket obtainProxyTicket:&error];
     if(error && [error length]>0) {
-        [_delegate showAlertView:NCS_CODE_RETRIEVAL];
-        FieldworkSynchronizationException *exception = [[FieldworkSynchronizationException alloc] initWithName:@"Cas error in NCS Code retrieval" reason:nil userInfo:nil];
-        @throw exception;
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:NCS_CODE_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to retrieve proxy ticket: %@", error]];
     }
     else {
         [self sendRequestAndLoadDataWithProxyTicket:pt];
@@ -67,9 +65,7 @@
     
     RKResponse *response = [loader sendSynchronously];
     if(response.failureError) {
-        [_delegate showAlertView:NCS_CODE_RETRIEVAL];
-        FieldworkSynchronizationException *exception = [[FieldworkSynchronizationException alloc] initWithName:@"NCS Code Retrieval" reason:nil userInfo:nil];
-        @throw exception;
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:NCS_CODE_RETRIEVAL explanation:[response.failureError localizedDescription]];
     }
     if([response statusCode]==200) {
         NSString *strDate = [[NSDate date] lastModifiedFormat];
@@ -84,9 +80,7 @@
 #pragma mark - RKObjectLoaderDelegate Methods
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
-    [_delegate showAlertView:NCS_CODE_RETRIEVAL];
-    FieldworkSynchronizationException *exception = [[FieldworkSynchronizationException alloc] initWithName:@"NCS Code Retrieval" reason:nil userInfo:nil];
-    @throw exception;
+    @throw [[FieldworkSynchronizationException alloc] initWithReason:NCS_CODE_RETRIEVAL explanation:[error localizedDescription]];
 }
 
 
