@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Northwestern University. All rights reserved.
 //
 
-#import "RetrieveFieldworkStepTest.h"
+#import "FieldworkRetrieveStepTest.h"
 #import "FieldworkRetrieveStep.h"
 #import "RestKitSettings.h"
 #import "JSONParserNSJSONSerialization.h"
@@ -60,7 +60,7 @@ static NSString* baseURL = @"http://field.test.local";
 
 @end
 
-@implementation RetrieveFieldworkStepTest
+@implementation FieldworkRetrieveStepTest
 
 static NSString* url;
 static id serviceTicket;
@@ -122,29 +122,17 @@ static FieldworkRetrieveStep* step;
     STAssertThrowsSpecificNamed([step send], FieldworkSynchronizationException, @"object Loader failure in Retrieving Contacts", nil);
 }
 
-//- (void)testFailedRetrieveWhenNilServiceTicket {
-//    STAssertTrue(false, @"pending");
-//    
-//    [RestKitTestStub inject];
-//    
-//    FieldworkRetrieveStep* step = [[FieldworkRetrieveStep alloc] initWithServiceTicket:nil];
-//    
-//    STAssertTrue([step send], @"Retrieval should be successful");
-//}
-//
-//- (void)testFailedRetrieveWhenNilProxyTicket {
-//    STAssertTrue(false, @"pending");
-//    
-//    [RestKitTestStub inject];
-//    
-//    id serviceTicket = [OCMockObject mockForClass:[CasServiceTicket class]];
-//    
-//    [[[serviceTicket stub] andReturn:nil] obtainProxyTicket:(NSString * __autoreleasing *)[OCMArg anyPointer]];
-//    
-//    FieldworkRetrieveStep* step = [[FieldworkRetrieveStep alloc] initWithServiceTicket:serviceTicket];
-//    
-//    [serviceTicket verify];
-//    STAssertTrue([step send], @"Retrieval should be successful");
-//}
+- (void)testFailedRetrieveWhenNilServiceTicket {
+    FieldworkRetrieveStep* step = [[FieldworkRetrieveStep alloc] initWithServiceTicket:nil];
+    STAssertThrowsSpecificNamed([step send], FieldworkSynchronizationException, @"Failed to retrieve contacts (missing service ticket)", nil);
+}
+
+- (void)testFailedRetrieveWhenNilProxyTicket {
+    [[[serviceTicket stub] andReturn:nil] obtainProxyTicket:(NSString * __autoreleasing *)[OCMArg anyPointer]];
+
+    [serviceTicket verify];
+    
+    STAssertThrowsSpecificNamed([step send], FieldworkSynchronizationException, @"retrieving contacts failed because of CAS", nil);
+}
 
 @end

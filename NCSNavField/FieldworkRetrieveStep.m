@@ -46,14 +46,18 @@
 }
 
 - (void)retrieveContacts:(CasServiceTicket*)serviceTicket {
-    NSString *err;
+    if (!serviceTicket) {
+        @throw [[FieldworkSynchronizationException alloc] initWithName:@"Failed to retrieve contacts (missing service ticket)" reason:nil userInfo:nil];
+    }
+    
+    NSString *err = nil;
     CasProxyTicket *pt = [serviceTicket obtainProxyTicket:&err];
     if(err && [err length] > 0) {
         [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
-        FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"retrieving contacts failed because of CAS" reason:nil userInfo:nil];
-        @throw ex;
-    }
-    else {
+        @throw [[FieldworkSynchronizationException alloc] initWithName:@"retrieving contacts failed because of CAS" reason:nil userInfo:nil];
+    } else if (!pt) {
+        @throw [[FieldworkSynchronizationException alloc] initWithName:@"retrieving contacts failed because of CAS" reason:nil userInfo:nil];
+    } else {
         [self loadDataWithProxyTicket:pt];
     }
 }

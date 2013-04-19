@@ -8,6 +8,6 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "DatabaseTest.h"
-@interface RetrieveFieldworkStepTest : DatabaseTest
+@interface FieldworkRetrieveStepTest : DatabaseTest
 
 @end
