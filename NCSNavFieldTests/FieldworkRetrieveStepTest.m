@@ -10,7 +10,6 @@
 #import "FieldworkRetrieveStep.h"
 #import "RestKitSettings.h"
 #import "JSONParserNSJSONSerialization.h"
-//#import "ApplicationInformation.h"
 #import "ApplicationSettings.h"
 #import <RestKit/RestKit.h>
 #import <OCMock/OCMock.h>
