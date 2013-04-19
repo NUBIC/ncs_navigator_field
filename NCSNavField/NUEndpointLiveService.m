@@ -19,6 +19,9 @@
 @property (nonatomic, strong) NSURLConnection *endpointConnection;
 @property (nonatomic, strong) NSMutableData *receivedData;
 
+-(NSArray *)createEndpointsWithDataDictionary:(NSDictionary *)dataDictionary;
+-(NUEndpoint *)generateManualEndpoint;
+
 @end
 
 @implementation NUEndpointLiveService
@@ -38,26 +41,20 @@
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:self.receivedData options:0 error:&jsonError];
     if (jsonError) {
         if (self.endpointBlock) {
-            self.endpointBlock (@[], jsonError);
-        }
+            self.endpointBlock(@[], jsonError);
+        };
     }
     else {
-        NSArray *endpointArray = @[];
-        for (NSDictionary *endpointDictionary in dataDictionary[@"locations"]) {
-            NUEndpoint *newEndpoint = [[NUEndpoint alloc] initWithDataDictionary:endpointDictionary];
-            newEndpoint.isManualEndpoint = @NO;
-            endpointArray = [endpointArray arrayByAddingObject:newEndpoint];
-        }
         if (self.endpointBlock) {
-            self.endpointBlock (endpointArray, nil);
-        }
+            self.endpointBlock([self createEndpointsWithDataDictionary:dataDictionary], jsonError);
+        };
     }
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     if (self.endpointBlock) {
-        self.endpointBlock (@[], error);
-    }
+        self.endpointBlock(@[], error);
+    };;
 }
 
 #pragma mark customization
@@ -75,6 +72,15 @@
     [self.endpointConnection cancel];
 }
 
+-(NSArray *)createEndpointsWithDataDictionary:(NSDictionary *)dataDictionary {
+    NSArray *endpointArray = @[];
+    for (NSDictionary *endpointDictionary in dataDictionary[@"locations"]) {
+        NUEndpoint *newEndpoint = [[NUEndpoint alloc] initWithDataDictionary:endpointDictionary];
+        newEndpoint.isManualEndpoint = @NO;
+        endpointArray = [endpointArray arrayByAddingObject:newEndpoint];
+    }
+    return endpointArray;
+}
 
 -(NUEndpoint *)generateManualEndpoint {
     NUEndpoint *endpointOnDisk = [NUEndpoint userEndpointOnDisk];
@@ -95,6 +101,12 @@
         newEndpoint.isManualEndpoint = @YES;
         return newEndpoint;
     }
+}
+
+-(NSArray *) synchronousEndpointRequestFromString:(NSString *)jsonString {
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+    return [self createEndpointsWithDataDictionary:dataDictionary];
 }
 
 #pragma mark prototyping
