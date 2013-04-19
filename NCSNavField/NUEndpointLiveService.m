@@ -19,9 +19,6 @@
 @property (nonatomic, strong) NSURLConnection *endpointConnection;
 @property (nonatomic, strong) NSMutableData *receivedData;
 
--(void)createEndpointsWithDataDictionary:(NSDictionary *)dataDictionary andError:(NSError *)error;
--(NUEndpoint *)generateManualEndpoint;
-
 @end
 
 @implementation NUEndpointLiveService
@@ -40,15 +37,27 @@
     NSError *jsonError = nil;
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:self.receivedData options:0 error:&jsonError];
     if (jsonError) {
-        [self createEndpointsWithDataDictionary:nil andError:jsonError];
+        if (self.endpointBlock) {
+            self.endpointBlock (@[], jsonError);
+        }
     }
     else {
-        [self createEndpointsWithDataDictionary:dataDictionary andError:nil];
+        NSArray *endpointArray = @[];
+        for (NSDictionary *endpointDictionary in dataDictionary[@"locations"]) {
+            NUEndpoint *newEndpoint = [[NUEndpoint alloc] initWithDataDictionary:endpointDictionary];
+            newEndpoint.isManualEndpoint = @NO;
+            endpointArray = [endpointArray arrayByAddingObject:newEndpoint];
+        }
+        if (self.endpointBlock) {
+            self.endpointBlock (endpointArray, nil);
+        }
     }
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    [self createEndpointsWithDataDictionary:nil andError:error];
+    if (self.endpointBlock) {
+        self.endpointBlock (@[], error);
+    }
 }
 
 #pragma mark customization
@@ -66,18 +75,6 @@
     [self.endpointConnection cancel];
 }
 
--(void)createEndpointsWithDataDictionary:(NSDictionary *)dataDictionary andError:(NSError *)error {
-    NSArray *endpointArray = @[];
-    for (NSDictionary *endpointDictionary in dataDictionary[@"locations"]) {
-        NUEndpoint *newEndpoint = [[NUEndpoint alloc] initWithDataDictionary:endpointDictionary];
-        newEndpoint.isManualEndpoint = @NO;
-        endpointArray = [endpointArray arrayByAddingObject:newEndpoint];
-    }
-    endpointArray = [endpointArray arrayByAddingObject:[self generateManualEndpoint]];
-    if (self.endpointBlock) {
-        self.endpointBlock (endpointArray, error);
-    }
-}
 
 -(NUEndpoint *)generateManualEndpoint {
     NUEndpoint *endpointOnDisk = [NUEndpoint userEndpointOnDisk];
