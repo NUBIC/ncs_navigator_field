@@ -31,8 +31,6 @@
 }
 
 - (BOOL) send {
-    //We can also use this. I'm not 100% sure that this is the best solution, but it would be nice to save coding and have a single point
-    //where this functionality is handled (easier when we want to make changes.) (See the one line directly below.)
     NSString *ptError;
     CasProxyTicket *pt = [self.ticket obtainProxyTicket:&ptError];
     if(ptError && [ptError length] > 0) {
