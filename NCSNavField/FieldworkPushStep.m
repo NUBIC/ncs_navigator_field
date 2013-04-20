@@ -6,14 +6,14 @@
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import "FieldworkPutRequest.h"
+#import "FieldworkPushStep.h"
 #import "ApplicationSettings.h"
 #import "Fieldwork.h"
 #import "MergeStatus.h"
 #import "CasServiceTicket+Additions.h"
 #import "FieldworkSynchronizationException.h"
 
-@implementation FieldworkPutRequest
+@implementation FieldworkPushStep
 
 @synthesize ticket = _ticket;
 
