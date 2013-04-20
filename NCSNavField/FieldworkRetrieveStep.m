@@ -54,15 +54,17 @@
     CasProxyTicket *pt = [serviceTicket obtainProxyTicket:&err];
     if(err && [err length] > 0) {
         @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", err]];
-    } else if (!pt) {
-        @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:@"Proxy ticket is nil"];
     } else {
         [self loadDataWithProxyTicket:pt];
     }
 }
 
 - (void)loadDataWithProxyTicket:(CasProxyTicket*)ticket {
-    // Load the object model via RestKit	
+    if (!ticket) {
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:@"Proxy ticket is nil"];
+    }
+    
+    // Load the object model via RestKit
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
     [objectManager.client.HTTPHeaders setValue:ApplicationSettings.instance.clientId forKey:@"X-Client-ID"];
