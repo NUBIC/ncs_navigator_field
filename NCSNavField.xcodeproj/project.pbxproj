@@ -139,14 +139,6 @@
 		00FF37DE1417C50D0009B1D4 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37DD1417C50D0009B1D4 /* Instrument.m */; };
 		00FF37E71417D2380009B1D4 /* ContactNavigationTableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */; };
 		1605000A170B8BFD00F854E7 /* SendOnlyDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 16050009170B8BFC00F854E7 /* SendOnlyDelegateObject.m */; };
-		1613E7BA16D2DEAC0002FA0F /* endPointBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7B816D2DEAC0002FA0F /* endPointBarBackground.png */; };
-		1613E7BB16D2DEAC0002FA0F /* endPointBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7B916D2DEAC0002FA0F /* endPointBarBackground@2x.png */; };
-		1613E7BE16D2DEC90002FA0F /* NUEndpointBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1613E7BD16D2DEC90002FA0F /* NUEndpointBar.m */; };
-		1613E7C016D2DED80002FA0F /* NUEndpointBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7BF16D2DED80002FA0F /* NUEndpointBar.xib */; };
-		1613E7C316D3DC940002FA0F /* buttonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7C116D3DC940002FA0F /* buttonBackground.png */; };
-		1613E7C416D3DC940002FA0F /* buttonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7C216D3DC940002FA0F /* buttonBackground@2x.png */; };
-		1613E7D616D408390002FA0F /* buttonBackgroundDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7D416D408390002FA0F /* buttonBackgroundDown.png */; };
-		1613E7D716D408390002FA0F /* buttonBackgroundDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1613E7D516D408390002FA0F /* buttonBackgroundDown@2x.png */; };
 		1613E7DA16D4301E0002FA0F /* NUEndpointEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1613E7D916D4301E0002FA0F /* NUEndpointEnvironment.m */; };
 		1646CD3216CD860800CDCCEC /* NUEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD3116CD860800CDCCEC /* NUEndpoint.m */; };
 		1646CD3616CD892F00CDCCEC /* NUEndpointService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD3516CD892F00CDCCEC /* NUEndpointService.m */; };
@@ -632,15 +624,6 @@
 		00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactNavigationTableTest.m; sourceTree = "<group>"; };
 		16050008170B8BFC00F854E7 /* SendOnlyDelegateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendOnlyDelegateObject.h; sourceTree = "<group>"; };
 		16050009170B8BFC00F854E7 /* SendOnlyDelegateObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendOnlyDelegateObject.m; sourceTree = "<group>"; };
-		1613E7B816D2DEAC0002FA0F /* endPointBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endPointBarBackground.png; sourceTree = "<group>"; };
-		1613E7B916D2DEAC0002FA0F /* endPointBarBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "endPointBarBackground@2x.png"; sourceTree = "<group>"; };
-		1613E7BC16D2DEC90002FA0F /* NUEndpointBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointBar.h; sourceTree = "<group>"; };
-		1613E7BD16D2DEC90002FA0F /* NUEndpointBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointBar.m; sourceTree = "<group>"; };
-		1613E7BF16D2DED80002FA0F /* NUEndpointBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NUEndpointBar.xib; sourceTree = "<group>"; };
-		1613E7C116D3DC940002FA0F /* buttonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBackground.png; sourceTree = "<group>"; };
-		1613E7C216D3DC940002FA0F /* buttonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonBackground@2x.png"; sourceTree = "<group>"; };
-		1613E7D416D408390002FA0F /* buttonBackgroundDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBackgroundDown.png; sourceTree = "<group>"; };
-		1613E7D516D408390002FA0F /* buttonBackgroundDown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonBackgroundDown@2x.png"; sourceTree = "<group>"; };
 		1613E7D816D4301E0002FA0F /* NUEndpointEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointEnvironment.h; sourceTree = "<group>"; };
 		1613E7D916D4301E0002FA0F /* NUEndpointEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointEnvironment.m; sourceTree = "<group>"; };
 		162812F616B1C19200652CA2 /* 20130124192217_add_instrument_relation_to_eventTemplate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130124192217_add_instrument_relation_to_eventTemplate.xcdatamodel; sourceTree = "<group>"; };
@@ -1380,9 +1363,6 @@
 				1646CD4616CDA43300CDCCEC /* NUEndpointCollectionViewCell.h */,
 				1646CD4716CDA43300CDCCEC /* NUEndpointCollectionViewCell.m */,
 				1646CD4916CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib */,
-				1613E7BC16D2DEC90002FA0F /* NUEndpointBar.h */,
-				1613E7BD16D2DEC90002FA0F /* NUEndpointBar.m */,
-				1613E7BF16D2DED80002FA0F /* NUEndpointBar.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1473,12 +1453,6 @@
 				164959D3170E063200EEF552 /* ManualImage@2x.png */,
 				16F0DA5916D5719400290837 /* NoImageAvailable.png */,
 				16F0DA5A16D5719400290837 /* NoImageAvailable@2x.png */,
-				1613E7B816D2DEAC0002FA0F /* endPointBarBackground.png */,
-				1613E7B916D2DEAC0002FA0F /* endPointBarBackground@2x.png */,
-				1613E7C116D3DC940002FA0F /* buttonBackground.png */,
-				1613E7C216D3DC940002FA0F /* buttonBackground@2x.png */,
-				1613E7D416D408390002FA0F /* buttonBackgroundDown.png */,
-				1613E7D516D408390002FA0F /* buttonBackgroundDown@2x.png */,
 				227177B11680F121000C67DD /* lock-icon.png */,
 			);
 			name = Images;
@@ -1630,13 +1604,6 @@
 				227177B21680F121000C67DD /* lock-icon.png in Resources */,
 				1646CD4516CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib in Resources */,
 				1646CD4A16CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib in Resources */,
-				1613E7BA16D2DEAC0002FA0F /* endPointBarBackground.png in Resources */,
-				1613E7BB16D2DEAC0002FA0F /* endPointBarBackground@2x.png in Resources */,
-				1613E7C016D2DED80002FA0F /* NUEndpointBar.xib in Resources */,
-				1613E7C316D3DC940002FA0F /* buttonBackground.png in Resources */,
-				1613E7C416D3DC940002FA0F /* buttonBackground@2x.png in Resources */,
-				1613E7D616D408390002FA0F /* buttonBackgroundDown.png in Resources */,
-				1613E7D716D408390002FA0F /* buttonBackgroundDown@2x.png in Resources */,
 				16F4FB8416D566AC0001253F /* NCSNavField-environment.plist in Resources */,
 				16F0DA5B16D5719400290837 /* NoImageAvailable.png in Resources */,
 				16F0DA5C16D5719400290837 /* NoImageAvailable@2x.png in Resources */,
@@ -1796,7 +1763,6 @@
 				1646CD4416CD9AF200CDCCEC /* NUEndpointCollectionViewController.m in Sources */,
 				00B8756B16D56C5000CED547 /* ResponseSetMustacheContext.m in Sources */,
 				1646CD4816CDA43300CDCCEC /* NUEndpointCollectionViewCell.m in Sources */,
-				1613E7BE16D2DEC90002FA0F /* NUEndpointBar.m in Sources */,
 				1613E7DA16D4301E0002FA0F /* NUEndpointEnvironment.m in Sources */,
 				16F0DA5816D56BE800290837 /* NCSFieldConstants.m in Sources */,
 				1605000A170B8BFD00F854E7 /* SendOnlyDelegateObject.m in Sources */,

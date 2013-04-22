@@ -45,7 +45,6 @@
 #import "MdesCode.h"
 
 #import "NUEndpointCollectionViewController.h"
-#import "NUEndpointBar.h"
 #import "NUEndpoint.h"
 
 #import "NUManualEndpointEditViewController.h"
@@ -56,8 +55,6 @@
     @property(nonatomic,strong) BlockAlertView *alertView;
     @property (nonatomic, strong) UIAlertView *syncAlert;
     @property (nonatomic, strong) UIAlertView *locationAlert;
-
-    @property (nonatomic, strong) NUEndpointBar *endpointBar;
 
 @property (nonatomic, strong) NUManualEndpointEditViewController *manualEndpointEditViewController;
 
@@ -97,7 +94,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsDidChange:) name:SettingsDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contactInitiateScreenDismissed:) name:ContactInitiateScreenDismissedNotification object:NULL];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(providerSelected:) name:PROVIDER_SELECTED_NOTIFICATION_KEY object:NULL];
-
     }
     return self;
 }
@@ -250,29 +246,48 @@
 #pragma mark - endpoint bar 
 
 -(void)setUpEndpointBar {
-    if (!self.endpointBar) {
-        self.endpointBar = [[NUEndpointBar alloc] initWithFrame:CGRectMake(0.0f, self.view.frame.size.height - 15.0f, self.view.frame.size.width, 59.0f)];
-        [self.navigationController.view addSubview:self.endpointBar];
-        [self.endpointBar.endpointBarButton addTarget:self action:@selector(endpointBarButtonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    static float ButtonPadding = 15.0f;
+    self.navigationController.toolbarHidden = NO;
     NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
+    
+    NSString *buttonText = @"";
+    NSAttributedString *labeledText = nil;
+    
     if ([endpoint.isManualEndpoint isEqualToNumber:@NO]) {
         NSString *labelString = [NSString stringWithFormat:@"Your current location is:\n%@", endpoint.name];
         NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
         paragraphStyle.lineSpacing = -3.0f;
-        NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
-        [labelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:endpoint.name]];
-        self.endpointBar.endpointBarLabel.attributedText = labelText;
-        [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
+        NSMutableAttributedString *mutableLabelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
+        [mutableLabelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:endpoint.name]];
+        labeledText = [[NSAttributedString alloc] initWithAttributedString:mutableLabelText];
+        buttonText = @"Switch location";
     }
     else if ([endpoint.isManualEndpoint isEqualToNumber:@YES]) {
-        self.endpointBar.endpointBarLabel.attributedText = [[NSAttributedString alloc] initWithString:@"You are using\nmanual mode" attributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:13]}];
-        [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
+        labeledText = [[NSAttributedString alloc] initWithString:@"You are using\nmanual mode" attributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:13]}];
+        buttonText = @"Switch location";
     }
     else {
-        self.endpointBar.endpointBarLabel.text = @"No location chosen";
-        [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
+        labeledText = [[NSAttributedString alloc] initWithString:@"No location chosen"];
+        buttonText = @"Pick location";
     }
+    
+    UILabel *endpointLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
+                                                                       0.0f,
+                                                                       self.navigationController.toolbar.bounds.size.width - [buttonText sizeWithFont:[UIFont systemFontOfSize:12]].width - (ButtonPadding * 4),
+                                                                       self.navigationController.toolbar.bounds.size.height)];
+    endpointLabel.numberOfLines = 0;
+    endpointLabel.backgroundColor = [UIColor clearColor];
+    endpointLabel.shadowOffset = CGSizeMake(0.0f, -1.0f);
+    endpointLabel.attributedText = labeledText;
+    
+    UIColor *textColor = (self.navigationController.toolbar.barStyle == UIBarStyleBlack) ? [UIColor whiteColor] : [UIColor colorWithRed:0.29f green:0.32f blue:0.34f alpha:1.0f];
+    UIColor *shadowColor = (self.navigationController.toolbar.barStyle == UIBarStyleBlack) ? [UIColor darkTextColor] : [UIColor lightTextColor];
+    endpointLabel.shadowColor = shadowColor;
+    endpointLabel.textColor = textColor;
+    
+    UIBarButtonItem *endpointBarButton = [[UIBarButtonItem alloc] initWithTitle:buttonText style:UIBarButtonItemStyleBordered target:self action:@selector(endpointBarButtonWasTapped:)];
+    UIBarButtonItem *endpointBarLabel = [[UIBarButtonItem alloc] initWithCustomView:endpointLabel];
+    [self.navigationController.toolbar setItems:@[endpointBarLabel, endpointBarButton] animated:NO];
 }
 
 -(void)endpointBarButtonWasTapped:(UIButton *)endpointBarButton {
@@ -703,7 +718,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tableView.tableHeaderView = [self tableHeaderView];
-    [self setUpEndpointBar];
 }
 
 - (UIView*)tableHeaderView {
@@ -778,6 +792,7 @@
             [self presentEndpointSelectionController];
         }
     }
+    [self setUpEndpointBar];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
