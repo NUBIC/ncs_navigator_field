@@ -13,7 +13,7 @@
 - (id)initWithReason:(NSString*)reason explanation:(NSString*)explanation {
     self = [self initWithName:@"FieldworkSynchronizationException" reason:reason userInfo:nil];
     if (self) {
-        _explanation = [NSString stringWithString:explanation];
+        _explanation = explanation ? [NSString stringWithString:explanation] : nil;
     }
     return self;
 }
