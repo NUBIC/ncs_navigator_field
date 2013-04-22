@@ -19,6 +19,7 @@
 #import "CasProxyTicket.h"
 #import "CasServiceTicket+Additions.h"
 #import "FieldworkSynchronizationException.h"
+#import "RestKitTestStub.h"
 
 @implementation NSDate (UnitTest)
 
@@ -37,24 +38,6 @@ static NSDate* dateStub = nil;
 
 - (NSString*) clientId {
     return @"CID-TEST";
-}
-
-@end
-
-@interface RestKitTestStub : NSObject
-@end
-
-@implementation RestKitTestStub
-
-static NSString* baseURL = @"http://field.test.local";
-
-+ (NSString*) baseURL {
-    return baseURL;
-}
-
-+ (void)inject {   
-    [RKObjectManager sharedManager].client = [[RKClient alloc] initWithBaseURLString:baseURL];
-    [[RKParserRegistry sharedRegistry] setParserClass:[JSONParserNSJSONSerialization class] forMIMEType:RKMIMETypeJSON];
 }
 
 @end

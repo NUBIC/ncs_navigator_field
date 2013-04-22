@@ -77,6 +77,7 @@
 		007135D1171EDC40007D38C3 /* FieldworkRetrieveStepTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 007135D0171EDC40007D38C3 /* FieldworkRetrieveStepTest.m */; };
 		0073B3681511277000543DA4 /* Fieldwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073B3671511277000543DA4 /* Fieldwork.m */; };
 		00783481172226C1003F7888 /* FieldworkPushStepTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00783480172226C1003F7888 /* FieldworkPushStepTest.m */; };
+		0078348417224332003F7888 /* RestKitTestStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 0078348317224332003F7888 /* RestKitTestStub.m */; };
 		0078A9AE159E414400B9FBD6 /* EventVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0078A9AD159E414400B9FBD6 /* EventVC.m */; };
 		007C1F4114FBFACA0020DF30 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 007C1F4014FBFACA0020DF30 /* Podfile */; };
 		00810AB81486D1AE0098C0D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF914112E5E0097A878 /* CoreData.framework */; };
@@ -501,6 +502,8 @@
 		0073B3671511277000543DA4 /* Fieldwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fieldwork.m; sourceTree = "<group>"; };
 		0078347F172226C1003F7888 /* FieldworkPushStepTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkPushStepTest.h; sourceTree = "<group>"; };
 		00783480172226C1003F7888 /* FieldworkPushStepTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkPushStepTest.m; sourceTree = "<group>"; };
+		0078348217224332003F7888 /* RestKitTestStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitTestStub.h; sourceTree = "<group>"; };
+		0078348317224332003F7888 /* RestKitTestStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitTestStub.m; sourceTree = "<group>"; };
 		0078A9AC159E414400B9FBD6 /* EventVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventVC.h; sourceTree = "<group>"; };
 		0078A9AD159E414400B9FBD6 /* EventVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventVC.m; sourceTree = "<group>"; };
 		007C1F4014FBFACA0020DF30 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
@@ -933,6 +936,8 @@
 				167292DC170097B20046B194 /* NUEndpointTest.m */,
 				007135CF171EDC40007D38C3 /* FieldworkRetrieveStepTest.h */,
 				007135D0171EDC40007D38C3 /* FieldworkRetrieveStepTest.m */,
+				0078348217224332003F7888 /* RestKitTestStub.h */,
+				0078348317224332003F7888 /* RestKitTestStub.m */,
 			);
 			name = Tests;
 			path = NCSNavFieldTests;
@@ -1898,6 +1903,7 @@
 				167292DD170097B20046B194 /* NUEndpointTest.m in Sources */,
 				007135D1171EDC40007D38C3 /* FieldworkRetrieveStepTest.m in Sources */,
 				00783481172226C1003F7888 /* FieldworkPushStepTest.m in Sources */,
+				0078348417224332003F7888 /* RestKitTestStub.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

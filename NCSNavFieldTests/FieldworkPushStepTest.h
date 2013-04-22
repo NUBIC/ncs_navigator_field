@@ -7,7 +7,8 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "DatabaseTest.h"
 
-@interface FieldworkPushStepTest : SenTestCase
+@interface FieldworkPushStepTest : DatabaseTest
 
 @end
