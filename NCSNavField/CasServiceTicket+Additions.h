@@ -11,5 +11,5 @@
 @class CasProxyTicket;
 
 @interface CasServiceTicket (Additions)
-- (CasProxyTicket*) obtainProxyTicketNew;
+- (CasProxyTicket*) obtainProxyTicket;
 @end

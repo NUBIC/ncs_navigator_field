@@ -51,7 +51,7 @@ id proxyTicket;
     
     [[[proxyTicket stub] andReturn:nil] error];
 
-    STAssertNotNil([serviceTicket obtainProxyTicketNew], @"Should be successful");
+    STAssertNotNil([serviceTicket obtainProxyTicket], @"Should be successful");
 
     [serviceTicket verify];
     [casClient verify];
@@ -69,7 +69,7 @@ id proxyTicket;
     
     [[[proxyTicket stub] andReturn:nil] error];
     
-    STAssertNotNil([serviceTicket obtainProxyTicketNew], @"Should be successful");
+    STAssertNotNil([serviceTicket obtainProxyTicket], @"Should be successful");
     
     [serviceTicket verify];
     [casClient verify];
@@ -81,7 +81,7 @@ id proxyTicket;
     [[serviceTicket expect] present];
     [[[serviceTicket stub] andReturnValue:OCMOCK_VALUE((BOOL){NO})] isOk];
         
-    STAssertThrowsSpecific([serviceTicket obtainProxyTicketNew], CasTicketException, nil);
+    STAssertThrowsSpecific([serviceTicket obtainProxyTicket], CasTicketException, nil);
     
     [serviceTicket verify];
 }
@@ -97,7 +97,7 @@ id proxyTicket;
 
     [[[proxyTicket stub] andReturn:@"Failure"] error];
 
-    STAssertThrowsSpecific([serviceTicket obtainProxyTicketNew], CasTicketException, nil);
+    STAssertThrowsSpecific([serviceTicket obtainProxyTicket], CasTicketException, nil);
 
     [serviceTicket verify];
     [casClient verify];

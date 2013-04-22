@@ -16,6 +16,7 @@
 #import "NSDate+Additions.h"
 #import "CasServiceTicket+Additions.h"
 #import "FieldworkSynchronizationException.h"
+#import "CasTicketException.h"
 
 @interface FieldworkRetrieveStep() {
     BOOL _bRequestWorked;
@@ -50,12 +51,12 @@
         @throw [[FieldworkSynchronizationException alloc] initWithReason:@"Failed to retrieve contacts" explanation:@"Service ticket is nil"];
     }
     
-    NSString *err = nil;
-    CasProxyTicket *pt = [serviceTicket obtainProxyTicket:&err];
-    if(err && [err length] > 0) {
-        @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", err]];
-    } else {
+    @try {
+        CasProxyTicket *pt = [self.ticket obtainProxyTicket];
         [self loadDataWithProxyTicket:pt];
+    }
+    @catch (CasTicketException *te) {
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", te.explanation]];
     }
 }
 

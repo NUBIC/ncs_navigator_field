@@ -78,7 +78,7 @@ static FieldworkRetrieveStep* step;
         withHeaders(@{@"Content-Type": @"application/json"}).
         withBody(@"{}");
 
-    [[[serviceTicket stub] andReturn:proxyTicket] obtainProxyTicket:(NSString * __autoreleasing *)[OCMArg anyPointer]];
+    [[[serviceTicket stub] andReturn:proxyTicket] obtainProxyTicket];
     [[[proxyTicket stub] andReturn:@"PT-TEST-VALID"] proxyTicket];
         
     [serviceTicket verify];
@@ -95,7 +95,7 @@ static FieldworkRetrieveStep* step;
     andReturn(401).
     withBody(@"Authorization Required");
     
-    [[[serviceTicket stub] andReturn:proxyTicket] obtainProxyTicket:(NSString * __autoreleasing *)[OCMArg anyPointer]];
+    [[[serviceTicket stub] andReturn:proxyTicket] obtainProxyTicket];
     [[[proxyTicket stub] andReturn:@"PT-TEST-INVALID"] proxyTicket];
     
     [serviceTicket verify];
@@ -110,7 +110,7 @@ static FieldworkRetrieveStep* step;
 }
 
 - (void)testFailedRetrieveWhenNilProxyTicket {
-    [[[serviceTicket stub] andReturn:nil] obtainProxyTicket:(NSString * __autoreleasing *)[OCMArg anyPointer]];
+    [[[serviceTicket stub] andReturn:nil] obtainProxyTicket];
 
     [serviceTicket verify];
     

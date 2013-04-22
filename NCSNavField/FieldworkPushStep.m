@@ -12,6 +12,7 @@
 #import "MergeStatus.h"
 #import "CasServiceTicket+Additions.h"
 #import "FieldworkSynchronizationException.h"
+#import "CasTicketException.h"
 
 @implementation FieldworkPushStep
 
@@ -30,17 +31,21 @@
     return self;
 }
 
-- (BOOL) send {
+- (BOOL)send {
     if (!self.ticket) {
         @throw [[FieldworkSynchronizationException alloc] initWithReason:@"Failed to retrieve contacts" explanation:@"Service ticket is nil"];
     }
-    NSString *ptError;
-    CasProxyTicket *pt = [self.ticket obtainProxyTicket:&ptError];
-    if(ptError && [ptError length] > 0) {
-        @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to retrieve proxy ticket: %@", ptError]];
+    
+    BOOL success = FALSE;
+    
+    @try {
+        CasProxyTicket *pt = [self.ticket obtainProxyTicket];
+        success = [self send:pt];
     }
-        
-    return [self send:pt];
+    @catch (CasTicketException *te) {
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to retrieve proxy ticket: %@", te.explanation]];
+    }
+    return success;
 }
 
 - (BOOL) isSuccessful {

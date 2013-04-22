@@ -52,7 +52,7 @@ static id proxyTicket;
     
     FieldworkPushStep* step = [[FieldworkPushStep alloc] initWithServiceTicket:serviceTicket];
     
-    [[[serviceTicket stub] andReturn:proxyTicket] obtainProxyTicket:(NSString * __autoreleasing *)[OCMArg anyPointer]];
+    [[[serviceTicket stub] andReturn:proxyTicket] obtainProxyTicket];
     [[[proxyTicket stub] andReturn:@"PT-TEST-VALID"] proxyTicket];
     
     [serviceTicket verify];
@@ -69,7 +69,7 @@ static id proxyTicket;
 - (void)testFailedPushWithNilProxyTicket {
     serviceTicket = [OCMockObject mockForClass:[CasServiceTicket class]];
         
-    [[[serviceTicket stub] andReturn:nil] obtainProxyTicket:(NSString * __autoreleasing *)[OCMArg anyPointer]];
+    [[[serviceTicket stub] andReturn:nil] obtainProxyTicket];
     
     [serviceTicket verify];
     
