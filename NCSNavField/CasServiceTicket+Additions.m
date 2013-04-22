@@ -9,32 +9,39 @@
 #import "CasServiceTicket+Additions.h"
 #import "ApplicationSettings.h"
 #import "ProviderSynchronizeOperation.h"
+#import "CasTicketException.h"
 
 @implementation CasServiceTicket (Additions)
-- (CasProxyTicket*) obtainProxyTicket:(NSString**)error {
-    CasProxyTicket* pt = NULL;
+
+/**
+ *  Obtains a proxy ticket from the CAS server given a proxy
+ *  granting ticket can be obtained.
+ *
+ *  @throws TicketException
+ *
+ **/
+- (CasProxyTicket*) obtainProxyTicket {
     if (!self.pgt) {
         [self present];
-    }
-    if(self.message)
-        NSLog(@"%@",self.message);
-
-    if (self.ok) {
-        CasConfiguration* conf = [ApplicationSettings casConfiguration];
-        CasClient* client = [[CasClient alloc] initWithConfiguration:conf];
-        NSString* coreURL = [ApplicationSettings instance].coreURL;
         
-        CasProxyTicket* pending = [client proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:self.pgt];
-        [pending reify];
-        if (!pending.error) {
-            NSLog(@"Proxy ticket successfully obtained: %@", pending.proxyTicket);
-            pt = pending;
-        } else {
-            *error = [NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", pending.message];
+        if (!self.ok) {
+            @throw [[CasTicketException alloc] initWithReason:@"Failed when presenting service ticket" explanation:self.message];
         }
-    } else {
-        *error = [NSString stringWithFormat:@"Presenting service ticket failed: %@", [self message]];
     }
-    return pt;
+    
+    NSString* coreURL = [ApplicationSettings instance].coreURL;
+    CasProxyTicket* pending = [[self casClient] proxyTicket:NULL serviceURL:coreURL proxyGrantingTicket:self.pgt];
+    [pending reify];
+    
+    if (pending.error) {
+        @throw [[CasTicketException alloc] initWithReason:@"Failed to obtain proxy ticket" explanation:pending.error];
+    }
+    
+    return pending;
+}
+
+- (CasClient*) casClient {
+    CasConfiguration* conf = [ApplicationSettings casConfiguration];
+    return [[CasClient alloc] initWithConfiguration:conf];
 }
 @end

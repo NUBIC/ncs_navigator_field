@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00010412161B73AA00952C3C /* NUResponse+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00010411161B73AA00952C3C /* NUResponse+Additions.m */; };
-		0007E984172194B300F1E7C5 /* CasServiceTicket+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 009A48A1165C476500601959 /* CasServiceTicket+Additions.m */; };
 		000922B415F654A0005EBA3D /* ResponseSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 000922B015F652F6005EBA3D /* ResponseSetTest.m */; };
 		000D8E77152CAC5B006EE224 /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8E76152CAC5B006EE224 /* TimePicker.m */; };
 		000D8E8B152E9EE7006EE224 /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8E8A152E9EE7006EE224 /* NSDate+Additions.m */; };
@@ -78,6 +77,9 @@
 		0073B3681511277000543DA4 /* Fieldwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073B3671511277000543DA4 /* Fieldwork.m */; };
 		00783481172226C1003F7888 /* FieldworkPushStepTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00783480172226C1003F7888 /* FieldworkPushStepTest.m */; };
 		0078348417224332003F7888 /* RestKitTestStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 0078348317224332003F7888 /* RestKitTestStub.m */; };
+		007834871725C7A8003F7888 /* CasServiceTicketTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 007834861725C7A8003F7888 /* CasServiceTicketTest.m */; };
+		0078348B1725CAB2003F7888 /* CasTicketException.m in Sources */ = {isa = PBXBuildFile; fileRef = 007834891725CA35003F7888 /* CasTicketException.m */; };
+		0078348C1725D020003F7888 /* CasServiceTicket+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 009A48A1165C476500601959 /* CasServiceTicket+Additions.m */; };
 		0078A9AE159E414400B9FBD6 /* EventVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0078A9AD159E414400B9FBD6 /* EventVC.m */; };
 		007C1F4114FBFACA0020DF30 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 007C1F4014FBFACA0020DF30 /* Podfile */; };
 		00810AB81486D1AE0098C0D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF914112E5E0097A878 /* CoreData.framework */; };
@@ -504,6 +506,10 @@
 		00783480172226C1003F7888 /* FieldworkPushStepTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkPushStepTest.m; sourceTree = "<group>"; };
 		0078348217224332003F7888 /* RestKitTestStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitTestStub.h; sourceTree = "<group>"; };
 		0078348317224332003F7888 /* RestKitTestStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitTestStub.m; sourceTree = "<group>"; };
+		007834851725C7A8003F7888 /* CasServiceTicketTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CasServiceTicketTest.h; sourceTree = "<group>"; };
+		007834861725C7A8003F7888 /* CasServiceTicketTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CasServiceTicketTest.m; sourceTree = "<group>"; };
+		007834881725CA35003F7888 /* CasTicketException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CasTicketException.h; sourceTree = "<group>"; };
+		007834891725CA35003F7888 /* CasTicketException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CasTicketException.m; sourceTree = "<group>"; };
 		0078A9AC159E414400B9FBD6 /* EventVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventVC.h; sourceTree = "<group>"; };
 		0078A9AD159E414400B9FBD6 /* EventVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventVC.m; sourceTree = "<group>"; };
 		007C1F4014FBFACA0020DF30 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
@@ -875,6 +881,8 @@
 		0026E691140347E700355BCB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				007834851725C7A8003F7888 /* CasServiceTicketTest.h */,
+				007834861725C7A8003F7888 /* CasServiceTicketTest.m */,
 				0078347F172226C1003F7888 /* FieldworkPushStepTest.h */,
 				00783480172226C1003F7888 /* FieldworkPushStepTest.m */,
 				00B8756516D56A5300CED547 /* ResponseSetMustacheContextTest.h */,
@@ -1546,6 +1554,8 @@
 			children = (
 				22942CD016692B7300242588 /* FieldworkSynchronizationException.h */,
 				22942CD116692B7300242588 /* FieldworkSynchronizationException.m */,
+				007834881725CA35003F7888 /* CasTicketException.h */,
+				007834891725CA35003F7888 /* CasTicketException.m */,
 			);
 			name = Exceptions;
 			sourceTree = "<group>";
@@ -1770,6 +1780,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0078348B1725CAB2003F7888 /* CasTicketException.m in Sources */,
 				009BE3AF14FC2217008195F9 /* SyncActivityIndicator.m in Sources */,
 				0026E676140347E700355BCB /* main.m in Sources */,
 				0026E679140347E700355BCB /* NCSNavFieldAppDelegate.m in Sources */,
@@ -1872,7 +1883,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0007E984172194B300F1E7C5 /* CasServiceTicket+Additions.m in Sources */,
+				0078348C1725D020003F7888 /* CasServiceTicket+Additions.m in Sources */,
 				000922B415F654A0005EBA3D /* ResponseSetTest.m in Sources */,
 				004FC7131486BF8300A378DC /* PickerOptionTest.m in Sources */,
 				00FF37E71417D2380009B1D4 /* ContactNavigationTableTest.m in Sources */,
@@ -1904,6 +1915,7 @@
 				007135D1171EDC40007D38C3 /* FieldworkRetrieveStepTest.m in Sources */,
 				00783481172226C1003F7888 /* FieldworkPushStepTest.m in Sources */,
 				0078348417224332003F7888 /* RestKitTestStub.m in Sources */,
+				007834871725C7A8003F7888 /* CasServiceTicketTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
