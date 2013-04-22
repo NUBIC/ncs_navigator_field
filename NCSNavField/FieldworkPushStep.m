@@ -31,6 +31,9 @@
 }
 
 - (BOOL) send {
+    if (!self.ticket) {
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:@"Failed to retrieve contacts" explanation:@"Service ticket is nil"];
+    }
     NSString *ptError;
     CasProxyTicket *pt = [self.ticket obtainProxyTicket:&ptError];
     if(ptError && [ptError length] > 0) {
@@ -45,6 +48,9 @@
 }
 
 - (BOOL)send:(CasProxyTicket*)proxyTicket {
+    if (!proxyTicket) {
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:@"Proxy ticket is nil"];
+    }
     BOOL success = false;
     if (proxyTicket) {
         Fieldwork* submission = [Fieldwork submission];

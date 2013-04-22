@@ -17,6 +17,7 @@
 #import "Contact.h"
 #import "JSONParserNSJSONSerialization.h"
 #import "RestKitTestStub.h"
+#import "FieldworkSynchronizationException.h"
 
 @implementation FieldworkPushStepTest
 
@@ -57,13 +58,23 @@ static id proxyTicket;
     [serviceTicket verify];
     [proxyTicket verify];
     
-
-    
     STAssertTrue([step send], @"Should be successful");
 }
 
 - (void)testFailedPushWithNilServiceTicket {
+    FieldworkPushStep* step = [[FieldworkPushStep alloc] initWithServiceTicket:nil];
+    STAssertThrowsSpecific([step send], FieldworkSynchronizationException, nil);
+}
+
+- (void)testFailedPushWithNilProxyTicket {
+    serviceTicket = [OCMockObject mockForClass:[CasServiceTicket class]];
+        
+    [[[serviceTicket stub] andReturn:nil] obtainProxyTicket:(NSString * __autoreleasing *)[OCMArg anyPointer]];
     
+    [serviceTicket verify];
+    
+    FieldworkPushStep* step = [[FieldworkPushStep alloc] initWithServiceTicket:serviceTicket];
+    STAssertThrowsSpecific([step send], FieldworkSynchronizationException, nil);
 }
 
 @end
