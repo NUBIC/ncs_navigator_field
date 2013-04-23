@@ -851,7 +851,6 @@
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:RKReachabilityDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:SettingsDidChangeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:ContactInitiateScreenDismissedNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:PROVIDER_SELECTED_NOTIFICATION_KEY object:nil];
 }
 
