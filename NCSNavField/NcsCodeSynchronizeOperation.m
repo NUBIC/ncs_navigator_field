@@ -11,6 +11,7 @@
 #import "ApplicationSettings.h"
 #import "CasServiceTicket+Additions.h"
 #import "FieldworkSynchronizationException.h"
+#import "CasTicketException.h"
 
 @interface NcsCodeSynchronizeOperation ()
 -(void)sendRequestAndLoadDataWithProxyTicket:(CasProxyTicket*)ticket;
@@ -30,21 +31,21 @@
 }
 
 - (BOOL)perform {
-    if (!self.ticket.pgt) {
-        NSLog(@"Presenting service ticket");
-        [self.ticket present];
+    if (!self.ticket) {
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:@"Failed to retrieve contacts" explanation:@"Service ticket is nil"];
     }
-    NSString *error = [NSString new];
-    CasProxyTicket *pt = [self.ticket obtainProxyTicket:&error];
-    if(error && [error length]>0) {
-        [_delegate showAlertView:NCS_CODE_RETRIEVAL];
-        FieldworkSynchronizationException *exception = [[FieldworkSynchronizationException alloc] initWithName:@"Cas error in NCS Code retrieval" reason:nil userInfo:nil];
-        @throw exception;
-    }
-    else {
+    
+    BOOL success = FALSE;
+
+    @try {
+        CasProxyTicket *pt = [self.ticket obtainProxyTicket];
         [self sendRequestAndLoadDataWithProxyTicket:pt];
-        return YES;
+        success = TRUE;
     }
+    @catch (CasTicketException *te) {
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:NCS_CODE_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to retrieve proxy ticket: %@", te.explanation]];
+    }
+    return success;
 }
 
 - (void)sendRequestAndLoadDataWithProxyTicket:(CasProxyTicket*)ticket {
@@ -67,9 +68,7 @@
     
     RKResponse *response = [loader sendSynchronously];
     if(response.failureError) {
-        [_delegate showAlertView:NCS_CODE_RETRIEVAL];
-        FieldworkSynchronizationException *exception = [[FieldworkSynchronizationException alloc] initWithName:@"NCS Code Retrieval" reason:nil userInfo:nil];
-        @throw exception;
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:NCS_CODE_RETRIEVAL explanation:[response.failureError localizedDescription]];
     }
     if([response statusCode]==200) {
         NSString *strDate = [[NSDate date] lastModifiedFormat];
@@ -84,9 +83,7 @@
 #pragma mark - RKObjectLoaderDelegate Methods
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
-    [_delegate showAlertView:NCS_CODE_RETRIEVAL];
-    FieldworkSynchronizationException *exception = [[FieldworkSynchronizationException alloc] initWithName:@"NCS Code Retrieval" reason:nil userInfo:nil];
-    @throw exception;
+    @throw [[FieldworkSynchronizationException alloc] initWithReason:NCS_CODE_RETRIEVAL explanation:[error localizedDescription]];
 }
 
 

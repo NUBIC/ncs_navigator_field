@@ -28,6 +28,8 @@
 
 + (EventTemplate*)pregnancyVisitOneTemplate;
 
++ (EventTemplate *)birthCohortTemplate;
+
 - (Event*)buildEventForParticipant:(Participant*)participant person:(Person*)person;
 
 @end

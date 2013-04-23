@@ -11,6 +11,7 @@
 #import "ApplicationSettings.h"
 #import "CasServiceTicket+Additions.h"
 #import "FieldworkSynchronizationException.h"
+#import "CasTicketException.h"
 
 @interface ProviderSynchronizeOperation () {
     
@@ -31,15 +32,21 @@
 }
 
 - (BOOL)perform {
-    NSString *er;
-    CasProxyTicket *pt = [self.ticket obtainProxyTicket:&er];
-    if(er && [er length] > 0) {
-        [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
-        FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:er reason:nil userInfo:nil];
-        @throw ex;
+    if (!self.ticket) {
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:@"Failed to retrieve contacts" explanation:@"Service ticket is nil"];
     }
-    else
-       return [self sendRequestForProviders:pt];
+    
+    BOOL success = FALSE;
+    
+    @try {
+        CasProxyTicket *pt = [self.ticket obtainProxyTicket];
+        [self sendRequestForProviders:pt];
+        success = TRUE;
+    }
+    @catch (CasTicketException *te) {
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to retrieve proxy ticket: %@", te.explanation]];
+    }
+    return success;
 }
 
 - (BOOL)sendRequestForProviders:(CasProxyTicket*)ticket {
@@ -74,9 +81,7 @@
 #pragma mark - RKObjectLoaderDelegate Methods
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
-    [_delegate showAlertView:PROVIDER_RETRIEVAL];
-    FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"Retrieving providers" reason:nil userInfo:nil];
-    @throw ex;
+    @throw [[FieldworkSynchronizationException alloc] initWithReason:PROVIDER_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to retrieve providers: %@", [error localizedDescription]]];
 }
 
 

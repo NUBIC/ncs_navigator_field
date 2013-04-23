@@ -50,7 +50,11 @@ DEPENDENCIES:
   - JSONKit (>= 1.5pre)
   - MBProgressHUD (= 0.5)
   - MRCEnumerable (from `MRCEnumerable.podspec`)
+<<<<<<< HEAD
+  - Nocilla (~> 0.4)
+=======
   - Nocilla (= 0.4)
+>>>>>>> master
   - NUSurveyor (from `NUSurveyor.podspec`)
   - OCMock (= 2.1.1)
   - RestKit (= 0.10.2)

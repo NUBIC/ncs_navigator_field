@@ -8,6 +8,7 @@
 
 #import "Contact.h"
 #import "Event.h"
+#import "EventTemplate.h"
 #import "Person.h"
 #import "Participant.h"
 #import "NSString+Additions.h"
@@ -49,6 +50,25 @@
     }
     else {
         return [NSNumber numberWithInt:5];
+    }
+}
+
+-(void) generateEventWithName:(NSString *)eventTemplateName {
+    Participant* participant = [Participant participant];
+    Person* person = [participant selfPerson];
+    self.person = person;
+    self.personId = person.personId;
+    
+    EventTemplate* pregnancyScreeningEventTmpl = nil; 
+    if ([eventTemplateName isEqualToString:EVENT_TEMPLATE_PBS_ELIGIBILITY] || [eventTemplateName isEqualToString:EVENT_TEMPLATE_PBS_ELIGIBILITY_LEGACY]) {
+        pregnancyScreeningEventTmpl = [EventTemplate pregnancyScreeningTemplate];
+    }
+    else if ([eventTemplateName isEqualToString:EVENT_TEMPLATE_BIRTH_COHORT]) {
+        pregnancyScreeningEventTmpl = [EventTemplate birthCohortTemplate];
+    }
+    
+    if (pregnancyScreeningEventTmpl) {
+        [self addEventsObject:[pregnancyScreeningEventTmpl buildEventForParticipant:participant person:person]];
     }
 }
 

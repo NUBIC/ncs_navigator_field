@@ -45,19 +45,16 @@
 #import "MdesCode.h"
 
 #import "NUEndpointCollectionViewController.h"
-#import "NUEndpointBar.h"
 #import "NUEndpoint.h"
 
 #import "NUManualEndpointEditViewController.h"
 
-@interface RootViewController () <NUEndpointCollectionViewDelegate, NUManualEndpointDelegate, CasLoginVCDelegate>
+@interface RootViewController () <NUEndpointCollectionViewDelegate, NUManualEndpointDelegate, CasLoginVCDelegate, ContactInitiateDelegate>
     @property(nonatomic,strong) NSArray* contacts;
     @property(nonatomic,strong) ContactNavigationTable* table;
     @property(nonatomic,strong) BlockAlertView *alertView;
     @property (nonatomic, strong) UIAlertView *syncAlert;
     @property (nonatomic, strong) UIAlertView *locationAlert;
-
-    @property (nonatomic, strong) NUEndpointBar *endpointBar;
 
 @property (nonatomic, strong) NUManualEndpointEditViewController *manualEndpointEditViewController;
 
@@ -68,6 +65,8 @@
 -(void)presentEndpointSelectionController;
 
 -(void)startSyncWithServiceTicket:(CasServiceTicket*)serviceTicket withRetrieval:(BOOL)shouldRetrieve;
+
+-(ContactInitiateVC *)startPBSScreenWithEventTemplateName:(NSString *)eventTemplateName;
 
 @end
 
@@ -95,9 +94,7 @@
                                                      name:RKReachabilityDidChangeNotification
                                                    object:self.reachability];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsDidChange:) name:SettingsDidChangeNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contactInitiateScreenDismissed:) name:ContactInitiateScreenDismissedNotification object:NULL];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(providerSelected:) name:PROVIDER_SELECTED_NOTIFICATION_KEY object:NULL];
-
     }
     return self;
 }
@@ -151,17 +148,6 @@
     [[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:NULL];
     SurveyContextGenerator* g = [[SurveyContextGenerator alloc] initWithProvider:provider];
     [self loadSurveyor:instrument responseGeneratorContext:[g context]];
-}
-
-- (void)contactInitiateScreenDismissed:(NSNotification*)notification {
-    self.contacts = [self contactsFromDataStore];
-  
-    Contact* current = [[notification userInfo] objectForKey:@"contact"];
-    if (current) {
-        NSIndexPath* indexPath = [self.table findIndexPathForContact:current];
-        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-        self.detailViewController.detailItem = current;
-    }
 }
 
 #pragma surveyor
@@ -250,29 +236,48 @@
 #pragma mark - endpoint bar 
 
 -(void)setUpEndpointBar {
-    if (!self.endpointBar) {
-        self.endpointBar = [[NUEndpointBar alloc] initWithFrame:CGRectMake(0.0f, self.view.frame.size.height - 15.0f, self.view.frame.size.width, 59.0f)];
-        [self.navigationController.view addSubview:self.endpointBar];
-        [self.endpointBar.endpointBarButton addTarget:self action:@selector(endpointBarButtonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    static float ButtonPadding = 15.0f;
+    self.navigationController.toolbarHidden = NO;
     NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
+    
+    NSString *buttonText = @"";
+    NSAttributedString *labeledText = nil;
+    
     if ([endpoint.isManualEndpoint isEqualToNumber:@NO]) {
         NSString *labelString = [NSString stringWithFormat:@"Your current location is:\n%@", endpoint.name];
         NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
         paragraphStyle.lineSpacing = -3.0f;
-        NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
-        [labelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:endpoint.name]];
-        self.endpointBar.endpointBarLabel.attributedText = labelText;
-        [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
+        NSMutableAttributedString *mutableLabelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
+        [mutableLabelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:endpoint.name]];
+        labeledText = [[NSAttributedString alloc] initWithAttributedString:mutableLabelText];
+        buttonText = @"Switch location";
     }
     else if ([endpoint.isManualEndpoint isEqualToNumber:@YES]) {
-        self.endpointBar.endpointBarLabel.attributedText = [[NSAttributedString alloc] initWithString:@"You are using\nmanual mode" attributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:13]}];
-        [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
+        labeledText = [[NSAttributedString alloc] initWithString:@"You are using\nmanual mode" attributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:13]}];
+        buttonText = @"Switch location";
     }
     else {
-        self.endpointBar.endpointBarLabel.text = @"No location chosen";
-        [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
+        labeledText = [[NSAttributedString alloc] initWithString:@"No location chosen"];
+        buttonText = @"Pick location";
     }
+    
+    UILabel *endpointLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
+                                                                       0.0f,
+                                                                       self.navigationController.toolbar.bounds.size.width - [buttonText sizeWithFont:[UIFont systemFontOfSize:12]].width - (ButtonPadding * 4),
+                                                                       self.navigationController.toolbar.bounds.size.height)];
+    endpointLabel.numberOfLines = 0;
+    endpointLabel.backgroundColor = [UIColor clearColor];
+    endpointLabel.shadowOffset = CGSizeMake(0.0f, -1.0f);
+    endpointLabel.attributedText = labeledText;
+    
+    UIColor *textColor = (self.navigationController.toolbar.barStyle == UIBarStyleBlack) ? [UIColor whiteColor] : [UIColor colorWithRed:0.29f green:0.32f blue:0.34f alpha:1.0f];
+    UIColor *shadowColor = (self.navigationController.toolbar.barStyle == UIBarStyleBlack) ? [UIColor darkTextColor] : [UIColor lightTextColor];
+    endpointLabel.shadowColor = shadowColor;
+    endpointLabel.textColor = textColor;
+    
+    UIBarButtonItem *endpointBarButton = [[UIBarButtonItem alloc] initWithTitle:buttonText style:UIBarButtonItemStyleBordered target:self action:@selector(endpointBarButtonWasTapped:)];
+    UIBarButtonItem *endpointBarLabel = [[UIBarButtonItem alloc] initWithCustomView:endpointLabel];
+    [self.navigationController.toolbar setItems:@[endpointBarLabel, endpointBarButton] animated:NO];
 }
 
 -(void)endpointBarButtonWasTapped:(UIButton *)endpointBarButton {
@@ -604,11 +609,12 @@
         bStepWasSuccessful = [nSync perform];
         NSLog(@"NCS Code sync: %@", bStepWasSuccessful ? @"Success" : @"Fail");
     }
-    //In the future, these two catches will diverge. Right now, let's just put a placeholder. 
     @catch (FieldworkSynchronizationException *ex) {
-        NSLog(@"%@\n%@",[ex debugDescription], [ex name]);
+        [self showAlertView:ex.reason];
+        NSLog(@"FieldworkSynchronizationException: %@", ex.explanation);
     }
     @catch(NSException *ex) {
+        [self showAlertView:@""];
         NSLog(@"%@\n%@",[ex debugDescription], [ex name]);
     }
     @finally {
@@ -667,7 +673,48 @@
     });
 }
 
-#pragma RestKit
+#pragma mark
+#pragma mark Screener Type Chooser
+
+-(void)screenerTypeChooserDidCancel:(ScreenerTypeChooserViewController *)screenerTypeChooserViewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)screenerTypeChooser:(ScreenerTypeChooserViewController *)screenerTypeChooserViewController didChooseScreenerType:(NSString *)screenerType {
+    ContactInitiateVC *newContactInitiateVC = [self startPBSScreenWithEventTemplateName:screenerType];
+    newContactInitiateVC.delegate = self;
+    [screenerTypeChooserViewController.navigationController pushViewController:newContactInitiateVC animated:YES];
+}
+
+#pragma mark 
+#pragma mark Contact Initiation
+
+-(void)contactInitiateVCDidCancel:(ContactInitiateVC *)contactInitiateVC {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    [self contactInitiateScreenDismissedWithContact:nil];
+}
+
+-(void)contactInitiateVC:(ContactInitiateVC *)contactInitiateVC didContinueWithContact:(Contact *)chosenContact {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    [self contactInitiateScreenDismissedWithContact:chosenContact];
+}
+
+- (void)contactInitiateScreenDismissedWithContact:(Contact *)chosenContact {
+    self.contacts = [self contactsFromDataStore];
+    
+    if (chosenContact) {
+        NSIndexPath* indexPath = [self.table findIndexPathForContact:chosenContact];
+        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        self.detailViewController.detailItem = chosenContact;
+    }
+}
+
+#pragma mark
+#pragma mark RestKit
 
 - (NSArray*)contactsFromDataStore {
     return [Contact findAllSortedBy:@"date" ascending:YES];
@@ -703,12 +750,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tableView.tableHeaderView = [self tableHeaderView];
-    [self setUpEndpointBar];
 }
 
 - (UIView*)tableHeaderView {
     UIView* header = nil;
-    if ([EventTemplate pregnancyScreeningTemplate]) {
+    if ([EventTemplate pregnancyScreeningTemplate] || [EventTemplate birthCohortTemplate]) {
         header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
         UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         button.frame = CGRectMake(0, 5, 150, 40);
@@ -722,6 +768,23 @@
 }
 
 - (IBAction)screenParticipant:(UIButton *)button {
+    if ([EventTemplate birthCohortTemplate] && [EventTemplate pregnancyScreeningTemplate]) {
+        ScreenerTypeChooserViewController *screenerTypeChooserViewController = [[ScreenerTypeChooserViewController alloc] initWithNibName:nil bundle:nil];
+        screenerTypeChooserViewController.delegate = self;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:screenerTypeChooserViewController];
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:navigationController animated:YES completion:nil];
+    }
+    else if ([EventTemplate pregnancyScreeningTemplate]) {
+        ContactInitiateVC *contactInitiateVC = [self startPBSScreenWithEventTemplateName:EVENT_TEMPLATE_PBS_ELIGIBILITY_LEGACY];
+        contactInitiateVC.delegate = self;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contactInitiateVC];
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:navigationController animated:YES completion:nil];
+    }
+}
+
+-(ContactInitiateVC *)startPBSScreenWithEventTemplateName:(NSString *)eventTemplateName {
     // Existing InstrumentTemplates may not have their questions
     // loaded into Core Data since that happens during sync
     NSPredicate* missingQuestions = [NSPredicate predicateWithFormat:@"questions.@count == 0"];
@@ -729,35 +792,11 @@
     for (InstrumentTemplate* it in instrumentTemplates) {
         [it refreshQuestionsFromSurvey];
     }
-
-    Contact* screening = [Contact contact];
-    screening.appCreated = @(YES);
-    
-    Participant* participant = [Participant participant];
-    Person* person = [participant selfPerson];
-    screening.person = person;
-    screening.personId = person.personId;
-    
-    EventTemplate* pregnancyScreeningEventTmpl = [EventTemplate pregnancyScreeningTemplate];
-    if (pregnancyScreeningEventTmpl) {
-        [screening addEventsObject:[pregnancyScreeningEventTmpl buildEventForParticipant:participant person:person]];
-    }
-    
-    ContactInitiateVC* civc = [[ContactInitiateVC alloc] initWithContact:screening];
-    civc.afterCancel = ^(Contact* screening){
-        NSArray* participants = [[screening.events collect:^id(Event* e){
-            return [e participant];
-        }] allObjects];
-        
-        [screening deleteEntity];
-        for (Participant* part in participants) {
-            [part deleteEntity];
-        }
-        [[Contact currentContext] save:nil];
-    };
-    
-    civc.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self presentViewController:civc animated:YES completion:nil];
+       
+    ContactInitiateVC* contactInitiateVC = [[ContactInitiateVC alloc] initWithContact:nil];
+    [contactInitiateVC.contact generateEventWithName:eventTemplateName];
+    contactInitiateVC.shouldDeleteContactOnCancel = YES;
+    return contactInitiateVC;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -778,6 +817,7 @@
             [self presentEndpointSelectionController];
         }
     }
+    [self setUpEndpointBar];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

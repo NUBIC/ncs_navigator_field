@@ -16,6 +16,7 @@
 #import "NSDate+Additions.h"
 #import "CasServiceTicket+Additions.h"
 #import "FieldworkSynchronizationException.h"
+#import "CasTicketException.h"
 
 @interface FieldworkRetrieveStep() {
     BOOL _bRequestWorked;
@@ -46,20 +47,25 @@
 }
 
 - (void)retrieveContacts:(CasServiceTicket*)serviceTicket {
-    NSString *err;
-    CasProxyTicket *pt = [serviceTicket obtainProxyTicket:&err];
-    if(err && [err length] > 0) {
-        [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
-        FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"retrieving contacts failed because of CAS" reason:nil userInfo:nil];
-        @throw ex;
+    if (!serviceTicket) {
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:@"Failed to retrieve contacts" explanation:@"Service ticket is nil"];
     }
-    else {
+    
+    @try {
+        CasProxyTicket *pt = [self.ticket obtainProxyTicket];
         [self loadDataWithProxyTicket:pt];
+    }
+    @catch (CasTicketException *te) {
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to obtain proxy ticket: %@", te.explanation]];
     }
 }
 
 - (void)loadDataWithProxyTicket:(CasProxyTicket*)ticket {
-    // Load the object model via RestKit	
+    if (!ticket) {
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:@"Proxy ticket is nil"];
+    }
+    
+    // Load the object model via RestKit
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     [objectManager.client.HTTPHeaders setValue:[NSString stringWithFormat:@"CasProxy %@", ticket.proxyTicket] forKey:@"Authorization"];
     [objectManager.client.HTTPHeaders setValue:ApplicationSettings.instance.clientId forKey:@"X-Client-ID"];
@@ -85,7 +91,7 @@
 #pragma mark RKObjectLoaderDelegate
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-	NSLog(@"Data loaded successfully [%@]", [[objectLoader response] location]);
+	NSLog(@"Data retrieved successfully [%@]", [[objectLoader response] location]);
     
     Fieldwork* w = [Fieldwork object];
     w.uri = [[objectLoader response] location];
@@ -93,18 +99,12 @@
     
     NSError *error = [[NSError alloc] init];
     if (![[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:&error]) {
-        NSLog(@"Error saving fieldwork location");
-        [_delegate showAlertView:STORING_CONTACTS];
-        FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"Error saving fieldwork location" reason:nil userInfo:nil];
-        @throw ex;
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:STORING_CONTACTS explanation:[NSString stringWithFormat:@"Failed to save fieldwork: %@", [error localizedDescription]]];
     }
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    NSLog(@"%@",[error description]);
-    [_delegate showAlertView:CONTACT_RETRIEVAL];
-    FieldworkSynchronizationException *ex = [[FieldworkSynchronizationException alloc] initWithName:@"object Loader failure in Retrieving Contacts" reason:nil userInfo:nil];
-    @throw ex;
+    @throw [[FieldworkSynchronizationException alloc] initWithReason:CONTACT_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to retrieve fieldwork: %@", [error localizedDescription]]];
 }
 
 
