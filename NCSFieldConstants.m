@@ -8,7 +8,7 @@
 
 #import "NCSFieldConstants.h"
 
-NSString * ENDPOINT_IMAGE_DOWNLOADED = @"ENDPOINT_IMAGE_DOWNLOADED";
+//Application Settings
 
 NSString * SettingsDidChangeNotification = @"ApplicationSettingsChanged";
 NSString * CLIENT_ID = @"client.id";
@@ -22,5 +22,21 @@ NSString * PAST_DAYS_TO_SYNC = @"past.days.to.sync";
 
 NSString * HAS_MIGRATED_TO_AUTO_LOCATION = @"hasMigratedToAutoLocation";
 
+//NUEndpoint
+
 NSString * PRODUCTION_ENVIRONMENT = @"production";
 NSString * STAGING_ENVIRONMENT = @"staging";
+
+NSString * ENDPOINT_IMAGE_DOWNLOADED = @"ENDPOINT_IMAGE_DOWNLOADED";
+
+//Event Template (post-birth cohort)
+
+NSString * EVENT_TEMPLATE_PBS_ELIGIBILITY = @"PBS-Eligibility";
+NSString * EVENT_TEMPLATE_BIRTH_COHORT = @"Birth Cohort";
+NSString * EVENT_TEMPLATE_PREG_VISIT_ONE = @"Pregnancy Visit 1";
+
+//Event Template (legacy)
+
+NSString * EVENT_TEMPLATE_PBS_ELIGIBILITY_LEGACY = @"Pregnancy Screener";
+NSString * EVENT_TEMPLATE_PREG_VISIT_ONE_LEGACY = @"Pregnancy Visit 1";
+

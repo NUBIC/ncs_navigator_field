@@ -73,6 +73,7 @@
 #pragma mark Helper methods
 +(NSNumber*)findDispositionCode:(NSString*)str;
 +(NSNumber*)dispositionCodeFromContactTypeId:(NSNumber*)typeId;
+-(void) generateEventWithName:(NSString *)eventTemplateName;
 #pragma mark methods
 
 + (Contact*)contact;
@@ -94,7 +95,9 @@
 - (NSString*) startTimeJson;
 
 - (NSString*) endTimeJson;
+
 -(NSNumber*)whichSpecialCase;
+
 @end
 
 @interface Contact (GeneratedAccessors)
@@ -102,7 +105,5 @@
 - (void)addEventsObject:(Event*)event;
 
 - (void)removeEventsObject:(Event*)event;
-
-
 
 @end

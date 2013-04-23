@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "CasLoginVC.h"
+
 @protocol SendOnlyDelegate;
 
 @interface SendOnlyDelegateObject : NSObject <CasLoginVCDelegate>
