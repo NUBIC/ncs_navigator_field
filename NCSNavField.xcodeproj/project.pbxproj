@@ -153,6 +153,10 @@
 		1646CD4516CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1646CD4316CD9AF200CDCCEC /* NUEndpointCollectionViewController.xib */; };
 		1646CD4816CDA43300CDCCEC /* NUEndpointCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1646CD4716CDA43300CDCCEC /* NUEndpointCollectionViewCell.m */; };
 		1646CD4A16CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1646CD4916CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib */; };
+		1647BB9817188F53005A925A /* ScreenerTypeChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1647BB9617188F52005A925A /* ScreenerTypeChooserViewController.m */; };
+		1647BB9917188F53005A925A /* ScreenerTypeChooserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1647BB9717188F53005A925A /* ScreenerTypeChooserViewController.xib */; };
+		1647BB9C171C7B56005A925A /* ScreenerTypeChooserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1647BB9B171C7B56005A925A /* ScreenerTypeChooserTest.m */; };
+		1647BBA0171C9440005A925A /* SendOnlyDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 16050009170B8BFC00F854E7 /* SendOnlyDelegateObject.m */; };
 		164959D4170E063200EEF552 /* ManualImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 164959D2170E063200EEF552 /* ManualImage.png */; };
 		164959D5170E063200EEF552 /* ManualImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 164959D3170E063200EEF552 /* ManualImage@2x.png */; };
 		164959DC170E0ECF00EEF552 /* NUManualEndpointEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164959DA170E0ECF00EEF552 /* NUManualEndpointEditViewController.m */; };
@@ -658,6 +662,11 @@
 		1646CD4616CDA43300CDCCEC /* NUEndpointCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointCollectionViewCell.h; sourceTree = "<group>"; };
 		1646CD4716CDA43300CDCCEC /* NUEndpointCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointCollectionViewCell.m; sourceTree = "<group>"; };
 		1646CD4916CDA49C00CDCCEC /* NUEndpointCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NUEndpointCollectionViewCell.xib; sourceTree = "<group>"; };
+		1647BB9517188F52005A925A /* ScreenerTypeChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenerTypeChooserViewController.h; sourceTree = "<group>"; };
+		1647BB9617188F52005A925A /* ScreenerTypeChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenerTypeChooserViewController.m; sourceTree = "<group>"; };
+		1647BB9717188F53005A925A /* ScreenerTypeChooserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenerTypeChooserViewController.xib; sourceTree = "<group>"; };
+		1647BB9A171C7B56005A925A /* ScreenerTypeChooserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenerTypeChooserTest.h; sourceTree = "<group>"; };
+		1647BB9B171C7B56005A925A /* ScreenerTypeChooserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenerTypeChooserTest.m; sourceTree = "<group>"; };
 		164959D2170E063200EEF552 /* ManualImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ManualImage.png; sourceTree = "<group>"; };
 		164959D3170E063200EEF552 /* ManualImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ManualImage@2x.png"; sourceTree = "<group>"; };
 		164959D9170E0ECF00EEF552 /* NUManualEndpointEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUManualEndpointEditViewController.h; sourceTree = "<group>"; };
@@ -921,6 +930,8 @@
 				167292DC170097B20046B194 /* NUEndpointTest.m */,
 				007135CF171EDC40007D38C3 /* FieldworkRetrieveStepTest.h */,
 				007135D0171EDC40007D38C3 /* FieldworkRetrieveStepTest.m */,
+				1647BB9A171C7B56005A925A /* ScreenerTypeChooserTest.h */,
+				1647BB9B171C7B56005A925A /* ScreenerTypeChooserTest.m */,
 				0078348217224332003F7888 /* RestKitTestStub.h */,
 				0078348317224332003F7888 /* RestKitTestStub.m */,
 			);
@@ -1153,6 +1164,9 @@
 				0087A553160A5EFF005CB008 /* MultiSurveyTVC.m */,
 				008F7D9F148BB3DD009BCF1D /* ContactInitiateVC.h */,
 				008F7DA0148BB3DD009BCF1D /* ContactInitiateVC.m */,
+				1647BB9517188F52005A925A /* ScreenerTypeChooserViewController.h */,
+				1647BB9617188F52005A925A /* ScreenerTypeChooserViewController.m */,
+				1647BB9717188F53005A925A /* ScreenerTypeChooserViewController.xib */,
 				16050008170B8BFC00F854E7 /* SendOnlyDelegateObject.h */,
 				16050009170B8BFC00F854E7 /* SendOnlyDelegateObject.m */,
 				0026E683140347E700355BCB /* RootViewController.h */,
@@ -1640,6 +1654,7 @@
 				164959D4170E063200EEF552 /* ManualImage.png in Resources */,
 				164959D5170E063200EEF552 /* ManualImage@2x.png in Resources */,
 				164959DD170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib in Resources */,
+				1647BB9917188F53005A925A /* ScreenerTypeChooserViewController.xib in Resources */,
 				00FA00691720505B006A96A4 /* Podfile.lock in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1811,8 +1826,9 @@
 				1646CD4816CDA43300CDCCEC /* NUEndpointCollectionViewCell.m in Sources */,
 				1613E7DA16D4301E0002FA0F /* NUEndpointEnvironment.m in Sources */,
 				16F0DA5816D56BE800290837 /* NCSFieldConstants.m in Sources */,
-				1605000A170B8BFD00F854E7 /* SendOnlyDelegateObject.m in Sources */,
 				164959DC170E0ECF00EEF552 /* NUManualEndpointEditViewController.m in Sources */,
+				1647BB9817188F53005A925A /* ScreenerTypeChooserViewController.m in Sources */,
+				1647BBA0171C9440005A925A /* SendOnlyDelegateObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1851,6 +1867,7 @@
 				007135D1171EDC40007D38C3 /* FieldworkRetrieveStepTest.m in Sources */,
 				00783481172226C1003F7888 /* FieldworkPushStepTest.m in Sources */,
 				0078348417224332003F7888 /* RestKitTestStub.m in Sources */,
+				1647BB9C171C7B56005A925A /* ScreenerTypeChooserTest.m in Sources */,
 				007834871725C7A8003F7888 /* CasServiceTicketTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

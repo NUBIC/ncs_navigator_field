@@ -19,6 +19,8 @@
 #import "UserErrorDelegate.h"
 
 #import "SendOnlyDelegateObject.h"
+#import "ScreenerTypeChooserViewController.h"
+#import "NUSurveyTVC.h"
 
 @class ContactDisplayController;
 @class Instrument;
@@ -27,10 +29,11 @@
 @class ResponseSet;
 @class RKReachabilityObserver;
 @class CasServiceTicket;
+@class ScreenerTypeChooserViewController;
 
 FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 
-@interface RootViewController : SimpleTableController<UINavigationControllerDelegate, SimpleTableRowDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate,UserErrorDelegate, SendOnlyDelegate> {
+@interface RootViewController : SimpleTableController<UINavigationControllerDelegate, SimpleTableRowDelegate, MBProgressHUDDelegate, NUSurveyTVCDelegate,UserErrorDelegate, SendOnlyDelegate, ScreenerTypeChooserDelegate> {
     Instrument* _administeredInstrument;
     RKReachabilityObserver* _reachability;
     SyncActivityIndicator* _syncIndicator;
@@ -55,6 +58,7 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 - (void)deleteButtonWasPressed;
 - (void)unloadSurveyor:(Instrument*)instrument;
 - (void)syncContacts:(CasServiceTicket*)serviceTicket withRetrieval:(BOOL)shouldRetrieve;
+- (IBAction)screenParticipant:(UIButton *)button;
 
 #pragma mark
 #pragma mark - CasLoginDelegate

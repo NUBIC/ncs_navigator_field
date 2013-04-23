@@ -232,28 +232,35 @@
     if ([rc isEqualToString:@"instrument"]) {
         Instrument* selected = row.entity;
         NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:selected, @"instrument", nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"InstrumentSelected" object:self userInfo:dict]; 
-    } else if ([rc isEqualToString:@"instrument-details"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"InstrumentSelected" object:self userInfo:dict];
+    }
+    else if ([rc isEqualToString:@"instrument-details"]) {
         Instrument* selected = row.entity;
-        InstrumentVC* ivc = [[InstrumentVC alloc] initWithInstrument:selected];   
-        ivc.modalPresentationStyle = UIModalPresentationFullScreen;  
+        InstrumentVC* ivc = [[InstrumentVC alloc] initWithInstrument:selected];
+        ivc.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:ivc animated:YES completion:NULL];
-    } else if ([rc isEqualToString:@"contact"]) {
+    }
+    else if ([rc isEqualToString:@"contact"]) {
         if (self.detailItem.initiated) {
             self.simpleTable = [[ContactTable alloc]initUsingContact:self.detailItem];
             [self.tableView reloadData];
-            
-            ContactCloseVC* cc = [[ContactCloseVC alloc] initWithContact:self.detailItem];
-            cc.modalPresentationStyle = UIModalPresentationFullScreen;  
-            [self presentViewController:cc animated:YES completion:NULL];
-        } else {
-            ContactInitiateVC* cc = [[ContactInitiateVC alloc] initWithContact:self.detailItem];
-            cc.modalPresentationStyle = UIModalPresentationFormSheet;
-            [self presentViewController:cc animated:YES completion:NULL];
         }
-    } else if ([rc isEqualToString:@"event"]) {
+        ContactInitiateVC* cc = [[ContactInitiateVC alloc] initWithContact:self.detailItem];
+        if ([self.splitViewController.viewControllers[0] isKindOfClass:[UINavigationController class]]) {
+            UINavigationController *masterNavigationController = self.splitViewController.viewControllers[0];
+            for (id controller in masterNavigationController.viewControllers) {
+                if ([controller isKindOfClass:NSClassFromString(@"RootViewController")]) {
+                    cc.delegate = controller;
+                }
+            }
+        }
+        UINavigationController *navigationControler = [[UINavigationController alloc] initWithRootViewController:cc];
+        navigationControler.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:navigationControler animated:YES completion:NULL];
+    }
+    else if ([rc isEqualToString:@"event"]) {
         Event* selected = row.entity;
-        EventVC* evc = [[EventVC alloc] initWithEvent:selected];   
+        EventVC* evc = [[EventVC alloc] initWithEvent:selected];
         evc.modalPresentationStyle = UIModalPresentationFullScreen;  
         [self presentViewController:evc animated:YES completion:NULL];
     }

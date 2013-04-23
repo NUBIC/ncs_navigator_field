@@ -12,9 +12,17 @@
 #import "NUScrollView.h"
 #import "Contact.h"
 #import "Event.h"
+#import "Participant.h"
 #import <MRCEnumerable/MRCEnumerable.h>
 
-NSString *const ContactInitiateScreenDismissedNotification = @"ContactInitiateScreenDismissedNotification";
+@interface ContactInitiateVC ()
+
+- (void) startTransaction;
+- (void) endTransction;
+- (void) commitTransaction;
+- (void) rollbackTransaction;
+
+@end
 
 @implementation ContactInitiateVC
 
@@ -23,7 +31,11 @@ NSString *const ContactInitiateScreenDismissedNotification = @"ContactInitiateSc
 
 - (id)initWithContact:(Contact *)contact {
     if (self = [super init]) {
-        self.contact = contact;
+        if (!contact) {
+            contact = [Contact contact];
+            contact.appCreated = @(YES);
+        }
+        _contact = contact;
     }
     return self;
 }
@@ -40,8 +52,16 @@ NSString *const ContactInitiateScreenDismissedNotification = @"ContactInitiateSc
 
 - (void)viewDidAppear:(BOOL)animated {
     NSLog(@"Contact Initiative VC");
-    UIView* toolbar = [self toolbarWithFrame:CGRectMake(0, -2, self.view.frame.size.width, 50)];
-
+    
+    UIBarButtonItem* cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+        
+    UIBarButtonItem* done = [[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
+    
+    [self.navigationItem setLeftBarButtonItem:cancel];
+    [self.navigationItem setRightBarButtonItem:done];
+    
+    self.title = self.contact.initiated ? @"Continue Contact" : @"Start Contact";
+    
     /* Left and Right Pane */
     CGPoint o = self.view.frame.origin;
     CGSize s = self.view.frame.size;
@@ -56,10 +76,7 @@ NSString *const ContactInitiateScreenDismissedNotification = @"ContactInitiateSc
 
     left = [self leftContentWithFrame:lRect];
     right = [self rightContentWithFrame:rRect];
-//    [left registerForPopoverNotifications];
-//    [right registerForPopoverNotifications];
 
-    [self.view addSubview:toolbar];
     [self.view addSubview:left];
     [self.view addSubview:right];
 
@@ -157,49 +174,25 @@ NSString *const ContactInitiateScreenDismissedNotification = @"ContactInitiateSc
         return v;
 }
 
-- (UIView*) toolbarWithFrame:(CGRect)frame {
-    UIToolbar* t = [[UIToolbar alloc] initWithFrame:frame];
-    
-    UIBarButtonItem* cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
-    
-    UIBarButtonItem* flexItem1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:NULL action:NULL];
-    
-    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0 , 11.0f, 200.0f, 21.0f)];
-    [titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
-    [titleLabel setBackgroundColor:[UIColor clearColor]];
-    [titleLabel setTextColor:[UIColor colorWithRed:113.0/255.0 green:120.0/255.0 blue:128.0/255.0 alpha:1.0]];
-    [titleLabel setText:(self.contact.initiated ? @"Continue Contact" : @"Start Contact")];
-    [titleLabel setTextAlignment:UITextAlignmentCenter];
-    UIBarButtonItem *toolBarTitle = [[UIBarButtonItem alloc] initWithCustomView:titleLabel];
-    
-    
-    
-    UIBarButtonItem* flexItem2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:NULL action:NULL];
-    
-    UIBarButtonItem* done = [[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
-    done.width = 100;
-    
-    NSArray* a = [[NSArray alloc] initWithObjects:cancel, flexItem1, toolBarTitle, flexItem2, done, nil];
-    [t setItems:a];
-    return t;
-}
-
 - (void) cancel {
     [self rollbackTransaction];
-    if (self.afterCancel) {
-        self.afterCancel(self.contact);
+    if (self.shouldDeleteContactOnCancel == YES) {
+        NSArray* participants = [[self.contact.events collect:^id(Event* e){
+            return [e participant];
+        }] allObjects];
+        
+        [self.contact deleteEntity];
+        for (Participant* part in participants) {
+            [part deleteEntity];
+        }
+        [[Contact currentContext] save:nil];
     }
-    [self dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:ContactInitiateScreenDismissedNotification object:self userInfo:@{}];
-    }];
+    [self.delegate contactInitiateVCDidCancel:self];
 }
 
 - (void) done {
     [self commitTransaction];
-    [self dismissViewControllerAnimated:YES completion:^{
-        NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.contact, @"contact", nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:ContactInitiateScreenDismissedNotification object:self userInfo:dict];
-    }];
+    [self.delegate contactInitiateVC:self didContinueWithContact:self.contact]; 
 }
 
 - (void) startTransaction {
@@ -212,7 +205,6 @@ NSString *const ContactInitiateScreenDismissedNotification = @"ContactInitiateSc
     NSManagedObjectContext* moc = [self.contact managedObjectContext];
     NSUndoManager* undoManager = [moc undoManager];
     [undoManager endUndoGrouping];
-    
 }
 
 - (void) commitTransaction {
@@ -238,6 +230,5 @@ NSString *const ContactInitiateScreenDismissedNotification = @"ContactInitiateSc
     [undoManager undo];
     NSLog(@"Rolledback contact: %@", self.contact.contactId);
 }
-
 
 @end
