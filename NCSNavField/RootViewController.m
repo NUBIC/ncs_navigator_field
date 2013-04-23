@@ -45,7 +45,6 @@
 #import "MdesCode.h"
 
 #import "NUEndpointCollectionViewController.h"
-#import "NUEndpointBar.h"
 #import "NUEndpoint.h"
 
 #import "NUManualEndpointEditViewController.h"
@@ -57,14 +56,13 @@
     @property (nonatomic, strong) UIAlertView *syncAlert;
     @property (nonatomic, strong) UIAlertView *locationAlert;
 
-    @property (nonatomic, strong) NUEndpointBar *endpointBar;
-
 @property (nonatomic, strong) NUManualEndpointEditViewController *manualEndpointEditViewController;
 
 @property (nonatomic, strong) SendOnlyDelegateObject *sendOnlyObject;
 
--(void)startEndpointSelection;
--(void)switchEndpoint;
+-(void)settingsDidChange:(NSNotification *)note;
+
+-(void)presentEndpointSelectionController;
 
 -(void)startSyncWithServiceTicket:(CasServiceTicket*)serviceTicket withRetrieval:(BOOL)shouldRetrieve;
 
@@ -95,9 +93,8 @@
                                                  selector:@selector(reachabilityChanged:)
                                                      name:RKReachabilityDidChangeNotification
                                                    object:self.reachability];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleDeleteButton) name:SettingsDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsDidChange:) name:SettingsDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(providerSelected:) name:PROVIDER_SELECTED_NOTIFICATION_KEY object:NULL];
-
     }
     return self;
 }
@@ -175,7 +172,6 @@
 }
 -(void)failure:(NSError *)err {
     [self showAlertView:@"The server wouldn't authenticate you."];
-    
 }
 
 #pragma mark - surveyor_ios controller delgate
@@ -232,7 +228,7 @@
 -(void) manualEndpointViewControllerDidCancel:(NUManualEndpointEditViewController *)manualEditVC {
     RootViewController __weak *weakSelf = self;
     [self dismissViewControllerAnimated:YES completion:^{
-        [weakSelf switchEndpoint];
+        [weakSelf presentEndpointSelectionController];
     }];
 }
 
@@ -240,29 +236,48 @@
 #pragma mark - endpoint bar 
 
 -(void)setUpEndpointBar {
-    if (!self.endpointBar) {
-        self.endpointBar = [[NUEndpointBar alloc] initWithFrame:CGRectMake(0.0f, self.view.frame.size.height - 15.0f, self.view.frame.size.width, 59.0f)];
-        [self.navigationController.view addSubview:self.endpointBar];
-        [self.endpointBar.endpointBarButton addTarget:self action:@selector(endpointBarButtonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    static float ButtonPadding = 15.0f;
+    self.navigationController.toolbarHidden = NO;
     NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
+    
+    NSString *buttonText = @"";
+    NSAttributedString *labeledText = nil;
+    
     if ([endpoint.isManualEndpoint isEqualToNumber:@NO]) {
         NSString *labelString = [NSString stringWithFormat:@"Your current location is:\n%@", endpoint.name];
         NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
         paragraphStyle.lineSpacing = -3.0f;
-        NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
-        [labelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:endpoint.name]];
-        self.endpointBar.endpointBarLabel.attributedText = labelText;
-        [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
+        NSMutableAttributedString *mutableLabelText = [[NSMutableAttributedString alloc] initWithString:labelString attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : [UIFont systemFontOfSize:13]}];
+        [mutableLabelText addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:13]}  range:[labelString rangeOfString:endpoint.name]];
+        labeledText = [[NSAttributedString alloc] initWithAttributedString:mutableLabelText];
+        buttonText = @"Switch location";
     }
     else if ([endpoint.isManualEndpoint isEqualToNumber:@YES]) {
-        self.endpointBar.endpointBarLabel.attributedText = [[NSAttributedString alloc] initWithString:@"You are using\nmanual mode" attributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:13]}];
-        [self.endpointBar.endpointBarButton setTitle:@"Switch location" forState:UIControlStateNormal];
+        labeledText = [[NSAttributedString alloc] initWithString:@"You are using\nmanual mode" attributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:13]}];
+        buttonText = @"Switch location";
     }
     else {
-        self.endpointBar.endpointBarLabel.text = @"No location chosen";
-        [self.endpointBar.endpointBarButton setTitle:@"Pick location" forState:UIControlStateNormal];
+        labeledText = [[NSAttributedString alloc] initWithString:@"No location chosen"];
+        buttonText = @"Pick location";
     }
+    
+    UILabel *endpointLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
+                                                                       0.0f,
+                                                                       self.navigationController.toolbar.bounds.size.width - [buttonText sizeWithFont:[UIFont systemFontOfSize:12]].width - (ButtonPadding * 4),
+                                                                       self.navigationController.toolbar.bounds.size.height)];
+    endpointLabel.numberOfLines = 0;
+    endpointLabel.backgroundColor = [UIColor clearColor];
+    endpointLabel.shadowOffset = CGSizeMake(0.0f, -1.0f);
+    endpointLabel.attributedText = labeledText;
+    
+    UIColor *textColor = (self.navigationController.toolbar.barStyle == UIBarStyleBlack) ? [UIColor whiteColor] : [UIColor colorWithRed:0.29f green:0.32f blue:0.34f alpha:1.0f];
+    UIColor *shadowColor = (self.navigationController.toolbar.barStyle == UIBarStyleBlack) ? [UIColor darkTextColor] : [UIColor lightTextColor];
+    endpointLabel.shadowColor = shadowColor;
+    endpointLabel.textColor = textColor;
+    
+    UIBarButtonItem *endpointBarButton = [[UIBarButtonItem alloc] initWithTitle:buttonText style:UIBarButtonItemStyleBordered target:self action:@selector(endpointBarButtonWasTapped:)];
+    UIBarButtonItem *endpointBarLabel = [[UIBarButtonItem alloc] initWithCustomView:endpointLabel];
+    [self.navigationController.toolbar setItems:@[endpointBarLabel, endpointBarButton] animated:NO];
 }
 
 -(void)endpointBarButtonWasTapped:(UIButton *)endpointBarButton {
@@ -275,7 +290,7 @@
         [self.locationAlert show];
     }
     else {
-        [self switchEndpoint];
+        [self presentEndpointSelectionController];
     }
 }
 
@@ -487,17 +502,13 @@
     [s remove];
 }
 
--(void)startEndpointSelection {
+-(void)presentEndpointSelectionController {
     NUEndpointCollectionViewController *endpointCollectionViewController = [[NUEndpointCollectionViewController alloc] initWithNibName:nil bundle:nil];
     endpointCollectionViewController.delegate = self;
     endpointCollectionViewController.modalPresentationStyle = UIModalPresentationPageSheet;
     [self presentViewController:endpointCollectionViewController animated:YES completion:^{
         [endpointCollectionViewController getEndpointsFromService:nil];
     }];
-}
-
--(void)switchEndpoint {
-    [self startEndpointSelection];
 }
 
 #pragma mark - Cas Login Delegate
@@ -577,7 +588,7 @@
         
         if (shouldRetrieve == NO) {
             [self deleteButtonWasPressed];
-            [self startEndpointSelection];
+            [self presentEndpointSelectionController];
             return;
         }
         
@@ -708,6 +719,13 @@
     return [Contact findAllSortedBy:@"date" ascending:YES];
 }
 
+#pragma mark settings
+
+-(void)settingsDidChange:(NSNotification *)note {
+    [self toggleDeleteButton];
+    [self setUpEndpointBar];
+}
+
 #pragma lifecycle
 - (void) loadView {
         [super loadView];
@@ -715,10 +733,8 @@
         self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
         self.title = @"Contacts";
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStylePlain target:self action:@selector(syncButtonWasPressed)];
-        [self toggleDeleteButton];
-        
+    
         // Init Sync Indicators
- //        UIView *topView = [[[(NCSNavFieldAppDelegate *)[[UIApplication sharedApplication] delegate] window] subviews] objectAtIndex:0];
         UIView *topView = [(NCSNavFieldAppDelegate *)[[UIApplication sharedApplication] delegate] window];
         self.syncIndicator = [[SyncActivityIndicator alloc] initWithView:topView];
         self.syncIndicator.delegate = self;
@@ -726,13 +742,13 @@
         [topView addSubview:self.syncIndicator];
 
         self.contacts = [self contactsFromDataStore];
+    [self toggleDeleteButton];
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tableView.tableHeaderView = [self tableHeaderView];
-    [self setUpEndpointBar];
 }
 
 - (UIView*)tableHeaderView {
@@ -784,10 +800,11 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     if ([[NSUserDefaults standardUserDefaults] boolForKey:HAS_MIGRATED_TO_AUTO_LOCATION] == YES) {
         NUEndpoint *endpoint = [NUEndpoint userEndpointOnDisk];
         if (!endpoint) {
-            [self startEndpointSelection];
+            [self presentEndpointSelectionController];
         }
     }
     else {
@@ -796,11 +813,10 @@
             [self endpointCollectionViewController:nil didChooseEndpoint:migratedEndpoint];
         }
         else {
-            [self startEndpointSelection];
+            [self presentEndpointSelectionController];
         }
     }
-
-    [super viewDidAppear:animated];
+    [self setUpEndpointBar];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -829,6 +845,13 @@
 {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:RKReachabilityDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SettingsDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ContactInitiateScreenDismissedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:PROVIDER_SELECTED_NOTIFICATION_KEY object:nil];
 }
 
 @end
