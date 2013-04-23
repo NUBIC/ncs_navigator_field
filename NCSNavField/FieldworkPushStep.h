@@ -12,7 +12,7 @@
 @class CasProxyTicket;
 @class Fieldwork;
 
-@interface FieldworkPutRequest : NSObject<RKObjectLoaderDelegate> {
+@interface FieldworkPushStep : NSObject<RKObjectLoaderDelegate> {
     CasServiceTicket* _ticket;
     NSString* _error;
     RKResponse* _response;

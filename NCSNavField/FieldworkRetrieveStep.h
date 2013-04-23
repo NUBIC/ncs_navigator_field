@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ProviderSynchronizeOperation.h"
 
-@class ProviderSynchronizeOperation;
+@class ProviderSynchronizeOperation, CasProxyTicket;
 @interface FieldworkRetrieveStep : NSObject<RKObjectLoaderDelegate> {
     CasServiceTicket* _ticket;
     NSString* _error;

@@ -9,24 +9,24 @@
 #import "BackupFieldworkStepTest.h"
 #import "ApplicationPersistentStore.h"
 #import "ApplicationPersistentStoreBackup.h"
-
-@implementation NSDate (Stub)
-
-+ (id)date {
-    NSDateFormatter* f = [[NSDateFormatter alloc] init];
-    [f setDateFormat:@"yyyy'-'MM'-'dd' 'HH':'mm':'ss"];
-    [f setTimeZone:[NSTimeZone localTimeZone]];
-    return [f dateFromString:@"2012-04-20 16:01:59"];
-}
-
-@end
+#import <OCMock/OCMock.h>
 
 @implementation BackupFieldworkStepTest
 
 ApplicationPersistentStore* store;
 ApplicationPersistentStoreBackup* backup;
+id dateMock;
 
 - (void) setUp {
+    [super setUp];
+    
+    NSDateFormatter* f = [[NSDateFormatter alloc] init];
+    [f setDateFormat:@"yyyy'-'MM'-'dd' 'HH':'mm':'ss"];
+    [f setTimeZone:[NSTimeZone localTimeZone]];
+    NSDate* date = [f dateFromString:@"2012-04-20 16:01:59"];
+    dateMock = [OCMockObject mockForClass:[NSDate class]];
+    [[[[dateMock stub] classMethod] andReturn:date] date];
+    
     NSFileManager* fm = [NSFileManager defaultManager];
     [fm removeItemAtPath:[self backupFieldworkPath] error:NULL];
 
@@ -41,6 +41,10 @@ ApplicationPersistentStoreBackup* backup;
 }
 
 - (void) tearDown {
+    [super tearDown];
+    
+    [dateMock stopMocking];
+
     NSFileManager* dfm = [NSFileManager defaultManager];
     [dfm removeItemAtPath:[self backupFieldworkPath] error:NULL];
     [dfm removeItemAtPath:[self testFilePath] error:NULL];
@@ -49,6 +53,7 @@ ApplicationPersistentStoreBackup* backup;
 - (void)testGenerateBackupFilename {
     ApplicationPersistentStoreBackup* store = 
         [ApplicationPersistentStoreBackup new];
+
     STAssertEqualObjects([store generateBackupFilename], @"sync-backup-20120420160159.sqlite", @"Wrong backup filename");
 }
 

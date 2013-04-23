@@ -18,5 +18,6 @@ pod 'NUSurveyor', :podspec => 'NUSurveyor.podspec'
 # TODO: Add NUCas podspec
 
 target :NCSNavFieldTests, :exclusive => true do
-  pod 'OCMock', '2.0.1'
+  pod 'OCMock', '2.1.1'
+  pod 'Nocilla', '0.4'
 end

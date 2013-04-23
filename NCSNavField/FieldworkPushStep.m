@@ -6,14 +6,15 @@
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import "FieldworkPutRequest.h"
+#import "FieldworkPushStep.h"
 #import "ApplicationSettings.h"
 #import "Fieldwork.h"
 #import "MergeStatus.h"
 #import "CasServiceTicket+Additions.h"
 #import "FieldworkSynchronizationException.h"
+#import "CasTicketException.h"
 
-@implementation FieldworkPutRequest
+@implementation FieldworkPushStep
 
 @synthesize ticket = _ticket;
 
@@ -30,18 +31,21 @@
     return self;
 }
 
-- (BOOL) send {
-    //We can also use this. I'm not 100% sure that this is the best solution, but it would be nice to save coding and have a single point
-    //where this functionality is handled (easier when we want to make changes.) (See the one line directly below.)
-    NSString *ptError;
-    CasProxyTicket *pt = [self.ticket obtainProxyTicket:&ptError];
-    if(ptError && [ptError length] > 0) {
-        [_delegate showAlertView:CAS_TICKET_RETRIEVAL];
-        FieldworkSynchronizationException *exServerDown = [[FieldworkSynchronizationException alloc] initWithName:@"CAS Server is down" reason:@"Server is down" userInfo:nil];
-        @throw exServerDown;
+- (BOOL)send {
+    if (!self.ticket) {
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:@"Failed to retrieve contacts" explanation:@"Service ticket is nil"];
     }
-        
-    return [self send:pt];
+    
+    BOOL success = FALSE;
+    
+    @try {
+        CasProxyTicket *pt = [self.ticket obtainProxyTicket];
+        success = [self send:pt];
+    }
+    @catch (CasTicketException *te) {
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:[NSString stringWithFormat:@"Failed to retrieve proxy ticket: %@", te.explanation]];
+    }
+    return success;
 }
 
 - (BOOL) isSuccessful {
@@ -49,6 +53,9 @@
 }
 
 - (BOOL)send:(CasProxyTicket*)proxyTicket {
+    if (!proxyTicket) {
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:CAS_TICKET_RETRIEVAL explanation:@"Proxy ticket is nil"];
+    }
     BOOL success = false;
     if (proxyTicket) {
         Fieldwork* submission = [Fieldwork submission];
@@ -100,12 +107,7 @@
     // {"success":true}, which is unmappable and causes RestKit to
     // throw an error.
     if (!objectLoader.response.isSuccessful) {
-        NSLog(@"Error: Localized Description: %@", [error localizedDescription]);
-        NSLog(@"Error: Underlying Error: %@", [error.userInfo valueForKey:NSUnderlyingErrorKey]);
-        self.error = [NSString stringWithFormat:@"Error while pushing fieldwork.\n%@", [error localizedDescription]];
-        [_delegate showAlertView:PUTTING_DATA_ON_SERVER];
-        FieldworkSynchronizationException *exServerDown = [[FieldworkSynchronizationException alloc] initWithName:self.error reason:nil userInfo:nil];
-        @throw exServerDown;
+        @throw [[FieldworkSynchronizationException alloc] initWithReason:PUTTING_DATA_ON_SERVER explanation:[NSString stringWithFormat:@"Failed to push fieldwork:.\n%@", [error localizedDescription]]];
     }
 }
 
