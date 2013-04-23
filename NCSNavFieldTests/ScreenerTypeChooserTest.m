@@ -54,12 +54,6 @@
     self.screenerTypeChooserViewController = nil;
 }
 
-- (void)testThatEnvironmentWorks
-{
-//    STAssertNotNil(self.store, @"no persistent store");
-}
-
-
 -(void)testBirthCohortChoice {
     
     Event *chosenEvent = [self getMatchingEventWithName:EVENT_TEMPLATE_BIRTH_COHORT andEventTypeCode:@34];
