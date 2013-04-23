@@ -11,5 +11,5 @@
 @class CasProxyTicket;
 
 @interface CasServiceTicket (Additions)
-- (CasProxyTicket*) obtainProxyTicket:(NSString**)error;
+- (CasProxyTicket*) obtainProxyTicket;
 @end

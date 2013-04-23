@@ -73,7 +73,13 @@
 		006C600B1434DF0D00F52CD8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 006C600A1434DF0D00F52CD8 /* README.md */; };
 		006D47FC148D94970035DC01 /* ChangeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D47FB148D94970035DC01 /* ChangeHandler.m */; };
 		006FDD8A148FD2E80001BADE /* TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 006FDD89148FD2E80001BADE /* TextField.m */; };
+		007135D1171EDC40007D38C3 /* FieldworkRetrieveStepTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 007135D0171EDC40007D38C3 /* FieldworkRetrieveStepTest.m */; };
 		0073B3681511277000543DA4 /* Fieldwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073B3671511277000543DA4 /* Fieldwork.m */; };
+		00783481172226C1003F7888 /* FieldworkPushStepTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00783480172226C1003F7888 /* FieldworkPushStepTest.m */; };
+		0078348417224332003F7888 /* RestKitTestStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 0078348317224332003F7888 /* RestKitTestStub.m */; };
+		007834871725C7A8003F7888 /* CasServiceTicketTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 007834861725C7A8003F7888 /* CasServiceTicketTest.m */; };
+		0078348B1725CAB2003F7888 /* CasTicketException.m in Sources */ = {isa = PBXBuildFile; fileRef = 007834891725CA35003F7888 /* CasTicketException.m */; };
+		0078348C1725D020003F7888 /* CasServiceTicket+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 009A48A1165C476500601959 /* CasServiceTicket+Additions.m */; };
 		0078A9AE159E414400B9FBD6 /* EventVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0078A9AD159E414400B9FBD6 /* EventVC.m */; };
 		007C1F4114FBFACA0020DF30 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 007C1F4014FBFACA0020DF30 /* Podfile */; };
 		00810AB81486D1AE0098C0D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00439FF914112E5E0097A878 /* CoreData.framework */; };
@@ -122,8 +128,7 @@
 		00CA369214FC2971000D37D2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009BE3A914FC2145008195F9 /* Security.framework */; };
 		00CA369314FC2980000D37D2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0026E66C140347E700355BCB /* CoreGraphics.framework */; };
 		00CA369414FC29AB000D37D2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0021785014E0E56600056745 /* QuartzCore.framework */; };
-		00D1BAE715470C4F000097E7 /* PushFieldworkStepTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D1BAE615470C4F000097E7 /* PushFieldworkStepTest.m */; };
-		00D1BAEB154775CB000097E7 /* FieldworkPutRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D1BAEA154775CB000097E7 /* FieldworkPutRequest.m */; };
+		00D1BAEB154775CB000097E7 /* FieldworkPushStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D1BAEA154775CB000097E7 /* FieldworkPushStep.m */; };
 		00D93A3A1506B2CF009CFDE9 /* RestKitSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D93A391506B2CF009CFDE9 /* RestKitSettings.m */; };
 		00D93A441507CC19009CFDE9 /* Participant.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D93A431507CC19009CFDE9 /* Participant.m */; };
 		00DC620D1575BD5900E5F825 /* MergeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC620C1575BD5900E5F825 /* MergeStatus.m */; };
@@ -136,6 +141,7 @@
 		00E3235D1422EB6A00D3AEED /* ContactTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E3235C1422EB6A00D3AEED /* ContactTable.m */; };
 		00EDE59914B4048900B8A643 /* libNUCas.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EDE59814B4048900B8A643 /* libNUCas.a */; };
 		00F940841642E08100176840 /* EventTemplateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F940831642E08100176840 /* EventTemplateTest.m */; };
+		00FA00691720505B006A96A4 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = 00FA00681720505B006A96A4 /* Podfile.lock */; };
 		00FF37DE1417C50D0009B1D4 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37DD1417C50D0009B1D4 /* Instrument.m */; };
 		00FF37E71417D2380009B1D4 /* ContactNavigationTableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */; };
 		1605000A170B8BFD00F854E7 /* SendOnlyDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 16050009170B8BFC00F854E7 /* SendOnlyDelegateObject.m */; };
@@ -199,8 +205,8 @@
 		22A11EF1166E6142000E1F07 /* NUPickerVC+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A11EF0166E6142000E1F07 /* NUPickerVC+Additions.m */; };
 		22B8E4A616643B6A00640DE8 /* DispositionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B8E4A516643B6A00640DE8 /* DispositionCode.m */; };
 		4F53118515FA58A1006F5BB2 /* InstrumentPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */; };
-		CBDE67D6A08C4C058C5A2697 /* libPods-NCSNavFieldTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F13715761CC546A89E735D30 /* libPods-NCSNavFieldTests.a */; };
 		D1CACF1A1F944E92AB51AE74 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 493CC93326804A8ABCA31763 /* libPods.a */; };
+		EF8CC421C2CE4E4C9516C0F7 /* libPods-NCSNavFieldTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77469D9FFDD94E4BB9200C11 /* libPods-NCSNavFieldTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -495,11 +501,21 @@
 		006D47FB148D94970035DC01 /* ChangeHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeHandler.m; sourceTree = "<group>"; };
 		006FDD88148FD2E80001BADE /* TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextField.h; sourceTree = "<group>"; };
 		006FDD89148FD2E80001BADE /* TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextField.m; sourceTree = "<group>"; };
+		007135CF171EDC40007D38C3 /* FieldworkRetrieveStepTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkRetrieveStepTest.h; sourceTree = "<group>"; };
+		007135D0171EDC40007D38C3 /* FieldworkRetrieveStepTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkRetrieveStepTest.m; sourceTree = "<group>"; };
 		0073B3661511277000543DA4 /* Fieldwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fieldwork.h; sourceTree = "<group>"; };
 		0073B3671511277000543DA4 /* Fieldwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fieldwork.m; sourceTree = "<group>"; };
+		0078347F172226C1003F7888 /* FieldworkPushStepTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkPushStepTest.h; sourceTree = "<group>"; };
+		00783480172226C1003F7888 /* FieldworkPushStepTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkPushStepTest.m; sourceTree = "<group>"; };
+		0078348217224332003F7888 /* RestKitTestStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitTestStub.h; sourceTree = "<group>"; };
+		0078348317224332003F7888 /* RestKitTestStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitTestStub.m; sourceTree = "<group>"; };
+		007834851725C7A8003F7888 /* CasServiceTicketTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CasServiceTicketTest.h; sourceTree = "<group>"; };
+		007834861725C7A8003F7888 /* CasServiceTicketTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CasServiceTicketTest.m; sourceTree = "<group>"; };
+		007834881725CA35003F7888 /* CasTicketException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CasTicketException.h; sourceTree = "<group>"; };
+		007834891725CA35003F7888 /* CasTicketException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CasTicketException.m; sourceTree = "<group>"; };
 		0078A9AC159E414400B9FBD6 /* EventVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventVC.h; sourceTree = "<group>"; };
 		0078A9AD159E414400B9FBD6 /* EventVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventVC.m; sourceTree = "<group>"; };
-		007C1F4014FBFACA0020DF30 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		007C1F4014FBFACA0020DF30 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		00810B5D14896B070098C0D0 /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
 		00810B5E14896B070098C0D0 /* DatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePicker.m; sourceTree = "<group>"; };
 		00816CB0154B3F830054C918 /* FieldworkRetrieveStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkRetrieveStep.h; sourceTree = "<group>"; };
@@ -592,8 +608,8 @@
 		00C9C6E4146CE66300F6D339 /* main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = main.xcdatamodel; sourceTree = "<group>"; };
 		00D1BAE515470C4F000097E7 /* PushFieldworkStepTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushFieldworkStepTest.h; sourceTree = "<group>"; };
 		00D1BAE615470C4F000097E7 /* PushFieldworkStepTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushFieldworkStepTest.m; sourceTree = "<group>"; };
-		00D1BAE9154775CB000097E7 /* FieldworkPutRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkPutRequest.h; sourceTree = "<group>"; };
-		00D1BAEA154775CB000097E7 /* FieldworkPutRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkPutRequest.m; sourceTree = "<group>"; };
+		00D1BAE9154775CB000097E7 /* FieldworkPushStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkPushStep.h; sourceTree = "<group>"; };
+		00D1BAEA154775CB000097E7 /* FieldworkPushStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkPushStep.m; sourceTree = "<group>"; };
 		00D93A381506B2CF009CFDE9 /* RestKitSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitSettings.h; sourceTree = "<group>"; };
 		00D93A391506B2CF009CFDE9 /* RestKitSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitSettings.m; sourceTree = "<group>"; };
 		00D93A421507CC19009CFDE9 /* Participant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Participant.h; sourceTree = "<group>"; };
@@ -614,6 +630,7 @@
 		00E323591422B08200D3AEED /* Row.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Row.m; sourceTree = "<group>"; };
 		00E3235B1422EB6A00D3AEED /* ContactTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTable.h; sourceTree = "<group>"; };
 		00E3235C1422EB6A00D3AEED /* ContactTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTable.m; sourceTree = "<group>"; };
+		00E8FD451720D82300412186 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		00EAB7DD15FE6D1C00B5B685 /* 20120910184606_remove_instrument_template_from_instrument.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120910184606_remove_instrument_template_from_instrument.xcdatamodel; sourceTree = "<group>"; };
 		00EAB7DF15FE6F0000B5B685 /* 20120910185414_association_instrument_to_instrument_plan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120910185414_association_instrument_to_instrument_plan.xcdatamodel; sourceTree = "<group>"; };
 		00EDE59814B4048900B8A643 /* libNUCas.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNUCas.a; path = "../NUCas/build/Release-iphoneos/libNUCas.a"; sourceTree = "<group>"; };
@@ -622,6 +639,7 @@
 		00F940821642E08100176840 /* EventTemplateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTemplateTest.h; sourceTree = "<group>"; };
 		00F940831642E08100176840 /* EventTemplateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTemplateTest.m; sourceTree = "<group>"; };
 		00F9408A1643119C00176840 /* 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20121101202359_rename_event_repeat_key_and_type_id.xcdatamodel; sourceTree = "<group>"; };
+		00FA00681720505B006A96A4 /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
 		00FF37DC1417C50D0009B1D4 /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
 		00FF37DD1417C50D0009B1D4 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
 		00FF37E31417CFA30009B1D4 /* ContactNavigationTableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNavigationTableTest.h; sourceTree = "<group>"; };
@@ -725,9 +743,9 @@
 		4F53118215FA5519006F5BB2 /* 20120907161507_create_instrument_plan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20120907161507_create_instrument_plan.xcdatamodel; sourceTree = "<group>"; };
 		4F53118315FA58A1006F5BB2 /* InstrumentPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentPlan.h; sourceTree = "<group>"; };
 		4F53118415FA58A1006F5BB2 /* InstrumentPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentPlan.m; sourceTree = "<group>"; };
+		77469D9FFDD94E4BB9200C11 /* libPods-NCSNavFieldTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NCSNavFieldTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82067F0A149B4EFEB503D5D6 /* Pods-NCSNavFieldTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NCSNavFieldTests.xcconfig"; path = "Pods/Pods-NCSNavFieldTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		C2CA3FB4FE8942AD94694D46 /* Pods.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		DEA6E5A24F9942628C51EFA8 /* Pods-NCSNavFieldTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NCSNavFieldTests.xcconfig"; path = "Pods/Pods-NCSNavFieldTests.xcconfig"; sourceTree = SOURCE_ROOT; };
-		F13715761CC546A89E735D30 /* libPods-NCSNavFieldTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NCSNavFieldTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -759,7 +777,7 @@
 				0026E68C140347E700355BCB /* UIKit.framework in Frameworks */,
 				0026E68D140347E700355BCB /* Foundation.framework in Frameworks */,
 				0026E68E140347E700355BCB /* CoreGraphics.framework in Frameworks */,
-				CBDE67D6A08C4C058C5A2697 /* libPods-NCSNavFieldTests.a in Frameworks */,
+				EF8CC421C2CE4E4C9516C0F7 /* libPods-NCSNavFieldTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,6 +787,7 @@
 		0026E659140347E700355BCB = {
 			isa = PBXGroup;
 			children = (
+				00FA00681720505B006A96A4 /* Podfile.lock */,
 				00872259156AF6F100CE24ED /* test-background.png */,
 				00C0C8D515655E390047A113 /* icon-test.png */,
 				000E64B2150EB2BF0006B31E /* Settings.bundle */,
@@ -785,7 +804,7 @@
 				0026E667140347E700355BCB /* Frameworks */,
 				0026E665140347E700355BCB /* Products */,
 				C2CA3FB4FE8942AD94694D46 /* Pods.xcconfig */,
-				DEA6E5A24F9942628C51EFA8 /* Pods-NCSNavFieldTests.xcconfig */,
+				82067F0A149B4EFEB503D5D6 /* Pods-NCSNavFieldTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -818,7 +837,8 @@
 				0026E66A140347E700355BCB /* Foundation.framework */,
 				0026E66C140347E700355BCB /* CoreGraphics.framework */,
 				493CC93326804A8ABCA31763 /* libPods.a */,
-				F13715761CC546A89E735D30 /* libPods-NCSNavFieldTests.a */,
+				00E8FD451720D82300412186 /* SenTestingKit.framework */,
+				77469D9FFDD94E4BB9200C11 /* libPods-NCSNavFieldTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -847,6 +867,10 @@
 		0026E691140347E700355BCB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				007834851725C7A8003F7888 /* CasServiceTicketTest.h */,
+				007834861725C7A8003F7888 /* CasServiceTicketTest.m */,
+				0078347F172226C1003F7888 /* FieldworkPushStepTest.h */,
+				00783480172226C1003F7888 /* FieldworkPushStepTest.m */,
 				00B8756516D56A5300CED547 /* ResponseSetMustacheContextTest.h */,
 				00917E5016D80634008E1088 /* NUQuestionTest.h */,
 				00917E5116D80634008E1088 /* NUQuestionTest.m */,
@@ -904,8 +928,12 @@
 				00AB8E98164358290097F7CD /* NSManagedObjectTest.m */,
 				167292DB170097B20046B194 /* NUEndpointTest.h */,
 				167292DC170097B20046B194 /* NUEndpointTest.m */,
+				007135CF171EDC40007D38C3 /* FieldworkRetrieveStepTest.h */,
+				007135D0171EDC40007D38C3 /* FieldworkRetrieveStepTest.m */,
 				1647BB9A171C7B56005A925A /* ScreenerTypeChooserTest.h */,
 				1647BB9B171C7B56005A925A /* ScreenerTypeChooserTest.m */,
+				0078348217224332003F7888 /* RestKitTestStub.h */,
+				0078348317224332003F7888 /* RestKitTestStub.m */,
 			);
 			name = Tests;
 			path = NCSNavFieldTests;
@@ -1223,8 +1251,8 @@
 				000D8E8A152E9EE7006EE224 /* NSDate+Additions.m */,
 				006C26D91541EF3200D9B3B1 /* ApplicationPersistentStore.h */,
 				006C26DA1541EF3200D9B3B1 /* ApplicationPersistentStore.m */,
-				00D1BAE9154775CB000097E7 /* FieldworkPutRequest.h */,
-				00D1BAEA154775CB000097E7 /* FieldworkPutRequest.m */,
+				00D1BAE9154775CB000097E7 /* FieldworkPushStep.h */,
+				00D1BAEA154775CB000097E7 /* FieldworkPushStep.m */,
 				00816CB4154B49450054C918 /* FieldworkSynchronizeOperation.h */,
 				00816CB5154B49450054C918 /* FieldworkSynchronizeOperation.m */,
 				0087225B156B0F4300CE24ED /* ApplicationInformation.h */,
@@ -1477,6 +1505,8 @@
 			children = (
 				22942CD016692B7300242588 /* FieldworkSynchronizationException.h */,
 				22942CD116692B7300242588 /* FieldworkSynchronizationException.m */,
+				007834881725CA35003F7888 /* CasTicketException.h */,
+				007834891725CA35003F7888 /* CasTicketException.m */,
 			);
 			name = Exceptions;
 			sourceTree = "<group>";
@@ -1527,12 +1557,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0026E6A1140347E700355BCB /* Build configuration list for PBXNativeTarget "NCSNavFieldTests" */;
 			buildPhases = (
+				48B48712B8214875A68710DB /* Check Pods Manifest.lock */,
 				0026E686140347E700355BCB /* Sources */,
 				0026E687140347E700355BCB /* Frameworks */,
 				0026E688140347E700355BCB /* Resources */,
 				0026E689140347E700355BCB /* ShellScript */,
-				1E442B0B4825433D918E36BD /* Copy Pods Resources */,
-				FC881525276C4EDBBBA32263 /* Copy Pods Resources */,
+				11EFB69FD671448889BC874E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1625,6 +1655,7 @@
 				164959D5170E063200EEF552 /* ManualImage@2x.png in Resources */,
 				164959DD170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib in Resources */,
 				1647BB9917188F53005A925A /* ScreenerTypeChooserViewController.xib in Resources */,
+				00FA00691720505B006A96A4 /* Podfile.lock in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1652,6 +1683,20 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		11EFB69FD671448889BC874E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-NCSNavFieldTests-resources.sh\"\n";
+		};
 		1E442B0B4825433D918E36BD /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1666,19 +1711,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 		};
-		FC881525276C4EDBBBA32263 /* Copy Pods Resources */ = {
+		48B48712B8214875A68710DB /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-NCSNavFieldTests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sanbox is not in sync with the Podfile.lock. Run 'pod install'.\nEOM\n    exit 1\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1687,6 +1732,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0078348B1725CAB2003F7888 /* CasTicketException.m in Sources */,
 				009BE3AF14FC2217008195F9 /* SyncActivityIndicator.m in Sources */,
 				0026E676140347E700355BCB /* main.m in Sources */,
 				0026E679140347E700355BCB /* NCSNavFieldAppDelegate.m in Sources */,
@@ -1721,7 +1767,7 @@
 				000D8E8B152E9EE7006EE224 /* NSDate+Additions.m in Sources */,
 				0095430F153E62040018DAC3 /* InstrumentVC.m in Sources */,
 				006C26DB1541EF3200D9B3B1 /* ApplicationPersistentStore.m in Sources */,
-				00D1BAEB154775CB000097E7 /* FieldworkPutRequest.m in Sources */,
+				00D1BAEB154775CB000097E7 /* FieldworkPushStep.m in Sources */,
 				00816CB2154B3F830054C918 /* FieldworkRetrieveStep.m in Sources */,
 				00816CB6154B49450054C918 /* FieldworkSynchronizeOperation.m in Sources */,
 				00816CBC154EF2350054C918 /* ApplicationPersistentStoreBackup.m in Sources */,
@@ -1790,6 +1836,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0078348C1725D020003F7888 /* CasServiceTicket+Additions.m in Sources */,
 				000922B415F654A0005EBA3D /* ResponseSetTest.m in Sources */,
 				004FC7131486BF8300A378DC /* PickerOptionTest.m in Sources */,
 				00FF37E71417D2380009B1D4 /* ContactNavigationTableTest.m in Sources */,
@@ -1801,7 +1848,6 @@
 				00910BCF1535F13E00BC2820 /* InstrumentTest.m in Sources */,
 				00910BD21535F18900BC2820 /* DatabaseTest.m in Sources */,
 				006C26D71541BACB00D9B3B1 /* BackupFieldworkStepTest.m in Sources */,
-				00D1BAE715470C4F000097E7 /* PushFieldworkStepTest.m in Sources */,
 				00C53B3C1615F9CC00F245F9 /* MergeStatusTest.m in Sources */,
 				001FEDD71619FC4000DE8A3A /* SurveySetTest.m in Sources */,
 				00F940841642E08100176840 /* EventTemplateTest.m in Sources */,
@@ -1818,7 +1864,11 @@
 				00B8756716D56A5300CED547 /* ResponseSetMustacheContextTest.m in Sources */,
 				00917E5216D80634008E1088 /* NUQuestionTest.m in Sources */,
 				167292DD170097B20046B194 /* NUEndpointTest.m in Sources */,
+				007135D1171EDC40007D38C3 /* FieldworkRetrieveStepTest.m in Sources */,
+				00783481172226C1003F7888 /* FieldworkPushStepTest.m in Sources */,
+				0078348417224332003F7888 /* RestKitTestStub.m in Sources */,
 				1647BB9C171C7B56005A925A /* ScreenerTypeChooserTest.m in Sources */,
+				007834871725C7A8003F7888 /* CasServiceTicketTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1982,9 +2032,9 @@
 		};
 		0026E6A2140347E700355BCB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEA6E5A24F9942628C51EFA8 /* Pods-NCSNavFieldTests.xcconfig */;
+			baseConfigurationReference = 82067F0A149B4EFEB503D5D6 /* Pods-NCSNavFieldTests.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/NCSNavField.app/NCSNavField";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -2006,15 +2056,16 @@
 				PRODUCT_NAME = NCSNavFieldTests;
 				SKIP_INSTALL = YES;
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
 		0026E6A3140347E700355BCB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEA6E5A24F9942628C51EFA8 /* Pods-NCSNavFieldTests.xcconfig */;
+			baseConfigurationReference = 82067F0A149B4EFEB503D5D6 /* Pods-NCSNavFieldTests.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/NCSNavField.app/NCSNavField";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -2036,6 +2087,7 @@
 				PRODUCT_NAME = NCSNavFieldTests;
 				SKIP_INSTALL = YES;
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;

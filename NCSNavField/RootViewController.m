@@ -609,11 +609,12 @@
         bStepWasSuccessful = [nSync perform];
         NSLog(@"NCS Code sync: %@", bStepWasSuccessful ? @"Success" : @"Fail");
     }
-    //In the future, these two catches will diverge. Right now, let's just put a placeholder. 
     @catch (FieldworkSynchronizationException *ex) {
-        NSLog(@"%@\n%@",[ex debugDescription], [ex name]);
+        [self showAlertView:ex.reason];
+        NSLog(@"FieldworkSynchronizationException: %@", ex.explanation);
     }
     @catch(NSException *ex) {
+        [self showAlertView:@""];
         NSLog(@"%@\n%@",[ex debugDescription], [ex name]);
     }
     @finally {

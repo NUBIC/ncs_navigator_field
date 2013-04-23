@@ -8,7 +8,7 @@
 
 #import "FieldworkSynchronizeOperation.h"
 #import "ApplicationPersistentStore.h"
-#import "FieldworkPutRequest.h"
+#import "FieldworkPushStep.h"
 #import "FieldworkRetrieveStep.h"
 #import "Fieldwork.h"
 #import "MergeStatusRequest.h"
@@ -100,7 +100,7 @@
     ApplicationPersistentStoreBackup* backup = [store backup];
     NSLog(@"Backup path: %@", [backup path]);
     if (backup) {
-        FieldworkPutRequest* put = [[FieldworkPutRequest alloc] initWithServiceTicket:self.ticket];
+        FieldworkPushStep* put = [[FieldworkPushStep alloc] initWithServiceTicket:self.ticket];
         put.delegate=_delegate;
         if ([put send]) {
             [store remove];

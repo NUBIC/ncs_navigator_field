@@ -1,14 +1,14 @@
 //
-//  FieldworkSynchronizationException.m
+//  CasTicketException.m
 //  NCSNavField
 //
-//  Created by Sam Hicks on 11/30/12.
-//  Copyright (c) 2012 Northwestern University. All rights reserved.
+//  Created by John Dzak on 4/22/13.
+//  Copyright (c) 2013 Northwestern University. All rights reserved.
 //
 
-#import "FieldworkSynchronizationException.h"
+#import "CasTicketException.h"
 
-@implementation FieldworkSynchronizationException
+@implementation CasTicketException
 
 - (id)initWithReason:(NSString*)reason explanation:(NSString*)explanation {
     self = [self initWithName:@"FieldworkSynchronizationException" reason:reason userInfo:nil];
