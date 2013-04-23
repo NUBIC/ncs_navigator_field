@@ -931,14 +931,17 @@
 				00AB8E98164358290097F7CD /* NSManagedObjectTest.m */,
 				167292DB170097B20046B194 /* NUEndpointTest.h */,
 				167292DC170097B20046B194 /* NUEndpointTest.m */,
+<<<<<<< HEAD
+				16C01ECD171F068700299AAD /* NUEndpointServiceTest.h */,
+				16C01ECE171F068700299AAD /* NUEndpointServiceTest.m */,
+=======
 				007135CF171EDC40007D38C3 /* FieldworkRetrieveStepTest.h */,
 				007135D0171EDC40007D38C3 /* FieldworkRetrieveStepTest.m */,
 				1647BB9A171C7B56005A925A /* ScreenerTypeChooserTest.h */,
 				1647BB9B171C7B56005A925A /* ScreenerTypeChooserTest.m */,
-				16C01ECD171F068700299AAD /* NUEndpointServiceTest.h */,
-				16C01ECE171F068700299AAD /* NUEndpointServiceTest.m */,
 				0078348217224332003F7888 /* RestKitTestStub.h */,
 				0078348317224332003F7888 /* RestKitTestStub.m */,
+>>>>>>> master
 			);
 			name = Tests;
 			path = NCSNavFieldTests;
@@ -1869,12 +1872,15 @@
 				00B8756716D56A5300CED547 /* ResponseSetMustacheContextTest.m in Sources */,
 				00917E5216D80634008E1088 /* NUQuestionTest.m in Sources */,
 				167292DD170097B20046B194 /* NUEndpointTest.m in Sources */,
+<<<<<<< HEAD
+				16C01ECF171F068700299AAD /* NUEndpointServiceTest.m in Sources */,
+=======
 				007135D1171EDC40007D38C3 /* FieldworkRetrieveStepTest.m in Sources */,
 				00783481172226C1003F7888 /* FieldworkPushStepTest.m in Sources */,
 				0078348417224332003F7888 /* RestKitTestStub.m in Sources */,
 				1647BB9C171C7B56005A925A /* ScreenerTypeChooserTest.m in Sources */,
-				16C01ECF171F068700299AAD /* NUEndpointServiceTest.m in Sources */,
 				007834871725C7A8003F7888 /* CasServiceTicketTest.m in Sources */,
+>>>>>>> master
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

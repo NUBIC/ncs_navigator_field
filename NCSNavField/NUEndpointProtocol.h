@@ -13,6 +13,8 @@
 
 -(void)getEndpointArrayWithCallback:(void (^)(NSArray *endpointArray, NSError *error))endpointBlock;
 -(void)stopNetworkRequest;
+-(NUEndpoint *)generateManualEndpoint;
+-(NSArray *) synchronousEndpointRequestFromString:(NSString *)jsonString;
 
 @optional
 
