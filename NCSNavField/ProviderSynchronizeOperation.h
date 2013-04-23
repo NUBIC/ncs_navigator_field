@@ -22,6 +22,8 @@
 #define MERGE_ERROR @"There was an error preventing you from obtaining your data. Please call the help desk."
 #define SYNCING_CONTACTS @"Syncing Contacts"
 
+@class CasServiceTicket;
+
 @interface ProviderSynchronizeOperation : NSObject<RKObjectLoaderDelegate> {
     CasServiceTicket* _ticket;
     id<UserErrorDelegate> _delegate;
