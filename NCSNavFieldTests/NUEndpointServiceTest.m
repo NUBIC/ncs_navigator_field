@@ -25,18 +25,6 @@
     STAssertTrue(([liveServiceEndpointArray count] == 3), @"The number of endpoints is not equal to the number of locations in JSON");
 }
 
--(void)testNUEndpointImage {
-    
-    NUEndpoint *newEndpoint = [[NUEndpoint alloc] init];
-    newEndpoint.imageURL = [NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/3/30/Googlelogo.png"];
-    
-    while (newEndpoint.endpointImage == nil)
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
-    
-    STAssertNotNil(newEndpoint.endpointImage, @"endpoint image didn't load.");
-}
-
 -(NSString *)threeEndpointJsonString {
     return @"{"
     "    \"locations\": ["
