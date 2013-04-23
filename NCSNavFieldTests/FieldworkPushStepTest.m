@@ -1,5 +1,5 @@
 //
-//  FieldworkPutRequestTest.m
+//  FieldworkPushStepTest.m
 //  NCSNavField
 //
 //  Created by John Dzak on 4/19/13.
@@ -21,10 +21,8 @@
 
 @implementation FieldworkPushStepTest
 
-//static NSString* url;
 static id serviceTicket;
 static id proxyTicket;
-//static FieldworkPushStep* step;
 
 - (void)setUp {
     [super setUp];

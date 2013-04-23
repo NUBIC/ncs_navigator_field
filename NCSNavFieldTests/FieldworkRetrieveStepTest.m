@@ -21,19 +21,6 @@
 #import "FieldworkSynchronizationException.h"
 #import "RestKitTestStub.h"
 
-@implementation NSDate (UnitTest)
-
-static NSDate* dateStub = nil;
-
-+ (NSDate*)date {
-    if (!dateStub) {
-        dateStub = [Fixtures createDateFromString:@"2013-01-01"];
-    }
-    return dateStub;
-}
-
-@end
-
 @implementation ApplicationSettings (UnitTest)
 
 - (NSString*) clientId {
@@ -48,10 +35,14 @@ static NSString* url;
 static id serviceTicket;
 static id proxyTicket;
 static FieldworkRetrieveStep* step;
+id dateMock;
 
 - (void)setUp {
     [super setUp];
 
+    dateMock = [OCMockObject mockForClass:[NSDate class]];
+    [[[[dateMock stub] classMethod] andReturn:[Fixtures createDateFromString:@"2013-01-01"]] date];
+    
     [RestKitTestStub inject];
 
     url = [NSString stringWithFormat:@"%@/api/v1/fieldwork?start_date=2013-01-01&end_date=2013-01-08", [RestKitTestStub baseURL]];
@@ -66,6 +57,9 @@ static FieldworkRetrieveStep* step;
 
 - (void)tearDown {
     [super tearDown];
+
+    [dateMock stopMocking];
+
     [[LSNocilla sharedInstance] stop];
 }
 
