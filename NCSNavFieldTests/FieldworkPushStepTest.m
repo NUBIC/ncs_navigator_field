@@ -75,4 +75,33 @@ static id proxyTicket;
     STAssertThrowsSpecific([step send], FieldworkSynchronizationException, nil);
 }
 
+- (void)testFailedPushWithInvalidProxyTicket {
+    Fieldwork* f = [Fieldwork object];
+    f.uri = @"http://field.test.local/api/v1/fieldwork/XYZ123";
+    [Contact object];
+    
+    stubRequest(@"PUT", @"http://field.test.local/api/v1/fieldwork/XYZ123").
+    withHeaders(@{
+                @"Authorization": @"CasProxy PT-TEST-INVALID",
+                @"Content-Type": @"application/json",
+                @"X-Client-ID": @"CID-TEST" }).
+    andReturn(401).
+    withBody(@"Authorization Required");
+    
+    [[LSNocilla sharedInstance] start];
+    
+    serviceTicket = [OCMockObject mockForClass:[CasServiceTicket class]];
+    proxyTicket = [OCMockObject mockForClass:[CasProxyTicket class]];
+    
+    FieldworkPushStep* step = [[FieldworkPushStep alloc] initWithServiceTicket:serviceTicket];
+    
+    [[[serviceTicket stub] andReturn:proxyTicket] obtainProxyTicket];
+    [[[proxyTicket stub] andReturn:@"PT-TEST-INVALID"] proxyTicket];
+    
+    [serviceTicket verify];
+    [proxyTicket verify];
+    
+    STAssertThrowsSpecific([step send], FieldworkSynchronizationException, nil);
+}
+
 @end
