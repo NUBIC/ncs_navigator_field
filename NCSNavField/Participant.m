@@ -15,6 +15,7 @@
 
 @dynamic pId;
 @dynamic persons;
+@dynamic typeCode;
 
 
 + (Participant*)participant {
