@@ -1,0 +1,15 @@
+language: objective-c
+
+# blacklist
+#branches:
+ # except:
+  #  - legacy
+  # - experimental
+
+# whitelist
+branches:
+  only:
+    - 3937-Travis_ci
+
+before_install:
+  - git submodule update --init --recursive
