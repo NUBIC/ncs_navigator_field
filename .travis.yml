@@ -6,6 +6,9 @@ language: objective-c
   #  - legacy
   # - experimental
 
+xcode_sdk:
+ - iphonesimulator6.0
+
 # whitelist
 branches:
   only:
