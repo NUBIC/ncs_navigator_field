@@ -1,9 +1,9 @@
 language: objective-c
 
-# blacklist
+#blacklist
 #branches:
  # except:
-  #  - legacy
+ #   - 3937-Travis_ci
   # - experimental
 
 xcode_sdk:
