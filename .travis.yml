@@ -1,18 +1,1 @@
 language: objective-c
-
-#blacklist
-#branches:
- # except:
- #   - 3937-Travis_ci
-  # - experimental
-
-xcode_sdk:
- - iphonesimulator6.0
-
-# whitelist
-branches:
-  only:
-    - 3937-Travis_ci
-
-before_install:
-  - git submodule update --init --recursive
