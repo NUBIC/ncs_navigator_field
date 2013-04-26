@@ -131,7 +131,7 @@
     </entity>
     <entity name="Participant" representedClassName="Participant" syncable="YES">
         <attribute name="pId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="typeCode" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="typeCode" optional="YES" attributeType="Integer 32" syncable="YES"/>
         <relationship name="fieldWork" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Fieldwork" inverseName="participants" inverseEntity="Fieldwork" syncable="YES"/>
         <relationship name="persons" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Person" inverseName="participant" inverseEntity="Person" syncable="YES"/>
     </entity>
