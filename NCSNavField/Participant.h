@@ -9,11 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+FOUNDATION_EXPORT NSNumber * PARTICIPANT_TYPE_PBS_SCREENING;
+FOUNDATION_EXPORT NSNumber * PARTICIPANT_TYPE_BIRTH_COHORT;
+
 @class Fieldwork, Person;
 
 @interface Participant : NSManagedObject
 
 @property (nonatomic, retain) NSString * pId;
+@property (nonatomic, assign) NSNumber * typeCode;
 @property (nonatomic, retain) NSSet *persons;
 
 + (Participant*)participant;
