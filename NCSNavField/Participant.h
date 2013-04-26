@@ -14,7 +14,7 @@
 @interface Participant : NSManagedObject
 
 @property (nonatomic, retain) NSString * pId;
-@property (nonatomic, assign) int typeCode;
+@property (nonatomic, assign) NSNumber * typeCode;
 @property (nonatomic, retain) NSSet *persons;
 
 + (Participant*)participant;
