@@ -33,6 +33,7 @@
 }
 
 -(void)setPerson:(Person *)person {
+    self.personId = person.personId;
     NSManagedObjectContext *moc = [person managedObjectContext];
     NSError *saveError = nil;
     BOOL didSave = [moc save:&saveError];

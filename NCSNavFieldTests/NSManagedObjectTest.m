@@ -10,6 +10,7 @@
 #import "NSManagedObject+Additions.h"
 #import "Contact.h"
 #import "Event.h"
+#import "Participant.h"
 #import "InstrumentPlan.h"
 #import "InstrumentTemplate.h"
 #import "Person.h"
@@ -50,13 +51,13 @@
 }
 
 - (void)testCloneWithHasOne {
-    Contact* base = [Contact object];
-    Person* basePerson = [Person object];
-    basePerson.firstName = @"Fred";
-    base.person = basePerson;
-    Contact* cloned = (Contact*) [base cloneAndignoreRelations:nil];
-    STAssertTrue(basePerson.objectID != cloned.person.objectID, nil);
-    STAssertEqualObjects(cloned.person.name, @"Fred", nil);
+    Person *person = [Person object];
+    Participant *participant = [Participant object];
+    participant.pId = @"pid";
+    person.participant = participant;
+    Person *clonedPerson = (Person *)[person cloneAndignoreRelations:nil];
+    STAssertFalse([participant.objectID isEqual:clonedPerson.participant.objectID], @"person's participant did not clone correctly.");
+    STAssertTrue([participant.pId isEqualToString:clonedPerson.participant.pId], @"participant name did not clone correctly.");
 }
 
 - (void)testCloneIntoManagedObjectContext {
