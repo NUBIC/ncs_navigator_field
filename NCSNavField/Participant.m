@@ -11,10 +11,22 @@
 #import "HumanReadablePublicIdGenerator.h"
 #import <MRCEnumerable/MRCEnumerable.h>
 
+NSNumber * PARTICIPANT_TYPE_PBS_SCREENING;
+NSNumber * PARTICIPANT_TYPE_BIRTH_COHORT;
+
 @implementation Participant
 
 @dynamic pId;
 @dynamic persons;
+@dynamic typeCode;
+
++(void)initialize {
+    if (self == [super class]) {
+        //Participant Type Codes Constants
+        PARTICIPANT_TYPE_PBS_SCREENING = @14;
+        PARTICIPANT_TYPE_BIRTH_COHORT = @15;
+    }
+}
 
 
 + (Participant*)participant {
