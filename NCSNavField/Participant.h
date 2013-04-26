@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+FOUNDATION_EXPORT NSNumber * PARTICIPANT_TYPE_PBS_SCREENING;
+FOUNDATION_EXPORT NSNumber * PARTICIPANT_TYPE_BIRTH_COHORT;
+
 @class Fieldwork, Person;
 
 @interface Participant : NSManagedObject

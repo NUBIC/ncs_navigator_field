@@ -62,11 +62,11 @@
     EventTemplate* pregnancyScreeningEventTmpl = nil; 
     if ([eventTemplateName isEqualToString:EVENT_TEMPLATE_PBS_ELIGIBILITY] || [eventTemplateName isEqualToString:EVENT_TEMPLATE_PBS_ELIGIBILITY_LEGACY]) {
         pregnancyScreeningEventTmpl = [EventTemplate pregnancyScreeningTemplate];
-        participant.typeCode = @(PARTICIPANT_TYPE_PBS_SCREENING);
+        participant.typeCode = PARTICIPANT_TYPE_PBS_SCREENING;
     }
     else if ([eventTemplateName isEqualToString:EVENT_TEMPLATE_BIRTH_COHORT]) {
         pregnancyScreeningEventTmpl = [EventTemplate birthCohortTemplate];
-        participant.typeCode = @(PARTICIPANT_TYPE_BIRTH_COHORT);
+        participant.typeCode = PARTICIPANT_TYPE_BIRTH_COHORT;
     }
     
     if (pregnancyScreeningEventTmpl) {

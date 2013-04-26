@@ -40,8 +40,7 @@ NSString * EVENT_TEMPLATE_PREG_VISIT_ONE = @"Pregnancy Visit 1";
 NSString * EVENT_TEMPLATE_PBS_ELIGIBILITY_LEGACY = @"PBS Participant Eligibility Screening";
 NSString * EVENT_TEMPLATE_PREG_VISIT_ONE_LEGACY = @"Pregnancy Visit 1";
 
-//Participant Type Codes
 
-int PARTICIPANT_TYPE_PBS_SCREENING = 14;
-int PARTICIPANT_TYPE_BIRTH_COHORT = 15;
+
+
 
