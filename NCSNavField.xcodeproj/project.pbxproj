@@ -606,8 +606,6 @@
 		00C53B3A1615F9CC00F245F9 /* MergeStatusTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeStatusTest.h; sourceTree = "<group>"; };
 		00C53B3B1615F9CC00F245F9 /* MergeStatusTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeStatusTest.m; sourceTree = "<group>"; };
 		00C9C6E4146CE66300F6D339 /* main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = main.xcdatamodel; sourceTree = "<group>"; };
-		00D1BAE515470C4F000097E7 /* PushFieldworkStepTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushFieldworkStepTest.h; sourceTree = "<group>"; };
-		00D1BAE615470C4F000097E7 /* PushFieldworkStepTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushFieldworkStepTest.m; sourceTree = "<group>"; };
 		00D1BAE9154775CB000097E7 /* FieldworkPushStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldworkPushStep.h; sourceTree = "<group>"; };
 		00D1BAEA154775CB000097E7 /* FieldworkPushStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldworkPushStep.m; sourceTree = "<group>"; };
 		00D93A381506B2CF009CFDE9 /* RestKitSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitSettings.h; sourceTree = "<group>"; };
@@ -900,8 +898,6 @@
 				00F940831642E08100176840 /* EventTemplateTest.m */,
 				000922B015F652F6005EBA3D /* ResponseSetTest.m */,
 				000922B115F652F6005EBA3D /* ResponseSetTest.h */,
-				00D1BAE515470C4F000097E7 /* PushFieldworkStepTest.h */,
-				00D1BAE615470C4F000097E7 /* PushFieldworkStepTest.m */,
 				0026E692140347E700355BCB /* Supporting Files */,
 				00FF37E31417CFA30009B1D4 /* ContactNavigationTableTest.h */,
 				00FF37E41417CFA30009B1D4 /* ContactNavigationTableTest.m */,
