@@ -105,6 +105,7 @@
         <relationship name="fieldWork" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Fieldwork" inverseName="instrumentTemplates" inverseEntity="Fieldwork" syncable="YES"/>
         <relationship name="instrumentPlan" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InstrumentPlan" inverseName="instrumentTemplates" inverseEntity="InstrumentPlan" syncable="YES"/>
         <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="NUQuestion" inverseName="instrumentTemplate" inverseEntity="NUQuestion" syncable="YES"/>
+        <relationship name="translations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NUTranslation" inverseName="instrumentTemplate" inverseEntity="NUTranslation" syncable="YES"/>
     </entity>
     <entity name="MdesCode" syncable="YES">
         <attribute name="displayText" optional="YES" attributeType="String" syncable="YES"/>
@@ -128,6 +129,12 @@
         <attribute name="uuid" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="NUAnswer" inverseName="question" inverseEntity="NUAnswer" syncable="YES"/>
         <relationship name="instrumentTemplate" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="InstrumentTemplate" inverseName="questions" inverseEntity="InstrumentTemplate" syncable="YES"/>
+        <relationship name="translation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="NUTranslation" inverseName="questions" inverseEntity="NUTranslation" syncable="YES"/>
+    </entity>
+    <entity name="NUTranslation" syncable="YES">
+        <attribute name="locale" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="instrumentTemplate" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="InstrumentTemplate" inverseName="translations" inverseEntity="InstrumentTemplate" syncable="YES"/>
+        <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NUQuestion" inverseName="translation" inverseEntity="NUQuestion" syncable="YES"/>
     </entity>
     <entity name="Participant" representedClassName="Participant" syncable="YES">
         <attribute name="pId" optional="YES" attributeType="String" syncable="YES"/>
@@ -189,21 +196,22 @@
     <elements>
         <element name="Contact" positionX="-360" positionY="297" width="128" height="405"/>
         <element name="DispositionCode" positionX="-540" positionY="-27" width="128" height="135"/>
-        <element name="Event" positionX="450" positionY="249" width="128" height="345"/>
+        <element name="Event" positionX="441" positionY="267" width="128" height="345"/>
         <element name="EventTemplate" positionX="306" positionY="-0" width="128" height="120"/>
         <element name="Fieldwork" positionX="-144" positionY="456" width="128" height="120"/>
         <element name="Instrument" positionX="-38" positionY="-141" width="128" height="375"/>
         <element name="InstrumentPlan" positionX="153" positionY="-162" width="128" height="75"/>
-        <element name="InstrumentTemplate" positionX="-38" positionY="252" width="128" height="135"/>
+        <element name="InstrumentTemplate" positionX="-38" positionY="252" width="128" height="148"/>
         <element name="MdesCode" positionX="-234" positionY="-180" width="128" height="90"/>
         <element name="MergeStatus" positionX="-387" positionY="-180" width="128" height="90"/>
         <element name="NUAnswer" positionX="493" positionY="-162" width="128" height="105"/>
-        <element name="NUQuestion" positionX="304" positionY="-162" width="128" height="120"/>
+        <element name="NUQuestion" positionX="304" positionY="-162" width="128" height="133"/>
         <element name="Participant" positionX="-360" positionY="171" width="128" height="105"/>
         <element name="Person" positionX="-533" positionY="135" width="128" height="270"/>
         <element name="Provider" positionX="-540" positionY="-180" width="128" height="135"/>
         <element name="Response" positionX="-387" positionY="-30" width="128" height="165"/>
         <element name="ResponseSet" positionX="-189" positionY="-12" width="128" height="165"/>
         <element name="ResponseTemplate" positionX="475" positionY="-0" width="128" height="105"/>
+        <element name="NUTranslation" positionX="126" positionY="414" width="128" height="88"/>
     </elements>
 </model>
