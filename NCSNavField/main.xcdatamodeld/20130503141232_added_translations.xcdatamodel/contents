@@ -131,7 +131,7 @@
         <relationship name="instrumentTemplate" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="InstrumentTemplate" inverseName="questions" inverseEntity="InstrumentTemplate" syncable="YES"/>
         <relationship name="translation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="NUTranslation" inverseName="questions" inverseEntity="NUTranslation" syncable="YES"/>
     </entity>
-    <entity name="NUTranslation" syncable="YES">
+    <entity name="NUTranslation" representedClassName="NUTranslation" syncable="YES">
         <attribute name="locale" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="instrumentTemplate" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="InstrumentTemplate" inverseName="translations" inverseEntity="InstrumentTemplate" syncable="YES"/>
         <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NUQuestion" inverseName="translation" inverseEntity="NUQuestion" syncable="YES"/>

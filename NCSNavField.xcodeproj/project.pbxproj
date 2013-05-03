@@ -160,6 +160,8 @@
 		164959D5170E063200EEF552 /* ManualImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 164959D3170E063200EEF552 /* ManualImage@2x.png */; };
 		164959DC170E0ECF00EEF552 /* NUManualEndpointEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164959DA170E0ECF00EEF552 /* NUManualEndpointEditViewController.m */; };
 		164959DD170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164959DB170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib */; };
+		16569A4A1734109200023F9E /* NUTranslation.m in Sources */ = {isa = PBXBuildFile; fileRef = 16569A491734109200023F9E /* NUTranslation.m */; };
+		16569A4B1734109200023F9E /* NUTranslation.m in Sources */ = {isa = PBXBuildFile; fileRef = 16569A491734109200023F9E /* NUTranslation.m */; };
 		167292DD170097B20046B194 /* NUEndpointTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 167292DC170097B20046B194 /* NUEndpointTest.m */; };
 		16C01ECF171F068700299AAD /* NUEndpointServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C01ECE171F068700299AAD /* NUEndpointServiceTest.m */; };
 		16F0DA5816D56BE800290837 /* NCSFieldConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F0DA5716D56BE800290837 /* NCSFieldConstants.m */; };
@@ -671,6 +673,8 @@
 		164959DA170E0ECF00EEF552 /* NUManualEndpointEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUManualEndpointEditViewController.m; sourceTree = "<group>"; };
 		164959DB170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NUManualEndpointEditViewController.xib; sourceTree = "<group>"; };
 		16569A471733FD5F00023F9E /* 20130503141232_added_translations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20130503141232_added_translations.xcdatamodel; sourceTree = "<group>"; };
+		16569A481734109200023F9E /* NUTranslation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUTranslation.h; sourceTree = "<group>"; };
+		16569A491734109200023F9E /* NUTranslation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUTranslation.m; sourceTree = "<group>"; };
 		167292DB170097B20046B194 /* NUEndpointTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointTest.h; sourceTree = "<group>"; };
 		167292DC170097B20046B194 /* NUEndpointTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointTest.m; sourceTree = "<group>"; };
 		16821E80170393AF003613A1 /* 20130327205234_added_address_unit_to_practice.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130327205234_added_address_unit_to_practice.xcdatamodel; sourceTree = "<group>"; };
@@ -1267,6 +1271,8 @@
 				0037D8BE15F685F200C6B7EB /* ResponseSet.m */,
 				001FEDD11619FA4F00DE8A3A /* SurveySet.h */,
 				001FEDD21619FA4F00DE8A3A /* SurveySet.m */,
+				16569A481734109200023F9E /* NUTranslation.h */,
+				16569A491734109200023F9E /* NUTranslation.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1831,6 +1837,7 @@
 				164959DC170E0ECF00EEF552 /* NUManualEndpointEditViewController.m in Sources */,
 				1647BB9817188F53005A925A /* ScreenerTypeChooserViewController.m in Sources */,
 				1647BBA0171C9440005A925A /* SendOnlyDelegateObject.m in Sources */,
+				16569A4A1734109200023F9E /* NUTranslation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1872,6 +1879,7 @@
 				1647BB9C171C7B56005A925A /* ScreenerTypeChooserTest.m in Sources */,
 				16C01ECF171F068700299AAD /* NUEndpointServiceTest.m in Sources */,
 				007834871725C7A8003F7888 /* CasServiceTicketTest.m in Sources */,
+				16569A4B1734109200023F9E /* NUTranslation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

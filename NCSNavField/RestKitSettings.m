@@ -26,6 +26,7 @@
 #import "MdesCode.h"
 #import "DispositionCode.h"
 #import "ResponseTemplate.h"
+#import "NUTranslation.h"
 #import "JSONParserNSJSONSerialization.h"
 NSString* STORE_NAME = @"main.sqlite";
 
@@ -283,6 +284,11 @@ static RestKitSettings* instance;
     [fieldWork mapRelationship:@"participants" withMapping:participant];
     [fieldWork mapRelationship:@"contacts" withMapping:contact];
     [objectManager.mappingProvider setMapping:fieldWork forKeyPath:@"field_work"];
+    
+    //Translation Mapping
+    RKManagedObjectMapping *translation = [RKManagedObjectMapping mappingForClass:[NUTranslation class] inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
+    [translation mapKeyPathsToAttributes:@"locale", @"locale", nil];
+    [translation mapRelationship:@"instrumentTemplate" withMapping:instrumentTemplate];
     
     [RKManagedObjectMapping addDefaultDateFormatterForString:@"yyyy'-'MM'-'dd" inTimeZone:[NSTimeZone localTimeZone]];
 }

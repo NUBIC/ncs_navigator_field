@@ -13,7 +13,7 @@
 
 @implementation NUQuestion
 
-@dynamic answers, instrumentTemplate, referenceIdentifier, uuid, text;
+@dynamic answers, instrumentTemplate, referenceIdentifier, uuid, text, translation;
 
 static NSString *HELPER_QUESTION_REFERENCE_IDENTIFIER_PREFIX = @"helper_";
 

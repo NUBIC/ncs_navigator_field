@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class NUAnswer, InstrumentTemplate;
+@class NUAnswer, InstrumentTemplate, NUTranslation;
 
 @interface NUQuestion : NSManagedObject
 
@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSString * uuid;
 @property (nonatomic, retain) InstrumentTemplate * instrumentTemplate;
 @property (nonatomic, retain) NSOrderedSet *answers;
+@property (nonatomic, retain) NUTranslation *translation;
 
 #pragma mark - Class Methods
 

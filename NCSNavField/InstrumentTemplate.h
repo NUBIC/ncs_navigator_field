@@ -17,6 +17,7 @@
 @property(nonatomic,strong) NSString* representation;
 @property(nonatomic,strong) NSString* participantType;
 @property(nonatomic,strong) NSOrderedSet *questions;
+@property(nonatomic, strong) NSSet *translations;
 
 - (void)setRepresentationDictionary:(NSDictionary*)dict;
 
