@@ -16,6 +16,10 @@
 
 #define NO_SELECTION_BUTTON_TEXT @"Pick One"
 
+@interface SingleOptionPicker () <NUPickerVCDelegate>
+
+@end
+
 @implementation SingleOptionPicker
 
 @synthesize value = _value;
@@ -154,8 +158,8 @@
     
 }
 
-- (void) pickerDone {
-    NSUInteger selected = [self.picker.picker selectedRowInComponent:0]; 
+-(void)pickerViewControllerIsDone:(NUPickerVC *)pickerViewController {
+    NSUInteger selected = [self.picker.picker selectedRowInComponent:0];
     PickerOption* o = [self.pickerOptions objectAtIndex:selected];
     NSObject* new = o.value;
     self.value = new;
@@ -165,7 +169,7 @@
     [self.popover dismissPopoverAnimated:NO];
 }
 
-- (void) pickerCancel {
+-(void)pickerViewControllerDidCancel:(NUPickerVC *)pickerViewController {
     NSObject* old = self.value;
     PickerOption* o = [PickerOption findWithValue:old fromOptions:self.pickerOptions];
     if(o!=nil)

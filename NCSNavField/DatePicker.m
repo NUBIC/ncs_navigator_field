@@ -10,7 +10,7 @@
 #import "NUPickerVC.h"
 #import "ChangeHandler.h"
 
-@interface DatePicker ()
+@interface DatePicker () <NUPickerVCDelegate>
 - (NSString*) formatTitleUsingDate:(NSDate*)date;
 @end
 
@@ -94,7 +94,7 @@
 	//  [self  pickerDone];  
 }
 
-- (void) pickerDone{
+-(void)pickerViewControllerIsDone:(NUPickerVC *)pickerViewController {
     [self.popover dismissPopoverAnimated:NO];
     NSDate* d = [self.picker.datePicker date]; 
     self.date = d;
@@ -107,7 +107,8 @@
 //        self.textLabel.text = [(NSDictionary *)[answers objectAtIndex:selectedRow] objectForKey:@"text"];
 //        self.textLabel.textColor = RGB(1, 113, 233);
 }
-- (void) pickerCancel{
+
+-(void)pickerViewControllerDidCancel:(NUPickerVC *)pickerViewController {
     if (self.date) {
         self.picker.datePicker.date = self.date;
     }

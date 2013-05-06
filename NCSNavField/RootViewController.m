@@ -160,12 +160,14 @@
         MultiSurveyTVC *masterViewController = [[MultiSurveyTVC alloc] initWithSurveyResponseSetRelationships:rels];
         
         masterViewController.delegate = self;
-        
+                
         NUSectionTVC *detailViewController = masterViewController.sectionTVC;
         
         [self.navigationController pushViewController:masterViewController animated:NO];
         
-        self.splitViewController.viewControllers = [NSArray arrayWithObjects:self.navigationController, detailViewController, nil];
+        UINavigationController *containerController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+        
+        self.splitViewController.viewControllers = [NSArray arrayWithObjects:self.navigationController, containerController, nil];
         
         self.administeredInstrument = instrument;
     }
@@ -297,8 +299,14 @@
 #pragma mark -
 #pragma mark navigation controller delegate
 
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    Class src = [[self.splitViewController.viewControllers objectAtIndex:1] class];
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    Class src = nil;
+    if ([self.splitViewController.viewControllers[1] respondsToSelector:@selector(visibleViewController)]) {
+        src = [[self.splitViewController.viewControllers[1] visibleViewController] class];
+    }
+    else {
+        src = [self.splitViewController.viewControllers[1] class];
+    }
     Class dst = [viewController class];
     if ( src == [NUSectionTVC class] &&  dst == [RootViewController class]) {
         self.splitViewController.viewControllers = [NSArray arrayWithObjects:self.navigationController, _detailViewController, nil];
