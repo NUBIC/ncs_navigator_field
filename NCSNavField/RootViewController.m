@@ -29,7 +29,6 @@
 #import "NUUUID.h"
 #import "Fieldwork.h"
 #import "FieldworkSynchronizeOperation.h"
-#import "ApplicationPersistentStore.h"
 #import <MRCEnumerable.h>
 #import "MultiSurveyTVC.h"
 #import "NUSurvey+Additions.h"
@@ -217,6 +216,7 @@
     }
     else {
         [[ApplicationSettings instance] updateWithEndpoint:chosenEndpoint];
+        [self deleteButtonWasPressed];
         RootViewController __weak *weakSelf = self;
         void (^ completionBlock)() = ^ {
             RootViewController __strong *strongSelf = weakSelf;
@@ -236,6 +236,7 @@
 
 -(void) manualEndpointViewController:(NUManualEndpointEditViewController *)manualEditVC didFinishWithEndpoint:(NUEndpoint *)alteredEndpoint {
     [[ApplicationSettings instance] updateWithEndpoint:alteredEndpoint];
+    [self deleteButtonWasPressed];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -451,12 +452,7 @@
 }
 
 - (void) deleteButtonWasPressed {
-    [self purgeDataStore];
-
-//    [NUEndpoint deleteUserEndpoint];
-//    [[ApplicationSettings instance] updateWithEndpoint:nil];
-//    [self setUpEndpointBar];
-    
+    [[ApplicationSettings instance] purgePersistentStore];
     self.contacts = [NSArray array];
 }
 
@@ -490,11 +486,6 @@
     self.tableView.tableHeaderView = [self tableHeaderView];
     
     self.detailViewController.detailItem = NULL;
-}
-
-- (void)purgeDataStore {
-    ApplicationPersistentStore* s = [ApplicationPersistentStore instance];
-    [s remove];
 }
 
 -(void)presentEndpointSelectionController {
