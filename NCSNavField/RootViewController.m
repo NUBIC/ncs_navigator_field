@@ -68,6 +68,8 @@
 
 -(ContactInitiateVC *)startPBSScreenWithEventTemplateName:(NSString *)eventTemplateName;
 
+-(void)updateWithEndpoint:(NUEndpoint *)endpoint;
+
 @end
 
 @implementation RootViewController
@@ -202,7 +204,7 @@
         }];
     }
     else {
-        [[ApplicationSettings instance] updateWithEndpoint:chosenEndpoint];
+        [self updateWithEndpoint:chosenEndpoint];
         RootViewController __weak *weakSelf = self;
         void (^ completionBlock)() = ^ {
             RootViewController __strong *strongSelf = weakSelf;
@@ -221,7 +223,7 @@
 
 
 -(void) manualEndpointViewController:(NUManualEndpointEditViewController *)manualEditVC didFinishWithEndpoint:(NUEndpoint *)alteredEndpoint {
-    [[ApplicationSettings instance] updateWithEndpoint:alteredEndpoint];
+    [self updateWithEndpoint:alteredEndpoint];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -292,6 +294,11 @@
     else {
         [self presentEndpointSelectionController];
     }
+}
+
+-(void)updateWithEndpoint:(NUEndpoint *)endpoint {
+    [self deleteButtonWasPressed];
+    [[ApplicationSettings instance] updateWithEndpoint:endpoint];
 }
 
 #pragma mark -
@@ -456,12 +463,7 @@
 }
 
 - (void) deleteButtonWasPressed {
-    [self purgeDataStore];
-
-//    [NUEndpoint deleteUserEndpoint];
-//    [[ApplicationSettings instance] updateWithEndpoint:nil];
-//    [self setUpEndpointBar];
-    
+    [self purgeDataStore];    
     self.contacts = [NSArray array];
 }
 
