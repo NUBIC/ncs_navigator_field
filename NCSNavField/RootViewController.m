@@ -218,8 +218,7 @@
         }];
     }
     else {
-        [[ApplicationSettings instance] updateWithEndpoint:chosenEndpoint];
-        [self deleteButtonWasPressed];
+        [self updateWithEndpoint:chosenEndpoint];
         RootViewController __weak *weakSelf = self;
         void (^ completionBlock)() = ^ {
             RootViewController __strong *strongSelf = weakSelf;
@@ -238,8 +237,7 @@
 
 
 -(void) manualEndpointViewController:(NUManualEndpointEditViewController *)manualEditVC didFinishWithEndpoint:(NUEndpoint *)alteredEndpoint {
-    [[ApplicationSettings instance] updateWithEndpoint:alteredEndpoint];
-    [self deleteButtonWasPressed];
+    [self updateWithEndpoint:alteredEndpoint];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -294,8 +292,8 @@
 }
 
 -(void)updateWithEndpoint:(NUEndpoint *)endpoint {
-    [[ApplicationSettings instance] updateWithEndpoint:endpoint];
     [self deleteButtonWasPressed];
+    [[ApplicationSettings instance] updateWithEndpoint:endpoint];
 }
 
 #pragma mark -
