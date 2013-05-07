@@ -29,6 +29,7 @@
 #import "NUUUID.h"
 #import "Fieldwork.h"
 #import "FieldworkSynchronizeOperation.h"
+#import "ApplicationPersistentStore.h"
 #import <MRCEnumerable.h>
 #import "MultiSurveyTVC.h"
 #import "NUSurvey+Additions.h"
@@ -67,6 +68,8 @@
 -(void)presentEndpointSelectionController;
 
 -(void)startSyncWithServiceTicket:(CasServiceTicket*)serviceTicket withRetrieval:(BOOL)shouldRetrieve;
+
+-(void)updateWithEndpoint:(NUEndpoint *)endpoint;
 
 @end
 
@@ -290,6 +293,11 @@
     }
 }
 
+-(void)updateWithEndpoint:(NUEndpoint *)endpoint {
+    [[ApplicationSettings instance] updateWithEndpoint:endpoint];
+    [self deleteButtonWasPressed];
+}
+
 #pragma mark -
 #pragma mark navigation controller delegate
 
@@ -452,7 +460,7 @@
 }
 
 - (void) deleteButtonWasPressed {
-    [[ApplicationSettings instance] purgePersistentStore];
+    [self purgeDataStore];    
     self.contacts = [NSArray array];
 }
 
@@ -486,6 +494,11 @@
     self.tableView.tableHeaderView = [self tableHeaderView];
     
     self.detailViewController.detailItem = NULL;
+}
+
+- (void)purgeDataStore {
+    ApplicationPersistentStore* s = [ApplicationPersistentStore instance];
+    [s remove];
 }
 
 -(void)presentEndpointSelectionController {

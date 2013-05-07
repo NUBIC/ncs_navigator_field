@@ -14,7 +14,6 @@
 #import "NUEndpoint.h"
 #import "NUEndpointEnvironment.h"
 #import "RestKitSettings.h"
-#import "ApplicationPersistentStore.h"
 
 //This makes the method declaration private. This is a singleton
 //and we don't want any consumers of this class to call the init method.
@@ -243,11 +242,6 @@
 
 -(void)setLastModifiedSinceForCodes:(NSString*)str {
     [[NSUserDefaults standardUserDefaults] setValue:str forKey:@"lastModifiedCodes"];
-}
-
--(void)purgePersistentStore {
-    ApplicationPersistentStore* s = [ApplicationPersistentStore instance];
-    [s remove];
 }
 
 -(void)updateWithEndpoint:(NUEndpoint *)endpoint {

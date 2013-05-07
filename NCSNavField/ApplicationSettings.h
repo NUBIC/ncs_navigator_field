@@ -48,6 +48,5 @@
 
 -(void)updateWithEndpoint:(NUEndpoint *)endpoint;
 
--(void)purgePersistentStore;
 
 @end
