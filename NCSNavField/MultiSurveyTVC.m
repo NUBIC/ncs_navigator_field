@@ -29,6 +29,7 @@
 - (void) nextSection;
 - (void) prevSection;
 
+-(NSString *)getTranslatedTitleFromSectionWithUUID:(NSString *)uuid forLocale:(NSString *)locale;
 -(NSDictionary *)generateTranslatedSectionTitleDictionaryBasedOnLocale:(NSString *)selectedLocale;
 @end
 
@@ -133,7 +134,7 @@
     NUSurvey* s = [self.surveys objectAtIndex:indexPath.section];
     NSDictionary* sr = [s.jsonString objectFromJSONString];
     NSDictionary *sectionDictionary = [[sr objectForKey:@"sections"] objectAtIndex:indexPath.row];
-    NSString *translatedTitle = [self.translatedTitleDictionary[[s valueForKey:@"uuid"]] objectAtIndex:indexPath.row];
+    NSString *translatedTitle = [self.translatedTitleDictionary[[s valueForKey:@"uuid"]] objectAtIndex:indexPath.row];;
     NSString *defaultTitle = [sectionDictionary objectForKey:@"title"];
 	cell.textLabel.text = (translatedTitle) ? translatedTitle : defaultTitle;
     cell.accessibilityLabel = [[[sr objectForKey:@"sections"] objectAtIndex:indexPath.row] objectForKey:@"title"];
@@ -171,15 +172,33 @@
     SurveySet* ss = [[SurveySet alloc] initWithSurveys:self.surveys];
     // REFACTOR: Logic should be moved into sectionTVC?
     NSDictionary* previous = [ss previousSectionfromSurveyIndex:sui sectionIndex:sei];
-    self.sectionTVC.prevSectionTitle = previous ? [previous objectForKey:@"title"] : nil;
+    NSString *translatedPreviousTitle = [self getTranslatedTitleFromSectionWithUUID:previous[@"uuid"] forLocale:self.currentLocale];
+    self.sectionTVC.prevSectionTitle = (translatedPreviousTitle) ? translatedPreviousTitle : (previous) ? [previous objectForKey:@"title"] : nil;
     NSDictionary* next = [ss nextSectionfromSurveyIndex:sui sectionIndex:sei];
-    self.sectionTVC.nextSectionTitle = next ? [next objectForKey:@"title"] : nil;
+    NSString *translatedNextTitle = [self getTranslatedTitleFromSectionWithUUID:next[@"uuid"] forLocale:self.currentLocale];
+    self.sectionTVC.nextSectionTitle = (translatedNextTitle) ? translatedNextTitle : (next) ? [next objectForKey:@"title"] : nil;
     [self.sectionTVC setTranslationsArray:[self.surveyNSD objectForKey:@"translations"] forSectionWithUUID:[[ss sectionforSurveyIndex:sui sectionIndex:sei] valueForKey:@"uuid"] withCurrentLocale:[self performSelector:@selector(currentLocale)]];
     [self.sectionTVC setDetailItem:[ss sectionforSurveyIndex:sui sectionIndex:sei]];
     
     [self.sectionTVC.tableView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
     self.sectionTVC.pageControl.currentPage = sei;
     self.currentSurveyPath = [NSIndexPath indexPathForRow:sei inSection:sui];
+}
+
+-(NSString *)getTranslatedTitleFromSectionWithUUID:(NSString *)uuid forLocale:(NSString *)locale {
+    for (NUSurvey *survey in self.surveys) {
+        NSDictionary *surveyDictionary = [survey.jsonString objectFromJSONString];
+        NSArray *uuidArray = [surveyDictionary valueForKeyPath:@"sections.uuid"];
+        for (NSString *sectionUUID in uuidArray) {
+            if (![sectionUUID isEqual:[NSNull null]]) {
+                if ([sectionUUID isEqualToString:uuid]) {
+                    NSArray *translatedTitleArray = self.translatedTitleDictionary[surveyDictionary[@"uuid"]];
+                    return translatedTitleArray[[uuidArray indexOfObject:sectionUUID]];
+                }
+            }
+        }
+    }
+    return nil;
 }
 
 - (void) nextSection {
@@ -242,9 +261,6 @@
 #pragma mark - translation specific
 
 -(void)surveySelectedLanguage:(NSString *)localeString {
-    NSDictionary *selectedLanguageDictionary = [[self.surveyNSD[@"translations"] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"locale == %@", localeString]] lastObject];
-    NSString *translatedTitle = (selectedLanguageDictionary[@"title"]) ? selectedLanguageDictionary[@"title"] : self.surveyNSD[@"title"];
-    self.sectionTVC.title = translatedTitle;
     self.currentLocale = localeString;
     self.translatedTitleDictionary = [self generateTranslatedSectionTitleDictionaryBasedOnLocale:localeString];
     [self.tableView reloadData];
