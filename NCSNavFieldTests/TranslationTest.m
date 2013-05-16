@@ -35,22 +35,18 @@
     [super setUp];
     
     UISplitViewController *splitViewController = [[UISplitViewController alloc] init];
-    NSString *surveyJSON = [self surveyJSON];
-    NUSurvey *survey = [[NUSurvey alloc] init];
-    survey.jsonString = surveyJSON;
     
-    NSDictionary *surveyDictionary = [surveyJSON objectFromJSONString];
-    ResponseSet *responseSet = [ResponseSet newResponseSetForSurvey:surveyDictionary withModel:self.managedObjectContext.persistentStoreCoordinator.managedObjectModel inContext:self.managedObjectContext];
+    SurveyResponseSetRelationship *relationshipOne = [self surveyRelationshipForSurveyString:[self surveyOneJSON]];
+    SurveyResponseSetRelationship *relationshipTwo = [self surveyRelationshipForSurveyString:[self surveyTwoJSON]];
     
-    SurveyResponseSetRelationship *surveyResponseSetRelationship = [[SurveyResponseSetRelationship alloc] initWithSurvey:survey responseSet:responseSet];
-    self.multiSurveyTVC = [[MultiSurveyTVC alloc] initWithSurveyResponseSetRelationships:@[surveyResponseSetRelationship]];
+    self.multiSurveyTVC = [[MultiSurveyTVC alloc] initWithSurveyResponseSetRelationships:@[relationshipOne, relationshipTwo]];
     self.sectionTVC = self.multiSurveyTVC.sectionTVC;
     
     UINavigationController *containerController = [[UINavigationController alloc] initWithRootViewController:self.sectionTVC];
     splitViewController.viewControllers = @[self.multiSurveyTVC, containerController];
     
     [splitViewController view];
-    [self.multiSurveyTVC.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [self.multiSurveyTVC tableView:self.multiSurveyTVC.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 }
 
 #pragma mark tests
@@ -101,7 +97,29 @@
     STAssertFalse([firstResponseAnswerUUID isEqualToString:translatedDifferentAnswerUUID], @"The uuid for different answers were the same.");
 }
 
+-(void)testThatSwitchingSurveysPersistsLanguageChoice {
+    [self setLocale:@"fr" forSectionTVC:self.sectionTVC];
+    NUOneCell *cell = self.sectionTVC.tableView.visibleCells[0];
+    STAssertTrue([cell.textLabel.text isEqualToString:@"Oui"], @"Cell did not translate.");
+    
+    [self.multiSurveyTVC tableView:self.multiSurveyTVC.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    self.sectionTVC = self.multiSurveyTVC.sectionTVC;
+    
+    cell = self.sectionTVC.tableView.visibleCells[0];
+    STAssertTrue([cell.textLabel.text isEqualToString:@"Rouge"], @"Cell did not translate after switching surveys.");
+}
+
 #pragma mark helper methods
+
+-(SurveyResponseSetRelationship *)surveyRelationshipForSurveyString:(NSString *)surveyString {
+    NUSurvey *survey = [[NUSurvey alloc] init];
+    survey.jsonString = surveyString;
+    
+    NSDictionary *surveyDictionary = [surveyString objectFromJSONString];
+    ResponseSet *responseSet = [ResponseSet newResponseSetForSurvey:surveyDictionary withModel:self.managedObjectContext.persistentStoreCoordinator.managedObjectModel inContext:self.managedObjectContext];
+    
+   return [[SurveyResponseSetRelationship alloc] initWithSurvey:survey responseSet:responseSet];
+}
 
 -(void)selectSectionTVCCellAtIndex:(NSUInteger)rowIndex {
     NUOneCell *cell = self.sectionTVC.tableView.visibleCells[0];
@@ -120,7 +138,7 @@
     return [responses lastObject];
 }
 
--(NSString *)surveyJSON {
+-(NSString *)surveyOneJSON {
     return @"{"
     "    \"sections\": ["
     "        {"
@@ -233,6 +251,122 @@
     "    ],"
     "    \"title\": \"Title of Section\", "
     "    \"uuid\": \"c7bc2d06-e036-4e69-b297-8ad4cb93a126\""
+    "}";
+}
+
+-(NSString *)surveyTwoJSON {
+    return @"{"
+    "    \"sections\": ["
+    "        {"
+    "            \"display_order\": 0, "
+    "            \"questions_and_groups\": ["
+    "                {"
+    "                    \"answers\": ["
+    "                        {"
+    "                            \"reference_identifier\": \"1\", "
+    "                            \"text\": \"Red\", "
+    "                            \"uuid\": \"EBC755DD-B7FF-4BF0-B84F-5042DFF8A908\""
+    "                        }, "
+    "                        {"
+    "                            \"reference_identifier\": \"2\", "
+    "                            \"text\": \"Blue\", "
+    "                            \"uuid\": \"D394EF6C-DFBC-49D0-A2BC-00F59E3D5518\""
+    "                        }"
+    "                    ], "
+    "                    \"data_export_identifier\": \"TRANSLATE_SECTION_2\", "
+    "                    \"help_text\": \"This is secondary help text.\", "
+    "                    \"pick\": \"one\", "
+    "                    \"reference_identifier\": \"RELEASE_2\", "
+    "                    \"text\": \"Should {You/We} Translate Two?\", "
+    "                    \"uuid\": \"06C69617-7985-4B8A-B066-2EFAAA5C4B36\""
+    "                }"
+    "            ], "
+    "            \"reference_identifier\": \"TRANSLATE_INT_2\", "
+    "            \"title\": \"Translation section two\","
+    "            \"uuid\" : \"FA448547-B563-474A-B180-FD3169FF3CE4\""
+    "        }"
+    "    ], "
+    "    \"translations\": ["
+    "        {"
+    "            \"locale\": \"fr\","
+    "            \"localizedName\": \"Français\","
+    "            \"uuid\": \"76A6EB66-FE28-4771-BB6F-3A6ADE55A08C\","
+    "            \"title\": \"Title of Section two\","
+    "            \"sections\": ["
+    "                {"
+    "                    \"display_order\": 0, "
+    "                    \"questions_and_groups\": ["
+    "                        {"
+    "                            \"answers\": ["
+    "                                {"
+    "                                    \"reference_identifier\": \"1\", "
+    "                                    \"text\": \"Rouge\", "
+    "                                    \"uuid\": \"EBC755DD-B7FF-4BF0-B84F-5042DFF8A908\""
+    "                                }, "
+    "                                {"
+    "                                    \"reference_identifier\": \"2\", "
+    "                                    \"text\": \"Bleu\", "
+    "                                    \"uuid\": \"D394EF6C-DFBC-49D0-A2BC-00F59E3D5518\""
+    "                                }"
+    "                            ], "
+    "                            \"data_export_identifier\": \"TRANSLATE_SECTION_2\", "
+    "                            \"help_text\": \"Ceci est un texte d'aide secondaire.\", "
+    "                            \"pick\": \"one\", "
+    "                            \"reference_identifier\": \"RELEASE_2\", "
+    "                            \"text\": \"Devrions-nous traduisons deux?\", "
+    "                            \"uuid\": \"06C69617-7985-4B8A-B066-2EFAAA5C4B36\""
+    "                        }"
+    "                    ], "
+    "                    \"reference_identifier\": \"TRANSLATE_INT_2\", "
+    "                    \"title\": \"Sección de traducción de dos\","
+    "                    \"uuid\" : \"FA448547-B563-474A-B180-FD3169FF3CE4\""
+    "                }"
+    "            ]"
+    "        },"
+    "        {"
+    "            \"locale\": \"es\","
+    "            \"localizedName\": \"Espanol\","
+    "            \"uuid\": \"12218F9B-AF33-4E53-A433-3C4F4FC3327A\","
+    "            \"title\": \"Title of Section two\","
+    "            \"sections\": ["
+    "                {"
+    "                    \"display_order\": 0, "
+    "                    \"questions_and_groups\": ["
+    "                        {"
+    "                            \"answers\": ["
+    "                                {"
+    "                                    \"reference_identifier\": \"1\", "
+    "                                    \"text\": \"Rojo\", "
+    "                                    \"uuid\": \"EBC755DD-B7FF-4BF0-B84F-5042DFF8A908\""
+    "                                }, "
+    "                                {"
+    "                                    \"reference_identifier\": \"2\", "
+    "                                    \"text\": \"Azul\", "
+    "                                    \"uuid\": \"D394EF6C-DFBC-49D0-A2BC-00F59E3D5518\""
+    "                                }"
+    "                            ], "
+    "                            \"data_export_identifier\": \"TRANSLATE_SECTION_2\", "
+    "                            \"help_text\": \"Este es el texto de ayuda secundaria.\", "
+    "                            \"pick\": \"one\", "
+    "                            \"reference_identifier\": \"RELEASE_2\", "
+    "                            \"text\": \"Debemos Traducir Dos?\", "
+    "                            \"uuid\": \"06C69617-7985-4B8A-B066-2EFAAA5C4B36\""
+    "                        }"
+    "                    ], "
+    "                    \"reference_identifier\": \"TRANSLATE_INT_2\", "
+    "                    \"title\": \"Sección de traducción de dos\","
+    "                    \"uuid\" : \"FA448547-B563-474A-B180-FD3169FF3CE4\""
+    "                }"
+    "            ]"
+    "        },"
+    "        {"
+    "            \"locale\": \"en\","
+    "            \"localizedName\": \"English\","
+    "            \"uuid\": \"30492AB9-4A4F-4F9B-9919-B4A228F3789B\""
+    "        }"
+    "    ],"
+    "    \"title\": \"Title of Section\", "
+    "    \"uuid\": \"06AFC084-97B5-400E-AB4B-CB33C80E0FFD\""
     "}";
 }
 

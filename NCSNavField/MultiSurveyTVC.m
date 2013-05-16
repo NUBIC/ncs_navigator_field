@@ -177,7 +177,7 @@
     NSDictionary* next = [ss nextSectionfromSurveyIndex:sui sectionIndex:sei];
     NSString *translatedNextTitle = [self getTranslatedTitleFromSectionWithUUID:next[@"uuid"] forLocale:self.currentLocale];
     self.sectionTVC.nextSectionTitle = (translatedNextTitle) ? translatedNextTitle : (next) ? [next objectForKey:@"title"] : nil;
-    [self.sectionTVC setTranslationsArray:[self.surveyNSD objectForKey:@"translations"] forSectionWithUUID:[[ss sectionforSurveyIndex:sui sectionIndex:sei] valueForKey:@"uuid"] withCurrentLocale:[self performSelector:@selector(currentLocale)]];
+    [self.sectionTVC setTranslationsArray:[self.surveyNSD objectForKey:@"translations"] forSectionWithUUID:[[ss sectionforSurveyIndex:sui sectionIndex:sei] valueForKey:@"uuid"] withCurrentLocale:self.currentLocale];
     [self.sectionTVC setDetailItem:[ss sectionforSurveyIndex:sui sectionIndex:sei]];
     
     [self.sectionTVC.tableView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
