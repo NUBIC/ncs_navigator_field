@@ -11,7 +11,7 @@ PODS:
   - MRCEnumerable (0.1)
   - Nocilla (0.4)
   - NSData+Base64 (1.0.0)
-  - NUSurveyor (1.1.dev22)
+  - NUSurveyor (1.1.dev23)
   - OCMock (2.1.1)
   - RestKit (0.10.2):
     - RestKit/JSON
@@ -73,7 +73,7 @@ SPEC CHECKSUMS:
   MRCEnumerable: 4d76635c2a723ea6c648e7496969b639d128f6c1
   Nocilla: f4f0f1a115377e91b397f9e81bc19f27b84d9ebf
   NSData+Base64: 36c4e5b6479259c1a68866ccd2a8dd385c9744f7
-  NUSurveyor: 56b06c9d0cfb642f45870c9e6dd0b2f2287c337c
+  NUSurveyor: e8969d3468e3244c16c135e91ac7bcb0ec7a0d23
   OCMock: 79212e5e328378af5cfd6edb5feacfd6c49cd8a3
   RestKit: a9f24f857c792183bcc656f891abe93d38e342ee
   SOCKit: ed67aeeca4a697b63a933229e53f4670d5b9300f

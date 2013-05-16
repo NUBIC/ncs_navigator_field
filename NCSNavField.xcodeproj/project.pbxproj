@@ -161,6 +161,7 @@
 		164959DC170E0ECF00EEF552 /* NUManualEndpointEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164959DA170E0ECF00EEF552 /* NUManualEndpointEditViewController.m */; };
 		164959DD170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164959DB170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib */; };
 		164B27C917429AEF00F391A5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 164B27CB17429AEF00F391A5 /* Localizable.strings */; };
+		164B27D01742CB3600F391A5 /* TranslationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 164B27CF1742CB3600F391A5 /* TranslationTest.m */; };
 		167292DD170097B20046B194 /* NUEndpointTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 167292DC170097B20046B194 /* NUEndpointTest.m */; };
 		16C01ECF171F068700299AAD /* NUEndpointServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C01ECE171F068700299AAD /* NUEndpointServiceTest.m */; };
 		16F0DA5816D56BE800290837 /* NCSFieldConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F0DA5716D56BE800290837 /* NCSFieldConstants.m */; };
@@ -671,9 +672,11 @@
 		164959D9170E0ECF00EEF552 /* NUManualEndpointEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUManualEndpointEditViewController.h; sourceTree = "<group>"; };
 		164959DA170E0ECF00EEF552 /* NUManualEndpointEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUManualEndpointEditViewController.m; sourceTree = "<group>"; };
 		164959DB170E0ECF00EEF552 /* NUManualEndpointEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NUManualEndpointEditViewController.xib; sourceTree = "<group>"; };
-		164B27CA17429AEF00F391A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		164B27CC17429AFD00F391A5 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		164B27CD17429B0900F391A5 /* es */ = {isa = PBXFileReference; lastKnownFileType = file; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		164B27CA17429AEF00F391A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		164B27CC17429AFD00F391A5 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		164B27CD17429B0900F391A5 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		164B27CE1742CB3600F391A5 /* TranslationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationTest.h; sourceTree = "<group>"; };
+		164B27CF1742CB3600F391A5 /* TranslationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationTest.m; sourceTree = "<group>"; };
 		167292DB170097B20046B194 /* NUEndpointTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointTest.h; sourceTree = "<group>"; };
 		167292DC170097B20046B194 /* NUEndpointTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointTest.m; sourceTree = "<group>"; };
 		16821E80170393AF003613A1 /* 20130327205234_added_address_unit_to_practice.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130327205234_added_address_unit_to_practice.xcdatamodel; sourceTree = "<group>"; };
@@ -939,6 +942,8 @@
 				16C01ECE171F068700299AAD /* NUEndpointServiceTest.m */,
 				0078348217224332003F7888 /* RestKitTestStub.h */,
 				0078348317224332003F7888 /* RestKitTestStub.m */,
+				164B27CE1742CB3600F391A5 /* TranslationTest.h */,
+				164B27CF1742CB3600F391A5 /* TranslationTest.m */,
 			);
 			name = Tests;
 			path = NCSNavFieldTests;
@@ -1879,6 +1884,7 @@
 				1647BB9C171C7B56005A925A /* ScreenerTypeChooserTest.m in Sources */,
 				16C01ECF171F068700299AAD /* NUEndpointServiceTest.m in Sources */,
 				007834871725C7A8003F7888 /* CasServiceTicketTest.m in Sources */,
+				164B27D01742CB3600F391A5 /* TranslationTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
