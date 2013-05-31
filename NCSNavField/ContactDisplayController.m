@@ -244,19 +244,25 @@
         if (self.detailItem.initiated) {
             self.simpleTable = [[ContactTable alloc]initUsingContact:self.detailItem];
             [self.tableView reloadData];
+            
+            ContactCloseVC* cc = [[ContactCloseVC alloc] initWithContact:self.detailItem];
+            cc.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self presentViewController:cc animated:YES completion:NULL];
         }
-        ContactInitiateVC* cc = [[ContactInitiateVC alloc] initWithContact:self.detailItem];
-        if ([self.splitViewController.viewControllers[0] isKindOfClass:[UINavigationController class]]) {
-            UINavigationController *masterNavigationController = self.splitViewController.viewControllers[0];
-            for (id controller in masterNavigationController.viewControllers) {
-                if ([controller isKindOfClass:NSClassFromString(@"RootViewController")]) {
-                    cc.delegate = controller;
+        else {
+            ContactInitiateVC* cc = [[ContactInitiateVC alloc] initWithContact:self.detailItem];
+            if ([self.splitViewController.viewControllers[0] isKindOfClass:[UINavigationController class]]) {
+                UINavigationController *masterNavigationController = self.splitViewController.viewControllers[0];
+                for (id controller in masterNavigationController.viewControllers) {
+                    if ([controller isKindOfClass:NSClassFromString(@"RootViewController")]) {
+                        cc.delegate = controller;
+                    }
                 }
             }
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:cc];
+            navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+            [self presentViewController:navigationController animated:YES completion:NULL];
         }
-        UINavigationController *navigationControler = [[UINavigationController alloc] initWithRootViewController:cc];
-        navigationControler.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self presentViewController:navigationControler animated:YES completion:NULL];
     }
     else if ([rc isEqualToString:@"event"]) {
         Event* selected = row.entity;
