@@ -65,7 +65,7 @@
     /* Left and Right Pane */
     CGPoint o = self.view.frame.origin;
     CGSize s = self.view.frame.size;
-    CGRect rect = CGRectMake(o.x, o.y + 50, s.width, s.height - 50 );
+    CGRect rect = CGRectMake(o.x, o.y, s.width, s.height);
 
     CGRect lRect, rRect;
     CGRectDivide(rect, &rRect, &lRect, rect.size.width / 2, CGRectMaxXEdge);
