@@ -52,6 +52,12 @@
 
 @property(nonatomic,strong) NSString* pId;
 
+@property (nonatomic, assign, readonly) BOOL completed;
+
+@property (nonatomic, strong, readonly) NSArray *requiredProperties;
+
+@property (nonatomic, strong, readonly) NSArray *missingRequiredProperties;
+
 /* relationships */
 
 @property(nonatomic,strong) Contact* contact;

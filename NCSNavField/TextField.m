@@ -144,4 +144,12 @@ static TextField* _activeField = nil;
     return @"Text Field";
 }
 
+-(void)markAsRequired {
+    self.textField.textColor = REQUIRED_TEXT_COLOR;
+}
+
+-(void)resetMarkAsRequired {
+    self.textField.textColor = NORMAL_TEXT_COLOR;
+}
+
 @end

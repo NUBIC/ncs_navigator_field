@@ -9,10 +9,12 @@
 #import <CoreData/CoreData.h>
 #import "UIView+Additions.h"
 
+#import "FormElementProtocol.h"
+
 @class NUPickerVC;
 @class ChangeHandler;
 
-@interface TimePicker : UIView<UIPopoverControllerDelegate> {
+@interface TimePicker : UIView<UIPopoverControllerDelegate, FormElementProtocol> {
     NSDate* _date;
     UIButton* _button;
     NUPickerVC* _picker;
@@ -29,5 +31,7 @@
 
 - (id)initWithFrame:(CGRect)frame value:(NSDate*)value;
 - (void) addChangeHandler:(ChangeHandler*)handler;
+
+-(void)setButtonTextColor:(UIColor *)textColor;
 
 @end

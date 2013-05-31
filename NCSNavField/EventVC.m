@@ -15,6 +15,12 @@
 #import "TextArea.h"
 #import "DispositionCode.h"
 
+@interface EventVC () <UIAlertViewDelegate>
+
+@property (nonatomic, strong) UIAlertView *requiredPropertyAlertView;
+
+@end
+
 @implementation EventVC
 
 @synthesize event=_event;
@@ -224,16 +230,35 @@ NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
 }
 
 - (void) done {
-    [self commitTransaction];
-    [self dismissViewControllerAnimated:NO completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"EventVC#done" object:self]; 
-    }];
+    [self.leftFormBuilder resetRequiredFormElements];
+    [self.rightFormBuilder resetRequiredFormElements];
+    if ([self.event completed] == YES) {
+        [self commitValuesAndDismiss];
+    }
+    else {
+        self.requiredPropertyAlertView = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                                    message:[NSString stringWithFormat:@"You are missing %@. Continue?", [[self.event missingRequiredProperties] componentsJoinedByString:@", "]]
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"Cancel"
+                                                          otherButtonTitles:@"Go Ahead", nil];
+        [self.requiredPropertyAlertView show];
+    }
+    
+    
+
 }
 
 - (void) startTransaction {
     NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
     NSUndoManager* undoManager = [moc undoManager];
     [undoManager beginUndoGrouping];
+}
+
+-(void)commitValuesAndDismiss {
+    [self commitTransaction];
+    [self dismissViewControllerAnimated:NO completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"EventVC#done" object:self];
+    }];
 }
 
 - (void) endTransction {
@@ -293,6 +318,20 @@ NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
         CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
         CGPoint newPoint = CGPointMake(0.0,(active.frame.origin.y + active.superview.frame.origin.y + height)-kbSize.width);
         [self.scrollView setContentOffset:newPoint animated:YES];
+    }
+}
+
+#pragma mark - Alert View Delegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([alertView isEqual:self.requiredPropertyAlertView]) {
+        if (buttonIndex == 0) {
+            [self.leftFormBuilder warnFormElementsWithProperties:[self.event missingRequiredProperties]];
+            [self.rightFormBuilder warnFormElementsWithProperties:[self.event missingRequiredProperties]];
+        }
+        else {
+            [self commitValuesAndDismiss];
+        }
     }
 }
 

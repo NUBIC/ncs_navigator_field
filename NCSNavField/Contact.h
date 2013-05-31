@@ -64,6 +64,12 @@
 
 @property (nonatomic, strong) NSNumber *appCreated;
 
+@property (nonatomic, assign, readonly) BOOL completed;
+
+@property (nonatomic, strong, readonly) NSArray *missingRequiredProperties;
+
+@property (nonatomic, strong, readonly) NSArray *requiredProperties;
+
 #pragma mark relations
 
 @property(nonatomic,strong) NSSet* events;

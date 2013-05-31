@@ -12,6 +12,10 @@
 #import <NUSurveyor/NUUUID.h>
 #import "Participant.h"
 
+@interface Event ()
+
+@end
+
 @implementation Event
 
 @dynamic eventId, name, eventTypeCode, eventTypeOther, eventRepeatKey, startDate, endDate, startTime, endTime, incentiveTypeId, incentiveCash, incentiveNonCash, dispositionCode, dispositionCategoryId, breakOffId, comments, contact, instruments, version, pId;
@@ -38,6 +42,29 @@
 
 - (NSString*) endTimeJson {
     return [self.endTime jsonSchemaTime];
+}
+
+-(NSArray *)requiredProperties {
+    return @[@"dispositionCode" , @"endTime"];
+}
+
+- (BOOL) completed {
+    for (NSString *requiredObject in self.requiredProperties) {
+        if ([self valueForKey:requiredObject] == nil) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+-(NSArray *)missingRequiredProperties {
+    NSArray *missingRequiredPropertiesArray = @[];
+    for (NSString *requiredObject in self.requiredProperties) {
+        if ([self valueForKey:requiredObject] == nil) {
+            missingRequiredPropertiesArray = [missingRequiredPropertiesArray arrayByAddingObject:requiredObject];
+        }
+    }
+    return missingRequiredPropertiesArray;
 }
 
 - (NSNumber*)dispositionCodeNumber {

@@ -79,4 +79,12 @@ static TextArea* _activeField = nil;
     return @"Text Area";
 }
 
+-(void)markAsRequired {
+    self.textView.textColor = REQUIRED_TEXT_COLOR;
+}
+
+-(void)resetMarkAsRequired {
+    self.textView.textColor = NORMAL_TEXT_COLOR;
+}
+
 @end

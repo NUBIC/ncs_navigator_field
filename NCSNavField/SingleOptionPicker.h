@@ -11,6 +11,8 @@
 #import "MdesCode.h"
 #import "SingleOptionPickerDelegate.h"
 
+#import "FormElementProtocol.h"
+
 @class NUPickerVC;
 @class ChangeHandler;
 
@@ -20,7 +22,7 @@ enum {
     NUPickerVCPopoverSizeLarge
 };
 
-@interface SingleOptionPicker : UIView<UIPopoverControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
+@interface SingleOptionPicker : UIView <UIPopoverControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, FormElementProtocol> {
     NSObject* _value;
     UIButton* _button;
     NUPickerVC* _picker;

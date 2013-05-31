@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FormElementProtocol.h"
+
 @class ChangeHandler;
 
-@interface TextField : UIView<UITextFieldDelegate> {
+@interface TextField : UIView<UITextFieldDelegate, FormElementProtocol> {
     ChangeHandler* _handler;
     UITextField* _textField;
 }

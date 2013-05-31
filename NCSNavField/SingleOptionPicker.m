@@ -143,6 +143,7 @@
 }
 
 - (void)showPicker {
+    [self resetMarkAsRequired];
     [self postPopoverNotification];
     if (!self.picker) {
         self.picker = [self buildPickerVC];
@@ -282,5 +283,14 @@
     [_button setUserInteractionEnabled:userInteractionEnabled];
     [_button setEnabled:userInteractionEnabled];
 }
+
+-(void)markAsRequired {
+    [self.button setTitleColor:REQUIRED_TEXT_COLOR forState:UIControlStateNormal];
+}
+
+-(void)resetMarkAsRequired {
+    [self.button setTitleColor:NORMAL_TEXT_COLOR forState:UIControlStateNormal];
+}
+
 
 @end

@@ -15,6 +15,8 @@
 
 @class FormBuilderCursor;
 
+@class TimePicker, DatePicker, TextArea, TextField;
+
 @interface FormBuilder : NSObject {
     UIView* _view;
     id _object;
@@ -37,12 +39,16 @@
 - (SingleOptionPicker*) singleOptionPickerForProperty:(SEL)property WithPickerOptions:(NSArray*)options andPopoverSize:(NUPickerVCPopoverSize)popoverSize andTag:(NSUInteger)t;
 - (SingleOptionPicker*) singleOptionPickerForProperty:(SEL)property WithPickerOptions:(NSArray*)options andTag:(NSUInteger)t;
 - (SingleOptionPicker*) singleOptionPickerForProperty:(SEL)property WithPickerOptions:(NSArray*)options;
-- (void) datePickerForProperty:(SEL)property;
-- (void) timePickerForProperty:(SEL)property;
-- (void) textFieldForProperty:(SEL)property numbersOnly:(BOOL)bNumOnly;
--(void)textFieldForProperty:(SEL)property currency:(BOOL)bCurrencyOnly;
-- (void) textFieldForProperty:(SEL)property;
-- (void) textAreaForProperty:(SEL)property;
+- (DatePicker *) datePickerForProperty:(SEL)property;
+- (TimePicker *) timePickerForProperty:(SEL)property;
+- (TextField *) textFieldForProperty:(SEL)property numbersOnly:(BOOL)bNumOnly;
+-(TextField *)textFieldForProperty:(SEL)property currency:(BOOL)bCurrencyOnly;
+- (TextField *) textFieldForProperty:(SEL)property;
+- (TextArea *) textAreaForProperty:(SEL)property;
+
+-(void)resetRequiredFormElements;
+-(void)warnFormElementsWithProperties:(NSArray *)requiredProperties;
+
 #pragma mark 
 #pragma Show and hide controls
 - (id)controlForTag:(NSUInteger)t;

@@ -33,12 +33,16 @@
 
 NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER = 44;
 
+@interface Instrument ()
+
+@end
+
 @implementation Instrument
 
 @dynamic instrumentId, name, event, instrumentTypeId, instrumentTypeOther,
     instrumentVersion, repeatKey, startDate, startTime, endDate, endTime,
     statusId, breakOffId, instrumentModeId, instrumentModeOther,
-    instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSets, instrumentPlanId;
+    instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSets, instrumentPlanId, isCompleted;
 
 - (NSArray*) responseSetDicts {
     NSMutableArray* all = [[NSMutableArray alloc] init];
@@ -196,6 +200,10 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
 
 - (Instrument*)clone {
     return (Instrument*)[self cloneAndignoreRelations:@[@"event", @"eventTemplate"]];
+}
+
+-(BOOL) completed {
+    return [self.isCompleted boolValue];
 }
 
 @end
