@@ -49,7 +49,6 @@ FOUNDATION_EXPORT NSString* const PROVIDER_SELECTED_NOTIFICATION_KEY;
 @property (nonatomic,strong) CasServiceTicket* serviceTicket;
  
 - (void)toggleDeleteButton;
-- (void)purgeDataStore;
 - (void)didSelectRow:(Row*)row;
 - (void)syncButtonWasPressed;
 -(void)setUpEndpointBar;

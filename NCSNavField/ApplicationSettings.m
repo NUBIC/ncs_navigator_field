@@ -253,6 +253,7 @@
     self.purgeFieldworkButton = [self purgeFieldworkButton];
     self.upcomingDaysToSync = [self upcomingDaysToSync];
     self.pastDaysToSync = [self pastDaysToSync];
+    [self deleteLastModifiedSinceDates];
     [endpoint writeToDisk];
     [self defaultsDidChange:nil];
     [RestKitSettings reload];

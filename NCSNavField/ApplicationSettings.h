@@ -48,4 +48,5 @@
 
 -(void)updateWithEndpoint:(NUEndpoint *)endpoint;
 
+
 @end
