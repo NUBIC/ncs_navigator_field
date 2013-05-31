@@ -5186,7 +5186,8 @@
                                     }
                                 ], 
                                 "reference_identifier": "Birth_INT", 
-                                "title": "Interviewer-completed questions"
+                                "title": "Interviewer-completed questions",
+                                "uuid" : "4C5CA33E-3039-4AC3-87B3-AC28D2FBF0C3"
                             }
                         ], 
                         "title": "INS_QUE_Birth_INT_LI_P2_V1.0_PART_ONE", 
@@ -10746,9 +10747,205 @@
                                     }
                                 ], 
                                 "reference_identifier": "Birth_INT", 
-                                "title": "Interviewer-completed questions"
+                                "title": "Interviewer-completed questions",
+                                "uuid" : "CB55340A-BB1F-4CA8-A093-E77429C2BF02"
                             }
                         ], 
+                        "translations": [
+                            {
+                                "locale": "fr",
+                                "localizedName": "Français",
+                                "uuid": "016718D0-2BEC-40DE-99DF-A6ADC37530BB",
+                                "title": "Le Birth",
+                                "sections": [
+                                    {
+                                        "display_order": 1, 
+                                        "questions_and_groups": [
+                                            {
+                                                "uuid": "99c7b9bb-e07e-49ea-aaea-8b5fac693fcc",
+                                                "reference_identifier": "helper_babys_babies",
+                                                "type": "hidden",
+                                                "answers": [
+                                                    {
+                                                        "text": "text",
+                                                        "type": "string",
+                                                        "uuid": "ed016919-8611-4258-94ce-5a59a5004847"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "Oui", 
+                                                        "uuid": "1c66da71-bc59-4da5-b3b9-dd3439d40392"
+                                                    }, 
+                                                    {
+                                                        "text": "No", 
+                                                        "uuid": "d7644801-fdd2-4fed-827c-70b0a17afff8"
+                                                    }
+                                                ], 
+                                                "help_text": "Demandez seulement si nécessaire. Si la naissance multiple et au moins un bébé a été libéré de l'hôpital, sélectionnez \"oui \"", 
+                                                "pick": "one", 
+                                                "reference_identifier": "RELEASE", 
+                                                "text": "{Has baby/Have babies} été libéré de l'hôpital?", 
+                                                "uuid": "10c6fcca-9443-4ddf-ab98-01ee622dba20"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "Oui", 
+                                                        "uuid": "947e66cc-002b-4ec3-bb33-8f6c49fea479"
+                                                    }, 
+                                                    {
+                                                        "text": "No", 
+                                                        "uuid": "c59c785e-28af-4beb-9a2c-ada3a3e5b750"
+                                                    }
+                                                ], 
+                                                "pick": "one", 
+                                                "reference_identifier": "MULTIPLE", 
+                                                "text": "Etait-ce une naissance multiple?", 
+                                                "uuid": "a472fc53-e996-4529-ac12-fe3a861c82ad"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "Quantité", 
+                                                        "type": "integer", 
+                                                        "uuid": "d44cd610-5ed1-43cb-b4e6-bbae761f6f94"
+                                                    }
+                                                ], 
+                                                "reference_identifier": "MULTIPLE_NUM", 
+                                                "text": "Combien de bébés ont été livrés?", 
+                                                "uuid": "4aa0f0fe-2b3d-40a0-b0bc-ad2e16396e75"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "Date", 
+                                                        "type": "date", 
+                                                        "uuid": "528bda32-874a-4982-b532-f7eacab7d378"
+                                                    }, 
+                                                    {
+                                                        "text": "Refusé", 
+                                                        "uuid": "8bb1cf5b-912d-41bb-9348-d7d6a24b1750"
+                                                    }, 
+                                                    {
+                                                        "text": "Je ne sais pas", 
+                                                        "uuid": "091bd3ab-3598-48f8-80b0-a3c0c9d8d355"
+                                                    }
+                                                ], 
+                                                "pick": "one", 
+                                                "reference_identifier": "CHILD_DOB", 
+                                                "text": "Quelle est la date de naissance {{babys_babies}}?", 
+                                                "uuid": "75797c3f-1d60-4f8b-919b-2d60e6e19cf8"
+                                            }
+                                        ], 
+                                        "reference_identifier": "Birth_INT", 
+                                        "title": "Interviewer-complété des questions",
+                                        "uuid" : "CB55340A-BB1F-4CA8-A093-E77429C2BF02"
+                                    }
+                                ]
+                            },
+                            {
+                                "locale": "es",
+                                "localizedName": "Espanol",
+                                "uuid": "966B584B-0055-4F4A-B58C-AF8306A5495C",
+                                "title": "El Birth",
+                                "sections": [
+                                    {
+                                        "display_order": 1, 
+                                        "questions_and_groups": [
+                                            {
+                                                "uuid": "99c7b9bb-e07e-49ea-aaea-8b5fac693fcc",
+                                                "reference_identifier": "helper_babys_babies",
+                                                "type": "hidden",
+                                                "answers": [
+                                                    {
+                                                        "text": "text",
+                                                        "type": "string",
+                                                        "uuid": "ed016919-8611-4258-94ce-5a59a5004847"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "Oui", 
+                                                        "uuid": "1c66da71-bc59-4da5-b3b9-dd3439d40392"
+                                                    }, 
+                                                    {
+                                                        "text": "No", 
+                                                        "uuid": "d7644801-fdd2-4fed-827c-70b0a17afff8"
+                                                    }
+                                                ], 
+                                                "help_text": "Demandez seulement si nécessaire. Si la naissance multiple et au moins un bébé a été libéré de l'hôpital, sélectionnez \"oui \"", 
+                                                "pick": "one", 
+                                                "reference_identifier": "RELEASE", 
+                                                "text": "{Has baby/Have babies} Ha sido dado de alta del hospital?", 
+                                                "uuid": "10c6fcca-9443-4ddf-ab98-01ee622dba20"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "Sí", 
+                                                        "uuid": "947e66cc-002b-4ec3-bb33-8f6c49fea479"
+                                                    }, 
+                                                    {
+                                                        "text": "No", 
+                                                        "uuid": "c59c785e-28af-4beb-9a2c-ada3a3e5b750"
+                                                    }
+                                                ], 
+                                                "pick": "one", 
+                                                "reference_identifier": "MULTIPLE", 
+                                                "text": "¿Era un parto múltiple?", 
+                                                "uuid": "a472fc53-e996-4529-ac12-fe3a861c82ad"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "Cantidad", 
+                                                        "type": "integer", 
+                                                        "uuid": "d44cd610-5ed1-43cb-b4e6-bbae761f6f94"
+                                                    }
+                                                ], 
+                                                "reference_identifier": "MULTIPLE_NUM", 
+                                                "text": "¿Cuántos niños se han entregado?", 
+                                                "uuid": "4aa0f0fe-2b3d-40a0-b0bc-ad2e16396e75"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "Fecha", 
+                                                        "type": "date", 
+                                                        "uuid": "528bda32-874a-4982-b532-f7eacab7d378"
+                                                    }, 
+                                                    {
+                                                        "text": "Rechazar", 
+                                                        "uuid": "8bb1cf5b-912d-41bb-9348-d7d6a24b1750"
+                                                    }, 
+                                                    {
+                                                        "text": "rechazar", 
+                                                        "uuid": "091bd3ab-3598-48f8-80b0-a3c0c9d8d355"
+                                                    }
+                                                ], 
+                                                "pick": "one", 
+                                                "reference_identifier": "CHILD_DOB", 
+                                                "text": "ué es la fecha de nacimiento {{babys_babies}}?", 
+                                                "uuid": "75797c3f-1d60-4f8b-919b-2d60e6e19cf8"
+                                            }
+                                        ], 
+                                        "reference_identifier": "Birth_INT", 
+                                        "title": "Preguntas del entrevistador-completado",
+                                        "uuid" : "CB55340A-BB1F-4CA8-A093-E77429C2BF02"
+                                    }
+                                ]
+                            },
+                            {
+                                "locale": "en",
+                                "localizedName": "English",
+                                "uuid": "3E7CA3BF-0718-4966-AFC9-BDB36680EE8A"
+                            }
+                        ],
                         "title": "INS_QUE_Birth_INT_LI_P2_V1.0_PART_ONE", 
                         "uuid": "c7bc2d06-e036-4e69-b297-8ad4cb93a126"
                     }
@@ -15407,7 +15604,404 @@
             "instrument_templates": [
                 {
                     "instrument_template_id": "6f2df0e0-3a3d-012f-785b-482a143dc94d", 
-                    "survey": {
+                    "survey" : {
+                        "translations": [
+                            {
+                                "locale": "fr",
+                                "localizedName": "Français",
+                                "uuid": "016718D0-2BEC-40DE-99DF-A6ADC37530BB",
+                                "title": "Le Birth",
+                                "sections": [
+                                    {
+                                        "display_order": 0, 
+                                        "questions_and_groups": [
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "", 
+                                                        "type": "datetime", 
+                                                        "uuid": "652eac70-4b75-012f-7861-482a143dc94d"
+                                                    }
+                                                ], 
+                                                "reference_identifier": "TIME_STAMP_1", 
+                                                "text": "Insérer la date / heure", 
+                                                "uuid": "652c9be0-4b75-012f-7861-482a143dc94d"
+                                            }, 
+                                            {
+                                                "text": "Nous sommes sur le point de commencer la partie de l'entrevue de la visite à domicile d'aujourd'hui, qui prendra environ 25 minutes à remplir. Vos réponses sont importantes pour nous. Il n'y a pas de bonnes ou mauvaises réponses. Il ya des questions sur la santé et les soins de votre enfant ainsi que les comportements de votre enfant, comme dormir et manger. Nous allons également vous poser des questions sur certaines de vos propres expériences et des sentiments, ainsi que votre journée à la routine jour. Vous pouvez sauter sur n'importe quelle question ou arrêter l'entrevue à tout moment. Nous vous tiendrons tout ce que vous nous dites confidentielles.", 
+                                                "type": "label", 
+                                                "uuid": "652ed200-4b75-012f-7861-482a143dc94d"
+                                            }
+                                        ], 
+                                        "uuid" : "4376DA89-1082-4C85-99E3-E8ABD2B60697",
+                                        "reference_identifier": "6MMother_INT", 
+                                        "title": "Introduction Interview"
+                                    },
+                                    {
+                                        "display_order": 2, 
+                                        "questions_and_groups": [
+                                            {
+                                                "text": "Tout d'abord, nous aimerions nous assurer d'avoir le nom correct de votre enfant et la date de naissance.", 
+                                                "type": "label", 
+                                                "uuid": "653a4a50-4b75-012f-7861-482a143dc94d"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "", 
+                                                        "type": "string", 
+                                                        "uuid": "653a8820-4b75-012f-7861-482a143dc94d"
+                                                    }
+                                                ], 
+                                                "reference_identifier": "prepopulated_name", 
+                                                "text": "Nom:", 
+                                                "uuid": "653a6670-4b75-012f-7861-482a143dc94d"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "Oui", 
+                                                        "uuid": "653ac2d0-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "No", 
+                                                        "uuid": "653adc40-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "refusé", 
+                                                        "uuid": "653af570-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "Ne sait pas", 
+                                                        "uuid": "653b0e80-4b75-012f-7861-482a143dc94d"
+                                                    }
+                                                ], 
+                                                "pick": "one", 
+                                                "reference_identifier": "CNAME_CONFIRM", 
+                                                "text": "Est le nom de votre enfant {INAME}]?", 
+                                                "uuid": "653aa480-4b75-012f-7861-482a143dc94d"
+                                            }, 
+                                            {
+                                                "questions": [
+                                                    {
+                                                        "help_text": "Si le participant refuse de fournir de l'information, protection de la confidentialité re-étatiques, demandent des initiales ou un autre nom, elle aimerait que son enfant soit appelé. Confirmez orthographe du prénom s'il n'a pas déjà recueillies et du nom de famille de tous les enfants.", 
+                                                        "text": "Quel est le nom complet de votre enfant?", 
+                                                        "type": "label", 
+                                                        "uuid": "653caab0-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "answers": [
+                                                            {
+                                                                "text": "", 
+                                                                "type": "string", 
+                                                                "uuid": "653cee30-4b75-012f-7861-482a143dc94d"
+                                                            }, 
+                                                            {
+                                                                "text": "refusé", 
+                                                                "uuid": "653d09a0-4b75-012f-7861-482a143dc94d"
+                                                            }, 
+                                                            {
+                                                                "text": "Ne sait pas", 
+                                                                "uuid": "653d21b0-4b75-012f-7861-482a143dc94d"
+                                                            }
+                                                        ], 
+                                                        "pick": "one", 
+                                                        "reference_identifier": "C_FNAME", 
+                                                        "text": "Ne sait pas", 
+                                                        "uuid": "653ccab0-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "answers": [
+                                                            {
+                                                                "text": "", 
+                                                                "type": "string", 
+                                                                "uuid": "653d5ce0-4b75-012f-7861-482a143dc94d"
+                                                            }, 
+                                                            {
+                                                                "text": "refusé", 
+                                                                "uuid": "653d74e0-4b75-012f-7861-482a143dc94d"
+                                                            }, 
+                                                            {
+                                                                "text": "Ne sait pas", 
+                                                                "uuid": "653d8cd0-4b75-012f-7861-482a143dc94d"
+                                                            }
+                                                        ], 
+                                                        "pick": "one", 
+                                                        "reference_identifier": "C_LNAME", 
+                                                        "text": "Prénom", 
+                                                        "uuid": "653d3dc0-4b75-012f-7861-482a143dc94d"
+                                                    }
+                                                ], 
+                                                "text": "L'information de l'enfant", 
+                                                "uuid": "653c38f0-4b75-012f-7861-482a143dc94d"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "", 
+                                                        "type": "string", 
+                                                        "uuid": "653dc6d0-4b75-012f-7861-482a143dc94d"
+                                                    }
+                                                ], 
+                                                "reference_identifier": "prepopulated_childs_birth_date", 
+                                                "text": "La date de naissance de l'enfant", 
+                                                "uuid": "653da930-4b75-012f-7861-482a143dc94d"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "Oui", 
+                                                        "uuid": "653dfe60-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "No", 
+                                                        "uuid": "653e1ca0-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "Refusé", 
+                                                        "uuid": "653e34e0-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "Je ne sais pas", 
+                                                        "uuid": "653e4cd0-4b75-012f-7861-482a143dc94d"
+                                                    }
+                                                ], 
+                                                "help_text": "Si le participant refuse de fournir des informations, re-étatiques protection de la confidentialité et que DOB permet de déterminer l'admissibilité.", 
+                                                "pick": "one", 
+                                                "reference_identifier": "CDOB_CONFIRM", 
+                                                "text": "Est {C_FNAME or YOUR CHILD}\u2019S la date de naissance {CHILD\u2019S DATE OF BIRTH}?", 
+                                                "uuid": "653de1f0-4b75-012f-7861-482a143dc94d"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "Date", 
+                                                        "type": "string", 
+                                                        "uuid": "653e8800-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "Refusé", 
+                                                        "uuid": "653ea0b0-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "Je ne sais pas", 
+                                                        "uuid": "653eb850-4b75-012f-7861-482a143dc94d"
+                                                    }
+                                                ], 
+                                                "help_text": "Si le participant refuse de fournir des informations, re-étatiques protection de la confidentialité et que DOB permet de déterminer l'admissibilité. Si la réponse a été jugée invalide, poser la question à nouveau et la sonde pour une réponse valable. S'il vous plaît vérifier si l'âge calculé en mois est à moins de 4 mois ou plus de 9 mois", 
+                                                "pick": "one", 
+                                                "reference_identifier": "CHILD_DOB", 
+                                                "text": "Qu'est-ce que {C_FNAME/YOUR CHILD}\u2019s Date de naissance? ", 
+                                                "uuid": "653e69e0-4b75-012f-7861-482a143dc94d"
+                                            }
+                                        ], 
+                                        "reference_identifier": "6MMother_INT", 
+                                        "title": "Vérification des participants",
+                                        "uuid" : "9E532F7B-28E1-4FE1-A6B7-EB1A39893986"
+                                    }
+                                ]
+                            },
+                            {
+                                "locale": "es",
+                                "localizedName": "Espanol",
+                                "uuid": "966B584B-0055-4F4A-B58C-AF8306A5495C",
+                                "title": "El Birth",
+                                "sections": [
+                                    {
+                                        "display_order": 0, 
+                                        "questions_and_groups": [
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "", 
+                                                        "type": "datetime", 
+                                                        "uuid": "652eac70-4b75-012f-7861-482a143dc94d"
+                                                    }
+                                                ], 
+                                                "reference_identifier": "TIME_STAMP_1", 
+                                                "text": "Insérer la date / heure", 
+                                                "uuid": "652c9be0-4b75-012f-7861-482a143dc94d"
+                                            }, 
+                                            {
+                                                "text": "Estamos a punto de comenzar la parte de la entrevista de la visita a la casa de hoy, que tardará cerca de 25 minutos para completar. Sus respuestas son importantes para nosotros. No hay respuestas correctas o incorrectas. Hay preguntas sobre la salud y la atención médica de su hijo, así como el comportamiento de su hijo, como dormir y comer. También le preguntará acerca de algunas de sus propias experiencias y sentimientos, así como el día a día las rutinas. Puede pasar por alto cualquier pregunta o detener la entrevista en cualquier momento. Mantendremos todo lo que usted nos diga confidencial.", 
+                                                "type": "label", 
+                                                "uuid": "652ed200-4b75-012f-7861-482a143dc94d"
+                                            }
+                                        ], 
+                                        "uuid" : "4376DA89-1082-4C85-99E3-E8ABD2B60697",
+                                        "reference_identifier": "6MMother_INT", 
+                                        "title": "introducción Entrevista"
+                                    },
+                                    {
+                                        "display_order": 2, 
+                                        "questions_and_groups": [
+                                            {
+                                                "text": "En primer lugar, \u2019d gusta asegurarnos de tener a su hijo \u2019s nombre correcto y la fecha de nacimiento.", 
+                                                "type": "label", 
+                                                "uuid": "653a4a50-4b75-012f-7861-482a143dc94d"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "", 
+                                                        "type": "string", 
+                                                        "uuid": "653a8820-4b75-012f-7861-482a143dc94d"
+                                                    }
+                                                ], 
+                                                "reference_identifier": "prepopulated_name", 
+                                                "text": "Nombre:", 
+                                                "uuid": "653a6670-4b75-012f-7861-482a143dc94d"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "Sí", 
+                                                        "uuid": "653ac2d0-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "No", 
+                                                        "uuid": "653adc40-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "Refused", 
+                                                        "uuid": "653af570-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "No lo sé", 
+                                                        "uuid": "653b0e80-4b75-012f-7861-482a143dc94d"
+                                                    }
+                                                ], 
+                                                "pick": "one", 
+                                                "reference_identifier": "CNAME_CONFIRM", 
+                                                "text": "Es el nombre de su hijo?", 
+                                                "uuid": "653aa480-4b75-012f-7861-482a143dc94d"
+                                            }, 
+                                            {
+                                                "questions": [
+                                                    {
+                                                        "help_text": "Si el participante se niega a proporcionar la información, confidencialidad re-estado \n protecciones, pida iniciales u otro nombre que le gustaría a su hijo que se llamará. \n Compruebe la ortografía del nombre de pila si no cobrados con anterioridad y el apellido de todos los niños.", 
+                                                        "text": "¿Cuál es el nombre completo de su hijo?", 
+                                                        "type": "label", 
+                                                        "uuid": "653caab0-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "answers": [
+                                                            {
+                                                                "text": "", 
+                                                                "type": "string", 
+                                                                "uuid": "653cee30-4b75-012f-7861-482a143dc94d"
+                                                            }, 
+                                                            {
+                                                                "text": "Refused", 
+                                                                "uuid": "653d09a0-4b75-012f-7861-482a143dc94d"
+                                                            }, 
+                                                            {
+                                                                "text": "No lo sé", 
+                                                                "uuid": "653d21b0-4b75-012f-7861-482a143dc94d"
+                                                            }
+                                                        ], 
+                                                        "pick": "one", 
+                                                        "reference_identifier": "C_FNAME", 
+                                                        "text": "Primer nombre", 
+                                                        "uuid": "653ccab0-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "answers": [
+                                                            {
+                                                                "text": "", 
+                                                                "type": "string", 
+                                                                "uuid": "653d5ce0-4b75-012f-7861-482a143dc94d"
+                                                            }, 
+                                                            {
+                                                                "text": "Refused", 
+                                                                "uuid": "653d74e0-4b75-012f-7861-482a143dc94d"
+                                                            }, 
+                                                            {
+                                                                "text": "No lo sé", 
+                                                                "uuid": "653d8cd0-4b75-012f-7861-482a143dc94d"
+                                                            }
+                                                        ], 
+                                                        "pick": "one", 
+                                                        "reference_identifier": "C_LNAME", 
+                                                        "text": "primer nombre", 
+                                                        "uuid": "653d3dc0-4b75-012f-7861-482a143dc94d"
+                                                    }
+                                                ], 
+                                                "text": "Información del niño", 
+                                                "uuid": "653c38f0-4b75-012f-7861-482a143dc94d"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "", 
+                                                        "type": "string", 
+                                                        "uuid": "653dc6d0-4b75-012f-7861-482a143dc94d"
+                                                    }
+                                                ], 
+                                                "reference_identifier": "prepopulated_childs_birth_date", 
+                                                "text": "Fecha de nacimiento del niño", 
+                                                "uuid": "653da930-4b75-012f-7861-482a143dc94d"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "Sí", 
+                                                        "uuid": "653dfe60-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "No", 
+                                                        "uuid": "653e1ca0-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "Refused", 
+                                                        "uuid": "653e34e0-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "No lo sé", 
+                                                        "uuid": "653e4cd0-4b75-012f-7861-482a143dc94d"
+                                                    }
+                                                ], 
+                                                "help_text": "Si el participante se niega a proporcionar la información, protección de la confidencialidad re-estatales y que DOB ayuda a determinar la elegibilidad.", 
+                                                "pick": "one", 
+                                                "reference_identifier": "CDOB_CONFIRM", 
+                                                "text": "Es {C_FNAME or YOUR CHILD}\u2019S fecha de nacimiento {CHILD\u2019S DATE OF BIRTH}?", 
+                                                "uuid": "653de1f0-4b75-012f-7861-482a143dc94d"
+                                            }, 
+                                            {
+                                                "answers": [
+                                                    {
+                                                        "text": "Date", 
+                                                        "type": "string", 
+                                                        "uuid": "653e8800-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "Refused", 
+                                                        "uuid": "653ea0b0-4b75-012f-7861-482a143dc94d"
+                                                    }, 
+                                                    {
+                                                        "text": "No lo seé", 
+                                                        "uuid": "653eb850-4b75-012f-7861-482a143dc94d"
+                                                    }
+                                                ], 
+                                                "help_text": "Si el participante se niega a proporcionar la información, protección de la confidencialidad re-estatales y que DOB ayuda a determinar la elegibilidad. Si la respuesta fue considerada inválida, haga la pregunta una y otra sonda para una respuesta válida. Verifique si la edad calculada en meses es inferior a 4 meses ni superior a 9 meses", 
+                                                "pick": "one", 
+                                                "reference_identifier": "CHILD_DOB", 
+                                                "text": "Qué es {C_FNAME/YOUR CHILD}\u2019s fecha de nacimiento?", 
+                                                "uuid": "653e69e0-4b75-012f-7861-482a143dc94d"
+                                            }
+                                        ], 
+                                        "reference_identifier": "6MMother_INT", 
+                                        "title": "verificación Participante",
+                                        "uuid" : "9E532F7B-28E1-4FE1-A6B7-EB1A39893986"
+                                    }
+                                ]
+                            },
+                            {
+                                "locale": "en",
+                                "localizedName": "English",
+                                "uuid": "3E7CA3BF-0718-4966-AFC9-BDB36680EE8A"
+                            }
+                        ],
                         "sections": [
                             {
                                 "display_order": 0, 
@@ -15430,6 +16024,7 @@
                                         "uuid": "652ed200-4b75-012f-7861-482a143dc94d"
                                     }
                                 ], 
+                                "uuid" : "4376DA89-1082-4C85-99E3-E8ABD2B60697",
                                 "reference_identifier": "6MMother_INT", 
                                 "title": "Interview introduction"
                             }, 
@@ -15708,7 +16303,8 @@
                                     }
                                 ], 
                                 "reference_identifier": "6MMother_INT", 
-                                "title": "Participant verification"
+                                "title": "Participant verification",
+                                "uuid" : "9E532F7B-28E1-4FE1-A6B7-EB1A39893986"
                             }, 
                             {
                                 "display_order": 3, 
@@ -28940,7 +29536,7 @@
                         ],                
                         "title": "INS_QUE_PBSampScreenHosp_INT_M3.2_V1.0", 
                         "uuid": "c29671e2-537e-4121-8c48-4315ee58d1f0"
-                    },
+                    }
                 }
             ]
         }
@@ -28999,6 +29595,6 @@
                     "zip_code": "60611"
                 }
             ]
-        }
+        } 
     ]
 }

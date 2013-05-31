@@ -14,7 +14,7 @@
 #import "NUQuestion.h"
 
 @implementation InstrumentTemplate
-@dynamic instrumentTemplateId,representation,participantType, questions;
+@dynamic instrumentTemplateId,representation,participantType, questions, translations;
 
 - (void)setRepresentationDictionary:(NSDictionary*)dict {
     self.representation = [dict JSONString];

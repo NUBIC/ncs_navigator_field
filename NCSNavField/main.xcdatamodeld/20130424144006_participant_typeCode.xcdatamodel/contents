@@ -187,23 +187,23 @@
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="0" positionY="0" width="128" height="405"/>
-        <element name="DispositionCode" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="Event" positionX="0" positionY="0" width="128" height="345"/>
-        <element name="EventTemplate" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="Fieldwork" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="Instrument" positionX="0" positionY="0" width="128" height="375"/>
-        <element name="InstrumentPlan" positionX="0" positionY="0" width="128" height="75"/>
-        <element name="InstrumentTemplate" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="MdesCode" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="MergeStatus" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="NUAnswer" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="NUQuestion" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="Participant" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="Person" positionX="0" positionY="0" width="128" height="270"/>
-        <element name="Provider" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="Response" positionX="0" positionY="0" width="128" height="165"/>
-        <element name="ResponseSet" positionX="0" positionY="0" width="128" height="165"/>
-        <element name="ResponseTemplate" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Contact" positionX="-360" positionY="297" width="128" height="405"/>
+        <element name="DispositionCode" positionX="-540" positionY="-27" width="128" height="135"/>
+        <element name="Event" positionX="450" positionY="249" width="128" height="345"/>
+        <element name="EventTemplate" positionX="306" positionY="-0" width="128" height="120"/>
+        <element name="Fieldwork" positionX="-144" positionY="456" width="128" height="120"/>
+        <element name="Instrument" positionX="-38" positionY="-141" width="128" height="375"/>
+        <element name="InstrumentPlan" positionX="153" positionY="-162" width="128" height="75"/>
+        <element name="InstrumentTemplate" positionX="-38" positionY="252" width="128" height="135"/>
+        <element name="MdesCode" positionX="-234" positionY="-180" width="128" height="90"/>
+        <element name="MergeStatus" positionX="-387" positionY="-180" width="128" height="90"/>
+        <element name="NUAnswer" positionX="493" positionY="-162" width="128" height="105"/>
+        <element name="NUQuestion" positionX="304" positionY="-162" width="128" height="120"/>
+        <element name="Participant" positionX="-360" positionY="171" width="128" height="105"/>
+        <element name="Person" positionX="-533" positionY="135" width="128" height="270"/>
+        <element name="Provider" positionX="-540" positionY="-180" width="128" height="135"/>
+        <element name="Response" positionX="-387" positionY="-30" width="128" height="165"/>
+        <element name="ResponseSet" positionX="-189" positionY="-12" width="128" height="165"/>
+        <element name="ResponseTemplate" positionX="475" positionY="-0" width="128" height="105"/>
     </elements>
 </model>
