@@ -15,6 +15,10 @@
 #import "NSDate+Additions.h"
 #import <NUSurveyor/NUUUID.h>
 
+@interface Contact ()
+
+@end
+
 @implementation Contact
 
 @dynamic contactId, typeId, date, startTime, endTime, personId, person, initiated, events, locationId, locationOther, whoContactedId, whoContactedOther, comments, languageId, languageOther, interpreterId, interpreterOther, privateId, privateDetail, distanceTraveled, dispositionCode, version, appCreated;
@@ -98,6 +102,29 @@
 
 - (BOOL) closed {
     return [self.dispositionCode integerValue] != 0;
+}
+
+-(NSArray *)requiredProperties {
+    return @[@"dispositionCode" , @"endTime"];
+}
+
+- (BOOL) completed {
+    for (NSString *requiredObject in self.requiredProperties) {
+        if ([self valueForKey:requiredObject] == nil) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+-(NSArray *)missingRequiredProperties {
+    NSArray *missingRequiredPropertiesArray = @[];
+    for (NSString *requiredObject in self.requiredProperties) {
+        if ([self valueForKey:requiredObject] == nil) {
+            missingRequiredPropertiesArray = [missingRequiredPropertiesArray arrayByAddingObject:requiredObject];
+        }
+    }
+    return missingRequiredPropertiesArray;
 }
 
 - (void) setStartTimeJson:(NSString*)startTime {

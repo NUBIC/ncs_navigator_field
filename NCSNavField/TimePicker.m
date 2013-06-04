@@ -82,6 +82,7 @@
 }
 
 - (void)showPicker {
+    [self resetMarkAsRequired];
     [self postPopoverNotification];
     if (!self.picker) {
         self.picker = [self buildPickerVC];
@@ -125,6 +126,18 @@
 
 -(NSString*)accessibilityLabel {
     return @"Time Picker";
+}
+
+-(void)setButtonTextColor:(UIColor *)textColor {
+    [self.button setTitleColor:textColor forState:UIControlStateNormal];
+}
+
+-(void)markAsRequired {
+    [self.button setTitleColor:REQUIRED_TEXT_COLOR forState:UIControlStateNormal];
+}
+
+-(void)resetMarkAsRequired {
+    [self.button setTitleColor:NORMAL_TEXT_COLOR forState:UIControlStateNormal];
 }
 
 

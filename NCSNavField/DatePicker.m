@@ -77,6 +77,7 @@
 }
 
 - (void)showPicker {
+    [self resetMarkAsRequired];
     [self postPopoverNotification];
     [self.superview endEditing:YES];
     if (!self.picker) {
@@ -121,6 +122,14 @@
 
 -(NSString*)accessibilityLabel {
     return @"Date Picker";
+}
+
+-(void)markAsRequired {
+    [self.button setTitleColor:REQUIRED_TEXT_COLOR forState:UIControlStateNormal];
+}
+
+-(void)resetMarkAsRequired {
+    [self.button setTitleColor:NORMAL_TEXT_COLOR forState:UIControlStateNormal];
 }
 
 

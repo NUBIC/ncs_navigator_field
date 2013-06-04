@@ -676,6 +676,10 @@
 		1694D17E17134F6800D19E32 /* 20130408191419_no_default_values.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130408191419_no_default_values.xcdatamodel; sourceTree = "<group>"; };
 		16A118001714706D00FC2C03 /* 20130409155046_optional_values_set_correctly.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130409155046_optional_values_set_correctly.xcdatamodel; sourceTree = "<group>"; };
 		16A118011714765600FC2C03 /* 20130409161554_update_optional_values.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130409161554_update_optional_values.xcdatamodel; sourceTree = "<group>"; };
+		16AA06C4175D03630020B25D /* 20130603164048_added_completed_to_instrument.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130603164048_added_completed_to_instrument.xcdatamodel; sourceTree = "<group>"; };
+		16AA06C5175D22D40020B25D /* FormElementProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormElementProtocol.h; sourceTree = "<group>"; };
+		16AA06C8175E35960020B25D /* RequiredPropertiesModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequiredPropertiesModelProtocol.h; sourceTree = "<group>"; };
+		16AA06C9175E6EED0020B25D /* 20130604185159_removed_completed_to_instrument.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20130604185159_removed_completed_to_instrument.xcdatamodel; sourceTree = "<group>"; };
 		16C01ECD171F068700299AAD /* NUEndpointServiceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUEndpointServiceTest.h; sourceTree = "<group>"; };
 		16C01ECE171F068700299AAD /* NUEndpointServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUEndpointServiceTest.m; sourceTree = "<group>"; };
 		16E839C116D8244800ED8A3C /* 20130222220953_removed_person_relation_from_contact.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 20130222220953_removed_person_relation_from_contact.xcdatamodel; sourceTree = "<group>"; };
@@ -1266,6 +1270,7 @@
 				0037D8BE15F685F200C6B7EB /* ResponseSet.m */,
 				001FEDD11619FA4F00DE8A3A /* SurveySet.h */,
 				001FEDD21619FA4F00DE8A3A /* SurveySet.m */,
+				16AA06C8175E35960020B25D /* RequiredPropertiesModelProtocol.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1360,6 +1365,7 @@
 			isa = PBXGroup;
 			children = (
 				2237A32B163B2928009E3A13 /* Categories */,
+				16AA06C5175D22D40020B25D /* FormElementProtocol.h */,
 				00393C90148E54C000671899 /* SingleOptionPicker.h */,
 				00393C91148E54C000671899 /* SingleOptionPicker.m */,
 				006D47FA148D94970035DC01 /* ChangeHandler.h */,
@@ -2151,6 +2157,8 @@
 				16A118001714706D00FC2C03 /* 20130409155046_optional_values_set_correctly.xcdatamodel */,
 				16A118011714765600FC2C03 /* 20130409161554_update_optional_values.xcdatamodel */,
 				16F5BA8F1728265700CD582C /* 20130424144006_participant_typeCode.xcdatamodel */,
+				16AA06C4175D03630020B25D /* 20130603164048_added_completed_to_instrument.xcdatamodel */,
+				16AA06C9175E6EED0020B25D /* 20130604185159_removed_completed_to_instrument.xcdatamodel */,
 				00140E2816C0267E0074AB6B /* 20130204172431_remove_instrument_plan_relationship_from_instrument.xcdatamodel */,
 				002968A316BC7D3E00524EEC /* 20130201224552_change_response_entity_name.xcdatamodel */,
 				00BB5C4A167EC70D00EAE043 /* 20121217031937_move_response_templates_relationship_to_event_templates.xcdatamodel */,
@@ -2188,7 +2196,7 @@
 				0037D8C015F6881C00C6B7EB /* 20120904190344_change_response_set_entity.xcdatamodel */,
 				00C9C6E4146CE66300F6D339 /* main.xcdatamodel */,
 			);
-			currentVersion = 16F5BA8F1728265700CD582C /* 20130424144006_participant_typeCode.xcdatamodel */;
+			currentVersion = 16AA06C9175E6EED0020B25D /* 20130604185159_removed_completed_to_instrument.xcdatamodel */;
 			name = main.xcdatamodeld;
 			path = NCSNavField/main.xcdatamodeld;
 			sourceTree = "<group>";

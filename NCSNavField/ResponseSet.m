@@ -13,7 +13,7 @@
 
 @implementation ResponseSet
 
-@dynamic survey;
+@dynamic survey, completedAt;
 
 - (NSDictionary*) toDict {
     NSMutableDictionary* d = [NSMutableDictionary dictionaryWithDictionary:[super toDict]];

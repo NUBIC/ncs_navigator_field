@@ -18,10 +18,20 @@
 #import "DispositionCode.h"
 #import "NSManagedObject+ActiveRecord.h"
 
+#import "FormElementProtocol.h"
+
 NSUInteger const DISPOSITION_CATEGORY_TAG = 150;
 NSUInteger const DISPOSITION_CODE_TAG_LABEL_2 = 110;
 NSUInteger const DISPOSITION_CODE_TAG_PICKER_2 = 99;
 NSUInteger const CONTACT_METHOD_TAG = 10;
+
+@interface ContactCloseVC () <UIAlertViewDelegate>
+
+@property (nonatomic, strong) UIAlertView *requiredPropertyAlertView;
+
+-(void)commitValuesAndDismiss;
+
+@end
 
 
 @implementation ContactCloseVC
@@ -36,7 +46,6 @@ NSUInteger const CONTACT_METHOD_TAG = 10;
 - (id)initWithContact:contact {
     if (self = [super init]) {
         _contact = contact;
-
     }
     return self;
 }
@@ -113,7 +122,6 @@ NSUInteger const CONTACT_METHOD_TAG = 10;
     else {
         _isDispositionCategoryLocked=YES;
         _whereToGetDispositionCategory = @selector(selectedValueForCategory);
-    
     }
 }
 
@@ -145,41 +153,41 @@ NSUInteger const CONTACT_METHOD_TAG = 10;
 - (UIView*) leftContactContentWithFrame:(CGRect)frame contact:(Contact*)contact {
     UIView* v = [[UIView alloc] initWithFrame:frame];
     
-    _leftFormBuilder = [[FormBuilder alloc] initWithView:v object:contact];
+    self.leftFormBuilder = [[FormBuilder alloc] initWithView:v object:contact];
     
-    [_leftFormBuilder sectionHeader:@"Contact"];
+    [self.leftFormBuilder sectionHeader:@"Contact"];
     
-    [_leftFormBuilder labelWithText:@"Contact Date"];
-    [_leftFormBuilder datePickerForProperty:@selector(date)];
+    [self.leftFormBuilder labelWithText:@"Contact Date"];
+    [self.leftFormBuilder datePickerForProperty:@selector(date)];
     
-    [_leftFormBuilder labelWithText:@"Contact Start Time"];
-    [_leftFormBuilder timePickerForProperty:@selector(startTime)];
+    [self.leftFormBuilder labelWithText:@"Contact Start Time"];
+    [self.leftFormBuilder timePickerForProperty:@selector(startTime)];
     
-    [_leftFormBuilder labelWithText:@"Contact End Time"];
-    [_leftFormBuilder timePickerForProperty:@selector(endTime)];
+    [self.leftFormBuilder labelWithText:@"Contact End Time"];
+    [self.leftFormBuilder timePickerForProperty:@selector(endTime)];
         
-    [_leftFormBuilder labelWithText:@"Person Contacted"];
-    [_leftFormBuilder singleOptionPickerForProperty:@selector(whoContactedId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONTACTED_PERSON_CL1"]];
+    [self.leftFormBuilder labelWithText:@"Person Contacted"];
+    [self.leftFormBuilder singleOptionPickerForProperty:@selector(whoContactedId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONTACTED_PERSON_CL1"]];
 
-    [_leftFormBuilder labelWithText:@"Person Contacted (Other)"];
-    [_leftFormBuilder textFieldForProperty:@selector(whoContactedOther)];
+    [self.leftFormBuilder labelWithText:@"Person Contacted (Other)"];
+    [self.leftFormBuilder textFieldForProperty:@selector(whoContactedOther)];
     
-    [_leftFormBuilder labelWithText:@"Contact Method"];
-    SingleOptionPicker *picker = [_leftFormBuilder singleOptionPickerForProperty:@selector(typeId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONTACT_TYPE_CL1"]];
+    [self.leftFormBuilder labelWithText:@"Contact Method"];
+    SingleOptionPicker *picker = [self.leftFormBuilder singleOptionPickerForProperty:@selector(typeId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONTACT_TYPE_CL1"]];
     picker.singleOptionPickerDelegate = self;
     picker.tag = CONTACT_METHOD_TAG;
     
-    [_leftFormBuilder labelWithText:@"Location"];
-    [_leftFormBuilder singleOptionPickerForProperty:@selector(locationId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONTACT_LOCATION_CL1"]];
+    [self.leftFormBuilder labelWithText:@"Location"];
+    [self.leftFormBuilder singleOptionPickerForProperty:@selector(locationId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONTACT_LOCATION_CL1"]];
     
-    [_leftFormBuilder labelWithText:@"Location (Other)"];
-    [_leftFormBuilder textFieldForProperty:@selector(locationOther)];
+    [self.leftFormBuilder labelWithText:@"Location (Other)"];
+    [self.leftFormBuilder textFieldForProperty:@selector(locationOther)];
     
-    [_leftFormBuilder labelWithText:@"Were there privacy issues?"];
-    [_leftFormBuilder singleOptionPickerForProperty:@selector(privateId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONFIRM_TYPE_CL2"]];
+    [self.leftFormBuilder labelWithText:@"Were there privacy issues?"];
+    [self.leftFormBuilder singleOptionPickerForProperty:@selector(privateId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONFIRM_TYPE_CL2"]];
     
-    [_leftFormBuilder labelWithText:@"What were the privacy issues?"];
-    [_leftFormBuilder textFieldForProperty:@selector(privateDetail)];
+    [self.leftFormBuilder labelWithText:@"What were the privacy issues?"];
+    [self.leftFormBuilder textFieldForProperty:@selector(privateDetail)];
     
     return v;
 }
@@ -187,15 +195,15 @@ NSUInteger const CONTACT_METHOD_TAG = 10;
 - (UIView*) rightContactContentWithFrame:(CGRect)frame contact:(Contact*)contact {
     UIView* v = [[UIView alloc] initWithFrame:frame];
     
-    _rightFormBuilder = [[FormBuilder alloc] initWithView:v object:contact];
+    self.rightFormBuilder = [[FormBuilder alloc] initWithView:v object:contact];
     
-    [_rightFormBuilder sectionHeader:@""];
+    [self.rightFormBuilder sectionHeader:@""];
     
-    [_rightFormBuilder labelWithText:@"Distance traveled (in miles)"];
-    [_rightFormBuilder textFieldForProperty:@selector(distanceTraveled) numbersOnly:YES];
+    [self.rightFormBuilder labelWithText:@"Distance traveled (in miles)"];
+    [self.rightFormBuilder textFieldForProperty:@selector(distanceTraveled) numbersOnly:YES];
     
-    [_rightFormBuilder labelWithText:@"Disposition Category"];
-    SingleOptionPicker *picker = [_rightFormBuilder singleOptionPickerForProperty:_whereToGetDispositionCategory WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"EVENT_DSPSTN_CAT_CL1"] andTag:DISPOSITION_CATEGORY_TAG];
+    [self.rightFormBuilder labelWithText:@"Disposition Category"];
+    SingleOptionPicker *picker = [self.rightFormBuilder singleOptionPickerForProperty:_whereToGetDispositionCategory WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"EVENT_DSPSTN_CAT_CL1"] andTag:DISPOSITION_CATEGORY_TAG];
     picker.singleOptionPickerDelegate = self;
     
     NSString *strPickedCategory = (picker.hasValue) ? picker.text : nil;
@@ -209,26 +217,26 @@ NSUInteger const CONTACT_METHOD_TAG = 10;
     [DispositionCode pickerOptionsByCategoryCode:strPickedCategory] :
     [NSArray array];
     
-    [_rightFormBuilder labelWithText:@"Disposition" andTag:DISPOSITION_CODE_TAG_LABEL_2];
-    [_rightFormBuilder singleOptionPickerForProperty:@selector(dispositionCode) WithPickerOptions:arrDispositionOptions andPopoverSize:NUPickerVCPopoverSizeLarge andTag:DISPOSITION_CODE_TAG_PICKER_2];
+    [self.rightFormBuilder labelWithText:@"Disposition" andTag:DISPOSITION_CODE_TAG_LABEL_2];
+    [self.rightFormBuilder singleOptionPickerForProperty:@selector(dispositionCode) WithPickerOptions:arrDispositionOptions andPopoverSize:NUPickerVCPopoverSizeLarge andTag:DISPOSITION_CODE_TAG_PICKER_2];
     
-    [_rightFormBuilder labelWithText:@"Language of interview"];
-    [_rightFormBuilder singleOptionPickerForProperty:@selector(languageId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"LANGUAGE_CL2"]];
+    [self.rightFormBuilder labelWithText:@"Language of interview"];
+    [self.rightFormBuilder singleOptionPickerForProperty:@selector(languageId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"LANGUAGE_CL2"]];
     
-    [_rightFormBuilder labelWithText:@"Language of interview (Other)"];
-    [_rightFormBuilder textFieldForProperty:@selector(languageOther)];
+    [self.rightFormBuilder labelWithText:@"Language of interview (Other)"];
+    [self.rightFormBuilder textFieldForProperty:@selector(languageOther)];
     
-    [_rightFormBuilder labelWithText:@"Interpreter"];
-    [_rightFormBuilder singleOptionPickerForProperty:@selector(interpreterId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"TRANSLATION_METHOD_CL3"]];
+    [self.rightFormBuilder labelWithText:@"Interpreter"];
+    [self.rightFormBuilder singleOptionPickerForProperty:@selector(interpreterId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"TRANSLATION_METHOD_CL3"]];
     
-    [_rightFormBuilder labelWithText:@"Interpreter (Other)"];
-    [_rightFormBuilder textFieldForProperty:@selector(interpreterOther)];
+    [self.rightFormBuilder labelWithText:@"Interpreter (Other)"];
+    [self.rightFormBuilder textFieldForProperty:@selector(interpreterOther)];
     
-    [_rightFormBuilder labelWithText:@"Comments"];
-    [_rightFormBuilder textAreaForProperty:@selector(comments)];
+    [self.rightFormBuilder labelWithText:@"Comments"];
+    [self.rightFormBuilder textAreaForProperty:@selector(comments)];
     
-    if((![[_rightFormBuilder controlForTag:DISPOSITION_CODE_TAG_PICKER_2] hasValue])&&(picker.userInteractionEnabled))
-        [_rightFormBuilder hideControlWithTags:DISPOSITION_CODE_TAG_LABEL_2,DISPOSITION_CODE_TAG_PICKER_2,NSNotFound];
+    if((![[self.rightFormBuilder controlForTag:DISPOSITION_CODE_TAG_PICKER_2] hasValue])&&(picker.userInteractionEnabled))
+        [self.rightFormBuilder hideControlWithTags:DISPOSITION_CODE_TAG_LABEL_2,DISPOSITION_CODE_TAG_PICKER_2,NSNotFound];
 
     return v;
 }
@@ -265,6 +273,22 @@ NSUInteger const CONTACT_METHOD_TAG = 10;
 }
 
 - (void) done {
+    [self.leftFormBuilder resetRequiredFormElements];
+    [self.rightFormBuilder resetRequiredFormElements];
+    if ([self.contact completed] == YES) {
+        [self commitValuesAndDismiss];
+    }
+    else {
+        self.requiredPropertyAlertView = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                                     message:[NSString stringWithFormat:@"You are missing %@. Continue?", [[self.contact missingRequiredProperties] componentsJoinedByString:@", "]]
+                                                                    delegate:self
+                                                           cancelButtonTitle:@"Cancel"
+                                                           otherButtonTitles:@"Go Ahead", nil];
+        [self.requiredPropertyAlertView show];
+    }
+}
+
+-(void)commitValuesAndDismiss {
     [self commitTransaction];
     [self.presentingViewController dismissViewControllerAnimated:NO completion:^{
        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactClosed" object:self]; 
@@ -343,6 +367,20 @@ NSUInteger const CONTACT_METHOD_TAG = 10;
     [dCodePicker clearResponse];
     [dCodePicker updatePickerOptions:[DispositionCode pickerOptionsByCategoryCode:str]];
     [_rightFormBuilder animateShowingOfControlWithTags:DISPOSITION_CODE_TAG_LABEL_2,DISPOSITION_CODE_TAG_PICKER_2,NSNotFound];
+}
+
+#pragma mark - Alert View Delegate 
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([alertView isEqual:self.requiredPropertyAlertView]) {
+        if (buttonIndex == 0) {
+            [self.leftFormBuilder warnFormElementsWithProperties:[self.contact missingRequiredProperties]];
+            [self.rightFormBuilder warnFormElementsWithProperties:[self.contact missingRequiredProperties]];
+        }
+        else {
+            [self commitValuesAndDismiss];
+        }
+    }
 }
 
 #pragma mark - Managing Keyboard

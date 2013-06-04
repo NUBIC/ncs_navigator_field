@@ -29,14 +29,15 @@ static TextArea* _activeField = nil;
     t.delegate = self;
 
     t.editable = YES;
-    t.textColor = [UIColor blackColor];
+    t.textColor = NORMAL_TEXT_COLOR;
     t.font = [UIFont systemFontOfSize:17.0];
     t.backgroundColor = [UIColor whiteColor];
+
 	t.textAlignment = UITextAlignmentLeft;
 	t.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	t.autocorrectionType = UITextAutocorrectionTypeNo;
 	t.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    t.layer.cornerRadius = 5;
+    t.layer.cornerRadius = 8.0f;
     t.clipsToBounds = YES;
     t.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     t.layer.borderWidth = 1;
@@ -77,6 +78,16 @@ static TextArea* _activeField = nil;
 
 -(NSString*)accessibilityLabel {
     return @"Text Area";
+}
+
+-(void)markAsRequired {
+    self.textView.backgroundColor = REQUIRED_TEXT_COLOR;
+    self.textView.textColor = [UIColor whiteColor];
+}
+
+-(void)resetMarkAsRequired {
+    self.textView.backgroundColor = [UIColor whiteColor];
+    self.textView.textColor = NORMAL_TEXT_COLOR;
 }
 
 @end

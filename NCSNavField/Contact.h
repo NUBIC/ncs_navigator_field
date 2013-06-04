@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "RequiredPropertiesModelProtocol.h"
+
 @class Event;
 @class Person;
 
-
-@interface Contact : NSManagedObject {
+@interface Contact : NSManagedObject <RequiredPropertiesModelProtocol> {
     NSNumber *_selectedValueForCategory;
 }
 

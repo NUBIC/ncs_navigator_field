@@ -33,6 +33,10 @@
 
 NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER = 44;
 
+@interface Instrument ()
+
+@end
+
 @implementation Instrument
 
 @dynamic instrumentId, name, event, instrumentTypeId, instrumentTypeOther,
@@ -196,6 +200,15 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
 
 - (Instrument*)clone {
     return (Instrument*)[self cloneAndignoreRelations:@[@"event", @"eventTemplate"]];
+}
+
+-(BOOL) completed {
+    for (ResponseSet *responseSet in self.responseSets) {
+        if (responseSet.completedAt == nil) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 @end

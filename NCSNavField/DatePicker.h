@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "UIView+Additions.h"
 
+#import "FormElementProtocol.h"
+
 @class NUPickerVC;
 @class ChangeHandler;
 
-@interface DatePicker : UIView<UIPopoverControllerDelegate> {
+@interface DatePicker : UIView<UIPopoverControllerDelegate, FormElementProtocol> {
     NSDate* _date;
     UIButton* _button;
     NUPickerVC* _picker;

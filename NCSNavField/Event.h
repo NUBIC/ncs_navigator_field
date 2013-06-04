@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "RequiredPropertiesModelProtocol.h"
+
 @class Contact;
 @class Instrument;
 @class Participant;
 
-@interface Event : NSManagedObject
+@interface Event : NSManagedObject <RequiredPropertiesModelProtocol>
 
 /* properties */
 

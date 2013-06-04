@@ -15,6 +15,12 @@
 #import "TextArea.h"
 #import "DispositionCode.h"
 
+@interface EventVC () <UIAlertViewDelegate>
+
+@property (nonatomic, strong) UIAlertView *requiredPropertyAlertView;
+
+@end
+
 @implementation EventVC
 
 @synthesize event=_event;
@@ -132,21 +138,21 @@ NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
 - (UIView*) leftEventContentWithFrame:(CGRect)frame event:(Event*)e {
     UIView* v = [[UIView alloc] initWithFrame:frame];
     
-    _leftFormBuilder = [[FormBuilder alloc] initWithView:v object:e];
+    self.leftFormBuilder = [[FormBuilder alloc] initWithView:v object:e];
     
-    [_leftFormBuilder sectionHeader:[NSString stringWithFormat:@"%@ %@", e.name, @"Event"]];
+    [self.leftFormBuilder sectionHeader:[NSString stringWithFormat:@"%@ %@", e.name, @"Event"]];
     
-    [_leftFormBuilder labelWithText:@"Breakoff"];
-    [_leftFormBuilder singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONFIRM_TYPE_CL2"]];
+    [self.leftFormBuilder labelWithText:@"Breakoff"];
+    [self.leftFormBuilder singleOptionPickerForProperty:@selector(breakOffId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"CONFIRM_TYPE_CL2"]];
         
-    [_leftFormBuilder labelWithText:@"End Date"];
-    [_leftFormBuilder datePickerForProperty:@selector(endDate)];
+    [self.leftFormBuilder labelWithText:@"End Date"];
+    [self.leftFormBuilder datePickerForProperty:@selector(endDate)];
     
-    [_leftFormBuilder labelWithText:@"End Time"];
-    [_leftFormBuilder timePickerForProperty:@selector(endTime)];
+    [self.leftFormBuilder labelWithText:@"End Time"];
+    [self.leftFormBuilder timePickerForProperty:@selector(endTime)];
     
-    [_leftFormBuilder labelWithText:@"Disposition Category"];
-    SingleOptionPicker *picker = [_leftFormBuilder singleOptionPickerForProperty:@selector(dispositionCategoryId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"EVENT_DSPSTN_CAT_CL1"]];
+    [self.leftFormBuilder labelWithText:@"Disposition Category"];
+    SingleOptionPicker *picker = [self.leftFormBuilder singleOptionPickerForProperty:@selector(dispositionCategoryId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"EVENT_DSPSTN_CAT_CL1"]];
     picker.singleOptionPickerDelegate = self;
     
     NSString *strPickedCategory = (picker.hasValue) ? picker.text : nil;
@@ -159,11 +165,11 @@ NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
     NSArray *arrDispositionOptions = ([strPickedCategory length]>0) ?
         [DispositionCode pickerOptionsByCategoryCode:strPickedCategory] :
         [NSArray array];
-    [_leftFormBuilder labelWithText:@"Disposition" andTag:DISPOSITION_CODE_TAG_LABEL];
-    [_leftFormBuilder singleOptionPickerForProperty:@selector(dispositionCode) WithPickerOptions:arrDispositionOptions andPopoverSize:NUPickerVCPopoverSizeLarge andTag:DISPOSITION_CODE_TAG_PICKER];
+    [self.leftFormBuilder labelWithText:@"Disposition" andTag:DISPOSITION_CODE_TAG_LABEL];
+    [self.leftFormBuilder singleOptionPickerForProperty:@selector(dispositionCode) WithPickerOptions:arrDispositionOptions andPopoverSize:NUPickerVCPopoverSizeLarge andTag:DISPOSITION_CODE_TAG_PICKER];
     
-    if((![[_leftFormBuilder controlForTag:DISPOSITION_CODE_TAG_PICKER] hasValue])&&(picker.userInteractionEnabled))
-        [_leftFormBuilder hideControlWithTags:DISPOSITION_CODE_TAG_LABEL,DISPOSITION_CODE_TAG_PICKER,NSNotFound];
+    if((![[self.leftFormBuilder controlForTag:DISPOSITION_CODE_TAG_PICKER] hasValue])&&(picker.userInteractionEnabled))
+        [self.leftFormBuilder hideControlWithTags:DISPOSITION_CODE_TAG_LABEL,DISPOSITION_CODE_TAG_PICKER,NSNotFound];
     
     return v;
 }
@@ -171,21 +177,21 @@ NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
 - (UIView*) rightEventContentWithFrame:(CGRect)frame event:(Event*)e {
     UIView* v = [[UIView alloc] initWithFrame:frame];
     
-    _rightFormBuilder = [[FormBuilder alloc] initWithView:v object:e];
+    self.rightFormBuilder = [[FormBuilder alloc] initWithView:v object:e];
     
-    [_rightFormBuilder sectionHeader:@""];
+    [self.rightFormBuilder sectionHeader:@""];
     
-    [_rightFormBuilder labelWithText:@"Incentive Type"];
-    [_rightFormBuilder singleOptionPickerForProperty:@selector(incentiveTypeId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"INCENTIVE_TYPE_CL1"]];
+    [self.rightFormBuilder labelWithText:@"Incentive Type"];
+    [self.rightFormBuilder singleOptionPickerForProperty:@selector(incentiveTypeId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"INCENTIVE_TYPE_CL1"]];
     
-    [_rightFormBuilder labelWithText:@"Cash Incentive (xx.xx)"];
-    [_rightFormBuilder textFieldForProperty:@selector(incentiveCash) currency:YES];
+    [self.rightFormBuilder labelWithText:@"Cash Incentive (xx.xx)"];
+    [self.rightFormBuilder textFieldForProperty:@selector(incentiveCash) currency:YES];
     
-    [_rightFormBuilder labelWithText:@"Non-Cash Incentive"];
-    [_rightFormBuilder textFieldForProperty:@selector(incentiveNonCash)];
+    [self.rightFormBuilder labelWithText:@"Non-Cash Incentive"];
+    [self.rightFormBuilder textFieldForProperty:@selector(incentiveNonCash)];
     
-    [_rightFormBuilder labelWithText:@"Comments"];
-    [_rightFormBuilder textAreaForProperty:@selector(comments)];
+    [self.rightFormBuilder labelWithText:@"Comments"];
+    [self.rightFormBuilder textAreaForProperty:@selector(comments)];
     
     return v;
 }
@@ -224,16 +230,35 @@ NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
 }
 
 - (void) done {
-    [self commitTransaction];
-    [self dismissViewControllerAnimated:NO completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"EventVC#done" object:self]; 
-    }];
+    [self.leftFormBuilder resetRequiredFormElements];
+    [self.rightFormBuilder resetRequiredFormElements];
+    if ([self.event completed] == YES) {
+        [self commitValuesAndDismiss];
+    }
+    else {
+        self.requiredPropertyAlertView = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                                    message:[NSString stringWithFormat:@"You are missing %@. Continue?", [[self.event missingRequiredProperties] componentsJoinedByString:@", "]]
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"Cancel"
+                                                          otherButtonTitles:@"Go Ahead", nil];
+        [self.requiredPropertyAlertView show];
+    }
+    
+    
+
 }
 
 - (void) startTransaction {
     NSManagedObjectContext* moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
     NSUndoManager* undoManager = [moc undoManager];
     [undoManager beginUndoGrouping];
+}
+
+-(void)commitValuesAndDismiss {
+    [self commitTransaction];
+    [self dismissViewControllerAnimated:NO completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"EventVC#done" object:self];
+    }];
 }
 
 - (void) endTransction {
@@ -293,6 +318,20 @@ NSUInteger const DISPOSITION_CODE_TAG_PICKER = 99;
         CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
         CGPoint newPoint = CGPointMake(0.0,(active.frame.origin.y + active.superview.frame.origin.y + height)-kbSize.width);
         [self.scrollView setContentOffset:newPoint animated:YES];
+    }
+}
+
+#pragma mark - Alert View Delegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([alertView isEqual:self.requiredPropertyAlertView]) {
+        if (buttonIndex == 0) {
+            [self.leftFormBuilder warnFormElementsWithProperties:[self.event missingRequiredProperties]];
+            [self.rightFormBuilder warnFormElementsWithProperties:[self.event missingRequiredProperties]];
+        }
+        else {
+            [self commitValuesAndDismiss];
+        }
     }
 }
 

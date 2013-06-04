@@ -14,6 +14,7 @@
 #import "ContactCloseVC.h"
 #import "InstrumentVC.h"
 #import "Event.h"
+#import "Instrument.h"
 #import "Section.h"
 #import "Row.h"
 #import "Contact.h"
@@ -48,6 +49,7 @@
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stoppedAdministeringInstrument:) name:@"StoppedAdministeringInstrument" object:NULL];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshView) name:@"ContactClosed" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshView) name:@"EventVC#done" object:nil];
     }
     return self;
 }
@@ -206,6 +208,13 @@
             }
         }
     }
+    
+    if ([r.entity respondsToSelector:@selector(completed)]) {
+        UITableViewCellAccessoryType nonSelected = ([r.entity isKindOfClass:[Instrument class]] == YES ) ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
+        cell.accessoryType = ([r.entity completed] == YES) ? UITableViewCellAccessoryCheckmark : nonSelected;
+    }
+
+    
     return cell;
 }
 
@@ -215,7 +224,7 @@
     UITableViewCell *cell;
     if ([rowClass isEqualToString:@"contact"] || [rowClass isEqualToString:@"instrument"] || [rowClass isEqualToString:@"instrument-details"] || [rowClass isEqualToString:@"event"]) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier:rowClass];
-        cell.textLabel.font =[UIFont fontWithName:@"Arial" size:20];
+        cell.textLabel.font = [UIFont systemFontOfSize:20];
         cell.textLabel.textAlignment = UITextAlignmentCenter;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else {
@@ -299,6 +308,12 @@
     [super viewDidLoad];
 }
  */
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"StoppedAdministeringInstrument" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ContactClosed" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"EventVC#done" object:nil];
+}
 
 - (void)viewDidUnload
 {
