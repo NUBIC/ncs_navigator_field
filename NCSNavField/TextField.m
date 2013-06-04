@@ -9,6 +9,25 @@
 #import "TextField.h"
 #import "ChangeHandler.h"
 
+#import <QuartzCore/QuartzCore.h>
+
+@interface CustomizedTextField : UITextField
+
+@end
+
+@implementation CustomizedTextField
+
+- (CGRect)textRectForBounds:(CGRect)bounds {
+    return CGRectInset(bounds , 7.0f, 5.0f );
+}
+
+// text position
+- (CGRect)editingRectForBounds:(CGRect)bounds {
+    return CGRectInset(bounds , 7.0f , 5.0f );
+}
+
+@end
+
 @implementation TextField
 
 @synthesize handler = _handler;
@@ -17,11 +36,15 @@
 static TextField* _activeField = nil;
 
 - (UITextField*)buildTextFieldWithValue:(NSString*)value {
-    UITextField* t = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
-    t.borderStyle = UITextBorderStyleRoundedRect;
-    t.textColor = [UIColor blackColor]; //text color
+    UITextField* t = [[CustomizedTextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+    t.borderStyle = UITextBorderStyleNone;
+    t.backgroundColor = [UIColor whiteColor];
+    t.layer.cornerRadius = 8.0f;
+    t.layer.borderWidth = 1.0f;
+    t.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    t.layer.masksToBounds = YES;
+    t.textColor = NORMAL_TEXT_COLOR; //text color
     t.font = [UIFont systemFontOfSize:17.0];  //font size
-    t.backgroundColor = [UIColor whiteColor]; //background color
     t.autocorrectionType = UITextAutocorrectionTypeNo;	// no auto correction support
     
     t.keyboardType = UIKeyboardTypeDefault;  // type of the keyboard
@@ -34,6 +57,7 @@ static TextField* _activeField = nil;
     t.delegate = self;
     return t;
 }
+
 /*
     Select this if you want the text field to contain a value like 99.99 or, more generally,
     XXXX.XX where x = {1,2,3....}
@@ -145,10 +169,12 @@ static TextField* _activeField = nil;
 }
 
 -(void)markAsRequired {
-    self.textField.textColor = REQUIRED_TEXT_COLOR;
+    self.textField.backgroundColor = REQUIRED_TEXT_COLOR;
+    self.textField.textColor = [UIColor whiteColor];
 }
 
 -(void)resetMarkAsRequired {
+    self.textField.backgroundColor = [UIColor whiteColor];
     self.textField.textColor = NORMAL_TEXT_COLOR;
 }
 
