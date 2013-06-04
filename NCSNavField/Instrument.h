@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "RequiredPropertiesModelProtocol.h"
+
 @class Event, InstrumentPlan, Participant, Person, ResponseSet;
 
 FOUNDATION_EXPORT NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER;
 
-@interface Instrument : NSManagedObject 
+@interface Instrument : NSManagedObject <RequiredPropertiesModelProtocol>
 
 @property(nonatomic,strong) NSString* instrumentId;
 
@@ -53,8 +55,6 @@ FOUNDATION_EXPORT NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELI
 @property(nonatomic,strong) NSString* comment;
 
 @property (nonatomic, strong) NSNumber *isCompleted;
-
-@property(nonatomic, assign, readonly) BOOL completed;
 
 /* Associations */
 

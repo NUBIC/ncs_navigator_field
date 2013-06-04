@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "RequiredPropertiesModelProtocol.h"
+
 @class Event;
 @class Person;
 
-
-@interface Contact : NSManagedObject {
+@interface Contact : NSManagedObject <RequiredPropertiesModelProtocol> {
     NSNumber *_selectedValueForCategory;
 }
 
@@ -63,12 +64,6 @@
 @property(nonatomic,strong) NSNumber *selectedValueForCategory;
 
 @property (nonatomic, strong) NSNumber *appCreated;
-
-@property (nonatomic, assign, readonly) BOOL completed;
-
-@property (nonatomic, strong, readonly) NSArray *missingRequiredProperties;
-
-@property (nonatomic, strong, readonly) NSArray *requiredProperties;
 
 #pragma mark relations
 

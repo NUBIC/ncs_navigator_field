@@ -13,7 +13,6 @@
 #import "Contact.h"
 #import "Event.h"
 #import "TextField.h"
-#import "TimePicker.h"
 #import "SingleOptionPicker.h"
 #import "TextArea.h"
 #import "DispositionCode.h"
@@ -196,15 +195,15 @@ NSUInteger const CONTACT_METHOD_TAG = 10;
 - (UIView*) rightContactContentWithFrame:(CGRect)frame contact:(Contact*)contact {
     UIView* v = [[UIView alloc] initWithFrame:frame];
     
-    _rightFormBuilder = [[FormBuilder alloc] initWithView:v object:contact];
+    self.rightFormBuilder = [[FormBuilder alloc] initWithView:v object:contact];
     
-    [_rightFormBuilder sectionHeader:@""];
+    [self.rightFormBuilder sectionHeader:@""];
     
-    [_rightFormBuilder labelWithText:@"Distance traveled (in miles)"];
-    [_rightFormBuilder textFieldForProperty:@selector(distanceTraveled) numbersOnly:YES];
+    [self.rightFormBuilder labelWithText:@"Distance traveled (in miles)"];
+    [self.rightFormBuilder textFieldForProperty:@selector(distanceTraveled) numbersOnly:YES];
     
-    [_rightFormBuilder labelWithText:@"Disposition Category"];
-    SingleOptionPicker *picker = [_rightFormBuilder singleOptionPickerForProperty:_whereToGetDispositionCategory WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"EVENT_DSPSTN_CAT_CL1"] andTag:DISPOSITION_CATEGORY_TAG];
+    [self.rightFormBuilder labelWithText:@"Disposition Category"];
+    SingleOptionPicker *picker = [self.rightFormBuilder singleOptionPickerForProperty:_whereToGetDispositionCategory WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"EVENT_DSPSTN_CAT_CL1"] andTag:DISPOSITION_CATEGORY_TAG];
     picker.singleOptionPickerDelegate = self;
     
     NSString *strPickedCategory = (picker.hasValue) ? picker.text : nil;
@@ -218,26 +217,26 @@ NSUInteger const CONTACT_METHOD_TAG = 10;
     [DispositionCode pickerOptionsByCategoryCode:strPickedCategory] :
     [NSArray array];
     
-    [_rightFormBuilder labelWithText:@"Disposition" andTag:DISPOSITION_CODE_TAG_LABEL_2];
-    [_rightFormBuilder singleOptionPickerForProperty:@selector(dispositionCode) WithPickerOptions:arrDispositionOptions andPopoverSize:NUPickerVCPopoverSizeLarge andTag:DISPOSITION_CODE_TAG_PICKER_2];
+    [self.rightFormBuilder labelWithText:@"Disposition" andTag:DISPOSITION_CODE_TAG_LABEL_2];
+    [self.rightFormBuilder singleOptionPickerForProperty:@selector(dispositionCode) WithPickerOptions:arrDispositionOptions andPopoverSize:NUPickerVCPopoverSizeLarge andTag:DISPOSITION_CODE_TAG_PICKER_2];
     
-    [_rightFormBuilder labelWithText:@"Language of interview"];
-    [_rightFormBuilder singleOptionPickerForProperty:@selector(languageId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"LANGUAGE_CL2"]];
+    [self.rightFormBuilder labelWithText:@"Language of interview"];
+    [self.rightFormBuilder singleOptionPickerForProperty:@selector(languageId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"LANGUAGE_CL2"]];
     
-    [_rightFormBuilder labelWithText:@"Language of interview (Other)"];
-    [_rightFormBuilder textFieldForProperty:@selector(languageOther)];
+    [self.rightFormBuilder labelWithText:@"Language of interview (Other)"];
+    [self.rightFormBuilder textFieldForProperty:@selector(languageOther)];
     
-    [_rightFormBuilder labelWithText:@"Interpreter"];
-    [_rightFormBuilder singleOptionPickerForProperty:@selector(interpreterId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"TRANSLATION_METHOD_CL3"]];
+    [self.rightFormBuilder labelWithText:@"Interpreter"];
+    [self.rightFormBuilder singleOptionPickerForProperty:@selector(interpreterId) WithPickerOptions:[MdesCode retrieveAllObjectsForListName:@"TRANSLATION_METHOD_CL3"]];
     
-    [_rightFormBuilder labelWithText:@"Interpreter (Other)"];
-    [_rightFormBuilder textFieldForProperty:@selector(interpreterOther)];
+    [self.rightFormBuilder labelWithText:@"Interpreter (Other)"];
+    [self.rightFormBuilder textFieldForProperty:@selector(interpreterOther)];
     
-    [_rightFormBuilder labelWithText:@"Comments"];
-    [_rightFormBuilder textAreaForProperty:@selector(comments)];
+    [self.rightFormBuilder labelWithText:@"Comments"];
+    [self.rightFormBuilder textAreaForProperty:@selector(comments)];
     
-    if((![[_rightFormBuilder controlForTag:DISPOSITION_CODE_TAG_PICKER_2] hasValue])&&(picker.userInteractionEnabled))
-        [_rightFormBuilder hideControlWithTags:DISPOSITION_CODE_TAG_LABEL_2,DISPOSITION_CODE_TAG_PICKER_2,NSNotFound];
+    if((![[self.rightFormBuilder controlForTag:DISPOSITION_CODE_TAG_PICKER_2] hasValue])&&(picker.userInteractionEnabled))
+        [self.rightFormBuilder hideControlWithTags:DISPOSITION_CODE_TAG_LABEL_2,DISPOSITION_CODE_TAG_PICKER_2,NSNotFound];
 
     return v;
 }
@@ -292,7 +291,7 @@ NSUInteger const CONTACT_METHOD_TAG = 10;
 -(void)commitValuesAndDismiss {
     [self commitTransaction];
     [self.presentingViewController dismissViewControllerAnimated:NO completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactClosed" object:self];
+       [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactClosed" object:self]; 
     }];
 }
 

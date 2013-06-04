@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "RequiredPropertiesModelProtocol.h"
+
 @class Contact;
 @class Instrument;
 @class Participant;
 
-@interface Event : NSManagedObject
+@interface Event : NSManagedObject <RequiredPropertiesModelProtocol>
 
 /* properties */
 
@@ -51,12 +53,6 @@
 @property(nonatomic,strong) NSString* version;
 
 @property(nonatomic,strong) NSString* pId;
-
-@property (nonatomic, assign, readonly) BOOL completed;
-
-@property (nonatomic, strong, readonly) NSArray *requiredProperties;
-
-@property (nonatomic, strong, readonly) NSArray *missingRequiredProperties;
 
 /* relationships */
 
