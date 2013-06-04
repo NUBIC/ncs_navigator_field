@@ -14,6 +14,8 @@
 
 @property(nonatomic,strong) NSString* survey;
 
+@property (nonatomic, strong) NSDate *completedAt;
+
 + (ResponseSet*)createResponseSetWithSurvey:(NUSurvey*)survey pId:(NSString*)pId personId:(NSString*)personId;
 
 @end

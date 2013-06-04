@@ -84,6 +84,7 @@
         <attribute name="instrumentTypeId" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="instrumentTypeOther" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="instrumentVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isCompleted" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="repeatKey" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -192,7 +193,7 @@
         <element name="Event" positionX="0" positionY="0" width="128" height="345"/>
         <element name="EventTemplate" positionX="0" positionY="0" width="128" height="120"/>
         <element name="Fieldwork" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="Instrument" positionX="0" positionY="0" width="128" height="375"/>
+        <element name="Instrument" positionX="0" positionY="0" width="128" height="390"/>
         <element name="InstrumentPlan" positionX="0" positionY="0" width="128" height="75"/>
         <element name="InstrumentTemplate" positionX="0" positionY="0" width="128" height="135"/>
         <element name="MdesCode" positionX="0" positionY="0" width="128" height="90"/>

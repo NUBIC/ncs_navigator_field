@@ -240,7 +240,6 @@
     NSString* rc = row.rowClass;
     if ([rc isEqualToString:@"instrument"]) {
         Instrument* selected = row.entity;
-        selected.isCompleted = @(YES);
         NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:selected, @"instrument", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"InstrumentSelected" object:self userInfo:dict];
     }

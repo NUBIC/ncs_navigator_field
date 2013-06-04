@@ -42,7 +42,7 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
 @dynamic instrumentId, name, event, instrumentTypeId, instrumentTypeOther,
     instrumentVersion, repeatKey, startDate, startTime, endDate, endTime,
     statusId, breakOffId, instrumentModeId, instrumentModeOther,
-    instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSets, instrumentPlanId, isCompleted;
+    instrumentMethodId, supervisorReviewId, dataProblemId, comment, responseSets, instrumentPlanId;
 
 - (NSArray*) responseSetDicts {
     NSMutableArray* all = [[NSMutableArray alloc] init];
@@ -203,7 +203,12 @@ NSInteger const INSTRUMENT_TYPE_ID_PROVIDER_BASED_SAMPLING_ELIGIBILITY_SCREENER 
 }
 
 -(BOOL) completed {
-    return [self.isCompleted boolValue];
+    for (ResponseSet *responseSet in self.responseSets) {
+        if (responseSet.completedAt == nil) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 @end
